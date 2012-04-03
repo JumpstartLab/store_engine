@@ -1,5 +1,6 @@
 StoreEngine::Application.routes.draw do
-  resources :orders, :users, :categories, :products
+  get "dashboard" => "dashboard#index"
+  resources :orders, :users, :categories, :products, :sessions
 
   root :to => "products#index"
 
