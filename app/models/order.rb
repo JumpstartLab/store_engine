@@ -4,6 +4,7 @@ class Order < ActiveRecord::Base
   validates_presence_of :user, :products, :status
 
   belongs_to :user
+  belongs_to :status
 
   has_many :order_products
   has_many :products, :through => :order_products
