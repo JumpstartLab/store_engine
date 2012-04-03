@@ -1,0 +1,23 @@
+%h1 Listing orders
+
+%table
+  %tr
+    %th User
+    %th Product
+    %th Status
+    %th
+    %th
+    %th
+
+  - @orders.each do |order|
+    %tr
+      %td= order.user_id
+      %td= order.product_id
+      %td= order.status
+      %td= link_to 'Show', order
+      %td= link_to 'Edit', edit_order_path(order)
+      %td= link_to 'Destroy', order, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Order', new_order_path

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @order.user_id
+%p
+  %b Product:
+  = @order.product_id
+%p
+  %b Status:
+  = @order.status
+
+= link_to 'Edit', edit_order_path(@order)
+\|
+= link_to 'Back', orders_path
