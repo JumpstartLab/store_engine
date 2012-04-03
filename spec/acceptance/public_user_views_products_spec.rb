@@ -1,10 +1,12 @@
 require 'spec_helper'
 
-describe "Public User Views Products" do
+feature "Public User Views Products" do
+  let!(:product){ Fabricate(:product) }
+
   context "the root page" do
     before(:each) do
       visit root_path
-    end
+    end    
 
     it "displays products" do
       within("#products") do
@@ -21,8 +23,6 @@ describe "Public User Views Products" do
   end
 
   context "the product page" do
-    let(:product){ Product.first }
-
     before(:each) do
       visit product_path(product)
     end
