@@ -9,6 +9,7 @@ class UserSessionsController < ApplicationController
       redirect_back_or_to root_url, :notice => "Logged in!"
     else
       flash.now.alert = "Email or password was invalid."
+      redirect_to :login
     end
   end
 
