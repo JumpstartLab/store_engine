@@ -6,4 +6,12 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
+  %p 
+    - if current_user
+      Logged in as 
+      = current_user.email
+      = link_to "Log out", logout_path
+    -else
+      = link_to "Login", login_path
+
     = yield

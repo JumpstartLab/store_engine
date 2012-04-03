@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_filter :require_not_logged_in, :only => [:create]
 
   def new
     @user = User.new
@@ -16,6 +17,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
+    redirect_to root_path, :notice => "You have successfully logged out"
   end
 
 end

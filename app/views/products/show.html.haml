@@ -9,9 +9,11 @@
 %p
   %b Price:
   = @product.price
-%p
-  %b Photo:
-  = image_tag @product.avatar.url(:thumb)
+
+- if @product.avatar.inspect
+  %p
+    %b Photo:
+    = image_tag @product.avatar.url(:thumb)
 
 = link_to 'Edit', edit_product_path(@product)
 \|
