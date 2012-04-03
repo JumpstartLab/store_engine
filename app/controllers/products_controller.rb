@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to products_path
+    redirect_to products_path, :flash => {:success => "Product has been deleted."}
   end
 
   def new
@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
   def create
     product = Product.new(params[:product])
     product.save
-    redirect_to product_path(product)
+    redirect_to product_path(product), :notice => "Product has been created."
   end
 
   def edit
@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
   def update
     @product.update_attributes(params[:product])
     @product.save
-    redirect_to product_path(@product)
+    redirect_to product_path(@product), :notice => "Product has been edited."
   end
 
   def lookup_product
