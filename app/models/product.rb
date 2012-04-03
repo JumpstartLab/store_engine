@@ -5,4 +5,5 @@ class Product < ActiveRecord::Base
   validates_numericality_of :price, :greater_than => 0
 
   validates_uniqueness_of :title
+
 end
