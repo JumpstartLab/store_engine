@@ -5,6 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+s1 = Status.create(:name => "Shipped")
+Status.create(:name => "Pending")
+Status.create(:name => "Failed")
+Status.create(:name => "Successful")
 
 u1 = User.create(
            :name => "Mike Silvis", 
@@ -62,7 +66,7 @@ p2 = Product.create(
                    )
 o1 = Order.create(
                    :user => u1,
-                   :status => "shipped",
+                   :status => s1,
                    :products => [p1, p2]
                   )
 
