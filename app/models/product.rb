@@ -6,4 +6,6 @@ class Product < ActiveRecord::Base
 
   validates_uniqueness_of :title
 
+  has_many :order_items
+
 end
