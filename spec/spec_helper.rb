@@ -9,7 +9,12 @@ require 'capybara/rails'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-RSpec.configure do |config|  
+require 'simplecov'
+SimpleCov.start do
+  add_filter "/spec/"
+end
+
+RSpec.configure do |config|
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

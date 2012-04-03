@@ -21,5 +21,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  # gem 'guard'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'simplecov'
+  gem 'growl'
 end
