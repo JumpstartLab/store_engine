@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>StoreEngine</title>
+  <title>Our Store</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<h1>Worace's Woodshop</h1>
+<% if current_user %>
+  Logged in as <%= link_to current_user.email, user_path(current_user) %>.
+  <%= link_to "Log out", logout_path %>
+<% else %>
+  <%= link_to "Sign Up", signup_path %> or
+  <%= link_to "Log In", login_path %>.
+<% end %>
 
 <%= yield %>
 

@@ -1,0 +1,9 @@
+<h3>These are the products!</h3>
+<% if logged_in? && current_user.is_admin? %>
+<p><%= link_to "Add a product", new_product_path %></p>
+<% end %>
+<% @products.each do |product| %>
+<div class="product" id="<%= product.id %>">
+  <%= link_to product.title, product_path(product) %>
+</div>
+<% end %>
