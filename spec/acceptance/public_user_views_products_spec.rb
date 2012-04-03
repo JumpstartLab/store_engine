@@ -30,6 +30,13 @@ describe "Public User Views Products" do
     it "displays the product name" do
       page.should have_selector("#name", :text => product.to_s )
     end
+
+    it "has an add-to-cart action" do
+      page.should have_link("add-to-cart")
+    end
+
+    it "has a link to go to the shopping cart" do
+      page.should have_link("cart")
+    end
   end
-  
 end
