@@ -12,12 +12,16 @@ u1 = User.create(
            :email => "mikesilvis@gmail.com",
            :display_name => "mike"
           )
+u1.permission = 9
+u1.save
 u2 = User.create(
            :name => "Nisarg Shah", 
            :password => "nisarg", 
            :email => "nisargshah100@gmail.com",
            :display_name => "nisarg"
           )
+u2.permission = 9
+u2.save
 User.create(
            :name => "Matt Yoho", 
            :password => "hungry", 
