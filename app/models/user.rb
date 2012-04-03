@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
   validates_uniqueness_of :email
-  validates_presence_of :name, :password, :email
+  validates_presence_of :name, :email
+  validates_presence_of :password, :on => :create
   
   has_many :orders
   has_many :products, :through => :orders
@@ -11,15 +12,11 @@ class User < ActiveRecord::Base
 
 
   def admin
-    if permission == 9 
-      true
-    else
-      false
-    end
+    permission == 9
   end
 
   def user
-    true if permission == 1
+    permission == 1
   end
 
 end
