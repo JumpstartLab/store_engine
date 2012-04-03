@@ -1,5 +1,9 @@
 StoreEngine::Application.routes.draw do
 
+  get "categories/new"
+
+  get "categories/create"
+
   root :to => "products#index"
 
   get "logout" => "sessions#destroy", :as => "logout"

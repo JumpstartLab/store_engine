@@ -41,6 +41,8 @@ class ProductsController < ApplicationController
     end
   end
 
+  private
+
   def lookup_product
     @product = Product.find(params[:id])
   end
