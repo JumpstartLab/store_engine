@@ -1,4 +1,12 @@
 StoreEngine::Application.routes.draw do
+  resources :order_items
+
+  resources :orders
+
+  resources :categories
+
+  resources :products
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
