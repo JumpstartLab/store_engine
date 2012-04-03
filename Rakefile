@@ -15,3 +15,4 @@ begin
     t.rspec_opts = "--tag acceptance"
   end
 end
+

@@ -154,7 +154,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   fabrication
   growl
-  guard
   guard-rspec
   jquery-rails
   launchy
