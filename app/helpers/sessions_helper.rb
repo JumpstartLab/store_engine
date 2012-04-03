@@ -1,2 +1,2 @@
-module AuthenticationsHelper
+module SessionsHelper
 end

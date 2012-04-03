@@ -65,12 +65,13 @@ ActiveRecord::Schema.define(:version => 20120403202616) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "password"
+    t.string   "crypted_password"
+    t.string   "salt"
     t.string   "email"
     t.string   "display_name"
-    t.integer  "permission",   :default => 1
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.integer  "permission",       :default => 1
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
 end
