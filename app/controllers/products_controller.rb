@@ -23,6 +23,15 @@ class ProductsController < ApplicationController
     redirect_to product_path(product)
   end
 
+  def edit
+  end
+
+  def update
+    @product.update_attributes(params[:product])
+    @product.save
+    redirect_to product_path(@product)
+  end
+
   def lookup_product
     @product = Product.find(params[:id])
   end
