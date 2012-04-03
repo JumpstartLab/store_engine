@@ -1,0 +1,9 @@
+<ul id="categories">
+  <% @categories.each do |category| %>
+  <li>
+    <%= link_to category.name, category_path(category) %>
+  </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Category", new_category_path, class: "new_category" %>
