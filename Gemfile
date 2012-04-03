@@ -7,6 +7,7 @@ gem 'simplecov'
 gem 'haml-rails'
 gem 'money'
 gem 'paperclip'
+gem 'sorcery'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
