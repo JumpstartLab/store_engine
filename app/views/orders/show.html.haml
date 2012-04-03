@@ -2,14 +2,14 @@
 
 %p
   %b User:
-  = @order.user_id
+  = @order.user.name
 %p
   %b Product:
-  = @order.product_id
+  = @order.products.map(&:name).join(", ")
 %p
   %b Status:
   = @order.status
 
 = link_to 'Edit', edit_order_path(@order)
-\|
+|
 = link_to 'Back', orders_path

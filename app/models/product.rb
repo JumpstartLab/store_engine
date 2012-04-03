@@ -17,6 +17,10 @@ class Product < ActiveRecord::Base
     self.price_in_dollars = dollar
   end
 
+  def price
+    self.price_in_dollars
+  end
+
   def before_save(record)
     record.price_in_cents = Money.parse(record.price_in_dollars).cents
   end

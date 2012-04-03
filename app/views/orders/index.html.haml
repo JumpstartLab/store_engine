@@ -11,13 +11,12 @@
 
   - @orders.each do |order|
     %tr
-      %td= order.user_id
-      %td= order.product_id
+      %td= order.user.name
+      %td= order.products.map(&:name).join(", ")
       %td= order.status
       %td= link_to 'Show', order
       %td= link_to 'Edit', edit_order_path(order)
       %td= link_to 'Destroy', order, :confirm => 'Are you sure?', :method => :delete
-
 %br
 
 = link_to 'New Order', new_order_path

@@ -24,7 +24,17 @@ describe OrdersController do
   # Order. As you add validations to Order, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {
+      :user => {
+        :name => "Mike Silvis", 
+        :email => "Mike.Silvis@LivingSocial.com",
+        :password => "mike"
+      },
+      :products => [
+        {:name => "Racecar", :description => "Vrrrrm", :price => 10.00}
+      ],
+      :status => "shipped"
+    }
   end
   
   # This should return the minimal set of values that should be in the session

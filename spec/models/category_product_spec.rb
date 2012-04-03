@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe CategoriesProducts do
+describe CategoryProduct do
   pending "add some examples to (or delete) #{__FILE__}"
 end
