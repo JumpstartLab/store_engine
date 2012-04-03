@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "Public User Views Products" do
+feature "Public User Views Products", :acceptance => true do
   let!(:product){ create_product }
 
   context "the root page" do
