@@ -1,0 +1,17 @@
+<%= form_for @user do |f| %>
+  <%= f.label :full_name %>
+  <%= f.text_field :full_name %>
+  <%= f.label :display_name %>
+  <%= f.text_field :display_name %>
+  <%= f.label :email, "Email Address" %>
+  <%= f.text_field :email %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :password %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.label :billing_address %>
+  <%= f.text_field :billing_address %>
+  <%= f.label :shipping_address %>
+  <%= f.text_field :shipping_address %>
+  <%= f.submit %>
+<% end %>
