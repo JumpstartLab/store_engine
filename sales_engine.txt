@@ -1,0 +1,130 @@
+Areas of work
+
+## Authentication
+* sorcery gem
+
+## Classes
+
+### Admin
+  * create products (with params)
+  * edit products
+  * create categories
+  * assign products to categories
+  * retire product from being sold
+  
+### Payment
+  * take billing info
+  * submit
+  * cancel
+  
+### Order
+  * total number of orders by status
+  * links for each order
+  * filter order to display by status type
+  * link to change status
+    * pending -> cancel
+    * shipped -> returned
+    * paid -> shipped
+    
+  #### attributes
+  * order date/time
+  * purchaser name/email (link users)
+  * product on the order
+    * name with link to product page
+    * quantity
+    * price
+    * line item subtotal
+    * total for order
+    * status for order
+    * link to transitions (pending, shipped, etc)
+
+### Shopper
+  * browse all products
+  * browse by category
+  * add product to cart
+  * cart
+    * view
+    * remove
+    * ++quantity
+    * checkout
+      * entering billing info (email, shipping, etc)
+  * view order status
+    * access at special url
+    * status
+    * total
+    * date placed
+    * products with quantity
+    * line item
+    * timestamp for shipped/cancelled
+    * cancel order
+    
+### Cart
+  #### attributes
+  * products
+  * owned by a shopper
+  * generate an order
+  
+  #### features
+  * if not logged in then logged it adds to cart without removing existing stuff
+
+### Product
+
+  #### attributes
+  * status
+  * title
+  * description
+  * price
+  * photo
+  * category tags
+
+### Categories
+  * all active/inactive products
+  * tagging them?
+
+### 
+
+# Views
+
+## layout
+* authentication 
+
+## main homepage
+* all products
+* cart link
+  ### category pages
+  * products per category
+  
+## cart page
+* list of products in cart
+* total price
+* price per product
+* quantity per product
+* add/remove
+* submit order
+* empty cart
+
+## order page
+* list all my orders
+
+### individual order
+* see status
+* shipped (all the stuff on site)
+
+
+## admin
+### product management
+* assign categories
+* change all attributes
+
+
+
+# Task list
+
+1. Product class
+2. Superusers?
+
+Todo questions
+* how to display pictures/store pictures
+* authentication
+* test for space in string
+
