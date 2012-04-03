@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Public User Views Products" do
-  let!(:product){ Fabricate(:product) }
+  let!(:product){ create_product }
 
   context "the root page" do
     before(:each) do
