@@ -12,7 +12,7 @@ describe User do
   let(:user) { FactoryGirl.create(:user)}
 
   [:name, :email, :display_name, :password_digest, 
-    :password, :password_confirmation].each do |attr|
+    :password, :password_confirmation, :remember_token, :authenticate ].each do |attr|
     it "responds to #{attr}" do
       user.should respond_to(attr)
     end
@@ -61,18 +61,28 @@ describe User do
       before { user.save }
       let(:found_user) { User.find_by_email(user.email) }
 
-      describe "with valid password" do
-        it "should authenticate if password matches" do
-          found_user.authenticate(user.password).should == found_user
-        end
-      end
-
       describe "with invalid password" do
         let(:user_for_invalid_password) { found_user.authenticate("invalid") }
 
         it { should_not == user_for_invalid_password }
         specify { user_for_invalid_password.should be_false }
       end
+
+      describe "with valid password" do
+        it "should authenticate if password matches" do
+          found_user.authenticate(user.password).should == found_user
+        end
+      end
+
+    end
+
+  end
+
+  context "valid token" do
+    before { user.save }
+
+    it "should not be blank for a user" do
+      user.remember_token.should_not be_blank
     end
   end
 

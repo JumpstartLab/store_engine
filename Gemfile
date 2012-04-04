@@ -19,10 +19,11 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'fabrication'
+  # gem 'fabrication'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
   gem 'factory_girl_rails', '1.4.0'
-  # gem 'guard'
+  gem 'guard'
+  gem 'growl'
 end
