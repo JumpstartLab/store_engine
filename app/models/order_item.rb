@@ -5,4 +5,12 @@ class OrderItem < ActiveRecord::Base
   belongs_to :product
 
   validates_presence_of :order, :product_id
+
+  def line_price
+    each_price * quantity
+  end
+
+  def each_price
+    product.price
+  end
 end

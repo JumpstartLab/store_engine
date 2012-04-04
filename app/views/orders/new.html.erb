@@ -16,3 +16,7 @@
 <p>Your total: <%= current_cart.total_price %></p>
 
 <%= link_to "Continue shopping", products_path %>
+
+<%= form_tag orders_path do %>
+  <%= submit_tag "Place Order" %>
+<% end %>
