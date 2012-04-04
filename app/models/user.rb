@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :permission, :display_name
+  default_scope :conditions => { :active => 1 }
   authenticates_with_sorcery!
 
   validates_uniqueness_of :email

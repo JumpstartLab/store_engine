@@ -1,17 +1,4 @@
-= form_for @user, :url => { :action => 'create' } do |f|
-  -if @user.errors.any?
-    #error_explanation
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
-  .h1 Login
-  .field
-    = f.label :email
-    = f.text_field :email
-
-  .field
-    = f.label :password
-    = f.password_field :password
-
-  .actions
-    = f.button 'Sign In'
+= simple_form_for @user, :url => { :action => 'create' } do |f|
+  = f.input :email
+  = f.input :password
+  = f.submit 'Sign In', :class => "btn btn-primary"

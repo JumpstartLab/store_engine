@@ -15,3 +15,6 @@
               %a{:href => logout_path } Logout
             - else
               %a{:href => login_path } Login
+          - if not current_user
+            %li 
+              %a{ :href => new_user_path } Sign Up

@@ -1,3 +1,9 @@
 %h2 Products
 %hr
-= render 'products/list'
+  .row
+    .span10
+      = render 'products/list'
+    .span2
+      %h4 Categories
+      %br
+      = render 'categories/list', :categories => @categories

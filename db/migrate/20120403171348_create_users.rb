@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :email
       t.string :display_name
       t.integer :permission,          :default => 1
+      t.integer :active,              :default => 1
 
       t.timestamps
     end

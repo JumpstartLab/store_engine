@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(:version => 20120403210443) do
     t.string   "email"
     t.string   "display_name"
     t.integer  "permission",       :default => 1
+    t.integer  "active",           :default => 1
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
   end
