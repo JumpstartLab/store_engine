@@ -8,6 +8,10 @@ describe Order do
     end
   end
 
-  # context "#user_id" do
-  #   o = Order.new
+  context "#user_id" do
+    it "has a user id assigned" do
+      order.user_id.should_not be_nil
+    end
+  end
+
 end
