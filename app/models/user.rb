@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
+  has_one :cart
+  has_many :orders
+
   private
 
   def create_remember_token
