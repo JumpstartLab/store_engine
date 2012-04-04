@@ -11,12 +11,3 @@
  *= require_self
  *= require_tree .
 */
-
-body { font-family: Helvetica;}
-
-a { text-decoration: none; color: blue; }
-a:hover { text-decoration: underline; }
-
-form { padding-top: 30px; width: 200px; margin: 0 0 0 10px; }
-div.field { padding: 5px 0;}
-div.field input { padding: 3px; width: 150px;}

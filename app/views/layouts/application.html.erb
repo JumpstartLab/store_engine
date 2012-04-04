@@ -2,21 +2,18 @@
 <html>
 <head>
   <title>Our Store</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<h1>Worace's Woodshop</h1>
-<% if current_user %>
-  Logged in as <%= link_to current_user.email, user_path(current_user) %>.
-  <%= link_to "Log out", logout_path %>
-<% else %>
-  <%= link_to "Sign Up", signup_path %> or
-  <%= link_to "Log In", login_path %>.
-<% end %>
-
+<%= render :partial => 'layouts/header' %>
+<div class="container">
 <%= yield %>
-
+</div>
 </body>
 </html>
