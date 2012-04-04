@@ -7,5 +7,19 @@ html
     = javascript_include_tag "application"
     = csrf_meta_tags
   body
-    = yield
+    div id="nav"
+      - if current_user
+        = link_to "Edit Profile", edit_user_path(current_user.id)
+        = link_to "Logout", :logout
+      - else 
+        = link_to "Register", new_user_path 
+        p
+        = link_to "Login", :login
 
+  div
+    p id="notice" = notice
+    p
+    p id="alert" = alert
+    p
+
+    = yield
