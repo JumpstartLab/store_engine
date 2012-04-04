@@ -7,23 +7,8 @@
     = csrf_meta_tags
 
   %body
-<<<<<<< HEAD
-  %p 
-    - if current_user
-      Logged in as 
-      = current_user.email
-      = link_to "Log out", logout_path
-    -else
-      = link_to "Login", login_path
-  %p
-    - if flash[:notice]
-      = flash[:notice]
-  = yield
-=======
     = render 'layouts/nav'
-
     %div#main_container.container
       - if flash[:notice]
         .alert.alert-error= flash[:notice]
       = yield
->>>>>>> 9e9b569020a5f26b58133de3f46dc1c88d75fe8e
