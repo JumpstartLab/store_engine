@@ -11,5 +11,7 @@
     <%= check_box_tag :remember_me, 1, params[:remember_me] %>
     <%= label_tag :remember_me, nil, :id => "remember_me" %>
   </div>
-  <div class="actions"><%= submit_tag "Log in", :class => "btn btn-large btn-primary" %></div>
+  <div class="actions">
+    <%= submit_tag "Log in", :class => "btn btn-large btn-primary" %>
+  </div>
 <% end %>

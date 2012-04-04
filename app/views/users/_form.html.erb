@@ -1,7 +1,6 @@
 <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
+    <div class="alert alert-error">
       <ul>
         <% for message in @user.errors.full_messages %>
           <li><%= message %></li>
@@ -9,9 +8,13 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :display_name %>
-    <%= f.text_field :display_name %>
+  <div class="field name">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, :class => "input-small" %>
+  </div>
+  <div class="field name">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, :class => "input-small" %>
   </div>
   <div class="field">
     <%= f.label :email %>

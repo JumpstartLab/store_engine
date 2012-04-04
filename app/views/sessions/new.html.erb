@@ -1,4 +1,15 @@
-<%= form_tag sessions_path do %>
+<% content_for :head do %>
+<style type="text/css">
+form#slimForm { width: auto; float:left; }
+label#remember_me { display: inline-block; }
+</style>
+<% end %>
+<%= form_tag sessions_path, :id => "slimForm" do %>
+  <% if !alert.nil? %>
+    <div class="alert alert-error">
+      <p id="error"><%= flash.now[:alert] %></p>
+    </div>
+  <% end %>
   <div class="field">
     <%= label_tag :email %>
     <%= text_field_tag :email, params[:email] %>
@@ -8,8 +19,10 @@
     <%= password_field_tag :password %>
   </div>
   <div class="field">
-    <%= check_box_tag :remember_me, 1, params[:remember_me] %>
     <%= label_tag :remember_me, nil, :id => "remember_me" %>
+    <%= check_box_tag :remember_me, 1, params[:remember_me] %>
   </div>
-  <div class="actions"><%= submit_tag "Log in", :class => "btn btn-large btn-primary" %></div>
+  <div class="actions">
+    <%= submit_tag "Log in", :class => "btn btn-large btn-primary" %>
+  </div>
 <% end %>
