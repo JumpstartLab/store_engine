@@ -23,7 +23,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  # gem 'guard'
-  # gem 'guard-rspec'
-  # gem 'growl_notify'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'ruby_gntp'
 end
