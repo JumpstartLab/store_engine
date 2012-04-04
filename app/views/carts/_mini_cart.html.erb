@@ -1,6 +1,11 @@
-<h4>Your Cart</h4>
-<ul>
-<% @current_cart.cart_items.each do |cart_item| %>
-  <li><%= cart_item.title %> - <%= cart_item.quantity %></li>
-<% end %>
-</ul>
+<div id="current_cart">
+  <h4>Your Cart</h4>
+  <ul>
+    <% current_cart.cart_items.each do |cart_item| %>
+    <li><%= cart_item.title %> - <%= cart_item.quantity %></li>
+    <% end %>
+  </ul>
+  <%= link_to "Clear Cart", cart_path(current_cart), 
+  :method => :delete, 
+  :confirm => "Clear your cart?" %>
+</div>
