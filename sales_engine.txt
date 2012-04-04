@@ -133,4 +133,5 @@ Todo questions
   * store the id of the cart not the cart itself
 
 * bool values of stuff
+* 
 
