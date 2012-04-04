@@ -1,16 +1,32 @@
-<h1>Order for <%= @order.user_name %></h1>
-
-<table>
-  <%= @order.line_items.each do |li| %>
+<h1>Order for <%= @order.user.full_name %></h1>
+<div id="date"><%= @order.user.email_address %></div>
+<div id="date"><%= @order.created_at %></div>
+<div id="date"><%= @order.amount %></div>
+<div id="date"><%= @order.status %></div>
+<!-- MAKE DIFFERENT TRANSITIONS FOR DIFFERENT ORDER STATUSES  -->
+<%= link_to 'Transition', order_path(@order), :method => :delete,
+:confirm => 'Are you sure?', :class => 'btn btn-mini btn-info' %>
+<br /><br />
+<table class="table table-striped">
+  <tr>
+    <th>Product Name</th>
+    <th>Product Quantity</th>
+    <th>Unit Price</th>
+    <th>Subtotal</th>
+  </tr>
+  <% @order.line_items.each do |li| %>
   <tr>
     <td>
-      li.product.name
+      <%= li.product.title %>
     </td>
     <td>
-      li.quantity
+      <%= li.quantity %>
     </td>
     <td>
-      li.price
+      <%= li.price %>
+    </td>
+    <td>
+      <%= li.subtotal %>
     </td>
   </tr>
   <% end %>
