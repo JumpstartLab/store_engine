@@ -1,1 +1,7 @@
 Title: <%= @product.title %>
+Description: <%= @product.description %>
+
+<%= form_tag cart_item_path %>
+  <%= hidden_field_tag :product_id, @product.id %>
+  <%= submit_tag "Add Item To Cart" %>
+<% end %>

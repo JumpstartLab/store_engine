@@ -1,6 +1,6 @@
 class CartItem < ActiveRecord::Base
-  attr_accessible :cart_id, :item_id, :quantity
+  attr_accessible :cart_id, :product_id, :quantity
   belongs_to :cart
 
-  validates_presence_of :cart_id, :item_id, :quantity
+  validates_presence_of :cart_id, :product_id, :quantity
 end
