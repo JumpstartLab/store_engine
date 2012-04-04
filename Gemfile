@@ -4,7 +4,9 @@ gem 'rails', '3.2.3'
 gem 'sqlite3'
 gem 'jquery-rails'
 
+gem 'growl'
 gem 'sorcery'
+gem 'carrierwave'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,8 +23,9 @@ end
 
 group :development, :test do
   gem 'fabrication'
+  gem 'faker'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  # gem 'guard'
+  gem 'guard-rspec'
 end

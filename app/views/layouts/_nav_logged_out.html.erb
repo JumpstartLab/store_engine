@@ -1,4 +1,5 @@
 <ul class="nav pull-right">
+  <li><%= link_to "Sign Up", signup_path %></li>
   <li class="dropdown">
     <a href="#"
           class="dropdown-toggle"
@@ -13,21 +14,13 @@
             <p id="error"><%= flash.now[:alert] %></p>
           </div>
         <% end %>
-        <div class="field">
-          <%= label_tag :email %>
-          <%= text_field_tag :email, params[:email], :autofocus => true %>
-        </div>
-        <div class="field">
-          <%= label_tag :password %>
-          <%= password_field_tag :password %>
-        </div>
-        <div class="field">
-          <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-          <%= label_tag :remember_me, nil, :id => "remember_me" %>
-        </div>
-        <div class="actions">
-          <%= submit_tag "Log in", :class => "btn btn-small" %>
-        </div>
+        <%= label_tag :email %>
+        <%= text_field_tag :email, params[:email], :autofocus => true %>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+        <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+        <%= label_tag :remember_me, nil, :id => "remember_me" %>
+        <%= submit_tag "Log in", :class => "btn btn-small pull-right" %>
       <% end %>
     </ul>
   </li>

@@ -1,7 +1,6 @@
 <% content_for :head do %>
 <style type="text/css">
-body { background-image: url(http://www.horizontalheavens.com/GarageWorkshop/WorkshopLayout/Workshop3_12-20-2010.jpg); }
-div#homeForm { background: #fff; width: auto; float:left; padding: 13px 20px 20px; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; }
+body { background: url("/assets/worace.JPG") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
 form#new_user { margin: 0; }
   div.actions { margin-top: 5px; }
 </style>
@@ -13,7 +12,7 @@ $(function(){
 });
 </script>
 <% end %>
-<div id="homeForm">
+<div id="thinForm">
 <h2>Register below:</h2>
 <%= render :partial => 'form' %>
 </div>

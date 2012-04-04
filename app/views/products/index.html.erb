@@ -2,8 +2,11 @@
 <% if logged_in? && current_user.is_admin? %>
 <p><%= link_to "Add a product", new_product_path %></p>
 <% end %>
+<div id="products">
 <% @products.each do |product| %>
 <div class="product" id="<%= product.id %>">
   <%= link_to product.title, product_path(product) %>
+  <%= image_tag product.image_url.to_s %>
 </div>
 <% end %>
+</div>

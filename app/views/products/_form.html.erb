@@ -1,4 +1,4 @@
-<%= form_for @product do |f| %>
+<%= form_for @product, { :multipart => true } do |f| %>
   <% if @product.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>
@@ -9,17 +9,12 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :price %>
-    <%= f.number_field :price %>
-  </div>
-  <div class="actions"><%= f.submit %></div>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+  <%= f.file_field :image %>
+  <%= f.submit %>
 <% end %>

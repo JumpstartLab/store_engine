@@ -1,6 +1,7 @@
 <h3><%= @product.title %></h3>
 <p><%= @product.description %></p>
 <p><%= @product.price %></p>
+<p><%= image_tag @product.image_url.to_s, :id => "product_image" %></p>
 <% if logged_in? && current_user.is_admin? %>
 <p><%= link_to "Edit Product", edit_product_path %></p>
 <p><%= link_to "Delete Product", product_path, :method => :delete, :confirm => "Are you sure?" %></p>

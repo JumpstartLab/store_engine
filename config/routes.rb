@@ -4,7 +4,7 @@ StoreEngine::Application.routes.draw do
 
   get "categories/create"
 
-  root :to => "users#new"
+  root :to => "products#index"
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"

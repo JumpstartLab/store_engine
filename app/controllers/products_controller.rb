@@ -31,6 +31,9 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    # if !logged_in?
+    #   redirect_to signup_path
+    # end
   end
 
   def destroy

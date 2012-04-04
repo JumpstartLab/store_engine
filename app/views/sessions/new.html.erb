@@ -1,8 +1,4 @@
-<% content_for :head do %>
-<style type="text/css">
-form#slimForm { width: auto; float:left; }
-</style>
-<% end %>
+<div id="thinForm">
 <h2>Sign in to Worace's Workshop</h2>
 <%= form_tag sessions_path, :id => "slimForm" do %>
   <% if !alert.nil? %>
@@ -26,3 +22,4 @@ form#slimForm { width: auto; float:left; }
     <%= submit_tag "Log in", :class => "btn btn-large btn-primary" %>
   </div>
 <% end %>
+</div>
