@@ -1,0 +1,25 @@
+<table class="table table-striped">
+  <tr>
+    <th>Order ID</th>
+    <th>Purchaser</th>
+    <th>Amount</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  <% @orders.each do |order| %>
+  <tr>
+    <td>
+      <%= link_to order.id, order_path(order) %>
+    </td>
+    <td><%= order.user_name %></td>
+    <td><%= order.amount %></td>
+    <td><%= order.status %></td>
+    <td> <%= link_to 'Edit', edit_order_path(order),
+        :class => 'btn btn-mini' %>
+        <%= link_to 'Destroy', order_path(order), :method => :delete,
+        :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %> </td>
+  </tr>
+  <% end %>
+</table>
+
+

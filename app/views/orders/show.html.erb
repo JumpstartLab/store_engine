@@ -1,0 +1,17 @@
+<h1>Order for <%= @order.user_name %></h1>
+
+<table>
+  <%= @order.line_items.each do |li| %>
+  <tr>
+    <td>
+      li.product.name
+    </td>
+    <td>
+      li.quantity
+    </td>
+    <td>
+      li.price
+    </td>
+  </tr>
+  <% end %>
+</table>

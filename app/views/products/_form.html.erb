@@ -1,38 +1,55 @@
 <%= form_for @product, :html => { :class => 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> /Product</legend>
+<fieldset>
+  <legend><%= controller.action_name.capitalize %> /Product</legend>
 
-    <div class="control-group">
-      <%= f.label :title, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :title, :class => 'text_field' %>
-      </div>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'text_field' %>
     </div>
+  </div>
 
-    <div class="control-group">
-      <%= f.label :description, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :description, :class => 'text_field' %>
-      </div>
+  <div class="control-group">
+    <%= f.label :description, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :description, :class => 'text_field' %>
     </div>
+  </div>
 
-    <div class="control-group">
-      <%= f.label :price, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.number_field :price, :class => 'number_field' %>
-      </div>
+  <div class="control-group">
+    <%= f.label :price, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :price, :class => 'number_field' %>
     </div>
+  </div>
 
-    <div class="control-group">
-      <%= f.label :photo_url, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :photo_url, :class => 'text_field' %>
-      </div>
+  <div class="control-group">
+    <%= f.label :photo_url, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :photo_url, :class => 'text_field' %>
     </div>
+  </div>
 
-    <div class="form-actions">
-      <%= f.submit :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', products_path, :class => 'btn' %>
+  <div class="control-group">
+    <% @categories.each_with_index do |category, i| %>
+    <%= label category, category.name, :class => 'control-label' %>
+    <div class="controls">
+      <%= check_box_tag "category_#{i}", category.id %>
     </div>
-  </fieldset>
+    <% end %>
+  </div>
+
+  <div class="control-group">
+    <%= f.label "Add a Category", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :categories, :class => 'text_field' %>
+    </div>
+  </div>
+
+
+  <div class="form-actions">
+    <%= f.submit :class => 'btn btn-primary' %>
+    <%= link_to 'Cancel', products_path, :class => 'btn' %>
+  </div>
+</fieldset>
 <% end %>
