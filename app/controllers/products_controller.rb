@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    raise params.inspect
+    params[:product][:photo_url] = nil if params[:product][:photo_url] = ""
     product = Product.create(params[:product])
     params[:category_ids].each do |ci|
       ProductCategorizaton.create(
