@@ -20,6 +20,12 @@ FactoryGirl.define do
     status
   end
 
+  factory :product_rating do
+    body "hello"
+    name "AWESOME PRODUCT"
+    rating 4
+  end
+
   factory :product do
     sequence(:name) { |n| "product#{n}" }
     description "yummy foo"
