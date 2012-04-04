@@ -11,3 +11,20 @@
  *= require_self
  *= require_tree .
 */
+
+body {
+  font-family: "HelveticaNeue";
+  color: #262626;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: blue;
+  font-weight: 900;
+}
+
+a:hover {
+  color: white;
+  background: blue;
+}

@@ -3,6 +3,6 @@
 <ul id="products">
   <% @products.each do |product| %>
     <li><%= link_to product.title, product_path(product) %> 
-      | <%= product.description %> <img width=100 height=100 src="<%= product.image_link %>"></img></li>
+      | <%= product.description %> <img height=100 src="<%= product.image_link %>"></img></li>
   <% end %>
 </ul>

@@ -1,0 +1,12 @@
+<h1>Order: <%= @order.id %> </h1>
+
+<h2>Status: <%= @order.status %></h2>
+<ul><% @order.order_items.each do |oo| %>
+  <li><%= link_to oo.product.title, product_path(oo.product) %> 
+      | <%= oo.product.description %> | PRICE: <%= oo.unit_price %> | QUANTITY: <%= oo.quantity %> 
+      <!-- <img width=100 height=100 src="<%= oo.product.image_link %>"></img> --></li>
+    <% end %>
+</ul>
+
+<%= link_to "Edit", edit_order_path(@order) %>
+<%= link_to "Back to All Orders", orders_path %>
