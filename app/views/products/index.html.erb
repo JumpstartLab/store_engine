@@ -1,0 +1,7 @@
+<h1>Products</h1>
+
+<ul id="products">
+  <% @products.each do |product| %>
+    <li><%= product.title %> | <%= product.description %> <img width=100 height=100 src="<%= product.image_link %>"></img></li>
+  <% end %>
+</ul>
