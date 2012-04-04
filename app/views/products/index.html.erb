@@ -1,0 +1,12 @@
+<h1>This is a page</h1>
+
+<ul id="products">
+  <% @products.each do |product| %>
+    <li id="<%= dom_id product %>">
+      <%= link_to product.title, product_path(product) %>
+    </li>
+  <% end %>
+    <li>
+      <%= link_to "Add a product", new_product_path, :id => "add_product"%>
+    </li>
+</ul>

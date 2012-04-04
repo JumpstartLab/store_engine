@@ -1,0 +1,8 @@
+<h1>These are the Categories</h1>
+
+<ul id="categories">
+  <% @categories.each do |category| %>
+  <li id="<%= dom_id category %>">
+    <%= link_to category.name, category_path(category) %>
+  </li>
+<% end %>
