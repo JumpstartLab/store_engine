@@ -127,4 +127,5 @@ Todo questions
 * how to display pictures/store pictures
 * authentication
 * test for space in string
+* images - carrierwave
 

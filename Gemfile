@@ -3,6 +3,11 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 gem 'sqlite3'
 gem 'jquery-rails'
+gem 'growl'
+gem 'guard-rspec'
+gem 'launchy'
+gem 'sorcery'
+gem 'carrierwave'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,7 +26,4 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  # gem 'guard'
-  # gem 'guard-rspec'
-  # gem 'growl_notify'
 end
