@@ -1,0 +1,16 @@
+ <h1><%= @order.id %></h1>
+<p>
+ <%= @order.status %>
+  <%= @order.user_id %>
+ <%= @order.created_at %>
+ <%= @order.updated_at %>
+</p>
+
+<%= link_to "edit!", edit_order_path(@order)%>
+
+<%=link_to "destroy!", order_path(@order),
+ :method => :delete,
+ :confirm => "Delete \"#{@order.id}\"?" %>
+
+<%=link_to "Back to All orders", orders_path, :id => "orders-index", :class => "link" %>
+ 

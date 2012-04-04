@@ -1,9 +1,8 @@
-class OrderController < ApplicationController
-
+class OrdersController < ApplicationController
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
   
   def index
-    @orders = order.all
+    @orders = Order.all
   end
 
   def show
@@ -15,11 +14,11 @@ class OrderController < ApplicationController
   end
 
   def new
-    @order = order.new
+    @order = Order.new
   end
 
   def create
-    @order = order.new(params[:order])
+    @order = Order.new(params[:order])
     if @order.save
       redirect_to order_path(@order)
     else
@@ -37,6 +36,6 @@ class OrderController < ApplicationController
   end
 
   def lookup_order
-    @order = order.find(params[:id])
+    @order = Order.find(params[:id])
   end
 end

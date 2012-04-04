@@ -3,6 +3,7 @@ StoreEngine::Application.routes.draw do
   resources :products
   root :to => "products#index"
   resources :users
+  resources :orders
 
 end
   # The priority is based upon order of creation:
