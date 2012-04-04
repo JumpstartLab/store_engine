@@ -1,5 +1,12 @@
 require 'spec_helper'
 
 describe Order do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:each) do
+    @user = Fabricate(:user)
+    @user.id = 1
+
+
+  end
+  describe "#user" do
+  end
 end
