@@ -1,0 +1,4 @@
+%table.table
+  - categories.each do |c|
+    %tr
+      %td= link_to c.name, products_path(:category => c)

@@ -1,0 +1,5 @@
+- @users.each do |user|
+  %p
+    %span= link_to user.name, edit_user_path(user)
+    %span -
+    %span= link_to 'delete', user_path(user), :method => :delete
