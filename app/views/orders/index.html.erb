@@ -8,6 +8,13 @@
     <%= order.user_id %>
     <%= order.created_at %>
     <%= order.updated_at %>
+    <% if order.status == "pending" %>
+      <%= link_to "cancel order?", edit_order_path(order) %>
+    <% elsif order.status == "shipped" %>  
+      <%= link_to "mark as returned", edit_order_path(order) %>
+    <% elsif order.status == "paid" %>
+      <%= link_to "mark as shipped", edit_order_path(order) %> 
+    <% end %>
    </li>
 
  <% end %>
