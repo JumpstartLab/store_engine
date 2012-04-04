@@ -4,7 +4,7 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-
+  .h1 Login
   .field
     = f.label :email
     = f.text_field :email
@@ -14,4 +14,4 @@
     = f.password_field :password
 
   .actions
-    = f.submit 'Sign In'
+    = f.button 'Sign In'

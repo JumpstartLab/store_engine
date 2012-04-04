@@ -51,18 +51,21 @@ p1 = Product.create(
                     :name => "Apple", 
                     :description => "Yummy wormy apple", 
                     :price => "1.00",
+                    :avatar => "http://farm4.static.flickr.com/3126/2639606130_40340f99b6_o.jpg"
                    )
 p2 = Product.create(
                     :name => "Bananas", 
                     :description => "Why do gorillas always eat me?", 
                     :price => "2.75",
-                    :categories => [c1]
+                    :categories => [c1],
+                    :avatar => "http://www.v-r-a.org/ppp/Bananas/Bananas/bananas1.jpg"
                    )
 p2 = Product.create(
                     :name => "Racecar", 
                     :description => "VRRRRRRRRRMMMMMMM", 
                     :price => "20.65",
-                    :categories => [c3,c2]
+                    :categories => [c3,c2],
+                    :avatar => "http://www.allbestwallpapers.com/racecar_wallpapers.html"
                    )
 o1 = Order.create(
                    :user => u1,

@@ -2,7 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def require_admin
-    redirect_to root_url unless current_user && current_user.admin
+    if current_user && !current_user.admin
+      redirect_to root_url
+    elsif current_user.nil?
+      redirect_to '/login'
+    end
   end
 
   def require_not_logged_in
