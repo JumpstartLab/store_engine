@@ -3,6 +3,7 @@ class CreateOrderProducts < ActiveRecord::Migration
     create_table :order_products do |t|
       t.integer :order_id
       t.integer :product_id
+      t.integer :quantity, :default => 1
 
       t.timestamps
     end
