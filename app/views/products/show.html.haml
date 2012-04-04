@@ -1,20 +1,9 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @product.name
-%p
-  %b Description:
-  = @product.description
-%p
-  %b Price:
-  = @product.price
-
-- if @product.avatar.inspect
-  %p
-    %b Photo:
-    = image_tag @product.avatar.url(:thumb)
-
-= link_to 'Edit', edit_product_path(@product)
-\|
-= link_to 'Back', products_path
+.row
+  .span3
+    %img{:src => @product.avatar}
+  .span9
+    %h2= @product.name
+    %h4= @product.categories.map(&:name).join(', ') 
+    %h4= @product.price
+    %br
+    %p= @product.description

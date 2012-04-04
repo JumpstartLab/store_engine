@@ -1,7 +1,10 @@
-%h1 Editing product
+%h3 Edit Product
+%br
 
-= render 'form'
-
-= link_to 'Show', @product
-\|
-= link_to 'Back', products_path
+= simple_form_for @product do |f|
+  = f.input :name
+  = f.input :description, :input_html => { :rows => 10, :style => 'width: 300px' }
+  = f.input :price
+  = f.input :avatar
+  = f.association :categories
+  = f.submit 'Edit Product', :class => 'btn btn-primary'

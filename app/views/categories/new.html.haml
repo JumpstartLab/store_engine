@@ -1,5 +1,6 @@
-%h1 New category
+%h3 New Category
+%br
 
-= render 'form'
-
-= link_to 'Back', categories_path
+= simple_form_for @category do |f|
+  = f.input :name
+  = f.submit 'Add Category', :class => 'btn btn-primary'

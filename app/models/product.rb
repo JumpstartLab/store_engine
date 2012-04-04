@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
-  attr_accessible :description, :name, :price, :categories, :avatar
+  attr_accessible :description, :name, :price, :categories, :avatar, :category_ids
   
-  validates_presence_of :name, :description
+  validates_presence_of :name, :description, :price
   validates_numericality_of :price_in_cents, :greater_than => 0
   validates_uniqueness_of :name
 

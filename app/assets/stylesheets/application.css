@@ -8,6 +8,24 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap
+ *= require responsive
  *= require_self
  *= require_tree .
 */
+
+#main_container {
+  padding-top: 60px;
+}
+
+.product {
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+.product > img {
+  width: 128px;
+  height: 128px;
+}

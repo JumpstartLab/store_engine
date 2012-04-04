@@ -8,6 +8,9 @@ gem 'haml-rails'
 gem 'money'
 gem 'paperclip'
 gem 'sorcery'
+gem 'anjlab-bootstrap-rails', '>= 2.0', :require => 'bootstrap-rails'
+gem 'simple_form'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
