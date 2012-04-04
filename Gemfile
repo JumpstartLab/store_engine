@@ -23,7 +23,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov', :require => false
-  # gem 'guard'
-  # gem 'guard-rspec'
+  gem 'guard'
+  gem 'guard-rspec'
   # gem 'growl_notify'
 end
