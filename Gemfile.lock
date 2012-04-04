@@ -29,6 +29,9 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.2.7)
+    anjlab-bootstrap-rails (2.0.1.1)
+      railties (>= 3.0)
+      sass
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
@@ -153,6 +156,9 @@ GEM
       ffi (~> 1.0)
       multi_json (~> 1.0)
       rubyzip
+    simple_form (2.0.1)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     simplecov (0.6.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -183,6 +189,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  anjlab-bootstrap-rails (>= 2.0)
   capybara
   coffee-rails (~> 3.2.1)
   fabrication
@@ -197,6 +204,7 @@ DEPENDENCIES
   rails (= 3.2.3)
   rspec-rails
   sass-rails (~> 3.2.3)
+  simple_form
   simplecov
   sorcery
   sqlite3

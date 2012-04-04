@@ -1,11 +1,13 @@
 !!!
 %html
   %head
-    %title StoreEngine
+    %title Bootstrap, from Twitter
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+
   %body
+<<<<<<< HEAD
   %p 
     - if current_user
       Logged in as 
@@ -17,3 +19,11 @@
     - if flash[:notice]
       = flash[:notice]
   = yield
+=======
+    = render 'layouts/nav'
+
+    %div#main_container.container
+      - if flash[:notice]
+        .alert.alert-error= flash[:notice]
+      = yield
+>>>>>>> 9e9b569020a5f26b58133de3f46dc1c88d75fe8e

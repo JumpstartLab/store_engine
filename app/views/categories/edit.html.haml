@@ -1,7 +1,6 @@
-%h1 Editing category
+%h3 Edit Category
+%br
 
-= render 'form'
-
-= link_to 'Show', @category
-\|
-= link_to 'Back', categories_path
+= simple_form_for @category do |f|
+  = f.input :name
+  = f.submit 'Edit Category', :class => 'btn btn-primary'

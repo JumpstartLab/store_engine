@@ -6,9 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 s1 = Status.create(:name => "Shipped")
-Status.create(:name => "Pending")
-Status.create(:name => "Failed")
-Status.create(:name => "Successful")
+s2 = Status.create(:name => "Pending")
+s3 = Status.create(:name => "Failed")
+s4 = Status.create(:name => "Successful")
 
 u1 = User.create(
            :name => "Mike Silvis", 
@@ -60,7 +60,7 @@ p2 = Product.create(
                     :categories => [c1],
                     :avatar => "http://www.v-r-a.org/ppp/Bananas/Bananas/bananas1.jpg"
                    )
-p2 = Product.create(
+p3 = Product.create(
                     :name => "Racecar", 
                     :description => "VRRRRRRRRRMMMMMMM", 
                     :price => "20.65",
@@ -72,6 +72,10 @@ o1 = Order.create(
                    :status => s1,
                    :products => [p1, p2]
                   )
-
+o2 = Order.create(
+                   :user => u1,
+                   :status => s2,
+                   :products => [p1, p3]
+                  )
 
 
