@@ -130,4 +130,7 @@ Todo questions
 * images - carrierwave
 * cookies for a cart
   * session
+  * store the id of the cart not the cart itself
+
+* bool values of stuff
 
