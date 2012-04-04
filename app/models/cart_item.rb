@@ -8,4 +8,12 @@ class CartItem < ActiveRecord::Base
   def title
     product.title
   end
+
+  def line_price
+    product.price * quantity
+  end
+
+  def each_price
+    product.price
+  end
 end

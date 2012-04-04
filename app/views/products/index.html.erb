@@ -1,5 +1,6 @@
-attr_accessible :category_id, :description, :price_in_cents, :title
 
+<ul>
 <% @products.each do |product| %>
-  <%= link_to(product.title, product_path(product)) %>
+  <li><%= link_to(product.title, product_path(product)) %></li>
 <% end %>
+</ul>

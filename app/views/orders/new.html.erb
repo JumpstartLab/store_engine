@@ -1,0 +1,18 @@
+<h1>Confirm your order</h1>
+  <table>
+  <tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Total Price</th>
+  </tr>
+    <% current_cart.cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= cart_item.title %></td>
+        <td><%= cart_item.quantity %></td>
+        <td><%= cart_item.line_price %></td>
+      </tr>
+    <% end %>
+  </table>
+<p>Your total: <%= current_cart.total_price %></p>
+
+<%= link_to "Continue shopping", products_path %>
