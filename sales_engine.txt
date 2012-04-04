@@ -128,4 +128,6 @@ Todo questions
 * authentication
 * test for space in string
 * images - carrierwave
+* cookies for a cart
+  * session
 
