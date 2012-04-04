@@ -25,4 +25,5 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'faker'
   gem 'debugger'
+  gem 'slim'
 end
