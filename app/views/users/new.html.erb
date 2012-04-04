@@ -5,6 +5,13 @@ div#homeForm { background: #fff; width: auto; float:left; padding: 13px 20px 20p
 form#new_user { margin: 0; }
   div.actions { margin-top: 5px; }
 </style>
+<script type="text/javascript">
+$(function(){
+  $('.dropdown form').on('click', function (e) {
+    e.stopPropagation()
+  });
+});
+</script>
 <% end %>
 <div id="homeForm">
 <h2>Register below:</h2>

@@ -1,9 +1,9 @@
 <% content_for :head do %>
 <style type="text/css">
 form#slimForm { width: auto; float:left; }
-label#remember_me { display: inline-block; }
 </style>
 <% end %>
+<h2>Sign in to Worace's Workshop</h2>
 <%= form_tag sessions_path, :id => "slimForm" do %>
   <% if !alert.nil? %>
     <div class="alert alert-error">
@@ -19,8 +19,8 @@ label#remember_me { display: inline-block; }
     <%= password_field_tag :password %>
   </div>
   <div class="field">
-    <%= label_tag :remember_me, nil, :id => "remember_me" %>
     <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+    <%= label_tag :remember_me, nil, :id => "remember_me" %>
   </div>
   <div class="actions">
     <%= submit_tag "Log in", :class => "btn btn-large btn-primary" %>
