@@ -124,11 +124,6 @@ GEM
       ffi (~> 1.0)
       multi_json (~> 1.0)
       rubyzip
-    shoulda (3.0.1)
-      shoulda-context (~> 1.0.0)
-      shoulda-matchers (~> 1.0.0)
-    shoulda-context (1.0.0)
-    shoulda-matchers (1.0.0)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -160,6 +155,5 @@ DEPENDENCIES
   rails (= 3.2.3)
   rspec-rails
   sass-rails (~> 3.2.3)
-  shoulda
   sqlite3
   uglifier (>= 1.0.3)
