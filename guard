@@ -1,0 +1,21 @@
+require 'spec_helper'
+
+describe ProductsController do
+  context "GET index" do
+   let!(:products) do
+      [Product.create(:title => "First Sample",
+                      :description => "The 1st sample body")]
+    end
+    before(:each) do      
+      visit "/products"
+    end
+
+    
+    it "shows Products header" do
+      save_and_open_page
+      # within "products#index" do
+        page.should have_content("Product Categories")
+      # end
+    end
+  end
+end

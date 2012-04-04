@@ -1,5 +1,6 @@
 StoreEngine::Application.routes.draw do
-  resources :categories, :products
+  resources :categories
+  resources :products
   resource :shopping_cart, :controller => "shopping_cart"
 
   root :to => 'users#index'

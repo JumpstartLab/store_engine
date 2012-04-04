@@ -26,5 +26,8 @@ group :development, :test do
   gem 'simplecov', :require => false
   gem 'guard'
   gem 'guard-rspec'
+  gem 'ruby_gntp'
+  gem 'fabrication'
+  gem 'faker'
   # gem 'growl_notify'
 end
