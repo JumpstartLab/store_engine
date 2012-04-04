@@ -7,6 +7,9 @@ describe "Orders Requests" do
       o.products << Fabricate(:product)
       o.products << Fabricate(:product)
       o.products << Fabricate(:product)
+      double_product = Fabricate(:product)
+      o.products << double_product
+      o.products << double_product
       o
     end
 
@@ -21,6 +24,13 @@ describe "Orders Requests" do
       visit order_path(order)
       order.products.each do |product|
         page.should have_content order.subtotal(product)
+      end
+    end
+
+    it "has product quantities for an order" do
+      visit order_path(order)
+      order.products.each do |product|
+        page.should have_content order.quantity_for(product)
       end
     end
   end

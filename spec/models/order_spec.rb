@@ -13,12 +13,20 @@ describe Order do
   end
 
   context "#subtotal" do
-
     it "returns the subtotal of all similar order products" do
       order.add_product(product)
       order.add_product(product)
       order.add_product(product)
       order.subtotal(product).should == product.price * 3     
+    end
+  end
+
+  context "#quantity_for" do
+    it "returns the quantity of all similar products" do
+      order.add_product(product)
+      order.add_product(product)
+      order.add_product(product)
+      order.quantity_for(product).should == 3
     end
   end
 end

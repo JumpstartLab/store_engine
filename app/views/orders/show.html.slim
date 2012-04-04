@@ -11,4 +11,5 @@ html
       - @order.products.each do |product|
         tr
           td = product.title
+          td = @order.quantity_for(product)
           td = @order.subtotal(product)

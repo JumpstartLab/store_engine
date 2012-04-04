@@ -29,4 +29,9 @@ class Order < ActiveRecord::Base
     op = OrderProduct.find(product.id)
     op.quantity * op.product.price
   end
+
+  def quantity_for(product)
+    op = OrderProduct.find(product.id)
+    op.quantity
+  end
 end
