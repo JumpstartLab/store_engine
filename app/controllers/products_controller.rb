@@ -35,5 +35,6 @@ class ProductsController < ApplicationController
 
     def lookup_product
       @product = Product.find(params[:id])
+      @categories = @product.categories
     end
 end

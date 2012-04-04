@@ -1,7 +1,8 @@
-<ul id="products">
+<h1>All Products</h1>
+  <ul id="products">
   <% @products.each do |product| %>
   <li>
-    <%= link_to product.title, product_path(product) %>
+    <%= link_to product.title, product_path(product) %> <%= product.categories %>
   </li>
   <% end %>
 </ul>
