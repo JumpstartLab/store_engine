@@ -25,9 +25,8 @@ describe "Test Auth" do
     end   
   end
   describe "logged in user" do
-    it "logs a user in"do
-      redirect_to 'http://www.perezhilton.com'
-      save_and_open_page
+    it "logs a user in" do
+      pending
     end
   end
 end

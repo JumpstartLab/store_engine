@@ -1,14 +1,4 @@
 StoreEngine::Application.routes.draw do
-  
-  get "users/index"
-
-  get "users/new"
-
-  get "users/create"
-
-  get "users/edit"
-
-  get "users/update"
 
   get "categories/index"
 
@@ -16,7 +6,7 @@ StoreEngine::Application.routes.draw do
 
   get "dashboard" => "dashboard#index"
 
-  resources :orders, :users, :categories, :products, :sessions
+  resources :orders, :users, :categories, :products, :sessions, :cart
   root :to => "products#index"
 
   get "login" => 'sessions#new'

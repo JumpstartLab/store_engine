@@ -28,11 +28,12 @@ ActiveRecord::Schema.define(:version => 20120403210443) do
   end
 
   create_table "order_products", :id => false, :force => true do |t|
-    t.integer  "order_id",       :null => false
-    t.integer  "product_id",     :null => false
+    t.integer  "order_id",                      :null => false
+    t.integer  "product_id",                    :null => false
     t.integer  "price_in_cents"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "quantity",       :default => 1
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "orders", :force => true do |t|
