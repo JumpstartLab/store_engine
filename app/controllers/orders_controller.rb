@@ -8,11 +8,6 @@ class OrdersController < ApplicationController
   def show
   end
 
-  def destroy
-    @order.destroy
-    redirect_to orders_path
-  end
-
   def new
     @order = Order.new
   end

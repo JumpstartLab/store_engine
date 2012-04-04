@@ -8,9 +8,5 @@
 
 <%= link_to "edit!", edit_order_path(@order)%>
 
-<%=link_to "destroy!", order_path(@order),
- :method => :delete,
- :confirm => "Delete \"#{@order.id}\"?" %>
-
 <%=link_to "Back to All orders", orders_path, :id => "orders-index", :class => "link" %>
  

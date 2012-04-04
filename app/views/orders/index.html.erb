@@ -5,9 +5,10 @@
    <li>
     <%= order.status %>
     <%=link_to order.id, order_path(order) %>
+    <%= order.user_id %>
+    <%= order.created_at %>
+    <%= order.updated_at %>
    </li>
 
  <% end %>
 </ul>
-
-<%= link_to "New order", new_order_path, :id => "new-order",  :class => "new_order"%>
