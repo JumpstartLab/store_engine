@@ -11,4 +11,14 @@ describe Order do
       order.total.should == product.price * 2
     end
   end
+
+  context "#subtotal" do
+
+    it "returns the subtotal of all similar order products" do
+      order.add_product(product)
+      order.add_product(product)
+      order.add_product(product)
+      order.subtotal(product).should == product.price * 3     
+    end
+  end
 end
