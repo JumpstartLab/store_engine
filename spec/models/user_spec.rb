@@ -1,13 +1,15 @@
 require 'spec_helper'
 
 describe User do
-  let(:user) do 
-    User.new(:name => "Example User",
-                    :email => "foo@bar.com",
-                    :display_name => "example_user",
-                    :password => "foobar", 
-                    :password_confirmation => "foobar")
-  end
+  # let(:user) do 
+  #   User.new(:name => "Example User",
+  #                   :email => "foo@bar.com",
+  #                   :display_name => "example_user",
+  #                   :password => "foobar", 
+  #                   :password_confirmation => "foobar")
+  # end
+
+  let(:user) { FactoryGirl.create(:user)}
 
   [:name, :email, :display_name, :password_digest, 
     :password, :password_confirmation].each do |attr|
