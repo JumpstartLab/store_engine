@@ -8,7 +8,10 @@ p
 
 p
 
-= link_to "Add to cart", shopping_cart_path, :method => "put"
+= form_for CartItem.new do |f|
+  = f.label :quantity
+  = f.select :quantity, options_for_select(1..30)
+  = f.submit "Add to Cart"
 
-
+p
 = link_to "Back to all products", products_path

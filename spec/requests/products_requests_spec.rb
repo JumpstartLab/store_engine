@@ -32,5 +32,17 @@ describe "Products Requests" do
       find_link("Foo").click
       current_path.should == product_path(product)
     end
+
+    it "shows quantity selector with 30 items" do 
+      visit "/products/1" 
+      (1..30).each do |i| 
+        select(i.to_s, :from => 'cart_item_quantity')
+      end
+    end
+
+    it "has a Add to Cart submit button" do
+      visit "/products/1" 
+      find_button("Add to Cart").visible?
+    end
   end
 end
