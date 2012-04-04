@@ -1,4 +1,7 @@
-<ul class="nav pull-right">
-  <li><%= link_to "Login", login_path %></li>
-  <li><%= link_to "Signup", signup_path %></li>
-</ul>
+<%= form_tag sessions_path, :class => "form-inline pull-right" do %>
+  <%= text_field_tag :email, params[:email], :placeholder => "Email", :class => "input-small" %>
+  <%= password_field_tag :password, nil, :placeholder => "Password", :class => "input-small" %>
+  <%#= check_box_tag :remember_me, 1, params[:remember_me] %>
+  <%#= label_tag :remember_me, nil, :id => "remember_me" %>
+  <%= submit_tag "Log in", :class => "btn btn-small btn" %>
+<% end %>
