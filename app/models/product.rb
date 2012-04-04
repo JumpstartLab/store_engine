@@ -9,4 +9,6 @@ class Product < ActiveRecord::Base
   validates_format_of :photo,
                       :with => URI::regexp(%w(http https)),
                       :message => "must be URL"
+  has_many :order_products
+  has_many :orders, :through => :order_products
 end
