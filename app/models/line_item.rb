@@ -3,4 +3,12 @@ class LineItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :order
 
+  def subtotal
+    quantity * price
+  end
+
+  def product
+    Product.find(self.product_id)
+  end
+
 end
