@@ -1,10 +1,26 @@
-<h1>All Products</h1>
-  <ul id="products">
-  <% @products.each do |product| %>
-  <li>
-    <%= link_to product.title, product_path(product) %> <%= product.categories %>
-  </li>
-  <% end %>
-</ul>
+<h1>Products</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>
+        <td><%= link_to product.title, product_path(product) %></td>
+        <td><%= product.created_at %></td>
+        <td>
+          <%= link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to "New Product", new_product_path, class: "new_product" %>
+<%= link_to 'New', new_product_path, :class => 'btn btn-primary' %>

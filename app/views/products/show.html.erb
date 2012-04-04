@@ -1,10 +1,27 @@
-<h1><%= @product.title %></h1>
+<h1>/Product</h1>
 
 <p>
-  <%= @product.description %>
-  <br /> <%= @product.price %>
+  <b>Title</b><br>
+  <%= @product.title %>
 </p>
 
-<%= link_to "Edit", edit_product_path %>
-<%= link_to "Destroy", product_path(@product), :method => :delete, confirm: "Delete \"#{@product.title}\"?" %>
-<%= link_to "Back to All Products", products_path %>
+<p>
+  <b>Description</b><br>
+  <%= @product.description %>
+</p>
+
+<p>
+  <b>Price</b><br>
+  <%= @product.price %>
+</p>
+
+<p>
+  <b>Photo url</b><br>
+  <%= @product.photo_url %>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Back', products_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_product_path(@product), :class => 'btn' %>
+  <%= link_to 'Delete', product_path(@product), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

@@ -2,13 +2,55 @@
 <html>
 <head>
   <title>StoreEngine</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+   <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <%= link_to "The Urban Cyclist", root_url, class: "brand" %>
+          <div class="nav-collapse">
+            <ul class="nav nav-pills">
+              <li class="dropdown" id="menu1">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+                  Categories
+                  <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <% get_categories.each do |category| %>
+                  <li><%= link_to category.name, category_path(category) %>
+                  </li>
+                  <% end %>
+                </ul>
+              </li>
+              <li><%= link_to "Price List" %></li>
+              <li><%= link_to "Contact Us" %></li>
+              <li><%= link_to "Cart" %></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<%= yield %>
-
-</body>
-</html>
+    <div class="container">
+      <div class="row">
+        <div class="span9"><%= yield %></div>
+        <div class="span3">
+          <h2>About Us</h2>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </div>
+      </div>
+    </div>
+  </body>
+  </html>

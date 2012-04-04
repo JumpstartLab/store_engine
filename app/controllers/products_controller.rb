@@ -13,8 +13,7 @@ class ProductsController < ApplicationController
     end
 
     def create
-      product = Product.new(params[:product])
-      product.save
+      product = Product.create(params[:product])
       redirect_to product_path(product)
     end
 
