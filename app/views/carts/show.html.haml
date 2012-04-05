@@ -1,0 +1,13 @@
+%h1 Your Cart
+.row
+  .span9
+    %table
+      %tr
+        %th name
+        %th quantity
+      / - simple_form_for @products do |f|
+      - @products.each do |q, p|
+        %tr{:id => "product_#{p.id}"}
+          %td= p.name
+          %td= f.input q
+          %td= link_to "Remove Item", cart_path(:product_id => p.id), :method => :delete, :confirm => "Are you sure?"

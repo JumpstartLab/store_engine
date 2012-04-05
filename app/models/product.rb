@@ -17,6 +17,7 @@ class Product < ActiveRecord::Base
   has_many :orders, :through => :order_products
 
   has_many :product_ratings
+  # has_many :carts
 
   def avatar_from_url(url)
     self.avatar = open(url)

@@ -1,13 +1,12 @@
-class CartController < ApplicationController
+class CartsController < ApplicationController
   
-  def index
-     @products = current_cart.collect do |p,q|     
+  def show
+      @products = current_cart.collect do |p,q|
         [ q, Product.find(p) ]
-     end     
+     end   
   end
-
   def update
-    id = params[:id]
+    id = params[:product_id]
     
     if not current_cart[id]
       current_cart[id] = 1
@@ -16,7 +15,14 @@ class CartController < ApplicationController
     end
 
     save_json_cart
-    redirect_to '/cart', :notice => "Item added."
+    redirect_to cart_path, :notice => "Item added."
+  end
+
+  def destroy
+    id = params[:product_id]
+    current_cart.delete(id)
+    save_json_cart
+    redirect_to cart_path, :notice => "Item deleted."
   end
 
   private
@@ -35,5 +41,4 @@ class CartController < ApplicationController
   def load_json_cart
     @current_cart = JSON.load(cookies[:cart])
   end
-
 end

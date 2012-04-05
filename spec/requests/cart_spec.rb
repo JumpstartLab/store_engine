@@ -13,18 +13,30 @@ describe "Cart" do
     click_on "Add Item"
     page.should have_content(p1.name)
   end
-  it "add another item to cart" do
-    p1 = products.first
-    p2 = products.last
-    [p1,p2].each do |p|
-      visit product_path(p)
-      click_on "Add Item"
+  context "Add & Remove Items" do
+    let(:p1) do
+      products.first
     end
-    page.should have_content(p2.name)
-    page.should have_content(p1.name)
-  end
-  it "removes an item from your cart" do
-    pending
+    let(:p2) do
+      products.last
+    end
+    before(:each) do
+      [p1,p2].each do |p|
+        visit product_path(p)
+        click_on "Add Item"
+      end
+    end
+    it "add another item to cart" do
+      page.should have_content(p2.name)
+      page.should have_content(p1.name)
+    end
+    it "removes an item from your cart" do
+      visit cart_path
+      within("#product_#{p1.id}") do
+        click_on ("Remove Item")
+      end
+      page.should_not have_content(p1.name)
+    end
   end
   it "increases quantity of a product in cart" do
     pending
