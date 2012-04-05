@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(:users, :notice => 'Registration successfull. 
+        format.html { redirect_to(:users, :notice => 'Registration successful. 
                                   Check your email for activation 
                                   instructions.') }
       else

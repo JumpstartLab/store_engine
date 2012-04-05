@@ -40,4 +40,3 @@ RSpec.configure do |config|
   config.include ExampleData::Projects
   config.include Sorcery::TestHelpers::Rails
 end
-

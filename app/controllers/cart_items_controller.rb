@@ -11,3 +11,5 @@ class CartItemsController < ApplicationController
     redirect_to shopping_cart_path
   end
 end
+
+

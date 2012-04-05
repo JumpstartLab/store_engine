@@ -12,8 +12,8 @@ describe "Cart Items Requests" do
       current_path.should == shopping_cart_path
     end
   end
-  # redirect to the cart controller's index
 end
+
 
 module Sorcery
   module TestHelpers

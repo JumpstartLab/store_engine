@@ -1,7 +1,7 @@
 class ShoppingCartController < ApplicationController
 
   def show
-    cart = ShoppingCart.find(1)
+    cart = current_user.shopping_cart
     @cart_items = cart.cart_items
   end
 

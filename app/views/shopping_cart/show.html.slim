@@ -1,10 +1,10 @@
-/ h1 Shopping Cart
+h1 Shopping Cart
 
-/ ul
-/   - @order_products.each do |order_product|
-/       li
-/         = link_to order_product.title, product_path(order_product.product)
+ul
+  - @cart_items.each do |cart_item|
+      li
+        = link_to cart_item.product.title, product_path(cart_item.product)
 
-/         p
+        p
 
-/         /= link_to "Remove", product_path(product), :method => :delete
+        /= link_to "Remove", product_path(product), :method => :delete
