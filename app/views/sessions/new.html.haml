@@ -1,0 +1,11 @@
+%h1 Please Sign In Below
+= form_tag login_path do
+  = label_tag :email
+  %br/
+  = text_field_tag :email
+  %br/
+  = label_tag :password
+  %br/
+  = password_field_tag :password
+  %br/
+  = submit_tag 'Sign-In'
