@@ -38,6 +38,5 @@ describe "test shopping cart", :focus => true do
   it "opens page" do
     cart.add_product(product)
     visit cart_path
-    save_and_open_page
   end
 end

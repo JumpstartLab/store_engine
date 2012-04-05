@@ -1,6 +1,8 @@
 <h1>Your Cart</h1>
 <div id="cart">
-  <% @cart.products.each do |product| %>
-    <%= product.name %>
-  <% end %>
+  <ul>
+    <% @cart.products.each do |product| %>
+      <li><%= product.name %></li>
+    <% end %>
+  </ul>
 </div>

@@ -16,6 +16,7 @@
     <td><%= product.description %></td>
     <td><%= number_to_currency(product.price) %></td>
     <td><%= link_to 'Show', product %></td>
+    <td><%= button_to 'Add to cart', cart_path(:product_id => product), :method => :put %></td>
     <!--<td><%= link_to 'Edit', edit_product_path(product) %></td>
     <td><%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete %></td>-->
   </tr>
