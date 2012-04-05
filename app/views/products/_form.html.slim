@@ -1,8 +1,8 @@
 = form_for @product, :html => { :class => 'form-horizontal' } do |f|
-  %fieldset
-    %legend
+  fieldset
+    legend
       = controller.action_name.capitalize
-      \/Product
+      | \/Product
     .control-group
       = f.label :title, :class => 'control-label'
       .controls
@@ -24,14 +24,14 @@
       - Category.all.each do |category|
         = check_box_tag "product[category_ids][]", category.id, @product.category_ids.include?(category.id), id: dom_id(category)
         = label_tag dom_id(category), category.name
-        %br/
-    /
-      <div class="control-group">
-      <haml:loud> f.label &amp;quot;Add a Category&amp;quot;, :class =&amp;gt; 'control-label' </haml:loud>
-      <div class="controls">
-      <haml:loud> f.text_field :categories, :class =&amp;gt; 'text_field' </haml:loud>
-      </div>
-      </div>
+        br/
+    /!
+      | <div class="control-group">
+      | <haml:loud> f.label &amp;quot;Add a Category&amp;quot;, :class =&amp;gt; 'control-label' </haml:loud>
+      | <div class="controls">
+      | <haml:loud> f.text_field :categories, :class =&amp;gt; 'text_field' </haml:loud>
+      | </div>
+      | </div>
     .form-actions
       = f.submit :class => 'btn btn-primary'
       = link_to 'Cancel', products_path, :class => 'btn'

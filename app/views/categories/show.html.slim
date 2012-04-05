@@ -1,7 +1,7 @@
-%h1= @category.name
-%ul
+h1= @category.name
+ul
   - @products.each do |product|
-    %li
+    li
       = link_to product.title, product_path(product)
 = link_to "Edit", edit_category_path
 = link_to "Destroy", category_path(@category), :method => :delete, confirm: "Delete \"#{@category.name}\"?"

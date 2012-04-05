@@ -1,0 +1,10 @@
+h1
+  | Welcome Back, #{@user.display_name}
+p
+  = @user.full_name
+  br/
+  = @user.email_address
+h2 Billing Information
+= link_to "Edit", edit_user_path
+= link_to "Destroy", user_path(@user), :method => :delete, confirm: "Delete \"#{@user.display_name}\"?"
+= link_to "Back to All Users", users_path
