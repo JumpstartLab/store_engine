@@ -7,6 +7,7 @@ class Product < ActiveRecord::Base
   validates_numericality_of :price_in_cents, :greater_than => 0
   validates_uniqueness_of :name
 
+  default_scope :conditions => { :active => 1 }
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
   has_many :category_products
@@ -35,6 +36,11 @@ class Product < ActiveRecord::Base
 
   def price_in_dollars
     Money.new(price_in_cents.to_i).format
+  end
+
+  def destroy
+    self.active = 0 
+    self.save
   end
 
   private

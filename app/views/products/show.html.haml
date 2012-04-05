@@ -8,3 +8,4 @@
     %br
     %p= @product.description
     %p= link_to "Add Item", "/cart/#{@product.id}"
+    %P= link_to "Delete item", product_path, :method => :delete, :confirm => "Are you sure?"

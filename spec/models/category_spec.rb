@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Category do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:category) do
+    FactoryGirl.create(:category)
+  end
+  it "Destroys a category" do
+    category.destroy
+    category.active.should == 0
+  end
 end

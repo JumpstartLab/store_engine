@@ -24,4 +24,9 @@ class User < ActiveRecord::Base
     permission == 1
   end
 
+  def destroy
+    self.active = 0
+    self.save
+  end
+
 end

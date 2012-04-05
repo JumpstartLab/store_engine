@@ -13,11 +13,7 @@ describe "User" do
       page.should have_content "Please login"
     end
     it "user can only edit themselves" do
-      visit '/login'
-      fill_in 'user[email]', :with => user.email
-      fill_in 'user[password]', :with => "mike"
-      click_button("Sign In")
-
+      login(user)
       visit edit_user_path(user2)
       page.should have_content "You can only edit yourself"
     end
