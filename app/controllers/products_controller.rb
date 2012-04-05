@@ -13,15 +13,9 @@ class ProductsController < ApplicationController
   end
 
   def create
-    params[:product][:photo_url] = nil if params[:product][:photo_url] = ""
-    product_params = params[:product].dup
-    raise (product_params = params[:product]).inspect
-    product_params.delete(:category_ids)
-    product = Product.create(product_params)
-    params[:product][:category_ids].each do |ci|
-      ProductCategorization.create(
-        product_id: product.id, category_id: ci )
-    end
+    # params[:product][:photo_url] = nil if params[:product][:photo_url] = ""
+    product = Product.new(params[:product])
+    product.save
     redirect_to product_path(product)
   end
 
