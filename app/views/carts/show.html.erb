@@ -1,0 +1,11 @@
+<h1>Your Cart </h1>
+
+<div id="cart">
+ <% @cart.products.each do |product| %>
+  <p class="cart_product" id="product_<%= product.id %>" >
+    <%= product.title %>
+    <%= link_to "remove", delete_product_cart_path(:product_id => product), :method => :delete %>
+  </p>
+ <% end %>
+</div>
+<%= link_to "Continue Shopping", products_path %>

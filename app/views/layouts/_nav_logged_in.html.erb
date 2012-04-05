@@ -1,10 +1,10 @@
 <ul class="nav">
   <li><%= link_to "Products", products_path %></li>
   <% if current_user.is_admin? %>
-  <li><%= link_to "Dashboard", nil %></li>
+  <li><%= link_to "Dashboard", dashboard_path %></li>
   <% end %>
   <li><%= link_to "Categories", categories_path %></li>
-  <li><a href="#"><i class="icon-shopping-cart icon-white"></i>Cart</a></li>
+  <li><a href="/cart"><i class="icon-shopping-cart icon-white"></i>Cart</a></li>
 </ul>
 <form class="navbar-search pull-left">
   <input type="text" class="search-query" placeholder="Search our products">
