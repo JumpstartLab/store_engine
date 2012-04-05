@@ -7,9 +7,20 @@ describe "Cart" do
   let!(:products) do
     (1..3).map { FactoryGirl.create(:product)}
   end  
-  it "add items to cart" do
-    visit product_path(products.first)
+  it "add item to cart" do
+    p1 = products.first
+    visit product_path(p1)
+    click_on "Add Item"
+    page.should have_content(p1.name)
+  end
+  it "add another item to cart" do
+    p1 = products.first
+    p2 = products.last
+    [p1,p2].each do |p|
+      visit product_path(p)
       click_on "Add Item"
-      save_and_open_page
+    end
+    page.should have_content(p2.name)
+    page.should have_content(p1.name)
   end
 end

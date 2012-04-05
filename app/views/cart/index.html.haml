@@ -1,0 +1,11 @@
+%h1 Your Cart
+.row
+  .span9
+    %table
+      %tr
+        %th name
+        %th quantity
+      - @products.each do |q, p|
+        %tr
+          %td= p.name
+          %td= q

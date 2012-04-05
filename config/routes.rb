@@ -6,11 +6,14 @@ StoreEngine::Application.routes.draw do
 
   get "dashboard" => "dashboard#index"
 
-  resources :orders, :users, :categories, :products, :sessions, :cart
+  resources :orders, :users, :categories, :products, :sessions
   root :to => "products#index"
 
   get "login" => 'sessions#new'
   get "logout" => 'sessions#destroy', :as => "logout"
+
+  match '/cart' => 'cart#index'
+  match '/cart/:id' => 'cart#update'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

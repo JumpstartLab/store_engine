@@ -7,4 +7,4 @@
     %h4= @product.price
     %br
     %p= @product.description
-    %p= link_to "Add Item", cart_path(@product), :method => :post
+    %p= link_to "Add Item", "/cart/#{@product.id}"

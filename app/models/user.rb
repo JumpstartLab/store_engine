@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_presence_of :name, :email
   validates_presence_of :password, :on => :create
+
+  validates_length_of :display_name, :within => 2..32
   
   has_many :orders
   has_many :products, :through => :orders

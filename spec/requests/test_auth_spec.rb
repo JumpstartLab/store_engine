@@ -29,4 +29,21 @@ describe "Test Auth" do
       pending
     end
   end
+  describe "log out a user" do
+    let!(:user) do
+      FactoryGirl.create(:user, :password => "mike")
+    end
+
+    before(:each) do
+     visit '/login'
+     fill_in 'user[email]', :with => user.email
+     fill_in 'user[password]', :with => "mike"
+     click_button("Sign In")
+    end
+    it "visits logout" do
+      visit '/logout'
+      visit '/login'
+      page.should have_content("Login")
+    end
+  end
 end

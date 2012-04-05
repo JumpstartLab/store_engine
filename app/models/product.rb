@@ -1,3 +1,5 @@
+require "open-uri"
+
 class Product < ActiveRecord::Base
   attr_accessible :description, :name, :price, :categories, :avatar, :category_ids
   
@@ -14,6 +16,10 @@ class Product < ActiveRecord::Base
   has_many :orders, :through => :order_products
 
   has_many :product_ratings
+
+  def avatar_from_url(url)
+    self.avatar = open(url)
+  end
 
   def price=(dollar)
     self.price_in_dollars = dollar
