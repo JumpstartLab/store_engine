@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   before_filter :lookup_product, :only => [:show, :edit, :destroy, :update]
-  before_filter :lookup_categories
 
   def index
     @products = Product.all
@@ -14,12 +13,9 @@ class ProductsController < ApplicationController
   end
 
   def create
-    params[:product][:photo_url] = nil if params[:product][:photo_url] = ""
-    product = Product.create(params[:product])
-    # params[:category_ids].each do |ci|
-    #   ProductCategorizaton.create(
-    #     product_id: product.id, category_id: ci )
-    # end
+    # params[:product][:photo_url] = nil if params[:product][:photo_url] = ""
+    product = Product.new(params[:product])
+    product.save
     redirect_to product_path(product)
   end
 
@@ -40,8 +36,5 @@ class ProductsController < ApplicationController
 
   def lookup_product
     @product = Product.find(params[:id])
-  end
-  def lookup_categories
-    @categories = Product.all.flat_map(&:categories)
   end
 end
