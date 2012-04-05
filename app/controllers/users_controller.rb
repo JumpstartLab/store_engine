@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :lookup_user, :only => [:show, :edit, :destroy, :update]
-  before_filter :require_user
+  before_filter :require_user, :except => [:new, :create]
 
     def require_user
       if session[:user_id] == nil
