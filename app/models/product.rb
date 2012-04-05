@@ -10,8 +10,8 @@ class Product < ActiveRecord::Base
   validates_format_of :photo,
                       :with => URI::regexp(%w(http https)),
                       :message => "must be URL"
-  has_many :order_products
-  has_many :orders, :through => :order_products
+  has_many :order_items
+  has_many :orders, :through => :order_items
 
   def clean_price
     price = price.to_s

@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   attr_accessible :user_id, :customer_id
-  has_many :order_products
-  has_many :products, :through => :order_products
+  has_many :order_items
+  has_many :products, :through => :order_items
 
   def add_product(product)
     if products.include?(product)
@@ -12,8 +12,8 @@ class Order < ActiveRecord::Base
   end
 
   def increment_quantity_for(product)
-    op = OrderProduct.find_by_product_id(product.id)
-    op.update_attribute(:quantity, op.quantity + 1)
+    oi = OrderItem.find_by_product_id(product.id)
+    oi.update_attribute(:quantity, op.quantity + 1)
   end
 
   def total
@@ -26,12 +26,12 @@ class Order < ActiveRecord::Base
   end
 
   def subtotal(product)
-    op = OrderProduct.find(product.id)
-    op.quantity * op.product.price
+    oi = OrderItem.find(product.id)
+    oi.quantity * oi.product.price
   end
 
   def quantity_for(product)
-    op = OrderProduct.find(product.id)
-    op.quantity
+    oi = OrderItem.find(product.id)
+    oi.quantity
   end
 end
