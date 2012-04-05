@@ -3,11 +3,8 @@
 <ul id="orders">
  <% @orders.each do |order| %>
    <li>
-    <%= order.status %>
-    <%=link_to order.id, order_path(order) %>
-    <%= order.user_id %>
-    <%= order.created_at %>
-    <%= order.updated_at %>
+    Order Number: <%= link_to order.id, order_path(order) %> <br />
+    Order Status: <%= order.status %>
     <% if order.next_status %>
       <%= form_for order do |f| %>
         <%= f.hidden_field :status, :value => order.next_status %>

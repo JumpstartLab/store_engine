@@ -1,14 +1,14 @@
-<h1><%= @order.id %></h1>
+<h1>Order: <%= @order.id %></h1>
 <p>
-  <%= @order.created_at %>
+  Date Ordered: <%= @order.created_at %>
 </p> 
-<h2>Products Ordered:</h2>
+<h3>Products Ordered:</h3>
 <p> 
   <% @order.order_items.each do |order_item| %>
     <%= link_to order_item.product.title, product_path %> <br />
-    <%= "Quantity: " + order_item.quantity.to_s %> <br />
-    <%= "Price: " + order_item.price.to_s %><br />
-    <%= "Subtotal: " + (order_item.price * order_item.quantity).to_s %><br />
+    Quantity: <%= order_item.quantity%> <br />
+    Price: <%= order_item.price %><br />
+    Subtotal: <%= order_item.subtotal %><br />
   <% end %>
 </p>  
 
