@@ -12,4 +12,8 @@ class Product < ActiveRecord::Base
   def to_param
     [id, title.downcase.split(" ")].join("-")
   end
+
+  def display_price
+    BigDecimal(price.round(2).to_s)
+  end
 end
