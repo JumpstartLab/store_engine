@@ -15,6 +15,9 @@ class Order < ActiveRecord::Base
     end
   end
 
+  # def total
+  #   order_items.sum('subtotal')
+  # end
   def total
     total = 0
     order_items.each do |oi|
