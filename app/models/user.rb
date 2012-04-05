@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+db class User < ActiveRecord::Base
   has_many :orders
   
   attr_accessible :email, :full_name, :is_admin, :username
