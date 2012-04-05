@@ -15,4 +15,20 @@ class Cart < ActiveRecord::Base
     add_item(product)
   end
 
+  # def cart_item(product_id)
+  #   # product = Product.find(product_id)
+  #   cart_item = CartItem.find(product_id)
+  # end
+
+  def test
+    specified_products = {}
+    products.each do |product|
+      specified_products[product.id] += 1
+    end
+    specified_products
+  end
+
+  def product_quantity(product_id)
+  end
+
 end

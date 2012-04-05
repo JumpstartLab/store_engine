@@ -18,7 +18,11 @@ describe "Using the shopping cart" do
           end
         end
 
-        it "shows the quantity of the product in my cart"
+        it "shows the quantity of the product in my cart" do
+          within("#cart") do
+            page.should have_selector("##{product.id}_quant")
+          end
+        end
         it "shows the total price of the product in my cart"
         it "shows the total price of all products in my cart"
       end

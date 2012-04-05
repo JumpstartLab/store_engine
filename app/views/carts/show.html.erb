@@ -5,6 +5,9 @@
       <li>
         <%= item.title %>
       </li>
+      <li id="<%= item.id %>_quant">
+        <%= @cart.product_quantity(item.id) %>
+      </li>
       <% end %>
   </ul>
 </div>
