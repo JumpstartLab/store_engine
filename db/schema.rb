@@ -28,12 +28,11 @@ ActiveRecord::Schema.define(:version => 20120403210443) do
   end
 
   create_table "order_products", :id => false, :force => true do |t|
-    t.integer  "order_id",                      :null => false
-    t.integer  "product_id",                    :null => false
+    t.integer  "order_id",       :null => false
+    t.integer  "product_id",     :null => false
     t.integer  "price_in_cents"
-    t.integer  "quantity",       :default => 1
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "orders", :force => true do |t|
@@ -49,16 +48,18 @@ ActiveRecord::Schema.define(:version => 20120403210443) do
     t.integer  "rating"
     t.integer  "user_id"
     t.integer  "product_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "active",     :default => 1
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   create_table "products", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "price_in_cents"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.integer  "active",              :default => 1
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

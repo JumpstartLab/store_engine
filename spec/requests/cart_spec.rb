@@ -33,6 +33,6 @@ describe "Cart" do
     pending
   end
   it "checkout" do
-
+    
   end
 end

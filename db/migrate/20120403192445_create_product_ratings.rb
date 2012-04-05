@@ -6,6 +6,7 @@ class CreateProductRatings < ActiveRecord::Migration
       t.integer :rating
       t.integer :user_id
       t.integer :product_id
+      t.integer :active, :default => 1
 
       t.timestamps
     end
