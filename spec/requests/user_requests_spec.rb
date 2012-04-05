@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "User" do
   let!(:user) do 
-    FactoryGirl.create(:user)
+    FactoryGirl.create(:user, :password => "mike")
   end
   let!(:user2) do 
     FactoryGirl.create(:user)
