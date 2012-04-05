@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
   has_many :orders
 
   validates_confirmation_of :password
+
+  def admin?
+    admin
+  end
 end

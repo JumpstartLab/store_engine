@@ -18,6 +18,12 @@ StoreEngine::Application.routes.draw do
 
   resources :cart_items
 
+  get "admin" => "admin#index"
+  namespace :admin do
+    resources :products
+    resources :categories
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

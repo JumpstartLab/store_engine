@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+
   def current_cart
     Cart.find(session[:cart_id])
   rescue ActiveRecord::RecordNotFound
@@ -7,5 +8,13 @@ class ApplicationController < ActionController::Base
     session[:cart_id] = cart.id
     cart
   end
+
   helper_method :current_cart
+
+  def require_admin
+    return if current_user && current_user.admin?
+
+    flash.notice = "You do not have admin rights!"
+    redirect_to login_path
+  end
 end

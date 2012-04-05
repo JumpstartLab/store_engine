@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :category_id, :description, :price_in_cents, :title
+  attr_accessible :name, :category_id, :description, :price_in_cents
 
   has_many :orders
   belongs_to :category
