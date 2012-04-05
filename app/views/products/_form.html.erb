@@ -31,20 +31,19 @@
   </div>
 
   <div class="control-group">
-    <% @categories.each_with_index do |category, i| %>
-    <%= label category, category.name, :class => 'control-label' %>
-    <div class="controls">
-      <%= check_box_tag "category_#{i}", category.id %>
-    </div>
+    <%= hidden_field_tag "product[category_ids][]", nil %>
+    <% Category.all.each do |category| %>
+      <%= check_box_tag "product[category_ids][]", category.id, @product.category_ids.include?(category.id), id: dom_id(category) %>
+      <%= label_tag dom_id(category), category.name %><br>
     <% end %>
   </div>
 
-  <div class="control-group">
+  <!-- <div class="control-group">
     <%= f.label "Add a Category", :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :categories, :class => 'text_field' %>
     </div>
-  </div>
+  </div> -->
 
 
   <div class="form-actions">

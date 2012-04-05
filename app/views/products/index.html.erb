@@ -4,6 +4,8 @@
     <tr>
       <th>ID</th>
       <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
       <th>Created at</th>
       <th>Actions</th>
     </tr>
@@ -13,6 +15,8 @@
       <tr>
         <td><%= product.id %></td>
         <td><%= link_to product.title, product_path(product) %></td>
+        <td><%= product.description %></td>
+        <td><%= product.price %></td>
         <td><%= product.created_at %></td>
         <td>
           <%= link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini' %>
