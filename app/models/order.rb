@@ -34,4 +34,8 @@ class Order < ActiveRecord::Base
     oi = OrderItem.find(product.id)
     oi.quantity
   end
+
+  def items
+    order_items
+  end
 end
