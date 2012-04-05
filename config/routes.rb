@@ -5,7 +5,7 @@ StoreEngine::Application.routes.draw do
   match '/cart' => 'cart#index'
   match '/cart/:id' => 'cart#update'
 
-  resources :orders, :users, :categories, :products, :sessions
+  resources :orders, :users, :categories, :products, :sessions, :orders
   root :to => "products#index"
 
   # The priority is based upon order of creation:

@@ -1,27 +1,3 @@
 %h1 Dashboard
 %br
-
-%h3 Coming soon!
-
-/ %ul.nav.nav-tabs
-/   %li.active
-/     %a{"data-toggle" => "tab", :href => "#orders"} Orders
-
-/ .tab-content
-/   #orders.tab-pane.active
-/     .row
-/       .span8
-/         %h3 Orders
-/         %br 
-/         = render 'orders/list'
-/       .span4
-/         %h3 Status
-/         %br
-/         %table.table.table-striped
-/           - @orders_by_status.each do |status|
-/             %tr
-/               %td= @status[status.first.to_i - 1].name
-/               %td= status.last
-
-/ %script
-/   $('.tabs a:last').tab('show')
+  %a= link_to 'Orders', orders_path

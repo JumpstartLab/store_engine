@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :product_ids
   default_scope :conditions => { :active => 1 }
 
   has_many :category_products

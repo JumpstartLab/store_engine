@@ -30,6 +30,7 @@ group :development, :test do
   gem 'launchy'
   gem 'guard'
   gem 'growl'
+  gem 'ruby_gntp'
   gem 'factory_girl_rails'
   gem 'faker'
 end

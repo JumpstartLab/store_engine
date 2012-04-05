@@ -3,4 +3,5 @@
 
 = simple_form_for @category do |f|
   = f.input :name
+  = f.association :products
   = f.submit 'Add Category', :class => 'btn btn-primary'
