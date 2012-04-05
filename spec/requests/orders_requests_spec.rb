@@ -33,5 +33,12 @@ describe "Orders Requests" do
         page.should have_content order.quantity_for(product)
       end
     end
+
+    it "has a price for each product in an order" do
+      visit order_path(order)
+      order.products.each do |product|
+        page.should have_content product.price
+      end
+    end
   end
 end
