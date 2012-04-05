@@ -1,6 +1,7 @@
-<p id="add_category">
-  <%= link_to "Add a category", new_category_path %>
-</p>
+<div id="categories_intro">
+<h2>Categories</h2>
+<p id="add_link"><%= link_to "Add a category", new_category_path %></p>
+</div>
 <div id="categories">
   <% @categories.each do |category| %>
     <p class="category" id="category_<%= category.id %>">

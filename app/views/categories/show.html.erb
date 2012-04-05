@@ -1,9 +1,12 @@
 <h3> <%= @category.name %> </h3>
 
-<div id="products_category">
+<% if @category.products.any? %>
+<ul id="products_category">
+<h4>Products</h4>
   <% @category.products.each do |product| %>
-    <p class="product" id="product_<%= product.id %>">
+    <li class="product" id="product_<%= product.id %>">
       <%= link_to product.title, product_path(product) %>
-    </p>
+    </li>
   <% end %>
-</div>
+</ul>
+<% end %>

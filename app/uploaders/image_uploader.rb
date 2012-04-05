@@ -3,8 +3,8 @@
 class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  # include CarrierWave::RMagick
+  include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   # include Sprockets::Helpers::RailsHelper
@@ -21,12 +21,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url
-  #   # For Rails 3.1+ asset pipeline compatibility:
+  def default_url
+    # For Rails 3.1+ asset pipeline compatibility:
   #   # asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
   #
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
+  end
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]
@@ -37,11 +37,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_limit => [75, 75]
+    process :resize_to_limit => [175, 175]
   end
 
   version :normal do
-    process :resize_to_limit => [125, 125]
+    process :resize_to_limit => [300, 300]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

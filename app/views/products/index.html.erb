@@ -1,12 +1,22 @@
-<h3>These are the products!</h3>
+<div id="products_intro">
+<h2>Our Products</h2>
 <% if logged_in? && current_user.is_admin? %>
-<p id="add_product"><%= link_to "Add a product", new_product_path %></p>
+<p id="add_link"><%= link_to "Add a product", new_product_path %></p>
 <% end %>
-<div id="products">
-<% @products.each do |product| %>
-<div class="product" id="product_<%= product.id %>">
-  <%= link_to product.title, product_path(product) %>
-  <%= image_tag product.image_url(:thumb).to_s if product.image? %>
 </div>
-<% end %>
+<div id="products">
+  <div class="row-fluid">
+  <% @products.each do |product| %>
+    <div class="product span4" id="product_<%= product.id %>">
+      <div class="product_container">
+        <div class="product_title">
+          <h3><%= link_to product.title, product_path(product) %></h3>
+        </div>
+        <div class="product_image">
+          <%= image_tag product.image_url(:thumb).to_s if product.image? %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
 </div>

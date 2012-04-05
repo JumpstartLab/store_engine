@@ -29,7 +29,8 @@
     <%= f.text_field :remote_image_url %>
   </p>
   <p>
-    <%#= f.check_box :remove_avatar %>
+    <%= f.check_box :remove_image %>
+    <%= f.label :remove_image, :id => "remember_me" %>
   </p>
   <p>
     <%= f.submit %>

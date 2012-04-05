@@ -14,7 +14,7 @@ describe "Categories Admin Requests" do
 
     it "shows a link to add a category" do
       visit "/categories"
-      within("#add_category") do
+      within("#add_link") do
         page.should have_link('Add a category',
                               href: new_category_path)
       end

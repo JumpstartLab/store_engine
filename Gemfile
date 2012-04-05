@@ -7,7 +7,8 @@ gem 'jquery-rails'
 gem 'growl'
 gem 'sorcery'
 
-gem 'rmagick'
+#gem 'rmagick'
+gem 'mini_magick'
 gem 'carrierwave'
 
 # Gems used only for assets and not required
