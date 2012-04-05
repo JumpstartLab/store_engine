@@ -4,5 +4,4 @@ Fabricator(:user, :class_name => User) do
   display_name { Faker::Name.first_name }
   password { "test" }
   password_confirmation { "test" }
-
 end
