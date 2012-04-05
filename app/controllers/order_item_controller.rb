@@ -1,6 +1,5 @@
 class OrderItemController < ApplicationController
 
-
   before_filter :lookup_order_item, :only => [:show, :edit, :destroy, :update]
 
   def show

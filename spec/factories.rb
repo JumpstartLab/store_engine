@@ -1,9 +1,5 @@
 FactoryGirl.define do
   
-  factory :order do
-    user 
-  end
-
   sequence :title do |n|
     "#{n} Yo-Yo"
   end
@@ -15,6 +11,15 @@ FactoryGirl.define do
   sequence :username do |n|
     "#{n}andyglass"
   end
+
+  factory :order do
+    user 
+  end
+
+  # factory :order_item do
+  #   product
+  #   quantity 2
+  # end
 
   factory :product do
     title 
