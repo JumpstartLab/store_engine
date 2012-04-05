@@ -14,5 +14,11 @@ describe "Products Requests" do
         end
       end
     end
+
+    before(:each) { visit new_product_path }
+
+    it "should have the proper form items" do
+      pending
+    end
   end
 end
