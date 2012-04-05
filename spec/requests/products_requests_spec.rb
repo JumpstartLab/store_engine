@@ -71,6 +71,7 @@ describe "Products Requests" do
       visit edit_product_path(Product.all.last)
       fill_in "product_description", with: "Updated"
       click_button 'Update Product'
+
     end
     it "updates a product" do
       Product.last.description.should == "Updated"

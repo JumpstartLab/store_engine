@@ -4,7 +4,7 @@ describe "User Requests" do
   context "root" do
     let!(:users) { [Fabricate(:user), Fabricate(:user)] }
 
-    # before(:each) { visit categories_path }
+    before(:each) { visit users_path }
 
     # it "links to the category" do
     #   within("table.table-striped") do
