@@ -1,4 +1,4 @@
 class Category < ActiveRecord::Base
-  belongs_to :product
+  has_many :products, :through => :product_categories
   attr_accessible :name
 end
