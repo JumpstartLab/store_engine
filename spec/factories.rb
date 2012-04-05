@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :user do 
-    sequence(:display_name) { |n| "foo#{n}" }
+    sequence(:display_name) { Faker::Name.name }
     password "foobar"
     name "foo"
-    email { "#{display_name}@example.com" }
+    sequence(:email) { |n| "display_name#{n}@example.com"}
     permission 1
 
     factory :admin do
@@ -30,6 +30,10 @@ FactoryGirl.define do
     sequence(:name) { |n| "product#{n}" }
     description "yummy foo"
     price_in_cents 100
+  end
+
+  factory :category do
+    sequence(:name) { |n| "category#{n}" }
   end
 
 end

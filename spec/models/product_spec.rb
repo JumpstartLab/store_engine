@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Product do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Retire a product from being sold" do
+    pending
+  end
 end

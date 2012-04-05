@@ -31,4 +31,5 @@ group :development, :test do
   gem 'guard'
   gem 'growl'
   gem 'factory_girl_rails'
+  gem 'faker'
 end

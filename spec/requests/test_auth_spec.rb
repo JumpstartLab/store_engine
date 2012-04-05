@@ -5,7 +5,7 @@ describe "Test Auth" do
     it "Prevent Visit to Admin Area" do
       visit "/dashboard"
       page.should have_content("Login")
-    end 
+    end
   end
   describe "logged in admin" do 
     let!(:user) do

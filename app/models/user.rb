@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :permission, :display_name
+  attr_accessible :email, :name, :password, :display_name
+  attr_protected :permission
+
   default_scope :conditions => { :active => 1 }
   authenticates_with_sorcery!
 

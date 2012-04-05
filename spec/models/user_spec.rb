@@ -4,6 +4,9 @@ describe User do
   let!(:user) do 
     FactoryGirl.create(:user)
   end
+  let!(:user2) do 
+    FactoryGirl.create(:user)
+  end  
   let!(:products) do
     (1..3).map { FactoryGirl.create(:product)}
   end
@@ -13,6 +16,11 @@ describe User do
   let!(:ratings) do
     (1..5).map { FactoryGirl.create(:product_rating, :user => user)}
   end
+  context "User edit" do
+    it "can't update permission" do
+      lambda { user.update_attributes({"permission" => 9}) }.should raise_error
+    end
+  end  
   context "User has orders" do
     it "has orders" do
       user.orders.count.should == 1

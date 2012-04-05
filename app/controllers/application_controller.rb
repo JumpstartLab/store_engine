@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
 
   def require_admin
     if current_user && !current_user.admin
-      redirect_to root_url, :notice => "Must be an administator"
+      redirect_to root_url, :notice => "Must be an administrator"
     elsif current_user.nil?
-      redirect_to '/login'
+      redirect_to '/login', :notice => "Must be an administrator"
     end
   end
 

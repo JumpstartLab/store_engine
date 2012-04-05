@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_admin, :only => [:destroy, :edit, :update]
+  before_filter :require_admin, :only => [:destroy]
   before_filter :require_not_logged_in, :only => [:new, :create]
 
   def index
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    edit_personal
   end
 
   def update
@@ -37,6 +38,16 @@ class UsersController < ApplicationController
     @user.active = 0
     @user.save()
     redirect_to users_path
+  end
+
+  private 
+
+  def edit_personal
+    if current_user.nil?
+      redirect_to '/login', :notice => "Please login"
+    elsif current_user.id != params[:id]
+      redirect_to root_url, :notice => "You can only edit yourself"
+    end
   end
 
 end

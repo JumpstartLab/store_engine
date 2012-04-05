@@ -23,4 +23,16 @@ describe "Cart" do
     page.should have_content(p2.name)
     page.should have_content(p1.name)
   end
+  it "removes an item from your cart" do
+    pending
+  end
+  it "increases quantity of a product in cart" do
+    pending
+  end
+  it "prevents checkout until logged in" do
+    pending
+  end
+  it "checkout" do
+
+  end
 end
