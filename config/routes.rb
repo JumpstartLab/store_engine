@@ -2,7 +2,6 @@ StoreEngine::Application.routes.draw do
   resources :categories
   resources :products
   resource :shopping_cart, :controller => "shopping_cart"
-  resources :cart_items
   resources :user_sessions
   resources :users
 

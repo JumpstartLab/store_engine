@@ -1,24 +1,29 @@
 require 'spec_helper'
 
 describe "Shopping Cart Requests" do
-  context "GET show action" do
-    let!(:user) { Fabricate(:user) }
-    let!(:cart_item) do
-      Fabricate(:cart_item, :product => Fabricate(:product, :title => "iPod"))
-    end
+  let!(:user) { Fabricate(:user) }
+  let!(:product) { Fabricate(:product, :title => "iPod") }
 
-    before(:each) do
-    end
+  before(:each) do
+    login_user_post("admin", "admin")
+  end
 
-     it "list the current cart items" do
-      login_user_post("admin", "admin")
+  
+  context "when I visit the shopping cart" do
+    it "should show the logged in users' cart items " do
+      user.shopping_cart.add_item(product.id, 10)
       visit '/shopping_cart'
-       #find_link("iPod").visible? 
+      find_link(product.title).visible? 
+    end
+  end
 
-       # when I click on add to cart it creates a new cart item
-      # the new cart item should be visible in my cart
-      # the number of items in my cart should increase
-     end
-
+  context "when I add an item to the cart" do
+    it "should show the newly created item in the cart" do
+      params = { :product => product.id, :cart_item => {:quantity => 10} }
+      page.driver.put(shopping_cart_path(product), params) 
+      visit '/shopping_cart'
+      find_link(product.title).visible?
+    end
   end
 end
+

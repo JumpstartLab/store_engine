@@ -8,7 +8,7 @@ p
 
 p
 
-= form_for CartItem.new,:url => {:controller => 'cart_items', :action => 'create', :product => @product } do |f|
+= form_for CartItem.new, :method => "put", :url => {:controller => 'shopping_cart', :action => "update", :product => @product } do |f|
   = f.label :quantity
   = f.select :quantity, options_for_select(1..30)
   = f.submit "Add to Cart", :product => @product
