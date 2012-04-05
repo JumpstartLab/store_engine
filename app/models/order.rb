@@ -13,7 +13,7 @@ class Order < ActiveRecord::Base
 
   def increment_quantity_for(product)
     oi = OrderItem.find_by_product_id(product.id)
-    oi.update_attribute(:quantity, op.quantity + 1)
+    oi.update_attribute(:quantity, oi.quantity + 1)
   end
 
   def total
