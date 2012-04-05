@@ -29,10 +29,9 @@ html
                       = link_to category.name, category_path(category)
               li= link_to "Contact Us"
               - if logged_in?
-                / li= link_to "Cart", user_url(current_user)
-                / li= link_to "My Account", user_url(current_user)
-                li
-                  = link_to "Logout", logout_path, :method => :delete
+                li= link_to "Cart", user_url(current_user)
+                li= link_to "My Account", user_url(current_user)
+                li= link_to "Logout", logout_path, :method => :delete
               - else
                 li= link_to "Sign-In", login_page_path
                 li= link_to "Sign-Up", new_user_path
