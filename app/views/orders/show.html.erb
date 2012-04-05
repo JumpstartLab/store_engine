@@ -1,21 +1,16 @@
- <h1><%= @order.id %></h1>
+<h1><%= @order.id %></h1>
 <p>
- <%= @order.status %>
-  <%= @order.user_id %>
- <%= @order.created_at %>
- <%= @order.updated_at %>
-</p>
-<%= link_to "edit!", edit_order_path(@order)%>
-
-<h2>Order Items</h2>
+  <%= @order.created_at %>
+</p> 
+<h2>Products Ordered:</h2>
 <p> 
   <% @order.order_items.each do |order_item| %>
-    <%= order_item.id %>
-    <%= order_item.quantity %>
-    <%= order_item.price %>
+    <%= link_to order_item.product.title, product_path %> <br />
+    <%= "Quantity: " + order_item.quantity.to_s %> <br />
+    <%= "Price: " + order_item.price.to_s %><br />
+    <%= "Subtotal: " + (order_item.price * order_item.quantity).to_s %><br />
   <% end %>
 </p>  
 
-
-<%=link_to "Back to All orders", orders_path, :id => "orders-index", :class => "link" %>
+<%=link_to "View all Orders", orders_path, :id => "orders-index", :class => "link" %>
  
