@@ -27,4 +27,5 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'simplecov'
   gem 'growl'
+  gem 'bcrypt-ruby'
 end
