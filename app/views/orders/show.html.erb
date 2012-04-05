@@ -2,6 +2,11 @@
 <p>
   Date Ordered: <%= @order.created_at %>
 </p> 
+
+<p>
+  Customer: <%= @order.user.full_name %>
+</p>
+
 <h3>Products Ordered:</h3>
 <p> 
   <% @order.order_items.each do |order_item| %>
