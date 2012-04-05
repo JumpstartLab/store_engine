@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20120403210443) do
     t.text     "description"
     t.integer  "price_in_cents"
     t.integer  "active",              :default => 1
+    t.datetime "inactive_date"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.string   "avatar_file_name"

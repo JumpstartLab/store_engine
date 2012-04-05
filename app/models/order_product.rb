@@ -10,4 +10,8 @@ class OrderProduct < ActiveRecord::Base
     self.price_in_cents = product.price_in_cents
   end
 
+  def price
+    Money.new(price_in_cents.to_i).format
+  end
+
 end

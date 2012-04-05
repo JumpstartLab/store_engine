@@ -13,6 +13,9 @@ describe "Dashboard" do
 
     let!(:statuses) do
       [FactoryGirl.create(:status), 
+       FactoryGirl.create(:status, :name => "paid"),
+       FactoryGirl.create(:status, :name => "cancelled"),
+       FactoryGirl.create(:status, :name => "returned"),
        FactoryGirl.create(:status, :name => "pending")]
     end
 
@@ -64,6 +67,12 @@ describe "Dashboard" do
     context 'has filter links' do
       it 'has pending' do
         page.should have_link 'pending'
+      end
+
+      it 'sorts by pending orders' do
+        click_link 'pending'
+        page.should have_content(orders.first.user.name)
+        # page.should_not have_content(orders.last.user.name)
       end
 
       it 'has cancelled' do
