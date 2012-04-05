@@ -13,7 +13,7 @@ describe "Category Requests" do
       visit "/categories"
     end
 
-    it "lists the categories" do
+    it "links to each category" do
       within("#categories") do
         categories.each do |category|
           page.should have_link(category.name, :href => category_path(category))

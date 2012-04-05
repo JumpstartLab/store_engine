@@ -1,11 +1,21 @@
 <h3><%= @product.title %></h3>
+
 <p><%= @product.description %></p>
 <p><%= @product.price %></p>
 <p><%= image_tag @product.image_url(:normal).to_s, :id => "product_image" if @product.image? %></p>
-<% if logged_in? && current_user.is_admin? %>
+
+<h4> Options </h4>
 <ul id="options">
-<li><%= link_to "Edit Product", edit_product_path %></li>
-<li><%= link_to "Delete Product", product_path, :method => :delete, :confirm => "Are you sure?" %></li>
-<% end %>
-<li><%= link_to "All Products", products_path %></li>
+  <% if logged_in? && current_user.is_admin? %>
+    <li><%= link_to "Edit Product", edit_product_path %></li>
+    <li><%= link_to "Delete Product", product_path, :method => :delete, :confirm => "Are you sure?" %></li>
+  <% end %>
+  <li><%= link_to "All Products", products_path %></li>
+</ul>
+
+<h4> Categories </h4>
+<ul id="categories">
+  <% @product.categories.each do |category| %>
+    <li id="category_<%=category.id%>"><%= link_to category.name, category_path(category) %>
+  <% end %>
 </ul>

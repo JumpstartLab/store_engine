@@ -3,5 +3,5 @@ Fabricator(:product) do
   description { Faker::Lorem.sentence }
   price { rand(75) + 1 }
   image { "" }
-  
+  remote_image_url {""}
 end
