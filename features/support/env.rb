@@ -1,3 +1,1 @@
 $:.unshift("lib")
-
-require 'foo'
