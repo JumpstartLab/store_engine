@@ -23,7 +23,16 @@ products = Product.create([{ title: 'Stiletto',
                              price: 10000, 
                         image_link: "http://www.shoewawa.com/assets_c/2011/09/back-to-the-future-shoes-thumb-435x333-120222.jpg"}])
 
-# order_items = OrderItem.create()
-
 orders = Order.create([{ status: "pending", total_price: 5000},
                       { status: "shipped", total_price: 10000}])
+
+order_items = OrderItem.create([{ quantity: 10, 
+  unit_price: 50, 
+  product_id: products.first.id,
+  order_id: orders.first.id}])
+
+order_items = OrderItem.create([{ quantity: 10, 
+  unit_price: 50, 
+  product_id: products[2].id,
+  order_id: orders.first.id}])
+

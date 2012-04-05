@@ -7,6 +7,8 @@ class Order < ActiveRecord::Base
   has_many :products, through: :order_items
   
   def total_price
-    # calculate total price from
+    order_items.inject(0) do |result, item|
+      result += item.unit_price * item.quantity
+    end
   end
 end
