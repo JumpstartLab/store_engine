@@ -1,7 +1,29 @@
-<%= @product.name %>
-<%= @product.description %>
-<%= @product.price %>
+<p>
+  <b>Name:</b>
+  <%= @product.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @product.description %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @product.price %>
+</p>
+
+<div id="categories">
+<ul>Categories
+  <% @categories.each do |category| %>
+    <div id="<%= dom_id category %>">
+      <li><%= category.name %></li>
+    </div>
+  <% end %>
+</ul>
+</div>
 
 <br />
 
+<%= link_to 'Edit this product', edit_product_path %>
 <%= link_to 'Back to products', products_path %>

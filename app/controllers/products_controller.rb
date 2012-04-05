@@ -16,6 +16,17 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find_by_id(params[:id])
+    @categories = @product.categories
+  end
+
+  def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    @product.update_attributes(params[:product])
+    redirect_to @product, notice: 'Product was successfully updated.'
   end
 
 end
