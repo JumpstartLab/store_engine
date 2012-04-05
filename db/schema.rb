@@ -68,8 +68,9 @@ ActiveRecord::Schema.define(:version => 20120404232509) do
     t.string   "email_address"
     t.string   "full_name"
     t.string   "display_name"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "password_digest"
   end
 
 end

@@ -1,9 +1,12 @@
-<h1><%= @user.display_name %></h1>
+<h1>Welcome Back, <%= @user.display_name %></h1>
 
 <p>
   <%= @user.full_name %>
-  <br /> <%= @user.email_address %>
+  <br />
+  <%= @user.email_address %>
 </p>
+
+<h2>Billing Information</h2>
 
 <%= link_to "Edit", edit_user_path %>
 <%= link_to "Destroy", user_path(@user), :method => :delete, confirm: "Delete \"#{@user.display_name}\"?" %>

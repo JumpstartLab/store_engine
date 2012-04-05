@@ -28,4 +28,5 @@ group :development, :test do
   gem 'simplecov'
   gem 'growl'
   gem 'faker'
+  gem 'bcrypt-ruby'
 end
