@@ -11,4 +11,10 @@ class Product < ActiveRecord::Base
 
   has_many :product_categories
   has_many :categories, :through => :product_categories
+
+  def add_category(category)
+    self.categories ||= [ ]
+    self.categories << category
+  end
+
 end
