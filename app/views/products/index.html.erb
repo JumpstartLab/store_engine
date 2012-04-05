@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <% @products.each do |product| %>
-      <tr>
+      <tr id="<%= dom_id product %>">
         <td><%= product.id %></td>
         <td id="<%= dom_id product %>"><%= link_to product.title, product_path(product) %></td>
         <td><%= product.created_at %></td>

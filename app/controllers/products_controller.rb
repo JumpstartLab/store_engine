@@ -16,10 +16,10 @@ class ProductsController < ApplicationController
   def create
     params[:product][:photo_url] = nil if params[:product][:photo_url] = ""
     product = Product.create(params[:product])
-    params[:category_ids].each do |ci|
-      ProductCategorizaton.create(
-        product_id: product.id, category_id: ci )
-    end
+    # params[:category_ids].each do |ci|
+    #   ProductCategorizaton.create(
+    #     product_id: product.id, category_id: ci )
+    # end
     redirect_to product_path(product)
   end
 
