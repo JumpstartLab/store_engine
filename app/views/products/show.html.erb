@@ -1,13 +1,29 @@
-<div id='product-details' >
-  <ul>
-    <li><%= @product.name %></li>
-    <li><%= @product.description %></li>
-    <li><%= @product.price %></li>
-  </ul>
-</div>
+<p>
+  <b>Name:</b>
+  <%= @product.name %>
+</p>
 
-<%= button_to 'Add to cart', cart_path(:product_id => @product), :method => :put %>
+<p>
+  <b>Description:</b>
+  <%= @product.description %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @product.price %>
+</p>
+
+<div id="categories">
+<ul>Categories
+  <% @categories.each do |category| %>
+    <div id="<%= dom_id category %>">
+      <li><%= category.name %></li>
+    </div>
+  <% end %>
+</ul>
+</div>
 
 <br />
 
+<%= link_to 'Edit this product', edit_product_path %>
 <%= link_to 'Back to products', products_path %>
