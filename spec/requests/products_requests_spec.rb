@@ -150,8 +150,8 @@ describe "Products Requests" do
 
       it "asks for a product category" do
         within("form") do
-          page.should have_selector("label[for$='product_category']")
-          page.should have_selector("input[id$='product_category']")
+          page.should have_selector("label[for$='product_category_id']")
+          page.should have_selector("input[id$='product_category_id']")
         end
       end
 
@@ -233,14 +233,14 @@ describe "Products Requests" do
 
       it "asks for a product category" do
         within("form") do
-          page.should have_selector("label[for$='product_category']")
-          page.should have_selector("input[id$='product_category']")
+          page.should have_selector("label[for$='product_category_id']")
+          page.should have_selector("input[id$='product_category_id']")
         end
       end
 
       it "knows the old category" do
         within("form") do
-          page.should have_selector("input[id$='product_category'][value$='#{product.category}']")
+          page.should have_selector("input[id$='product_category_id'][value$='#{product.category_id}']")
         end
       end
 

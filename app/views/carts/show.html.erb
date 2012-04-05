@@ -1,0 +1,10 @@
+<h1>Your Shopping Cart.</h1>
+<div id="cart">
+  <ul>
+    <% @cart.items.each do |item| %>
+      <li>
+        <%= item.title %>
+      </li>
+      <% end %>
+  </ul>
+</div>

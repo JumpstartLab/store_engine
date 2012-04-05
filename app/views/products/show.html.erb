@@ -10,6 +10,7 @@
   Category: <%= @product.category %>
 </p>
 
+<%= link_to "Add to Cart", cart_path(:product_id => @product), :method => :put %>
 <%= link_to "Back to all products", products_path, :title => "back to all products" %>
 <%= link_to "Edit this product", edit_product_path(@product), :title => "edit this product"%>
 <%= link_to "Delete this product", product_path(@product), :method => :delete, :confirm => "Delete \"#{@product.title}\"?", :title => "delete this product" %>
