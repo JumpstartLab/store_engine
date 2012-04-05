@@ -8,6 +8,10 @@
   <%= @order.user.email %>
 </p>
 
+<p>
+  Order Status: <%= @order.status %>
+</p> 
+
 <h3>Products Ordered:</h3>
 <p> 
   <% @order.order_items.each do |order_item| %>
@@ -17,6 +21,12 @@
     Subtotal: <%= order_item.subtotal %><br />
   <% end %>
 </p>  
+<br>
+<br>
+<p>
+  Total: <%= @order.total %>
+</p> 
+<%=link_to "Update Status", edit_order_path %>
 
 <%=link_to "View all Orders", orders_path, :id => "orders-index", :class => "link" %>
  

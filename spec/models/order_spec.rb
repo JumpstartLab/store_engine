@@ -23,5 +23,15 @@ describe Order do
     end
   end
 
+  context "#total" do
+    it "calculates the total" do
+      total = 0
+      order.order_items.each do |oi|
+        total += oi.subtotal
+      end
+      order.total.should == total
+    end
+  end
+
 
 end
