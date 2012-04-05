@@ -1,7 +1,9 @@
 class Order < ActiveRecord::Base
-  attr_accessible :user_id, :customer_id
+  attr_accessible :user_id
   has_many :order_items
   has_many :products, :through => :order_items
+
+  belongs_to :cart
 
   def add_product(product)
     if products.include?(product)

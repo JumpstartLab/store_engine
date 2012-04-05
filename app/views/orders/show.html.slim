@@ -1,16 +1,9 @@
-doctype html
-html
-  head
-    title Orders
+h1 Order
 
-
-  body
-    h1 Order
-
-    table
-      - @order.items.each do |item|
-        tr
-          td = item.title
-          td = item.price
-          td = item.quantity
-          td = item.subtotal
+table
+  - @order.items.each do |item|
+    tr
+      td = item.title
+      td = item.price
+      td = item.quantity
+      td = item.subtotal

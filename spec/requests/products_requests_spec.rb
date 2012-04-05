@@ -4,12 +4,13 @@ describe Product do
   let!(:products) do
     [Fabricate(:product), Fabricate(:product), Fabricate(:product)]
   end
-
-  before(:each) do
-    visit "/products"
-  end
+  let(:product) { Fabricate(:product) }
 
   context "index" do
+    before(:each) do
+      visit products_path
+    end
+
     it "shows all of the product titles" do
       products.each do |product|
         page.should have_content(product.title)
@@ -22,7 +23,21 @@ describe Product do
       end
     end 
 
-    it "links to product page from product title" do
-    end 
+    it "has links to show each product" do
+      products.each do |product|
+        find_link("#{product.title}")
+      end
+    end
+  end
+
+  context "show" do
+    before(:each) do
+      visit product_path(product)
+    end
+
+    it "adds a product to the cart when 'add to cart' is clicked" do
+      click_link "Add to Cart"
+      page.should have_content(product.title)
+    end
   end
 end

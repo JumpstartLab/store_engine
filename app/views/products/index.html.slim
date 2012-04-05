@@ -1,13 +1,8 @@
-doctype html
-html
-  head
-    title Products
+h1 Products
 
-  body
-    h1 Products
-
-    table
-      - @products.each do |product|
-        tr
-          td = product.title
-          td = product.price
+table
+  - @products.each do |product|
+    tr
+      td
+        a href="product_path" = product.title
+      td = product.price

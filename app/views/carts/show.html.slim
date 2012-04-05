@@ -1,0 +1,10 @@
+h1 Your Cart
+
+div id="cart"
+  table
+  - @cart.items.each do |item|
+    tr
+      td = item.title
+      td = item.price
+      td = item.quantity
+      td = item.subtotal

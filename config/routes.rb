@@ -1,3 +1,6 @@
 StoreEngine::Application.routes.draw do
-  resources :orders, :products
+
+  resource :cart, :only => [:show, :update]
+  resources :orders
+  resources :products
 end
