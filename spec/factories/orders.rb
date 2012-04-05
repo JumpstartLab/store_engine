@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :order do
-    status "MyString"
-    customer_id 1
+    status "shipped"
+    user_id 1
   end
 end

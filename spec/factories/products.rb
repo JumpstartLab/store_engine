@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :product do
-    name "MyString"
-    description "MyString"
-    price 1
-    photo "MyString"
-    status "MyString"
+    name "T-Shirt"
+    description "A blue shirt"
+    price 1500
+    photo "http://www.wearyourbeer.com/images/David_Goliath_Weenie_Protect_Blue_Shirt2.jpg"
+    status "active"
   end
 end
