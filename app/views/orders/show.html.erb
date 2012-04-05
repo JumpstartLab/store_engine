@@ -8,17 +8,14 @@
 <%= link_to "edit!", edit_order_path(@order)%>
 
 <h2>Order Items</h2>
-<p>
-  <% OrderItem.all.each do |order_item| %>
-    <% if order_item.order_id == @order.id %>
-      <p>
-      <%= order_item.id %>
-      <%= order_item.quantity %>
-      <%= order_item.price %>
-      </p>
-    <% end %>
+<p> 
+  <% @order.order_items.each do |order_item| %>
+    <%= order_item.id %>
+    <%= order_item.quantity %>
+    <%= order_item.price %>
   <% end %>
-</p>
+</p>  
+
 
 <%=link_to "Back to All orders", orders_path, :id => "orders-index", :class => "link" %>
  

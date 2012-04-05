@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(:version => 20120404200246) do
   end
 
   create_table "orders", :force => true do |t|
-    t.string   "user_id"
-    t.string   "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.string   "status",     :default => "pending"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
   create_table "products", :force => true do |t|
@@ -37,17 +37,6 @@ ActiveRecord::Schema.define(:version => 20120404200246) do
     t.string   "photo"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
-  end
-
-  create_table "users", :force => true do |t|
-    t.string   "email"
-    t.string   "user_name"
-    t.string   "full_name"
-    t.string   "password"
-    t.string   "new"
-    t.string   "edit"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
 end

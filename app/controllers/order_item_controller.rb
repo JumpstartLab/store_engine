@@ -32,4 +32,3 @@ class OrderItemController < ApplicationController
     @order_item = OrderItem.find(params[:id])
   end
 end
-end
