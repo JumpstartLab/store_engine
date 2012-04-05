@@ -1,20 +1,29 @@
 class CartController < ApplicationController
   
   def index
-     @products = current_cart.collect do |p|     
-        [ p[0], Product.find(p[1]) ]
+     @products = current_cart.collect do |p,q|     
+        [ q, Product.find(p) ]
      end     
   end
 
   def update
-    current_cart << [1,params[:id]]
+    id = params[:id]
+    
+    if not current_cart[id]
+      current_cart[id] = 1
+    else
+      current_cart[id] += 1
+    end
+
     save_json_cart
     redirect_to '/cart', :notice => "Item added."
   end
 
+  private
+
   def current_cart
     load_json_cart
-    @current_cart ||= []
+    @current_cart ||= {}
     save_json_cart
     @current_cart
   end
