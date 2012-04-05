@@ -4,7 +4,7 @@ FactoryGirl.define do
   end
 
   sequence :title do |n|
-    "{n} Yo-Yo"
+    "#{n} Yo-Yo"
   end
 
   factory :product do

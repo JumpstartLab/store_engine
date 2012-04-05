@@ -21,11 +21,13 @@ describe "Using the shopping cart" do
         end
       end
       
-      # it "shows the cart quantity" do
-      # end
+      it "shows the cart quantity" 
       
-      # it "shows the cart total" do
-      # end
+      it "shows the cart total" 
     end
+
+    context "when I add multiple items to the cart" do
+      it "shows each item in the cart"
+    end 
   end
 end
