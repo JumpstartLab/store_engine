@@ -1,5 +1,6 @@
 class Cart < ActiveRecord::Base
   # attr_accessible :user_id
+  attr_accessor :total
 
   belongs_to :user
 
@@ -23,6 +24,16 @@ class Cart < ActiveRecord::Base
 
   def remove_product(product)
     self.products.delete(product)
+  end
+
+  def cart_count
+    products.count
+  end
+
+  def cart_total
+    products.inject(0) do |total, product|
+      total + (product.price || 0)
+    end
   end
 
 end

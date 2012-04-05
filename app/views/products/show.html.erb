@@ -1,6 +1,12 @@
-<%= @product.name %>
-<%= @product.description %>
-<%= @product.price %>
+<div id='product-details' >
+  <ul>
+    <li><%= @product.name %></li>
+    <li><%= @product.description %></li>
+    <li><%= @product.price %></li>
+  </ul>
+</div>
+
+<%= button_to 'Add to cart', cart_path(:product_id => @product), :method => :put %>
 
 <br />
 
