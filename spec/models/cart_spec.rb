@@ -24,6 +24,21 @@ describe Cart do
     end
   end
 
+  describe "#remove_product_by_id" do
+    before(:each) do
+      products.each do |product|
+        cart.add_product(product)
+      end
+    end
+
+    it "removes a product from a cart" do
+      cart.products.count == products.count
+      expect {
+        cart.remove_product_by_id(product_one.id)
+      }.to change { cart.products.count }.by(-1)
+    end
+  end
+
   describe "add_product_by_id" do
     it "adds a product to the cart" do
       expect {
