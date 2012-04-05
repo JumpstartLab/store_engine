@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Product do
   let(:product) { FactoryGirl.create(:product) }
 
-  context ".categories" do
+  context "#categories" do
     let(:category_one) { FactoryGirl.create(:category) }
     let(:category_two) { FactoryGirl.create(:category) }
     let(:categories)   { [ category_one, category_two ] }
