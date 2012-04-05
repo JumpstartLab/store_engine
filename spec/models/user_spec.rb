@@ -34,4 +34,10 @@ describe User do
       user.product_ratings.should have(5).ratings
     end
   end
+  context "User can become inactive" do
+    it "can't login" do
+      user.destroy
+      user.active.should == 0
+    end
+  end
 end

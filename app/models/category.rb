@@ -6,4 +6,9 @@ class Category < ActiveRecord::Base
   has_many :products, :through => :category_products
 
   validates_presence_of :name
+
+  def destroy
+    self.active = 0
+    self.save
+  end
 end
