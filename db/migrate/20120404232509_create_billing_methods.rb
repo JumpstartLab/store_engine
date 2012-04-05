@@ -3,8 +3,7 @@ class CreateBillingMethods < ActiveRecord::Migration
     create_table :billing_methods do |t|
       t.integer :credit_card_number
       t.integer :credit_card_expiration_date
-      t.string :street1
-      t.string :street2
+      t.string :street
       t.string :city
       t.string :state
       t.integer :zipcode

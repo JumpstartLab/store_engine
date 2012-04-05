@@ -16,8 +16,7 @@ ActiveRecord::Schema.define(:version => 20120404232509) do
   create_table "billing_methods", :force => true do |t|
     t.integer  "credit_card_number"
     t.integer  "credit_card_expiration_date"
-    t.string   "street1"
-    t.string   "street2"
+    t.string   "street"
     t.string   "city"
     t.string   "state"
     t.integer  "zipcode"

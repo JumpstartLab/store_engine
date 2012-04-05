@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
   end
 
   def amount
-    line_items.map{|li| li.price * li.quantity}.inject(:+)
+    line_items.map(&:subtotal).inject(:+)
   end
 
 end

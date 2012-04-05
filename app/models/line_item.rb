@@ -7,8 +7,4 @@ class LineItem < ActiveRecord::Base
     quantity * price
   end
 
-  def product
-    Product.find(self.product_id)
-  end
-
 end

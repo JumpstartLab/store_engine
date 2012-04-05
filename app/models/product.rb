@@ -8,4 +8,8 @@ class Product < ActiveRecord::Base
   validates_uniqueness_of :title
   validates_numericality_of :price
   validates_format_of :photo_url, with: /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpg|gif|png|jpeg)$/, allow_nil: true
+
+  def to_param
+    [id, title.downcase.split(" ")].join("-")
+  end
 end
