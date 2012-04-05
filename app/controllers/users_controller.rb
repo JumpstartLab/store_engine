@@ -2,12 +2,6 @@ class UsersController < ApplicationController
   before_filter :lookup_user, :only => [:show, :edit, :destroy, :update]
   before_filter :require_user, :except => [:new, :create]
 
-  def require_user
-    if session[:user_id] == nil
-      redirect_to root_url, :notice => "No way! You Need Admin Access"
-    end
-  end
-
   def index
     @users = User.all
   end
@@ -48,4 +42,11 @@ class UsersController < ApplicationController
   def lookup_user
     @user = User.find(params[:id])
   end
+
+  def require_user
+    if session[:user_id] == nil
+      redirect_to root_url, :notice => "No way! You Need Admin Access"
+    end
+  end
+
 end
