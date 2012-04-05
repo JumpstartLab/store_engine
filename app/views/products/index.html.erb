@@ -1,12 +1,12 @@
 <h3>These are the products!</h3>
 <% if logged_in? && current_user.is_admin? %>
-<p><%= link_to "Add a product", new_product_path %></p>
+<p id="add_product"><%= link_to "Add a product", new_product_path %></p>
 <% end %>
 <div id="products">
 <% @products.each do |product| %>
-<div class="product" id="<%= product.id %>">
+<div class="product" id="product_<%= product.id %>">
   <%= link_to product.title, product_path(product) %>
-  <%= image_tag product.image_url.to_s %>
+  <%= image_tag product.image_url(:thumb).to_s if product.image? %>
 </div>
 <% end %>
 </div>

@@ -1,6 +1,5 @@
 class CategoriesController < ApplicationController
-
-  before_filter :lookup_category, :only => [:destroy, :edit, :update]
+  before_filter :lookup_category, :only => [:destroy, :edit, :update, :show]
 
   def new
     # @product = Product.find(params[:id])
@@ -18,6 +17,14 @@ class CategoriesController < ApplicationController
 
   def edit
 
+  end
+
+  def show
+
+  end
+
+  def index
+    @categories = Category.all
   end
 
   def update

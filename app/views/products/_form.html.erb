@@ -1,4 +1,4 @@
-<%= form_for @product, { :multipart => true } do |f| %>
+<%= form_for @product, :html => { :multipart => true } do |f| %>
   <% if @product.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>
@@ -9,12 +9,29 @@
       </ul>
     </div>
   <% end %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :description %>
-  <%= f.text_field :description %>
-  <%= f.label :price %>
-  <%= f.number_field :price %>
-  <%= f.file_field :image %>
-  <%= f.submit %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </p>
+  <p>
+    <%= f.file_field :image %>
+  </p>
+  <p>
+    <%= f.label :remote_image_url, "or Image URL" %>
+    <%= f.text_field :remote_image_url %>
+  </p>
+  <p>
+    <%#= f.check_box :remove_avatar %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
 <% end %>

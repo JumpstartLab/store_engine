@@ -16,8 +16,8 @@ describe "Products Index Requests" do
     it "lists the products" do
       within("#products") do
         products.each do |product|
-          page.should have_selector("div.product")
-          page.should have_selector("div##{product.id}")
+          page.should have_selector(".product")
+          page.should have_selector("#product_#{product.id}")
         end
       end
     end
@@ -25,7 +25,7 @@ describe "Products Index Requests" do
     it "links to the products" do
       within("#products") do
         products.each do |product|
-          within("div##{product.id}") do
+          within("#product_#{product.id}") do
             page.should have_link(product.title)
           end
         end
@@ -34,13 +34,13 @@ describe "Products Index Requests" do
 
     it "displays the product when clicking the link" do
       product = products.first
-      within("div##{product.id}") do
+      within("#product_#{product.id}") do
         click_link(product.title)
       end
       page.should have_content(product.title)
       page.should have_content(product.description)
       page.should have_content(product.price)
-      page.should have_selector("img#product_image")
+      page.should have_selector("img#product_image") if product.image?
     end
 
   end

@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update_attributes(params[:product])
-      redirect_to @product, :notice => "Updated"
+      redirect_to product_path(@product), :notice => "Updated"
     else
       render :edit
     end

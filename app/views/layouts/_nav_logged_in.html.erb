@@ -1,6 +1,9 @@
 <ul class="nav">
   <li><%= link_to "Products", products_path %></li>
-  <li><a href="#">Categories</a></li>
+  <% if current_user.is_admin? %>
+  <li><%= link_to "Dashboard", nil %></li>
+  <% end %>
+  <li><%= link_to "Categories", categories_path %></li>
   <li><a href="#"><i class="icon-shopping-cart icon-white"></i>Cart</a></li>
 </ul>
 <form class="navbar-search pull-left">
