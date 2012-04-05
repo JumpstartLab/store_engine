@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title Products
+
+  body
+    h1 Products
+
+    table
+      - @products.each do |product|
+        tr
+          td = product.title
+          td = product.price
