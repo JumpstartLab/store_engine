@@ -27,12 +27,13 @@ class Order < ActiveRecord::Base
   #   total
   # end
 
-  def status_count
+  def self.status_hash
     status_hash = {}
     status_hash["shipped"] = Order.count(:conditions => "status = shipped")
     status_hash["pending"] = Order.count(:conditions => "status = pending")
     status_hash["cancelled"] = Order.count(:conditions => "status = cancelled")
-  # # end
+    status_hash
+  end
 
 
 end

@@ -1,6 +1,7 @@
 <h1>Dashboard</h1>
 
 <ul id="orders">
+
  <% @orders.each do |order| %>
    <li>
     Order Number: <%= link_to order.id, order_path(order) %> <br />
