@@ -7,9 +7,9 @@ table.table.table-striped
       th Actions
   tbody
     - @categories.each do |category|
-      tr id=(dom_id(category))
+      tr id==dom_id(category)
         td= category.id
-        td id=(dom_id(category))
+        td id==dom_id(category) = link_to category.name, category_path(category)
         td
           = link_to 'Edit', edit_category_path(category), :class => 'btn btn-mini'
           = link_to 'Destroy', category_path(category), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'

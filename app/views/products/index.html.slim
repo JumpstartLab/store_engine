@@ -10,12 +10,12 @@ table.table.table-striped
       th Actions
   tbody
     - @products.each do |product|
-      tr id=(dom_id(product))
-        td= product.id
-        td id=(dom_id(product))
-        td= product.description
-        td= product.price
-        td= product.created_at
+      tr id==dom_id(product)
+        td = product.id
+        td id==dom_id(product) = link_to product.title, product_path(product)
+        td = product.description
+        td = product.price
+        td = product.created_at
         td
           = link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini'
           = link_to 'Retire', product_path(product), :method => :retire, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
