@@ -13,10 +13,14 @@ class ProductsController < ApplicationController
   end
 
   def create
-    # params[:product][:photo_url] = nil if params[:product][:photo_url] = ""
-    product = Product.new(params[:product])
-    product.save
-    redirect_to product_path(product)
+    @product = Product.new(params[:product])
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to product_path(@product), notice: 'Product was successfully created.' }
+      else
+        format.html { render action: "new" }
+      end
+    end
   end
 
   def destroy
