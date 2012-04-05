@@ -5,8 +5,8 @@ class CartItem < ActiveRecord::Base
 
   validates_presence_of :cart_id, :product_id, :quantity
 
-  def title
-    product.title
+  def name
+    product.name
   end
 
   def line_price
