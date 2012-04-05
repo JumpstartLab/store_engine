@@ -14,6 +14,8 @@
 ActiveRecord::Schema.define(:version => 20120404014049) do
 
   create_table "cart_items", :force => true do |t|
+    t.integer  "quantity"
+    t.integer  "price"
     t.integer  "shopping_cart_id"
     t.integer  "product_id"
     t.integer  "order_id"

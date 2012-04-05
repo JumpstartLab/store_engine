@@ -8,10 +8,10 @@ p
 
 p
 
-= form_for CartItem.new do |f|
+= form_for CartItem.new,:url => {:controller => 'cart_items', :action => 'create', :product => @product } do |f|
   = f.label :quantity
   = f.select :quantity, options_for_select(1..30)
-  = f.submit "Add to Cart"
+  = f.submit "Add to Cart", :product => @product
 
 p
 = link_to "Back to all products", products_path

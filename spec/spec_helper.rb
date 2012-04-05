@@ -5,6 +5,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rails'
 require 'simplecov'
+
 SimpleCov.start do
   add_filter "/spec/"
 end
@@ -23,7 +24,7 @@ RSpec.configure do |config|
   # config.mock_with :rr
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  #config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -37,5 +38,6 @@ RSpec.configure do |config|
 
   config.include Rails.application.routes.url_helpers
   config.include ExampleData::Projects
+  config.include Sorcery::TestHelpers::Rails
 end
 
