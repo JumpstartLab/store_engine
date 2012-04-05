@@ -8,8 +8,8 @@ html
     h1 Order
 
     table
-      - @order.products.each do |product|
+      - @order.items.each do |item|
         tr
-          td = product.title
-          td = @order.quantity_for(product)
-          td = @order.subtotal(product)
+          td = item.title
+          td = item.quantity
+          td = item.subtotal
