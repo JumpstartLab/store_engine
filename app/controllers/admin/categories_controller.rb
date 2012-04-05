@@ -2,6 +2,15 @@ class Admin::CategoriesController < ApplicationController
   before_filter :require_login
   before_filter :require_admin
 
+  def new
+    @category = Category.new
+  end
+
+  def create
+    @category = Category.create(params[:category])
+    redirect_to action: :index
+  end
+
   def index
     @categories = Category.all
   end
@@ -23,5 +32,11 @@ class Admin::CategoriesController < ApplicationController
       @categories = Category.all
       render :action => 'edit'
     end
+  end
+
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+    redirect_to action: :index
   end
 end
