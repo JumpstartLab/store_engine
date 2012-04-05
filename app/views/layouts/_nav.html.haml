@@ -8,8 +8,11 @@
       %a.brand{:href => "#"} Store Engine
       .nav-collapse
         %ul.nav
-          %li.active
+          %li
             %a{:href => root_url} Home
+          - if current_user and current_user.admin
+            %li
+              %a{:href => dashboard_path} Dashboard
           %li
             - if current_user
               %a{:href => logout_path } Logout

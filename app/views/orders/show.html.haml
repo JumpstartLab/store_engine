@@ -1,0 +1,18 @@
+%h1 Order details
+%hr
+
+%table.table.table-bordered
+  %tr
+    %td.span3 Created
+    %td= "#{time_ago_in_words(@order.created_at)} ago"
+  %tr
+    %td Purchaser Name
+    %td= @order.user.name
+  %tr
+    %td Products
+    %td
+      %ul
+      - @order.order_products.each do |op|
+        %li{style: 'padding: 5px;'}
+          %span= link_to op.product.name, product_path(op.product)
+          %span.label.label-success= op.price

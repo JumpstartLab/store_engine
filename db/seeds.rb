@@ -5,10 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-s1 = Status.create(:name => "Shipped")
-s2 = Status.create(:name => "Pending")
-s3 = Status.create(:name => "Failed")
-s4 = Status.create(:name => "Successful")
+s1 = Status.create(:name => "shipped")
+s2 = Status.create(:name => "pending")
+s3 = Status.create(:name => "cancelled")
+s4 = Status.create(:name => "paid")
+s5 = Status.create(:name => "returned")
 
 u1 = User.create(
            :name => "Mike Silvis", 
