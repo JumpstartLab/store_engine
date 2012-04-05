@@ -14,6 +14,10 @@ describe "Shopping Cart Requests" do
       login_user_post("admin", "admin")
       visit '/shopping_cart'
        #find_link("iPod").visible? 
+
+       # when I click on add to cart it creates a new cart item
+      # the new cart item should be visible in my cart
+      # the number of items in my cart should increase
      end
 
   end

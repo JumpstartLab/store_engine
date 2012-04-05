@@ -6,6 +6,10 @@ class ShoppingCartController < ApplicationController
   end
 
   def update
+    # POST from products => quantity, price, product id
+    cart = ShoppingCart.new
+    cart.add_item(product_id, quantity, price)
+    redirect_to shopping_cart_path
     # cart = ShoppingCart.find(1)
     # order_product = OrderProduct.new
     # order_product.product = Product.find(params[:id])
