@@ -11,8 +11,8 @@ describe User do
 
   let(:user) { FactoryGirl.create(:user)}
 
-  [:name, :email, :display_name, :password_digest, 
-    :password, :password_confirmation, :remember_token, :authenticate ].each do |attr|
+  [:name, :email, :display_name, :password_digest, :password, 
+    :password_confirmation, :remember_token, :authenticate ].each do |attr|
     it "responds to #{attr}" do
       user.should respond_to(attr)
     end
@@ -83,6 +83,25 @@ describe User do
 
     it "should not be blank for a user" do
       user.remember_token.should_not be_blank
+    end
+  end
+
+  context "#orders" do
+    let(:order) { FactoryGirl.create(:order) }
+    let(:orders) { [order, FactoryGirl.create(:order)] }
+    before(:each) do
+      orders.each do |o|
+        user.add_order(o)
+      end
+    end
+
+    context "after an order has been generated" do
+      it "should return a collection of orders that correspond to the user" do
+        orders.each do |order|
+          user.orders.should include(order)
+        end
+      end
+      
     end
   end
 

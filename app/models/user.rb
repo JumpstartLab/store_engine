@@ -12,6 +12,11 @@ class User < ActiveRecord::Base
   has_one :cart
   has_many :orders
 
+  def add_order(order)
+    self.orders ||= []
+    self.orders << order
+  end
+
   private
 
   def create_remember_token

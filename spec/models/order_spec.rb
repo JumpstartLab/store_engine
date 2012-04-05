@@ -1,5 +1,14 @@
 require 'spec_helper'
 
 describe Order do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:order) { FactoryGirl.create(:order) }
+
+  context "#user" do
+    let(:user) { FactoryGirl.create(:user) }
+    before(:each) { user.add_order(order) }
+
+    it "should return the user associated with the user" do
+      order.user.should == user
+    end    
+  end
 end
