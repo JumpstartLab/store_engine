@@ -1,7 +1,9 @@
 StoreEngine::Application.routes.draw do
 
+  root to: "products#index"
+  
   resources :products
-  root :to => "products#index"
+  resource :cart, :only => [:show, :update]
   resources :users
   resources :orders
 

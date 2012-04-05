@@ -1,5 +1,5 @@
 module ExampleData
-  module Projects
+  module Products
     def create_product(attributes={}, &after_create)
       product = if defined?(Fabricate)
         Fabricate(:product)

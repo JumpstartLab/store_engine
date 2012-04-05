@@ -3,11 +3,9 @@
  <%= @product.description %>
 </p>
 
-<%= link_to "edit!", edit_product_path(@product)%>
+<%= link_to "add to cart", cart_path(:product_id => @product), :method => :put  %> |
+<%=link_to "back to all products", products_path, :id => "products-index", :class => "link" %>
 
-<%=link_to "destroy!", product_path(@product),
- :method => :delete,
- :confirm => "Delete \"#{@product.title}\"?" %>
 
-<%=link_to "Back to All Products", products_path, :id => "products-index", :class => "link" %>
+
  
