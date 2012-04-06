@@ -57,10 +57,23 @@ describe Product do
       end
     end
   end
-  describe "display_price" do
+  describe "#display_price" do
     let(:product) { Fabricate(:product) }
     it "takes a float and returns a big decimal with 2 decimal places" do
       product.display_price.should == BigDecimal.new(product.price,2)
+    end
+  end
+
+  describe "#category_ids=" do
+    let(:first_cat) { Fabricate(:category) }
+    let(:second_cat) { Fabricate(:category) }
+    it "creates the category relationships for the product" do
+      cat_ids = [first_cat.id, second_cat.id]
+      Product.create({title: "a", description: "b", price: 6, category_ids: cat_ids}).should be_valid
+
+      cat_ids.each do |id|
+        Product.last.categories.should include Category.find(id)
+      end
     end
   end
 end

@@ -21,7 +21,7 @@ class Product < ActiveRecord::Base
   def category_ids=(params)
     self.categories = []
     params.each do |id|
-      unless id.empty?
+      unless id.to_s.empty?
         category = Category.find(id)
         categories << category
       end

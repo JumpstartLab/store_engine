@@ -1,74 +1,72 @@
 require 'spec_helper'
 
 describe "User Requests" do
-  context "root" do
-    let!(:users) { [Fabricate(:user), Fabricate(:user)] }
+  let!(:user) { Fabricate(:user) }
+  describe "index" do
+    before(:each) do
+      visit "/"
+      click_link "Sign-In"
+      fill_in "Email", :with => user.email_address
+      fill_in "Password", :with => user.password
+      click_link_or_button "sign_in_button"
+    end
+    it "can see users" do
+      visit users_path
+      page.should have_selector("#users")
+    end
+  end
 
-    before(:each) { visit users_path }
+  describe "new" do
+    before(:each) do
+      @size = User.all.size
+      visit "/"
+      click_link "Sign-Up"
+    end
+    it "can create a new user" do
+      fill_in "Full name", with: "Test"
+      fill_in "Email address", with: "test@test.com"
+      fill_in "Password", with: "test"
+      fill_in "Password confirmation", with: "test"
+      click_link_or_button "Create User"
+      current_path.should == "/"
+      User.all.size.should == @size + 1
+    end
+    it "does not create a user with invalid attributes" do
+      click_link_or_button "Create User"
+      User.all.size.should == @size
+    end
+  end
 
-    # it "links to the category" do
-    #   within("table.table-striped") do
-    #     categories.each do |category|
-    #       page.should have_selector("td##{dom_id(category)}")
-    #       page.should have_link(category.name, href: category_path(category))
-    #     end
-    #   end
-    # end
-    # context "new" do
-    #   before(:each) { visit new_category_path }
-    #   it "has a form with all of the correct fields" do
-    #     within ("form#new_category") do
-    #       page.should have_selector("input#category_name")
-    #     end
-    #   end
-    # end
-    # context "create" do
-    #   before(:each) do
-    #     @count = Category.all.count
-    #     visit new_category_path
-    #     fill_in "category_name", with: "Test"
-    #     click_button 'Create Category'
-    #   end
-    #   it "creates a category" do
-    #     Category.all.count.should == @count + 1
-    #   end
-    #   it "redirects to the category" do
-    #     current_path.should == category_path(Category.all.last)
-    #   end
-    # end
-    # context "delete" do
-    #   before(:each) do
-    #     visit new_category_path
-    #     fill_in "category_name", with: "Test"
-    #     click_button 'Create Category'
-    #     @count = Category.all.count
-    #     visit categories_path
-    #     within "tr#category_1" do
-    #       click_link 'Destroy'
-    #     end
-    #   end
-    #   it "deletes a category" do
-    #     Category.all.count.should == @count - 1
-    #   end
-    #   it "redirects to the index" do
-    #     current_path.should == categories_path
-    #   end
-    # end
-    # context "update" do
-    #   before(:each) do
-    #     visit new_category_path
-    #     fill_in "category_name", with: "Test"
-    #     click_button 'Create Category'
-    #     visit edit_category_path(Category.all.last)
-    #     fill_in "category_name", with: "Updated"
-    #     click_button 'Update Category'
-    #   end
-    #   it "updates a category" do
-    #     Category.last.name.should == "Updated"
-    #   end
-    #   it "redirects to the category" do
-    #     current_path.should == category_path(Category.all.last)
-    #   end
-    # end
+  describe "destroy" do
+    it "destroys a record", js: true do
+      pending
+      dead_user = Fabricate(:user)
+      visit "/"
+      click_link "Sign-In"
+      fill_in "Email", :with => user.email_address
+      fill_in "Password", :with => user.password
+      click_link_or_button "sign_in_button"
+      visit user_path(dead_user)
+      puts "Gets to dead user page"
+      click_link_or_button "Destroy"
+      page.driver.browser.switch_to.alert.accept
+      User.all.size.should == 1
+    end
+  end
+
+  describe "update" do
+    it "updates the attributes of a user" do
+      visit "/"
+      click_link "Sign-In"
+      fill_in "Email", :with => user.email_address
+      fill_in "Password", :with => user.password
+      click_link_or_button "sign_in_button"
+      visit user_path(user)
+      click_link_or_button "Edit"
+      fill_in "Display name", :with => "Happy Bear"
+      click_link_or_button "Update User"
+      current_path.should == user_path(user)
+      user.display_name.should == "Happy Bear"
+    end
   end
 end
