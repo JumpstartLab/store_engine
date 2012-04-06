@@ -1,2 +1,4 @@
-Title: <%= @product.name %>
+Name:        <%= @product.name %><br />
+Price:       <%= @product.price.format %><br />
+Categories:  <%= @product.categories.map(&:name).join(", ") %><br />
 <%= link_to "Edit", edit_admin_product_path(@product) %>

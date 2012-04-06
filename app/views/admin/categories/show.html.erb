@@ -1,2 +1,9 @@
-Title: <%= @category.name %>
-<%= link_to "Edit", edit_admin_category_path(@category) %>
+<h2>Name: <%= @category.name %>
+<%= link_to "Edit", edit_admin_category_path(@category) %></h2>
+
+Products:
+<ul>
+<% @category.products.each do |product| -%>
+  <li><%= product.name %></li>
+<% end -%>
+</ul>

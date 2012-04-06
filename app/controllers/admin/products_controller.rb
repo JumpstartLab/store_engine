@@ -16,10 +16,9 @@ class Admin::ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    @product.name  = params[:product][:name]
-    @product.price = params[:product][:price]
+    @product.price = params[:product].delete(:price)
 
-    if @product.save
+    if @product.update_attributes(params[:product])
       redirect_to :action => 'show', :id => @product
     else
       @products = Product.all

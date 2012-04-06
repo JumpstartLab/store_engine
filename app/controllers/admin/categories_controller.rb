@@ -25,7 +25,7 @@ class Admin::CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
-    @category.name  = params[:category][:name]
+    @category.name = params[:category][:name]
     if @category.save
       redirect_to :action => 'show', :id => @category
     else
