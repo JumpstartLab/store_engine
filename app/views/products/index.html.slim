@@ -14,7 +14,7 @@ table.table.table-striped
         td = product.id
         td id==dom_id(product) = link_to product.title, product_path(product)
         td = product.description
-        td = product.price
+        td $#{product.display_price}
         td = product.created_at
         td
           = link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini'

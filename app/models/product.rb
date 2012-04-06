@@ -15,7 +15,7 @@ class Product < ActiveRecord::Base
   end
 
   def display_price
-    BigDecimal(price.round(2).to_s)
+    BigDecimal.new(price.to_s,2)
   end
 
   def category_ids=(params)
