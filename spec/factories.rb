@@ -10,6 +10,8 @@ FactoryGirl.define do
       permission 9
     end
   end
+  factory :cart do
+  end
   
   factory :status do
     name "shipped"

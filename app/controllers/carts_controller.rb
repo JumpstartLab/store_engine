@@ -1,44 +1,41 @@
 class CartsController < ApplicationController
-  
-  def show
-      @products = current_cart.collect do |p,q|
-        [ q, Product.find(p) ]
-     end   
-  end
-  def update
-    id = params[:product_id]
-    
-    if not current_cart[id]
-      current_cart[id] = 1
-    else
-      current_cart[id] += 1
-    end
+  before_filter :find_cart, :verify_user
 
-    save_json_cart
-    redirect_to cart_path, :notice => "Item added."
+  def update
+    @cart.add_product(params[:product_id])
+    redirect_to cart_path, :notice => "Product added to cart"
+  end
+
+  def show
   end
 
   def destroy
-    id = params[:product_id]
-    current_cart.delete(id)
-    save_json_cart
-    redirect_to cart_path, :notice => "Item deleted."
+    @cart.remove_product(params[:product_id])
+    redirect_to cart_path, :notice => "Product deleted."
   end
 
   private
 
-  def current_cart
-    load_json_cart
-    @current_cart ||= {}
-    save_json_cart
-    @current_cart
+  def find_cart
+    if current_user
+      @cart = current_user.cart
+      merge_carts
+    else
+      session[:cart_id] = Cart.create.id if session[:cart_id].nil?
+      @cart = Cart.find(session[:cart_id]) 
+    end
   end
 
-  def save_json_cart
-    cookies[:cart] = @current_cart.to_json
+  def verify_user
+    @cart.add_user(current_user)
   end
 
-  def load_json_cart
-    @current_cart = JSON.load(cookies[:cart])
+  def merge_carts
+    if session[:cart_id]
+      raise "making it here"
+      Cart.find(session[:cart_id]).products.each do |p|
+        @cart << p
+      end
+    end
   end
 end

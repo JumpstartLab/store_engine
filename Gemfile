@@ -33,4 +33,5 @@ group :development, :test do
   gem 'ruby_gntp'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'ruby-debug19'  
 end

@@ -25,14 +25,10 @@ describe "Dashboard" do
     end
 
     before(:each) do
-     visit '/login'
-     fill_in 'user[email]', :with => user.email
-     fill_in 'user[password]', :with => "mike"
-     click_button("Sign In")
-
-     visit dashboard_path
-     click_link 'Dashboard'
-     click_link 'Orders'
+      login(user)
+      visit dashboard_path
+      click_link 'Dashboard'
+      click_link 'Orders'
     end
 
     it 'has 2 orders' do
@@ -91,20 +87,14 @@ describe "Dashboard" do
         page.should have_link 'returned'
       end
     end
-
+    it "The total number of orders by status" do
+      within("#shipped") do
+        page.should have_content(1)
+      end
+    end
+    it "links to a specific order" do
+      click_link orders.first.id.to_s
+      page.should have_content "Order details"
+    end
   end
-
-  it "Displays a lot of dashboard related things" do
-    pending
-  end
-  it "The total number of orders by status" do
-    pending
-  end
-  it "links for each individual order" do
-    pending
-  end
-  it "filters orders to display by status type" do
-    pending
-  end
-
 end

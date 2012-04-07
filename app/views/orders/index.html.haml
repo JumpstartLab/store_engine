@@ -31,7 +31,8 @@
     %table#orders_by_status.table.table-bordered
       %th Status
       %th Count
-      - @orders_by_status.each do |s,c|
+      - @statuses.each do |status|
         %tr
-          %td= s.name
-          %td= c
+          %td= status.name
+          %td{:id => status.name} 
+            = status.orders.count

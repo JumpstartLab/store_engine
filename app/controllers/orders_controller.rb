@@ -10,11 +10,6 @@ class OrdersController < ApplicationController
       @orders = Order.where(:status_id => status.id)
     end
 
-    @orders_by_status = {}
-    Order.count(:group => "status_id").each do |id,c|
-      @orders_by_status[Status.find(id)] = c
-    end
-
     @statuses = Status.all
   end
 

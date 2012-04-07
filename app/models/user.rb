@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :products, :through => :orders
   has_many :product_ratings
-  # has_one :cart
+  has_one :cart
 
   def admin
     permission == 9
