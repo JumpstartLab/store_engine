@@ -15,7 +15,7 @@ class Product < ActiveRecord::Base
   end
 
   def display_price
-    BigDecimal(price.round(2).to_s)
+    BigDecimal.new(price.to_s,2)
   end
 
   def create_new_category(params)
@@ -25,7 +25,7 @@ class Product < ActiveRecord::Base
   def category_ids=(params)
     self.categories = []
     params.each do |id|
-      unless id.empty?
+      unless id.to_s.empty?
         category = Category.find(id)
         categories << category
       end

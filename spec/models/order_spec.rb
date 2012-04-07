@@ -16,10 +16,9 @@ describe Order do
       li = {}
       3.times do |t|
         li[t] = Fabricate(:line_item)
-        li[t].order = ord
+        li[t].order_id = ord.id
         actual_total += li[t].subtotal
       end
-      puts ord.line_items.inspect
       ord.amount.should == actual_total
     end
   end

@@ -17,3 +17,29 @@ body { padding-top: 60px; }
 //
 // Example:
 // @linkColor: #ff0000;
+
+@nav-color: #c4bfab;
+@gradient-diff: #111111;
+@whale: #262626;
+
+.gradient(@color) {
+  background-image: linear-gradient(top, @color 33%, @color - @gradient-diff 67%);
+  background-image: -o-linear-gradient(bottom, @color 33%, @color - @gradient-diff 67%);
+  background-image: -moz-linear-gradient(bottom, @color 33%, @color - @gradient-diff 67%);
+  background-image: -webkit-linear-gradient(bottom, @color 33%, @color - @gradient-diff 67%);
+  background-image: -ms-linear-gradient(bottom, @color 33%, @color - @gradient-diff 67%);
+
+}
+
+input { height: 30px; }
+.navbar .navbar-inner {
+  .gradient(@nav-color);
+  height: 50px;
+  padding-top: 15px;
+
+  a { color: @whale; }
+}
+
+.main-content { margin-top: 30px;}
+
+img.logo { width: 50px; float: left; padding-right: 15px; }
