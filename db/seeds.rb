@@ -23,6 +23,11 @@ products = Product.create([{ title: 'Stiletto',
                              price: 10000, 
                         image_link: "http://www.shoewawa.com/assets_c/2011/09/back-to-the-future-shoes-thumb-435x333-120222.jpg"}])
 
+admin = User.create([{ full_name: "Admin",
+                        password: "admin",
+                        password_confirmation: "admin",
+                        email: "admin@admin.com"}])
+
 orders = Order.create([{ status: "pending", total_price: 5000},
                       { status: "shipped", total_price: 10000}])
 

@@ -7,6 +7,31 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <header>
+    <% if current_user %>
+      Logged in as <%= current_user.email %>.
+      <%= link_to "Log Out", logout_path %>
+    <% else %>
+      <%= link_to "Sign Up", new_user_path %> or
+      <%= link_to "Log In", new_session_path %>
+    <% end %>
+
+    <br />
+    <% if current_user %>
+      <%= "Hey! You are logged in." %>
+    <% else %>
+      <%= "You should log in or make a new count. It's what cool kids do." %>
+    <% end %>
+
+    <% if admin? %>
+      <%= "YOU ARE AN ADMIN AND ARE AWESOME" %>
+    <% else %>
+      <%= "YOU ARE NOT AN ADMIN AND ARE LAME" %>
+    <% end %>
+
+    <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, id: "flash_#{name}" %>
+      <% end %>
 
 <%= yield %>
 
