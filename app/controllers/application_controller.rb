@@ -3,6 +3,15 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def current_cart
+    if session[:cart_id]
+      cart = Cart.find_by_id(session[:cart_id])
+    end
+    cart ||= Cart.create
+    session[:cart_id] = cart.id
+    cart
+  end
+
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end

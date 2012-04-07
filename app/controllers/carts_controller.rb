@@ -1,7 +1,6 @@
 class CartsController < ApplicationController
-  before_filter :lookup_cart_from_session
-
   def show
+    @cart = current_cart
   end
 
   def update
@@ -13,10 +12,5 @@ class CartsController < ApplicationController
 
   private
 
-  def lookup_cart_from_session
-    if session[:cart_id]
-      @cart = Cart.find_by_id(session[:cart_id])
-    end
-    @cart ||= Cart.new
-  end
+
 end

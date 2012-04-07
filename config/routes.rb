@@ -2,9 +2,9 @@ StoreEngine::Application.routes.draw do
 
   resources :products
   resources :orders
-
   resources :users
   resources :sessions
+  resources :cart_items
 
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
