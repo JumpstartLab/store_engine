@@ -5,4 +5,4 @@ ul
       = link_to product.title, product_path(product)
 = link_to "Edit", edit_category_path
 = link_to "Destroy", category_path(@category), :method => :delete, confirm: "Delete \"#{@category.name}\"?"
-= link_to "Back to All Users", categories_path
+= link_to "Back to All Categories", categories_path
