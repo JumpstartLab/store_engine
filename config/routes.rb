@@ -3,7 +3,6 @@ StoreEngine::Application.routes.draw do
   root to: "products#index"
   
   resources :products
-  resource :cart, :only => [:show, :update]
   resources :users
   resources :orders
 
