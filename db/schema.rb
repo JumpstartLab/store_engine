@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20120408215245) do
   create_table "line_items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "cart_id"
+    t.integer  "order_id"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "quantity",   :default => 1
@@ -44,7 +45,11 @@ ActiveRecord::Schema.define(:version => 20120408215245) do
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
+    t.string   "name"
+    t.string   "address"
+    t.string   "email"
     t.string   "status",     :default => "pending"
+    t.string   "pay_type"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
   end
