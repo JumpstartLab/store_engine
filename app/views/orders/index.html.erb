@@ -8,7 +8,7 @@
 
   <% @orders.each do |order| %>
     <tr> 
-      <td><%= order.id %></td>
+      <td><%= link_to order.id, order_path(order) %></td>
       <td><%= order.total_price %></td>
       <td><%= order.status %></td>
       <% unless order.status == "Cancelled" %>
