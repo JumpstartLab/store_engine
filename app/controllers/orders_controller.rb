@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  before_filter :skip_mini_cart
 
   def index
     redirect_to root_path

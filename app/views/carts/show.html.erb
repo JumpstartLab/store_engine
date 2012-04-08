@@ -1,5 +1,3 @@
-<% unless @skip_mini_cart %>
-<div id="mini_cart">
   <h4>Your Cart</h4>
   <ul>
     <% current_cart.cart_items.each do |cart_item| %>
@@ -11,5 +9,3 @@
   :confirm => "Clear your cart?" %>
   |
   <%= link_to "Checkout", new_order_path %>
-</div>
-<% end %>

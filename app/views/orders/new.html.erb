@@ -7,7 +7,7 @@
   </tr>
     <% current_cart.cart_items.each do |cart_item| %>
       <tr>
-        <td><%= cart_item.title %></td>
+        <td><%= cart_item.name %></td>
         <td><%= cart_item.quantity %></td>
         <td><%= cart_item.line_price %></td>
       </tr>
