@@ -1,5 +1,9 @@
 StoreEngine::Application.routes.draw do
 
+  resources :line_items
+
+  resources :carts
+
   root to: "products#index"
   
   resources :products

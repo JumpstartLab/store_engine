@@ -1,0 +1,28 @@
+<% if notice %>
+<p id="notice"><%= notice %></p>
+<% end %>
+
+<h2>Your Motha Fucking Exotic Fruit Cart</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart.line_items.each do |item| %>
+      <tr>
+        <td><%= image_tag(item.product.photo) %></td>
+        <td><%= link_to item.product.title, product_path(item.product) %></td>
+        <td><%= item.product.description %></td>
+        <td><%= sprintf("$%0.02f", item.product.price) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>
