@@ -1,12 +1,10 @@
-h1
-  | Order for #{@order.user.full_name}
+h1 Order for #{@order.user.full_name}
 #date= @order.user.email_address
 #date= @order.created_at
 #date= @order.amount
 #date= @order.status
 /! MAKE DIFFERENT TRANSITIONS FOR DIFFERENT ORDER STATUSES
-= link_to 'Transition', order_path(@order), :method => :delete,  \
-  confirm => 'Are you sure?', :class => 'btn btn-mini btn-info' |:
+= link_to 'Transition', order_path(@order), :method => :delete,  :confirm => 'Are you sure?', :class => 'btn btn-mini btn-info'
 br/
 br/
 table.table.table-striped

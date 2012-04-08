@@ -19,15 +19,17 @@ body { padding-top: 60px; }
 // @linkColor: #ff0000;
 
 @nav-color: #c4bfab;
-@gradient-diff: #111111;
+@diff: #111111;
 @whale: #262626;
+@font1: Helvetica, Arial, Sans Serif;
+.buy-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 24px; }
 
 .gradient(@color) {
-  background-image: linear-gradient(top, @color 33%, @color - @gradient-diff 67%);
-  background-image: -o-linear-gradient(bottom, @color 33%, @color - @gradient-diff 67%);
-  background-image: -moz-linear-gradient(bottom, @color 33%, @color - @gradient-diff 67%);
-  background-image: -webkit-linear-gradient(bottom, @color 33%, @color - @gradient-diff 67%);
-  background-image: -ms-linear-gradient(bottom, @color 33%, @color - @gradient-diff 67%);
+  background-image: linear-gradient(top, @color 33%, @color - @diff 67%);
+  background-image: -o-linear-gradient(bottom, @color 33%, @color - @diff 67%);
+  background-image: -moz-linear-gradient(bottom, @color 33%, @color - @diff 67%);
+  background-image: -webkit-linear-gradient(bottom, @color 33%, @color - @diff 67%);
+  background-image: -ms-linear-gradient(bottom, @color 33%, @color - @diff 67%);
 
 }
 
@@ -37,9 +39,18 @@ input { height: 30px; }
   height: 50px;
   padding-top: 15px;
 
-  a { color: @whale; }
+  a, .nav li a { color: @whale; text-shadow: none; }
 }
 
-.main-content { margin-top: 30px;}
+.main-content { margin-top: 30px; font-family: @font1;}
 
 img.logo { width: 50px; float: left; padding-right: 15px; }
+
+#products  {
+  td{ padding: 10px 20px 10px 0; vertical-align: top; width: 200px; }
+  div#price { .buy-font; padding-top: 20px;
+    a { padding: 15px; font-size: 16px; margin-left: 20px; }
+  }
+}
+
+.photo_sub { width: 100%;}

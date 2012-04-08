@@ -1,0 +1,42 @@
+table id="products"
+  tr
+    td
+      - if !@product.photo_url || @product.photo_url = ""
+        = image_tag("#{root_url}icon.png", class: "photo_sub")
+      - else
+        = image_tag @product.photo_url
+    td
+      h3 = link_to @product.title, product_path(@product)
+      = @product.description
+      br/
+      div id="price"
+        |$
+        = @product.price
+        = link_to "Buy Now", "#", :class => 'btn btn-success', :id => "buy"
+      br/
+      |Tags
+      br/
+      - @product.categories.each do |cat|
+        = link_to cat.name, category_path(cat), :class => 'btn btn-mini btn-info'
+      br/
+      |id:
+      = @product.id
+      br/
+      |created at:
+      = @product.created_at.to_date
+
+
+/ p
+/   b Price
+/   br/
+/   = @product.price
+/ p
+/   b Photo url
+/   br/
+/   = @product.photo_url
+/ p
+/   b Is Found in the Following Categories
+/   br/
+/   ul
+/     - @product.categories.each do |cat|
+/       li= cat.name
