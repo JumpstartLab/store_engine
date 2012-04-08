@@ -15,11 +15,7 @@ table.table.table-striped
     th Subtotal
   - @order.line_items.each do |li|
     tr
-      td
-        = li.product.title
-      td
-        = li.quantity
-      td
-        = li.price
-      td
-        = li.subtotal
+      td = li.product.title
+      td = li.quantity
+      td $#{li.clean_price}
+      td $#{li.subtotal}

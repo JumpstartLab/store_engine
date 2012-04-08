@@ -18,21 +18,36 @@ body { padding-top: 60px; }
 // Example:
 // @linkColor: #ff0000;
 
+/************VARIABLES AND MIXINS***********/
 @nav-color: #c4bfab;
 @diff: #111111;
 @whale: #262626;
 @font1: Helvetica, Arial, Sans Serif;
-.buy-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 24px; }
-
 .gradient(@color) {
   background-image: linear-gradient(top, @color 33%, @color - @diff 67%);
   background-image: -o-linear-gradient(bottom, @color 33%, @color - @diff 67%);
   background-image: -moz-linear-gradient(bottom, @color 33%, @color - @diff 67%);
   background-image: -webkit-linear-gradient(bottom, @color 33%, @color - @diff 67%);
   background-image: -ms-linear-gradient(bottom, @color 33%, @color - @diff 67%);
-
+}
+.rounded(@amount){
+  border-radius: @amount;
+  -webkit-border-radius: @amount;
+  -moz-border-radius: @amount;
 }
 
+/******PRODUCTS VARIABLES******/
+
+.title-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 32px; color: @title-color; }
+@price-color: #e19418;
+@title-color: #6aa3c4;
+.buy-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 32px; color: @price-color;}
+.buy-button{ padding: 10px; font-size: 16px; margin-left: 40px; .rounded(8px); }
+@background: #ddd;
+
+
+
+/********UNIVERSAL*********/
 input { height: 30px; }
 .navbar .navbar-inner {
   .gradient(@nav-color);
@@ -46,11 +61,18 @@ input { height: 30px; }
 
 img.logo { width: 50px; float: left; padding-right: 15px; }
 
-#products  {
-  td{ padding: 10px 20px 10px 0; vertical-align: top; width: 200px; }
+/*********PRODUCTS********/
+table#products  {
+  td { padding: 10px 60px 10px 0; vertical-align: top; width: 50%;
+    a#product-title { .title-font }
+  }
   div#price { .buy-font; padding-top: 20px;
-    a { padding: 15px; font-size: 16px; margin-left: 20px; }
+    a { .buy-button }
+  }
+  td.form-buttons { background-color: @background; border: none; display: block; text-align: center; margin-top: 40px;
+  a { margin-right: 10px;}
   }
 }
 
 .photo_sub { width: 100%;}
+

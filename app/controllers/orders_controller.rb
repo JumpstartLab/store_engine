@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-  before_filter :lookup_order, :only => [:show, :edit, :destroy, :update,]
+  before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
+
 
   def index
     @orders = Order.all
@@ -35,4 +36,5 @@ class OrdersController < ApplicationController
   def lookup_order
     @order = Order.find(params[:id])
   end
+
 end

@@ -55,4 +55,39 @@ describe User do
 
     end
   end
+
+  describe "pending_order" do
+    let!(:user1) { Fabricate(:user) }
+    let!(:billing1) do
+      b = Fabricate(:billing_method)
+      b.user_id = user1.id
+      b
+    end
+    let!(:order1) do
+      o1 = Fabricate(:order)
+      o1.status = "paid"
+      o1.user_id = user1.id
+      o1.billing_method_id = billing1.id
+      o1
+    end
+    let!(:order2) do
+      o2 = Fabricate(:order)
+      o2.status = "pending"
+      o2.user_id = user1.id
+      o2.billing_method_id = billing1.id
+      o2
+    end
+    context "if there is a pending order for that user" do
+      it "returns the pending order for the user" do
+        user1.pending_order.should == order2
+      end
+    end
+    context "if there are no pending orders for the user" do
+      it "returns nil" do
+        order2.status = "paid"
+        user1.pending_order.should == nil
+      end
+
+    end
+  end
 end

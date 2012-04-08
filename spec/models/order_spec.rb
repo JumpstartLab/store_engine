@@ -5,7 +5,7 @@ describe Order do
   describe "#user" do
     it "returns the user associated with the order" do
       fake_user = Fabricate(:user)
-      fake_user.id = ord.user_id
+      ord.user_id = fake_user.id
       ord.user.should == fake_user
     end
   end

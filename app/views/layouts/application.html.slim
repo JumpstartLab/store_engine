@@ -30,7 +30,7 @@ html
                       = link_to category.name, category_path(category)
               li= link_to "Contact Us"
               - if logged_in?
-                li= link_to "Cart", user_url(current_user)
+                li= link_to "Cart", orders_path(current_user.pending_order)
                 li= link_to "My Account", user_url(current_user)
                 li= link_to "Logout", logout_path, :method => :delete
               - else

@@ -4,7 +4,11 @@ class LineItem < ActiveRecord::Base
   belongs_to :order
 
   def subtotal
-    quantity * price
+    BigDecimal.new(quantity.to_f * price.to_f, 2)
+  end
+
+  def clean_price
+    BigDecimal.new(price.to_f, 2)
   end
 
 end
