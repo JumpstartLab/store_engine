@@ -4,31 +4,24 @@ class User < ActiveRecord::Base
   has_secure_password
   before_save :create_remember_token
 
-  validates_presence_of :email, :name
+  validates_presence_of :email, :name, :password, :password_confirmation
 
-  validates :password, length: { minimum: 6 }
-  validates :password_confirmation, presence: true
+  validates :password, length: { minimum: 6 }, :presence => { :message => 'must be at least 6 characters.' }
+  validate :password_match, :on => :create
+  validates_uniqueness_of :email
 
   has_one :cart
   has_many :orders
 
+  def password_match
+    if !self.password == self.password_confirmation
+      errors.add(:password, 'Passwords do not match')
+    end
+  end
+
   def add_order(order)
     self.orders ||= []
     self.orders << order
-  end
-
-  def self.register(params)
-    if User.find_by_email(params[:email])
-      result = { :user => nil, :status => 'E-mail has already been registered'}
-    elsif params[:password].length < 6
-      result = { :user => nil, :status => 'Password must have at least 6 characters'}  
-    elsif params[:password] != params[:password_confirmation]
-      result = { :user => nil, :status => 'Passwords do not match'}
-    else
-      user = User.create(params)
-      result = { :user => user, :status => 'success' }
-    end
-    result
   end
 
   private

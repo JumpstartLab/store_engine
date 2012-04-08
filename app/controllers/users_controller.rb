@@ -4,14 +4,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    result = User.register(params[:user])
-    if result[:status] == 'success'
+    @user = User.new(params[:user])
+    if @user.save
       sign_in result[:user]
-      # raise result.inspect
       redirect_to cart_path
     else
-      flash.now[:error] = result[:status]
-      @user = User.new #How do I fix this?
+      # raise @user.errors.messages[:email].inspect
+      flash.now[:error] = 'Please correct the errors below.'
       render :action => 'new'
     end
   end

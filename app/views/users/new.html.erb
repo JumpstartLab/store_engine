@@ -3,14 +3,20 @@
 <h2>Please enter your details</h2>
 
 <%= form_for @user do |f| %>
+
+  <%= render 'errors', :object => @user, :field => :email %>
   <%= f.text_field :email, :placeholder => "E-mail Address" %>
   <br />
+  <%= render 'errors', :object => @user, :field => :name %>
   <%= f.text_field :name, :placeholder => "Name" %>
   <br />
+  <%= render 'errors', :object => @user, :field => :display_name %>
   <%= f.text_field :display_name, :placeholder => "Display Name" %>  
   <br />
+  <%= render 'errors', :object => @user, :field => :password %>
   <%= f.password_field :password, :placeholder => "Password" %>
   <br />
+  <%= render 'errors', :object => @user, :field => :password_confirmation %>
   <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %>
   <br />
 
