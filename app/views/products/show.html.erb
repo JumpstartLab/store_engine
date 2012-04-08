@@ -1,13 +1,8 @@
-<h1>/Product</h1>
+<h1><%= @product.title %></h1>
 
 <p>
   <b>Category</b><br>
-  <%= @product.category_id %>
-</p>
-
-<p>
-  <b>Title</b><br>
-  <%= @product.title %>
+  <%= @product.category.name %>
 </p>
 
 <p>
@@ -17,12 +12,12 @@
 
 <p>
   <b>Price</b><br>
-  <%= @product.price %>
+  <%= sprintf("$%0.02f", @product.price) %>
 </p>
 
 <p>
   <b>Photo</b><br>
-  <%= @product.photo %>
+  <%= image_tag(@product.photo) %>
 </p>
 
 <p>
@@ -31,7 +26,8 @@
 </p>
 
 <div class="form-actions">
-  <%= link_to 'Back', products_path, :class => 'btn'  %>
+  <%= link_to 'Add to Cart', line_items_path(product_id: @product), :method => :post, :class => 'btn'%>
   <%= link_to 'Edit', edit_product_path(@product), :class => 'btn' %>
   <%= link_to 'Delete', product_path(@product), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%= link_to 'View all Products', products_path, :class => 'btn'  %>
 </div>
