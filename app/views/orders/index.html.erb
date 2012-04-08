@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th> Order # </th>
+    <th> Total </th>
+    <th> Status </th>
+    <th> </th>
+  </tr>
+
+  <% @orders.each do |order| %>
+    <tr> 
+      <td><%= order.id %></td>
+      <td><%= order.total_price %></td>
+      <td><%= order.status %></td>
+      <% unless order.status == "Cancelled" %>
+      <td><%= link_to "Cancel Order", order_path(order), method: :delete, confirm: "Cancel order?" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

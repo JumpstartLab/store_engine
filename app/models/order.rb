@@ -6,4 +6,5 @@ class Order < ActiveRecord::Base
   def total_price
     order_items.map(&:line_price).inject(:+)
   end
+
 end

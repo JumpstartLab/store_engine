@@ -1,8 +1,9 @@
 class OrdersController < ApplicationController
   before_filter :skip_mini_cart
+  before_filter :find_orders, except: [:create, :new]
 
   def index
-    redirect_to root_path
+    
   end
 
   def new
@@ -23,5 +24,18 @@ class OrdersController < ApplicationController
     end
   end
 
+  def destroy
+    if @order
+      @order.update_attribute(:status, "Cancelled")
+    end
+    redirect_to orders_path
+  end
+
+  def find_orders
+    @orders = current_user.orders
+    if params[:id]
+      @order = current_user.orders.find(params[:id])
+    end
+  end
   
 end
