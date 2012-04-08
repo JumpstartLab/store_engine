@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
 
   def create
     if current_user
-      @order = current_user.orders.create!
+      @order = current_user.orders.create!(status: 'Pending')
       current_cart.cart_items.each do |cart_item|
         @order.order_items.create(product_id: cart_item.product_id,
                                   quantity: cart_item.quantity)

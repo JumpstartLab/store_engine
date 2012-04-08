@@ -2,3 +2,6 @@
 <p>Placed by <%= @order.user.email %></p>
 <p>Total cost:<%= @order.total_price%></p>
 <p>Status: <%= @order.status %></p>
+  <% if @order.cancellable? %>
+    <p><%= link_to "Cancel Order", order_path(@order), method: :delete, confirm: "Cancel order?" %></p>
+  <% end %>
