@@ -1,2 +1,20 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<div class = "center">
+
+<h2>Please enter your details</h2>
+
+<%= form_for @user do |f| %>
+  <%= f.text_field :email, :placeholder => "E-mail Address" %>
+  <br />
+  <%= f.text_field :name, :placeholder => "Name" %>
+  <br />
+  <%= f.text_field :display_name, :placeholder => "Display Name" %>  
+  <br />
+  <%= f.password_field :password, :placeholder => "Password" %>
+  <br />
+  <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %>
+  <br />
+
+  <%= f.submit "Create Account", :class => "btn btn-large btn-primary" %>
+<% end %>
+
+</div>

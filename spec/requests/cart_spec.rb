@@ -1,16 +1,12 @@
 require 'spec_helper'
 
-describe "Using the shopping cart", :focus => true do
+describe "Using the shopping cart" do
   context "when I'm on a product page" do
     let(:product) { FactoryGirl.create(:product) }
-    before(:each) do 
-      visit product_path(product)
-    end
+    before(:each) { visit product_path(product) }
 
     context "and I click 'add to cart'" do
-      before(:each) do 
-        click_button("Add to cart")
-      end
+      before(:each) { click_button("Add to cart" ) }
 
       it "takes me to the cart page" do
         page.should have_content("Your Cart")
@@ -23,17 +19,38 @@ describe "Using the shopping cart", :focus => true do
         end
       end
 
-      it "shows the total cart quantity" do
+      it "shows a product quantity" do
         within("#cart") do
-          page.should have_content("Total items: 1")
+          page.should have_content("1")
         end
       end
 
-      it "shows the cart total" do
+      it "shows the subtotal" do
         within("#cart") do
-          page.should have_content("Total cost: " + product.price.to_s)
+          page.should have_content(product.price.to_s)
         end
       end
+
+      context "when I go back" do
+        before(:each) { visit product_path(product) }
+        
+        context "and I click 'add to cart' again" do
+          before(:each) { click_button("Add to cart" ) }
+
+          it "shows an increased product quantity" do
+            within("#cart") do
+              page.should have_content("2")
+            end
+          end
+
+          it "shows the original price" do
+            within("#cart") do
+              page.should have_content("")
+            end
+          end
+        end
+      end
+
     end
 
   end

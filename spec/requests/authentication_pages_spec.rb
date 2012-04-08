@@ -15,7 +15,7 @@ describe "AuthenticationPages" do
 
       describe "after visiting another page" do
         it "should not persist the error message" do
-          click_link('Home')
+          click_link('logo')
           should_not have_selector('div.alert.alert-error')
         end
       end
@@ -26,8 +26,8 @@ describe "AuthenticationPages" do
       let(:user) { FactoryGirl.create(:user) }
 
       before do
-        fill_in "Email",    with: user.email
-        fill_in "Password", with: user.password
+        fill_in "session_email",    with: user.email
+        fill_in "session_password", with: user.password
         click_button "Sign in"
       end
 
