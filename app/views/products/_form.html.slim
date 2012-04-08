@@ -32,6 +32,12 @@
       - Category.all.each do |category|
         = check_box_tag "product[category_ids][]", category.id, @product.category_ids.include?(category.id), id: dom_id(category)
         = label_tag dom_id(category), category.name
+
+    h3 Add a New Category
+    .control-group
+      = label_tag :new_category_name
+      .controls
+        = text_field_tag :new_category_name
         br/
     .form-actions
       = f.submit :class => 'btn btn-primary'

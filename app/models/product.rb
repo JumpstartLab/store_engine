@@ -18,6 +18,10 @@ class Product < ActiveRecord::Base
     BigDecimal.new(price.to_s,2)
   end
 
+  def create_new_category(params)
+    raise params.inspect
+  end
+
   def category_ids=(params)
     self.categories = []
     params.each do |id|
@@ -27,6 +31,8 @@ class Product < ActiveRecord::Base
       end
       save
     end
-
   end
+
+
+
 end
