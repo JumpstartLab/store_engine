@@ -12,7 +12,21 @@
     <%= f.label :price %><br />
     <%= f.text_field :price %>
   </div>
-  <div class="actions">
+  <div class="field"><br />
+  <%= f.label :categories %>
+  <p> Product is currently assigned to the following categories. Uncheck any of the boxes to remove the category.</p>
+  <%= hidden_field_tag "categories[]" %>
+  <% @product.categories.each do |category| %>
+    <%= check_box_tag "categories[]", category.id, @product.category_ids.include?(category.id) %>
+    <%= category.name %>
+  <% end %>
+  <p>You can add the product to any of the following categories</p>
+  <% @categories.each do |category| %>
+    <%= check_box_tag "categories[]", category.id, @product.category_ids.include?(category.id), :disabled => @product.category_ids.include?(category.id) %>
+    <%= category.name %>
+  <% end %>
+  </div>
+  <div class="actions"><br />
     <%= f.submit %>
   </div>
 <% end %>

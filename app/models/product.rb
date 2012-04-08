@@ -12,6 +12,19 @@ class Product < ActiveRecord::Base
   has_many :product_categories
   has_many :categories, :through => :product_categories
 
+  def update_categories(ids)
+    deleted = self.category_ids - ids
+    added = ids - self.category_ids
+
+    deleted.each do |id|
+      remove_category_by_id(id)
+    end
+
+    added.each do |id|
+      add_category_by_id(id)
+    end
+  end
+
   def add_category_by_id(id)
     category = Category.find(id)
     add_category(category)
