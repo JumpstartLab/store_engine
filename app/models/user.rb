@@ -17,6 +17,20 @@ class User < ActiveRecord::Base
     self.orders << order
   end
 
+  def self.register(params)
+    if User.find_by_email(params[:email])
+      result = { :user => nil, :status => 'E-mail has already been registered'}
+    elsif params[:password].length < 6
+      result = { :user => nil, :status => 'Password must have at least 6 characters'}  
+    elsif params[:password] != params[:password_confirmation]
+      result = { :user => nil, :status => 'Passwords do not match'}
+    else
+      user = User.create(params)
+      result = { :user => user, :status => 'success' }
+    end
+    result
+  end
+
   private
 
   def create_remember_token

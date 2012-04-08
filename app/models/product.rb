@@ -12,6 +12,8 @@ class Product < ActiveRecord::Base
   has_many :product_categories
   has_many :categories, :through => :product_categories
 
+  validates_presence_of :name, :price
+
   def update_categories(ids)
     deleted = self.category_ids - ids
     added = ids - self.category_ids
