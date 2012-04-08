@@ -2,10 +2,12 @@
 
 <table class="table table-bordered table-striped">
   <tr>
-    <th>Title</th>
+    <th>Name</th>
     <th>Description</th>
     <th>Price</th>
-    <th></th>
+    <th>Photo</th>
+    <th>Categories</th>
+    <th>Buy it!</th>
   </tr>
 
 <% @products.each do |product| %>
@@ -13,6 +15,12 @@
     <td><%= link_to product.name, product %></td>
     <td><%= product.description %></td>
     <td><%= number_to_currency(product.price) %></td>
+    <td><%= image_tag(product.photo, :size => "50x50") %></td>
+    <td><ul><% product.categories.each do |category| %>
+        <div id="<%= dom_id category %>">
+          <li><%= category.name %></li>
+        </div>
+        <% end %></ul>
     <td><%= button_to 'Add to cart', cart_path(:product_id => product, :cart_action => "add"), :method => :put %></td>
     <!--<td><%= link_to 'Edit', edit_product_path(product) %></td>
     <td><%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete %></td>-->

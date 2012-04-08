@@ -4,14 +4,22 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
+
   <div class="field">
     <%= f.label :price %><br />
     <%= f.text_field :price %>
   </div>
+
+  <div class="field">
+    <%= f.label :photo, "Link to a photo of this product:" %><br />
+    <%= f.text_field :photo %>
+  </div>
+
   <div class="field"><br />
   <%= f.label :categories %>
   <p> Product is currently assigned to the following categories. Uncheck any of the boxes to remove the category.</p>
@@ -20,12 +28,16 @@
     <%= check_box_tag "categories[]", category.id, @product.category_ids.include?(category.id) %>
     <%= category.name %>
   <% end %>
+  <% if @product.categories.count == 0 %>
+    <h4><%= "Hmm, doesn't look like this product has any categories assigned. Why not add some below?" %></h4><br /> 
+  <% end %>
   <p>You can add the product to any of the following categories</p>
   <% @categories.each do |category| %>
     <%= check_box_tag "categories[]", category.id, @product.category_ids.include?(category.id), :disabled => @product.category_ids.include?(category.id) %>
     <%= category.name %>
   <% end %>
   </div>
+
   <div class="actions"><br />
     <%= f.submit %>
   </div>

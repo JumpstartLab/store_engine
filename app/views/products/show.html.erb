@@ -1,29 +1,30 @@
-<p>
-  <b>Name:</b>
-  <%= @product.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @product.description %>
-</p>
-
-<p>
-  <b>Price:</b>
-  <%= @product.price %>
-</p>
-
-<div id="categories">
-<ul>Categories
-  <% @categories.each do |category| %>
-    <div id="<%= dom_id category %>">
-      <li><%= category.name %></li>
-    </div>
-  <% end %>
-</ul>
+<h1>Product Details</h1>
+<div id="product">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Photo</th>
+        <th>Categories</th
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @product.name %></td>
+        <td><%= @product.description %></td>
+        <td><%= @product.price %></td>
+        <td><%= image_tag(@product.photo) %></td>
+        <td><ul><% @categories.each do |category| %>
+        <div id="<%= dom_id category %>">
+          <li><%= category.name %></li>
+        </div>
+        <% end %></ul>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
-<br />
 
 <%= button_to 'Add to cart', cart_path(:product_id => @product, :cart_action => "add"), :method => :put %>
 <%= link_to 'Edit this product', edit_product_path %>

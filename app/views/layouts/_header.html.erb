@@ -4,6 +4,7 @@
       <%= link_to "mittenberry", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
+          <li><%= link_to "Products", products_path %></li>
           <li><%= link_to "Cart (#{get_cart_count})", cart_path %></li>
           <% if signed_in? %>
             <li id="fat-menu" class="dropdown">
