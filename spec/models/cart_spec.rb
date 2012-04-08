@@ -45,6 +45,22 @@ describe Cart do
         cart.add_product_by_id(product_one.id)
       }.to change { cart.products.count }.by(1)
     end
+
+    context "adds a second item to the cart" do
+      it "does not add an additional cart_product" do
+        cart.add_product_by_id(product_one.id)
+        expect {
+          cart.add_product_by_id(product_one.id)
+        }.to_not change { cart.products.count }.by(1)
+      end
+
+      it "increases the quantity" do
+        cart.add_product_by_id(product_one.id)
+        expect {
+          cart.add_product_by_id(product_one.id)
+        }.to change { cart.cart_products.find_by_product_id(product_one.id).quantity }.by(1)
+      end
+    end
   end
 
 end

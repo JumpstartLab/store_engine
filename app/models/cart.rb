@@ -17,9 +17,17 @@ class Cart < ActiveRecord::Base
     remove_product(product)
   end
 
+  def product_if_product_id_exists(id)
+    self.cart_products.find_by_product_id(id)
+  end
+
   def add_product(product)
-    self.products ||= [ ]
-    self.products << product
+    if existing_product = product_if_product_id_exists(product.id)
+      existing_product.update_attribute( :quantity, existing_product.quantity + 1 )
+    else
+      self.cart_products.create( :cart_id => self.id, :product_id => product.id, 
+                                 :quantity => 1 )
+    end
   end
 
   def remove_product(product)
@@ -27,7 +35,7 @@ class Cart < ActiveRecord::Base
   end
 
   def cart_count
-    products.count
+    cart_products.map(&:quantity).inject(:+) || 0
   end
 
   def cart_total

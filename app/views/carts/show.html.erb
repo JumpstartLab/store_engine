@@ -1,11 +1,42 @@
 <h1>Your Cart</h1>
 <div id="cart">
-  <ul>
-    <% @cart.products.each do |product| %>
-      <li><%= product.name %></li>
-    <% end %>
-  </ul>
-
-  <p>Total items: <%= @cart.cart_count %></p>
-  <p>Total cost: <%= @cart.cart_total %></p>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @cart.cart_products.empty? %>
+      <td colspan=4>You have no items in your cart.</td>
+      <% else %>
+        <% @cart.cart_products.each do |cart_product| %>
+          <tr>
+            <td><%= link_to cart_product.name, cart_product.product %> 
+              <%= link_to cart_path(:product_id => cart_product.product_id, :cart_action => 'remove'), :method => :put do %>
+              <i class="icon-trash"></i> Remove from cart
+              <% end %>
+            </td>
+            <td>
+              <%= cart_product.quantity %>
+              <!-- <%= form_for @cart, :url => {:cart_action => 'update'} do |f| %> -->
+                <!-- <%= f.text_field :quantity, :value => cart_product.quantity %> -->
+                <!-- <%= f.submit "update", :class => "btn btn-large btn-primary" %> -->
+              <% end %>
+            </td>
+            <td><%= cart_product.price %></td>
+            <td><%= cart_product.subtotal %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td colspan="2"></td>
+          <td style="border-left: 0px; border-right: 0px;">Total</td>
+          <td><%= @cart.cart_total %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

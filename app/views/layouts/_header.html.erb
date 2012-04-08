@@ -1,10 +1,10 @@
 <header class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to "the store", root_path, id: "logo" %>
+      <%= link_to "mittenberry", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
-          <li><%= link_to "Home", root_path %></li>
+          <li><%= link_to "Cart (#{get_cart_count})", cart_path %></li>
           <% if signed_in? %>
             <li><%= link_to "Users", '#' %></li>
             <li id="fat-menu" class="dropdown">
@@ -22,6 +22,7 @@
             </li>
           <% else %>
             <li><%= link_to "Sign in", signin_path %></li>
+            <li><%= link_to "Register", signup_path %></li>
           <% end %>
         </ul>
       </nav>
