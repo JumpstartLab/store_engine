@@ -1,0 +1,28 @@
+<h4>Your Cart</h4>
+  <table>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price / Each</th>
+      <th>Line Total</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% current_cart.cart_items.each do |cart_item| %>
+    <tr>
+      <td><%= cart_item.name %></td>
+      <td><%= cart_item.quantity %></td>
+      <td><%= cart_item.each_price %></td>
+      <td><%= cart_item.line_price %></td>
+      <td><%= link_to "+", increase_cart_item_path(cart_item), method: :post %></td>
+      <td><%= link_to "-", decrease_cart_item_path(cart_item), method: :post %></td>
+      <td><%= link_to "x", remove_cart_item_path(cart_item), method: :delete %></td>
+    </tr>
+    <% end %>
+  </table>
+  <%= link_to "Clear Cart", cart_path(current_cart), 
+  :method => :delete, 
+  :confirm => "Clear your cart?" %>
+  |
+  <%= link_to "Checkout", new_order_path %>

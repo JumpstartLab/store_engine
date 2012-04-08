@@ -16,7 +16,14 @@ StoreEngine::Application.routes.draw do
 
   resources :carts
 
-  resources :cart_items
+  resources :cart_items do
+    member do
+      post "increase"
+      post "decrease"
+      delete "remove"
+    end
+  end
+  
 
   get "admin" => "admin#index"
   namespace :admin do
