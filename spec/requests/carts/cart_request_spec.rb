@@ -73,7 +73,7 @@ describe "Using the shopping cart" do
         click_link_or_button "remove"
         within "#cart" do
           #save_and_open_page
-          page.should_not include(product.title)
+          page.should_not have_content(product.title)
         end
       end
     end
