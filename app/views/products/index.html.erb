@@ -1,13 +1,33 @@
-<h1>test</h1>
+<%if notice %>
+  <p id="notice"> <%= notice %>
+<% end %>
 
-<ul id="products">
- <% @products.each do |product| %>
-   <li>
-   <%=link_to product.title, product_path(product) %>
-   <%= product.description %>
-   <%= product.price %>
-   </li>
- <% end %>
-</ul>
+<h1>Exotic Fruit 4U</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= image_tag(product.photo) %></td>
+        <td><%= link_to product.title, product_path(product) %></td>
+        <td><%= product.category.name %></td>
+        <td><%= product.description %></td>
+        <td><%= sprintf("$%0.02f", product.price) %></td>
+        <td>
+          <%= link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<%= link_to "New product", new_product_path, :id => "new-product",  :class => "new_product"%>
+<%= link_to 'New', new_product_path, :class => 'btn btn-primary' %>

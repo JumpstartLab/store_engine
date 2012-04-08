@@ -1,19 +1,52 @@
-<%= form_for @product do |f| %>
+<%= form_for @product, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> /Product</legend>
 
- <%= f.label :title %>
- <%= f.text_field :title %>
- <p>
- <%= f.label :description %>
- <%= f.text_area :description %>
-</p>
-<p>
-<%= f.label :price %>
-<%= f.text_field :price %>
-</p>
-<p>
-<%= f.label :photo %>
-<%= f.text_field :photo %>
-</p>
+    <div class="control-group">
+      <%= f.label :category_id, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :category_id, :class => 'text_field' %>
+      </div>
+    </div>
 
- <%= f.submit %>
+    <div class="control-group">
+      <%= f.label :title, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :title, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :description, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :description, :class => 'text_area' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :price, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.number_field :price, :class => 'number_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :photo, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :photo, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <%= f.label :retired, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.check_box :retired, :class => 'check_box' %>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', products_path, :class => 'btn' %>
+    </div>
+  </fieldset>
 <% end %>
