@@ -11,8 +11,16 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.create(params[:product])
+    @categories = Category.all
 
-    redirect_to @product, notice: 'Product was successfully created.'
+    if @product.save
+      redirect_to @product, notice: 'Product was successfully created.'
+    else
+      @product.errors.full_messages.each do |msg|
+        flash.now[:error] = msg
+      end
+      render 'new'
+    end
   end
 
   def show

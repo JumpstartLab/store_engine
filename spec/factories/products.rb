@@ -1,9 +1,14 @@
 # Read about factories at http://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
+
+  sequence :p_name do |n|
+    "Product#{n}"
+  end
+
   factory :product do
-    name "T-Shirt"
-    description "A blue shirt"
+    name "Mitten"
+    description "A very well-crafted mitten."
     price 1500
     photo "http://www.wearyourbeer.com/images/David_Goliath_Weenie_Protect_Blue_Shirt2.jpg"
     status "active"
