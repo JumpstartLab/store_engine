@@ -44,4 +44,22 @@ describe Product do
       }.to change { product.categories.count }.by(1)
     end
   end
+
+  describe "#update_categories(id)" do
+    let(:ids) { categories.map {|c| c.id} }
+    it "adds cateogories when none are present" do
+      expect {
+        product.update_categories(ids)
+      }.to change {product.categories.count}.by(2)
+    end
+
+    it "removes a category when removed the argument" do
+      product.update_categories([category_one.id])
+      product.categories.count.should == 1
+
+      expect {
+        product.update_categories([])
+      }.to change {product.categories.count}.by(-1)
+    end
+  end
 end
