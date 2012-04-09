@@ -1,13 +1,13 @@
 StoreEngine::Application.routes.draw do
-
-  resources :line_items
-
-  resources :carts
-
-  root to: "products#index"
-  
-  resources :products
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "signup" => "users#new", :as => "signup"
   resources :users
+  resources :sessions
+  resources :line_items
+  resources :carts
+  root to: "products#index"
+  resources :products
   resources :orders
 
 end

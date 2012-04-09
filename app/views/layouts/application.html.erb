@@ -37,6 +37,13 @@
                 <li><%= link_to "Link2", "/path2"  %></li>
                 <li><%= link_to "Link3", "/path3"  %></li>
             </ul>
+            <% if current_user %>
+                Logged in as <%= current_user.email %>.
+                <%= link_to "Log out", logout_path %>
+            <% else %>
+              <%= link_to "Sign up", signup_path %> or
+              <%= link_to "log in", login_path %>.
+            <% end %>
           </div><!--/.nav-collapse -->
         </div>
       </div>
