@@ -13,8 +13,10 @@ class Product < ActiveRecord::Base
   has_many :categories, :through => :product_categories
 
   validates_presence_of :name, :description, :price
-  # validates_uniqueness_of :name
-  validates_numericality_of :price
+  validates_uniqueness_of :name
+  validates_numericality_of :price, :greater_than => 0
+
+  monetize :price_cents, :target_name => "price"
 
   def update_categories(ids)
     deleted = self.category_ids - ids

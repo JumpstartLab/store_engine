@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'sorcery'
+gem 'money-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
