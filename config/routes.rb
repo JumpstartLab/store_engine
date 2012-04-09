@@ -3,14 +3,15 @@ StoreEngine::Application.routes.draw do
   resources :users
   resource  :cart, only: [:show, :update]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :cart_products, only: [:new, :update, :destroy]
+  # resource  :cart_product, only: []
+  resources :products
   
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy', via: :delete
 
   root :to => "static_pages#home"
-
-  resources :products
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

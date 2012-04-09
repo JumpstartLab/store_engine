@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      sign_in result[:user]
+      sign_in @user
       redirect_to cart_path
     else
       # raise @user.errors.messages[:email].inspect

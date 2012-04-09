@@ -26,6 +26,6 @@
   </table>
 </div>
 
-<%= button_to 'Add to cart', cart_path(:product_id => @product, :cart_action => "add"), :method => :put %>
+<%= link_to 'Add to cart', new_cart_product_path(:product_id => @product) %>
 <%= link_to 'Edit this product', edit_product_path %>
 <%= link_to 'Back to products', products_path %>

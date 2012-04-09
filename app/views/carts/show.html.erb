@@ -16,15 +16,14 @@
         <% @cart.cart_products.each do |cart_product| %>
           <tr>
             <td><%= link_to cart_product.name, cart_product.product %> 
-              <%= link_to cart_path(:product_id => cart_product.product_id, :cart_action => 'remove'), :method => :put do %>
+              <%= link_to cart_product_path(cart_product.id), :method => :delete do %>
               <i class="icon-trash"></i> Remove from cart
               <% end %>
             </td>
             <td>
-              <%= cart_product.quantity %>
-              <!-- <%= form_for @cart, :url => {:cart_action => 'update'} do |f| %> -->
-                <!-- <%= f.text_field :quantity, :value => cart_product.quantity %> -->
-                <!-- <%= f.submit "update", :class => "btn btn-large btn-primary" %> -->
+              <%= form_for cart_product do |f| %>
+                <%= f.text_field :quantity, :value => cart_product.quantity %>
+                <%= f.submit "update", :class => "btn btn-large btn-primary" %>
               <% end %>
             </td>
             <td><%= cart_product.price %></td>
