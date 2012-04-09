@@ -1,10 +1,10 @@
 <%= form_for(@cart_item) do |ci| %>
-<p><%= ci.label :cart_item %> <br />
-   <%= ci.text_field :cart_item %>
+<p><%= ci.label :quantity %> <br />
+   <%= ci.text_field :quantity %>
 </p>
 
 <p> 
   <%= ci.submit %>
 </p>
 
-<%= end %>
+<% end %>

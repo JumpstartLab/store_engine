@@ -8,13 +8,13 @@ class CartItemsController < ApplicationController
   end
 
   def edit
-    @cart = CartItem.find(params[:id])
+    @cart_item = CartItem.find(params[:id])
   end
 
   def update
-    @cart = CartItem.find(params[:id])
-    @cart.update_attributes(params[:cart_item])
-    redirect_to carts_path(@cart)
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update_attributes(params[:cart_item])
+    redirect_to @cart_item.cart
   end
 
 end

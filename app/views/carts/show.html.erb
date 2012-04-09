@@ -2,7 +2,11 @@
 <div id="cart">
   <ul>
     <% @cart.cart_items.each do |item| %>
-      <li><%= item.product.title %> | <%= item.quantity %> | <%= link_to "Edit Quantity", edit_cart_item_path(@cart.cart_items.count) %></li>
+      <li><%= item.product.title %> | 
+        Individual price: <%= item.product.price %> | 
+        Quantity: <%= item.quantity %> | <%= link_to "Edit Quantity", edit_cart_item_path(@cart.cart_items.count) %> | Total Price: <%= item.price %></li>
     <% end %>
   </ul>
+
+  <h3>Total Price: <%= @cart.total_price %></h3>
 </div>
