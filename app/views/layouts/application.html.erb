@@ -7,8 +7,34 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">The Awesome Store</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "Browse Products", products_path %></li>
+            <li><%= link_to "Price List" %></li>
+            <li><%= link_to "Contact Us" %></li>
+            <li><%= link_to "Cart" %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="span9"><%= yield %></div>
+      <div class="span3">
+        <h2>About Us</h2>
+        <p>Odd future brooklyn nulla stumptown, et sriracha aliqua flexitarian master cleanse shoreditch assumenda Austin echo park swag commodo. Mumblecore Austin est magna, mixtape assumenda incididunt pinterest sunt cupidatat. Terry richardson scenester master cleanse american apparel, et pitchfork adipisicing organic lo-fi polaroid elit marfa laboris. Sed cosby sweater banh mi vero godard, dolor adipisicing vegan readymade locavore raw denim before they sold out. Et odd future gentrify raw denim. Fingerstache pop-up wes anderson kale chips, american apparel polaroid et sed 8-bit incididunt tumblr mcsweeney's. Craft beer gastropub kale chips retro food truck selvage.</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
