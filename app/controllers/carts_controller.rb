@@ -11,6 +11,4 @@ class CartsController < ApplicationController
   end
 
   private
-
-
 end

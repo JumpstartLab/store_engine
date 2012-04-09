@@ -16,5 +16,4 @@ class CartItemsController < ApplicationController
     @cart_item.update_attributes(params[:cart_item])
     redirect_to @cart_item.cart
   end
-
 end
