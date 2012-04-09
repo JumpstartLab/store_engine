@@ -4,7 +4,7 @@
     <% @cart.cart_items.each do |item| %>
       <li><%= item.product.title %> | 
         Individual price: <%= item.product.price %> | 
-        Quantity: <%= item.quantity %> | <%= link_to "Edit Quantity", edit_cart_item_path(@cart.cart_items.count) %> | Total Price: <%= item.price %></li>
+        Quantity: <%= item.quantity %> | <%= link_to "Edit Quantity", edit_cart_item_path(item) %> | Total Price: <%= item.price %></li>
     <% end %>
   </ul>
 
