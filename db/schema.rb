@@ -36,26 +36,26 @@ ActiveRecord::Schema.define(:version => 20120407235837) do
     t.integer  "product_id"
     t.integer  "order_id"
     t.integer  "quantity"
-    t.integer  "unit_price"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.decimal  "unit_price", :precision => 12, :scale => 2
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "orders", :force => true do |t|
     t.string   "status"
-    t.integer  "total_price"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.decimal  "total_price", :precision => 12, :scale => 2
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
   end
 
   create_table "products", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.boolean  "activity",    :default => true
-    t.integer  "price"
+    t.boolean  "activity",                                   :default => true
+    t.decimal  "price",       :precision => 12, :scale => 2
     t.string   "image_link"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
   end
 
   create_table "users", :force => true do |t|
