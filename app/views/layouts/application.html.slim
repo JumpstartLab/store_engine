@@ -39,19 +39,19 @@ html
               - else
                 li= link_to "Sign-In", login_page_path
                 li= link_to "Sign-Up", new_user_path
-    .container.main-content
-      .row
-        .span8= yield
-        = notice
-        .span3
-          h2 Cart
-          - if current_user && current_user.pending_order
-            - current_user.pending_order.line_items.each do |li|
-              p
-                = li.quantity
-                = li.product.title
-                | $#{li.subtotal}
-            p = current_user.pending_order.amount
-          - else
-            = "No items in your cart"
-          p = link_to "Check Out", "#", class: "btn btn-success"
+    .container.main-content data-pjax-container=""
+        .row
+          .span8 = yield
+          = notice
+          .span3
+            h2 Cart
+            - if current_user && current_user.pending_order
+              - current_user.pending_order.line_items.each do |li|
+                p
+                  = li.quantity
+                  = li.product.title
+                  | $#{li.subtotal}
+              p = current_user.pending_order.amount
+            - else
+              = "No items in your cart"
+            p = link_to "Check Out", "#", class: "btn btn-success"
