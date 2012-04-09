@@ -1,3 +1,5 @@
+# "add_to_cart", :to => "cart_item#create", :as => "add_to_cart"?
+
 class Cart < ActiveRecord::Base
   attr_accessible :product
   has_many :cart_items, dependent: :destroy
