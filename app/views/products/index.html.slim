@@ -15,6 +15,7 @@ table.table.table-striped
         td id==dom_id(product) = link_to product.title, product_path(product)
         td = product.description
         td = product.display_price
+        td = product.created_at.to_date
 
         td
           = link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini'
