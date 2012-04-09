@@ -2,20 +2,13 @@ class SessionsController < ApplicationController
 
   def create
     if session[:cart_id]
-      @products = Cart.find_by_id(session[:cart_id]).products
+      temp_cart = Cart.find_by_id(session[:cart_id])
     end
 
     @user = login(params[:email], params[:password], params[:remember_me])
 
     if @user
-      # if session[:cart_id]
-      #   add_session_cart_items
-      # end
-      if @products
-        @products.each do |product|
-          @user.cart.products << product
-        end
-      end
+      add_session_cart_items(temp_cart) if temp_cart
       redirect_back_or_to root_url, :notice => "Logged in!"
     else
       flash.now.alert = "Invalid login/password."
@@ -30,10 +23,11 @@ class SessionsController < ApplicationController
 
   private
 
-  def add_session_cart_items
-    session_products = Cart.find_by_id(session[:cart_id]).products
-    session_products.each do |product|
-      @user.cart.products << product
+  def add_session_cart_items(cart)
+    if cart.products.any?
+      cart.products.each do |product|
+        @user.cart.products << product
+      end
     end
   end
 end
