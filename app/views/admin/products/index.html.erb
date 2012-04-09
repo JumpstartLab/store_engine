@@ -1,3 +1,8 @@
+<h2>Products</h2>
 <% @products.each do |product| %>
   <%= link_to product.name, admin_product_path(product) %>
+  <%= link_to "Remove", admin_product_path(product),
+    :method => :delete,
+    :confirm => "Delete \"#{product.name}\"?"%>
+  <br />
 <% end %>

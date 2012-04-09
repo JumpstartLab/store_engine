@@ -1,4 +1,6 @@
 class Product < ActiveRecord::Base
+  acts_as_paranoid
+
   attr_accessible :name, :description, :price_in_cents, :categories, :category_ids
 
   has_many :orders

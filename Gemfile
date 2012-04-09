@@ -5,6 +5,7 @@ gem 'sqlite3'
 gem 'jquery-rails'
 gem 'sorcery'
 gem 'money-rails'
+gem 'paranoia'
 
 # Gems used only for assets and not required
 # in production environments by default.
