@@ -1,0 +1,57 @@
+doctype
+html
+  head
+    title StoreEngine
+    /![if lt IE 9]
+      | <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    meta content="width=(device-width,)initial-scale=1.0" name="viewport"
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          = link_to image_tag("#{root_url}icon.png", class: "logo"), root_url
+          = link_to "The Urban Cyclist", root_url, class: "brand"
+          .nav-collapse
+            ul.nav.nav-pills
+              li#menu1.dropdown
+                a.dropdown-toggle data-toggle="dropdown" href="#menu1"
+                  | Categories
+                  b.caret
+                ul.dropdown-menu
+                  - get_categories.each do |category|
+                    li
+                      = link_to category.name, category_path(category)
+              li= link_to "Contact Us"
+              - if logged_in?
+                - if current_user.pending_order
+                  li= link_to "Cart", order_path(current_user.pending_order)
+                - else
+                  li= link_to "Cart", new_order_path
+                li= link_to "My Account", user_url(current_user)
+                li= link_to "Logout", logout_path, :method => :delete
+              - else
+                li= link_to "Sign-In", login_page_path
+                li= link_to "Sign-Up", new_user_path
+    .container.main-content data-pjax-container=""
+        .row
+          .span8 = yield
+          = notice
+          .span3
+            h2 Cart
+            - if current_user && current_user.pending_order
+              - current_user.pending_order.line_items.each do |li|
+                p
+                  = li.quantity
+                  = li.product.title
+                  | $#{li.subtotal}
+              p = current_user.pending_order.amount
+            - else
+              = "No items in your cart"
+            p = link_to "Check Out", "#", class: "btn btn-success"
