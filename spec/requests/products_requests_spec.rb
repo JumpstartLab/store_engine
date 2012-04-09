@@ -10,15 +10,15 @@ describe "Products Requests" do
     end
 
     it "lists the products" do
-      within("ul#products") do
+      within("table#products") do
         products.each do |product|
-          page.should have_selector("li#product_#{product.id}")
+          page.should have_selector("#product_#{product.id}")
         end
       end
     end
 
     it "links to the products" do
-      within("ul#products") do
+      within("table#products") do
         products.each do |product|
           page.should have_link(product.title, :href => product_path(product))
         end
@@ -27,7 +27,7 @@ describe "Products Requests" do
 
     it "displays the product when clicking the link" do
       product = products.first
-      within("li##{dom_id(product)}") do
+      within("#product_#{product.id}_add") do
         click_link(product.title)
       end
       current_path.should == product_path(product)
@@ -102,7 +102,7 @@ describe "Products Requests" do
 
     it "deletes the product when clicking the link" do
       click_link("delete this product")
-      within("ul#products") do
+      within("table#products") do
         page.should_not have_link(product.title, :href => product_path(product))
       end
     end  

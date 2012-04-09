@@ -8,8 +8,8 @@
     <th>&nbsp;</th>
   </tr>
   <% @products.each do |product| %>
-  <tr>
-    <td><%= link_to product.title, product_path(product) %></td>
+  <tr id="product_<%= product.id %>">
+    <td id="product_<%=product.id%>_add"><%= link_to product.title, product_path(product) %></td>
     <td><%= product.description %></td>
     <td><%= product.price %></td>
     <td><%= link_to "Add to Cart", cart_path(:product_id => product), :method => :put, :class => 'btn btn-success' %></td>

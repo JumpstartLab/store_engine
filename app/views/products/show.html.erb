@@ -1,16 +1,22 @@
-<h1>Product: <%= @product.title %></h1>
+<!-- <div class="row"> -->
+  <div class="span8">
+    <h1>Product: <%= @product.title %></h1>
+    <p>
+      <%= @product.description %>
+    </p>
 
-<%= image_tag(@product.photo) %>
-<p>
-  <%= @product.description %>
-</p>
-
-<p>
-  Price: <%= @product.price %> cents<br />
-  Category: <%= @product.category %>
-</p>
-
-<%= link_to "Add to Cart", cart_path(:product_id => @product), :method => :put, :class => 'btn btn-success' %>
-<%= link_to "Back to all products", products_path, :title => "back to all products", :class => 'btn'%>
-<%= link_to "Edit this product", edit_product_path(@product), :title => "edit this product", :class => 'btn btn-warning' %>
-<%= link_to "Delete this product", product_path(@product), :method => :delete, :confirm => "Delete \"#{@product.title}\"?", :title => "delete this product", :class => 'btn btn-danger' %>
+    <p>
+      Price: <%= @product.price %> cents<br />
+      Category: <%= @product.category %>
+    </p>
+  </div>
+  <div class="span1">
+    <%= image_tag(@product.photo) %>
+  </div>
+<!-- </div> -->
+<div class="span9">
+  <%= link_to "Add to Cart", cart_path(:product_id => @product), :method => :put, :class => 'btn btn-success' %>
+  <%= link_to "Back to all products", products_path, :title => "back to all products", :class => 'btn'%>
+  <%= link_to "Edit this product", edit_product_path(@product), :title => "edit this product", :class => 'btn btn-warning' %>
+  <%= link_to "Delete this product", product_path(@product), :method => :delete, :confirm => "Delete \"#{@product.title}\"?", :title => "delete this product", :class => 'btn btn-danger' %>
+</div>
