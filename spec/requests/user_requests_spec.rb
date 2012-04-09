@@ -62,11 +62,15 @@ describe "User Requests" do
       fill_in "Password", :with => user.password
       click_link_or_button "sign_in_button"
       visit user_path(user)
-      click_link_or_button "Edit"
+      within ".span9" do
+
+        click_link_or_button "Edit"
+      end
       fill_in "Display name", :with => "Happy Bear"
       click_link_or_button "Update User"
       current_path.should == user_path(user)
-      user.display_name.should == "Happy Bear"
+      updated_user = User.find(user.id)
+      updated_user.display_name.should == "Happy Bear"
     end
   end
 end

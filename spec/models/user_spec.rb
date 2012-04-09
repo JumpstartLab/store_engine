@@ -61,6 +61,7 @@ describe User do
     let!(:billing1) do
       b = Fabricate(:billing_method)
       b.user_id = user1.id
+      b.save
       b
     end
     let!(:order1) do
@@ -68,6 +69,7 @@ describe User do
       o1.status = "paid"
       o1.user_id = user1.id
       o1.billing_method_id = billing1.id
+      o1.save
       o1
     end
     let!(:order2) do
@@ -75,6 +77,7 @@ describe User do
       o2.status = "pending"
       o2.user_id = user1.id
       o2.billing_method_id = billing1.id
+      o2.save
       o2
     end
     context "if there is a pending order for that user" do
@@ -85,6 +88,7 @@ describe User do
     context "if there are no pending orders for the user" do
       it "returns nil" do
         order2.status = "paid"
+        order2.save
         user1.pending_order.should == nil
       end
 
