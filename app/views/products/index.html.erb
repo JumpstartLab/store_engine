@@ -1,16 +1,18 @@
 <h1>Products</h1>
 
-<table id="products" class="table table-striped">
+<table id="products" class="table table-striped table-bordered">
   <tr>
     <th>Product</th>
     <th>Description</th>
     <th>Price</th>
+    <th>&nbsp;</th>
   </tr>
   <% @products.each do |product| %>
   <tr>
     <td><%= link_to product.title, product_path(product) %></td>
     <td><%= product.description %></td>
     <td><%= product.price %></td>
+    <td><%= link_to "Add to Cart", cart_path(:product_id => product), :method => :put, :class => 'btn btn-success' %></td>
   </tr>
   <% end %>
 </table>
