@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
-
+  load_and_authorize_resource
   before_filter :lookup_product, :only => [:show, :edit, :destroy, :update]
+
+
   def index
     @products = Product.all
   end
