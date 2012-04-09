@@ -1,0 +1,11 @@
+- if current_user && current_user.pending_order
+  - current_user.pending_order.line_items.each do |li|
+      p
+        = li.quantity
+        = li.product.title
+        | $#{li.subtotal}
+  p = current_user.pending_order.amount
+- else
+  = "No items in your cart"
+
+p = link_to "Check Out", "#", class: "btn btn-success"
