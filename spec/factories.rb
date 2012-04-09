@@ -27,11 +27,14 @@ FactoryGirl.define do
     name "AWESOME PRODUCT"
     rating 4
   end
+  factory :cart_product do 
+    quantity 1
+  end
 
   factory :product do
     sequence(:name) { |n| "product#{n}" }
     description "yummy foo"
-    price_in_cents 100
+    price_in_cents { Random.rand * 10000 }
   end
 
   factory :category do

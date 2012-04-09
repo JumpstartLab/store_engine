@@ -5,9 +5,15 @@
       %tr
         %th name
         %th quantity
+        %th price
       / - simple_form_for @products do |f|
-      - @cart.products.each do |p|
-        %tr{:id => "product_#{p.id}"}
-          %td= p.name
-          %td
-          %td= link_to "Remove Item", cart_path(:product_id => p.id), :method => :delete, :confirm => "Are you sure?"
+      - @cart.cart_products.each do |cp|
+        %tr{:id => "product_#{cp.product.id}"}
+          %td= cp.name
+          %td= cp.quantity
+          %td= cp.price
+          %td= link_to "Remove Item", cart_path(:product_id => cp.id), :method => :delete, :confirm => "Are you sure?"
+      %tr{:id => "total"}
+        %td Total
+        %td 
+        %td= @cart.total_in_dollars

@@ -1,14 +1,18 @@
 require "open-uri"
 
 class Product < ActiveRecord::Base
-  attr_accessible :description, :name, :price, :categories, :avatar, :category_ids
+  attr_accessible :description, :name, :price,
+                  :categories, :avatar, :category_ids
   
   validates_presence_of :name, :description, :price
   validates_numericality_of :price_in_cents, :greater_than => 0
   validates_uniqueness_of :name
 
   default_scope :conditions => { :active => 1 }
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :avatar, :styles => { 
+                                          :medium => "300x300>", 
+                                          :thumb => "100x100>" 
+                                        }
 
   has_many :category_products
   has_many :categories, :through => :category_products

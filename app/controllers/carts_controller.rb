@@ -21,8 +21,8 @@ class CartsController < ApplicationController
       @cart = current_user.cart
       merge_carts
     else
-      session[:cart_id] = Cart.create.id if session[:cart_id].nil?
-      @cart = Cart.find(session[:cart_id]) 
+      cookies[:cart_id] = Cart.create.id if cookies[:cart_id].nil?
+      @cart = Cart.find(cookies[:cart_id])
     end
   end
 
@@ -31,10 +31,9 @@ class CartsController < ApplicationController
   end
 
   def merge_carts
-    if session[:cart_id]
-      raise "making it here"
-      Cart.find(session[:cart_id]).products.each do |p|
-        @cart << p
+    if cookies[:cart_id]
+      Cart.find(cookies[:cart_id]).products.each do |p|
+        @cart.products << p
       end
     end
   end
