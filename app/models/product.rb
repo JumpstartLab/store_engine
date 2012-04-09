@@ -32,7 +32,4 @@ class Product < ActiveRecord::Base
       save
     end
   end
-
-
-
 end

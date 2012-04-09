@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    @line_item = LineItem.new
   end
 
   def show
@@ -14,9 +15,10 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(params[:product])
+    @notice = 'Product was successfully created.'
     respond_to do |format|
       if @product.save
-        format.html { redirect_to product_path(@product), notice: 'Product was successfully created.' }
+        format.html { redirect_to product_path(@product), notice: @notice }
       else
         format.html { render action: "new" }
       end

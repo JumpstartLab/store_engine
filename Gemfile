@@ -30,4 +30,6 @@ group :development, :test do
   gem 'growl'
   gem 'faker'
   gem 'bcrypt-ruby'
+  gem 'cane'
+  gem 'reek'
 end
