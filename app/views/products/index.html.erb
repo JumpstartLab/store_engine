@@ -1,12 +1,24 @@
-<h1>This is a page</h1>
+<h1>Products</h1>
 
-<ul id="products">
+<table id="products">
+  <tr>
+    <th>Product</th>
+    <th>Description</th>
+    <th>Price</th>
+  </tr>
   <% @products.each do |product| %>
-    <li id="<%= dom_id product %>">
+  <tr>
+    <td>
       <%= link_to product.title, product_path(product) %>
-    </li>
+    </td>
+    <td>
+      <%= product.description %>
+    </td>
+    <td>
+      <%= product.price %>
+    </td>
+  </tr>
   <% end %>
-    <li>
-      <%= link_to "Add a product", new_product_path, :id => "add_product"%>
-    </li>
-</ul>
+</table>
+
+<%= link_to "Add a product", new_product_path, :id => "add_product" %>
