@@ -5,6 +5,8 @@ describe "Using the shopping cart" do
   let(:product)   { Fabricate(:product)}
   let(:new_product) { Fabricate(:product) }
   let(:products)  {[product, new_product]}
+  let(:user)      { Fabricate(:user, :password => 'password',
+                                     :admin => 'false')}
 
 
   context "when adding products to the cart" do
@@ -76,6 +78,58 @@ describe "Using the shopping cart" do
           page.should_not have_content(product.title)
         end
       end
+    end
+  end
+
+  context "when returning to a user cart" do
+    before(:each) do
+      visit "/login"
+      fill_in 'email', :with => user.email
+      fill_in 'password', :with => 'password'
+      click_button 'Log in'
+    end
+    context "and the user adds something to the cart" do
+      before (:each) do
+        visit product_path(product)
+        click_link_or_button "add to cart"
+        visit "/logout"
+      end
+
+      it "finds the same cart after logout" do
+        visit "/login"
+        fill_in 'email', :with => user.email
+        fill_in 'password', :with => 'password'
+        click_button 'Log in'
+
+        visit product_path(new_product)
+        click_link_or_button "add to cart"
+
+        within "#cart" do
+          products.each do |product|
+            page.should have_content(product.title)
+          end
+        end       
+      end
+    end
+  end
+
+  context "when logging in after adding a product to the cart" do
+    before (:each) do
+      visit product_path(product)
+      click_link_or_button "add to cart"
+    end
+    it "keeps the product in the users cart after login" do
+      visit "/login"
+      fill_in 'email', :with => user.email
+      fill_in 'password', :with => 'password'
+      click_button 'Log in'
+
+      visit "/cart"
+      # save_and_open_page
+
+      within "#cart" do
+        page.should have_content(product.title)
+      end  
     end
   end
 end

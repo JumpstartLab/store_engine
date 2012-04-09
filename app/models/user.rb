@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  after_initialize :create_cart 
   authenticates_with_sorcery!
   
   attr_accessible :email, :password, :password_confirmation, :display_name, :first_name, :last_name, :admin
@@ -16,6 +17,10 @@ class User < ActiveRecord::Base
 
   def name
     "#{first_name} #{last_name}"
+  end
+
+  def create_cart
+    self.build_cart unless self.cart 
   end
 
 end

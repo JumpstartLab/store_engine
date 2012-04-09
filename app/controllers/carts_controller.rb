@@ -22,10 +22,13 @@ class CartsController < ApplicationController
   private
 
   def lookup_cart_from_session
-    if session[:cart_id]
+    if current_user
+      session[:cart_id] = current_user.cart.id
       @cart = Cart.find_by_id(session[:cart_id])
+    elsif session[:cart_id]
+      @cart = Cart.find_by_id(session[:cart_id])
+    else
+      @cart = Cart.new
     end
-    @cart ||= Cart.new
   end
-  
 end
