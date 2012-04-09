@@ -7,11 +7,9 @@ describe "Products Requests" do
     before(:each) { visit "/" }
 
     it "links to the product" do
-      within("table.table-striped") do
-        products.each do |product|
-          page.should have_selector("td##{dom_id(product)}")
-          page.should have_link(product.title, href: product_path(product))
-        end
+      products.each do |product|
+        page.should have_selector("##{dom_id(product)}")
+        page.should have_link(product.title, href: product_path(product))
       end
     end
   end
@@ -50,7 +48,7 @@ describe "Products Requests" do
       click_button 'Create Product'
       @count = Product.all.count
       visit "/"
-      within "tr#product_1" do
+      within "#product_1" do
         click_link 'Destroy'
       end
     end

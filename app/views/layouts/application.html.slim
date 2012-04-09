@@ -51,6 +51,7 @@ html
                   = li.quantity
                   = li.product.title
                   | $#{li.subtotal}
+                  = link_to 'Remove', line_item_path(li), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
               p = current_user.pending_order.amount
             - else
               = "No items in your cart"
