@@ -7,12 +7,12 @@ describe Cart do
 
   describe "#items" do
     context "when items have been added to the cart" do
-      before(:each) { products.each { |p| cart.add_item(p) } }
+      before(:each) { products.each { |p| cart.add_product(p) } }
 
-      it "returns the items" do
-        cart.items.count.should == products.count
+      it "returns the products" do
+        cart.products.count.should == products.count
         products.each do |p|
-          cart.items.should include(p)
+          cart.products.should include(p)
         end
       end
     end
@@ -22,7 +22,7 @@ describe Cart do
     it "adds a product to the cart" do
       expect {
         cart.add_product_by_id(product.id)
-      }.to change { cart.items.count }.by(1)
+      }.to change { cart.products.count }.by(1)
     end
   end
 end

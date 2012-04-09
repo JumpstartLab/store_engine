@@ -1,13 +1,21 @@
 <h1>Your Shopping Cart.</h1>
-<div id="cart">
-  <ul>
-    <% @cart.items.each do |item| %>
-      <li>
-        <%= item.title %>
-      </li>
-      <li id="<%= item.id %>_quant">
-        <%= @cart.product_quantity(item.id) %>
-      </li>
-      <% end %>
-  </ul>
-</div>
+<table class="table table-striped" id="cart">
+  <tr>
+    <th>Item</th>
+    <th>Quantity</th>
+    <th>Total Price</th>
+  </tr>
+  <% cart.cart_items.each do |cart_item| %>
+    <tr>
+      <td><%= cart_item.title %></td>
+      <td id="<%= cart_item.product.id %>_quant"><%= cart_item.quantity %></td>
+      <td id="<%= cart_item.product.id %>_total"><%= cart_item.total %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>&nbsp;</td>
+    <td>Total:</td>
+    <td id="total"><%= cart.total %></td>
+</table>
+
+<%= link_to "Destroy Cart", cart_path(cart), :method => :delete, :class => "btn btn-danger" %>

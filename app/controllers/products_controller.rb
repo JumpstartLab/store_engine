@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-before_filter :lookup_product,
+before_filter :product,
                 :only => [:show, :edit, :update, :destroy]
 
   def index
@@ -15,8 +15,8 @@ before_filter :lookup_product,
   end
 
   def update
-    @product.update_attributes(params[:product])
-    redirect_to product_path(@product)
+    # @product.update_attributes(params[:product])
+    # redirect_to product_path(@product)
   end
 
   def destroy
@@ -34,9 +34,11 @@ before_filter :lookup_product,
     redirect_to product_path(product)
   end
 
+  helper_method :product
+
   private
 
-  def lookup_product
+  def product
     @product = Product.find(params[:id])
   end
 end

@@ -5,8 +5,10 @@ StoreEngine::Application.routes.draw do
 
   resources :categories
   resources :products
+
+  resources :cart_items, only: :create 
   
-  resource :cart, :only => [:show, :update]
+  resource :cart, :only => [:show, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
