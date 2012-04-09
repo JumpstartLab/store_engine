@@ -5,8 +5,10 @@ p
 
 p
   = @product.price
-
 p
+  - @product.categories.each do |category|
+    = category.name
+    br
 
 = form_for CartItem.new, :method => "put", :url => {:controller => 'shopping_cart', :action => "update", :product => @product } do |f|
   = f.label :quantity

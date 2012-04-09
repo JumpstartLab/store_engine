@@ -8,4 +8,12 @@
   = f.label :price
   = f.text_field :price
   p
+  | Categories:
+  p
+  - @categories.each do |category|
+    / = check_box_tag("category[]", category.id)
+    / = label_tag("category[]", category.name)
+    = check_box_tag(category.name, category.id)
+    = label_tag("category[]", category.name)
+    br
   = f.submit

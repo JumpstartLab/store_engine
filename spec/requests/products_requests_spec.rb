@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Products Requests" do
-  context "GET index" do
+  context "when I view all products" do
     let!(:products) { [Fabricate(:product, :title => "Foo"), 
       Fabricate(:product, :title => "Bar")] }
     before(:each) do      
@@ -24,7 +24,31 @@ describe "Products Requests" do
     end
   end
 
-  context "GET show" do 
+  context "when I create a product" do
+    let!(:category) { Fabricate(:category, :name => "Apples") }
+    let!(:category2) { Fabricate(:category, :name => "Bananas") }
+
+    it "saves a new product" do
+      visit new_product_path
+      fill_in "Title", :with => "Test product"
+      fill_in "Description", :with => "Test description"
+      fill_in "Price", :with => "100.00"
+      puts category.inspect
+      puts category2.inspect
+
+      check "Bananas"
+      save_and_open_page
+
+      click_button "Create Product"
+      click_link "Test product"
+      page.should have_content("Test product")
+      page.should have_content("Test description")
+      page.should have_content("100.00")
+      page.should have_content(category2.name)
+    end
+  end
+
+  context "when I view a product" do 
     let!(:product) { Fabricate(:product, :id => 1, :title => "Foo") }
 
     it "shows product page" do

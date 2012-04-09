@@ -5,10 +5,12 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @categories = Category.all
   end
 
   def create
     product = Product.new(params[:product])
+    product.categories << Category.find(params[:category])
     product.save
     redirect_to products_path
   end
