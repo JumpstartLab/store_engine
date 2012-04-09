@@ -39,6 +39,7 @@ html
               - else
                 li= link_to "Sign-In", login_page_path
                 li= link_to "Sign-Up", new_user_path
+
     .container.main-content data-pjax-container=""
         .row
           .span8 = yield
@@ -55,3 +56,4 @@ html
             - else
               = "No items in your cart"
             p = link_to "Check Out", "#", class: "btn btn-success"
+

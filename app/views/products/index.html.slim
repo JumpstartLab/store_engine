@@ -38,8 +38,10 @@
                     = f.text_field :quantity, :class => 'text_field quantity', value: "1"
                 = f.submit 'Add to Cart', :class => 'btn btn-success'
 
-            p
-              = link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini'
-              = link_to 'Retire', product_path(product), :method => :retire, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-warning'
-              = link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
+            / - if admin?
+              p
+                = link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini'
+                = link_to 'Retire', product_path(product), :method => :retire, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-warning'
+                = link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
+
   = link_to 'New', new_product_path, :class => 'btn btn-primary'
