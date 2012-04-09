@@ -1,5 +1,4 @@
 StoreEngine::Application.routes.draw do
-  #get "users/new"
   resources :users
   resource  :cart, only: [:show, :update]
   resources :sessions, only: [:new, :create, :destroy]
@@ -7,8 +6,8 @@ StoreEngine::Application.routes.draw do
   # resource  :cart_product, only: []
   resources :products
   
-  match '/signup', :to => 'users#new'
-  match '/signin', :to => 'sessions#new'
+  match '/signup',  :to => 'users#new'
+  match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy', via: :delete
 
   root :to => "static_pages#home"

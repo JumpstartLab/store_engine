@@ -10,10 +10,10 @@
       </tr>
     </thead>
     <tbody>
-      <% if @cart.cart_products.empty? %>
+      <% if current_cart.cart_products.empty? %>
       <td colspan=4>You have no items in your cart.</td>
       <% else %>
-        <% @cart.cart_products.each do |cart_product| %>
+        <% current_cart.cart_products.each do |cart_product| %>
           <tr>
             <td><%= link_to cart_product.name, cart_product.product %> 
               <%= link_to cart_product_path(cart_product.id), :method => :delete do %>
@@ -33,7 +33,7 @@
         <tr>
           <td colspan="2"></td>
           <td style="border-left: 0px; border-right: 0px;">Total</td>
-          <td><%= @cart.cart_total %></td>
+          <td><%= current_cart.cart_total %></td>
         </tr>
       <% end %>
     </tbody>

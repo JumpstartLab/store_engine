@@ -1,7 +1,7 @@
 class CartProductsController < ApplicationController
 
   def new
-    @cart.add_product_by_id(params[:product_id])
+    current_cart.add_product_by_id(params[:product_id])
     redirect_to cart_path
   end
 
