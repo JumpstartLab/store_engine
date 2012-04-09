@@ -1,0 +1,16 @@
+<%= form_for @product, :url => [:admin, @product] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br />
+
+  <%= f.label :price %>
+  <%= f.text_field :price %><br />
+
+  <% Category.all.each do |category| -%>
+    <div>
+      <%= check_box_tag :category_ids, category.id, @product.categories.include?(category), :name => 'product[category_ids][]' -%>
+      <%= label_tag :category_ids, category.name -%>
+    </div>
+  <% end -%>
+
+  <%= f.submit %>
+<% end %>

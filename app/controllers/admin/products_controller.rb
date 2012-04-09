@@ -10,6 +10,31 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def new
+    @product = Product.new
+  end
+
+  def create
+    @product = Product.new(params[:product], as: :admin)
+
+    if @product.save
+      redirect_to [:admin, @product]
+    else
+      render :action => :new
+    end
+  end
+
+  def update
+    @product = Product.find(params[:id])
+
+    if @product.update_attributes(params[:product], as: :admin)
+      redirect_to :action => 'show', :id => @product
+    else
+      @products = Product.all
+      render :action => 'edit'
+    end
+  end
+
   def edit
     @product = Product.find(params[:id])
   end
@@ -19,17 +44,5 @@ class Admin::ProductsController < ApplicationController
     @product.destroy
 
     redirect_to :action => :index
-  end
-
-  def update
-    @product = Product.find(params[:id])
-    @product.price = params[:product].delete(:price)
-
-    if @product.update_attributes(params[:product])
-      redirect_to :action => 'show', :id => @product
-    else
-      @products = Product.all
-      render :action => 'edit'
-    end
   end
 end
