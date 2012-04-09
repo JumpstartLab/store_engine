@@ -1,0 +1,11 @@
+<%= form_for(@current_item) do |c| %>
+<p>
+  <%= c.label current_item %> <br />
+  <%= c.text_field current_item %>
+</p>
+
+<p> 
+  <%= c.submit %>
+</p>
+
+<%= end %>

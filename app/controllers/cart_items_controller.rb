@@ -6,4 +6,15 @@ class CartItemsController < ApplicationController
     @cart_item.save
     redirect_to @cart_item.cart
   end
+
+  def edit
+    @cart_item = CartItem.find(params[:id])
+  end
+
+  def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update_attributes(params[:cart_item])
+    redirect_to @cart_item.cart
+  end
+
 end
