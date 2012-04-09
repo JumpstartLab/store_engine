@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe "Categories Requests" do
-  let!(:category) { Category.create(:name => "Apples") }
-  let!(:category2) { Category.create(:name => "Oranges") }
+  let!(:category) { Fabricate(:category, :name => "Apples") }
+  let!(:category2) { Fabricate(:category, :name => "Oranges") }
 
   context "GET index" do
     before(:each) do
@@ -23,5 +23,18 @@ describe "Categories Requests" do
         page.should have_content("Apples")
       end
     end   
+  end
+
+  context "When we edit a category" do
+    before(:each) { visit edit_category_path(category) }
+    it "shows title" do
+      page.should have_content("Edit Category")
+    end
+
+    it "updates category" do
+      fill_in 'Name', :with => "Grapes"
+      click_button "Update Category"
+      page.should have_content "Grapes"
+    end
   end
 end

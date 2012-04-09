@@ -6,8 +6,5 @@ ul
         = category.name
         p
         = link_to "Edit", edit_category_path(category)
-        br
-        = link_to "Remove", category_path(category), :method => :delete
-
 
 = link_to "Create new category", new_category_path
