@@ -1,33 +1,14 @@
 class User < ActiveRecord::Base
-  attr_accessible :display_name, :email, :name, 
-                  :password, :password_confirmation
-  has_secure_password
-  before_save :create_remember_token
+  authenticates_with_sorcery!
+  # attr_accessible :title, :body
 
-  validates_presence_of :email, :name, :password, :password_confirmation
+  attr_accessible :email, :name, :display_name, :password, :password_confirmation
 
-  validates :password, length: { minimum: 6 }, :presence => { :message => 'must be at least 6 characters.' }
-  validate :password_match, :on => :create
+  validates_confirmation_of :password
+  validates :password, length: { minimum: 6, maximum: 20 }
+  validates_presence_of :email
   validates_uniqueness_of :email
-
-  has_one :cart
-  has_many :orders
-
-  def password_match
-    if !self.password == self.password_confirmation
-      errors.add(:password, 'Passwords do not match')
-    end
-  end
-
-  def add_order(order)
-    self.orders ||= []
-    self.orders << order
-  end
-
-  private
-
-  def create_remember_token
-    self.remember_token = SecureRandom.urlsafe_base64
-  end
+  validates_presence_of :name
+  validates :display_name, length: { minimum: 2, maximum: 32 }, :unless => "display_name.blank?"
 
 end

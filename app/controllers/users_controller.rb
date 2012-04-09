@@ -9,12 +9,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      sign_in @user
-      redirect_to cart_path
+      redirect_to root_path, :notice => "Signed up!"
     else
-      # raise @user.errors.messages[:email].inspect
-      flash.now[:error] = 'Please correct the errors below.'
-      render :action => 'new'
+      render :new
     end
   end
 

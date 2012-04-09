@@ -58,6 +58,10 @@ GEM
     factory_girl_rails (1.4.0)
       factory_girl (~> 2.3.0)
       railties (>= 3.0.0)
+    faraday (0.7.6)
+      addressable (~> 2.2)
+      multipart-post (~> 1.1)
+      rack (~> 1.1)
     ffi (1.0.11)
     growl (1.0.3)
     guard (1.0.1)
@@ -78,7 +82,12 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.18)
     multi_json (1.2.0)
+    multipart-post (1.1.5)
     nokogiri (1.5.2)
+    oauth (0.4.5)
+    oauth2 (0.5.2)
+      faraday (~> 0.7)
+      multi_json (~> 1.0)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -129,6 +138,11 @@ GEM
       ffi (~> 1.0)
       multi_json (~> 1.0)
       rubyzip
+    sorcery (0.7.7)
+      bcrypt-ruby (~> 3.0.0)
+      oauth (~> 0.4.4)
+      oauth2 (~> 0.5.1)
+      sorcery
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -162,5 +176,6 @@ DEPENDENCIES
   rails (= 3.2.3)
   rspec-rails
   sass-rails (~> 3.2.3)
+  sorcery
   sqlite3
   uglifier (>= 1.0.3)
