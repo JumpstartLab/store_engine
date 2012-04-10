@@ -7,7 +7,7 @@ describe Cart do
 
   describe "#items" do
     context "when items have been added to the cart" do
-      before(:each) { products.each { |p|cart.add_product(p) } }
+      before(:each) { products.each { |p| cart.add_product(p) } }
 
       it "returns the items" do
         cart.items.count.should == products.count

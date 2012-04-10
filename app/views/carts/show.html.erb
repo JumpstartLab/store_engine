@@ -10,8 +10,11 @@
     <% @cart.cart_items.each do |item| %>
       <li><%= item.product.title %> | 
         Individual price: <%= number_to_currency(item.individual_price) %> | 
-        Quantity: <%= item.quantity %> | <%= link_to "Edit Quantity", edit_cart_item_path(item) %> 
-        | Total Price: <%= number_to_currency(item.price) %></li>
+        Quantity: <%= item.quantity %> 
+        | Total Price: <%= number_to_currency(item.price) %>
+        | <%= link_to "Edit Quantity", edit_cart_item_path(item) %> 
+        | <%= link_to "Remove item", cart_item_path(item), :method => :delete %>
+      </li>
     <% end %>
   </ul>
 

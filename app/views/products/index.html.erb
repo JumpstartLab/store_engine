@@ -1,11 +1,5 @@
 <h1>Products</h1>
 
 <ul id="products">
-  <% @products.each do |product| %>
-    <li><%= link_to product.title, product_path(product) %> 
-      | <%= product.description %> <img height=100 src="<%= product.image_link %>"></img>
-       | <%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete %>
-       | <%= if product.activity then "Active" else "Retired" end %>
-    </li>
-  <% end %>
+  <%= render :partial => "product", :collection => @products %>
 </ul>
