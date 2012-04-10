@@ -15,8 +15,8 @@ before_filter :product,
   end
 
   def update
-    # @product.update_attributes(params[:product])
-    # redirect_to product_path(@product)
+    @product.update_attributes(params[:product])
+    redirect_to product_path(@product)
   end
 
   def destroy

@@ -2,4 +2,7 @@
 
 <p>This will be a list of all products with the category "<%= @category.name %>"</p>
 
+<p><%= link_to "Edit this Category", edit_category_path(@category), :title =>"edit this category", :class => "btn btn-warning" %>
+  <%= link_to "Destroy this Category", category_path(@category), :method => :delete, :confirm => "Delete \"#{@category.name}\"?", :name => "delete this categeory", :class => 'btn btn-danger', :id => 'destroy' %>
+
 <p><%= link_to "All Categories", categories_path, :title => "back to all categories" %>

@@ -24,7 +24,7 @@ group :development, :test do
   gem 'launchy'
   gem 'guard'
   gem 'guard-rspec'
-  # gem 'growl'
+  gem 'growl'
   gem 'simplecov'
   gem 'faker'
 end

@@ -1,8 +1,11 @@
-<h1>These are the Categories</h1>
+<h1>Awesome Categories.</h1>
 
-<ul id="categories">
+<table id="categories" class="table-striped">
   <% @categories.each do |category| %>
-  <li id="<%= dom_id category %>">
-    <%= link_to category.name, category_path(category) %>
-  </li>
-<% end %>
+    <tr>
+      <td id="category_<%=category.id%>"><%= link_to category.name, category_path(category) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "Add a category", new_category_path, :id => "add_category", :class => 'btn btn-primary' %>

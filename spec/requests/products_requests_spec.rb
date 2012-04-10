@@ -169,6 +169,7 @@ describe "Products Requests" do
       end
 
       it "asks for a product category" do
+        pending
         within("form") do
           page.should have_selector("label[for$='product_categories']")
           page.should have_selector("input[id$='product_categories']")
@@ -252,6 +253,7 @@ describe "Products Requests" do
       end
 
       it "asks for a product category" do
+        pending
         within("form") do
           page.should have_selector("label[for$='product_categories']")
           page.should have_selector("input[id$='product_categories']")
@@ -259,6 +261,7 @@ describe "Products Requests" do
       end
 
       it "knows the old category" do
+        pending
         within("form") do
           page.should have_selector("input[id$='product_categories'][value$='#{product.categories}']")
         end
