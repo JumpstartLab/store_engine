@@ -11,8 +11,8 @@ class CartProductsController < ApplicationController
   end
 
   def update
-    quantity = params[:cart_product][:quantity]
-    CartProduct.find(params[:id]).update_attribute(:quantity, quantity)
+    current_cart_product = CartProduct.find(params[:id])
+    current_cart_product.update_quantity(params[:cart_product][:quantity])
     redirect_to cart_path
   end
 end

@@ -1,6 +1,19 @@
 require 'spec_helper'
 
 describe "Using the shopping cart" do
+  
+  context "when I'm on the cart page" do
+    before(:each) { visit cart_path }
+
+    context "and I haven't added any products" do
+      it "should notify customer that there is nothing in the cart" do
+        within("#cart") do
+          page.should have_content("no items")
+        end
+      end
+    end
+  end
+
   context "when I'm on a product page" do
     let(:product) { FactoryGirl.create(:product) }
     before(:each) { visit product_path(product) }
@@ -23,7 +36,13 @@ describe "Using the shopping cart" do
         within("#cart") do
           page.should have_selector("input#cart_product_quantity", :value => 1)
         end
-      end 
+      end
+
+      it "updates the cart count in the header" do
+        within("li#cart-menu") do
+          page.should have_content("1")
+        end
+      end
 
       it "shows the subtotal" do
         within("#cart") do
@@ -53,24 +72,81 @@ describe "Using the shopping cart" do
           end
         end
 
+        it "updates the cart count in the header" do
+          within("li#cart-menu") do
+            page.should have_content("2")
+          end
+        end
+
         it "shows the original price" do
           within("#cart") do
             page.should have_content("")
           end
         end
       end
+
+      context "when I remove items from my cart" do
+        before(:each) do
+          visit cart_path
+          click_link_or_button("Remove from cart")
+        end
+
+        it "shows a decreased product quantity" do
+          within("#cart") do
+            page.should_not have_content(product.name)
+          end
+        end
+
+        it "updates the cart count in the header" do
+          within("li#cart-menu") do
+            page.should have_content("0")
+          end
+        end
+
+        it "should notify customer that there is nothing in the cart" do
+          within("#cart") do
+            page.should have_content("no items")
+          end
+        end
+      end
     end
   end
 
-  context "when I'm on the cart page" do
-    # context "when I try to update the quantity of a product" do
-    #   it "does not have any products in the cart" do
-    #     fill_in "user_name",         with: "Example User"
-    #     within("#cart") do
-    #       page.should_not have_content(product.name)
-    #       click_link_or_button("update")
-    #     end
-    #   end
-    # end
+  context "when I have products in my cart" do
+    let(:product) { FactoryGirl.create(:product) }
+    before(:each) do
+      visit product_path(product)
+      click_link("Add to cart")
+    end
+
+    context "and I'm on the cart page" do
+      before(:each) { visit cart_path }
+
+      context "when I try to update the quantity of a product" do
+        before(:each) do
+          fill_in "cart_product_quantity",         with: "10"
+          click_button("update")
+        end
+
+        it "should update the quantity of the product" do
+          page.should have_selector("input#cart_product_quantity", :value => 10)
+        end
+
+        it "should update the cart counter in my header" do
+          within("li#cart-menu") do
+            page.should have_content("10")
+          end
+        end
+      end
+
+      context "when I try to update the quantity of a product to 0" do
+        it "should delete the product from my cart" do
+          fill_in "cart_product_quantity",         with: "0"
+          click_button("update")
+          page.should_not have_selector("input#cart_product_quantity")
+          page.should_not have_content(product.name)
+        end
+      end
+    end
   end
 end

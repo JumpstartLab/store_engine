@@ -1,6 +1,8 @@
 class CartProduct < ActiveRecord::Base
   attr_accessible :cart_id, :product_id, :quantity
 
+  validates_numericality_of :quantity, :greater_than_or_equal_to => 0
+
   belongs_to :cart
   belongs_to :product
 
@@ -14,6 +16,14 @@ class CartProduct < ActiveRecord::Base
 
   def price
     product.price
+  end
+
+  def update_quantity(quantity)
+    if quantity == "0"
+      destroy
+    else
+      update_attribute(:quantity, quantity)
+    end
   end
 
 end
