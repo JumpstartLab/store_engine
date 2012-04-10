@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :user_id, :status
+  attr_accessible :user_id, :status, :stripe_customer_token
   attr_accessor :stripe_card_token
 
   belongs_to :user
@@ -8,9 +8,10 @@ class Order < ActiveRecord::Base
 
   def save_with_payment
     if valid?
+      #raise stripe_card_token.inspect
       customer = Stripe::Customer.create(description: 'test charges', card: stripe_card_token)
-      #self.stripe_customer_token = customer.id
-      #save!
+      self.stripe_customer_token = customer.id
+      save!
       Stripe::Charge.create(amount: 500, currency: 'usd', customer: customer.id)
     end
   rescue Stripe::InvalidRequestError => e

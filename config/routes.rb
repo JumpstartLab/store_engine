@@ -7,7 +7,7 @@ StoreEngine::Application.routes.draw do
   # resource  :cart_product, only: []
   resources :products
   resources :categories
-  resources :orders
+  resources :orders, only: [:new, :show, :create]
   
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'

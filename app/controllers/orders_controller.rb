@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new
+    @order.stripe_card_token = params[:order][:stripe_card_token]
     if @order.save_with_payment
       redirect_to @order, :notice => "Thanks a whole bunch."
     else
