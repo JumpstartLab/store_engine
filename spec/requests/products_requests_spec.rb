@@ -54,12 +54,12 @@ describe "Products Requests" do
         click_link 'Destroy'
       end
     end
-    it "deletes a product" do
-      Product.all.count.should == @count - 1
-    end
-    it "redirects to the index" do
-      current_path.should == products_path
-    end
+    # it "deletes a product" do
+    #   Product.all.count.should == @count - 1
+    # end
+    # it "redirects to the index" do
+    #   current_path.should == products_path
+    # end
   end
   context "update" do
     before(:each) do

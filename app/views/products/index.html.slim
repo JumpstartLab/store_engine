@@ -44,4 +44,5 @@
                 = link_to 'Retire', product_path(product), :method => :retire, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-warning'
                 = link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
 
-  = link_to 'New', new_product_path, :class => 'btn btn-primary'
+  - if admin?
+    = link_to 'New', new_product_path, :class => 'btn btn-primary'
