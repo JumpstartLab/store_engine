@@ -1,37 +1,42 @@
-<h1><%= @product.title %></h1>
+<% if @product.retired == false || (can? :create, @product) %>
 
-<p>
-  <b>Categories</b><br>
-  <%= @product.category_list %>
-</p>
+  <h1><%= @product.title %></h1>
 
-<p>
-  <b>Description</b><br>
-  <%= @product.description %>
-</p>
+  <p>
+    <b>Categories</b><br>
+    <%= @product.category_list %>
+  </p>
 
-<p>
-  <b>Price</b><br>
-  <%= sprintf("$%0.02f", @product.price) %>
-</p>
+  <p>
+    <b>Description</b><br>
+    <%= @product.description %>
+  </p>
 
-<p>
-  <b>Photo</b><br>
-  <%= image_tag(@product.photo) %>
-</p>
+  <p>
+    <b>Price</b><br>
+    <%= sprintf("$%0.02f", @product.price) %>
+  </p>
 
-<p>
-  <% if can? :update, @product %>
-  <b>Retired</b><br>
-  <%= @product.retired %>
-  <% end %>
-</p>
+  <p>
+    <b>Photo</b><br>
+    <%= image_tag(@product.photo) %>
+  </p>
 
-<div class="form-actions">
-  <%= link_to 'Add to Cart', line_items_path(product_id: @product), :method => :post, :class => 'btn'%>
-  <%= link_to 'View all Products', products_path, :class => 'btn'  %>
-  <% if can? :update, @product %>
-    <%= link_to 'Edit Product', edit_product_path(@product), :class => 'btn' %>
-  <% end %>
+  <p>
+    <% if can? :update, @product %>
+    <b>Retired</b><br>
+    <%= @product.retired %>
+    <% end %>
+  </p>
 
-</div>
+  <div class="form-actions">
+    <%= link_to 'Add to Cart', line_items_path(product_id: @product), :method => :post, :class => 'btn'%>
+    <%= link_to 'View all Products', products_path, :class => 'btn'  %>
+    <% if can? :update, @product %>
+      <%= link_to 'Edit Product', edit_product_path(@product), :class => 'btn' %>
+    <% end %>
+
+  </div>
+<% else %>
+<h1>This Product is no longer offered for sale</h1>
+<% end %>

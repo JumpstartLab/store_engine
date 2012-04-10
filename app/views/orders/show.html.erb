@@ -1,16 +1,37 @@
-<h1>Order: <%= @order.id %></h1>
-<p>
-  Date Ordered: <%= @order.created_at %>
-</p> 
+<h1>Order</h1>
 
 <p>
-  Customer: <%= @order.name %> |
+  <b>Name</b><br>
+  <%= @order.name %>
+</p>
+
+<p>
+  <b>Address</b><br>
+  <%= @order.address %>
+</p>
+
+<p>
+  <b>Email</b><br>
   <%= @order.email %>
 </p>
 
 <p>
-  Order Status: <%= @order.status %>
-</p> 
+  <b>Status</b><br>
+  <%= @order.status %>
+    <% if can? :update, @order %> 
+      <% if @order.next_status %>
+        <%= form_for @order do |f| %>
+          <%= f.hidden_field :status, :value => @order.next_status, :class => 'btn' %>
+          <%= f.submit "mark as #{@order.next_status}", :class => 'btn' %>
+        <% end %>
+      <% end %>
+    <% end %> 
+</p>
+
+<p>
+  <b>Pay type</b><br>
+  <%= @order.pay_type %>
+</p>
 
 <h3>Products Ordered:</h3>
 <p> 
@@ -21,12 +42,15 @@
     Subtotal: <%= order_item.subtotal %><br />
   <% end %>
 </p>  
-<br>
-<br>
+
 <p>
   Total: <%= @order.total %>
 </p> 
-<%=link_to "Update Status", edit_order_path %>
 
-<%=link_to "View all Orders", orders_path, :id => "orders-index", :class => "link" %>
- 
+<div class="form-actions">
+  <% if can? :update, @order %> 
+    <%= link_to 'View All Orders', orders_path, :class => 'btn'  %>
+    <%= link_to 'Edit', edit_order_path(@order), :class => 'btn' %>
+    <%=link_to "Update Status", edit_order_path, :class => 'btn' %>
+  <% end %>
+</div>

@@ -1,15 +1,31 @@
 class Ability
   include CanCan::Ability
 
+  # def initialize(user)
+  #   user ||= User.new # guest user (not logged in)
+  #   if user.admin?
+  #     can :manage, :all
+  #   else
+  #     can :read, Product
+  #     can :manage, LineItem
+  #     can :manage, Cart
+  #     can :create, Order
+  #     can :create, User
+  #   end
+  # end
   def initialize(user)
-    user ||= User.new # guest user (not logged in)
-    if user.admin?
+    if user && user.admin?
       can :manage, :all
-    else
+    elsif user
       can :read, Product
       can :manage, LineItem
       can :manage, Cart
       can :create, Order
+      can :create, User
+    else
+      can :read, Product
+      can :manage, LineItem
+      can :manage, Cart
       can :create, User
     end
   end

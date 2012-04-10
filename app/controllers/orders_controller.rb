@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(params[:order])
     @order.add_line_items_from_cart(current_cart)
+    @order.user = current_user
 
     respond_to do |format|
       if @order.save
