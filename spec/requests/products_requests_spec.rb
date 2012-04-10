@@ -9,6 +9,26 @@ describe "Products Requests" do
       visit "/products/"
     end
 
+    it "has category information for each product" do
+      within("table#products") do
+        products.each do |product|
+          page.should have_selector("#product_#{product.id}_categories")
+        end
+      end
+    end
+
+    it "shows the corresponding categories for each product" do
+      within("table#products") do
+        products.each do |product|
+          within("#product_#{product.id}_categories") do
+            page.should have_content(product.categories)
+          end
+        end
+      end
+    end
+
+    it "lists all possible categories"
+
     it "lists the products" do
       within("table#products") do
         products.each do |product|
@@ -259,7 +279,4 @@ describe "Products Requests" do
       end
     end
   end
-
-  context ""
-
 end

@@ -5,6 +5,7 @@ StoreEngine::Application.routes.draw do
 
   resources :categories
   resources :products
+  resources :category_products, only: :create
 
   resources :cart_items, only: :create 
   
