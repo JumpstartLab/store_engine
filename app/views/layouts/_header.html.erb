@@ -5,7 +5,7 @@
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "Products", products_path %></li>
-          <li><%= link_to "Cart (#{get_cart_count})", cart_path %></li>
+          <li id="cart-menu"><%= link_to "Cart (#{get_cart_count})", cart_path %></li>
           <% if current_user %>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
