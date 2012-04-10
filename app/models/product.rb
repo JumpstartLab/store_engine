@@ -8,6 +8,10 @@ class Product < ActiveRecord::Base
   has_many :product_categories, :dependent => :destroy
   has_many :categories, :through => :product_categories
 
+  validates_presence_of :title, :description
+  validates_uniqueness_of :title
+  validates_numericality_of :price_in_cents
+
   monetize :price_in_cents, :target_name => "price"
 
   def retired?
