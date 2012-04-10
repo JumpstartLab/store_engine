@@ -12,12 +12,7 @@ describe Order do
 
   context "#total" do
     it "calculates the total price of its products" do
-      order = Fabricate :order
-      product = Fabricate :product
-      order.add_product(product)
-      order.add_product(product)
-
-      order.total.should == product.price * 2
+      order.total.should == product.price * 3
     end
   end
 

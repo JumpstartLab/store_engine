@@ -24,18 +24,26 @@ describe Product do
     product2.should_not be_valid
   end
 
-  it "must be a number" do
-    product.price = 'puppy'
-    product.should_not be_valid
-  end
+  context "price" do
+    it "must be a number" do
+      product.price = 'puppy'
+      product.should_not be_valid
+    end
 
-  it "can't be negative" do
-    product.price = -123.45
-    product.should_not be_valid
+    it "can't be negative" do
+      product.price = -123.45
+      product.should_not be_valid
+    end
   end
 
   it "must have a URL photo" do
     product.photo = "awesome"
     product.should_not be_valid
+  end
+
+  it "is cleaned when saved" do
+    product.price = "34.567"
+    product.save
+    product.price.to_s.should == "34.56"
   end
 end

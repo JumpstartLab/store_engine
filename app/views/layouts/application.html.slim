@@ -7,4 +7,7 @@ html
     = csrf_meta_tags
 
   body
+    ul id="nav"
+      li = link_to "View Cart", cart_path
+      
     = yield

@@ -2,4 +2,8 @@ h1 = @product.title
 
 p = @product.description
 
+ul
+  - @product.categories.each do |category|
+    li = category.name
+
 = link_to("Add to Cart", cart_path(:product_id => @product), :method => :put)

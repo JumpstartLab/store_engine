@@ -28,12 +28,12 @@ class Order < ActiveRecord::Base
   end
 
   def subtotal(product)
-    oi = OrderItem.find(product.id)
+    oi = OrderItem.find_by_product_id(product.id)
     oi.quantity * oi.product.price
   end
 
   def quantity_for(product)
-    oi = OrderItem.find(product.id)
+    oi = OrderItem.find_by_product_id(product.id)
     oi.quantity
   end
 

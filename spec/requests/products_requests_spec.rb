@@ -2,9 +2,14 @@ require 'spec_helper'
 
 describe Product do
   let!(:products) do
-    [Fabricate(:product), Fabricate(:product), Fabricate(:product)]
+    [
+      Fabricate(:product), 
+      Fabricate(:product), 
+      Fabricate(:product)
+    ]
   end
   let(:product) { Fabricate(:product) }
+  let(:category) { Fabricate(:category) }
 
   context "index" do
     before(:each) do
@@ -32,12 +37,17 @@ describe Product do
 
   context "show" do
     before(:each) do
+      product.add_category(category)
       visit product_path(product)
     end
 
     it "adds a product to the cart when 'add to cart' is clicked" do
       click_link "Add to Cart"
       page.should have_content(product.title)
+    end
+
+    it "lists all the product's categories" do
+      page.should have_content(category.name)
     end
   end
 end
