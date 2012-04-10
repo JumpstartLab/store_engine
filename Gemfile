@@ -32,4 +32,5 @@ end
 group :test do
   gem 'guard-spork'
   gem 'spork'
+  gem 'simplecov', :require => false
 end

@@ -15,12 +15,6 @@ class Cart < ActiveRecord::Base
     else
       add_product_by(product_id)
     end
-    # if current_item
-    #   current_item.quantity += 1
-    # else
-    #   current_item = cart_items.build(product_id: product_id)
-    # end
-    # current_item
   end
 
   def increment_quantity_for(product_id)

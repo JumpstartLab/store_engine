@@ -15,6 +15,16 @@ describe Cart do
           cart.items.should include(p)
         end
       end
+
+      it "increments the quantity when given an existing item" do
+        cart.add_or_increment_by_product(product.id)
+        cart.cart_items.first.quantity.should == 2
+      end
+
+      it "increments the quantity given a product id" do
+        cart.increment_quantity_for(product.id)
+        cart.cart_items.first.quantity.should == 2
+      end
     end
   end
 end

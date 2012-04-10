@@ -23,12 +23,4 @@ describe OrderItem do
     negative_price = OrderItem.new(@attr.merge(:unit_price => -3))
     negative_price.should_not be_valid
   end
-
-  it "contains an existing product" do
-    pending # lookup product_id and see if it exits in database
-  end
-  
-  it "contains an existing order" do
-    pending # lookup order_id and see if it exits in database
-  end
 end
