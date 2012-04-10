@@ -7,6 +7,6 @@ table.table.table-striped
     th Subtotal
     th Actions
   = render partial: "line_item", collection: @order.line_items
-
-
-= link_to "Check Out", "#", class: "btn btn-success"
+= render partial: "billing"
+-if logged_in?
+  = link_to "Check Out", "#", class: "btn btn-success"

@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   attr_accessible :billing_method_id, :user_id, :status
 
-  validates_presence_of :billing_method_id, :user_id, :status
+  validates_presence_of :status
 
   belongs_to :billing_method
   has_many :line_items
