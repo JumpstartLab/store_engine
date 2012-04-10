@@ -23,11 +23,17 @@ StoreEngine::Application.routes.draw do
       delete "remove"
     end
   end
-  
 
-  get "admin" => "admin#index"
+
+  #get "admin" => "admin#index"
   namespace :admin do
-    resources :products
+    get "/" => "admin#index"
+
+    resources :products do
+      put "retire", :on => :member
+      put "unretire", :on => :member
+    end
+
     resources :categories
   end
 

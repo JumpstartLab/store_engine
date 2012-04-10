@@ -9,4 +9,11 @@ class Product < ActiveRecord::Base
   has_many :categories, :through => :product_categories
 
   monetize :price_in_cents, :target_name => "price"
+
+  def retired?
+    retired
+  end
+
+  default_scope where(retired: false)
+  scope :retired, where(:retired => true)
 end

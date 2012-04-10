@@ -39,10 +39,17 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def destroy
+  def retire
     @product = Product.find(params[:id])
-    @product.destroy
+    @product.update_attribute(:retired, true)
 
-    redirect_to :action => :index
+    redirect_to :back
+  end
+
+  def unretire
+    @product = Product.find(params[:id])
+    @product.update_attribute(:retired, false)
+
+    redirect_to :back
   end
 end
