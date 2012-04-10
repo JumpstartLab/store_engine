@@ -6,6 +6,8 @@ gem 'jquery-rails'
 gem 'sorcery'
 gem 'money-rails'
 gem 'paranoia'
+gem 'addressable'
+gem 'dynamic_form'
 
 # Gems used only for assets and not required
 # in production environments by default.
