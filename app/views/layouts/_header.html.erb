@@ -1,0 +1,10 @@
+<% if current_user %>
+  <h4>Welcome, <%= current_user.screen_name %></h4>
+  <p><%= link_to "Log Out", logout_path %></p>
+  <% if current_user.admin %>
+    <p><%= link_to "Admin Panel", admin_path %></p>
+  <% end %>
+<% else %>
+  <h4>Welcome, Guest</h4>
+   <p><%= link_to "Log In", login_path %></p>
+<% end %>

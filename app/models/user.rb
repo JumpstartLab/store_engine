@@ -23,4 +23,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def screen_name
+    display_name ? display_name : email
+  end
+
 end
