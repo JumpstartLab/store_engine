@@ -15,7 +15,7 @@ h2 Billing Information
   | Zipcode: #{bm.zipcode}
   p = link_to "Edit", edit_billing_method_path(bm), class: "btn"
 
-- if @user.id != current_user.id
+- if admin?
   = link_to "Destroy", user_path(@user), :method => :delete, confirm: "Delete \"#{@user.display_name}\"?", class: "btn btn-danger"
   = link_to "Back to All Users", users_path, class: "btn btn-info"
 p = link_to "Orders", orders_path, class: "btn btn-success"
