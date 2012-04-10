@@ -4,6 +4,11 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rails'
+require 'sorcery'
+require 'support/user_spec_helper'
+
+include Sorcery::TestHelpers::Rails
+include UserHelper
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
