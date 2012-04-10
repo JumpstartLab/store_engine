@@ -9,8 +9,8 @@
 c1 = Category.create(name: "Great Stuff")
 c2 = Category.create(name: "Pretty Good Stuff")
 
-p1 = Product.create(name: "Sample Product 1", description: "Lorem ipsum dolor sit amet", categories: [c1], price_in_cents: 1050)
-p2 = Product.create(name: "Second Product Sample", description: "Foo bar baz quux", categories: [c2], price_in_cents: 19999)
+p1 = Product.create({name: "Sample Product 1", description: "Lorem ipsum dolor sit amet", categories: [c1], price_in_cents: 1050}, without_protection: true)
+p2 = Product.create({name: "Second Product Sample", description: "Foo bar baz quux", categories: [c2], price_in_cents: 19999}, without_protection: true)
 
 u1 = User.create(full_name: "Mark Tabler", email: "a@b.com", password: "asdfasdf", password_confirmation: "asdfasdf")
 u2 = User.create(full_name: "Charles Strahan", email: "b@c.com", password: "asdfasdf", password_confirmation: "asdfasdf")
