@@ -11,6 +11,7 @@ describe "Shopping Cart Requests" do
   
   context "when I visit the shopping cart" do
     it "should show the logged in users' cart items " do
+      user.shopping_cart = Fabricate(:shopping_cart)
       user.shopping_cart.add_item(product.id, 10)
       visit '/shopping_cart'
       find_link(product.title).visible? 

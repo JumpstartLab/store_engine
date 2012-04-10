@@ -17,7 +17,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    @user.shopping_cart = ShoppingCart.new
 
     respond_to do |format|
       if @user.save

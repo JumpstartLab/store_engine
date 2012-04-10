@@ -6,7 +6,6 @@ class ShoppingCartController < ApplicationController
   end
 
   def update
-    cart = current_user.shopping_cart
     cart.add_item(params[:product], params[:cart_item][:quantity])
     redirect_to shopping_cart_path
   end
