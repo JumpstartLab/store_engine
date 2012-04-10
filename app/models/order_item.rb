@@ -4,7 +4,8 @@ class OrderItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :product
 
-  validates_presence_of :order, :product_id
+  validates :order, :product_id, presence: true
+  validates :quantity, numericality: { greater_than: 0 }
 
   def line_price
     each_price * quantity
