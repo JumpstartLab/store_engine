@@ -28,4 +28,5 @@ group :development, :test do
   gem 'factory_girl_rails', '1.4.0'
   gem 'guard'
   gem 'growl'
+  gem 'simplecov'
 end
