@@ -15,4 +15,4 @@
 /tmp
 coverage/*
 
-/initializers/stripe.rb
+/config/initializers/stripe.rb
