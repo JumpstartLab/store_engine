@@ -257,8 +257,9 @@ describe "Products Requests" do
           page.should have_selector("input[id$='product_title'][value$='#{product.title}']")
         end
       end
-
     end
   end
-  
+
+  context ""
+
 end
