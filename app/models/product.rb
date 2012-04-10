@@ -22,4 +22,9 @@ class Product < ActiveRecord::Base
 
   default_scope where(retired: false)
   scope :retired, where(:retired => true)
+
+  def photo_url=(val)
+    val = nil if val == ""
+    write_attribute(:photo_url, val)
+  end
 end
