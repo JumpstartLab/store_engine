@@ -44,6 +44,7 @@ html
         .row
           .span8 = yield
           = notice
+          h3 current user: #{current_user.display_name unless current_user == nil}
           .span3
             h2 Cart
             - if current_user && current_user.pending_order

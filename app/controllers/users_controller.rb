@@ -16,10 +16,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    @notice = 'Product was successfully created.'
+    @notice = 'Welcome Aboard'
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_path(@user), notice: @notice }
+        session[:user_id] = @user.id
+        format.html { redirect_to root_url, notice: @notice }
       else
         format.html { render action: "new" }
       end

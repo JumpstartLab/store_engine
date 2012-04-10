@@ -4,13 +4,15 @@ table.table.table-striped
     tr
       th ID
       th Name
-      th Actions
+      - if admin?
+        th Actions
   tbody
     - @categories.each do |category|
       tr id==dom_id(category)
         td= category.id
         td id==dom_id(category) = link_to category.name, category_path(category)
         td
+        -if admin?
           = link_to 'Edit', edit_category_path(category), :class => 'btn btn-mini'
           = link_to 'Destroy', category_path(category), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
 = link_to 'New', new_category_path, :class => 'btn btn-primary'
