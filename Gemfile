@@ -24,7 +24,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  gem 'simplecov', :require => false
+  gem 'simplecov', :require => false, :group => :test
   gem 'guard'
   gem 'guard-rspec'
   gem 'ruby_gntp'
