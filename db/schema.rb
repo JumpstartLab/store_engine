@@ -13,6 +13,13 @@
 
 ActiveRecord::Schema.define(:version => 20120410191113) do
 
+  create_table "assignments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "cart_items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "cart_id"
@@ -28,6 +35,13 @@ ActiveRecord::Schema.define(:version => 20120410191113) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "grants", :force => true do |t|
+    t.integer  "right_id"
+    t.integer  "role_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -63,6 +77,19 @@ ActiveRecord::Schema.define(:version => 20120410191113) do
     t.string   "image_link"
     t.datetime "created_at",                                                   :null => false
     t.datetime "updated_at",                                                   :null => false
+  end
+
+  create_table "rights", :force => true do |t|
+    t.string   "resource"
+    t.string   "operation"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
