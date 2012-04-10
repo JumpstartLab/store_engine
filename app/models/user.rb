@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  authenticates_with_sorcery!
   attr_accessible :email, :name, :username
   validates_presence_of :name, :email
   validates_uniqueness_of :email
