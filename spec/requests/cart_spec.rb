@@ -65,6 +65,13 @@ describe "Cart", :focus => true do
         page.should have_content("2")
       end
     end
+    it "clears the cart on logout" do
+      login(user)
+      visit root_path
+      click_on "Logout"
+      visit '/cart'
+      page.should_not have_content(products[3])
+    end
   end
   it "counts the total" do
     cart = FactoryGirl.create(:cart)

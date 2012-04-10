@@ -1,4 +1,4 @@
-FactoryGirl.define do
+ FactoryGirl.define do
   factory :user do 
     sequence(:display_name) { Faker::Name.name }
     password "foobar"

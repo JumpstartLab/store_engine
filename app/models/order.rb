@@ -9,4 +9,11 @@ class Order < ActiveRecord::Base
   has_many :order_products
   has_many :products, :through => :order_products
 
+  def process_cart(cart)
+    self.user = cart.user
+    self.status = Status.find_by_name("pending")
+    self.products << cart.products
+    self.save
+  end
+
 end

@@ -1,4 +1,4 @@
 .row
-- products.each do |product|
-  .span3
-    = render 'products/product', :product => product
+  - products.each do |product|
+    .span3
+      = render 'products/product', :product => product

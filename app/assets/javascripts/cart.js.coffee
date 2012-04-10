@@ -3,14 +3,14 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
-  subscription.setupForm()
+  order.setupForm()
 
-subscription =
+order =
   setupForm: ->
-    $('#new_subscription').submit ->
+    $('#new_order').submit ->
       $('input[type=submit]').attr('disabled', true)
       if $('#card_number').length
-        subscription.processCard()
+        order.processCard()
         false
       else
         true
@@ -21,12 +21,12 @@ subscription =
       cvc: $('#card_code').val()
       expMonth: $('#card_month').val()
       expYear: $('#card_year').val()
-    Stripe.createToken(card, subscription.handleStripeResponse)
+    Stripe.createToken(card, order.handleStripeResponse)
   
   handleStripeResponse: (status, response) ->
     if status == 200
-      $('#subscription_stripe_card_token').val(response.id)
-      $('#new_subscription')[0].submit()
+      $('#order_stripe_card_token').val(response.id)
+      $('#new_order')[0].submit()
     else
       $('#stripe_error').text(response.error.message)
       $('input[type=submit]').attr('disabled', false)

@@ -45,5 +45,5 @@ class Cart < ActiveRecord::Base
     errors.add :base, "There was a problem with your credit card."
     false
   end
-  
+
 end

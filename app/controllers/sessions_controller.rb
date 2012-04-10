@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       flash[:notice] = "You have entered an incorrect username or password"
       render 'new'
     else
-      redirect_to root_url
+       redirect_back_or_to(root_path, :notice => 'Login successful.') 
     end
   end
 
