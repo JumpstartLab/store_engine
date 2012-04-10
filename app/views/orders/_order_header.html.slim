@@ -1,0 +1,6 @@
+- if order.status == "pending"
+  h1 Cart for #{order.user_name}
+  = render partial: "order_head", locals: { order: order }
+- else
+  h1 Order for #{order.user_name}
+  = render partial: "order_head"

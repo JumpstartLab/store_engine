@@ -1,7 +1,7 @@
 doctype
 html
   head
-    title StoreEngine
+    title The Urban Cyclist
     /![if lt IE 9]
       | <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
     = stylesheet_link_tag    "application", :media => "all"
@@ -12,6 +12,6 @@ html
     = render partial: "shared/header"
     .container.main-content data-pjax-container=""
         .row
-          .span8 = yield
           = notice
+          .span8 = yield
           = render partial: "shared/cart"

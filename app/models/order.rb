@@ -24,4 +24,12 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def user_name
+    user.display_name
+  end
+
+  def user_email_address
+    user.email_address
+  end
+
 end

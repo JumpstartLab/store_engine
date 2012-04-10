@@ -1,12 +1,4 @@
-h1 Order for #{@order.user.full_name}
-#date= @order.user.email_address
-#date= @order.created_at
-#date= @order.amount
-#date= @order.status
-/! MAKE DIFFERENT TRANSITIONS FOR DIFFERENT ORDER STATUSES
-= link_to 'Transition', order_path(@order), :class => 'btn btn-mini btn-info'
-br/
-br/
+= render partial: "order_header", locals: {order: @order}
 table.table.table-striped
   tr
     th Product Name
@@ -14,12 +6,7 @@ table.table.table-striped
     th Unit Price
     th Subtotal
     th Actions
-  - @order.line_items.each do |li|
-    tr
-      td = li.product.title
-      td = li.quantity
-      td $#{li.clean_price}
-      td $#{li.subtotal}
-      td = link_to 'Remove', line_item_path(li), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
+  = render partial: "line_item", collection: @order.line_items
+
 
 = link_to "Check Out", "#", class: "btn btn-success"
