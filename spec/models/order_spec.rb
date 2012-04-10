@@ -12,13 +12,13 @@ describe Order do
 
   context "#total" do
     it "calculates the total price of its products" do
-      order.total.should == product.price * 3
+      order.total.should be_within(0.001).of(product.price * 3)
     end
   end
 
   context "#subtotal" do
     it "returns the subtotal of all similar order products" do
-      order.subtotal(product).should == product.price * 3     
+      order.subtotal(product).should be_within(0.001).of(product.price * 3)
     end
   end
 

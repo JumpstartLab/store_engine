@@ -2,19 +2,25 @@ class Product < ActiveRecord::Base
   before_save :clean_price!
 
   attr_accessible :description, :price, :title, :photo
-  validates_presence_of :description, :title
-  validates_uniqueness_of :title
-  validates_numericality_of :price
-  validates_format_of :price, 
-                      :with    => /^(\d+|\d+.\d+)$/,
-                      :message => "must contain digits"
-  validates_format_of :photo,
-                      :with => URI::regexp(%w(http https)),
-                      :message => "must be URL"
   has_many :order_items
   has_many :orders, :through => :order_items
   has_many :product_categories
   has_many :categories, :through => :product_categories
+  validates :title, :uniqueness => true,
+            :presence => true
+  validates :description, :presence => true
+  validates :price, 
+            :numericality => true,
+            :format => {
+              :with => /^(\d+|\d+.\d+)$/,
+              :message => "must contain digits"
+            }
+  validates :photo,
+            :allow_blank => true,
+            :format => {
+              :with => URI::regexp(%w(http https)),
+              :message => "must be URL"
+            }        
 
   def clean_price!
     price = self.price

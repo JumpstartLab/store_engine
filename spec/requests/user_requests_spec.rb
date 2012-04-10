@@ -22,11 +22,19 @@ describe User do
       fill_in "Price", :with => price
       fill_in "Photo", :with => photo
 
-      lambda { 
-        click_button "Create Product" 
-      }.should change(Product.all, :count).by(1)
+      expect {
+       click_button "Create Product" 
+      }.to change{ Product.all.count }.by(1)
 
-      Product.find(product.id).should be product
+      Product.find_by_title(title).should_not be_nil
     end
   end
+
+  context "an unauthenticated user" do
+    it "can't create new products" do
+      visit new_product_path
+      page.should have_content("Products")
+      page.should have_content("Access denied. Please login.")
+    end
+  end  
 end
