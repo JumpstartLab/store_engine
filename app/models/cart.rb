@@ -1,4 +1,5 @@
 class Cart < ActiveRecord::Base
+  belongs_to :user
   has_many :line_items, dependent: :destroy 
 
   def add_product(product_id)
