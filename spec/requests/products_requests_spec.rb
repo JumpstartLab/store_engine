@@ -25,19 +25,16 @@ describe "Products Requests" do
   end
 
   context "when I create a product" do
-    let!(:category) { Fabricate(:category, :name => "Apples") }
-    let!(:category2) { Fabricate(:category, :name => "Bananas") }
+    let!(:category) { Fabricate(:category) }
+    let!(:category2) { Fabricate(:category) }
 
     it "saves a new product" do
       visit new_product_path
       fill_in "Title", :with => "Test product"
       fill_in "Description", :with => "Test description"
       fill_in "Price", :with => "100.00"
-      puts category.inspect
-      puts category2.inspect
 
-      check "Bananas"
-      save_and_open_page
+      check "category[#{category2.name}]"
 
       click_button "Create Product"
       click_link "Test product"

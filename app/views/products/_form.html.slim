@@ -11,9 +11,7 @@
   | Categories:
   p
   - @categories.each do |category|
-    / = check_box_tag("category[]", category.id)
-    / = label_tag("category[]", category.name)
-    = check_box_tag(category.name, category.id)
-    = label_tag("category[]", category.name)
-    br
+     = check_box_tag("category[#{category.name}]", category.id)
+     = label_tag("category[#{category.name}]", category.name)
+     br
   = f.submit
