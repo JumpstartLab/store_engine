@@ -2,11 +2,9 @@
 
 <div id="cart">
 
-<div> <%= params.inspect %> </div>
-<div> <%= session.inspect %> </div>
-
 <% if cart.cart_products.any? %>
   <%= render :partial => "carts/cart_table" %>
+  <%= link_to "Place Order", place_order_path %>
 <% else %>
   <p>Your cart is empty! Don't do Worace's Workshop like that. Go shop!</p>
 <% end %>
