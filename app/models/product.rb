@@ -32,4 +32,12 @@ class Product < ActiveRecord::Base
       save
     end
   end
+
+  def image
+    if !self.photo_url || self.photo_url = ""
+      "/icon.png"
+    else
+      self.photo_url
+    end
+  end
 end

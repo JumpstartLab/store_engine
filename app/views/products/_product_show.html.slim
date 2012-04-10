@@ -1,9 +1,6 @@
 div id="products" class="span7"
   .span3
-    - if !product.photo_url || product.photo_url = ""
-      = image_tag("#{root_url}icon.png", class: "photo_sub")
-    - else
-      = image_tag product.photo_url
+    = image_tag product.image, class: "photo_sub"
   .span3
     h3 = link_to product.title, product_path(product), class: "product-title"
     = product.description
