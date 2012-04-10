@@ -14,4 +14,10 @@ FactoryGirl.define do
     password "foo"
     password_confirmation "foo"
   end
+
+  factory :simple_user do
+    name "Test User"
+    email   "fake@example.com"
+    password "foobar"
+  end
 end
