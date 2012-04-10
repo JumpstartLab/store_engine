@@ -1,19 +1,10 @@
 <h1>Your Cart </h1>
 
 <div id="cart">
-<table>
- <% @cart.cart_products.each do |cart_product| %>
-  <tr class="cart-product" id="cart_product_<%= cart_product.id %>">  
-    <td class="title"><%= cart_product.title %></td>
-    <td class="unit-price"><%= cart_product.unit_price %></td>
-    <td class="quantity"><%= cart_product.quantity %></td>
-    <td class="subtotal"><%= cart_product.total %></td>
-    <td><%= link_to "remove", cart_product_path(cart_product), :method => :delete %></td>
-  </tr>
- <% end %>
-  <tr id="total">
-    <td ><%= cart.total %></td>
-  </tr>
-</div>
-<%= link_to "Place Order", :controller => "orders", :action => "create" %>
+
+<% if @cart.cart_products.any? %>
+  <%= render :partial => "carts/full_table" %>
+<% else %>
+  <p>Your cart is empty! Don't do Worace's Workshop like that. Go shop!</p>
+<% end %>
 <%= link_to "Continue Shopping", products_path %>
