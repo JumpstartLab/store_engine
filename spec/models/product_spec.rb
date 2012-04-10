@@ -29,4 +29,41 @@ describe Product do
       end
     end
   end
+
+  describe "#price" do
+    context "when price is 50 cents" do
+      it "stores price of 50 cents" do
+        product = Product.new(:title => "Foo", :description => "", :price => ".50")
+        product.price.should == Money.new(50, "USD")
+      end
+    end
+
+    context "When price is an empty string" do
+      it "stores price as 0.00" do
+        product = Product.new(:title => "Foo", :description => "", :price => "")
+        product.price.should == Money.new(0, "USD")
+      end
+    end
+
+    context "When price is $1000" do
+      it "stores price as 1000.00" do
+        product = Product.new(:title => "Foo", :description => "", :price => "1000")
+        product.price.should == Money.new(100000, "USD")
+      end
+    end
+
+    context "When price is $10.65" do
+      it "stores price as 10.65" do
+        product = Product.new(:title => "Foo", :description => "", :price => "10.65")
+        product.price.should == Money.new(1065, "USD")
+      end
+    end
+
+    context "When price is $10.0" do
+      it "stores price as 10.00"
+    #     product = Product.new(:title => "Foo", :description => "", :price => "10.0")
+    #     product.price.should == Money.new(1000, "USD")
+    #   end
+    end
+  end
 end
