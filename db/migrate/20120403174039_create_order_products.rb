@@ -4,6 +4,7 @@ class CreateOrderProducts < ActiveRecord::Migration
       t.references :order, :null => false
       t.references :product, :null => false
       t.integer :price_in_cents
+      t.integer :quantity, :default => 1
       
       t.timestamps
     end
