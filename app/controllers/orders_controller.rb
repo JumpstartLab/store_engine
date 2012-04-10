@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :skip_mini_cart
   before_filter :find_order, only: [:show, :destroy]
+  before_filter :require_login, only: :create
 
   def show
 
@@ -15,17 +16,14 @@ class OrdersController < ApplicationController
   end
 
   def create
-    if current_user
-      @order = current_user.orders.create!(status: 'Pending')
-      current_cart.cart_items.each do |cart_item|
-        @order.order_items.create(product_id: cart_item.product_id,
-                                  quantity: cart_item.quantity)
-      end
-      current_cart.destroy
-    else
-      flash[:error] = "You must sign in to place an order."
-      redirect_to login_path
+    @order = current_user.orders.create!(status: 'Pending')
+    @order.attach_addresses(params)
+    current_cart.cart_items.each do |cart_item|
+      @order.order_items.create(product_id: cart_item.product_id,
+        quantity: cart_item.quantity)
     end
+    current_user.update_addresses(params)
+    current_cart.destroy
   end
 
   def destroy

@@ -1,4 +1,3 @@
-<%= form_for @user do |f| %>
   <%= f.label :full_name %><br/>
   <%= f.text_field :full_name %><br/>
   <%= f.label :display_name %><br/>
@@ -9,9 +8,6 @@
   <%= f.password_field :password %><br/>
   <%= f.label :password %><br/>
   <%= f.password_field :password_confirmation %><br/>
-  <%= f.label :billing_address %><br/>
-  <%= f.text_field :billing_address %><br/>
-  <%= f.label :shipping_address %><br/>
-  <%= f.text_field :shipping_address %><br/>
+  <%= render partial: "address_fields", locals: {f: f} %>
   <%= f.submit %>
-<% end %>
+

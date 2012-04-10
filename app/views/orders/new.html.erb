@@ -17,6 +17,16 @@
 
 <%= link_to "Continue shopping", products_path %>
 
+<% if current_user %>
+
 <%= form_tag orders_path do %>
+  <%= label_tag :billing_address %><br/>
+  <%= text_field_tag :billing_address, current_user.billing_address %><br/>
+  <%= label_tag :shipping_address %><br/>
+  <%= text_field_tag :shipping_address, current_user.shipping_address %><br/>
   <%= submit_tag "Place Order" %>
 <% end %>
+
+<% else %>
+<p>You must be <%= link_to "logged in", login_path %> to place an order.</p>
+<% end%>

@@ -1,1 +1,3 @@
-<%= render "form" %>
+<%= form_for @user do |f| %>
+  <%= render "fields", locals: {f: f} %>
+<% end %>

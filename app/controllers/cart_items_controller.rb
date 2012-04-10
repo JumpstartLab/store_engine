@@ -21,7 +21,7 @@ class CartItemsController < ApplicationController
   def decrease
     if @cart_item
       @cart_item.update_attributes(quantity: @cart_item.quantity - 1)
-      @cart_item.destroy if @cart_item.quantity == 0
+      @cart_item.destroy if @cart_item.quantity <= 1
     end
     redirect_to request.referer
   end

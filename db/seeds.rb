@@ -16,3 +16,4 @@ u1 = User.create(full_name: "Mark Tabler", email: "a@b.com", password: "asdfasdf
 u2 = User.create(full_name: "Charles Strahan", email: "b@c.com", password: "asdfasdf", password_confirmation: "asdfasdf")
 u3 = User.create(full_name: "Happy Admin", email: "admin@store.com", password: "asdfasdf", password_confirmation: "asdfasdf")
 u3.update_attribute(:admin, true)
+u3.update_attributes(billing_address: "My Billing Address", shipping_address: "My Shipping Address")

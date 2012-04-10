@@ -9,4 +9,14 @@ class User < ActiveRecord::Base
   def admin?
     admin
   end
+
+  def update_addresses(params)
+    if shipping_address != params[:shipping_address]
+      update_attributes(shipping_address: params[:shipping_address])
+    end
+    if billing_address != params[:billing_address]
+      update_attributes(billing_address: params[:billing_address])
+    end
+  end
+
 end

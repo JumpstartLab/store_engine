@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :user_id
+  attr_accessible :user_id, :status, :billing_address, :shipping_address
   has_many :order_items, :dependent => :destroy
   belongs_to :user
 
@@ -21,6 +21,12 @@ class Order < ActiveRecord::Base
 
   def cancellable?
     !cancelled? && !shipped?
+  end
+
+  def attach_addresses(params)
+    update_attributes(shipping_address: params[:shipping_address],
+                       billing_address: params[:billing_address])
+    
   end
 
 end
