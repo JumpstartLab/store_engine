@@ -62,7 +62,7 @@ describe "User Requests" do
       fill_in "Password", :with => user.password
       click_link_or_button "sign_in_button"
       visit user_path(user)
-      within ".span8" do
+      within ".main-content" do
 
         click_link_or_button "Edit"
       end

@@ -10,8 +10,8 @@ html
     meta content="width=(device-width,)initial-scale=1.0" name="viewport"
   body
     = render partial: "shared/header"
-    .container.main-content data-pjax-container=""
+    .container data-pjax-container=""
         .row
           = notice
-          .span8 = yield
+          .span8.main-content = yield
           = render partial: "shared/cart", locals: {user: current_user}
