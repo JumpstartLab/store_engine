@@ -33,3 +33,8 @@
 .center {
   text-align: center;
 }
+
+.search { 
+  margin: 10px; 
+  margin-left: 20px;
+}
