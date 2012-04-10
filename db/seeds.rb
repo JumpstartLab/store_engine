@@ -59,3 +59,6 @@ order_items = OrderItem.create([{ quantity: 10,
   product_id: products[2].id,
   order_id: orders.first.id}])
 
+category = Category.create( title: "Male")
+category = Category.create( title: "Female")
+
