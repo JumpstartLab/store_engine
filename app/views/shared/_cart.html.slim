@@ -1,17 +1,18 @@
 .span3
-  h2 Cart
-  - if current_user && current_user.pending_order
-    - current_user.pending_order.line_items.each do |li|
+  h2 Shopping Cart
+  - if user && user.pending_order
+    / this is a patch until non-users can add to cart
+    - cart = user.pending_order
+    - cart.line_items.each do |li|
       p
-        = li.product.title
-        | $#{li.clean_price}
-        | *
-        = li.quantity
-        | $#{li.subtotal}
+        #cart_item_title = link_to li.product.title, line_item_path(li)
+        #cart_item_unit #{li.quantity} * #{number_to_currency(li.price)} ea
+        #cart_item_subtotal = number_to_currency(li.subtotal)
         = link_to 'Remove', line_item_path(li), :method => :delete, :class => 'btn btn-mini btn-danger'
-    p $ #{current_user.pending_order.amount}
     p
-      = link_to "View Cart", order_path(current_user.pending_order), class: "btn"
+      = number_to_currency(cart.amount)
+    p
+      = link_to "View Cart", order_path(cart), class: "btn"
       = link_to "Check Out", "#", class: "btn btn-success"
   - else
     = "No items in your cart"

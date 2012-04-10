@@ -14,4 +14,4 @@ html
         .row
           = notice
           .span8 = yield
-          = render partial: "shared/cart"
+          = render partial: "shared/cart", locals: {user: current_user}

@@ -14,4 +14,12 @@ class User < ActiveRecord::Base
     orders.select{|o| o if o.status == "pending"}.first
   end
 
+  def has_pending_order?
+    if pending_order != nil
+      true
+    else
+      false
+    end
+  end
+
 end

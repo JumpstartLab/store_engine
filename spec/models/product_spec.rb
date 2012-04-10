@@ -57,13 +57,6 @@ describe Product do
       end
     end
   end
-  describe "#display_price" do
-    let(:product) { Fabricate(:product) }
-    it "takes a float and returns a big decimal with 2 decimal places" do
-      product.display_price.should == BigDecimal.new(product.price,2)
-    end
-  end
-
   describe "#category_ids=" do
     let(:first_cat) { Fabricate(:category) }
     let(:second_cat) { Fabricate(:category) }

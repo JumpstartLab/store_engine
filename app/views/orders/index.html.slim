@@ -1,8 +1,10 @@
 table.table.table-striped
-  tr
-    th Order ID
-    th Purchaser
-    th Amount
-    th Status
-    th Actions
-  = render partial: "order", collection: @orders
+  thead
+    tr
+      th Order ID
+      th Purchaser
+      th Amount
+      th Status
+      th Actions
+  tbody
+    = render partial: "order", collection: @orders

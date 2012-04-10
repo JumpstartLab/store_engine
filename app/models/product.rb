@@ -14,10 +14,6 @@ class Product < ActiveRecord::Base
     [id, title.downcase.split(" ")].join("-")
   end
 
-  def display_price
-    BigDecimal.new(price.to_s,2)
-  end
-
   def create_new_category(params)
     raise params.inspect
   end
