@@ -1,37 +1,48 @@
 class ProductsController < ApplicationController
+  before_filter :product, :only => [:show, :edit, :update]
+  before_filter :categories, :only => [:new, :edit]
+
   def index
     @products = Product.all
   end
 
   def new
     @product = Product.new
-    @categories = Category.all
   end
 
   def create
-    product = Product.new(params[:product])
-    if params.has_key?(:category)
-      product.set_categories(params[:category].values)
-    end
-    product.save
+    @product = Product.new(params[:product])
+    set_categories
+    @product.save
     redirect_to products_path
   end
 
-  def show
-    @product = Product.find(params[:id])       
+  def show  
   end
 
   def edit
-    @product = Product.find(params[:id])
-    @categories = Category.all
   end
 
   def update
-    product = Product.find(params[:id])
-    product.update_attributes(params[:product])
-    if params.has_key?(:category)
-      product.set_categories(params[:category].values)
-    end
-    redirect_to product_path(product)
+    @product.update_attributes(params[:product])
+    set_categories
+    redirect_to product_path(@product)
   end
+
+  private
+
+  def set_categories
+    if params.has_key?(:category)
+      @product.set_categories(params[:category].values)
+    end
+  end
+
+  def product
+    @product = Product.find(params[:id])
+  end
+
+  def categories
+    @categories  = Category.all
+  end
+
 end
