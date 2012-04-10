@@ -22,7 +22,6 @@ describe "Using the shopping cart" do
         end
     
         it "takes me to my cart" do
-          # save_and_open_page
           page.should have_content("Your Cart")
         end
 
@@ -65,7 +64,7 @@ describe "Using the shopping cart" do
       end
 
       it "returns me to the cart after removing" do
-        within "#product_#{product.id}" do
+        within ".cart-product" do
           click_link_or_button "remove"
         end
         page.should have_content("Your Cart")
@@ -74,7 +73,6 @@ describe "Using the shopping cart" do
       it "removes the product from the cart" do
         click_link_or_button "remove"
         within "#cart" do
-          #save_and_open_page
           page.should_not have_content(product.title)
         end
       end
@@ -125,11 +123,31 @@ describe "Using the shopping cart" do
       click_button 'Log in'
 
       visit "/cart"
-      # save_and_open_page
 
       within "#cart" do
         page.should have_content(product.title)
       end  
     end
+  end
+
+  context "when viewing the cart" do
+
+    before (:each) do
+      visit product_path(product)
+      click_link_or_button "add to cart"
+      visit product_path(new_product)
+      click_link_or_button "add to cart"
+    end
+
+    it "shows the total" do
+      page.should have_selector("#total")
+    end
+
+    it "shows the subtotals for each product" do
+      within ".cart-product" do
+        page.should have_selector(".subtotal")
+      end
+    end
+
   end
 end

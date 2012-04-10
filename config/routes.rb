@@ -9,18 +9,21 @@ StoreEngine::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
+
+  match "place_order", :to => "orders#create", :as => "place_order"
+  match "process_order", :to => "orders#update", :as => "process_order"
   
   resources :users
   resources :sessions
   resources :products
   resources :orders
   resources :categories
+  resources :cart_products, :only => [:create, :destroy]
 
   resource :dashboard, :only => :show
   resource :cart do
     get 'show', :on => :member
     put 'update', :on => :member
-    delete 'delete_product', :on => :member
   end
 
   # The priority is based upon order of creation:

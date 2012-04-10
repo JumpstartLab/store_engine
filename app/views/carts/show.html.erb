@@ -1,11 +1,19 @@
 <h1>Your Cart </h1>
 
 <div id="cart">
- <% @cart.products.each do |product| %>
-  <p class="cart_product" id="product_<%= product.id %>" >
-    <%= product.title %>
-    <%= link_to "remove", delete_product_cart_path(:product_id => product), :method => :delete %>
-  </p>
+<table>
+ <% @cart.cart_products.each do |cart_product| %>
+  <tr class="cart-product" id="cart_product_<%= cart_product.id %>">  
+    <td class="title"><%= cart_product.title %></td>
+    <td class="unit-price"><%= cart_product.unit_price %></td>
+    <td class="quantity"><%= cart_product.quantity %></td>
+    <td class="subtotal"><%= cart_product.total %></td>
+    <td><%= link_to "remove", cart_product_path(cart_product), :method => :delete %></td>
+  </tr>
  <% end %>
+  <tr id="total">
+    <td ><%= cart.total %></td>
+  </tr>
 </div>
+<%= link_to "Place Order", :controller => "orders", :action => "create" %>
 <%= link_to "Continue Shopping", products_path %>
