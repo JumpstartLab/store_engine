@@ -1,5 +1,8 @@
 class ProductsController < ApplicationController
 
+  before_filter :authorize, only: [:edit, :update]
+  before_filter :admin_authorize, only: [:destroy]
+  
   def index
     @products = Product.all
   end

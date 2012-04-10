@@ -7,5 +7,6 @@ class Product < ActiveRecord::Base
   validates_uniqueness_of :title
 
   has_many :order_items
+  has_many :categories, :through => :product_categories
   has_many :orders, through: :order_items
 end

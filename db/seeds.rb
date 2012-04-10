@@ -23,18 +23,36 @@ products = Product.create([{ title: 'Stiletto',
                              price: 10000, 
                         image_link: "http://www.shoewawa.com/assets_c/2011/09/back-to-the-future-shoes-thumb-435x333-120222.jpg"}])
 
-admin = User.create([{ full_name: "Admin",
-                        password: "admin",
-                        password_confirmation: "admin",
-                        email: "admin@admin.com"}])
+admin_user = User.new(  full_name: "Chad Fowler",
+                        password: "hungry",
+                        password_confirmation: "hungry",
+                        email: "chad.fowler@livingsocial.com",
+                        username: "SaxPlayer" )
+
+admin_user.admin = true
+admin_user.save
+
+User.create(  full_name: "Matt Yoho",
+              password: "hungry",
+              password_confirmation: "hungry",
+              email: "matt.yoho@livingsocial.com" )
+
+User.create(  full_name: "Jeff Casimir",
+              password: "hungry",
+              password_confirmation: "hungry",
+              email: "jeff.casimir@livingsocial.com",
+              username: "j3" )
 
 orders = Order.create([{ status: "pending", total_price: 5000},
                       { status: "shipped", total_price: 10000}])
 
-order_items = OrderItem.create([{ quantity: 10, 
+order_items = OrderItem.new( 
+  quantity: 10, 
   unit_price: 50, 
   product_id: products.first.id,
-  order_id: orders.first.id}])
+  order_id: orders.first.id )
+
+order_items.save
 
 order_items = OrderItem.create([{ quantity: 10, 
   unit_price: 50, 

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    user = User.find_by_email(params[:email])
+    user = lookup_by_email_or_username(params[:account_name])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       redirect_to root_url, notice: "Logged in!"
@@ -13,5 +13,15 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     redirect_to root_url, notice: "Logged out!"
+  end
+
+  private
+
+  def lookup_by_email_or_username(account_name)
+    u = User.find_by_email(account_name)
+    if u.nil?
+      u = User.find_by_username(account_name)
+    end
+    u
   end
 end
