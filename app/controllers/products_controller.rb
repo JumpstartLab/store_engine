@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   load_and_authorize_resource
-  before_filter :lookup_product, :only => [:show, :edit, :destroy, :update]
+  before_filter :lookup_product, :only => [:show, :edit, :update]
 
 
   def index
@@ -8,11 +8,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-  end
-
-  def destroy
-    @product.destroy
-    redirect_to products_path
   end
 
   def new

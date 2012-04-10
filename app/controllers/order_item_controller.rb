@@ -1,5 +1,5 @@
 class OrderItemController < ApplicationController
-
+  load_and_authorize_resource
   before_filter :lookup_order_item, :only => [:show, :edit, :destroy, :update]
 
   def show

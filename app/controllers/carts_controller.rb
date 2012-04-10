@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
   # GET /carts
   # GET /carts.json
+  load_and_authorize_resource
   def index
     @carts = Cart.all
 

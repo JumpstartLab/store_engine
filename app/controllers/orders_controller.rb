@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  load_and_authorize_resource
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
   
   def index
