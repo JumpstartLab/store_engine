@@ -1,4 +1,6 @@
 StoreEngine::Application.routes.draw do
+  get "categories/new"
+
   resources :users
   resource  :cart, only: [:show, :update]
   resources :sessions
