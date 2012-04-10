@@ -16,3 +16,6 @@
 
 # Ignore all coverage files.
 /coverage
+
+# Ignore Stripe keys
+/config/initializers/stripe.rb
