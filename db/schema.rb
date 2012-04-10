@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(:version => 20120410173655) do
     t.text     "description"
     t.integer  "price"
     t.string   "photo"
-    t.integer  "category_id"
     t.boolean  "retired",     :default => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
