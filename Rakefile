@@ -13,5 +13,11 @@ begin
 
   RSpec::Core::RakeTask.new("spec:acceptance") do |t|
     t.rspec_opts = "--tag acceptance"
+  
+
+  task :import_stock do
+    puts "Importing stock..."
+  end
+
   end
 end

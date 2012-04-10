@@ -27,7 +27,7 @@ describe "Using the shopping cart" do
 
       it "shows the subtotal" do
         within("#cart") do
-          page.should have_content(product.price.to_s)
+          page.should have_content(product.price)
         end
       end
 

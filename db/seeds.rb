@@ -3,5 +3,6 @@
 #
 # Examples:
 #
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+  User.create( name: 'Matt Yoho', email: 'matt.yoho@livingsocial.com', password: 'hungry')
+  User.create( name: 'Jeff', display_name: 'j3', email: 'jeff.casimir@livingsocial.com', password: 'hungry')
+  User.create( name: 'Chad Fowler', display_name: 'SaxPlayer', email: 'chad.fowler@livingsocial.com', password: 'hungry')

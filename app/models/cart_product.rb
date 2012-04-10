@@ -9,7 +9,7 @@ class CartProduct < ActiveRecord::Base
   end
 
   def subtotal
-    self.quantity * product.price
+    product.price * self.quantity
   end
 
   def price

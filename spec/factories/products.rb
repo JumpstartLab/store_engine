@@ -2,12 +2,10 @@
 
 FactoryGirl.define do
 
-  sequence :p_name do |n|
-    "Product#{n}"
-  end
+  sequence(:name) { |n| "Mitten #{n}" }
 
   factory :product do
-    name "Mitten"
+    name
     description "A very well-crafted mitten."
     price_cents 1500
     photo "http://www.wearyourbeer.com/images/David_Goliath_Weenie_Protect_Blue_Shirt2.jpg"

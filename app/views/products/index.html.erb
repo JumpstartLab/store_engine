@@ -10,22 +10,8 @@
     <th>Buy it!</th>
   </tr>
 
-<% @products.each do |product| %>
-  <tr>
-    <td><%= link_to product.name, product %></td>
-    <td><%= product.description %></td>
-    <td><%= product.price %></td>
-    <td><%= image_tag(product.photo, :size => "50x50") %></td>
-    <td><ul><% product.categories.each do |category| %>
-        <div id="<%= dom_id category %>">
-          <li><%= category.name %></li>
-        </div>
-        <% end %></ul>
-    <td><%= link_to 'Add to cart', new_cart_product_path(:product_id => product) %></td>
-    <!--<td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete %></td>-->
-  </tr>
-<% end %>
+<%= render :partial => "product", :collection => @products %>
+
 </table>
 
 <br />
