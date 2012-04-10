@@ -6,6 +6,7 @@ class Order < ActiveRecord::Base
 
   validates :user, presence: true
   validates :order_items, presence: true
+  validates :status, inclusion: { in: ["pending", "cancelled", "paid", "shipped", "returned"] }
 
   def total_price
     order_items.map(&:line_price).inject(:+)
