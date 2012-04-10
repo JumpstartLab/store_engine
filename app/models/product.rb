@@ -1,7 +1,9 @@
 class Product < ActiveRecord::Base
   acts_as_paranoid
 
-  attr_accessible :name, :description, :categories, :category_ids
+  validates :photo_url, url: true
+
+  attr_accessible :name, :description, :categories, :category_ids, :photo_url
   attr_accessible :price_in_cents, :price, as: :admin
 
   has_many :orders

@@ -1,9 +1,14 @@
 <%= form_for @product, :url => [:admin, @product] do |f| %>
+  <%= error_messages_for :product %>
+
   <%= f.label :name %>
   <%= f.text_field :name %><br />
 
   <%= f.label :price %>
   <%= f.text_field :price %><br />
+
+  <%= f.label :photo_url %>
+  <%= f.text_field :photo_url %><br />
 
   <% Category.all.each do |category| -%>
     <div>

@@ -1,4 +1,14 @@
 Name:        <%= @product.name %><br />
 Price:       <%= @product.price.format %><br />
 Categories:  <%= @product.categories.map(&:name).join(", ") %><br />
+
+Photo:       <br />
+
+<% if @product.photo_url -%>
+  <%= image_tag @product.photo_url %>
+<% else -%>
+  <%= image_tag "no_image_available.png", size: "150x150" %>
+<% end -%>
+<br />
+
 <%= link_to "Edit", edit_admin_product_path(@product) %>
