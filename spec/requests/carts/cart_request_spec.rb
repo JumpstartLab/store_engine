@@ -81,10 +81,7 @@ describe "Using the shopping cart" do
 
   context "when returning to a user cart" do
     before(:each) do
-      visit "/login"
-      fill_in 'email', :with => user.email
-      fill_in 'password', :with => 'password'
-      click_button 'Log in'
+      login(user)
     end
     context "and the user adds something to the cart" do
       before (:each) do
@@ -94,19 +91,15 @@ describe "Using the shopping cart" do
       end
 
       it "finds the same cart after logout" do
-        visit "/login"
-        fill_in 'email', :with => user.email
-        fill_in 'password', :with => 'password'
-        click_button 'Log in'
-
+        login(user)
         visit product_path(new_product)
         click_link_or_button "add to cart"
 
-        within "#cart" do
+        within ".table" do
           products.each do |product|
             page.should have_content(product.title)
           end
-        end       
+        end
       end
     end
   end
@@ -117,11 +110,7 @@ describe "Using the shopping cart" do
       click_link_or_button "add to cart"
     end
     it "keeps the product in the users cart after login" do
-      visit "/login"
-      fill_in 'email', :with => user.email
-      fill_in 'password', :with => 'password'
-      click_button 'Log in'
-
+      login(user)
       visit "/cart"
 
       within "#cart" do

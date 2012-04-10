@@ -7,17 +7,17 @@ class ApplicationController < ActionController::Base
     redirect_to login_url, :alert => "First login to access this page."
   end
 
-  helper_method :cart
-
   private
-
 
   def cart
     @cart ||= find_or_create_cart
   end
 
   def find_or_create_cart
-    if session[:cart_id]
+    if current_user
+      session[:cart_id] = current_user.cart.id
+      Cart.find_by_id(session[:cart_id])
+    elsif session[:cart_id]
       Cart.find_by_id(session[:cart_id])
     else
       Cart.create.tap{ |c| session[:cart_id] = c.id }
@@ -28,6 +28,6 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by_id(session[:user_id])
   end
 
-  helper_method :current_user
+  helper_method :current_user, :cart
 
 end

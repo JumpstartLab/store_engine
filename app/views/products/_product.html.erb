@@ -1,0 +1,10 @@
+<div class="product span4" id="product_<%= product.id %>">
+  <div class="product_container">
+    <div class="product_title">
+      <h3><%= link_to product.title, product_path(product) %></h3>
+    </div>
+    <div class="product_image">
+      <%= link_to image_tag(product.image_url(:thumb).to_s), product_path(product) if product.image? %>
+    </div>
+  </div>
+</div>

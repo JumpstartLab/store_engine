@@ -1,0 +1,7 @@
+<tr class="cart-product" id="cart_product_<%= cart_product.id %>">  
+  <td class="title"><%= cart_product.title %></td>
+  <td class="unit-price"><%= cart_product.unit_price %></td>
+  <td class="quantity"><%= cart_product.quantity %></td>
+  <td class="subtotal"><%= cart_product.total %></td>
+  <td><%= link_to "remove", cart_product_path(cart_product), :method => :delete %></td>
+</tr>
