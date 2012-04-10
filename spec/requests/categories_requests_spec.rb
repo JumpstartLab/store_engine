@@ -4,9 +4,9 @@ describe "Categories Requests" do
   let!(:category) { Fabricate(:category, :name => "Apples") }
   let!(:category2) { Fabricate(:category, :name => "Oranges") }
 
-  context "GET index" do
+  context "When I visit the categories index page" do
     before(:each) do
-      visit '/categories'
+      visit categories_path
     end
 
     it "shows Product Categories header" do
@@ -35,6 +35,15 @@ describe "Categories Requests" do
       fill_in 'Name', :with => "Grapes"
       click_button "Update Category"
       page.should have_content "Grapes"
+    end
+  end
+
+  context "When I add a category" do
+    it "shows the new category" do
+      visit new_category_path
+      fill_in "Name", :with => "Bananas"
+      click_button("Create Category")
+      page.should have_content("Bananas")
     end
   end
 end
