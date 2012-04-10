@@ -16,6 +16,9 @@
       <%= link_to "Log In", new_session_path %>
     <% end %>
 
+    | <%= link_to "Cart", cart_path %> 
+    | <%= link_to "Products", '/' %>
+
     <br />
     <% if current_user %>
       <%= "Hey! You are logged in." %>

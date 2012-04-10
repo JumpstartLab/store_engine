@@ -1,12 +1,19 @@
 <h1>Your Cart</h1>
+
+<% if @cart.cart_items.empty? %>
+<h3>Your cart is empty. Buy stuff!</h3>
+<% else %>
+<h3>You have <%= @cart.quantity %> items in your cart.</h3>
+<% end %>
 <div id="cart">
   <ul>
     <% @cart.cart_items.each do |item| %>
       <li><%= item.product.title %> | 
-        Individual price: <%= item.product.price %> | 
-        Quantity: <%= item.quantity %> | <%= link_to "Edit Quantity", edit_cart_item_path(item) %> | Total Price: <%= item.price %></li>
+        Individual price: <%= number_to_currency(item.individual_price) %> | 
+        Quantity: <%= item.quantity %> | <%= link_to "Edit Quantity", edit_cart_item_path(item) %> 
+        | Total Price: <%= number_to_currency(item.price) %></li>
     <% end %>
   </ul>
 
-  <h3>Total Price: <%= @cart.total_price %></h3>
+  <h3>Total Price: <%= number_to_currency(@cart.total_price) %></h3>
 </div>

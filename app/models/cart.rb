@@ -24,4 +24,10 @@ class Cart < ActiveRecord::Base
       result += item.price
     end
   end
+
+  def quantity
+    cart_items.inject(0) do |result, item|
+      result += item.quantity
+    end
+  end
 end

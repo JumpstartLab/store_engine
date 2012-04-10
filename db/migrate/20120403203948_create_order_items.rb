@@ -4,7 +4,7 @@ class CreateOrderItems < ActiveRecord::Migration
       t.integer   :product_id
       t.integer   :order_id
       t.integer   :quantity
-      t.integer   :unit_price
+      t.decimal   :unit_price, :precision => 12, :scale => 2
       t.timestamps
     end
   end
