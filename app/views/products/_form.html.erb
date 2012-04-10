@@ -6,9 +6,13 @@
       <% categories_array = Category.all.map { |category| [category.name, category.id] } %>
       <%= f.label :category_id, :class => 'control-label' %>
       <div class="controls">
-        <%= f.select :category_id, options_for_select(categories_array) %>
+        <%= f.select :category_ids, options_for_select(categories_array), { :size => 5, :selected => 0 }, { :multiple => true }%>
+        <%= link_to 'Create New Category', new_category_path, :class => 'btn btn-primary' %>
       </div>
     </div>
+    
+
+
 
     <div class="control-group">
       <%= f.label :title, :class => 'control-label' %>

@@ -1,4 +1,6 @@
 StoreEngine::Application.routes.draw do
+  resources :category_assignments
+
   resources :categories
 
   get "logout" => "sessions#destroy", :as => "logout"

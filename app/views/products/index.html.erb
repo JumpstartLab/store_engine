@@ -18,7 +18,7 @@
       <tr>
         <td><%= image_tag(product.photo) %></td>
         <td><%= link_to product.title, product_path(product) %></td>
-        <td><%= product.category.name %></td>
+        <td><%= product.category_list %></td>
         <td><%= product.description %></td>
         <td><%= sprintf("$%0.02f", product.price) %></td>
         <td>
@@ -34,4 +34,6 @@
 
 <% if can? :create, @product %>
 <%= link_to 'Create New Product', new_product_path, :class => 'btn btn-primary' %>
+<%= link_to 'Create New Category', new_category_path, :class => 'btn btn-primary' %>
+<%= link_to 'List Categories', categories_path, :class => 'btn btn-primary' %>
 <% end %>
