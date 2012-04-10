@@ -1,15 +1,16 @@
 div id==dom_id(product)
-      .span1
-        = image_tag product.image, class: "photo_sub"
-      .span3
-        = link_to product.title, product_path(product), class: "product-title"
-        .price $#{product.display_price}
-        - if current_user.pending_order
-            = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: current_user.pending_order.id, price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success'
-            p
-              = link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini'
-              = link_to 'Retire', product_path(product), :method => :retire, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-warning'
-              = link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
-        / - else
-        /   - order = Order.create(:user_id => current_user.id, :billing_method_id => current_user.billing_methods.first, :status => "pending")
-        /   = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: current_user.pending_order.id, price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success'
+  .span1
+    = image_tag product.image, class: "photo_sub"
+  .span3
+    = link_to product.title, product_path(product), class: "product-title"
+    .price $#{product.display_price}
+    - if current_user.pending_order
+        = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: current_user.pending_order.id, price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success'
+        p
+          = render partial: "category", collection: product.categories
+        p
+          = render partial: "admin_buttons", locals: {product: product}
+
+    / - else
+    /   - order = Order.create(:user_id => current_user.id, :billing_method_id => current_user.billing_methods.first, :status => "pending")
+    /   = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: current_user.pending_order.id, price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success'
