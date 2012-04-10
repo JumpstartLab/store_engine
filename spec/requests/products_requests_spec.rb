@@ -40,6 +40,7 @@ describe "Products Requests" do
 
         click_button "Create Product"
         click_link "Test product"
+
         page.should have_content("Test product")
         page.should have_content("Test description")
         page.should have_content("100.00")
@@ -123,6 +124,10 @@ describe "Products Requests" do
         click_button("Update Product")
         page.should have_content(category2.name)
         page.should_not have_content(category.name)
+      end
+
+      it "lists categories only once" do
+
       end
 
       context "and no categories are selected" do

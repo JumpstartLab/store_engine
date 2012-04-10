@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   def create
     product = Product.new(params[:product])
     if params.has_key?(:category)
-      product.categories << Category.find(params[:category].values)
+      product.set_categories(params[:category].values)
     end
     product.save
     redirect_to products_path
@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
     product = Product.find(params[:id])
     product.update_attributes(params[:product])
     if params.has_key?(:category)
-      product.categories << Category.find(params[:category].values)
+      product.set_categories(params[:category].values)
     end
     redirect_to product_path(product)
   end
