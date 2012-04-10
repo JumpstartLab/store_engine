@@ -13,13 +13,8 @@ class LineItemsController < ApplicationController
   end
 
   def create
-    order = Order.find(params[:line_item][:order_id])
-    if order.line_items.find_by_product_id(params[:line_item][:product_id])
-      line_item = order.line_items.find_by_product_id(params[:line_item][:product_id])
-      line_item.increment_quantity
-    else
-      line_item = LineItem.create(params[:line_item])
-    end
+    LineItem.increment_or_create_line_item(params[:line_item])
+
     redirect_to root_url
   end
 

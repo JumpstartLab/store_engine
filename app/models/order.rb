@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :billing_method
   has_many :line_items
+  has_many :products, through: :line_items
 
   def user
     User.find(user_id)
@@ -30,6 +31,14 @@ class Order < ActiveRecord::Base
 
   def user_email_address
     user.email_address
+  end
+
+  def has_product?(product_id)
+    if products.include? Product.find(product_id.to_i)
+      true
+    else
+      false
+    end
   end
 
 end
