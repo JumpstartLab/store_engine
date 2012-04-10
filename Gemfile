@@ -28,3 +28,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
 end
+
+group :test do
+  gem 'guard-spork'
+  gem 'spork'
+end
