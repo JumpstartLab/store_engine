@@ -1,8 +1,13 @@
 h1= @category.name
-ul
-  - @products.each do |product|
-    li
-      = link_to product.title, product_path(product)
-= link_to "Edit", edit_category_path
-= link_to "Destroy", category_path(@category), :method => :delete, confirm: "Delete \"#{@category.name}\"?"
-= link_to "Back to All Categories", categories_path
+table
+  tr
+    th Product Name
+    th Action
+  tbody
+    = render partial: "product", collection: @products
+br/
+- if admin?
+  p
+    = link_to "Edit", edit_category_path, class: "btn"
+    = link_to "Destroy", category_path(@category), :method => :delete, confirm: "Delete \"#{@category.name}\"?", class: "btn btn-danger"
+    = link_to "Back to All Categories", categories_path, class: "btn"

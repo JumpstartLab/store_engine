@@ -1,0 +1,6 @@
+tr
+  td = line_item.product.title
+  td = line_item.quantity
+  td = number_to_currency(line_item.price)
+  td = number_to_currency(line_item.subtotal)
+  td = link_to 'Remove', line_item_path(line_item), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'

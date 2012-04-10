@@ -11,6 +11,8 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rails'
 require 'action_controller/record_identifier'
+#want to make login process available to multiple pages
+# require '/spec/sessions_request_spec.rb'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -43,5 +45,6 @@ RSpec.configure do |config|
 
   config.include Rails.application.routes.url_helpers
   config.include ExampleData::Projects
+  config.include RequestHelpers::Login
 end
 

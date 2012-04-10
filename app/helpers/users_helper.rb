@@ -5,11 +5,14 @@ module UsersHelper
   end
 
   def current_user
-    if session[:user_id]
-      return User.find(session[:user_id])
-    # else
-    #   ## THIS IS EVIL DON"T DO THIS
-    #   User.all.last
+    return User.find(session[:user_id]) if logged_in?
+  end
+
+  def admin?
+    if current_user.present?
+      current_user.admin
+    else
+      false
     end
   end
 

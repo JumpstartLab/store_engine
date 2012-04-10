@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
-
+  # before_filter :require_admin
 
   def index
     @orders = Order.all

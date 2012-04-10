@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :lookup_user, :only => [:show, :edit, :destroy, :update]
-  before_filter :require_user, :except => [:new, :create]
+  before_filter :require_user, :only => [:show, :edit, :update]
+  before_filter :require_admin, :only => [:index, :destroy, :create]
 
   def index
     @users = User.all
@@ -15,10 +16,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    @notice = 'Product was successfully created.'
+    @notice = 'Welcome Aboard'
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_path(@user), notice: @notice }
+        session[:user_id] = @user.id
+        format.html { redirect_to root_url, notice: @notice }
       else
         format.html { render action: "new" }
       end
@@ -42,12 +44,6 @@ class UsersController < ApplicationController
 
   def lookup_user
     @user = User.find(params[:id])
-  end
-
-  def require_user
-    if session[:user_id] == nil
-      redirect_to root_url, :notice => "No way! You Need Admin Access"
-    end
   end
 
 end
