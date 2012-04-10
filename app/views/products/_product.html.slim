@@ -1,25 +1,24 @@
-table id="products" class="span7"
-  tr
-    td
-      - if !@product.photo_url || @product.photo_url = ""
-        = image_tag("#{root_url}icon.png", class: "photo_sub")
-      - else
-        = image_tag @product.photo_url
-    td
-      h3 = link_to @product.title, product_path(@product), id: "product-title"
-      = @product.description
-      br/
-      div id="price"
-        |$
-        = @product.price
-        = link_to "Buy Now", "#", :class => 'btn btn-success', :id => "buy"
-      p
-      - @product.categories.each do |cat|
-        = link_to cat.name, category_path(cat), :class => 'btn  btn-info'
-      p#product-id id: #{@product.id}
-      p created at: #{@product.created_at.to_date}
-  tr
-    td.form-buttons colspan=2
+div id="products" class="span7"
+  .span3
+    - if !@product.photo_url || @product.photo_url = ""
+      = image_tag("#{root_url}icon.png", class: "photo_sub")
+    - else
+      = image_tag @product.photo_url
+  .span3
+    h3 = link_to @product.title, product_path(@product), class: "product-title"
+    = @product.description
+    br/
+    .price
+      |$
+      = @product.price
+      = link_to "Add to Cart", "#", :class => 'btn btn-success', :id => "buy"
+    p
+    - @product.categories.each do |cat|
+      = link_to cat.name, category_path(cat), :class => 'btn  btn-info'
+    p#product-id id: #{@product.id}
+    p created at: #{@product.created_at.to_date}
+
+  .span7
       = link_to 'Back', products_path, :class => 'btn'
       = link_to 'Edit', edit_product_path(@product), :class => 'btn '
       = link_to 'Retire', product_path(@product), :method => :retire, :confirm => 'Are you sure?', :class => 'btn btn-warning'
