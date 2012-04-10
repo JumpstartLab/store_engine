@@ -15,4 +15,4 @@
 /tmp
 
 # Ignore converage folder
-/coverage
+coverage/
