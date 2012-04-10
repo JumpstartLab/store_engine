@@ -10,4 +10,7 @@
     %br
     %p= link_to "Add To Cart", cart_path(:product_id => @product.id), :method => :put, :class => 'btn btn-info'
     - if current_user && current_user.admin
-      %P= link_to "Delete item", product_path, :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger'
+      %br
+      .well
+        %a= link_to 'Edit item', edit_product_path(@product), :class => 'btn'
+        %a= link_to "Delete item", product_path(@product), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger'
