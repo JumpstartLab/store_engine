@@ -11,4 +11,10 @@ class User < ActiveRecord::Base
   validates_presence_of :name
   validates :display_name, length: { minimum: 2, maximum: 32 }, :unless => "display_name.blank?"
 
+  has_many :orders
+
+  def add_order(order)
+    self.orders << order
+  end
+
 end
