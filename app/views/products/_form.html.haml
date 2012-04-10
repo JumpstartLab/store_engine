@@ -1,0 +1,7 @@
+= simple_form_for @product do |f|
+  = f.input :name
+  = f.input :description, :input_html => { :rows => 10, :style => 'width: 300px' }
+  = f.input :price
+  = f.input :avatar
+  = f.association :categories, :as => :check_boxes
+  = f.submit 'Edit Product', :class => 'btn btn-primary'

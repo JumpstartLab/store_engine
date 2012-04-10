@@ -93,10 +93,11 @@ ActiveRecord::Schema.define(:version => 20120407152901) do
     t.string   "salt"
     t.string   "email"
     t.string   "display_name"
-    t.integer  "permission",       :default => 1
-    t.integer  "active",           :default => 1
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.integer  "permission",            :default => 1
+    t.integer  "active",                :default => 1
+    t.string   "stripe_customer_token"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
 end

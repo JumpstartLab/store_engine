@@ -1,10 +1,4 @@
 %h3 New Product
 %br
 
-= simple_form_for @product do |f|
-  = f.input :name
-  = f.input :description, :input_html => { :rows => 10, :style => 'width: 300px' }
-  = f.input :price, :input_html => { :value => '' }
-  = f.input :avatar
-  = f.association :categories
-  = f.submit 'Add Product', :class => 'btn btn-primary'
+= render :partial => 'form'

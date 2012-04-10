@@ -1,8 +1,4 @@
 %h3 Edit User
 %br
 
-= simple_form_for @user do |f|
-  = f.input :email
-  = f.input :password
-  = f.input :name
-  = f.submit 'Edit User', :class => 'btn btn-primary'
+= render :partial => 'form'

@@ -12,5 +12,5 @@ class ApplicationController < ActionController::Base
   def require_not_logged_in
     redirect_to root_url, :notice => 'Must not be logged in' unless !current_user
   end
-  
+
 end

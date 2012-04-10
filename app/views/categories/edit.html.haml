@@ -1,6 +1,4 @@
 %h3 Edit Category
 %br
 
-= simple_form_for @category do |f|
-  = f.input :name
-  = f.submit 'Edit Category', :class => 'btn btn-primary'
+= render :partial => 'form'

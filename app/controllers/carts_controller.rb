@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+
   before_filter :find_cart, :verify_user
 
   def update
@@ -14,7 +15,11 @@ class CartsController < ApplicationController
     redirect_to cart_path, :notice => "Product deleted."
   end
 
-  private
+  def checkout
+
+  end
+
+private
 
   def find_cart
     if current_user
@@ -37,4 +42,5 @@ class CartsController < ApplicationController
       end
     end
   end
+  
 end
