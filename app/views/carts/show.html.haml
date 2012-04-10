@@ -15,7 +15,7 @@
           %td= cp.price
           %td= link_to "Remove Item", cart_path(:product_id => cp.id), :method => :delete, :confirm => "Are you sure?"
       %tr{:id => "total"}
-        %td Total
+        %td.bold Total
         %td
-        %td= @cart.total_in_dollars
+        %td.bold= @cart.total_in_dollars
         %td

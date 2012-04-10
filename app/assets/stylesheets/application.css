@@ -38,3 +38,7 @@
   margin: 10px; 
   margin-left: 20px;
 }
+
+.bold {
+  font-weight: bold;
+}
