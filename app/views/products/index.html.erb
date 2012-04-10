@@ -14,7 +14,7 @@
   <tr>
     <td><%= link_to product.name, product %></td>
     <td><%= product.description %></td>
-    <td><%= number_to_currency(product.price) %></td>
+    <td><%= product.price %></td>
     <td><%= image_tag(product.photo, :size => "50x50") %></td>
     <td><ul><% product.categories.each do |category| %>
         <div id="<%= dom_id category %>">
