@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
   has_many :orders
 
   validates_confirmation_of :password
+  validates_length_of :display_name, in: 2..32, allow_blank: true
+  validates_presence_of :full_name
+  validates_format_of :email, with: /^.+@.+\..+$/
+  validates_uniqueness_of :email
 
   def admin?
     admin
