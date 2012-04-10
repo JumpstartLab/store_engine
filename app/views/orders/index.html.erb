@@ -6,12 +6,15 @@
    <li>
     Order Number: <%= link_to order.id, order_path(order) %> <br />
     Order Status: <%= order.status %>
-    <% if order.next_status %>
-      <%= form_for order do |f| %>
-        <%= f.hidden_field :status, :value => order.next_status %>
-        <%= f.submit "mark as #{order.next_status}" %>
-      <% end %>
-    <% end %> 
+    <% if can? :update, order %> 
+      <% if order.next_status %>
+        <%= form_for order do |f| %>
+          <%= f.hidden_field :status, :value => order.next_status %>
+          <%= f.submit "mark as #{order.next_status}" %>
+        <% end %>
+      <% end %> 
+    <% end %>
+
    </li>
 
  <% end %>

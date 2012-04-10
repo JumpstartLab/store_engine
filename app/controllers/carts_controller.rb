@@ -1,15 +1,6 @@
 class CartsController < ApplicationController
-  # GET /carts
-  # GET /carts.json
-  load_and_authorize_resource
-  def index
-    @carts = Cart.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @carts }
-    end
-  end
+  load_and_authorize_resource
 
   # GET /carts/1
   # GET /carts/1.json

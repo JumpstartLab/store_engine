@@ -3,9 +3,10 @@
     <legend><%= controller.action_name.capitalize %> /Product</legend>
 
     <div class="control-group">
+      <% categories_array = Category.all.map { |category| [category.name, category.id] } %>
       <%= f.label :category_id, :class => 'control-label' %>
       <div class="controls">
-        <%= f.text_field :category_id, :class => 'text_field' %>
+        <%= f.select :category_id, options_for_select(categories_array) %>
       </div>
     </div>
 

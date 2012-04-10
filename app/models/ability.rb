@@ -7,9 +7,10 @@ class Ability
       can :manage, :all
     else
       can :read, Product
-      can :read, LineItem
-      can :read, Cart
-      can :read, Order, :user_id => user.id
+      can :manage, LineItem
+      can :manage, Cart
+      can :create, Order
+      can :create, User
     end
   end
 end
