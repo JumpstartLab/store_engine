@@ -41,16 +41,25 @@ describe "Products Requests" do
   end
   context "delete" do
     before(:each) do
+      visit "/"
+      click_link "Sign-Up"
+      fill_in "Full name", with: "Test"
+      fill_in "Email address", with: "testing@test.com"
+      fill_in "Password", with: "test"
+      fill_in "Password confirmation", with: "test"
+      click_link_or_button "Create User"
+      click_link "Sign-In"
+      fill_in "Email", :with => "testing@test.com"
+      fill_in "Password", :with => "test"
+      click_link_or_button "sign_in_button"
       visit new_product_path
       fill_in "product_title", with: "Test"
       fill_in "product_description", with: "Test"
       fill_in "product_price", with: 1
       click_button 'Create Product'
       @count = Product.all.count
-      visit "/"
-      within "#product_1" do
-        click_link 'Destroy'
-      end
+      visit product_path(Product.all.last)
+      click_link 'Destroy'
     end
     it "deletes a product" do
       Product.all.count.should == @count - 1

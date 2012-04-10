@@ -1,4 +1,4 @@
-= form_for @line_item do |f|
+#products
   - @products.each do |product|
     div id==dom_id(product)
       .span1
@@ -6,33 +6,19 @@
           = image_tag("#{root_url}icon.png", class: "photo_sub")
         - else
           = image_tag product.photo_url
-      div.span3
-        = link_to product.title, product_path(product)
-        = product.description
-        = product.display_price
-        = product.created_at.to_date
-        = f.hidden_field :product_id, value: product.id
-        = f.hidden_field :price, value: product.price
-        - if current_user
-          - if current_user.pending_order
-            = f.hidden_field :order_id, value: current_user.pending_order.id
-            .control-group
-              = f.label :quantity, :class => 'control-label'
-              .controls
-                = f.text_field :quantity, :class => 'text_field quantity', value: "1"
-            = f.submit 'Add to Cart', :class => 'btn btn-success'
-          - else
-            - order = Order.create(:user_id => current_user.id, :billing_method_id => current_user.billing_methods.first, :status => "pending")
-            = f.hidden_field :order_id, value: order.id
-            .control-group
-              = f.label :quantity, :class => 'control-label'
-              .controls
-                = f.text_field :quantity, :class => 'text_field quantity', value: "1"
-            = f.submit 'Add to Cart', :class => 'btn btn-success'
+      .span3
+        = link_to product.title, product_path(product), class: "product-title"
+        .price $#{product.display_price}
+        - if current_user && current_user.pending_order
+            = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: current_user.pending_order.id, price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success'
+            p
+              = link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini'
+              = link_to 'Retire', product_path(product), :method => :retire, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-warning'
+              = link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
+        / - else
+        /   - order = Order.create(:user_id => current_user.id, :billing_method_id => current_user.billing_methods.first, :status => "pending")
+        /   = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: current_user.pending_order.id, price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success'
 
-        p
-          = link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini'
-          = link_to 'Retire', product_path(product), :method => :retire, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-warning'
-          = link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
+
   .span7
     = link_to 'New', new_product_path, :class => 'btn btn-primary'

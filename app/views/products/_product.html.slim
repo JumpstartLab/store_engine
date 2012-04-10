@@ -5,13 +5,13 @@ div id="products" class="span7"
     - else
       = image_tag @product.photo_url
   .span3
-    h3 = link_to @product.title, product_path(@product), id: "product-title"
+    h3 = link_to @product.title, product_path(@product), class: "product-title"
     = @product.description
     br/
-    div id="price"
+    .price
       |$
       = @product.price
-      = link_to "Buy Now", "#", :class => 'btn btn-success', :id => "buy"
+      = link_to "Add to Cart", "#", :class => 'btn btn-success', :id => "buy"
     p
     - @product.categories.each do |cat|
       = link_to cat.name, category_path(cat), :class => 'btn  btn-info'

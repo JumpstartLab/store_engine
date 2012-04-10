@@ -11,4 +11,10 @@ class LineItem < ActiveRecord::Base
     BigDecimal.new(price.to_f, 2)
   end
 
+  def increment_quantity
+    self.quantity += 1
+    self.save
+    return self.quantity
+  end
+
 end
