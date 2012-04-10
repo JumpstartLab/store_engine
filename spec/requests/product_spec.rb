@@ -5,6 +5,14 @@ describe "Updating products" do
     let(:product) { FactoryGirl.create(:product) }
     before(:each) { visit product_path(product)}
 
+    context "and I click 'New Product'" do
+      before(:each) { click_link("New Product")}
+
+      it "takes me to the new product page" do
+        page.should have_content('New product')
+      end
+    end
+
     context "and I click 'Edit this product'" do
       before(:each) { click_link("Edit this product") }
 
