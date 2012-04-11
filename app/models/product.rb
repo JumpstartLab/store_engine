@@ -16,7 +16,7 @@ class Product < ActiveRecord::Base
   validates_presence_of :name, :description, :price
   validates_uniqueness_of :name
   validates_numericality_of :price, :greater_than => 0
-  validates_format_of :photo, with: /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpg|gif|png|jpeg)$/
+  validates_format_of :photo, with: /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpg|gif|png|jpeg)$/, :allow_blank => true
 
   monetize :price_cents, :target_name => "price"
 
@@ -66,7 +66,7 @@ class Product < ActiveRecord::Base
 
   def check_for_photo
     if self.photo == ""
-      self.photo = '/link_to_your_photo.gif'
+      self.photo = 'http://i.imgur.com/2nLwd.gif'
     end
   end
 

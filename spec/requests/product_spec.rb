@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "Updating products" do
   context "when I'm on the products index page"
+    let(:product) { FactoryGirl.create(:product) }
     before(:each) { visit products_path }
 
     context "and I click 'New Product'" do
@@ -24,17 +25,29 @@ describe "Updating products" do
       end
 
       context "and I enter valid information" do
-        let(:product) { FactoryGirl.build(:product) }
+        let(:new_product) { FactoryGirl.build(:product) }
 
         before do
-          fill_in "Name", with: product.name
-          fill_in "Description", with: product.description
-          fill_in "Price", with: product.price
+          fill_in "Name", with: new_product.name
+          fill_in "Description", with: new_product.description
+          fill_in "Price", with: new_product.price
         end
 
         it "successfully creates a product" do
           expect {click_link_or_button('Create Product')}.to change(Product, :count).by(1)
         end
+      end
+    end
+
+    context "and I retire a product" do
+      before(:each) { visit product_path(product) }
+
+      it "retires that product" do
+        # save_and_open_page
+        # raise product.inspect
+        # click_link_or_button('Retire')
+        product.retire
+        product.retired.should be true
       end
     end
 
