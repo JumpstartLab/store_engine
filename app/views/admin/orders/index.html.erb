@@ -1,0 +1,30 @@
+<h1>Order Status Summary</h1>
+  <table>
+    <% @count_report.each do |key, value| %>
+      <tr><td><%= key.to_s.titleize %></td><td><%= value %></td></tr>
+    <% end %>
+  </table>
+
+<%= form_tag admin_orders_path, method: :get do |f| %>
+  <%= select_tag :status_filter, options_for_select(Order::STATUSES.map(&:titleize)) %>
+  <%= submit_tag "Filter" %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Order ID</th>
+    <th>User</th>
+    <th>Total</th>
+    <th>Status</th>
+    <th>Controls</th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= link_to order.id, admin_order_path(order) %></td>
+    <td><%= order.user.email %></td>
+    <td><%= order.total_price %></td>
+    <td><%= order.status.titleize %></td>
+    <td><%= render partial: 'controls', locals: {order: order} %></td>
+  </tr>
+<% end %>

@@ -1,0 +1,13 @@
+<% if order.shipped? %>
+  <%= link_to "Return", return_admin_order_path(order),
+    :method => :put,
+    :confirm => "Return order \"#{order.id}\"?"%>
+
+<% elsif order.pending? %>
+<%= link_to "Cancel", cancel_admin_order_path(order),
+    :method => :put,
+    :confirm => "Cancel order \"#{order.id}\"?"%>
+    <%= link_to "Ship", ship_admin_order_path(order),
+    :method => :put,
+    :confirm => "Ship order \"#{order.id}\"?"%>  
+<% end %>

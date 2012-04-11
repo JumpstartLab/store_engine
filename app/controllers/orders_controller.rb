@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.create!(status: 'Pending')
+    @order = current_user.orders.create!(status: 'pending')
     @order.attach_addresses(params)
     current_cart.cart_items.each do |cart_item|
       @order.order_items.create(product_id: cart_item.product_id,
@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
   def destroy
     if @order
-      @order.update_attribute(:status, "Cancelled")
+      @order.update_attribute(:status, "cancelled")
     end
     redirect_to orders_path
   end

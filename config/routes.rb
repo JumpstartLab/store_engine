@@ -34,6 +34,12 @@ StoreEngine::Application.routes.draw do
       put "unretire", :on => :member
     end
 
+    resources :orders do
+      put "ship", on: :member
+      put "return", on: :member
+      put "cancel", on: :member
+    end
+
     resources :categories
   end
 

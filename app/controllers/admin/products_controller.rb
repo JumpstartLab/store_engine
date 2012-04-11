@@ -26,7 +26,6 @@ class Admin::ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-
     if @product.update_attributes(params[:product], as: :admin)
       redirect_to :action => 'show', :id => @product
     else
