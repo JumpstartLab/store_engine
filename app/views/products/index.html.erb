@@ -27,7 +27,12 @@
           <td><%= product.description %></td>
           <td><%= sprintf("$%0.02f", product.price) %></td>
           <% if can? :create, @product %>
-          <td><%=product.retired? %></td>
+          <td><%=product.retired? %>
+            <%= form_for product do |f| %>
+                <%= f.hidden_field :retired, :value => true %>
+                <%= f.submit "mark as retired" %>
+            <% end %>
+          </td>
           <% end %>
           <td>
             <%= link_to 'Add to Cart', line_items_path(product_id: product), :method => :post, :class => 'btn btn-mini'%>

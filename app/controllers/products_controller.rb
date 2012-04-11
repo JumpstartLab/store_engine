@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
   def update
     @product.update_attributes(params[:product])
     @product.save
-    redirect_to product_path(@product)
+    redirect_to products_path
   end
 
   def lookup_product
