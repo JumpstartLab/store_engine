@@ -1,7 +1,14 @@
 class ProductsController < ApplicationController
 
+  # def retire
+  #   product = Product.find(params[:id])
+  #   product.retire
+  #   redirect_to products_path
+  #   # @product.update_attributes(:retired => true)
+  # end
+
   def index
-    @products = Product.all
+    @products = Product.active.all
   end
 
   def new

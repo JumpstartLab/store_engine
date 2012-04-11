@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :description, :name, :photo, :price, :status
+  attr_accessible :description, :name, :photo, :price
 
   has_many :order_products
   has_many :orders, :through => :order_products
@@ -17,6 +17,15 @@ class Product < ActiveRecord::Base
   validates_numericality_of :price, :greater_than => 0
 
   monetize :price_cents, :target_name => "price"
+
+  def self.active
+    where(:retired => false)
+  end
+
+  def retire
+    self.retired = true
+    save
+  end
 
   def update_categories(ids)
     deleted = self.category_ids - ids

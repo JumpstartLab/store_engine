@@ -7,6 +7,5 @@ FactoryGirl.define do
     description "A very well-crafted mitten."
     price_cents 1500
     photo "http://www.wearyourbeer.com/images/David_Goliath_Weenie_Protect_Blue_Shirt2.jpg"
-    status "active"
   end
 end

@@ -5,7 +5,9 @@ StoreEngine::Application.routes.draw do
   resources :sessions
   resources :cart_products, only: [:new, :update, :destroy]
   # resource  :cart_product, only: []
-  resources :products
+  resources :products do
+    resource :retirement, only: :create
+  end
   resources :categories
   resources :orders, only: [:new, :show, :create]
   
