@@ -6,7 +6,7 @@ describe ShoppingCart do
     context "when adding item" do
       let(:product) { Fabricate(:product) }
       let(:product2) { Fabricate(:product) }
-      
+
       it "adds a cart item" do
         cart = ShoppingCart.new
         cart.add_item(product.id, 10)
@@ -51,6 +51,18 @@ describe ShoppingCart do
     end
   end
 
+  describe "#update_quantities" do
+    let(:cart_item) { Fabricate(:cart_item, :quantity => 4) }
+    let(:cart_item2) { Fabricate(:cart_item, :quantity => 7) }
+    let(:cart_items) { [cart_item, cart_item2] }
+    let!(:cart) { Fabricate(:shopping_cart, :cart_items => cart_items) }
+    
+    it "updates the quantity of multiple items" do
+      cart.update_quantities({cart_item.id.to_s => "10", cart_item2.id.to_s => 12})
+      cart.cart_items.first.quantity.should == 10
+      cart.cart_items.second.quantity.should == 12
+    end
+  end
 
   describe "#total" do
     context "when viewing the cart" do

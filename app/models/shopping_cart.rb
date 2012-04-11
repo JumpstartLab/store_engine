@@ -19,6 +19,13 @@ class ShoppingCart < ActiveRecord::Base
     cart_item = cart_items.find(cart_item_id).destroy
   end
 
+  def update_quantities(item_to_quantities)
+    cart_items.each do |cart_item|
+      cart_item.quantity = item_to_quantities[cart_item.id.to_s]
+      cart_item.save
+    end
+  end
+
   def total
     cart_items.inject(Money.new(0)) do |sum, cart_item|
       sum += cart_item.price * cart_item.quantity
