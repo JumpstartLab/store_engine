@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20120410224800) do
 
-  create_table "assignments", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "role_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "cart_items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "cart_id"
@@ -40,13 +33,6 @@ ActiveRecord::Schema.define(:version => 20120410224800) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "grants", :force => true do |t|
-    t.integer  "right_id"
-    t.integer  "role_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "order_items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "order_id"
@@ -58,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120410224800) do
 
   create_table "orders", :force => true do |t|
     t.string   "status"
+    t.integer  "user_id"
     t.decimal  "total_price", :precision => 12, :scale => 2
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
@@ -78,19 +65,6 @@ ActiveRecord::Schema.define(:version => 20120410224800) do
     t.string   "image_link"
     t.datetime "created_at",                                                   :null => false
     t.datetime "updated_at",                                                   :null => false
-  end
-
-  create_table "rights", :force => true do |t|
-    t.string   "resource"
-    t.string   "operation"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -1,0 +1,7 @@
+<h1>Checkout page</h1>
+
+<%= form_for(@order) do |o| %>
+<%= @order_cart.items.inspect %>
+
+<%= o.submit %>
+<% end %>

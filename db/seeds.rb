@@ -43,21 +43,21 @@ User.create(  full_name: "Jeff Casimir",
               email: "jeff.casimir@livingsocial.com",
               username: "j3" )
 
-orders = Order.create([{ status: "pending", total_price: 5000},
-                      { status: "shipped", total_price: 10000}])
+# orders = Order.create([{ status: "pending", total_price: 5000},
+#                       { status: "shipped", total_price: 10000}])
 
-order_items = OrderItem.new( 
-  quantity: 10, 
-  unit_price: 50, 
-  product_id: products.first.id,
-  order_id: orders.first.id )
+# order_items = OrderItem.new( 
+#   quantity: 10, 
+#   unit_price: 50, 
+#   product_id: products.first.id,
+#   order_id: orders.first.id )
 
-order_items.save
+# order_items.save
 
-order_items = OrderItem.create([{ quantity: 10, 
-  unit_price: 50, 
-  product_id: products[2].id,
-  order_id: orders.first.id}])
+# order_items = OrderItem.create([{ quantity: 10, 
+#   unit_price: 50, 
+#   product_id: products[2].id,
+#   order_id: orders.first.id}])
 
 category = Category.create( title: "Male")
 category = Category.create( title: "Female")
