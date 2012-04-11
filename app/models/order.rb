@@ -67,15 +67,16 @@ class Order < ActiveRecord::Base
     find_shipping.street
   end
 
-  def try_to_add_user_billing_and_shipping(user_id)
-    if user_id
-      update_attribute(:user_id, user_id)
-      if user.has_billing_method?
-        update_attribute(:billing_method_id, user.billing_method_id)
-      end
-      if user.has_shipping_address?
-        update_attribute(:shipping_address_id, user.shipping_address_id)
-      end
+  def add_user(user_id)
+    update_attribute(:user_id, user_id)
+  end
+
+  def try_to_add_billing_and_shipping(user_id)
+    if user.has_billing_method?
+      update_attribute(:billing_method_id, user.billing_method_id)
+    end
+    if user.has_shipping_address?
+      update_attribute(:shipping_address_id, user.shipping_address_id)
     end
   end
 
