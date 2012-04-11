@@ -6,6 +6,15 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.create(params[:category])
+
+    if @category.save
+      redirect_to products_path, notice: 'Category was successfully created.'
+    else
+      @category.errors.full_messages.each do |msg|
+        flash.now[:error] = msg
+      end
+      render 'new'
+    end
   end
 
   def edit
@@ -15,5 +24,14 @@ class CategoriesController < ApplicationController
   def update
     @category = Category.find(params[:id])
     @category.update_attributes(params[:category])
+
+    if @category.save
+      redirect_to products_path, notice: 'Category was successfully updated.'
+    else
+      @category.errors.full_messages.each do |msg|
+        flash.now[:error] = msg
+      end
+      render 'edit'
+    end
   end
 end
