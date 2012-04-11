@@ -19,6 +19,14 @@
     categories.map(&:name).join(", ")
   end
 
+  def retired_switch
+    case retired 
+    when true then false
+    when false then true
+    end
+  end
+
+
   private
 
   def ensure_not_in_line_item
@@ -29,5 +37,6 @@
       return false
     end
   end
+
 
 end
