@@ -170,6 +170,33 @@ describe "Using the shopping cart" do
               page.should_not have_content(product.name)
             end
           end
+
+          context "and I re-log back in" do
+            before do
+              visit signin_path
+              fill_in "email",    with: user.email
+              fill_in "password", with: attrs[:password]
+              click_button "Log in"
+            end
+
+            it "should preserve the number of my products" do
+              within("li#cart-menu") do
+                page.should have_content("1")
+              end
+            end
+
+            context "and I go to the product page" do
+              before(:each) do
+                visit cart_path
+              end
+
+              it "should not have cleared the cart" do
+                within("#cart") do
+                  page.should have_content(product.name)
+                end
+              end
+            end
+          end
         end
       end
     end
@@ -190,6 +217,12 @@ describe "Using the shopping cart" do
         it "should update the cart counter in my header" do
           within("li#cart-menu") do
             page.should have_content("10")
+          end
+        end
+
+        it "should update the cart total" do
+          within("#total-row") do
+            page.should have_content(product.price * 10)
           end
         end
       end

@@ -30,7 +30,7 @@
             <td><%= cart_product.subtotal %></td>
           </tr>
         <% end %>
-        <tr>
+        <tr id="total-row">
           <td colspan="2"></td>
           <td style="border-left: 0px; border-right: 0px;">Total</td>
           <td><%= current_cart.cart_total %></td>
@@ -38,4 +38,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= link_to "Checkout", new_order_path, :method => :get %>
 </div>

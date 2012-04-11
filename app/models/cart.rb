@@ -51,9 +51,13 @@ class Cart < ActiveRecord::Base
   end
 
   def cart_total
-    products.inject(Money.new(0, "USD")) do |total, product|
-      total + (product.price || 0)
+    cart_products.inject(Money.new(0, "USD")) do |total, cart_product|
+      total + cart_product.price * cart_product.quantity
     end
+  end
+
+  def cart_total_in_cents
+    products.map(&:price_cents).inject(:+)
   end
 
 end
