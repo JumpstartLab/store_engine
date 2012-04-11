@@ -17,5 +17,13 @@ describe "User" do
       visit edit_user_path(user2)
       page.should have_content "You can only edit yourself"
     end
+    it "User can signup" do
+      visit '/users/new'
+      fill_in 'user[email]', :with =>  user.email
+      fill_in "user[password]", :with => "mike"
+      fill_in "user[name]", :with => user.name
+      click_on "Sign up"
+      page.should have_content("Products")
+    end
   end
 end
