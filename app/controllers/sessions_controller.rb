@@ -1,19 +1,13 @@
 class SessionsController < ApplicationController
   def new
+    @cart = current_cart
   end
 
   def create
+    cart_id = current_cart.id
     user = login(params[:email], params[:password])
     if user
-      # TODO: Make this not suck
-      # begin
-      #   cart = Cart.find(params[:cart_id])
-      #   cart.user = user
-      #   cart.save
-      # rescue ActiveRecord::RecordNotFound
-      #   # do nothing
-      # end
-
+      session[:cart_id] = cart_id
       redirect_back_or_to root_url, :notice => "Logged in!"
     else
       flash.now.alert = "Email or password was invalid"
