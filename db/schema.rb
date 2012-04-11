@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20120409221750) do
 
   create_table "cart_items", :force => true do |t|
     t.integer  "quantity"
-    t.integer  "price"
+    t.integer  "price_cents"
     t.integer  "shopping_cart_id"
     t.integer  "product_id"
     t.integer  "order_id"

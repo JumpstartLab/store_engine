@@ -5,7 +5,7 @@ class ShoppingCart < ActiveRecord::Base
   def add_item(product_id, quantity)
     product = Product.find(product_id)
     item = CartItem.new(:product => product, :quantity => quantity,
-                        :price => product.price)
+                        :price => product.price_string)
     cart_items << item
   end
 end
