@@ -16,6 +16,7 @@ class Product < ActiveRecord::Base
   validates_presence_of :name, :description, :price
   validates_uniqueness_of :name
   validates_numericality_of :price, :greater_than => 0
+  validates_format_of :photo, with: /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpg|gif|png|jpeg)$/
 
   monetize :price_cents, :target_name => "price"
 
