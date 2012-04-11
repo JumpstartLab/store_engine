@@ -43,10 +43,8 @@ describe "Updating products" do
       before(:each) { visit product_path(product) }
 
       it "retires that product" do
-        save_and_open_page
-        click_link('Retire')
-        save_and_open_page
-        product.retired.should == true
+        click_link_or_button('Retire')
+        page.should_not have_content(product.name)
       end
     end
 
