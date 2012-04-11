@@ -19,8 +19,13 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new
-    @order.process_cart(@cart)
-    raise @order.products.inspect
+    @order = Order.process_cart(@cart)
   end
+
+  def update
+    @order = Order.process_cart(@cart)
+    @order.charge(params[:order][:stripe_card_token])
+    redirect_to order_path(@order), :notice => "Congrats on giving us your money"
+  end
+
 end

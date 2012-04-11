@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20120410150108) do
     t.datetime "updated_at",  :null => false
   end
 
-  create_table "order_products", :id => false, :force => true do |t|
+  create_table "order_products", :force => true do |t|
     t.integer  "order_id",                      :null => false
     t.integer  "product_id",                    :null => false
     t.integer  "price_in_cents"
@@ -105,11 +105,11 @@ ActiveRecord::Schema.define(:version => 20120410150108) do
     t.string   "salt"
     t.string   "email"
     t.string   "display_name"
-    t.integer  "permission",            :default => 1
-    t.integer  "active",                :default => 1
-    t.string   "stripe_customer_token"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.integer  "permission",       :default => 1
+    t.integer  "active",           :default => 1
+    t.string   "stripe_id"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
 end

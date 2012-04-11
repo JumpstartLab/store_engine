@@ -1,23 +1,14 @@
-.navbar.navbar-fixed-top
-  .navbar-inner
-    .container
-      %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      %a.brand{:href => "#"} Store Engine
-      .nav-collapse
-        %ul.nav
-          %li
-            %a{:href => root_url} Home
-          - if current_user and current_user.admin
-            %li
-              %a{:href => dashboard_path} Dashboard
-          %li
-            - if current_user
-              %a{:href => logout_path } Logout
-            - else
-              %a{:href => login_path } Login
-          - if not current_user
-            %li 
-              %a{ :href => new_user_path } Sign Up
+#header
+  %a{:href => "/"}
+    %img#logo{:alt => "Living Social Logo", :src => "/assets/logo.png"}
+%nav
+  = link_to "Home", root_path
+  - if current_user and current_user.admin
+    %a{:href => dashboard_path} Dashboard
+  - if current_user
+    %a{:href => logout_path } Logout
+  - else  
+    %a{:href => login_path } Login
+    %a{:href => new_user_path } Sign Up
+    #search
+      = render 'search/search', :value => ''

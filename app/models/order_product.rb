@@ -1,5 +1,7 @@
 class OrderProduct < ActiveRecord::Base
-  attr_accessible :price, :quantity
+  attr_accessible :price_in_cents, :quantity, :product, :order
+
+  validates_presence_of :order, :product
 
   belongs_to :product
   belongs_to :order

@@ -1,22 +1,17 @@
-.row
-  .span5
-    %table.table.table-bordered.table-condensed
-      %tr
-        %th Name
-        %th Quantity
-        %th Price
-        %th Options
-      / - simple_form_for @products do |f|
-      - @cart.cart_products.each do |cp|
-        %tr{:id => "product_#{cp.product.id}"}
-          %td= cp.name
-          %td= cp.quantity
-          %td= cp.price
-          %td= link_to "X", cart_path(:product_id => cp.product.id), :method => :delete, :confirm => "Are you sure?"
-      %tr{:id => "total"}
-        %td 
-          %b Total
-        %td
-        %td= @cart.total_in_dollars
-        %td
-    = link_to "Checkout", new_order_path
+%table.table.table-bordered.table-striped
+  %tr
+    %th Name
+    %th Quantity
+    %th Price
+    %th Remove
+  / - simple_form_for @products do |f|
+  - @cart.cart_products.each do |cp|
+    %tr{:id => "product_#{cp.product.id}"}
+      %td= cp.name
+      %td= cp.quantity
+      %td= cp.price
+      %td= link_to "X", cart_path(:product_id => cp.product.id), :method => :delete, :confirm => "Are you sure?"
+  %tr{:id => "total"}
+    %th{:colspan => 2} Total
+    %td= @cart.total_in_dollars
+    %td

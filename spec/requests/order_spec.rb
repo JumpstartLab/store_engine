@@ -39,22 +39,4 @@ describe "Indivdiaul Order" do
       pending
     end
   end
-  context "Generates new order" do
-    let!(:user) do 
-      FactoryGirl.create(:user, :password => "mike")
-    end 
-    let!(:products) do
-      (1..4).map { FactoryGirl.create(:product)}
-    end
-    let!(:cart) do
-      FactoryGirl.create(:cart, :user => user, :products => products)
-    end
-    before(:each) do
-      login(user)
-    end
-    it "Should have order information" do
-      page.should have_content(products[1].name)
-      
-    end
-  end
 end

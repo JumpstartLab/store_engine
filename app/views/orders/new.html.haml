@@ -7,8 +7,8 @@
       %ul
         - @order.errors.full_messages.each do |msg|
           %li= msg
-  =# f.hidden_field :stripe_card_token
-  - if @order.user.stripe_card_token.present?
+  = f.hidden_field :stripe_card_token
+  - if @order.user.stripe_id.present?
     Credit card has been provided.
   - else
     .field
@@ -24,4 +24,4 @@
   #stripe_error
     %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
   .actions
-    = f.submit "Subscribe"
+    = f.submit "Pay",{ :class => 'btn'}

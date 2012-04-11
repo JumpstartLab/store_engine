@@ -1,0 +1,12 @@
+#cart
+  %a{"data-toggle" => "modal", :href => "#myModal"}
+    = "Cart ( #{@cart.cart_products.count} )"
+#myModal.modal
+  .modal-header
+    %a.close{"data-dismiss" => "modal"} ×
+    %h3 Your Cart
+  .modal-body
+    %p= render :partial => 'carts/cart'
+  .modal-footer
+    %a.btn{"data-dismiss" => "modal"} Close
+    %a.btn.btn-primary{:href => "#"} Checkout    

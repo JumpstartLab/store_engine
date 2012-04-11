@@ -39,7 +39,11 @@ private
     Cart.find(cookies[:cart_id]).products.each do |p|
       @cart.add_product(p.id)
     end
-    Cart.find(cookies[:cart_id]).destroy ## Destroys the Cookies Cart
+    destroy_cart
+  end
+
+  def destroy_cart
+    Cart.find(cookies[:cart_id]).destroy
     cookies[:cart_id] = nil
   end
 

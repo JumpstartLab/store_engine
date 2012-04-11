@@ -1,5 +1,4 @@
 class CartsController < ApplicationController
-  layout 'cart'
   
   def update
     @cart.add_product(params[:product_id])
