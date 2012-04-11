@@ -2,6 +2,9 @@
   <%= f.label :name %><br />
   <%= f.text_field :name %><br />
 
+  <%= f.label :products %>
+  <%= f.select :product_ids, Product.all.collect {|p| [ p.title, p.id ] }, {}, :multiple=>true %><br /><br />
+
   <%= f.submit %>
   
 <% end %>

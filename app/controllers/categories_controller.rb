@@ -1,13 +1,18 @@
 class CategoriesController < ApplicationController
-
-  # before_filter :category,
-  #               :only => [:show, :edit, :update, :destroy]
-
   def index
     @categories = Category.all
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+    # raise category.inspect
+    category.update_attributes(params[:category])
+    redirect_to categories_path
   end
 
   def new
@@ -17,14 +22,6 @@ class CategoriesController < ApplicationController
   def create
     category = Category.new(params[:category])
     category.save
-    redirect_to categories_path
-  end
-
-  def edit
-  end
-
-  def update
-    category.update_attributes(params[:category])
     redirect_to categories_path
   end
 
