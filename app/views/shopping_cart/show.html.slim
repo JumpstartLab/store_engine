@@ -1,10 +1,18 @@
-h1 Shopping Cart
+h3 Shopping Cart
 
-ul
+table
+  th
+    tr
+      td Name
+      td Price
+      td Quantity
   - @cart_items.each do |cart_item|
-      li
-        = link_to cart_item.product.title, product_path(cart_item.product)
+    tr
+      td = link_to cart_item.product.title, product_path(cart_item.product)
+      td = cart_item.price
+      td = cart_item.quantity
 
-        p
+h3 Order Total 
+= cart.total  
 
         /= link_to "Remove", product_path(product), :method => :delete

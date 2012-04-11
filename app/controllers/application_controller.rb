@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  helper_method :cart
   def cart
     unless current_user
       anonymous_cart

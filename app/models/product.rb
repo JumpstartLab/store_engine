@@ -16,6 +16,6 @@ class Product < ActiveRecord::Base
   end
 
   def price_string
-    price.cents.to_s
+    price.to_s
   end
 end

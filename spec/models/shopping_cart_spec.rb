@@ -15,4 +15,22 @@ describe ShoppingCart do
       end
     end
   end
+
+  describe "#total" do
+    context "when viewing the cart" do
+      let(:cart_item) { Fabricate(:cart_item, :quantity => 5, :price => "10.75") }
+      let(:cart_item2) { Fabricate(:cart_item, :quantity => 3, :price => "2.21") }
+      let(:cart_items) { [cart_item, cart_item2] }
+
+      it "calculates the total price of the items in the cart" do
+        cart = Fabricate(:shopping_cart, :cart_items => cart_items)
+        cart.total.should == Money.new(6038, "USD")
+      end
+
+      it "calcluates the total as zero if the cart is empty" do
+        cart = Fabricate(:shopping_cart)
+        cart.total.should == Money.new(0)
+      end
+    end
+  end
 end

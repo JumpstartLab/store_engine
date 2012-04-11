@@ -8,4 +8,10 @@ class ShoppingCart < ActiveRecord::Base
                         :price => product.price_string)
     cart_items << item
   end
+
+  def total
+    cart_items.inject(Money.new(0)) do |sum, cart_item|
+      sum += cart_item.price * cart_item.quantity
+    end
+  end
 end
