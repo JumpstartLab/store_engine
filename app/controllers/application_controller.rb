@@ -2,16 +2,27 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def cart
-    if current_user.nil?
-      #ShoppingCart.new
+    unless current_user
+      anonymous_cart
     else
-      current_cart = current_user.shopping_cart
-      if current_cart.nil?
-        current_cart = ShoppingCart.new
-        current_user.shopping_cart = current_cart
-        current_user.save 
-      end  
+      user_cart 
     end
-    current_cart
+  end
+
+  private
+
+  def user_cart
+    unless current_user.cart?
+      current_user.shopping_cart = ShoppingCart.new
+    end  
+    current_user.shopping_cart
+  end
+
+  def anonymous_cart
+    if session[:cart_id].nil?
+      ShoppingCart.create.tap{ |cart| session[:cart_id] = cart.id }
+    else
+      ShoppingCart.find(session[:cart_id])
+    end
   end
 end
