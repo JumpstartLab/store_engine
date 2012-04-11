@@ -1,8 +1,12 @@
 %h1 Dashboard - Categories
 = render :partial => "admin/nav"
-%ul
-- @categories.each do |category|
-  %li
-    = link_to category.name, edit_category_path(category)
-    %span - 
-    %span= link_to 'delete', category_path(category), :method => :delete
+
+%table#orders_by_status.table.table-bordered
+  %th
+  %th Edit
+  %th Name
+  - @categories.each do |category|
+    %tr{:id => "category_#{category.id}"}
+      %td= link_to 'X', category_path(category), :method => :delete
+      %td= link_to "Edit", edit_category_path(category)
+      %td= link_to category.name, category_path(category)
