@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
     if current_user # if someone is logged in
       current_user.cart = Cart.create if current_user.cart.nil?
       @cart = current_user.cart
-
       if @cart.id != session[:cart_id]
         merge_cart(session[:cart_id]) if !session[:cart_id].blank?
       end
@@ -35,15 +34,6 @@ class ApplicationController < ActionController::Base
     session[:cart_id] = @cart.id
   end
 
-  def current_cart
-    if session[:cart_id]
-      cart = Cart.find_by_id(session[:cart_id])
-    end
-    cart ||= Cart.create
-    session[:cart_id] = cart.id
-    cart
-  end
-
   def authorize
     redirect_to new_session_path, alert: "Not authorized" if current_user.nil?
   end
@@ -63,9 +53,9 @@ class ApplicationController < ActionController::Base
       false
     end
   end
+
   helper_method :lookup_cart
   helper_method :admin_authorize
-  helper_method :current_cart
   helper_method :current_user
   helper_method :admin?
 end
