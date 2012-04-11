@@ -22,10 +22,11 @@ class Cart < ActiveRecord::Base
 
   def add_product(product)
     if existing_product = product_if_product_id_exists(product.id)
-      existing_product.update_attribute( :quantity, existing_product.quantity + 1 )
+      existing_product.quantity += 1
+      existing_product.save
     else
-      self.cart_products.create( :cart_id => self.id, :product_id => product.id, 
-                                 :quantity => 1 )
+      self.cart_products.create(:cart_id => self.id, :product_id => product.id, 
+                                :quantity => 1 )
     end
   end
 
@@ -36,6 +37,19 @@ class Cart < ActiveRecord::Base
     else
       destroy #if cart has no products, destroy
     end
+  end
+
+  def assign_cart_to_order_and_destroy(order)
+    if has_products?
+      order_products = cart_products.collect do |cart_prod|
+        # raise cart_prod.price.inspect
+        OrderProduct.new(:order_id => order.id, :price_cents => cart_prod.price_in_cents,
+                         :product_id => cart_prod.product_id,
+                         :quantity => cart_prod.quantity)
+      end
+      order.order_products = order_products
+    end
+    destroy
   end
 
   def remove_product(product)
@@ -57,7 +71,9 @@ class Cart < ActiveRecord::Base
   end
 
   def cart_total_in_cents
-    products.map(&:price_cents).inject(:+)
+    cart_products.inject(0) do |total, cart_product|
+      total + cart_product.price_in_cents * cart_product.quantity
+    end
   end
 
 end

@@ -5,14 +5,15 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :order_products
   has_many :products, :through => :order_products
+  validates_presence_of :user_id
 
   def charge(cart_total_in_cents)
     #Charge must be in cents.
-    if Stripe::Charge.create(amount: cart_total_in_cents,
-                             currency: 'usd',
-                             customer: customer_token)
+    # raise cart_total_in_cents.inspect
+      Stripe::Charge.create(amount: cart_total_in_cents,
+                            currency: 'usd',
+                            customer: customer_token)
       self.update_attribute(:status, 'success')
-    end
   rescue Stripe::InvalidRequestError => e
     send_charge_error(e)
   end
@@ -26,6 +27,12 @@ class Order < ActiveRecord::Base
     end
   rescue Stripe::InvalidRequestError => e
     send_customer_create_error(e)
+  end
+
+  def order_total
+    order_products.inject(Money.new(0, "USD")) do |total, order_product|
+      total + order_product.price * order_product.quantity
+    end
   end
 
 private

@@ -15,7 +15,11 @@ class CartProduct < ActiveRecord::Base
   end
 
   def price
-    product.price
+    product.price #Adjust for sale price.
+  end
+
+  def price_in_cents
+    product.price_cents #Adjust for sale price.
   end
 
   def update_quantity(quantity)

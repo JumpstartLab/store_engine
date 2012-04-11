@@ -9,16 +9,16 @@
 <% else %>
   <div class="field">
     <%= label_tag :card_number, "Credit Card Number" %>
-    <%= text_field_tag :card_number, nil, name: nil %>
+    <%= text_field_tag :card_number, "424242424242424242", name: nil %>
   </div>
   <div class="field">
     <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-    <%= text_field_tag :card_code, nil, name: nil %>
+    <%= text_field_tag :card_code, "123", name: nil %>
   </div>
   <div class="field">
     <%= label_tag :card_month, "Card Expiration" %>
     <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+    <%= select_year 2014, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
   </div>
 <% end %>
 <div id="stripe_error">
