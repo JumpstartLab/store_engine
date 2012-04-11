@@ -12,18 +12,10 @@ class User < ActiveRecord::Base
   validates :display_name, length: { minimum: 2, maximum: 32 }, :unless => "display_name.blank?"
 
   has_many :orders
-  belongs_to :cart
+  has_one :cart
 
   def add_order(order)
     self.orders << order
-  end
-
-  def set_cart
-    if current_cart.has_products?
-      self.update_attribute(:cart_id, current_cart.id)
-    else
-      current_cart.destroy
-    end
   end
 
 end

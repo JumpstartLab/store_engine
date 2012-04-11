@@ -1,10 +1,10 @@
 class Cart < ActiveRecord::Base
-  attr_accessor :total
+  attr_accessor :total, :user_id
 
-  belongs_to :user
-
-  has_many :cart_products
+  has_many :cart_products, :dependent => :destroy
   has_many :products, :through => :cart_products
+  belongs_to :user
+  validates_uniqueness_of :user_id
 
   def add_product_by_id(id)
     product = Product.find(id)
@@ -26,6 +26,15 @@ class Cart < ActiveRecord::Base
     else
       self.cart_products.create( :cart_id => self.id, :product_id => product.id, 
                                  :quantity => 1 )
+    end
+  end
+
+  def assign_cart_to_user(user)
+    if has_products?
+      user.cart.destroy if user.cart #if user has cart, destroy
+      user.cart = self
+    else
+      destroy #if cart has no products, destroy
     end
   end
 
