@@ -8,15 +8,17 @@ describe "Product Show Requests" do
        product_three = Fabricate(:product)
      ]
     end
+    let!(:retired) do
+      [retired_one = Fabricate(:product, :retired => true),
+       retired_two = Fabricate(:product, :retired => true)
+      ]
+    end
 
     before(:each) do
       @user = Fabricate(:user,
                         :password => 'password',
                         :admin => true)
-      visit "/login"
-      fill_in 'email', :with => @user.email
-      fill_in 'password', :with => 'password'
-      click_button 'Log in'
+      login(@user)
     end
 
     it "shows a link to edit a product" do
@@ -42,5 +44,6 @@ describe "Product Show Requests" do
         page.should have_link('All Products', href: products_path)
       end
     end
+
   end
 end

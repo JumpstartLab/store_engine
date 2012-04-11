@@ -1,4 +1,4 @@
-"Hi!"
-
-<p><%= @order.inspect %></p>
-<p><%= @order.transactions.last.inspect %></p>
+<h1>You Ordered:</h1>
+<% @order.order_products.each do |order_product| %>
+  <p><%= order_product.title %></p>
+<% end %>

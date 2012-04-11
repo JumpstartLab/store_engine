@@ -1,7 +1,7 @@
 <div id="products_intro">
 <h2>Our Products</h2>
 <% if logged_in? && current_user.is_admin? %>
-<p id="add_link"><%= link_to "Add a product", new_product_path %></p>
+<h2><%= link_to "Visit Admin View", admin_products_path %></h2>
 <% end %>
 </div>
 <div id="products">

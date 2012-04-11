@@ -16,6 +16,16 @@ StoreEngine::Application.routes.draw do
   resources :users
   resources :sessions
   resources :products
+
+  resources :products do
+    resources :retirements, :only => [:create]
+    resources :activations, :only => [:create]
+  end
+
+  namespace :admin do
+    resources :products, :only => [:index]
+  end
+
   resources :orders
   resources :categories
   resources :cart_products, :only => [:create, :destroy]

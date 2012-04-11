@@ -54,4 +54,7 @@ describe Cart do
       end.to change {cart.products.count}.by(1)
     end
   end
+
+  
+  
 end
