@@ -19,11 +19,6 @@ describe Product do
     context "when a product has been added to this category" do
       let(:category) { Fabricate(:category) }
       before(:each)  { category.add_product_by_id(test_product.id) }
-
-      it "lists the categories associated with a product" do
-        # raise test_product.inspect
-        test_product.categories.should include(category)
-      end
     end
   end
 end

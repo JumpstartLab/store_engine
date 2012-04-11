@@ -67,8 +67,10 @@ describe "Categories Requests" do
     end
 
     it "destroys the category" do
-      pending # This requires approval of warning msg
-      click_link("#destroy")
+      pending "This requires approval of JavaScript warning message"
+      click_link("Destroy this Category")
+      # Need to click the alert box 'ok' here. Test is fine to this point.
+      page.should_not have_content(category.name)
     end
   end
 
@@ -87,7 +89,9 @@ describe "Categories Requests" do
           page.should have_selector("input[id$='category_name']")
         end
       end
-      it "asks for products to be assigned"
+      it "asks for products to be assigned" do
+        page.should have_selector("#products")
+      end
     end
   end
 
@@ -110,7 +114,9 @@ describe "Categories Requests" do
         end
       end
 
-      it "asks for products to be assigned"
+      it "asks for products to be assigned" do
+        page.should have_selector("#products")
+      end
     end
   end
 

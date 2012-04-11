@@ -10,6 +10,6 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe CartItemsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
-end
+# describe CartItemsHelper do
+#   pending "add some examples to (or delete) #{__FILE__}"
+# end

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe "Products Requests" do
   context "products" do
-
-    let!(:products) { [Fabricate(:product), Fabricate(:product)] }
+    let!(:category) { [Fabricate(:category, :id => 999)] }
+    let!(:products) { [Fabricate(:product, :category_ids => 999), Fabricate(:product, :category_ids => 999)] }
 
     before(:each) do
       visit "/products/"
@@ -20,14 +20,15 @@ describe "Products Requests" do
     it "shows the corresponding categories for each product" do
       within("table#products") do
         products.each do |product|
+          
           within("#product_#{product.id}_categories") do
-            page.should have_content(product.categories)
+            product.categories.each do |category|
+              page.should have_content(category.name)
+            end
           end
         end
       end
     end
-
-    it "lists all possible categories"
 
     it "lists the products" do
       within("table#products") do
@@ -89,8 +90,9 @@ describe "Products Requests" do
     end
 
     it "displays the category of the product" do
-      pending "Need to properly handle categories"
-      page.should have_content(product.category_id)
+      product.categories.each do |category|
+        page.should have_content(category.name)
+      end
     end
 
    it "has a link to all products page" do
@@ -169,10 +171,9 @@ describe "Products Requests" do
       end
 
       it "asks for a product category" do
-        pending
         within("form") do
           page.should have_selector("label[for$='product_categories']")
-          page.should have_selector("input[id$='product_categories']")
+          page.should have_selector("select[id$='product_category_ids']")
         end
       end
 
