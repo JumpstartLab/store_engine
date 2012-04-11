@@ -1,8 +1,7 @@
 .span3.cart
   h2 Shopping Cart
-  - if user && user.pending_order
-    / this is a patch until non-users can add to cart
-    - cart = user.pending_order
+  - if session[:order_id]
+    - cart = Order.find(session[:order_id])
     - cart.line_items.each do |li|
       p
         #cart_item_title = link_to li.product.title, line_item_path(li)
@@ -12,8 +11,6 @@
     p
       = number_to_currency(cart.amount)
     p
-      = link_to "View Cart", order_path(cart), class: "btn"
-      = link_to "Check Out", "#", class: "btn btn-success"
+      = link_to "Check Out", order_path(cart), class: "btn btn-success"
   - else
-    = "No items in your cart"
-
+    p Nothing in your cart

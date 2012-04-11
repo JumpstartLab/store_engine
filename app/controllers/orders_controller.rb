@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
   end
 
   def show
+    @billing = BillingMethod.new
   end
 
   def new

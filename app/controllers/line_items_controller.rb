@@ -13,8 +13,12 @@ class LineItemsController < ApplicationController
   end
 
   def create
+    if !session[:order_id]
+      ord = Order.create()
+      session[:order_id] = ord.id
+    end
+    params[:line_item][:order_id] = session[:order_id]
     LineItem.increment_or_create_line_item(params[:line_item])
-
     redirect_to root_url
   end
 

@@ -8,8 +8,7 @@ div id="products" class="span7"
     .price
       |$
       = product.price
-      - if current_user && current_user.has_pending_order?
-        = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: current_user.pending_order.id, price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success', id: "buy"
+      = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: session[:order_id], price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success', id: "buy"
     p
       = render partial: "category", collection: product.categories
     p#product-id id: #{product.id}

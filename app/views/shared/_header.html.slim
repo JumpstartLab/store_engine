@@ -19,10 +19,13 @@
                   = link_to category.name, category_path(category)
           li= link_to "Contact Us"
           - if logged_in?
-            - if current_user.has_pending_order?
-              li= link_to "Cart", order_path(current_user.pending_order)
+            - if session[:order_id]
+              - cart = Order.find(session[:order_id])
+              li= link_to "Cart", order_path(cart)
             li= link_to "My Account", user_url(current_user)
             li= link_to "Logout", logout_path, :method => :delete
+            - if admin?
+              li= link_to "Admin Dashboard", "#"
           - else
             li= link_to "Sign-In", login_page_path
             li= link_to "Sign-Up", new_user_path

@@ -41,15 +41,15 @@ body { padding-top: 60px; }
 .title-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 32px; color: @title-color; }
 @price-color: @nav-color;/*#e19418;*/
 @title-color: @whale;/*#6aa3c4;*/
-.buy-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 32px; color: @price-color;}
-.buy-button{ padding: 10px; font-size: 16px; .rounded(8px); }
+.buy-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 28px; color: @price-color;}
+.buy-button{ padding: 5px; margin: 10px; font-size: 14px; .rounded(8px); float: right; }
 @background: #ddd;
 
 
 
 /********UNIVERSAL*********/
 body { background: url("background.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
-.container .span8, .container .span3 { background: @background; padding: 15px; .rounded(8px); margin-bottom: 20px;}
+.container .span8, .container .cart { background: @background; padding: 15px; .rounded(8px); margin-bottom: 20px; float: left; }
 input { height: 30px; }
 .navbar .navbar-inner {
   .gradient(@nav-color);
@@ -65,17 +65,17 @@ img.logo { width: 50px; float: left; padding-right: 15px; }
 
 /*********PRODUCTS********/
 div#products  {
-  .span3 { padding: 10px 0px 10px 0; vertical-align: top; display: inline-block;
+  .span1 { margin: 0; }
+  .span3 { padding: 10px; margin: 0 0 0 10px; vertical-align: top; float: left;
     a.product-title { .title-font }
   }
   div.price { .buy-font; padding: 20px 0;
     a { .buy-button; }
   }
-  div.form-buttons { background-color: @background; border: none; display: block; text-align: center; margin-top: 40px;
-  a { margin-right: 10px;}
+  div.form-buttons { background-color: @background; border: none; text-align: center; margin-top: 40px;
+  a { margin-right: 10px; }
   }
 }
 
 .photo_sub { width: 100%; }
-.quantity { width: 30px; display: inline-block; }
-
+.quantity { width: 30px;  }
