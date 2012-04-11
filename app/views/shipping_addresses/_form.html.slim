@@ -1,24 +1,15 @@
-= form_for @billing_method, :html => { :class => 'form-horizontal' } do |f|
-  - if @billing_method.errors.any?
+= form_for @shipping_address, :html => { :class => 'form-horizontal' } do |f|
+  - if @shipping_address.errors.any?
     div id="error_explanation"
       h2
-        = pluralize(@billing_method.errors.count, "error")
+        = pluralize(@shipping_address.errors.count, "error")
         |  prohibited this product from being saved:
       ul
-      - @billing_method.errors.full_messages.each do |msg|
+      - @shipping_address.errors.full_messages.each do |msg|
         li = msg
   fieldset
     legend
-      | Input your billing info
-      .control-group
-        = f.label :credit_card_number, class: 'control-label'
-        .controls
-        = f.text_field :credit_card_number, class: 'text_field'
-
-      .control-group
-        = f.label :credit_card_expiration_date, class: 'control-label'
-        .controls
-          = f.text_field :credit_card_expiration_date, class: 'text_field'
+      | Input your shipping info
 
       .control-group
         = f.label :street, class: 'control-label'
@@ -40,12 +31,16 @@
         .controls
           = f.text_field :zipcode, class: 'text_field'
 
+      .control-group
+        = f.label :email_address, class: 'control-label'
+        .controls
+          = f.text_field :email_address, class: 'text_field'
+
       - if logged_in?
         .control-group
           = f.label :name, class: 'control-label'
           .controls
             = f.text_field :name, class: 'text_field'
-
 
       = f.submit :class => 'btn btn-primary'
       = link_to 'Cancel', root_url, :class => 'btn'
