@@ -7,26 +7,30 @@ table.table.table-striped
     th Subtotal
     th Actions
   = render partial: "line_item", collection: @order.line_items
-- if logged_in?
-  | logged in
+
+- if session[:user_id]
+  - user = User.find(session[:user_id])
+  - if user.has_billing_method?
+    - @order.update_attribute(:billing_method_id, user.billing_method_id)
+
+- if @order.has_billing_method?
+  - billing = @order.find_billing
+  h2 Billing Method
+  | Credit Card ending in: #{@order.credit_card_last_four}
+  br/
+  = link_to "Change Billing Method", edit_billing_method_path(billing)
 - else
-  - if @order.has_billing_method?
-    - billing = @order.find_billing
-    h2 Billing Method
-    | Credit Card ending in: #{@order.credit_card_last_four}
-    br/
-    = link_to "Change Billing Method", edit_billing_method_path(billing)
-  - else
-    = link_to "Add a Billing Method", new_billing_method_path
-  - if @order.has_shipping_address?
-    - shipping = @order.find_shipping
-    h2 Shipping Address
-    | Street: #{@order.shipping_street}
-    br/
-    = link_to "Change Shipping Address", edit_shipping_address_path(shipping)
-  - else
-    br/
-    = link_to "Add a Shipping Address", new_shipping_address_path
+  = link_to "Add a Billing Method", new_billing_method_path
+
+- if @order.has_shipping_address?
+  - shipping = @order.find_shipping
+  h2 Shipping Address
+  | Street: #{@order.shipping_street}
+  br/
+  = link_to "Change Shipping Address", edit_shipping_address_path(shipping)
+- else
+  br/
+  = link_to "Add a Shipping Address", new_shipping_address_path
 
   / / SHOW LIST OF shipping ADDRESSES
   / br/
