@@ -31,8 +31,8 @@ class LineItemsController < ApplicationController
   end
 
   def update
-    @line_item.update_attributes(params[:order])
-    redirect_to line_item_path(@line_item)
+    @line_item.update_attributes(params[:line_item])
+    redirect_to order_path(@order)
   end
 
   private
