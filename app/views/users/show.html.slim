@@ -5,15 +5,15 @@ p
   = @user.email_address
   p = link_to "Edit", edit_user_path(@user), class: "btn"
 h2 Billing Information
-- @user.billing_methods.each do |bm|
-  p = bm.name
-  p Card Number: #{bm.credit_card_number}
-  p Exp Date: #{bm.credit_card_expiration_date}
-  p Street: #{bm.street}
-  | City: #{bm.city}
-  | State: #{bm.state}
-  | Zipcode: #{bm.zipcode}
-  p = link_to "Edit", edit_billing_method_path(bm), class: "btn"
+- bm = @user.billing_method
+p = bm.name
+p Card Number: #{bm.credit_card_number}
+p Exp Date: #{bm.credit_card_expiration_date}
+p Street: #{bm.street}
+| City: #{bm.city}
+| State: #{bm.state}
+| Zipcode: #{bm.zipcode}
+p = link_to "Edit", edit_billing_method_path(bm), class: "btn"
 
 - if admin?
   = link_to "Destroy", user_path(@user), :method => :delete, confirm: "Delete \"#{@user.display_name}\"?", class: "btn btn-danger"

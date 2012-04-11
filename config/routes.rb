@@ -10,6 +10,7 @@ StoreEngine::Application.routes.draw do
   resources :orders
   resources :billing_methods
   resources :line_items
+  resources :shipping_addresses
   root to: "products#index"
 
 end

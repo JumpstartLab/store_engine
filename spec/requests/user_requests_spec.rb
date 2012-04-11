@@ -53,24 +53,4 @@ describe "User Requests" do
       User.all.size.should == 1
     end
   end
-
-  describe "update" do
-    it "updates the attributes of a user" do
-      visit "/"
-      click_link "Sign-In"
-      fill_in "Email", :with => user.email_address
-      fill_in "Password", :with => user.password
-      click_link_or_button "sign_in_button"
-      visit user_path(user)
-      within ".main-content" do
-
-        click_link_or_button "Edit"
-      end
-      fill_in "Display name", :with => "Happy Bear"
-      click_link_or_button "Update User"
-      current_path.should == user_path(user)
-      updated_user = User.find(user.id)
-      updated_user.display_name.should == "Happy Bear"
-    end
-  end
 end

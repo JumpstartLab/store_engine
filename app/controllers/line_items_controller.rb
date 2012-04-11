@@ -14,8 +14,12 @@ class LineItemsController < ApplicationController
 
   def create
     if !session[:order_id]
-      ord = Order.create()
-      session[:order_id] = ord.id
+      order = Order.create()
+      if session[:user_id]
+        order.add_user(session[:user_id])
+        order.try_to_add_billing_and_shipping(session[:user_id])
+      end
+      session[:order_id] = order.id
     end
     params[:line_item][:order_id] = session[:order_id]
     LineItem.increment_or_create_line_item(params[:line_item])
@@ -31,8 +35,8 @@ class LineItemsController < ApplicationController
   end
 
   def update
-    @line_item.update_attributes(params[:order])
-    redirect_to line_item_path(@line_item)
+    @line_item.update_attributes(params[:line_item])
+    redirect_to order_path(@order)
   end
 
   private

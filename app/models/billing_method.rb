@@ -9,4 +9,8 @@ class BillingMethod < ActiveRecord::Base
 
   belongs_to :user
   has_many :orders
+
+  def self.find_by_order_id(order_id)
+    self.find(Order.find(order_id).billing_method_id)
+  end
 end

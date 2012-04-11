@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120410225701) do
+ActiveRecord::Schema.define(:version => 20120411213037) do
 
   create_table "billing_methods", :force => true do |t|
     t.string   "credit_card_number"
@@ -44,9 +44,10 @@ ActiveRecord::Schema.define(:version => 20120410225701) do
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
     t.integer  "billing_method_id"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.string   "status",            :default => "pending"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.string   "status",              :default => "pending"
+    t.integer  "shipping_address_id"
   end
 
   create_table "product_categorizations", :force => true do |t|
@@ -63,6 +64,18 @@ ActiveRecord::Schema.define(:version => 20120410225701) do
     t.string   "photo_url"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "shipping_addresses", :force => true do |t|
+    t.string   "street"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "name"
+    t.string   "email_address"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.integer  "user_id"
   end
 
   create_table "users", :force => true do |t|

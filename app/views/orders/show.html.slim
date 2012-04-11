@@ -7,6 +7,29 @@ table.table.table-striped
     th Subtotal
     th Actions
   = render partial: "line_item", collection: @order.line_items
-= render partial: "billing"
--if logged_in?
-  = link_to "Check Out", "#", class: "btn btn-success"
+
+- if @order.has_billing_method?
+  - billing = @order.find_billing
+  h2 Billing Method
+  | Credit Card ending in: #{@order.credit_card_last_four}
+  br/
+  = link_to "Change Billing Method", edit_billing_method_path(billing)
+- else
+  = link_to "Add a Billing Method", new_billing_method_path
+
+- if @order.has_shipping_address?
+  - shipping = @order.find_shipping
+  h2 Shipping Address
+  | Street: #{@order.shipping_street}
+  br/
+  = link_to "Change Shipping Address", edit_shipping_address_path(shipping)
+- else
+  br/
+  = link_to "Add a Shipping Address", new_shipping_address_path
+
+  / / SHOW LIST OF shipping ADDRESSES
+  / br/
+  / = link_to "Add a Shipping Method", new_shipping_address_path
+br/
+/ = render partial: "billing"
+= link_to "Check Out", order_path(@order), method: :put, class: "btn btn-success"
