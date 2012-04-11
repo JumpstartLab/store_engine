@@ -11,11 +11,8 @@ describe Order do
     let!(:cart) do
       FactoryGirl.create(:cart, :user => user, :products => products)
     end
-    let!(:order) do
-      FactoryGirl.build(:order)
-    end
     it "process_cart" do
-      order.process_cart(cart)
+      order = Order.process_cart(cart)
       order.products.should have(4).products
     end
   end
