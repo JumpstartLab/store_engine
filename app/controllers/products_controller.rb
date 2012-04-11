@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.active.all
+    @categories = Category.all
   end
 
   def new

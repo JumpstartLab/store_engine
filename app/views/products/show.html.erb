@@ -7,22 +7,14 @@
         <th>Description</th>
         <th>Price</th>
         <th>Photo</th>
-        <th>Categories</th
+        <th>Categories</th>
+        <th>Buy it!</th>
+        <th>Retire It!</th>
       </tr>
     </thead>
-    <tbody>
-      <tr>
-        <td><%= @product.name %></td>
-        <td><%= @product.description %></td>
-        <td><%= @product.price %></td>
-        <td><%= image_tag(@product.photo) %></td>
-        <td><ul><% @categories.each do |category| %>
-        <div id="<%= dom_id category %>">
-          <li><%= category.name %></li>
-        </div>
-        <% end %></ul>
-      </tr>
-    </tbody>
+
+    <%= render :partial => @product %>
+
   </table>
 </div>
 
