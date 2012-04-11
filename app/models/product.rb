@@ -6,6 +6,8 @@ class Product < ActiveRecord::Base
   
   validates_presence_of :title, :description
 
+  has_many :order_items
+
   def self.active
     where(:retired => false)
   end

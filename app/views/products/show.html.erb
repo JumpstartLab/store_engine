@@ -10,6 +10,12 @@
       Categories: <% product.categories.each do |c| %>
                     <%= c.name %>
                   <% end %>
+      <% if product.active? == false %>
+        <div class="alert alert-error">
+          <h4 class="alert-heading">Warning</h3>
+          <p>This product has been retired!</p>
+        </div>
+      <% end %>
     </p>
   </div>
   <div class="span1">
