@@ -119,6 +119,61 @@ describe "Using the shopping cart" do
       click_link("Add to cart")
     end
 
+    context "and I log in as a user" do
+        let(:user) { FactoryGirl.create(:user) }
+        attrs = FactoryGirl.attributes_for(:user)
+
+        before do
+          visit signin_path
+          fill_in "email",    with: user.email
+          fill_in "password", with: attrs[:password]
+          click_button "Log in"
+        end
+
+        it "does not change the cart counter in the header" do
+          within("li#cart-menu") do
+            page.should have_content("1")
+          end
+        end
+
+        context "and I go to the product page" do
+          before(:each) do
+            visit cart_path
+          end
+
+          it "should not clear the cart" do
+            within("#cart") do
+              page.should have_content(product.name)
+            end
+          end
+        end
+
+        context "and I log out" do
+          before(:each) do
+            click_link_or_button("Account")
+            click_link_or_button("Sign out")
+          end
+
+          it "should clear my cart" do
+            within("li#cart-menu") do
+              page.should have_content("0")
+            end
+          end
+
+          context "and I go to the product page" do
+          before(:each) do
+            visit cart_path
+          end
+
+          it "should clear my cart" do
+            within("#cart") do
+              page.should_not have_content(product.name)
+            end
+          end
+        end
+      end
+    end
+
     context "and I'm on the cart page" do
       before(:each) { visit cart_path }
 
@@ -147,6 +202,7 @@ describe "Using the shopping cart" do
           page.should_not have_content(product.name)
         end
       end
+
     end
   end
 end

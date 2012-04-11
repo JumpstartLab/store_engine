@@ -14,8 +14,11 @@ private
   def find_or_create_cart
     if session[:cart_id]
       Cart.find_by_id(session[:cart_id])
+    elsif current_user && current_user.cart_id
+      session[:cart_id] = current_user.cart_id
+      current_user.cart
     else
-      Cart.create.tap{ |c| session[:cart_id] = c.id }      
+      Cart.create.tap{ |cart| session[:cart_id] = cart.id }      
     end    
   end
 end

@@ -1,5 +1,4 @@
 class Cart < ActiveRecord::Base
-  # attr_accessible :user_id
   attr_accessor :total
 
   belongs_to :user
