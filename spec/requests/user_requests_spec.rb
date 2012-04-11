@@ -26,4 +26,52 @@ describe User do
       page.should have_content("SIGN IN BITCH!")
     end
   end  
+  describe "users with role" do
+    let (:user) { Fabricate(:user) }
+
+    context "nil" do
+      before(:all) do
+        user.role = nil
+      end
+
+      it "cannot visit the new product page" do
+        create_user(user)
+        login_as(user)
+        visit new_product_path
+
+        page.should have_content("Access denied. This page is for administrators only.")
+        page.should have_content("Products")
+      end
+    end
+
+    context "'blank'" do
+      before(:all) do
+        user.role = nil
+      end
+
+      it "cannot visit the new product page" do
+        create_user(user)
+        login_as(user)
+        visit new_product_path
+
+        page.should have_content("Access denied. This page is for administrators only.")
+        page.should have_content("Products")
+      end
+    end
+
+    context "puppy" do
+      before(:all) do
+        user.role = nil
+      end
+
+      it "cannot visit the new product page" do
+        create_user(user)
+        login_as(user)
+        visit new_product_path
+
+        page.should have_content("Access denied. This page is for administrators only.")
+        page.should have_content("Products")
+      end
+    end
+  end
 end
