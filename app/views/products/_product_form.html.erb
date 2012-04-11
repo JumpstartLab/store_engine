@@ -15,7 +15,7 @@
   <%= f.check_box :retired %><br /><br />
 
   <%= f.label :categories %>
-  <%= f.select :category_ids, Category.all.collect {|c| [ c.name, c.id ] }, {}, :multiple=>true %>
+  <%= f.select :category_ids, Category.all.collect {|c| [ c.name, c.id ] }, {}, :multiple=>true, id%>
 
   <%= f.submit %>
   

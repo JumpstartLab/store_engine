@@ -254,17 +254,17 @@ describe "Products Requests" do
       end
 
       it "asks for a product category" do
-        pending
         within("form") do
           page.should have_selector("label[for$='product_categories']")
-          page.should have_selector("input[id$='product_categories']")
+          page.should have_selector("select[id$='product_category_ids']")
         end
       end
 
       it "knows the old category" do
-        pending
         within("form") do
-          page.should have_selector("input[id$='product_categories'][value$='#{product.categories}']")
+          product.categories.each do |category|
+            page.should have_selector("option[value$='#{category.id}'][selected$='selected']")
+          end
         end
       end
 
@@ -277,7 +277,7 @@ describe "Products Requests" do
 
       it "knows the old retired status" do
         within("form") do
-          pending "Need to understand testing checkboxes for truthyness"
+          pending "Pending implementations of retired properly"
           page.should have_selector("input[id$='product_title'][value$='#{product.title}']")
         end
       end
