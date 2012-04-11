@@ -1,20 +1,21 @@
-<%= form_for @product do |f| %>
-  <%= f.label :title %><br />
+<%= form_for product do |f| %>
+  <%= f.label :title %>
   <%= f.text_field :title %><br />
 
-  <%= f.label :description %><br />
+  <%= f.label :description %>
   <%= f.text_area :description %><br />
 
-  <%= f.label :price %><br />
+  <%= f.label :price %>
   <%= f.text_field :price %><br />
 
-  <%= f.label :photo %><br />
+  <%= f.label :photo %>
   <%= f.text_field :photo %><br />
 
-  <%= f.label :retired %><br />
-  <%= f.check_box :retired %><br />
+  <%= f.label :retired %>
+  <%= f.check_box :retired %><br /><br />
 
-  <%= select_tag :categories %>
+  <%= f.label :categories %>
+  <%= f.select :category_ids, Category.all.collect {|c| [ c.name, c.id ] }, {}, :multiple=>true %>
 
   <%= f.submit %>
   

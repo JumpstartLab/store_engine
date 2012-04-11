@@ -1,10 +1,5 @@
 class ProductsController < ApplicationController
-
-before_filter :product,
-                :only => [:show, :edit, :update, :destroy]
-
   def index
-    # @products = Product.active
     @products = Product.all
   end
 
@@ -15,12 +10,12 @@ before_filter :product,
   end
 
   def update
-    @product.update_attributes(params[:product])
-    redirect_to product_path(@product)
+    product.update_attributes(params[:product])
+    redirect_to product_path(product)
   end
 
   def destroy
-    @product.destroy
+    product.destroy
     redirect_to products_path
   end
 
@@ -39,6 +34,6 @@ before_filter :product,
   private
 
   def product
-    @product = Product.find(params[:id])
+    @product ||= Product.find(params[:id])
   end
 end

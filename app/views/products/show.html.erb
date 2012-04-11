@@ -1,22 +1,24 @@
 <!-- <div class="row"> -->
   <div class="span8">
-    <h1>Product: <%= @product.title %></h1>
+    <h1>Product: <%= product.title %></h1>
     <p>
-      <%= @product.description %>
+      <%= product.description %>
     </p>
 
     <p>
-      Price: <%= @product.price %> cents<br />
-      Categories: <%= @product.categories %>
+      Price: <%= product.price %> cents<br />
+      Categories: <% product.categories.each do |c| %>
+                    <%= c.name %>
+                  <% end %>
     </p>
   </div>
   <div class="span1">
-    <%= image_tag(@product.photo) %>
+    <%= image_tag(product.photo) %>
   </div>
 <!-- </div> -->
 <div class="span9">
   <%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post, :class => 'btn btn-success' %>
   <%= link_to "Back to all products", products_path, :title => "back to all products", :class => 'btn'%>
-  <%= link_to "Edit this product", edit_product_path(@product), :title => "edit this product", :class => 'btn btn-warning' %>
-  <%= link_to "Delete this product", product_path(@product), :method => :delete, :confirm => "Delete \"#{@product.title}\"?", :title => "delete this product", :class => 'btn btn-danger' %>
+  <%= link_to "Edit this product", edit_product_path(product), :title => "edit this product", :class => 'btn btn-warning' %>
+  <%= link_to "Delete this product", product_path(product), :method => :delete, :confirm => "Delete \"#{product.title}\"?", :title => "delete this product", :class => 'btn btn-danger' %>
 </div>

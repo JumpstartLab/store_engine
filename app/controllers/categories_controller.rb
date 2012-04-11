@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 
-  before_filter :category,
-                :only => [:show, :edit, :update, :destroy]
+  # before_filter :category,
+  #               :only => [:show, :edit, :update, :destroy]
 
   def index
     @categories = Category.all
@@ -24,12 +24,12 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category.update_attributes(params[:category])
+    category.update_attributes(params[:category])
     redirect_to categories_path
   end
 
   def destroy
-    @category.destroy
+    category.destroy
     redirect_to categories_path
   end
 
@@ -38,7 +38,7 @@ class CategoriesController < ApplicationController
   private
 
   def category
-    @category = Category.find(params[:id])
+    @category ||= Category.find(params[:id])
   end
   
 end

@@ -1,5 +1,4 @@
 StoreEngine::Application.routes.draw do
-  get "carts/show"
 
   root to: "products#index"
 

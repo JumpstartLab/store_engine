@@ -1,6 +1,6 @@
 <h1>Awesome Categories.</h1>
 
-<table id="categories" class="table-striped">
+<table id="categories" class="table table-striped table-bordered">
   <% @categories.each do |category| %>
     <tr>
       <td id="category_<%=category.id%>"><%= link_to category.name, category_path(category) %></td>
