@@ -1,5 +1,8 @@
 .span3.cart
   h2 Shopping Cart
+  - if session[:user_id]
+    - if user.has_pending_order?
+      - session[:order_id] = user.pending_order.id
   - if session[:order_id]
     - cart = Order.find(session[:order_id])
     - cart.line_items.each do |li|

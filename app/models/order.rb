@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :billing_method
   belongs_to :user
-  has_one :user
+  belongs_to :shipping_address
   has_many :line_items
   has_many :products, through: :line_items
 
