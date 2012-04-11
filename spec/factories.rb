@@ -23,6 +23,15 @@ FactoryGirl.define do
     id 1
   end
 
+  factory :line_item do
+    product_id 1
+    cart_id 1
+  end
+
+  factory :order_item do
+    order_id 1
+  end
+
   factory :product do
     title 
     description "A fun and cheap toy!"
