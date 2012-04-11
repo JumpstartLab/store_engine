@@ -10,6 +10,9 @@ class BillingMethodsController < ApplicationController
     billing = BillingMethod.new(params[:billing_method])
     order = Order.find(session[:order_id])
     if billing.save
+      if session[:user_id]
+        billing.update_attribute(:user_id, session[:user_id])
+      end
       notice = "Billing Address Successfully Added"
       order.update_attribute(:billing_method_id, billing.id)
       redirect_to order_path(order), notice: notice

@@ -6,6 +6,9 @@ class SessionsController < ApplicationController
     user = User.find_by_email_address(params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      if user.has_pending_order?
+        session[:order_id] = user.pending_order.id
+      end
       redirect_to root_url, :notice => "Welcome Back, #{user.full_name}"
     else
       render :new, :notice => 'Try again'

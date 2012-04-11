@@ -4,6 +4,8 @@ class Order < ActiveRecord::Base
   validates_presence_of :status
 
   belongs_to :billing_method
+  belongs_to :user
+  has_one :user
   has_many :line_items
   has_many :products, through: :line_items
 
@@ -63,6 +65,18 @@ class Order < ActiveRecord::Base
 
   def shipping_street
     find_shipping.street
+  end
+
+  def try_to_add_user_billing_and_shipping(user_id)
+    if user_id
+      update_attribute(:user_id, user_id)
+      if user.has_billing_method?
+        update_attribute(:billing_method_id, user.billing_method_id)
+      end
+      if user.has_shipping_address?
+        update_attribute(:shipping_address_id, user.shipping_address_id)
+      end
+    end
   end
 
 end

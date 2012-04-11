@@ -29,6 +29,9 @@ class ShippingAddressesController < ApplicationController
     shipping = ShippingAddress.new(params[:shipping_address])
     order = Order.find(session[:order_id])
     if shipping.save
+      if session[:user_id]
+        shipping.update_attribute(:user_id, session[:user_id])
+      end
       notice = "Shipping Address Successfully Added"
       order.update_attribute(:shipping_address_id, shipping.id)
       redirect_to order_path(order), notice: notice

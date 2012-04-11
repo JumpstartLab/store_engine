@@ -11,6 +11,6 @@
     p
       = number_to_currency(cart.amount)
     p
-      = link_to "Check Out", order_path(cart), class: "btn btn-success"
+      = link_to "View Cart", order_path(cart), class: "btn"
   - else
     p Nothing in your cart
