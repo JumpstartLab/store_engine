@@ -13,5 +13,5 @@ html
     .container data-pjax-container=""
       .row
         = notice
-        .span8.main-content   = yield
+        .span8.main-content = yield
         = render partial: "shared/cart", locals: {user: current_user}
