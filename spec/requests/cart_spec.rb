@@ -33,7 +33,7 @@ describe "Cart", :focus => true do
     it "removes an item from your cart" do
       visit cart_path
       within("#product_#{p1.id}") do
-        click_on ("Remove Item")
+        click_on ("X")
       end
       page.should_not have_content(p1.name)
     end

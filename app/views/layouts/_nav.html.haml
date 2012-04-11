@@ -9,6 +9,5 @@
     %a{:href => logout_path } Logout
   - else  
     %a{:href => login_path } Login
-    %a{:href => new_user_path } Sign Up
     #search
-      = render 'search/search', :value => ''
+      = render 'search/search', :value => params[:q] || ""

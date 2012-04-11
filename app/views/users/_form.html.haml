@@ -1,5 +1,8 @@
 = simple_form_for @user do |f|
-  = f.input :email
-  = f.input :password
-  = f.input :name
-  = f.submit :class => 'btn btn-primary'
+  %fieldset
+    %legend=legend_title
+    = f.input :email
+    = f.input :password
+    = f.input :name
+
+    = f.submit :class => 'btn btn-primary controls'

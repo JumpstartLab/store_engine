@@ -16,8 +16,11 @@
     %table#orders_by_status.table.table-bordered
       %th Status
       %th Count
+      %tr
+        %td= link_to "All", orders_path
+        %td= @order_count
       - @statuses.each do |status|
         %tr
-          %td= link_to status.name, orders_path(:status => status.name)
+          %td= link_to status.name.titleize, orders_path(:status => status.name)
           %td{:id => status.name} 
             = status.orders.count

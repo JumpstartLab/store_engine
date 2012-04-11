@@ -1,21 +1,4 @@
 %h1 Your Cart
 %br
-.row
-  .span9
-    %table.table.table-bordered
-      %tr
-        %th Name
-        %th Quantity
-        %th Price
-      / - simple_form_for @products do |f|
-      - @cart.cart_products.each do |cp|
-        %tr{:id => "product_#{cp.product.id}"}
-          %td= cp.name
-          %td= cp.quantity
-          %td= cp.price
-          %td= link_to "Remove Item", cart_path(:product_id => cp.product.id), :method => :delete, :confirm => "Are you sure?"
-      %tr{:id => "total"}
-        %td.bold Total
-        %td
-        %td.bold= @cart.total_in_dollars
-        %td
+  = render :partial => "cart"
+  = link_to "Checkout", new_order_path, :class => "a btn btn-primary right big btn-large"

@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
     end
 
     @statuses = Status.all
+    @order_count = Order.all.count
   end
 
   def show

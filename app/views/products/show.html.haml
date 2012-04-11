@@ -1,7 +1,7 @@
 .row
   .span3
     %img{:src => @product.avatar}
-  .span9
+  .span6
     %h2= @product.name
     %h4= @product.categories.map(&:name).join(', ') 
     %h4= @product.price
