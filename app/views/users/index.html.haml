@@ -1,5 +1,7 @@
+%h1 Dashboard - Users
+= render :partial => "admin/nav"
 - @users.each do |user|
-  %p
+  %p{:id => "user_#{user.id}"}
     %span= link_to user.name, edit_user_path(user)
     %span -
     %span= link_to 'delete', user_path(user), :method => :delete

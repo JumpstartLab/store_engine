@@ -1,7 +1,7 @@
 #header
   %a{:href => "/"}
     %img#logo{:alt => "Living Social Logo", :src => "/assets/logo.png"}
-%nav
+%nav.main
   = link_to "Home", root_path
   - if current_user and current_user.admin
     %a{:href => dashboard_path} Dashboard

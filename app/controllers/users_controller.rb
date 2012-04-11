@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   def edit_personal
     if current_user == false || current_user.nil?
       redirect_to '/login', :notice => "Please login"
-    elsif current_user && current_user.id != params[:id]
+    elsif current_user && current_user.id.to_i != params[:id].to_i
       redirect_to root_url, :notice => "You can only edit yourself"
     end
   end

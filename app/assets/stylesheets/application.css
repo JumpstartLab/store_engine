@@ -50,7 +50,7 @@ body {
   float:right;
   margin-top:-5px;
 }
-nav{
+nav.main{
   float:left;
   width:100%;
   height: 40px;
@@ -58,14 +58,14 @@ nav{
   font-size: 14px;
   line-height: 40px;
 }
-nav a{
+nav.main a{
   color: #5db1d3;
   float: left;
   text-decoration: none;
   padding:0 20px;
   height: 40px;
 }
-nav a:hover, .active{
+nav.main a:hover, .main.active{
   color: #fff;
   height: 40px;
   text-decoration:none;

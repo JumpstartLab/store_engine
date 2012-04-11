@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe "Indivdiaul Order" do
+  it "Should be redirected if not logged in" do
+    visit "/orders/new"
+    page.should have_content "You must login first"
+  end
   it "Displays Order Date & Time" do
     pending
   end
@@ -14,10 +18,10 @@ describe "Indivdiaul Order" do
     pending
   end
   it "displays when shipped timestamp" do
-
+    pending
   end
   it "displays if cancelled timestamp" do
-
+    pending
   end
   context "Each Product Needs" do
     it "Name with Link" do

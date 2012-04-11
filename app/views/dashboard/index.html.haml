@@ -1,28 +1,2 @@
 %h1 Dashboard
-%hr
-  %div
-    %h3 Products
-    %br
-    = link_to 'New Product', new_product_path, :class => 'btn'
-    = link_to 'View Products', products_path, :class => 'btn'
-  
-  %hr
-  %div
-    %h3 Orders
-    %br
-    %a= link_to 'View Orders', orders_path, :class => 'btn'
-    %a= link_to 'Advanced Search', '/search/new', :class => 'btn btn-info'
-
-  %hr
-  %div
-    %h3 Categories
-    %br
-    %a= link_to 'New Category', new_category_path, :class => 'btn'
-    %a= link_to 'View Categories', categories_path, :class => 'btn'
-
-  %hr
-  %div
-    %h3 Users
-    %br
-    %a= link_to 'New User', new_user_path, :class => 'btn'
-    %a= link_to 'View Users', users_path, :class => 'btn'
+= render :partial => "admin/nav"

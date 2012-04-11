@@ -1,9 +1,0 @@
-= render :partial => 'layouts/head'
-%body
-  = render 'layouts/nav'
-  #main_container.container
-    - if flash[:notice]
-      .alert.alert-info= flash[:notice]
-    .row
-      .span8
-        = yield
