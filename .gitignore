@@ -16,3 +16,4 @@
 coverage/*
 
 /config/initializers/stripe.rb
+/public/system

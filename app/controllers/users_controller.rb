@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_admin, :only => [:destroy]
+  before_filter :require_admin, :only => [:index,:destroy]
   before_filter :require_not_logged_in, :only => [:new, :create]
   before_filter :edit_personal, :only => [:edit, :update]
 
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      redirect_to users_path
+      redirect_to root_url, :notice => "Account successfully made!"
     else
       render 'new'
     end

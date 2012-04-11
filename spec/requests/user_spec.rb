@@ -50,9 +50,9 @@ describe "User" do
       visit '/users/new'
       fill_in 'user[email]', :with =>  "Jiberish@yahoo.com"
       fill_in "user[password]", :with => "mike"
-      fill_in "user[name]", :with => "Wooo"
+      fill_in "user[name]", :with => "mike"  
       click_on "Sign up"
-      page.should have_content("Products")
+      page.should have_content("Account successfully made!")
     end
     it "User verifies auth" do
       visit '/users/new'
