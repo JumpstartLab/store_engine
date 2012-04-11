@@ -40,9 +40,11 @@ class Order < ActiveRecord::Base
 
   def self.status_hash
     status_hash = {}
-    status_hash["shipped"] = Order.count(:conditions => "status = shipped")
-    status_hash["pending"] = Order.count(:conditions => "status = pending")
-    status_hash["cancelled"] = Order.count(:conditions => "status = cancelled")
+    status_hash["pending"] = Order.all.count{|order| order.status == "pending"}
+    status_hash["shipped"] = Order.all.count{|order| order.status == "shipped"}
+    status_hash["cancelled"] = Order.all.count{|order| order.status == "cancelled"}
+    status_hash["paid"] = Order.all.count{|order| order.status == "paid"}
+    status_hash["returned"] = Order.all.count{|order| order.status == "returned"}
     status_hash
   end
 

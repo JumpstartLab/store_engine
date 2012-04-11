@@ -1,4 +1,11 @@
 <h1>Orders</h1>
+Pending: <%= Order.status_hash["pending"] %>
+Shipped: <%= Order.status_hash["shipped"] %>
+Paid: <%= Order.status_hash["paidd"] %>
+Returned: <%= Order.status_hash["returned"] %>
+Cancelled: <%= Order.status_hash["cancelled"] %>
+
+
 <table class="table table-striped">
   <thead>
     <tr>
