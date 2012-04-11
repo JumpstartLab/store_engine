@@ -16,10 +16,6 @@ class User < ActiveRecord::Base
   has_many :product_ratings
   has_one :cart
 
-  def name
-    display_name || read_attribute(:name)
-  end
-
   def admin
     permission == 9
   end
