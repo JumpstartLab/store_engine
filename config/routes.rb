@@ -5,10 +5,11 @@ StoreEngine::Application.routes.draw do
   get "checkout" => "carts#checkout", :as => "checkout"
   get "billing" => "users#billing", :as => "billing"
   post "billing" => "users#create_billing", :as => "billing"
-  
+
   resource :cart, :only => [:show, :update]
   resources :users
   resources :orders
+  resource :cart_item, :only => [:destroy]
   resources :sessions
   resources :products
   resources :categories
