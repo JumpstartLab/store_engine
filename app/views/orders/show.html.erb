@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <b>Total</b><br>
+  <%= sprintf("$%0.02f", @order.total) %>
+</p> 
+
+<p>
   <b>Address</b><br>
   <%= @order.address %>
 </p>
@@ -13,6 +18,11 @@
 <p>
   <b>Email</b><br>
   <%= @order.email %>
+</p>
+
+<p>
+  <b>Order Date</b><br>
+  <%= distance_of_time_in_words_to_now(@order.created_at) %> ago
 </p>
 
 <p>
@@ -35,17 +45,15 @@
 
 <h3>Products Ordered:</h3>
 <p> 
-  <% @order.order_items.each do |order_item| %>
-    <%= link_to order_item.product.title, product_path %> <br />
-    Quantity: <%= order_item.quantity%> <br />
-    Price: <%= order_item.price %><br />
-    Subtotal: <%= order_item.subtotal %><br />
+  <% @order.line_items.each do |line_item| %>
+    <%= link_to line_item.product.title, product_path %> <br />
+    Quantity: <%= line_item.quantity%> <br />
+    Price: <%= sprintf("$%0.02f", line_item.product.price) %><br />
+    Subtotal: <%= sprintf("$%0.02f", line_item.total_price) %><br />
   <% end %>
 </p>  
 
-<p>
-  Total: <%= @order.total %>
-</p> 
+
 
 <div class="form-actions">
   <% if can? :update, @order %> 

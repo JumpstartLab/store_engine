@@ -26,17 +26,17 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def total
-    order_items.sum('subtotal')
-  end
-
   # def total
-  #   total = 0
-  #   order_items.each do |oi|
-  #     total += oi.subtotal
-  #   end
-  #   total
+  #   line_items.sum(@line_item.total_price)
   # end
+
+  def total
+    total = 0
+    line_items.each do |oi|
+      total += oi.total_price
+    end
+    total
+  end
 
   def self.status_hash
     status_hash = {}
