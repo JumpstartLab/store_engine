@@ -10,7 +10,6 @@ describe "Create New Product" do
       within(".new_product") do
         fill_in 'product_title', :with => 'Womb Chair'
         fill_in 'product_description', :with => 'Modern elegance in a minimal package.'
-        #attach_file 'image', File.join(Rails.root, 'public', 'uploads', 'product', 'image', '3', 'rails.png')
         fill_in 'product_remote_image_url', :with => ''
       end
       click_button 'Create Product'
@@ -18,7 +17,6 @@ describe "Create New Product" do
       a = Product.find_by_title("Womb Chair")
       a.description.should == "Modern elegance in a minimal package."
     end
-
   end
   
 end

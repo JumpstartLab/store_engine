@@ -11,7 +11,32 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120410023439) do
+ActiveRecord::Schema.define(:version => 20120411191324) do
+
+  create_table "addresses", :force => true do |t|
+    t.string   "street"
+    t.string   "street_two"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zipcode"
+    t.string   "phone_number"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "billing_addresses", :force => true do |t|
+    t.string   "street"
+    t.string   "street_two"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zipcode"
+    t.string   "phone_number"
+    t.integer  "user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "cart_products", :force => true do |t|
     t.integer  "product_id"
@@ -36,11 +61,16 @@ ActiveRecord::Schema.define(:version => 20120410023439) do
   create_table "order_products", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "quantity"
+    t.integer  "product_id"
+    t.integer  "order_id"
   end
 
   create_table "orders", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.integer  "billing_address_id"
+    t.integer  "shipping_address_id"
   end
 
   create_table "product_categories", :force => true do |t|
@@ -57,6 +87,31 @@ ActiveRecord::Schema.define(:version => 20120410023439) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.string   "image"
+  end
+
+  create_table "shipping_addresses", :force => true do |t|
+    t.string   "street"
+    t.string   "street_two"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "zipcode"
+    t.string   "phone_number"
+    t.integer  "user_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "transactions", :force => true do |t|
+    t.string   "credit_card_number"
+    t.string   "expiration_month"
+    t.string   "expiration_year"
+    t.string   "credit_card_verification_number"
+    t.string   "cardholder_name"
+    t.string   "status"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "order_id"
   end
 
   create_table "users", :force => true do |t|

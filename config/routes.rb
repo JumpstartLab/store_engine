@@ -10,8 +10,8 @@ StoreEngine::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
 
-  match "place_order", :to => "orders#create", :as => "place_order"
-  match "process_order", :to => "orders#update", :as => "process_order"
+  match "place_order", :to => "orders#new", :as => "place_order"
+  # match "process_order/:id", :to => "orders#update", :as => "process_order"
   
   resources :users
   resources :sessions
@@ -20,7 +20,7 @@ StoreEngine::Application.routes.draw do
   resources :categories
   resources :cart_products, :only => [:create, :destroy]
 
-  resource :dashboard, :only => :show
+  resource :dashboard, :controller => "dashboard", :only => "show"
   resource :cart do
     get 'show', :on => :member
     put 'update', :on => :member

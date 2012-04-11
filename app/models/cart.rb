@@ -34,4 +34,8 @@ class Cart < ActiveRecord::Base
     return cart_product.quantity
   end
 
+  def empty
+    products.replace([])
+    save
+  end
 end

@@ -1,0 +1,58 @@
+Enter your credit card shiznit
+
+<div id="order">
+  <%#= raise @order.order_products.inspect %>
+  <% @order.order_products.each do |op| %>
+    <%= op.title %>
+    <%= op.quantity %>
+  <% end %>
+</div>
+
+<%= form_for(@order) do |f| %>
+  <%= f.hidden_field :cart_id, :value => cart.id %>
+  <%= f.fields_for :billing_address do |billing_field| %>
+    <%= billing_field.label :street %>
+    <%= billing_field.text_field :street %>
+    <%= billing_field.label :street_two %>
+    <%= billing_field.text_field :street_two %>
+    <%= billing_field.label :city %>
+    <%= billing_field.text_field :city %>
+    <%= billing_field.label :state %>
+    <%= billing_field.text_field :state %>
+    <%= billing_field.label :country %>
+    <%= billing_field.text_field :country %>
+    <%= billing_field.label :zipcode %>
+    <%= billing_field.text_field :zipcode %>
+    <%= billing_field.label :phone_number %>
+    <%= billing_field.text_field :phone_number %>
+  <% end %>
+  <%= f.fields_for :shipping_address do |shipping_field| %>
+    <%= shipping_field.label :street %>
+    <%= shipping_field.text_field :street %>
+    <%= shipping_field.label :street_two %>
+    <%= shipping_field.text_field :street_two %>
+    <%= shipping_field.label :city %>
+    <%= shipping_field.text_field :city %>
+    <%= shipping_field.label :state %>
+    <%= shipping_field.text_field :state %>
+    <%= shipping_field.label :country %>
+    <%= shipping_field.text_field :country %>
+    <%= shipping_field.label :zipcode %>
+    <%= shipping_field.text_field :zipcode %>
+    <%= shipping_field.label :phone_number %>
+    <%= shipping_field.text_field :phone_number %>
+  <% end %>
+  <%= f.fields_for :transactions do |transaction_field| %>
+    <%= transaction_field.label :credit_card_number %>
+    <%= transaction_field.text_field :credit_card_number %>
+    <%= transaction_field.label :expiration_month %>
+    <%= transaction_field.text_field :expiration_month %>
+    <%= transaction_field.label :expiration_year %>
+    <%= transaction_field.text_field :expiration_year %>
+    <%= transaction_field.label :credit_card_verification_number %>
+    <%= transaction_field.text_field :credit_card_verification_number %>
+    <%= transaction_field.label :cardholder_name %>
+    <%= transaction_field.text_field :cardholder_name %>
+  <% end %>
+  <%= f.submit "Confirm" %>
+<% end %>

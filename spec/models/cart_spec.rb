@@ -30,6 +30,23 @@ describe Cart do
     end
   end
 
+
+  describe "#empty" do
+    context "when products have been added to the cart" do
+      before(:each) do
+        products.each do |product|
+          cart.add_product_by_id(product.id)
+        end
+      end
+
+      it "empties the cart" do
+        cart.empty
+        cart.cart_products.should == []
+        cart.products.should == []
+      end
+    end
+  end
+
   describe "#add_product_by_id" do
     it "adds the product to the cart" do
       expect do

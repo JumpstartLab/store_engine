@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   has_many :orders
 
+  has_many :addresses
+
   has_one :cart
 
   def is_admin?
