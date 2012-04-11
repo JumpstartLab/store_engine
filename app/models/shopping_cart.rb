@@ -9,6 +9,10 @@ class ShoppingCart < ActiveRecord::Base
     cart_items << item
   end
 
+  def remove_item(cart_item_id)    
+    cart_item = cart_items.find(cart_item_id).destroy
+  end
+
   def total
     cart_items.inject(Money.new(0)) do |sum, cart_item|
       sum += cart_item.price * cart_item.quantity

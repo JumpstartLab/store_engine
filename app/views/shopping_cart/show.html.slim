@@ -11,8 +11,8 @@ table
       td = link_to cart_item.product.title, product_path(cart_item.product)
       td = cart_item.price
       td = cart_item.quantity
+      td = link_to "Remove", cart_item_path(cart_item), :method => :delete
 
 h3 Order Total 
 = cart.total  
 
-        /= link_to "Remove", product_path(product), :method => :delete

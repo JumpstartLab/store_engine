@@ -4,6 +4,7 @@ StoreEngine::Application.routes.draw do
   resource :shopping_cart, :controller => "shopping_cart"
   resources :user_sessions
   resources :users
+  resources :cart_items
 
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout

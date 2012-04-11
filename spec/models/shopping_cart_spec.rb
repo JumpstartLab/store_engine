@@ -16,6 +16,23 @@ describe ShoppingCart do
     end
   end
 
+  describe "#remove_item" do
+    context "when items exist in the cart" do
+      let(:cart_item) { Fabricate(:cart_item) }
+      let(:cart_item2) { Fabricate(:cart_item) }
+      let(:cart_items) { [cart_item, cart_item2] }
+
+      it "removes an item from the cart" do
+        cart = Fabricate(:shopping_cart, :cart_items => cart_items)
+        cart.cart_items.count.should == 2
+        cart.remove_item(cart_item.id)
+        cart.cart_items.count.should == 1
+        cart.cart_items.include?(cart_item2).should == true
+      end
+    end
+  end
+
+
   describe "#total" do
     context "when viewing the cart" do
       let(:cart_item) { Fabricate(:cart_item, :quantity => 5, :price => "10.75") }
