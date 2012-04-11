@@ -1,11 +1,19 @@
 require 'spec_helper'
 
 describe User do
-  context "an administrator" do
-    let (:user) { Fabricate(:user) }
+  let (:user) { Fabricate(:user) }
 
+  after(:each) do
+    User.destroy_all
+  end
+
+  after(:all) do
+    User.destroy_all
+  end
+
+  context "with role admin" do
     it "can create new products" do
-      create_user(user)
+      user.set_role('admin')
       login_as(user)
 
       visit products_path
@@ -26,17 +34,10 @@ describe User do
       page.should have_content("SIGN IN BITCH!")
     end
   end  
-  describe "users with role" do
-    let (:user) { Fabricate(:user) }
-
+  describe "with role" do
     context "nil" do
-      before(:all) do
-        user.role = nil
-      end
-
       it "cannot visit the new product page" do
-        create_user(user)
-        login_as(user)
+        login_as(user.set_role(nil))
         visit new_product_path
 
         page.should have_content("Access denied. This page is for administrators only.")
@@ -45,13 +46,8 @@ describe User do
     end
 
     context "'blank'" do
-      before(:all) do
-        user.role = nil
-      end
-
       it "cannot visit the new product page" do
-        create_user(user)
-        login_as(user)
+        login_as(user.set_role(''))
         visit new_product_path
 
         page.should have_content("Access denied. This page is for administrators only.")
@@ -65,7 +61,6 @@ describe User do
       end
 
       it "cannot visit the new product page" do
-        create_user(user)
         login_as(user)
         visit new_product_path
 

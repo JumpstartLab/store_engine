@@ -1,9 +1,16 @@
 class Order < ActiveRecord::Base
-  attr_accessible :user_id
+  attr_accessible :user_id, :status
   has_many :order_items
   has_many :products, :through => :order_items
 
   belongs_to :cart
+
+  def self.create_from_cart(cart)
+    order = Order.create(:status => "pending")
+    order_items = cart.order_items
+    order.save
+    order
+  end
 
   def add_product(product)
     if products.include?(product)

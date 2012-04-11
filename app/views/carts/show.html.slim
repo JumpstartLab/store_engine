@@ -1,5 +1,7 @@
 h1 Your Cart
 
+= link_to "Checkout", checkout_path(:cart_id => @cart.id)
+
 div id="cart"
   table
   - @cart.items.each do |item|

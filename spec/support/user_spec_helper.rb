@@ -31,4 +31,25 @@ module UserHelper
 
     click_button "Log in"
   end
+
+  def fill_billing_form
+    billing = {
+      :credit_card_number => "1234123412341234",
+      :cvc => "123",
+      :expiration_date => "04/15",
+      :address => "123 Jonan Street",
+      :city => "Jonanville",
+      :state => "MD",
+      :zipcode => "12345"
+    }
+
+    fill_in "Credit card number", :with => billing[:credit_card_number]
+    fill_in "Cvc", :with => billing[:cvc]
+    fill_in "Expiration date", :with => billing[:expiration_date]
+
+    fill_in "Street", :with => billing[:address]
+    fill_in "City", :with => billing[:city]
+    fill_in "State", :with => billing[:state]
+    fill_in "Zipcode", :with => billing[:zipcode]
+  end
 end

@@ -8,4 +8,32 @@ class User < ActiveRecord::Base
   validates_length_of :username, :within => 2..32, 
                       :too_long => "pick a shorter name",
                       :too_short => "pick a longer name"
+
+  def admin?
+    role == 'admin'
+  end
+
+  def set_role(role)
+    self.role = role
+    save
+    self
+  end
+
+  def add_credit_card(cc)
+    cc[:user_id] = id
+    CreditCard.create(cc)
+  end
+
+  def add_address(address)
+    address[:user_id] = id
+    Address.create(address)
+  end
+
+  def find_or_create_credit_cards
+
+  end
+
+  def find_or_create_addresses
+    
+  end
 end

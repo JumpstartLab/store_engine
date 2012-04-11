@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   before_filter :find_or_create_cart_from_session
+  before_filter :require_login, :only => :checkout
 
   def show
   end
@@ -17,5 +18,10 @@ class CartsController < ApplicationController
       session[:cart_id] = @cart.id
     end
     @cart
+  end
+
+  def checkout
+    Order.create_from_cart(Cart.find_by_id(params[:cart_id]))
+    redirect_to billing_path
   end
 end

@@ -1,0 +1,35 @@
+h1 Billing Information
+
+= form_for(:billing) do |f| 
+  = fields_for :credit_card do |cc_form|
+    div class="field"
+      = cc_form.label :credit_card_number
+      = cc_form.text_field :credit_card_number
+
+    div class="field"
+      = cc_form.label :cvc
+      = cc_form.text_field :cvc
+
+    div class="field"
+      = cc_form.label :expiration_date
+      = cc_form.text_field :expiration_date
+
+  = fields_for :address do |address|
+    div class="field"
+      = address.label :street
+      = address.text_field :street
+
+    div class="field"
+      = address.label :city
+      = address.text_field :city
+
+    div class="field"
+      = address.label :state
+      = address.text_field :state
+
+    div class="field"
+      = address.label :zipcode
+      = address.text_field :zipcode
+
+  div class="action"
+    = f.submit "Submit"

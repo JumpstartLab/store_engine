@@ -22,11 +22,11 @@ describe Product do
       end
     end
 
-    it "shows all of the product prices" do
-      products.each do |product|
-        page.should have_content(product.price)
-      end
-    end 
+    # it "shows all of the product prices" do
+    #   products.each do |product|
+    #     page.should have_content(product.price)
+    #   end
+    # end 
 
     it "has links to show each product" do
       products.each do |product|

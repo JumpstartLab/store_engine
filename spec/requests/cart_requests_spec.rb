@@ -4,6 +4,53 @@ describe Cart do
   let(:product) { Fabricate(:product) }
   let(:cart) { Fabricate(:cart) }
   let(:category) { Fabricate(:category) }
+  let(:user) { Fabricate(:user) }
+
+  context "as an authenticated user" do
+    context "when I click checkout with a product in my cart" do
+      before(:each) do
+        cart.add_product(product)
+        login_as(user)
+        visit cart_path
+      end
+
+      it "takes me to a billing page" do
+        click_link "Checkout"
+        page.should have_content("Billing Information")  
+      end
+
+      it "creates a pending order" do
+        count = Order.find_all_by_status("pending").count
+        expect {
+          click_link "Checkout"  
+        }.to change{ Order.find_all_by_status("pending").count }.by(1)
+      end
+
+      context "and I submit new billing information" do
+        before(:each) do
+          cart.add_product(product)
+          login_as(user)
+          visit cart_path
+          click_link "Checkout"
+        end
+
+        it "creates a credit card" do
+          fill_billing_form
+          expect {
+            click_button "Submit" 
+          }.to change{ CreditCard.count }.by(1)
+        end
+
+        it "creates an address"
+      end
+
+      context "and I choose existing billing information" do
+        it "doesn't create a credit card"
+
+        it "doesn't create an address"
+      end
+    end
+  end
 
   context "when a user clicks on 'add to cart'" do
     before(:each) do
