@@ -15,10 +15,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # order = Order.create(params[:order])
-    # if session[:user_id]
-    #   order.update_attribute(:user_id, session[:user_id])
-    # redirect_to root_url
   end
 
   def destroy
