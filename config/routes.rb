@@ -41,6 +41,7 @@ StoreEngine::Application.routes.draw do
     end
 
     resources :categories
+    resources :orders, except: [:new]
   end
 
   # The priority is based upon order of creation:

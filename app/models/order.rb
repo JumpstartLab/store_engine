@@ -26,16 +26,20 @@ class Order < ActiveRecord::Base
     order_items.map(&:line_price).inject(:+)
   end
 
-  def cancelled?
-    status == "cancelled"
+  def status=(val)
+    val = val.downcase if status
+    write_attribute(:status, val)
   end
 
-  def pending?
-    status == "pending"
-  end
+  STATUSES.each do |status|
+    define_method(status + "?") do
+      self.status == status
+    end
 
-  def shipped?
-    status == "shipped"
+    define_method(status + "=") do |status|
+      status = status.downcase if status
+      write_attribute(:status, status)
+    end
   end
 
   def cancellable?

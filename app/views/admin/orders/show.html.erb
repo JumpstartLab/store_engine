@@ -1,0 +1,23 @@
+<h2>Order #<%= @order.id %></h2>
+<p>Placed by <%= @order.user.email %></p>
+<p>Total cost: <%= @order.total_price%></p>
+<p>Status: <%= @order.status %></p>
+
+<table>
+  <tr>
+    <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Price / Each</th>
+    <th>Line Total</th>
+  </tr>
+
+  <% @order.order_items.each do |order_item| %>
+  <tr>
+    <td><%= order_item.product.name %></td>
+    <td><%= order_item.quantity %></td>
+    <td><%= order_item.each_price %></td>
+    <td><%= order_item.line_price %></td>
+  </tr>
+  <% end %>
+
+</table>

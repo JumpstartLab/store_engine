@@ -12,6 +12,41 @@ class Admin::OrdersController < ApplicationController
     end
   end
 
+  def show
+    @order = Order.find(params[:id])
+  end
+
+  def edit
+    @order = Order.find(params[:id])
+  end
+
+  def update
+    @order = Order.find(params[:id])
+    quantities = params[:order_item_quantities]
+
+    # TODO: This could probably factored out into Order
+    # TODO: Should probably be in a transaction.
+    quantities.each do |id, quantity|
+      quantity = quantity.to_i
+      item = @order.order_items.find(id)
+
+      if quantity > 0
+        item.quantity = quantity
+        item.save!
+      else
+        item.destroy
+      end
+    end
+
+    @order.status = params[:status]
+
+    if @order.save
+      redirect_to admin_order_path(@order)
+    else
+      render action: :edit
+    end
+  end
+
   def cancel
     if @order.status == "pending"
       @order.update_attributes(status: "cancelled")
