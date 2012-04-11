@@ -14,6 +14,10 @@ class SessionsController < ApplicationController
           end
         end
         session[:order_id] = user.pending_order.id
+      elsif session[:order_id]
+        order = Order.find(session[:order_id])
+        order.add_user(session[:user_id])
+        order.try_to_add_billing_and_shipping(session[:user_id])
       end
       redirect_to root_url, :notice => "Welcome Back, #{user.full_name}"
     else

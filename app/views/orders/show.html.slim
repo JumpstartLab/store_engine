@@ -8,13 +8,6 @@ table.table.table-striped
     th Actions
   = render partial: "line_item", collection: @order.line_items
 
-- if session[:user_id]
-  - user = User.find(session[:user_id])
-  - if user.has_billing_method?
-    - @order.update_attribute(:billing_method_id, user.billing_method_id)
-  - if user.has_shipping_address?
-    - @order.update_attribute(:shipping_address_id, user.shipping_address_id)
-
 - if @order.has_billing_method?
   - billing = @order.find_billing
   h2 Billing Method

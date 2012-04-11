@@ -41,6 +41,9 @@ class OrdersController < ApplicationController
     elsif @order.shipping_address_id
       notice = "Please input a valid billing method"
       redirect_to order_path(@order), notice: notice
+    else
+      notice = "Please input valid billing and shipping information."
+      redirect_to order_path(@order), notice: notice
     end
   end
 
