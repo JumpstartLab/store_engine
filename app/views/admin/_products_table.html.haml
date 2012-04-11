@@ -1,0 +1,9 @@
+%table#orders_by_status.table.table-bordered
+  %th
+  %th Edit
+  %th Name
+  - @products.each do |product|
+    %tr{:id => "product_#{product.id}"}
+      %td= link_to 'X', product_path(product), :method => :delete
+      %td= link_to "Edit", edit_category_path(product)
+      %td= link_to product.name, category_path(product)

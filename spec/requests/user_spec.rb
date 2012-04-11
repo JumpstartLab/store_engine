@@ -31,7 +31,7 @@ describe "User" do
       end
       it "can edit themselves" do
         visit edit_user_path(user)
-        page.should have_content(user.name)
+        page.should have_content("Edit User")
       end
       it "can update themselves" do
         visit edit_user_path(user)
