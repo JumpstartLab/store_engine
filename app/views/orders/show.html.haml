@@ -4,15 +4,47 @@
 %table.table.table-bordered
   %tr
     %td.span3 Created
-    %td= "#{time_ago_in_words(@order.created_at)} ago"
+    %td= @order.created_at.to_formatted_s(:long_ordinal)
   %tr
     %td Purchaser Name
     %td= @order.user.name
   %tr
+    %td Email
+    %td= @order.user.email
+  %tr
     %td Products
     %td
-      %ul
-      - @order.order_products.each do |op|
-        %li{style: 'padding: 5px;'}
-          %span= link_to op.product.name, product_path(op.product)
-          %span.label.label-success= op.price
+      %table.table
+        %th Name
+        %th Price
+        %th Quantity
+        %th Subtotal
+        - @order.order_products.each do |op|
+          %tr
+            %td= link_to op.product.name, product_path(op.product)
+            %td= op.price
+            %td= op.quantity
+            %td= op.price
+  %tr
+    %td Total Price
+    %td= @order.total_price
+  %tr
+    %td Status
+    %td
+      = @order.status.name.titlecase
+      = render 'orders/status', :order => @order
+
+  - if @order.cancelled_at
+    %tr
+      %td Cancelled At
+      %td= @order.cancelled_at.to_formatted_s(:long_ordinal)
+
+  - if @order.returned_at
+    %tr
+      %td Returned At
+      %td= @order.returned_at.to_formatted_s(:long_ordinal)
+
+  - if @order.shipped_at
+    %tr
+      %td Shipped At
+      %td= @order.shipped_at.to_formatted_s(:long_ordinal)

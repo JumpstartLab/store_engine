@@ -3,7 +3,14 @@ StoreEngine::Application.routes.draw do
   get "login" => 'sessions#new'
   get "logout" => 'sessions#destroy', :as => "logout"
 
-  resources :orders, :users, :categories, :products, :sessions, :orders, :search
+  resources :users, :categories, :products, :sessions, :search
+
+  resources :orders do
+    member do
+      get 'status'
+    end
+  end
+
   resource :cart
 
   root :to => "products#index"
