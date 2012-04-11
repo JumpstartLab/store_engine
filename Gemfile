@@ -22,6 +22,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'simplecov'
   gem 'fabrication'
   gem 'rspec-rails'
   gem 'capybara'
