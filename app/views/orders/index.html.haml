@@ -1,24 +1,16 @@
 %h1 Dashboard - Orders
-%br
+%hr
 %a= link_to 'Advanced Search', '/search/new' 
 %br
 %br
 
 .row
-  .span8#orders
+  .span7#orders
     %h3 Orders
-    %br
-
-    .span1.center= link_to 'all', orders_path
-    - @statuses.each do |s|
-      .span1.center= link_to s.name, orders_path(:status => s.name)
-
-    %br
-    %br
 
     = render 'orders/list', :orders => @orders
 
-  .span4
+  .span3.right
     %h3 Orders by Status
     %br
     %table#orders_by_status.table.table-bordered
@@ -26,6 +18,6 @@
       %th Count
       - @statuses.each do |status|
         %tr
-          %td= status.name
+          %td= link_to status.name, orders_path(:status => status.name)
           %td{:id => status.name} 
             = status.orders.count

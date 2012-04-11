@@ -5,12 +5,12 @@
     .span5
       = f.input :order_date, :input_html => { :style => 'width: 120px;' }
     .span1
-      = f.input :order_date_operator, :collection => ['>', '<', '='], :label => '&nbsp;'
+      = f.input :order_date_operator, :collection => ['>', '<', '='], :label => 'Where'
 
   .row
     .span3
       = f.input :total_price
     .span3
-      = f.input :order_total_operator, :collection => ['>', '<', '='], :label => '&nbsp;'
+      = f.input :order_total_operator, :collection => ['>', '<', '='], :label => 'Where'
   = f.input :email
   = f.submit 'Advanced Search', :class => 'btn btn-primary'

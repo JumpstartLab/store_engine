@@ -14,7 +14,3 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
-
-$(document).ready(function() {
-  $('#myCart').modal('hide');
-});

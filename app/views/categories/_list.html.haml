@@ -1,4 +1,6 @@
-%table.table
-  - categories.each do |c|
-    %tr
-      %td= link_to c.name, category_path(c)
+.well
+  %ul.nav.nav-list
+    %li.nav-header
+      Categories
+    - categories.each do |c|  
+      %li= link_to c.name, category_path(c)

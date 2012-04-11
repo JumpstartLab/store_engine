@@ -3,9 +3,8 @@
   = render :partial => 'layouts/nav'
   #content
     #content-padding
-      #main_container.container
-        - if flash[:notice]
-          .alert.alert-info= flash[:notice]
-        .row
-          = yield
+      - if flash[:notice]
+        .alert.alert-info= flash[:notice]
+      .row
+        = yield
   = render :partial => 'layouts/footer'

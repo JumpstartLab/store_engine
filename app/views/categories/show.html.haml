@@ -1,9 +1,2 @@
 %h1 Products - #{@category.name}
-%hr
-.row
-  .span10
-    = render 'products/list', :products => @products
-  .span2
-    %h4 Categories
-    %br
-    = render 'categories/list', :categories => @categories
+= render :partial => "shared/show_products"

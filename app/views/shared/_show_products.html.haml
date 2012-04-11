@@ -1,0 +1,8 @@
+%hr
+.row
+  .span7
+    = render 'products/list', :products => @products
+  .span2{:style => "float:right;"}
+    %h4 Categories
+    %br
+    = render 'categories/list', :categories => @categories

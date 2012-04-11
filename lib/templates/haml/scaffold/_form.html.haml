@@ -1,10 +1,11 @@
-= simple_form_for(@<%= singular_table_name %>) do |f|
-  = f.error_notification
+= simple_form_for(@ singular_table_name )  do |f|
+  .fieldset
+    .legend=@singular_table_name
+    = f.error_notification
 
-  .form-inputs
-  <%- attributes.each do |attribute| -%>
-    = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
-  <%- end -%>
+    .form-inputs
+    - attributes.each do |attribute|
+      = f.attribute.reference? ? :association : :input : attribute.name
 
-  .form-actions
-    = f.button :submit
+    .form-actions
+      = f.button :submit
