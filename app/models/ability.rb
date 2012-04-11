@@ -22,6 +22,9 @@ class Ability
       can :manage, Cart
       can :create, Order
       can :create, User
+      #limit user access to read orders belonging to user
+      #can :read, Order
+      #change cart permission- only view cart if its their cart
     else
       can :read, Product
       can :manage, LineItem

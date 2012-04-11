@@ -9,7 +9,7 @@ class Order < ActiveRecord::Base
   validates :name, :address, :email, presence: true
   validates :pay_type, inclusion: PAYMENT_TYPES
   validates :status, :presence => true
-  # validates :user_id, :presence => true
+  validates :user_id, :presence => true
 
   def next_status
     case status 
