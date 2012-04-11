@@ -28,9 +28,11 @@
           <td><%= sprintf("$%0.02f", product.price) %></td>
           <% if can? :create, @product %>
           <td><%=product.retired? %>
-            <%= form_for product do |f| %>
+            <% if product.retired?  == false %>
+              <%= form_for product do |f| %>
                 <%= f.hidden_field :retired, :value => true %>
                 <%= f.submit "mark as retired" %>
+              <% end %>  
             <% end %>
           </td>
           <% end %>
