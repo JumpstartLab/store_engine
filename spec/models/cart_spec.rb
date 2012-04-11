@@ -44,6 +44,46 @@ describe Cart do
     end
   end
 
+  describe "#cart_total" do
+    context "when no items have been added to the cart" do
+      it "should return 0" do
+        cart.cart_total.should == 0
+      end
+    end
+
+    context "when items have been added to the cart" do
+      before do
+        products.each do |product|
+          cart.add_product(product)
+        end
+      end
+
+      it "should return the number of items added" do
+        cart.cart_total.should == products.map(&:price).inject(:+)
+      end
+    end
+  end
+
+  describe "#cart_total_in_cents" do
+    context "when no items have been added to the cart" do
+      it "should return 0" do
+        cart.cart_total.should == 0
+      end
+    end
+
+    context "when items have been added to the cart" do
+      before do
+        products.each do |product|
+          cart.add_product(product)
+        end
+      end
+
+      it "should return the number of items added" do
+        cart.cart_total_in_cents.should == products.map(&:price).inject(:+) * 100
+      end
+    end
+  end
+
   describe "#has_products?" do
     context "when no items have been added to the cart" do
       it "should return true" do

@@ -1,0 +1,19 @@
+<h1>Admin Orders</h1>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Customer Name</th>
+    <th>Date</th>
+    <!-- <th>Total</th> -->
+    <th>Status</th>
+  </tr>
+
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= link_to order.user.name, order %></td>
+      <td><%= order.created_at %></td>
+      <td><%= order.status %></td>
+    </tr>
+  <% end %>
+
+</table>

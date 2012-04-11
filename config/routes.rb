@@ -12,6 +12,12 @@ StoreEngine::Application.routes.draw do
   resources :categories 
   resources :orders, only: [:new, :show, :create]
   
+  namespace :admin do
+    resources :products
+    resources :orders, only: [:index, :show, :update]
+    resources :users, only: [:show]
+  end
+
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy', via: :delete
