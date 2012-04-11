@@ -1,6 +1,8 @@
 StoreEngine::Application.routes.draw do
 
-  resources :users
+  resources :users do
+    resources :orders, only: [:show]
+  end
   resource  :cart, only: [:show, :update]
   resources :sessions
   resources :cart_products, only: [:new, :update, :destroy]
@@ -11,7 +13,7 @@ StoreEngine::Application.routes.draw do
   end
   resources :categories 
   resources :orders, only: [:new, :show, :create]
-  
+
   namespace :admin do
     resources :products
     resources :orders, only: [:index, :show, :update]
