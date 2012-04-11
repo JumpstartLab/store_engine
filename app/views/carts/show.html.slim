@@ -10,3 +10,4 @@ div id="cart"
       td = item.price
       td = item.quantity
       td = item.subtotal
+      td = link_to "Remove", cart_item_path(:item_id => item.id), :method => :delete

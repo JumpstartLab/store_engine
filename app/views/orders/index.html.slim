@@ -1,1 +1,12 @@
 h1 Orders
+
+table
+  tr
+    th = "Order Number"
+    th = "Placed on"
+    th = "Total"
+  - @orders.each do |order|
+    tr
+      td = order.id
+      td = order.created_at
+      td = order.total

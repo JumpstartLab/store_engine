@@ -41,13 +41,12 @@ describe Cart do
           }.to change{ CreditCard.count }.by(1)
         end
 
-        it "creates an address"
-      end
-
-      context "and I choose existing billing information" do
-        it "doesn't create a credit card"
-
-        it "doesn't create an address"
+        it "creates an address" do
+          fill_billing_form
+          expect {
+            click_button "Submit" 
+          }.to change{ Address.count }.by(1)
+        end
       end
     end
   end
@@ -100,6 +99,18 @@ describe Cart do
       visit category_path(category)
       click_link "View Cart"
       page.should have_content("Your Cart")
+    end
+  end
+
+  context "when I click on remove" do
+    before(:each) do
+      visit product_path(product)
+      click_link "Add to Cart"
+      click_link "Remove"
+    end
+
+    it "removes the product from my cart" do
+      page.should_not have_content(product.title)
     end
   end
 end
