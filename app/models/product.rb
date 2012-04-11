@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   attr_accessible :description, :name, :photo, :price
+  before_save :check_for_photo
 
   has_many :order_products
   has_many :orders, :through => :order_products
@@ -58,6 +59,14 @@ class Product < ActiveRecord::Base
 
   def remove_category(category)
     self.categories.delete(category)
+  end
+
+  private
+
+  def check_for_photo
+    if self.photo == ""
+      self.photo = '/link_to_your_photo.gif'
+    end
   end
 
 end
