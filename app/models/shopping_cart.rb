@@ -4,9 +4,15 @@ class ShoppingCart < ActiveRecord::Base
 
   def add_item(product_id, quantity)
     product = Product.find(product_id)
-    item = CartItem.new(:product => product, :quantity => quantity,
-                        :price => product.price_string)
-    cart_items << item
+    item = cart_items.find(:first, :conditions => ["product_id = ?", product_id])
+    if item.nil?
+      item = CartItem.new(:product => product, :quantity => quantity,
+                          :price => product.price_string)
+      cart_items << item
+    else
+      item.quantity += quantity.to_i
+      item.save
+    end
   end
 
   def remove_item(cart_item_id)    

@@ -5,13 +5,32 @@ describe ShoppingCart do
   describe "#add_item" do
     context "when adding item" do
       let(:product) { Fabricate(:product) }
-
+      let(:product2) { Fabricate(:product) }
+      
       it "adds a cart item" do
         cart = ShoppingCart.new
         cart.add_item(product.id, 10)
         cart.cart_items.length.should ==  1
-        cart.cart_items.first.quantity == 10
+        cart.cart_items.first.quantity.should == 10
         cart.cart_items.first.price.should == product.price
+      end
+    end
+
+    context "when adding duplicate items" do
+      let!(:product) { Fabricate(:product) }
+      let!(:cart) { Fabricate(:shopping_cart) }
+
+      before(:each) do
+        cart.add_item(product.id, 10)
+        cart.add_item(product.id, 5)
+      end
+
+      it "has one item" do
+        cart.cart_items.length.should == 1
+      end
+
+      it "combines quantity" do
+        cart.cart_items.first.quantity.should == 15
       end
     end
   end
