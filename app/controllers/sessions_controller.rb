@@ -5,10 +5,17 @@ class SessionsController < ApplicationController
   end
 
   def create
-    cart_id = current_cart.id
+    cart = current_cart
     user = login(params[:email], params[:password], params[:remember_me])
     if user
-      user.update_attribute(:cart_id, cart_id)
+      if cart.has_products?
+        user.update_attribute(:cart_id, cart.id)
+      else
+        current_cart.destroy
+      end
+
+      #THE DREAM: user.set_cart
+
       redirect_back_or_to user, :notice => "Logged in!"
     else
       flash.now.alert = "Email or password was invalid."

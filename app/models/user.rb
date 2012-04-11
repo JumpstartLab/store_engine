@@ -18,4 +18,12 @@ class User < ActiveRecord::Base
     self.orders << order
   end
 
+  def set_cart
+    if current_cart.has_products?
+      self.update_attribute(:cart_id, current_cart.id)
+    else
+      current_cart.destroy
+    end
+  end
+
 end

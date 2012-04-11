@@ -24,6 +24,44 @@ describe Cart do
     end
   end
 
+  describe "#cart_count" do
+    context "when no items have been added to the cart" do
+      it "should return 0" do
+        cart.cart_count.should == 0
+      end
+    end
+
+    context "when items have been added to the cart" do
+      before do
+        products.each do |product|
+          cart.add_product(product)
+        end
+      end
+
+      it "should return the number of items added" do
+        cart.cart_count.should == products.size
+      end
+    end
+  end
+
+  describe "#has_products?" do
+    context "when no items have been added to the cart" do
+      it "should return true" do
+        cart.has_products?.should == false
+      end
+    end
+
+    context "when items have been added to the cart" do
+      before do
+        cart.add_product(product_one)
+      end
+
+      it "should false" do
+        cart.has_products?.should == true
+      end
+    end
+  end
+
   describe "#remove_product_by_id" do
     before(:each) do
       products.each do |product|
@@ -39,7 +77,7 @@ describe Cart do
     end
   end
 
-  describe "add_product_by_id" do
+  describe "#add_product_by_id" do
     it "adds a product to the cart" do
       expect {
         cart.add_product_by_id(product_one.id)

@@ -37,6 +37,10 @@ class Cart < ActiveRecord::Base
     cart_products.map(&:quantity).inject(:+) || 0
   end
 
+  def has_products?
+    cart_products.any?
+  end
+
   def cart_total
     products.inject(Money.new(0, "USD")) do |total, product|
       total + (product.price || 0)
