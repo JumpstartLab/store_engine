@@ -39,5 +39,5 @@ class ProductsController < ApplicationController
     @product.update_categories(params[:categories][1..-1])
     redirect_to @product, notice: 'Product was successfully updated.'
   end
-
+  
 end
