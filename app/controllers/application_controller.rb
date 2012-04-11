@@ -1,7 +1,39 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :lookup_cart
+
   private
+
+  def lookup_cart
+    if current_user # if someone is logged in
+      current_user.cart = Cart.create if current_user.cart.nil?
+      @cart = current_user.cart
+
+      if @cart.id != session[:cart_id]
+        merge_cart(session[:cart_id]) if !session[:cart_id].blank?
+      end
+    else 
+      if session[:cart_id]
+        @cart = Cart.find_by_id(session[:cart_id])
+      else
+        @cart ||= Cart.create
+        session[:cart_id] = @cart.id
+      end
+    end
+  end
+
+  def merge_cart(session_cart_id)
+    session_cart = Cart.find_by_id(session_cart_id)
+    session_cart.cart_items.each do |ci|
+      if !@cart.items.include?(ci.product)
+        @cart.cart_items << ci
+      else
+        @cart.increment_quantity_for(ci.product_id, ci.quantity)
+      end
+    end
+    session[:cart_id] = @cart.id
+  end
 
   def current_cart
     if session[:cart_id]
@@ -31,7 +63,7 @@ class ApplicationController < ActionController::Base
       false
     end
   end
-
+  helper_method :lookup_cart
   helper_method :admin_authorize
   helper_method :current_cart
   helper_method :current_user

@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_one :cart
+
   attr_accessible :full_name, :email, :username, :password, :password_confirmation
 
   validates_presence_of :full_name

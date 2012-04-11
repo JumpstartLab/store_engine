@@ -5,6 +5,8 @@ class Cart < ActiveRecord::Base
   has_many :cart_items, dependent: :destroy
   has_many :products, :through => :cart_items
 
+  belongs_to :user
+
   def items
     products
   end
@@ -17,9 +19,9 @@ class Cart < ActiveRecord::Base
     end
   end
 
-  def increment_quantity_for(product_id)
+  def increment_quantity_for(product_id, count=1)
     current_item = cart_items.find_by_product_id(product_id)
-    current_item.quantity += 1
+    current_item.quantity += count
     current_item.save
   end
 

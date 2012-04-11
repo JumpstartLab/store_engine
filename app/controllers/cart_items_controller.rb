@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
   def create
-    current_cart.add_or_increment_by_product(params[:product_id])
+    @cart.add_or_increment_by_product(params[:product_id])
     redirect_to cart_path
   end
 
