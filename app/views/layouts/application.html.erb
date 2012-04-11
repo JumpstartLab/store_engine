@@ -16,7 +16,7 @@
       <%= link_to "Log In", new_session_path %>
     <% end %>
 
-    | <%= link_to "Cart", cart_path %> (<%= @cart.items.count %>)
+    | <%= link_to "Cart", cart_path %> (<%= current_cart.items.count %>)
     | <%= link_to "Products", '/' %>
 
     <br />

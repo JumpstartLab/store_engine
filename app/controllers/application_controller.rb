@@ -33,6 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :admin_authorize
+  helper_method :current_cart
   helper_method :current_user
   helper_method :admin?
 end
