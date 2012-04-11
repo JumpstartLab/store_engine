@@ -9,12 +9,16 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :email
   validates_presence_of :password, :on => :create
 
-  validates_length_of :display_name, :within => 2..32
+  validates_length_of :display_name, :within => 2..32, :allow_blank => true
   
   has_many :orders
   has_many :products, :through => :orders
   has_many :product_ratings
   has_one :cart
+
+  def name
+    display_name || read_attribute(:name)
+  end
 
   def admin
     permission == 9
