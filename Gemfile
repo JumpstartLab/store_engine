@@ -26,5 +26,6 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'guard-rspec'
-  # gem 'factory_girl_rails'
+  gem 'simplecov'
+  gem 'factory_girl_rails'
 end

@@ -13,13 +13,15 @@ FactoryGirl.define do
   end
 
   factory :order do
-    user 
+    name "Andy"
+    email "andy@andy.com"
+    address "123 Andy Street, Andy, AK 200001"
+    pay_type "Check"
   end
 
-  # factory :order_item do
-  #   product
-  #   quantity 2
-  # end
+  factory :cart do
+    id 1
+  end
 
   factory :product do
     title 
@@ -29,8 +31,9 @@ FactoryGirl.define do
   
   factory :user do
     full_name "Andrew Glass"
-    email 
-    is_admin false
-    username 
+    email "andy@livingsocial.com"
+    admin false
+    user_name "andy_glass"
+    password "hungry"
   end
 end

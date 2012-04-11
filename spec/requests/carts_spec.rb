@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe "Carts" do
-  describe "GET /carts" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get carts_path
+  describe "GET /cart" do
+    let(:cart) {FactoryGirl.build(:cart)}
+    pending it "works! (now write some real specs)" do
+      get cart_path(cart)
       response.status.should be(200)
     end
   end
