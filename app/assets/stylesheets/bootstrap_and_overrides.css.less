@@ -49,7 +49,7 @@ body { padding-top: 60px; }
 
 /********UNIVERSAL*********/
 body { background: url("background.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
-.container .span8, .container .span3 { background: @background; padding: 15px; .rounded(8px); margin-bottom: 20px;}
+.container .span8, .container .cart { background: @background; padding: 15px; .rounded(8px); margin-bottom: 20px; float: left; }
 input { height: 30px; }
 .navbar .navbar-inner {
   .gradient(@nav-color);
@@ -65,13 +65,13 @@ img.logo { width: 50px; float: left; padding-right: 15px; }
 
 /*********PRODUCTS********/
 div#products  {
-  .span3 { padding: 10px 0px 10px 0; vertical-align: top; display: inline-block;
+  .span3 { padding: 10px; margin: 0 0 0 10px; vertical-align: top;
     a.product-title { .title-font }
   }
   div.price { .buy-font; padding: 20px 0;
     a { .buy-button; }
   }
-  div.form-buttons { background-color: @background; border: none; display: block; text-align: center; margin-top: 40px;
+  div.form-buttons { background-color: @background; border: none; text-align: center; margin-top: 40px;
   a { margin-right: 10px;}
   }
 }
