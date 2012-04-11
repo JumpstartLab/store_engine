@@ -1,9 +1,8 @@
 require 'spec_helper'
 
 describe "Updating products" do
-  context "when I'm on a product page" do
-    let(:product) { FactoryGirl.create(:product) }
-    before(:each) { visit product_path(product)}
+  context "when I'm on the products index page"
+    before(:each) { visit products_path }
 
     context "and I click 'New Product'" do
       before(:each) { click_link("New Product")}
@@ -11,7 +10,37 @@ describe "Updating products" do
       it "takes me to the new product page" do
         page.should have_content('New product')
       end
+
+      context "and I enter invalid information" do
+
+        it "does not create a new product" do
+          expect {click_link_or_button('Create Product')}.to_not change(Product, :count).by(1)
+        end
+
+        it "shows me some error message" do
+          click_link_or_button('Create Product')
+          page.should have_selector('div.alert.alert-error')
+        end
+      end
+
+      context "and I enter valid information" do
+        let(:product) { FactoryGirl.build(:product) }
+
+        before do
+          fill_in "Name", with: product.name
+          fill_in "Description", with: product.description
+          fill_in "Price", with: product.price
+        end
+
+        it "successfully creates a product" do
+          expect {click_link_or_button('Create Product')}.to change(Product, :count).by(1)
+        end
+      end
     end
+
+  context "when I'm on a product page" do
+    let(:product) { FactoryGirl.create(:product) }
+    before(:each) { visit product_path(product)}
 
     context "and I click 'Edit this product'" do
       before(:each) { click_link("Edit this product") }
