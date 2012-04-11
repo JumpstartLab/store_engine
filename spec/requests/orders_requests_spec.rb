@@ -20,26 +20,45 @@ describe "For orders" do
   end
 
   context "#show" do
-    let!(:order) { [Fabricate(:order) ] }
+    let!(:order) { Fabricate(:order) }
+    let!(:products) { [Fabricate(:product), Fabricate(:product), Fabricate(:product)] }
 
     before(:each) { visit order_path(order) }
 
-    it "lists the order ID" do
-      # save_and_open_page
-      # raise order.inspect
-      page.should have_content(order.id)
-    end
+    # it "lists the order ID" do
+    #   page.should have_content(order.id)
+    # end
 
-    it "lists the user who placed the order"
-    it "lists the datetime the order was placed"
-    it "lists the datetime the order was edited"
-    it "lists the total price of all items in the order"
+    # it "lists the user who placed the order" do
+    #   pending "Need to implement users first"
+    # end
 
-    it "has a list of products"
-    it "lists the products included in the order"
+    # it "lists the datetime the order was placed" do
+    #   page.should have_content(order.created_at)
+    # end
+
+    # it "lists the datetime the order was updated" do
+    #   page.should have_content(order.updated_at)
+    # end
+
+    # it "lists the total price of all items in the order" do
+    #   page.should have_content(order.total_price)
+    # end
+
+    # it "has a list of products" do
+    #   page.should have_selector("#items")
+    # end
+
+    # it "lists the products included in the order" do
+    #   within("#items") do
+    #     products.each do |product|
+    #       page.should have_content(product.title)
+    #     end
+    #   end
+    # end
+
     it "lists the quantity of each product"
     it "lists the line item price of each product"
-
   end
 
 end

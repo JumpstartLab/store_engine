@@ -17,5 +17,5 @@
     <td>Total:</td>
     <td id="total"><%= cart.total %></td>
 </table>
-
+<%= link_to "Place Order", orders_path(:cart_id => cart), :method => :post, :class=> "btn" %>
 <%= link_to "Destroy Cart", cart_path(cart), :method => :delete, :class => "btn btn-danger" %>

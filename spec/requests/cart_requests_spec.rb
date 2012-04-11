@@ -83,6 +83,16 @@ describe "Using the shopping cart" do
           end
         end
       end
+    end
+
+    context "and the place order button is clicked" do
+      # before(:each) { click_link_or_button("Place Order") }
+
+      it "creates an order" do
+        current_orders = Order.count
+        click_link_or_button("Place Order")
+        current_orders.should == current_orders + 1
+      end
 
     end
   end
