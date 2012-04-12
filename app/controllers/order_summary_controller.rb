@@ -1,0 +1,2 @@
+class OrderSummaryController < ApplicationController
+end
