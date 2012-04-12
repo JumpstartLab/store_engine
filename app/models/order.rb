@@ -12,8 +12,12 @@ class Order < ActiveRecord::Base
 
   def next_status
     case status 
-    when "pending" then "cancelled"
-    when "paid" then "shipped"
+    when "pending" then 
+      "cancelled"
+      Order.cancelled_at = Time.now
+    when "paid" then
+      "shipped"
+      Order.shipped_at = Time.now
     when "shipped" then "returned"
     end
   end
