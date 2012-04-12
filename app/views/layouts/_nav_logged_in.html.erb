@@ -1,5 +1,6 @@
 <ul class="nav">
   <li><%= link_to "Products", products_path %></li>
+  <li><%= link_to "Orders", orders_path %></li>
   <% if current_user.is_admin? %>
   <li><%= link_to "Dashboard", admin_dashboard_path %></li>
   <% end %>

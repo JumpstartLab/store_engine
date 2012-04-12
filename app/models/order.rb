@@ -60,6 +60,14 @@ class Order < ActiveRecord::Base
     order_product.quantity = cart_product.quantity
   end
 
+  def billing_address
+    Address.find_by_id(self.billing_address_id)
+  end
+
+  def shipping_address
+    Address.find_by_id(self.shipping_address_id)
+  end
+
   # def ship
   #   order_statuses.new(:status => "shipped")
   #   save

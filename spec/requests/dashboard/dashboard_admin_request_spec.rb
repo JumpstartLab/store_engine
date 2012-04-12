@@ -88,16 +88,16 @@ describe "Dashboard" do
     before(:each) { visit "admin/dashboard" }
 
     it "has a button to upgrade order status" do
-      page.should have_link("Promote Order")
-    end
-
-    it "has a button to downgrade order status" do
-      page.should have_link("Demote Order")
+      page.should have_link("Mark Paid")
+      page.should have_link("Mark Shipped")
+      page.should have_link("Mark Pending")
+      page.should have_link("Mark Returned")
+      page.should have_link("Mark Cancelled")
     end
 
     it "changes the order status" do
       within("tr#order_#{pending_order.id}") do
-        click_link_or_button("Promote Order")
+        click_link_or_button("Mark Paid")
       end
       within("tr#order_#{pending_order.id}") do
         page.should have_content("paid")

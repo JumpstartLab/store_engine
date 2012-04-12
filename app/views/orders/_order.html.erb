@@ -1,0 +1,9 @@
+<tr>
+  <td><%= order_counter + 1 %></td>
+  <td><%= link_to order.id, order_path(order) %></td>
+  <td><%= order.billing_address.tag %></td>
+  <td><%= order.shipping_address.tag %></td>
+  <td><%= order.status %></td>
+  <td><%= order.created_at %></td>
+  <td><%= status_upgrade_link(order.status, order.id) %> | <%= status_downgrade_link(order.status, order.id) %></td>
+</tr>

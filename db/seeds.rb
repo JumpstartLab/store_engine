@@ -55,22 +55,24 @@ furniture = Category.create(:name => "Furniture")
 accessory = Category.create(:name => "Accessory")
 
 # make orders
-5.times do
+20.times do
   Fabricate(:order)
 end
 
-5.times do
-  Fabricate(:order, :status => "paid")
+# make billing addresses
+3.times do
+  Fabricate(:order, :billing_address_id => rand(1..3))
 end
 
-5.times do
-  Fabricate(:order, :status => "shipped")
+# make shipping addresses
+2.times do
+  Fabricate(:order, :shipping_address_id => rand(4..5))
 end
 
-5.times do
-  Fabricate(:order, :status => "cancelled")
-end
+# make addresses
+Fabricate(:address, :id => 1)
+Fabricate(:address, :id => 2)
+Fabricate(:address, :id => 3)
+Fabricate(:address, :id => 4)
+Fabricate(:address, :id => 5)
 
-5.times do
-  Fabricate(:order, :status => "returned")
-end

@@ -1,0 +1,5 @@
+<% if @orders.any? %>
+<%= render :partial => "user_orders" %>
+<% else %>
+<h3>You haven't ordered anything yet. Why are you a hater?</h3>
+<% end %>

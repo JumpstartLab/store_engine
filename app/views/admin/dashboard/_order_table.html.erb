@@ -14,8 +14,8 @@
   <% @orders.each do |order| %>
     <tr id="order_<%= order.id %>">
       <td><%= link_to order.id, order_path(order) %></td>
-      <td><%#= order.billing_address.id %></td>
-      <td><%#= order.shipping_address.id %></td>
+      <td><%= order.billing_address.tag %></td>
+      <td><%= order.shipping_address.tag %></td>
       <td class="status"><%= order.status %></td>
       <td class="date"><%= order.created_at %>
       </td>

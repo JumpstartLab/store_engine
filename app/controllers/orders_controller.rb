@@ -1,7 +1,12 @@
 class OrdersController < ApplicationController
+  before_filter :check_logged_in, :only => :index
 
   def new
     @order = Order.new
+  end
+
+  def index
+    @orders = current_user.orders
   end
 
   def create

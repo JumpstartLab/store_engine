@@ -6,4 +6,5 @@ Fabricator(:address) do
   country       { Faker::Address.country }
   zipcode       { Faker::Address.zip_code }
   phone_number  { Faker::PhoneNumber.phone_number }
+  tag           { Faker::Lorem.words(num = 1).join("") + " address"}
 end

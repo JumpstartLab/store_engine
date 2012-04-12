@@ -30,4 +30,14 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :cart
 
+  def check_logged_in
+    if current_user
+      true
+    else
+      not_authenticated
+    end
+  end
+
+  helper_method :check_logged_in
+
 end
