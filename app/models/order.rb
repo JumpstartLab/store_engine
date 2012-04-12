@@ -23,6 +23,7 @@ class Order < ActiveRecord::Base
       order_item = OrderItem.new
       order_item.order_id = order.id
       order_item.set_price(line_item)
+      order_item.set_product(line_item)
       order_item.set_quantity(line_item)
       order_item.save
     end

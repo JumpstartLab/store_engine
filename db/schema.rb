@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20120410183448) do
     t.integer  "order_id"
     t.decimal  "price"
     t.integer  "quantity"
+    t.integer  "product_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
