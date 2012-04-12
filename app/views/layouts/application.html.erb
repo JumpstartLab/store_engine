@@ -8,16 +8,19 @@
 </head>
 <body>
   <header>
-    <% if current_user %>
-      Logged in as <%= current_user.email %>.
-      <%= link_to "Log Out", logout_path %>
-    <% else %>
-      <%= link_to "Sign Up", new_user_path %> or
-      <%= link_to "Log In", new_session_path %>
-    <% end %>
 
-    | <%= link_to "Cart", cart_path %> (<%= @cart.items.count %>)
-    | <%= link_to "Products", '/' %>
+    <ul class="nav">
+      <li class="active">
+        <a href="/">Home</a>
+      </li>
+      <li id="cart_count"><%= link_to "Cart", cart_path %> (<%= @cart.quantity %>): <%= number_to_currency(@cart.total_price) %></li>
+      <% if current_user %>
+      <li>Logged in as <%= current_user.full_name %><%= link_to "Log Out", logout_path %></li>
+      <% else %>
+      <li><%= link_to "Sign Up", new_user_path %></li> or
+      <li><%= link_to "Log In", new_session_path %></li>
+      <% end %>
+    </ul>
 
     <br />
     <% if current_user %>

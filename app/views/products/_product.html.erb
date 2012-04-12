@@ -5,6 +5,6 @@
     |	<%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete %>
     |	<%= if product.activity then "Active" else "Retired" end %>
     	<% end %>
-    | <%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post %>
+    | <%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post, :remote => true %>
     |
 </li>

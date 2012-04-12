@@ -1,10 +1,11 @@
+<div id="cart">
 <% if cart.cart_items.empty? %>
 <h3>Your cart is empty. Buy stuff!</h3>
 <% else %>
 <h3>You have <%= cart.quantity %> items in your cart.</h3>
 <% end %>
 
-<div id="cart">
+
   <ul>
     <% cart.cart_items.each do |item| %>
       <li><%= item.product.title %> | 

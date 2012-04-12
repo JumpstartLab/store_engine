@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
     user = lookup_by_email_or_username(params[:account_name])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to session[:request_page], notice: "Logged in!"
+      redirect_to session[:request_page], notice: "Logged in!" unless session[:request_page].blank?
+      redirect_to root_url
     else
       flash.now.alert = "Email or password is invalid."
       render "new"
