@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20120410183448) do
   create_table "products", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "price"
+    t.decimal  "price"
     t.string   "photo"
     t.boolean  "retired",     :default => false
     t.datetime "created_at",                     :null => false

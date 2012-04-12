@@ -1,9 +1,13 @@
 class OrdersController < ApplicationController
   load_and_authorize_resource
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
-  
+
   def index
-    @orders = Order.all
+    if params[:user_id]
+      @orders = Order.find_all_by_user_id(params[:user_id])
+    else
+      @orders = Order.all
+    end
   end
 
   def show

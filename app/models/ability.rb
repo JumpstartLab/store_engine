@@ -21,6 +21,7 @@ class Ability
       can :manage, LineItem
       can :manage, Cart
       can :create, Order
+      can :read, Order, :user_id => user.id
       can :create, User
       #limit user access to read orders belonging to user
       #can :read, Order

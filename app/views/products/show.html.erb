@@ -30,7 +30,9 @@
   </p>
 
   <div class="form-actions">
+    <% if @product.retired == false %>
     <%= link_to 'Add to Cart', line_items_path(product_id: @product), :method => :post, :class => 'btn'%>
+    <% end %>
     <%= link_to 'View all Products', products_path, :class => 'btn'  %>
     <% if can? :update, @product %>
       <%= link_to 'Edit Product', edit_product_path(@product), :class => 'btn' %>

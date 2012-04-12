@@ -19,6 +19,10 @@ FactoryGirl.define do
     pay_type "Check"
   end
 
+  factory :line_item do
+    cart
+  end
+
   factory :cart do
     id 1
   end
