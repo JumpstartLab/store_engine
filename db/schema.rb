@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(:version => 20120411191015) do
     t.string   "photo"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.boolean  "retired",     :default => false
+    t.boolean  "retired",                        :default => false
   end
 
   create_table "users", :force => true do |t|
