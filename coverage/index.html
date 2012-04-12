@@ -23,14 +23,14 @@
       <img src="./assets/0.5.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2012-04-12T10:49:02-04:00">2012-04-12T10:49:02-04:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2012-04-12T10:59:54-04:00">2012-04-12T10:59:54-04:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
         <div class="file_list_container" id="AllFiles">
   <h2>
     <span class="group_name">All Files</span>
-    (<span class="covered_percent"><span class="red">77.56%</span></span>
+    (<span class="covered_percent"><span class="red">77.07%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -41,9 +41,9 @@
   <a name="AllFiles"></a>
   <div>
     <b>24</b> files in total.
-    <b>156</b> relevant lines. 
+    <b>157</b> relevant lines. 
     <span class="green"><b>121</b> lines covered</span> and
-    <span class="red"><b>35</b> lines missed </span>
+    <span class="red"><b>36</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -261,11 +261,11 @@
       
       <tr>
         <td class="strong"><a href="#35873a63bfc94427cfb1dacd8d7ab05d922112cf" class="src_link" title="app/models/order.rb">app/models/order.rb</a></td>
-        <td class="red strong">33.33 %</td>
-        <td>32</td>
-        <td>21</td>
+        <td class="red strong">31.82 %</td>
+        <td>33</td>
+        <td>22</td>
         <td>7</td>
-        <td>14</td>
+        <td>15</td>
         <td>0.3</td>
       </tr>
       
@@ -425,7 +425,7 @@
           <div class="file_list_container" id="Models">
   <h2>
     <span class="group_name">Models</span>
-    (<span class="covered_percent"><span class="red">79.71%</span></span>
+    (<span class="covered_percent"><span class="red">78.57%</span></span>
      covered at
      <span class="covered_strength">
        <span class="green">
@@ -436,9 +436,9 @@
   <a name="Models"></a>
   <div>
     <b>8</b> files in total.
-    <b>69</b> relevant lines. 
+    <b>70</b> relevant lines. 
     <span class="green"><b>55</b> lines covered</span> and
-    <span class="red"><b>14</b> lines missed </span>
+    <span class="red"><b>15</b> lines missed </span>
   </div>
   <table class="file_list">
     <thead>
@@ -496,11 +496,11 @@
       
       <tr>
         <td class="strong"><a href="#35873a63bfc94427cfb1dacd8d7ab05d922112cf" class="src_link" title="app/models/order.rb">app/models/order.rb</a></td>
-        <td class="red strong">33.33 %</td>
-        <td>32</td>
-        <td>21</td>
+        <td class="red strong">31.82 %</td>
+        <td>33</td>
+        <td>22</td>
         <td>7</td>
-        <td>14</td>
+        <td>15</td>
         <td>0.3</td>
       </tr>
       
@@ -2526,11 +2526,11 @@
         <div class="source_table" id="35873a63bfc94427cfb1dacd8d7ab05d922112cf">
   <div class="header">
     <h3>app/models/order.rb</h3>
-    <h4><span class="red">33.33 %</span> covered</h4>
+    <h4><span class="red">31.82 %</span> covered</h4>
     <div>
-      <b>21</b> relevant lines. 
+      <b>22</b> relevant lines. 
       <span class="green"><b>7</b> lines covered</span> and
-      <span class="red"><b>14</b> lines missed.</span>
+      <span class="red"><b>15</b> lines missed.</span>
     </div>
   </div>
   
@@ -2600,130 +2600,136 @@
         <li class="missed" data-hits="0" data-linenumber="11">
           
           
-          <code class="ruby">    new_order = Order.new</code>
+          <code class="ruby">    new_order = Order.create</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="12">
           
           
-          <code class="ruby">    new_order.save</code>
+          <code class="ruby">    cart.cart_items.each do |cart_item|</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="13">
           
           
-          <code class="ruby">    cart.cart_items.each do |cart_item|</code>
+          <code class="ruby">      order_item = OrderItem.new</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="14">
           
           
-          <code class="ruby">      order_item = OrderItem.new</code>
+          <code class="ruby">      order_item.order_id = new_order.id</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="15">
           
           
-          <code class="ruby">      order_item.order_id = new_order.id</code>
+          <code class="ruby">      order_item.product_id = cart_item.product_id</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="16">
           
           
-          <code class="ruby">      order_item.product_id = cart_item.product_id</code>
+          <code class="ruby">      order_item.product_quantity = cart_item.quantity</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="17">
           
           
-          <code class="ruby">      order_item.product_quantity = cart_item.quantity</code>
+          <code class="ruby">      order_item.total_price = cart_item.total</code>
         </li>
       
         <li class="missed" data-hits="0" data-linenumber="18">
           
           
-          <code class="ruby">      order_item.total_price = cart_item.total</code>
-        </li>
-      
-        <li class="missed" data-hits="0" data-linenumber="19">
-          
-          
           <code class="ruby">      order_item.save</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="20">
+        <li class="never" data-hits="" data-linenumber="19">
           
           
           <code class="ruby">    end</code>
         </li>
       
+        <li class="missed" data-hits="0" data-linenumber="20">
+          
+          
+          <code class="ruby">    new_order.total_price = cart.total</code>
+        </li>
+      
         <li class="missed" data-hits="0" data-linenumber="21">
+          
+          
+          <code class="ruby">    new_order.save</code>
+        </li>
+      
+        <li class="missed" data-hits="0" data-linenumber="22">
           
           
           <code class="ruby">    return new_order</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="22">
+        <li class="never" data-hits="" data-linenumber="23">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="23">
+        <li class="never" data-hits="" data-linenumber="24">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="24">
+        <li class="covered" data-hits="1" data-linenumber="25">
           <span class="hits">1</span>
           
           <code class="ruby">  def add_product(product)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="25">
+        <li class="missed" data-hits="0" data-linenumber="26">
           
           
           <code class="ruby">    products &lt;&lt; product</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="26">
+        <li class="never" data-hits="" data-linenumber="27">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="27">
+        <li class="never" data-hits="" data-linenumber="28">
           
           
           <code class="ruby"></code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="28">
+        <li class="covered" data-hits="1" data-linenumber="29">
           <span class="hits">1</span>
           
           <code class="ruby">  def add_product_by_id(product_id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="29">
+        <li class="missed" data-hits="0" data-linenumber="30">
           
           
           <code class="ruby">    product = Product.find(product_id)</code>
         </li>
       
-        <li class="missed" data-hits="0" data-linenumber="30">
+        <li class="missed" data-hits="0" data-linenumber="31">
           
           
           <code class="ruby">    add_product(product)</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="31">
+        <li class="never" data-hits="" data-linenumber="32">
           
           
           <code class="ruby">  end</code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="32">
+        <li class="never" data-hits="" data-linenumber="33">
           
           
           <code class="ruby">end</code>
