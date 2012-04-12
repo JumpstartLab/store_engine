@@ -32,11 +32,29 @@ describe "Cart", :focus => true do
     end
     it "removes an item from your cart" do
       visit cart_path
-      #save_and_open_page
       within("#product_#{p1.id}") do
         click_on ("X")
       end
       page.should_not have_content(p1.name)
+    end
+    context "update quantity of cart" do
+      before(:each) do
+        visit cart_path
+      end
+      it "With valid number" do
+        within("#product_#{p1.id}") do
+          fill_in "cart[cart_products_attributes][0][quantity]", :with => 5
+        end
+        click_on "Update Cart"
+        page.should have_content("Cart updated successfully")
+      end
+      it "with an invalid number" do
+        within("#product_#{p1.id}") do
+          fill_in "cart[cart_products_attributes][0][quantity]", :with => -5
+        end
+        click_on "Update Cart"
+        page.should have_content(5)        
+      end
     end
     context "dealing with login" do
      let!(:cart) do
@@ -56,15 +74,13 @@ describe "Cart", :focus => true do
         end
       end
     end
-    it "increases quantity of a product in cart" do
+    it "increases quantity of a product in cart by adding it again" do
       cart = FactoryGirl.create(:cart)
       (1..2).each do |i|
         visit product_path(products[3])
         click_on "Add To Cart"
       end
-      within("#product_#{products[3].id}") do
-        page.should have_content("2")
-      end
+      page.should have_content("Product added to cart")
     end
     it "clears the cart on logout" do
       login(user)
