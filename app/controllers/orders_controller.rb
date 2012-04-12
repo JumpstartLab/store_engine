@@ -26,14 +26,13 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.process_cart(@cart)
-    @order.user.update_address(params[:order][:user_attributes])
-    if @order.save
-      @order.charge(params[:order][:stripe_card_token])
-      redirect_to order_path(@order), 
-        :notice => "Congrats on giving us your money"
+    if @order.user.update_address(params[:order][:user_attributes])
+        @order.save
+        @order.charge(params[:order][:stripe_card_token])
+        redirect_to order_path(@order), 
+          :notice => "Congrats on giving us your money"
     else
-      raise "HERE"
-      flash[:notice] = "Something is incorrect. Please fix"
+      flash[:error] = "Addres is invalid"
       render 'new'
     end
   end

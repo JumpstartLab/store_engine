@@ -23,7 +23,12 @@ class User < ActiveRecord::Base
                         :street => input[:street], 
                         :zipcode => input[:zipcode]
                       )
-    self.address = addr if addr.save
+    if addr.save
+      self.address = addr
+      true
+    else
+      false
+    end
   end
 
   def admin

@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   attr_accessible :status, :user, :products, :stripe_card_token
   before_create :generate_unique_url
 
-  validates_presence_of :user, :status, :user_address
+  validates_presence_of :user, :status
 
   belongs_to :user
   belongs_to :status
@@ -36,10 +36,6 @@ class Order < ActiveRecord::Base
   end
   def total_price
     Money.new(total_price_in_cents).format
-  end
-
-  def user_address
-    user.address
   end
 
   def create_user(token)
