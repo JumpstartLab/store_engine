@@ -21,9 +21,11 @@
     <% @products.each do |product|%>
       <% if product.retired == false || (can? :create, @product) %>
         <tr>
-          <td><%= image_tag(product.photo) %></td>
+          <td><%= image_tag(product.photo, :size => "200x200") %></td>
           <td><%= link_to product.title, product_path(product) %></td>
-          <td><%= product.category_list %></td>
+          <td><% product.category_assignments.each do |ca| %>
+              <%= link_to ca.category.name, category_path(ca.category) %>
+              <% end %></td>
           <td><%= product.description %></td>
           <td><%= sprintf("$%0.02f", product.price) %></td>
           <% if can? :create, @product %>
@@ -50,6 +52,7 @@
 </table>
 
 <% if can? :create, @product %>
+<h3> Admin Actions</h3>
 <%= link_to 'Create New Product', new_product_path, :class => 'btn btn-primary' %>
 <%= link_to 'Create New Category', new_category_path, :class => 'btn btn-primary' %>
 <%= link_to 'List Categories', categories_path, :class => 'btn btn-primary' %>

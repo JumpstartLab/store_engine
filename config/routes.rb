@@ -12,12 +12,11 @@ StoreEngine::Application.routes.draw do
   resources :carts
   root to: "products#index"
   resources :products
-  resources :orders
-  resources :users do
-    resources :orders do
+  resources :orders do
+    collection do
+      get "admin_report"
     end
   end
-
 
 end
   # The priority is based upon order of creation:

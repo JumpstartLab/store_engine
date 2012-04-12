@@ -35,11 +35,15 @@
             <ul class="nav">
                 <li><%= link_to "View Cart", cart_path(current_cart)  %></li>
             </ul>
-            <ul class="nav">
-                <li><%= link_to "View My Orders", user_orders_path(current_user)  %></li>
-            </ul>
-            
+            <% if can? :manage, :orders %>
+              <ul class="nav">
+                  <li><%= link_to "View Admin Order Report", admin_report_orders_path %></li>
+              </ul>
+            <% end %>
             <% if current_user %>
+              <ul class="nav">
+                  <li><%= link_to "View My Orders", orders_path %></li>
+              </ul>
                 Logged in as <%= current_user.email %>.
                 <%= link_to "Log out", logout_path %>
             <% else %>
@@ -59,9 +63,8 @@
             </div>
             <div class="span3">
               <div class="well sidebar-nav">
-                <h3>Sidebar</h3>
+                <h3>Shop by category</h3>
                 <ul class="nav nav-list">
-                  <li class="nav-header">Shop by category</li>
                     <% @categories.each do |category|%>
                         <br />
                         <%= link_to category.name, category_path(category) %>

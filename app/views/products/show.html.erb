@@ -4,7 +4,9 @@
 
   <p>
     <b>Categories</b><br>
-    <%= @product.category_list %>
+    <% @product.category_assignments.each do |ca| %>
+        <%= link_to ca.category.name, category_path(ca.category) %>
+        <% end %>
   </p>
 
   <p>
