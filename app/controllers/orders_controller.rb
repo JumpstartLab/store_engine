@@ -3,12 +3,25 @@ class OrdersController < ApplicationController
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
 
   def index
-    if params[:user_id]
-      @orders = Order.find_all_by_user_id(params[:user_id])
+    if current_user
+      @orders = current_user.orders
+    else
+      return redirect_to login_path
+    end     
+  end
+
+  def admin_report
+    if params[:filter]
+      @orders = Order.where(:status => params[:filter])
     else
       @orders = Order.all
     end
+    if can? :manage, @orders
+      return render action: :index
+    end
+    @orders
   end
+
 
   def show
   end

@@ -11,6 +11,10 @@ class Order < ActiveRecord::Base
   validates :status, :presence => true
   validates :user_id, :presence => true
 
+  scope :pending, where(:status => "pending")
+  scope :paid, where(:area_id => "paid")
+  scope :shipped, where(:area_id => "shipped")
+
   def next_status
     case status 
     when "pending" then "cancelled"
@@ -38,15 +42,18 @@ class Order < ActiveRecord::Base
     total
   end
 
-  def self.status_hash
-    status_hash = {}
-    status_hash["pending"] = Order.all.count{|order| order.status == "pending"}
-    status_hash["shipped"] = Order.all.count{|order| order.status == "shipped"}
-    status_hash["cancelled"] = Order.all.count{|order| order.status == "cancelled"}
-    status_hash["paid"] = Order.all.count{|order| order.status == "paid"}
-    status_hash["returned"] = Order.all.count{|order| order.status == "returned"}
-    status_hash
-  end
+  # def self.status_hash
+  #   status_hash = {}
+  #   status_hash["pending"] = Order.all.count{|order| order.status == "pending"}
+  #   status_hash["shipped"] = Order.all.count{|order| order.status == "shipped"}
+  #   status_hash["cancelled"] = Order.all.count{|order| order.status == "cancelled"}
+  #   status_hash["paid"] = Order.all.count{|order| order.status == "paid"}
+  #   status_hash["returned"] = Order.all.count{|order| order.status == "returned"}
+  #   status_hash
+  # end
 
+  def self.count_status(status)
+    Order.all.count{|order| order.status == status }
+  end
 
 end

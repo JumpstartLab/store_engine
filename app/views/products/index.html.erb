@@ -21,7 +21,7 @@
     <% @products.each do |product|%>
       <% if product.retired == false || (can? :create, @product) %>
         <tr>
-          <td><%= image_tag(product.photo) %></td>
+          <td><%= image_tag(product.photo, :size => "200x200") %></td>
           <td><%= link_to product.title, product_path(product) %></td>
           <td><%= product.category_list %></td>
           <td><%= product.description %></td>

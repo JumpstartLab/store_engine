@@ -10,7 +10,6 @@
   validates :title, :presence => true, :uniqueness => true
   validates :description, :presence => true
   validates :price, :presence => true, :numericality => true
-  validates :photo, :format => URI::regexp(%w(http https))
 
   def category_list
     categories.map(&:name).join(", ")

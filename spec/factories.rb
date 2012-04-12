@@ -26,10 +26,6 @@ FactoryGirl.define do
   factory :cart do
   end
 
-  factory :line_item do
-    # product_id 1
-    # cart_id 1
-  end
 
   factory :order_item do
     order_id 1

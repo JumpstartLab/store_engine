@@ -1,10 +1,14 @@
 <h1>Orders</h1>
-<!-- Pending: <%= Order.status_hash["pending"] %>
-Shipped: <%= Order.status_hash["shipped"] %>
-Paid: <%= Order.status_hash["paidd"] %>
-Returned: <%= Order.status_hash["returned"] %>
-Cancelled: <%= Order.status_hash["cancelled"] %> -->
+<br />
+<br />
 
+<h4>Sort by Status</h4>
+<%= link_to "All Orders: ", admin_report_orders_path %> <%= Order.all.count %>
+<%= link_to "Pending: ", admin_report_orders_path(:filter => "pending") %> <%= Order.count_status("pending") %>
+<%= link_to "Shipped: ", admin_report_orders_path(:filter => "shipped") %> <%= Order.count_status("shipped") %>
+<%= link_to "Paid: ", admin_report_orders_path(:filter => "paid") %> <%= Order.count_status("paid") %>
+<%= link_to "Returned: ", admin_report_orders_path(:filter => "returned") %> <%= Order.count_status("returned") %>
+<%= link_to "Cancelled: ", admin_report_orders_path(:filter => "cancelled") %> <%= Order.count_status("cancelled") %>
 
 <table class="table table-striped">
   <thead>
@@ -42,5 +46,3 @@ Cancelled: <%= Order.status_hash["cancelled"] %> -->
     <% end %>
   </tbody>
 </table>
-
-<%= link_to 'New', new_order_path, :class => 'btn btn-primary' %>
