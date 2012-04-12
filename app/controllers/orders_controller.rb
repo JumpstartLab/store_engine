@@ -68,8 +68,18 @@ class OrdersController < ApplicationController
   end
 
   def my_orders
+    st = params[:mq]
+    if st
+      orders = current_user
+                .orders.joins(:products)
+                .where('products.name LIKE ? or products.description LIKE ?', "%#{st}%", "%#{st}%")
+                .uniq
+    else
+      orders = current_user.orders
+    end
+
     status = Status.find_or_create_by_name("incomplete")
-    @orders = current_user.orders - current_user.orders.where(:status_id => status.id)
+    @orders = orders - current_user.orders.where(:status_id => status.id)
   end
 
   private
