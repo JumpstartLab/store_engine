@@ -1,7 +1,40 @@
+
 <h1>Checkout page</h1>
 
-<%= form_for(@order) do |o| %>
-<%= @order_cart.items.inspect %>
+<%= form_for @order do |f| %>
+  <!-- Form fields omitted -->
+  <div id="stripe_error">
+    <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+  </div>
 
-<%= o.submit %>
+
+  <% if @order.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being processed:</h2>
+      <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+      <%= label_tag :card_number, "Credit Card Number " %>
+      <%= text_field_tag :card_number, nil, name: nil %>
+  </div>
+  <div class="field">
+      <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+      <%= text_field_tag :card_code, nil, name: nil %>
+  </div>
+  <div class="field">
+    <%= label_tag :card_month, "Card Expiration" %>
+    <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
+  </div>
+
+  <%= f.hidden_field :stripe_card_token %>
+  <div class="actions"><%= f.submit "Place order" %></div>
 <% end %>
+

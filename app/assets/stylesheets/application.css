@@ -48,3 +48,8 @@ ul.nav li{
   color: white;
   padding: 1em;
 }
+
+#stripe_error {
+  color: red;
+  font-weight: 700;
+}

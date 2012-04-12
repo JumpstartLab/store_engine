@@ -26,10 +26,17 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(status: "pending")
+    @order = Order.new(params[:order])
+    @order.status = "pending"
     @order.user_id = current_user.id
     @order.save
     @order.add_order_items_from(@cart) 
-    redirect_to orders_path# what about duplicate sesso
+    
+
+    if @order.save_with_payment
+      redirect_to @order, :notice => "You bought something with Stripe. Want a medal or something?"
+    else
+      render :new
+    end
   end
 end
