@@ -4,10 +4,18 @@ h1 Your Cart
 
 div id="cart"
   table
-  - @cart.items.each do |item|
-    tr
-      td = item.title
-      td = item.price
-      td = item.quantity
-      td = item.subtotal
-      td = link_to "Remove", cart_item_path(:item_id => item.id), :method => :delete
+  = form_for(@cart) do |f|
+    - @cart.items.each do |item|
+      tr
+        td.title = item.title
+        td.price = item.price
+        td.quantity
+          = f.fields_for(item) do |i|
+            = i.hidden_field :id
+            = i.label :quantity
+            = i.text_field :quantity
+        td.subtotal = item.subtotal
+        td = link_to "Remove", cart_item_path(:item_id => item.id), :method => :delete
+      tr
+        td#total colspan="4" = @cart.total
+    = f.submit "Update Cart"

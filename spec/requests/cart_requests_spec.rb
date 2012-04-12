@@ -113,4 +113,27 @@ describe Cart do
       page.should_not have_content(product.title)
     end
   end
+
+  context "when I increase the quantity of a product and click update cart" do
+    before(:each) do
+      visit product_path(product)
+      click_link "Add to Cart"
+      fill_in "cart_order_item_quantity", :with => "2"
+      @previous_total = find("#total").text.to_f
+      @previous_subtotal = find(".subtotal").text.to_f
+      click_button "Update Cart"
+    end
+
+    it "changes the quantity in the cart" do
+      find("#cart_order_item_quantity").value.should == "2"
+    end
+
+    it "increases the subtotal for that product" do
+      find(".subtotal").text.to_f.should > @previous_subtotal
+    end
+
+    it "increases the total of the cart" do
+      find("#total").text.to_f.should > @previous_total
+    end
+  end
 end
