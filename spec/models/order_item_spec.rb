@@ -18,6 +18,13 @@ describe OrderItem do
     end
   end
 
+  describe "#set_product" do
+    it "sets the order item product_id from the line_item product" do
+      order_item.set_product(line_item)
+      order_item.product_id.should == 1
+    end
+  end
+
   describe "#set_quantity" do
     it "sets the order_item's quantity from the line_item's quantity" do
       order_item.set_quantity(line_item)

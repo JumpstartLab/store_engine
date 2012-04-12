@@ -42,7 +42,6 @@ class OrdersController < ApplicationController
 
   def create
     @cart = current_cart
-    @order = Order.new(params[:order])
     @order.add_contents_of_cart(@cart, @order)
     @order.user = current_user
 
