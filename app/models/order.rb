@@ -10,10 +10,6 @@ class Order < ActiveRecord::Base
   validates :status, :presence => true
   validates :user_id, :presence => true
 
-  scope :pending, where(:status => "pending")
-  scope :paid, where(:area_id => "paid")
-  scope :shipped, where(:area_id => "shipped")
-
   def next_status
     case status 
     when "pending" then "cancelled"

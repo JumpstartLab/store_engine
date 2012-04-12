@@ -27,14 +27,12 @@ class OrdersController < ApplicationController
   end
 
   def new
-
     @cart = current_cart
     if @cart.line_items.empty?
       redirect_to products_path, notice: "Cart is empty"
       return 
     end
-    @order = Order.create
-    @order.add_contents_of_cart(@cart, @order)
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,8 +41,9 @@ class OrdersController < ApplicationController
   end
 
   def create
+    @cart = current_cart
     @order = Order.new(params[:order])
-    @order.add_line_items_from_cart(current_cart)
+    @order.add_contents_of_cart(@cart, @order)
     @order.user = current_user
 
     respond_to do |format|
