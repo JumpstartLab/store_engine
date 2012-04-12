@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
   attr_accessible :email, :name, :username, :password, :password_confirmation
+
+  has_one :cart
+  
   validates_presence_of :name, :email
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password

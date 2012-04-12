@@ -3,6 +3,7 @@ require 'spec_helper'
 describe User do
   let (:user) { Fabricate(:user) }
   let (:product) { Fabricate(:product) }
+  let (:cart) { Fabricate(:cart) }
 
   after(:all) do
     User.destroy_all
@@ -16,7 +17,9 @@ describe User do
 
     describe "products" do
       before(:each) do
-        visit products_path
+        user.cart = cart
+        user.cart.add_product(product)
+        visit admin_products_path
       end
 
       it "create" do
@@ -31,9 +34,14 @@ describe User do
 
       it "edit" do
         click_link "Edit"
-
+        fill_in "product_title", :with => "Shit"
+        click_button "Update Product"
       end
-      it "view"
+
+      it "view" do
+        click_link "#{product.title}"
+        page.should have_content "#{product.description}"
+      end
     end
 
     it "create categories"
@@ -64,7 +72,7 @@ describe User do
 
   context "an unauthenticated user" do
     it "can't create new products" do
-      visit new_product_path
+      visit new_admin_product_path
       page.should have_content("Log in")
       page.should have_content("SIGN IN BITCH!")
     end
@@ -74,7 +82,7 @@ describe User do
     context "nil" do
       it "cannot visit the new product page" do
         login_as(user.set_role(nil))
-        visit new_product_path
+        visit new_admin_product_path
 
         page.should have_content("Access denied. This page is for administrators only.")
         page.should have_content("Products")
@@ -84,7 +92,7 @@ describe User do
     context "'blank'" do
       it "cannot visit the new product page" do
         login_as(user.set_role(''))
-        visit new_product_path
+        visit new_admin_product_path
 
         page.should have_content("Access denied. This page is for administrators only.")
         page.should have_content("Products")
@@ -98,7 +106,7 @@ describe User do
 
       it "cannot visit the new product page" do
         login_as(user)
-        visit new_product_path
+        visit new_admin_product_path
 
         page.should have_content("Access denied. This page is for administrators only.")
         page.should have_content("Products")

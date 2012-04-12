@@ -9,3 +9,4 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :alert => "Access denied. This page is for administrators only." unless current_user.admin?
   end
 end
+

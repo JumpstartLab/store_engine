@@ -19,5 +19,10 @@ StoreEngine::Application.routes.draw do
   resources :sessions
   resources :products
   resources :categories
+  
+  namespace :admin do
+    resources :products
+  end
+
   root :to => "products#index"
 end
