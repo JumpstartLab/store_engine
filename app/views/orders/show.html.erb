@@ -45,11 +45,11 @@
 
 <h3>Products Ordered:</h3>
 <p> 
-  <% @order.line_items.each do |line_item| %>
-    <%= link_to line_item.product.title, product_path %> <br />
-    Quantity: <%= line_item.quantity%> <br />
-    Price: <%= sprintf("$%0.02f", line_item.product.price) %><br />
-    Subtotal: <%= sprintf("$%0.02f", line_item.total_price) %><br />
+  <% @order.order_items.each do |order_item| %>
+    <%= link_to order_item.product.title, product_path %> <br />
+    Quantity: <%= order_item.quantity%> <br />
+    Price: <%= sprintf("$%0.02f", order_item.product.price) %><br />
+    Subtotal: <%= sprintf("$%0.02f", order_item.subtotal) %><br />
   <% end %>
 </p>  
 
