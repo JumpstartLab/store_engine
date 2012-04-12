@@ -3,9 +3,11 @@ class Order < ActiveRecord::Base
   attr_accessor :stripe_card_token
 
   belongs_to :user
-  has_many :order_products
+  has_many :order_products, :dependent => :destroy
   has_many :products, :through => :order_products
   validates_presence_of :user_id
+
+  scope :desc, order("id DESC")
 
   def charge(cart_total_in_cents)
     #Charge must be in cents.

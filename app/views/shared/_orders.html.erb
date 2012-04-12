@@ -8,8 +8,8 @@
 
 <% @orders.each do |order| %>
   <tr>
-    <td><%= order.id %></td>
-    <td><%= order.created_at.to_s(:month_and_year) %></td>
+    <td><%= link_to order.id, order_path(order) %></td>
+    <td><%= order.created_at.to_s(:month_day_and_year) %></td>
     <td><%= order.status %></td>
     <td><%= order.order_total %></td>
   </tr>

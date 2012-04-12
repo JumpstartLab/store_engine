@@ -18,8 +18,13 @@ private
       #sets session id once and will get caught by first if on next pass.
       session[:cart_id] = current_user.cart.id
       current_user.cart
+    elsif current_user
+      Cart.create.tap do |cart|
+        session[:cart_id] = cart.id
+        current_user.cart = cart
+      end
     else
-      Cart.create.tap{ |cart| session[:cart_id] = cart.id }      
+      Cart.create.tap{ |cart| session[:cart_id] = cart.id; }
     end    
   end
 end

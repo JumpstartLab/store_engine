@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
     self.orders << order
   end
 
+  def recent_orders
+    self.orders.limit(5)
+  end
+
 end
