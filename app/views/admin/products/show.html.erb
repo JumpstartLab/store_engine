@@ -18,5 +18,6 @@
   </table>
 </div>
 
-<%= link_to 'Add to cart', new_cart_product_path(:product_id => @product) %>
+<%= link_to 'Add to cart', new_cart_product_path(:product_id => @product) %><br />
+<td><%= link_to 'Edit this product', edit_admin_product_path(@product) %></td><br />
 <%= link_to 'Back to products', products_path %>

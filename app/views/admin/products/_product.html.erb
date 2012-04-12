@@ -1,5 +1,5 @@
 <tr>
-  <td><%= link_to product.name, product %></td>
+  <td><%= link_to product.name, admin_product_path(product) %></td>
   <td><%= product.description %></td>
   <td><%= product.price %></td>
   <td><%= image_tag(product.photo, :size => "50x50") %></td>
