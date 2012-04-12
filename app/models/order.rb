@@ -1,10 +1,9 @@
 class Order < ActiveRecord::Base
   PAYMENT_TYPES = ["Check","Credit Card", "Purchase Order"]
 
-  has_many :line_items, dependent: :destroy
   has_many :order_items
   belongs_to :user
-  attr_accessible :user_id, :status, :total, :pay_type, :name, :address, :email
+  attr_accessible :user_id, :status, :total, :pay_type, :name, :address, :email, :order_items
 
   validates :name, :address, :email, presence: true
   validates :pay_type, inclusion: PAYMENT_TYPES
@@ -19,11 +18,15 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def add_line_items_from_cart(cart)
-    cart.line_items.each do |item|
-      item.cart_id = nil
-      line_items << item
+  def add_contents_of_cart(cart, order)
+    cart.line_items.each do |line_item|
+      order_item = OrderItem.new
+      order_item.order_id = order.id
+      order_item.set_price(line_item)
+      order_item.set_quantity(line_item)
+      order_item.save
     end
+  order.order_items
   end
 
   # def total
@@ -32,8 +35,8 @@ class Order < ActiveRecord::Base
 
   def total
     total = 0
-    line_items.each do |oi|
-      total += oi.total_price
+    order_items.each do |order_item|
+      total += order_item.subtotal
     end
     total
   end

@@ -1,8 +1,10 @@
 require 'spec_helper'
 
 describe Order do
-  let(:order) {FactoryGirl.build(:order)}
-  let(:cart)  {FactoryGirl.build(:cart)}
+  let!(:order) {FactoryGirl.create(:order, id: 1)}
+  let!(:cart)  {FactoryGirl.create(:cart, id: 1)}
+  let!(:product) {FactoryGirl.create(:product)}
+  
 
   context "#status" do
     
@@ -25,15 +27,31 @@ describe Order do
     end
   end
 
-  
-
   context "#total" do
-    it "calculates the total" do
-      total = 0
-      order.order_items.each do |oi|
-        total += oi.subtotal
+    let!(:order_item) { OrderItem.create(order: order )}
+    it "calculates total order price from order_items" do
+      order.stub(:order_items).and_return([order_item])
+      order_item.stub(:subtotal).and_return(4) 
+       order.total.should == 4
+    end
+  end
+
+  context "when checking out" do
+    let!(:line_item) do
+      line_item = LineItem.new
+      line_item.cart_id = cart.id
+      line_item.product = product
+      line_item.quantity = 1
+      line_item.save!
+      line_item
+    end
+
+    describe "#add_contents_of_cart(cart, order)" do
+
+      it "creates order_items from all line_items in cart" do
+        order.add_contents_of_cart(cart, order)
+        order.order_items.should_not be_empty
       end
-      order.total.should == total
     end
   end
 end

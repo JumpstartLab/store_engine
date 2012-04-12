@@ -13,10 +13,12 @@ FactoryGirl.define do
   end
 
   factory :order do
+    id 1
     name "Andy"
     email "andy@andy.com"
     address "123 Andy Street, Andy, AK 200001"
     pay_type "Check"
+    user
   end
 
   factory :line_item do
@@ -26,19 +28,16 @@ FactoryGirl.define do
   factory :cart do
   end
 
-  factory :line_item do
-    # product_id 1
-    # cart_id 1
-  end
-
   factory :order_item do
     order_id 1
   end
 
   factory :product do
-    title 
+    id 1
+    title "yo-yo"
     description "A fun and cheap toy!"
     price 2.45
+    photo "http://photo.jpg"
   end
   
   factory :user do

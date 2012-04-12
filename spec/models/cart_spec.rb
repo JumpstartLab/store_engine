@@ -3,8 +3,12 @@ require 'spec_helper'
 describe Cart do
 
   let!(:product) { Product.create(id: 1, price: 2, title: "yo-yo") }
-  let!(:product_2) { Product.create(id: 2, price: 4, title: "double-yo-yo") }
-  let!(:line_item) { LineItem.create(id: 1, quantity: 2, product: product) }
+  let!(:line_item) do
+    li = LineItem.new(product: product)
+    li.quantity = 2
+    li.save
+    li
+  end
   let!(:cart) { Cart.create(id: 1) }
  
   
@@ -17,6 +21,7 @@ describe Cart do
         end
       end
     end  
+    
     context "when the product has been added before" do
       it "should increase the line_item's quantity by 1" do
         cart.add_product(1)
@@ -27,5 +32,6 @@ describe Cart do
         end
       end
     end  
+
   end
 end

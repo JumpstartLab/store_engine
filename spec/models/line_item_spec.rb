@@ -1,14 +1,14 @@
+
 require 'spec_helper'
 
 describe LineItem do
 
   let!(:product) { Product.create(id: 1, price: 2, title: "yo-yo") }
-  let!(:line_item) { LineItem.create(id: 1, product: product, quantity: 2) }
-
-  describe "#price" do
-    it "sets the line item price from the product price" do
-      line_item.price.should == 2
-    end
+  let!(:line_item) do
+    li = LineItem.new(product: product)
+    li.quantity = 2
+    li.save
+    li
   end
 
   describe "#subtotal" do

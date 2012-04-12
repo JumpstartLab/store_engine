@@ -1,18 +1,19 @@
 class OrderItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :line_item
-  attr_accessible :order_id, :price, :product_id, :quantity, :subtotal, :line_item, :id
+  has_one :product, through: :line_item
+  attr_accessible :order_id, :price, :quantity, :subtotal, :line_item, :id, :order, :product
 
-  def price
-    @price ||= self.line_item.price
+  def set_price(line_item)
+    self.price = line_item.product.price
   end
 
-  def quantity 
-    @quantity ||= self.line_item.quantity
+  def set_quantity(line_item)
+    self.quantity = line_item.quantity
   end
 
   def subtotal
-    @subtotal ||= price * quantity
+    self.price * self.quantity
   end
   
 end

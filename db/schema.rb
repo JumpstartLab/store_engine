@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20120410183448) do
   create_table "line_items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "cart_id"
-    t.integer  "order_id"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
     t.integer  "quantity",   :default => 1
@@ -43,10 +42,8 @@ ActiveRecord::Schema.define(:version => 20120410183448) do
 
   create_table "order_items", :force => true do |t|
     t.integer  "order_id"
-    t.integer  "product_id"
     t.decimal  "price"
     t.integer  "quantity"
-    t.decimal  "subtotal"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
