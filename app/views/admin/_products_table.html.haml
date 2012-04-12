@@ -1,10 +1,14 @@
 %table#orders_by_status.table.table-bordered
   %th
+  %th
   %th Edit
   %th Name
+  %th Price
   - @products.each do |product|
     %tr{:id => "product_#{product.id}"}
       %td= link_to 'X', product_path(product), :method => :delete
+      %td= image_tag product.avatar, { :style => "width:75px; height:75px;"} 
       %td= link_to "Edit", edit_category_path(product)
       %td= link_to product.name, category_path(product)
+      %td= product.price_in_dollars
 = link_to "New", new_product_path, :class => "btn btn-primary btn-large right"      

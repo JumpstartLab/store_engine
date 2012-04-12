@@ -1,27 +1,31 @@
-= form_for @order do |f|
-  - if @order.errors.any?
-    .error_messages
-      %h2
-        = pluralize(@order.errors.count, "error")
-        prohibited this order from being saved:
-      %ul
-        - @order.errors.full_messages.each do |msg|
-          %li= msg
-  = f.hidden_field :stripe_card_token
-  - if @order.user.stripe_id.present?
-    Credit card has been provided.
-  - else
-    .field
-      = label_tag :card_number, "Credit Card Number"
-      = text_field_tag :card_number, nil, name: nil
-    .field
-      = label_tag :card_code, "Security Code on Card (CVV)"
-      = text_field_tag :card_code, nil, name: nil
-    .field
-      = label_tag :card_month, "Card Expiration"
-      = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
-      = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
-  #stripe_error
-    %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
-  .actions
-    = f.submit "Pay",{ :class => 'btn'}
+= simple_form_for @order do |f|
+  %fieldset
+    %legend Credit Card Information
+    = f.hidden_field :stripe_card_token
+    - if @order.user.stripe_id.present?
+      Credit card has already been provided.
+    - else
+      .control-group
+        = label_tag :card_number, "Credit Card Number"
+        = text_field_tag :card_number, nil, name: nil
+      .control-group
+        = label_tag :card_code, "Security Code on Card (CVV)"
+        = text_field_tag :card_code, nil, name: nil
+      .control-group
+        = label_tag :card_month, "Card Expiration"
+        = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
+        = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
+    #stripe_error
+      %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
+    %legend Billing Information & Shipping Information
+    = f.fields_for :user do |user|
+      .control-group
+        = label_tag :street
+        = user.text_field :street
+      .control-group
+        = label_tag :zipcode
+        = user.text_field :zipcode
+      
+        
+    .actions
+      = f.submit "Pay",{ :class => 'btn'}

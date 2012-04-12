@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :products, :through => :orders
   has_many :product_ratings
   has_one :cart
+  has_one :address
 
   def admin
     permission == 9
@@ -27,6 +28,21 @@ class User < ActiveRecord::Base
   def destroy
     self.active = 0
     self.save
+  end
+
+  def street
+    if address
+      address.street
+    else
+      ""
+    end
+  end
+  def zipcode
+    if address
+      address.street
+    else
+      ""
+    end
   end
 
 end
