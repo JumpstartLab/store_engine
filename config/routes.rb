@@ -10,6 +10,10 @@ StoreEngine::Application.routes.draw do
   resource :order_summary,  :controller => "order_summary"
   resources :orders
 
+  namespace :admin do
+    resources :products
+  end
+
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
   root :to => 'users#index'

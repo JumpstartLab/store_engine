@@ -1,0 +1,12 @@
+h1 Products
+
+= link_to "Create new product", new_product_path
+
+p
+
+table
+  - @products.each do |product|
+    tr
+      td = link_to product.title, product_path(product)
+      td = link_to "Edit", edit_admin_product_path(product)  
+      td = link_to "Delete", admin_product_path(product), :method => :delete
