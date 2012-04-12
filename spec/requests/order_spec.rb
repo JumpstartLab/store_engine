@@ -11,6 +11,10 @@ describe "Indivdiaul Order" do
       FactoryGirl.create(:admin, :password => "mike")
     end
 
+    let!(:non_admin_user) do
+      FactoryGirl.create(:user, :password => "mike")
+    end
+
     let!(:products) do
       [FactoryGirl.create(:product), FactoryGirl.create(:product)]
     end
@@ -25,13 +29,12 @@ describe "Indivdiaul Order" do
 
     let!(:orders) do
       [FactoryGirl.create(:order, :products => products, :status => statuses.last), 
-        FactoryGirl.create(:order, :products => products, :status => statuses.first)]
+        FactoryGirl.create(:order, :user => user, :products => products, :status => statuses.first)]
     end
 
     before(:each) do
       login(user)
       visit "/orders/#{orders.first.id}"
-
     end
 
     it "Displays Order Date & Time" do
@@ -45,6 +48,30 @@ describe "Indivdiaul Order" do
 
     it "Accessible at special URL" do
       page.should have_link(orders.first.unique_url)
+    end
+
+    it 'navigates to the special url without auth' do
+      click_on 'Logout'
+      visit "/orders/track?id=#{orders.first.unique_url}"
+      page.should have_link(orders.first.unique_url)
+    end
+
+    it 'redirects with invalid special url' do
+      click_on 'Logout'
+      visit '/orders/track?id=1283718247'
+      page.should have_content('Invalid Order tracking code')
+    end
+
+    it 'my orders' do
+      click_on 'My Orders'
+      page.should have_content(orders.last.total_price)
+    end
+
+    it 'rejects user if not their order' do
+      click_on 'Logout'
+      login(non_admin_user)
+      visit "/orders/#{orders.first.id}"
+      page.should have_content('That is not your order')
     end
 
     it "total price" do
