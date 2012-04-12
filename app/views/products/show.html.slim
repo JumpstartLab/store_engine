@@ -16,5 +16,6 @@ p
   = f.submit "Add to Cart", :product => @product
 
 p
-= link_to "Edit Product", edit_product_path(@product)
-= link_to "Back to all products", products_path
+= link_to "Edit Product", edit_product_path(@product), :class => 'btn btn-mini'
+|  |  
+= link_to "Back to all products", products_path, :class => 'btn btn-mini'

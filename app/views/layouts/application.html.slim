@@ -7,19 +7,25 @@ html
     = javascript_include_tag "application"
     = csrf_meta_tags
   body
-    div id="nav"
-      - if current_user
-        = link_to "Edit Profile", edit_user_path(current_user.id)
-        = link_to "Logout", :logout
-      - else 
-        = link_to "Register", new_user_path 
-        p
-        = link_to "Login", :login
+  div class="navbar navbar-fixed-top"
+    div class="navbar-inner"
+      div class="container-fluid"
+        a class="brand" href="#" StoreName
+        - if current_user
+          ul class="nav"
+            li class="active" = link_to "Edit Profile", edit_user_path(current_user.id)
+            li class="active" = link_to "Logout", :logout
+        - else 
+          ul class="nav"
+            li class="active" = link_to "Register", new_user_path 
+            li class="active" = link_to "Login", :login
 
-  div
-    p id="notice" = notice
-    p
-    p id="alert" = alert
-    p
+  div class="container-fluid"
+
+    div
+      p id="notice" = notice
+      p
+      p id="alert" = alert
+      p
 
     = yield

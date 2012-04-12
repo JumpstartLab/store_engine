@@ -1,12 +1,16 @@
-= form_for @product do |f|
-  = f.label :title
-  = f.text_field :title
-  p
-  = f.label :description
-  = f.text_field :description, :size => 100
-  p
-  = f.label :price
-  = f.text_field :price
+= form_for @product, :html => { :class => 'form-horizontal'} do |f|
+  div class="control-group"
+    = f.label :title, :class => 'control-label'
+    div class="controls"
+      = f.text_field :title, :class => 'text_field'
+  div class="control-group"
+    = f.label :description, :class => 'control-label'
+    div class="controls"
+      = f.text_field :description, :size => 100, :class => 'text_field'
+  div class="control-group"
+    = f.label :price, :class => 'control-label'
+    div class="controls"
+      = f.text_field :price, :class => 'text_field'
   p
   | Categories:
   p
@@ -14,4 +18,4 @@
      = check_box_tag("category[#{category.name}]", category.id, @product.categories.include?(category))
      = label_tag("category[#{category.name}]", category.name)
      br
-  = f.submit
+  = f.submit nil, :class => 'btn btn-primary'
