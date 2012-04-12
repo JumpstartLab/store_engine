@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe Cart do
   let (:cart)     { Cart.create }
-  let (:product)  { Fabricate(:product) }
-  let (:products) { [product, Fabricate(:product)] }
+  let (:product)  { FactoryGirl.create(:product) }
+  let (:products) { [product, FactoryGirl.create(:product)] }
 
   describe "#items" do
     context "when items have been added to the cart" do

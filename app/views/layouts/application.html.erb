@@ -17,6 +17,7 @@
       <li id="cart_count"><%= link_to "Cart", cart_path %> (<%= @cart.quantity %>): <%= number_to_currency(@cart.total_price) %></li>
       <% if current_user %>
       <li>Logged in as <%= current_user.full_name %><%= link_to "Log Out", logout_path %></li>
+      <li><%= link_to "Orders", orders_path %></li>
       <% else %>
       <li><%= link_to "Sign Up", new_user_path %></li> or
       <li><%= link_to "Log In", new_session_path %></li>

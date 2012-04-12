@@ -1,10 +1,10 @@
- <li> <%= link_to product.title, product_path(product) %> 
+ <li id="<%= product.id %>"> <%= link_to product.title, product_path(product) %> 
     | <%= product.description %> <img height=100 src="<%= product.image_link %>"></img>
     | <%= number_to_currency(product.price) %>
      <% if admin? %>
     |	<%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete %>
     |	<%= if product.activity then "Active" else "Retired" end %>
     	<% end %>
-    | <%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post, :remote => true %>
+    | <%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post, :remote => true, :id => "product_#{product.id}" %>
     |
 </li>

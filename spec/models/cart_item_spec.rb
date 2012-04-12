@@ -2,10 +2,11 @@ require 'spec_helper'
 
 describe CartItem do
   
-  let (:product) { Fabricate(:product, :price => 100 ) }
-  let (:cart_item) { Fabricate(:cart_item, 
-                               :product_id => product.id,
-                               :quantity => 10 ) }
+  let(:product) { FactoryGirl.create(:product,
+                              :price => 100 ) }
+  let(:cart_item) { FactoryGirl.create(:cart_item, 
+                              :product => product,
+                              :quantity => 10 ) }
 
   it "requires a quantity that is a number" do
     cart_item.quantity = "b"
