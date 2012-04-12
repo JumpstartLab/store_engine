@@ -9,6 +9,10 @@ StoreEngine::Application.routes.draw do
     member do
       get 'status'
     end
+
+    collection do
+      get 'track'
+    end
   end
 
   resource :cart

@@ -3,6 +3,9 @@
 
 %table.table.table-bordered
   %tr
+    %td.span3 Unique Url ID
+    %td= link_to @order.unique_url, track_orders_path(:id => @order.unique_url)
+  %tr
     %td.span3 Created
     %td= @order.created_at.to_formatted_s(:long_ordinal)
   %tr

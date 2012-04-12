@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :require_admin, :only => [:index, :status]
-  before_filter :require_logged_in
+  before_filter :require_logged_in, :except => [:track]
+  before_filter :is_owner_or_admin, :only => [:show]
 
   def index
     status = Status.find_by_name(params[:status]) if params[:status]
@@ -48,6 +49,24 @@ class OrdersController < ApplicationController
     end
 
     redirect_to order_path(order), :notice => 'Status has been updated'
+  end
+
+  def track
+    @order = Order.find_by_unique_url(params[:id])
+    if not @order
+      return redirect_to root_url, :notice => 'Invalid Order tracking code'
+    end
+
+    render 'show'
+  end
+
+  private
+
+  def is_owner_or_admin
+    @order = Order.find_by_id(params[:id])
+    if not current_user.admin and @order.user != current_user
+      redirect_to root_url, :notice => 'That is not your order'
+    end
   end
 
 end

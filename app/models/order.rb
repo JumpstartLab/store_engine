@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
   attr_accessible :status, :user, :products, :stripe_card_token
+  after_create :generate_unique_url
 
   validates_presence_of :user, :status
 
@@ -58,6 +59,11 @@ class Order < ActiveRecord::Base
     self.status = Status.find_or_create_by_name("pending")
     self.user.cart.destroy
     self.save
+  end
+
+  def generate_unique_url
+    self.unique_url = (0...32).map{65.+(rand(25)).chr}.join
+    self.save()
   end
 
 end
