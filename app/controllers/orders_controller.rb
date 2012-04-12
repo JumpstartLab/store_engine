@@ -60,6 +60,11 @@ class OrdersController < ApplicationController
     render 'show'
   end
 
+  def my_orders
+    status = Status.find_or_create_by_name("incomplete")
+    @orders = current_user.orders - current_user.orders.where(:status_id => status.id)
+  end
+
   private
 
   def is_owner_or_admin

@@ -7,6 +7,7 @@ module NavHelper
       nav_array["Dashboard"] = dashboard_path 
     end
     if current_user 
+      nav_array["My Orders"] = my_orders_orders_path
       nav_array["Logout"] = logout_path
     else
       nav_array["Login or Signup"] = login_path
