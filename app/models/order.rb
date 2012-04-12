@@ -17,9 +17,15 @@ class Order < ActiveRecord::Base
       order_item.total_price = cart_item.total
       order_item.save
     end
-    new_order.total_price = cart.total
+    new_order.total_price = new_order.total
     new_order.save
     return new_order
+  end
+
+  def total
+    @total ||= order_items.inject(0) do |sum, order_item|
+      sum += order_item.total_price
+    end
   end
 
   def add_product(product)
