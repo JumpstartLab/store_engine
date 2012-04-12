@@ -1,15 +1,18 @@
 class OrderItem < ActiveRecord::Base
-  belongs_to :product
-  attr_accessible :order_id, :price, :product_id, :quantity, :subtotal
-  before_create :set_price
-  before_update :set_subtotal
+  belongs_to :order
+  belongs_to :line_item
+  attr_accessible :order_id, :price, :product_id, :quantity, :subtotal, :line_item, :id
 
-  def set_price
-    self.price = product.price
+  def price
+    @price ||= self.line_item.price
   end
 
-  def set_subtotal
-    self.subtotal = price * quantity
+  def quantity 
+    @quantity ||= self.line_item.quantity
+  end
+
+  def subtotal
+    @subtotal ||= price * quantity
   end
   
 end

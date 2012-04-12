@@ -2,8 +2,10 @@ require 'spec_helper'
 
 describe Order do
   let(:order) {FactoryGirl.build(:order)}
+  let(:cart)  {FactoryGirl.build(:cart)}
 
   context "#status" do
+    
     it "should have pending as default status" do
       order.status.should == "pending"
     end
@@ -23,6 +25,8 @@ describe Order do
     end
   end
 
+  
+
   context "#total" do
     it "calculates the total" do
       total = 0
@@ -32,6 +36,4 @@ describe Order do
       order.total.should == total
     end
   end
-
-
 end
