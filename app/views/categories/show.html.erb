@@ -1,0 +1,44 @@
+<h1>Category: <%= @category.name %></h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Price</th>
+      <% if can? :create, @product %>
+      <th>Retired?</th>
+      <% end %>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @category.products.each do |product|%>
+      <% if product.retired == false || (can? :create, @product) %>
+        <tr>
+          <td><%= image_tag(product.photo) %></td>
+          <td><%= link_to product.title, product_path(product) %></td>
+          <td><%= product.category_list %></td>
+          <td><%= product.description %></td>
+          <td><%= sprintf("$%0.02f", product.price) %></td>
+          <% if can? :create, @product %>
+          <td><%=product.retired? %>
+              <%= form_for product do |f| %>
+                <%= f.hidden_field :retired, :value => product.retired_switch %>
+                <%= f.submit "mark as #{product.retired_switch}" %>
+              <% end %>  
+
+          </td>
+          <% end %>
+          <td>
+            <%= link_to 'Add to Cart', line_items_path(product_id: product), :method => :post, :class => 'btn btn-mini'%>
+            <% if can? :update, product %>
+            <%= link_to 'Edit Product', edit_product_path(product), :class => 'btn btn-mini' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

@@ -27,7 +27,7 @@
   end
 
 
-  private
+#  private
 
   def ensure_not_in_line_item
     if line_items.empty? 
