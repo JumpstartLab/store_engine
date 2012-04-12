@@ -7,7 +7,7 @@
   = simple_form_for @cart, :url => "/cart/update_quantity" do |cart_form|
     = cart_form.hidden_field :id
     = cart_form.fields_for :cart_products do |cp|
-      %tr
+      %tr{:id => "product_#{cp.object.product.id}"}
         %td= cp.object.name
         %td= cp.number_field :quantity
         %td= cp.object.price

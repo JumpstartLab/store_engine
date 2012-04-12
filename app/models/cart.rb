@@ -3,9 +3,8 @@ class Cart < ActiveRecord::Base
 
   belongs_to :user
   has_many :cart_products
-  has_many :products, :through => :cart_products
-
   accepts_nested_attributes_for :cart_products
+  has_many :products, :through => :cart_products
 
   def add_product(id)
     p = Product.find(id)

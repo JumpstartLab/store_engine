@@ -32,6 +32,7 @@ describe "Cart", :focus => true do
     end
     it "removes an item from your cart" do
       visit cart_path
+      #save_and_open_page
       within("#product_#{p1.id}") do
         click_on ("X")
       end
