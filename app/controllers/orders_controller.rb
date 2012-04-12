@@ -4,8 +4,12 @@ class OrdersController < ApplicationController
     @order = Order.new
   end
 
+  def index
+    @orders = current_user.orders
+  end
+
   def create
-    @order = Order.new(:user_id => current_user, :status => 'pending')
+    @order = Order.new(:user_id => current_user.id, :status => 'pending')
     @order.stripe_card_token = params[:order][:stripe_card_token]
     if @order.save_customer
       if @order.charge(current_cart.cart_total_in_cents)

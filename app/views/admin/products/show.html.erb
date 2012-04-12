@@ -1,0 +1,22 @@
+<h1>Product Details</h1>
+<div id="product">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Photo</th>
+        <th>Categories</th>
+        <th>Buy it!</th>
+        <th>Retire It!</th>
+      </tr>
+    </thead>
+
+    <%= render :partial => @product %>
+
+  </table>
+</div>
+
+<%= link_to 'Add to cart', new_cart_product_path(:product_id => @product) %>
+<%= link_to 'Back to products', products_path %>

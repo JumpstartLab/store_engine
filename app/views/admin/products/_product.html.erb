@@ -1,0 +1,12 @@
+<tr>
+  <td><%= link_to product.name, product %></td>
+  <td><%= product.description %></td>
+  <td><%= product.price %></td>
+  <td><%= image_tag(product.photo, :size => "50x50") %></td>
+  <td><ul><% product.categories.each do |category| %>
+      <div id="<%= dom_id category %>">
+        <li><%= category.name %></li>
+      </div>
+      <% end %></ul>
+  <td><%= link_to 'Add to cart', new_cart_product_path(:product_id => product) %></td>
+</tr>

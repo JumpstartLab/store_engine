@@ -1,0 +1,26 @@
+<h1>Products</h1>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Photo</th>
+    <th>Categories</th>
+    <th>Buy it!</th>
+  </tr>
+
+<%= render :partial => "product", :collection => @products %>
+
+</table>
+<%= link_to 'New Product', new_product_path %>
+
+<h2>Categories</h2>
+
+<table class="table table-bordered table-striped">
+    <%= render :partial => "categories/category", :collection => @categories %>
+</table>
+
+<%= link_to 'New Category', new_category_path %>
+
+

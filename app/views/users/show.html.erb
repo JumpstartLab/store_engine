@@ -1,3 +1,6 @@
 <h1>Dashboard</h1>
 
 <%= @user.display_name %>, <%= @user.name %>, <%= @user.email %>
+
+<h2>Most Recent Orders</h2>
+<%= render :partial => 'shared/orders', :object => @orders %>

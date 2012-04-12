@@ -1,0 +1,18 @@
+<table class="table">
+<tr>
+  <th>Order Number</th>
+  <th>Purchase Date</th>
+  <th>Status</th>
+  <th>Order Total</th>
+</tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= order.id %></td>
+    <td><%= order.created_at.to_s(:month_and_year) %></td>
+    <td><%= order.status %></td>
+    <td><%= order.order_total %></td>
+  </tr>
+<% end %>
+
+</table>
