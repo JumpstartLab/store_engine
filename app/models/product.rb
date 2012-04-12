@@ -20,7 +20,7 @@ class Product < ActiveRecord::Base
     retired
   end
 
-  default_scope where(retired: false)
+  #default_scope where(retired: false)
   scope :retired, where(:retired => true)
 
   def photo_url=(val)

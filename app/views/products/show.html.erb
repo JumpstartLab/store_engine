@@ -9,7 +9,9 @@ Description: <%= @product.description %>
   <%= image_tag "no_image_available.png", size: "150x150" %>
 <% end -%>
 
-<%= form_tag cart_items_path do %>
-  <%= hidden_field_tag :product_id, @product.id %>
-  <%= submit_tag "Add Item To Cart", class: "btn" %>
+<% unless @product.retired? %>
+  <%= form_tag cart_items_path do %>
+    <%= hidden_field_tag :product_id, @product.id %>
+    <%= submit_tag "Add Item To Cart", class: "btn" %>
+  <% end %>
 <% end %>
