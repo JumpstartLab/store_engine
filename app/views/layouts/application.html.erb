@@ -13,14 +13,15 @@
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="#">The Awesome Store</a>
+        <%= link_to "The Awesome Store", products_path, :class => "brand" %>
         <div class="nav-collapse">
           <ul class="nav">
             <li><%= link_to "Browse Products", products_path %></li>
             <li><%= link_to "Browse Categories", categories_path %></li>
             <li><%= link_to "Browse Orders", orders_path %></li>
-            <li><%= link_to "Cart", cart_path %></li>
+            <li><%= link_to "Your Cart", cart_path %></li>
           </ul>
         </div>
       </div>
@@ -33,5 +34,12 @@
       </div>
     </div>
   </div>
+
+  <!-- Javascript Goodness -->
+  <!-- ============================================== -->
+  <!-- Placed at document end so pages load faster -->
+  <script src="assets/js/bootstrap-collapse.js"></script>
+  
+  
 </body>
 </html>
