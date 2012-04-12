@@ -4,7 +4,7 @@
     <tr>
       <th>Order Id</th>
       <th>Shipping Address</th>
-      <th>Billing Address</th>
+      <th>Address Type</th>
       <th>Status</th>
       <th>Date Placed</th>
       <th>Actions</th>
@@ -13,7 +13,7 @@
   <tbody>
   <% @orders.each do |order| %>
     <tr id="order_<%= order.id %>">
-      <td><%= link_to order.id, order_path(order) %></td>
+      <td><%= link_to order.id, admin_order_path(order) %></td>
       <td><%= order.billing_address.tag %></td>
       <td><%= order.shipping_address.tag %></td>
       <td class="status"><%= order.status %></td>

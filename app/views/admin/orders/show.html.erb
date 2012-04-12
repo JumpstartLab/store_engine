@@ -1,0 +1,44 @@
+<h2>Order number: <%= @order.id %> created: <%= @order.created_at.strftime("%m/%d/%Y") %> </h2>
+<div class="row-fluid">
+  <div class="span8">
+    <h3>Products</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= render :partial => "orders/order_product", :collection => @order.order_products %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Total</td>
+          <td><%= @order.total %></td>      
+        </tr>
+      </tfoot>
+    </table>
+
+  </div>
+  <div class="span4">
+    <h3>Ordered by:</h3>
+      <p><%= @order.user.name %></p>
+      <p><%= @order.user.email %></p>
+    <h3>Status</h3>
+      <p><%= @order.status.capitalize %></p>
+    <h3>Billing Address</h3>
+      <p><%= @order.billing_address.tag %></p>
+    <h3>Shipping Address</h3>
+      <p><%= @order.shipping_address.tag %></p>
+    <h3>Change Status</h3>
+      <p><%= status_downgrade_link(@order.status, @order.id) %></p>
+      <p><%= status_upgrade_link(@order.status, @order.id) %></p>
+  </div>
+</div>

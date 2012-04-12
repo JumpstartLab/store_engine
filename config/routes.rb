@@ -23,6 +23,7 @@ StoreEngine::Application.routes.draw do
   end
 
   namespace :admin do
+    resources :orders, :only => [:show]
     resources :products, :only => [:index]
     resource :dashboard, :controller => "dashboard", :only => "show"
   end

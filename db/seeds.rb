@@ -55,8 +55,11 @@ furniture = Category.create(:name => "Furniture")
 accessory = Category.create(:name => "Accessory")
 
 # make orders
-20.times do
+20.times do |i|
   Fabricate(:order)
+  OrderProduct.create(:quantity => rand(1..10),
+                      :product_id => rand(1..4),
+                      :order_id => i+1)
 end
 
 # make billing addresses

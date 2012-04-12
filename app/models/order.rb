@@ -68,9 +68,9 @@ class Order < ActiveRecord::Base
     Address.find_by_id(self.shipping_address_id)
   end
 
-  # def ship
-  #   order_statuses.new(:status => "shipped")
-  #   save
-  # end
+
+  def total
+    order_products.sum(&:total)
+  end
 
 end

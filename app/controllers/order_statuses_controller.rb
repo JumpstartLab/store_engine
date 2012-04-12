@@ -6,7 +6,7 @@ class OrderStatusesController < ApplicationController
     # order.upgrade
     order.order_statuses.new(:status => params[:status])
     order.save
-    redirect_to admin_dashboard_path
+    redirect_to(:back)
   end
 
 end
