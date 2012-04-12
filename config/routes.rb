@@ -10,11 +10,12 @@ StoreEngine::Application.routes.draw do
     resource :retirement, only: :create
     resource :categories, only: :show
   end
-  resources :categories 
+  resources :categories , only: [:show]
   resources :orders, only: [:index, :new, :show, :create]
 
   namespace :admin do
     resources :products
+    resources :categories
     resources :orders, only: [:index, :show, :update]
     resources :users, only: [:show]
     resources :dashboard, only: [:show]

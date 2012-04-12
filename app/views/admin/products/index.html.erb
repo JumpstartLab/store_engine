@@ -1,4 +1,4 @@
-<h1>Products</h1>
+<h1>Admin Products View</h1>
 
 <table class="table table-bordered table-striped">
   <tr>
@@ -8,12 +8,13 @@
     <th>Photo</th>
     <th>Categories</th>
     <th>Buy it!</th>
+    <th>Retire it!</th>
   </tr>
 
 <%= render :partial => "product", :collection => @products %>
 
 </table>
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'New Product', new_admin_product_path %>
 
 <h2>Categories</h2>
 
