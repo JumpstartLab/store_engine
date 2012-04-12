@@ -16,7 +16,7 @@ class Admin::ProductsController < ApplicationController
 
   def create
     Product.create(params[:product])
-    redirect_to products_path, :notice => "Product created."
+    redirect_to admin_products_path, :notice => "Product created."
   end
 
   def edit

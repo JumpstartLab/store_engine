@@ -4,7 +4,7 @@ table
   - @products.each do |product|
     tr
       td
-        a href="product_path" = product.title
+        = link_to product.title, product_path(product)
       td = product.price
 
-/ = link_to "New Product", new_product_pathpro
+/ = link_to "New Product", new_product_path

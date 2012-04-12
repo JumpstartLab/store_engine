@@ -13,5 +13,9 @@ describe Category do
       visit category_path(category)
       page.should have_content(product.title)
     end
-  end  
+  end
+
+  context "index" do
+    it "lists all the categories"
+  end
 end

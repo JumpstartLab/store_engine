@@ -44,9 +44,30 @@ describe User do
       end
     end
 
-    it "create categories"
-    it "edit categories"
-    it "view categories"
+    describe "category" do
+      let(:category) { Fabricate(:category) }
+
+      before(:each) do
+        visit admin_categories_path
+      end
+
+      it "create" do
+        click_link "New Category"
+        fill_in "Name", :with => category.name
+        click_button "Create Category"
+        page.should have_content(category.name)
+      end
+
+      it "edit" do
+        click_link "Edit"
+        fill_in "Name", :with => "SUCKA!"
+        click_button "Update Category"
+        page.should have_content("SUCKA!")
+      end
+
+      it "view categories"
+    end
+
     it "view orders"
     context "edit orders and" do
       it "change quantity of products on pending orders"
