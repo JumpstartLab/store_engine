@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
         redirect_to order_path(@order), 
           :notice => "Congrats on giving us your money"
     else
-      flash[:error] = "Addres is invalid"
+      flash[:error] = "Address is invalid"
       render 'new'
     end
   end

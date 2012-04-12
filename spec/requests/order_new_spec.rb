@@ -32,7 +32,7 @@ describe "Order New" do
       fill_in "order[user_attributes][street]", :with => "sfsdfdsfsd"
       fill_in "order[user_attributes][zipcode]", :with => "32322343"
       click_on "Pay"
-      #save_and_open_page
+      page.should have_content("Address is invalid")
     end
   end
 end
