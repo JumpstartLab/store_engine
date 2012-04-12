@@ -17,6 +17,14 @@ describe "For orders" do
         end
       end
     end
+
+    it "lists the status of the orders in its list" do
+      within("table#orders") do
+        orders.each do |order|
+          page.should have_content(order.status)
+        end
+      end
+    end
   end
 
   context "#show" do
