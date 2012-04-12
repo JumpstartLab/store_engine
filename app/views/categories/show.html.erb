@@ -1,12 +1,7 @@
-<h3> <%= @category.name %> </h3>
+<h3><%= @category.name %></h3>
 
 <% if @category.products.any? %>
-<ul id="products_category">
-<h4>Products</h4>
-  <% @category.products.each do |product| %>
-    <li class="product" id="product_<%= product.id %>">
-      <%= link_to product.title, product_path(product) %>
-    </li>
-  <% end %>
-</ul>
+<div class="row-fluid">
+  <%= render :partial => "category_product", :collection => @category.products %>
+</div>
 <% end %>
