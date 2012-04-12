@@ -6,7 +6,8 @@ StoreEngine::Application.routes.draw do
   resources :sessions
   resources :cart_items
 
-  get 'logout', to: 'sessions#destroy', as: 'logout'
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
 
   resource :cart, :only => [:show, :update]
 
