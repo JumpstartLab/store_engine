@@ -25,7 +25,7 @@ class Order < ActiveRecord::Base
   def add_contents_of_cart(cart, order)
     cart.line_items.each do |line_item|
       order_item = OrderItem.new
-      order_item.order_id = order.id
+      order_item.order = order
       order_item.set_price(line_item)
       order_item.set_product(line_item)
       order_item.set_quantity(line_item)
