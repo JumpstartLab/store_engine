@@ -8,12 +8,6 @@
     <th>Status</th>
   </tr>
 
-  <% @orders.each do |order| %>
-    <tr>
-      <td><%= link_to order.user.name, order %></td>
-      <td><%= order.created_at %></td>
-      <td><%= order.status %></td>
-    </tr>
-  <% end %>
+<%= render :partial => "admin_order", :collection => @orders %>
 
 </table>
