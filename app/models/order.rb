@@ -36,11 +36,7 @@
   end
 
   def has_product?(product_id)
-    if products.include? Product.find(product_id.to_i)
-      true
-    else
-      false
-    end
+    products.include? Product.find(product_id.to_i)
   end
 
   def has_billing_method?
