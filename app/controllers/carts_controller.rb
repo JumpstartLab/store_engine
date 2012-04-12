@@ -20,7 +20,7 @@ class CartsController < ApplicationController
   end
   def update_quantity
     @cart.update_quantity(params[:cart][:cart_products_attributes])
-    if cart.save
+    if @cart.save
       redirect_to cart_path, :notice => "Cart updated successfully"
     else
       flash[:error] = "Your cart was not updated."
