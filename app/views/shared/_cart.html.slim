@@ -15,5 +15,6 @@
       = number_to_currency(cart.amount)
     p
       = link_to "View Cart", order_path(cart), class: "btn"
+      = link_to "One-Click Check Out", order_path(session[:order_id]), method: :put, class: "btn btn-success"
   - else
     p Nothing in your cart
