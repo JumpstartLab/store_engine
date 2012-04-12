@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120411213037) do
+ActiveRecord::Schema.define(:version => 20120412000059) do
 
   create_table "billing_methods", :force => true do |t|
     t.string   "credit_card_number"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20120411213037) do
     t.datetime "updated_at",                         :null => false
     t.string   "password_digest"
     t.boolean  "admin",           :default => false
+    t.boolean  "admin_view",      :default => false
   end
 
 end

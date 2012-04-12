@@ -4,9 +4,9 @@ table.table.table-striped
     tr
       th ID
       th Name
-      - if admin?
+      - if admin_view?
         th Actions
   tbody
     = render partial: "category", collection: @categories
-- if admin?
+- if admin_view?
   = link_to 'New', new_category_path, :class => 'btn btn-primary'

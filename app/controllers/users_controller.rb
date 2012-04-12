@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :lookup_user, :only => [:show, :edit, :destroy, :update]
+  before_filter :lookup_user, :only => [:show, :edit, :destroy, :update, :view_as_admin, :view_as_normal]
   before_filter :require_user, :only => [:show, :edit, :update]
   before_filter :require_admin, :only => [:index, :destroy, :create]
 
@@ -38,6 +38,16 @@ class UsersController < ApplicationController
   def update
     @user.update_attributes(params[:user])
     redirect_to user_path(@user)
+  end
+
+  def view_as_admin
+    @user.enable_admin_view
+    redirect_to root_url
+  end
+
+  def view_as_normal
+    @user.disable_admin_view
+    redirect_to root_url
   end
 
   private
