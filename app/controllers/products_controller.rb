@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @can_rate = can_rate(params[:id])
   end
 
   def create
@@ -40,6 +41,12 @@ class ProductsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+private
+
+  def can_rate(id)
+    true if current_user.products.find(id)
   end
 
 end

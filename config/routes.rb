@@ -1,10 +1,14 @@
 StoreEngine::Application.routes.draw do
+
   get "dashboard" => "dashboard#index"
   get "login" => 'sessions#new'
   get "logout" => 'sessions#destroy', :as => "logout"
 
-  resources :users, :categories, :products, :sessions, :search
-
+  resources :users, :categories, :sessions, :search
+  
+  resources :products do
+    resources :product_ratings
+  end
   resources :orders do
     member do
       get 'status'
