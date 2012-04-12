@@ -36,7 +36,11 @@ class LineItemsController < ApplicationController
   end
 
   def update
-    @line_item.update_attributes(params[:line_item])
+    if params[:line_item][:quantity] == "0"
+      @line_item.destroy
+    else
+      @line_item.update_attributes(params[:line_item])
+    end
     redirect_to order_path(@order)
   end
 

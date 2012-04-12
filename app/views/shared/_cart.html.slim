@@ -10,7 +10,7 @@
         #cart_item_title = link_to li.product.title, line_item_path(li)
         #cart_item_unit #{li.quantity} * #{number_to_currency(li.price)} ea
         #cart_item_subtotal = number_to_currency(li.subtotal)
-        = link_to 'Remove', line_item_path(li), :method => :delete, :class => 'btn btn-mini btn-danger'
+        = link_to "Update Quantity", edit_line_item_path(li), class: 'btn btn-mini'
     p
       = number_to_currency(cart.amount)
     p
