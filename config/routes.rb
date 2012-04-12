@@ -21,6 +21,9 @@ StoreEngine::Application.routes.draw do
     resource :dashboards, only: [:show]
   end
 
+  match '/admin/orders/:id/mark_shipped', as: :admin_orders_mark_shipped, :to => 'admin/orders#mark_shipped', via: :put
+  match '/admin/orders/:id/mark_cancelled', as: :admin_orders_mark_cancelled, :to => 'admin/orders#mark_cancelled', via: :put
+  match '/admin/orders/:id/mark_returned', as: :admin_orders_mark_returned, :to => 'admin/orders#mark_returned', via: :put
   match '/admin/dashboard', :to => 'admin/dashboard#show'
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
