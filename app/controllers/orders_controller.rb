@@ -4,7 +4,12 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
+  def new
+    @order = Order.new.create_order_by_cart_id(params[:cart_id])
+  end
+
   def show
+    @order ||= Order.find(params[:id])
   end
 
   def create

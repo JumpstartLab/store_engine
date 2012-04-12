@@ -10,7 +10,7 @@ StoreEngine::Application.routes.draw do
   resource :cart, :only => [:show, :destroy]
 
   resources :orders
-
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
