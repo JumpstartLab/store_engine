@@ -1,15 +1,11 @@
  class Product < ActiveRecord::Base
   has_many :line_items
-  has_many :orders, through: :line_items
-  has_many :order_items
   has_many :category_assignments
   has_many :categories, through: :category_assignments
 
-
-
   before_destroy :ensure_not_in_line_item
   
-  attr_accessible :title, :description, :price, :photo, :category_id, :category_ids, :retired
+  attr_accessible :title, :description, :price, :photo, :category_id, :category_ids, :retired, :id
 
   validates :title, :presence => true, :uniqueness => true
   validates :description, :presence => true

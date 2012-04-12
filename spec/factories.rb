@@ -20,12 +20,11 @@ FactoryGirl.define do
   end
 
   factory :cart do
-    id 1
   end
 
   factory :line_item do
-    product_id 1
-    cart_id 1
+    # product_id 1
+    # cart_id 1
   end
 
   factory :order_item do

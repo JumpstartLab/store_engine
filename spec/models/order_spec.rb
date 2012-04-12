@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Order do
   let(:order) {FactoryGirl.build(:order)}
-  let(:line_item)  {FactoryGirl.build(:line_item, cart_id: cart.id)}
   let(:cart)  {FactoryGirl.build(:cart)}
 
   context "#status" do
+    
     it "should have pending as default status" do
       order.status.should == "pending"
     end
@@ -25,13 +25,7 @@ describe Order do
     end
   end
 
-  # FUUUUUUUU
-  # context "#add_line_items_from_cart(cart)" do
-  #   it "includes all of the cart line items" do
-  #     raise cart.line_item.id.inspect
-  #     order.order_items.should == cart.line_items
-  #   end
-  # end
+  
 
   context "#total" do
     it "calculates the total" do
@@ -42,6 +36,4 @@ describe Order do
       order.total.should == total
     end
   end
-
-
 end
