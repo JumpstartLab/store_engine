@@ -7,9 +7,48 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render_flashes %>
-<%= render partial: "/layouts/header" %>
-<%= yield %>
-<%= render partial: "/carts/mini_cart" %>
+  <div id="wrapper" class="clearfix">
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">
+            Store Engine
+          </a>
+          <ul class="nav">
+            <li class="active">
+              <a href="#">Home</a>
+            </li>
+            <li><a href="/products">Products</a></li>
+            <li><a href="/orders">Orders</a></li>
+          </ul>
+          <% if current_user %>
+            <ul class="nav pull-right">
+              <li><a href="#"><%= current_user.screen_name %></a></li>
+              <li class="divider-vertical"></li>
+              <li><a href="/logout">logout</a></li>
+            </ul>
+          <% else %>
+            <ul class="nav pull-right">
+              <li><a href="/login">login</a></li>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div id="sidebar">
+      <div id="scroller-anchor"></div>
+      <div id="scroller" style="margin-top:10px; width:270px">
+        <%= render partial: "/carts/mini_cart" %>
+      </div>
+    </div>
+
+    <%= render_flashes %>
+
+    <div id="content">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>

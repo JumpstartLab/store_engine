@@ -8,6 +8,52 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap
+ *= require responsive
  *= require_self
  *= require_tree .
-*/
+ */
+
+body {
+  padding:    0px;
+  text-align: center;
+}
+
+#wrapper {
+  width:            960px;
+  margin:           0px auto;
+  text-align:       left;
+  padding:          0px;
+  /*border:           1px dashed #333;*/
+  background-color: #f0f0f0;
+}
+
+#sidebar {
+  width: 300px;
+  float: right;
+}
+
+#content {
+  margin-right: 300px;
+  padding:      15px;
+}
+
+#mini_cart {
+  font-size: .85em;
+}
+
+/* For modern browsers */
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+
+.clearfix:after {
+  clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix {
+  zoom:1;
+}
