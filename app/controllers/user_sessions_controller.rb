@@ -9,7 +9,7 @@ class UserSessionsController < ApplicationController
     if user
       redirect_back_or_to root_url, :notice => "Logged in!"
     else
-      flash.now.alert = "Email or password was invalid."
+      flash[:alert] = "Email or password was invalid."
       redirect_to :login
     end
     session[:cart_id] = persisting_cart_id

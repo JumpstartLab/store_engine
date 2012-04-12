@@ -2,7 +2,7 @@ module ApplicationHelper
 
 def render_flashes
 
-    flash_types = [:notice, :warning, :message]
+    flash_types = [:notice, :warning, :message, :alert, :error]
     divs = []
 
     flash_types.each do |type|
