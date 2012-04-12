@@ -2,7 +2,6 @@ class CategoriesController < ApplicationController
   before_filter :lookup_category, :only => [:destroy, :edit, :update, :show]
 
   def new
-    # @product = Product.find(params[:id])
     @category = Category.new
   end
 

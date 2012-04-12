@@ -14,6 +14,8 @@ describe "Product Show Requests" do
       ]
     end
 
+    let(:category) { Fabricate(:category) }
+
     before(:each) do
       @user = Fabricate(:user,
                         :password => 'password',
@@ -43,6 +45,10 @@ describe "Product Show Requests" do
       within("ul#options") do
         page.should have_link('All Products', href: products_path)
       end
+    end
+
+    it "contains a link to the product's category" do
+      pending
     end
 
   end

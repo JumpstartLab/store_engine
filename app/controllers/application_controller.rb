@@ -30,4 +30,20 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :cart
 
+  # def authenticate
+  #   logged_in? ? true : access_denied
+  # end
+
+  # def access_denied
+  #   redirect_to login_path, :notice => "Please log in to continue" and return false
+  # end
+
+  # def authorize
+  #   if current_user.admin = true
+  #     true
+  #   else
+  #     redirect_to root
+  #   end
+  # end
+
 end

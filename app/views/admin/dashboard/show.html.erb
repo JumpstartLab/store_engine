@@ -1,35 +1,5 @@
-<div id="orders">
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Order Id</th>
-      <th>Shipping Address</th>
-      <th>Billing Address</th>
-      <th>Status</th>
-      <th>Date Placed</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @orders.each do |order| %>
-    <tr id="order_<%= order.id %>">
-      <td><%= link_to order.id, order_path(order) %></td>
-      <td><%= order.billing_address.id %></td>
-      <td><%= order.shipping_address.id %></td>
-      <td class="status"><%= order.status %></td>
-      <td class="date"><%= order.created_at %>
-      </td>
-      <td></td>
-    </tr>
-  <% end %>
-  <tr id="total">
-    <td></td>
-    <td></td>
-    <td>Total:</td>
-    <td ><%= cart.total %></td>
-    <td></td>
-  </tr>
-  </tbody>
-</table>
-</div>
-
+<% if @orders.any? %>
+<%= render :partial => "order_table" %>
+<% else %>
+<h3>There are no orders yet. Be patient. You have built it. They will come.</h3>
+<% end %>

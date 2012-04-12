@@ -1,5 +1,3 @@
-Enter your credit card shiznit
-
 <div id="order">
   <%#= raise @order.order_products.inspect %>
   <% @order.order_products.each do |op| %>
@@ -8,7 +6,9 @@ Enter your credit card shiznit
   <% end %>
 </div>
 
+<h3>Billing Address:</h3>
 <%= form_for(@order) do |f| %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
   <%= f.hidden_field :cart_id, :value => cart.id %>
   <%= f.fields_for :billing_address do |billing_field| %>
     <%= billing_field.label :street %>
@@ -26,6 +26,7 @@ Enter your credit card shiznit
     <%= billing_field.label :phone_number %>
     <%= billing_field.text_field :phone_number %>
   <% end %>
+<h3>Shipping Address:</h3>
   <%= f.fields_for :shipping_address do |shipping_field| %>
     <%= shipping_field.label :street %>
     <%= shipping_field.text_field :street %>
@@ -42,6 +43,7 @@ Enter your credit card shiznit
     <%= shipping_field.label :phone_number %>
     <%= shipping_field.text_field :phone_number %>
   <% end %>
+<h3>Billing Information:</h3>
   <%= f.fields_for :transactions do |transaction_field| %>
     <%= transaction_field.label :credit_card_number %>
     <%= transaction_field.text_field :credit_card_number %>

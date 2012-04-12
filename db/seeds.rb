@@ -16,7 +16,8 @@ chad = User.create(:first_name => "Chad", :last_name => "Fowler",
 
 
 chair = Product.create(:title => "Sweet chair", :description => "This is a great chair", :price => "5.00", :remote_image_url => "http://ecx.images-amazon.com/images/I/31pVwh3qNvL._SL500_AA300_.jpg")
-
 table = Product.create(:title => "Great table", :description => "This is the sweetest table", :price => "10.00", :remote_image_url => "http://ecx.images-amazon.com/images/I/31lRJMSUDOL._SL500_AA300_.jpg")
-
 desk = Product.create(:title => "Amazing desk", :description => "This is the coolest desk", :price => "20.00", :remote_image_url => "http://www.vintagedanishmodern.com/products/87381.jpg")
+
+furniture = Category.create(:name => "Furniture")
+accessory = Category.create(:name => "Accessory")

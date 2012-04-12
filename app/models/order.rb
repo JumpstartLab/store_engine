@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
   attr_accessible :billing_address, :shipping_address, 
                   :transactionsuser_id, :billing_address_id, 
                   :shipping_address_id, :status, :user_id
+                  
   belongs_to :user
 
   has_many :order_products

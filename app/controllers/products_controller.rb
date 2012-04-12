@@ -1,5 +1,7 @@
 class ProductsController < ApplicationController
   before_filter :lookup_product, :only => [:show, :edit, :update, :destroy]
+  # before_filter :authorize, :only => :edit
+
 
   def new
     @product = Product.new

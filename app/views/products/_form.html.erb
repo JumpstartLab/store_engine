@@ -30,7 +30,15 @@
   </p>
   <p>
     <%= f.check_box :remove_image %>
-    <%= f.label :remove_image, :id => "remember_me" %>
+    <%= f.label :remove_image, :id => "checkbox" %>
+  </p>
+  <h3>Add Categories:</h3>
+  <p>
+  <%= hidden_field_tag "product[category_ids][]", nil %>
+  <% Category.all.each do |category| %>
+    <%= check_box_tag "product[category_ids][]", category.id, @product.category_ids.include?(category.id), id: dom_id(category) %>
+    <%= label_tag dom_id(category), category.name, :id => "checkbox" %>
+  <% end %>
   </p>
   <p>
     <%= f.submit %>

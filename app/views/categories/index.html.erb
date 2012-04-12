@@ -1,6 +1,12 @@
+<% if logged_in? && current_user.is_admin? %>
+<div id="admin_bar">
+<h4 id="add_link">Since you are an admin, you can <%= link_to "Add a category", new_category_path %></h4>
+</div>
+<% end %>
+
+
 <div id="categories_intro">
 <h2>Categories</h2>
-<p id="add_link"><%= link_to "Add a category", new_category_path %></p>
 </div>
 <div id="categories">
   <% @categories.each do |category| %>
