@@ -38,6 +38,6 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.update_attributes(params[:product])
     @product.update_categories(params[:categories][1..-1])
-    redirect_to @product, notice: 'Product was successfully updated.'
+    redirect_to admin_product_path(@product), notice: 'Product was successfully updated.'
   end
 end
