@@ -1,0 +1,9 @@
+<h1>Filter Products by Category <%= select('product', 
+                                           'category', 
+                                           %w(all male female)) %>
+</h1>
+
+  
+<ul id="products">
+  <%= render :partial => "products/product", :collection => @products %>
+</ul>

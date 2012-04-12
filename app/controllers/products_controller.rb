@@ -36,15 +36,4 @@ class ProductsController < ApplicationController
     @product.destroy
     redirect_to products_path
   end
-
-
-  #   def new
-  #   @article = Article.new
-  # end
-
-  # def create
-  #   article = Article.new(params[:article])
-  #   article.save
-  #   redirect_to article_path(article)
-  # end
 end
