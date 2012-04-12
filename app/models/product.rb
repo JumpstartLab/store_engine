@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :title, :description, :activity, :price, :image_link, :category_ids
+  attr_accessible :title, :description, :activity, :price, :image_link, :categories
 
   validates_presence_of :title, :description
   validates_numericality_of :price, :greater_than => 0

@@ -6,22 +6,29 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+male_category = Category.create( title: "Male")
+female_category = Category.create( title: "Female")
+
 products = Product.create([{ title: 'Stiletto', 
                        description: 'High lady shoe', 
                              price: 125.00, 
-                        image_link: "http://ml-explode.com/wp-content/uploads/2012/04/red-stilleto.jpg"},
-                        { title: 'Rain boot', 
+                        image_link: "http://ml-explode.com/wp-content/uploads/2012/04/red-stilleto.jpg",
+                        categories: [female_category]},
+                           { title: 'Rain boot', 
                        description: 'it keeps your feet dry.', 
                              price: 299.00, 
-                        image_link: "http://www.outblush.com/women/images/2008/03/tretorn-skerry-rain-boot.jpg"},
-                        { title: 'Toe shoe', 
+                        image_link: "http://www.outblush.com/women/images/2008/03/tretorn-skerry-rain-boot.jpg",
+                        categories: [female_category, male_category]},
+                           { title: 'Toe shoe', 
                        description: "for those people who have smelly feet but don't like shoes", 
                              price: 10.00, 
-                        image_link: "http://s3.amazonaws.com/VibramFiveFingers/m108-hero.jpg"},
-                        { title: 'Sneaker', 
+                        image_link: "http://s3.amazonaws.com/VibramFiveFingers/m108-hero.jpg",
+                        categories: [male_category]},
+                           { title: 'Sneaker', 
                        description: 'Old faithful', 
                              price: 99.00, 
-                        image_link: "http://www.shoewawa.com/assets_c/2011/09/back-to-the-future-shoes-thumb-435x333-120222.jpg"}])
+                        image_link: "http://www.shoewawa.com/assets_c/2011/09/back-to-the-future-shoes-thumb-435x333-120222.jpg",
+                        categories: [female_category, male_category]}])
 
 admin_user = User.new(  full_name: "Chad Fowler",
                         password: "hungry",
@@ -59,6 +66,5 @@ User.create(  full_name: "Jeff Casimir",
 #   product_id: products[2].id,
 #   order_id: orders.first.id}])
 
-category = Category.create( title: "Male")
-category = Category.create( title: "Female")
+
 
