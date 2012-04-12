@@ -1,0 +1,39 @@
+h1 Shipping Address
+
+= @shipping_address.first_name
+p
+= @shipping_address.last_name
+p
+= @shipping_address.company
+p
+= @shipping_address.line_1
+p
+= @shipping_address.line_2
+p
+= @shipping_address.city
+| ,
+= @shipping_address.state
+p
+= @shipping_address.zipcode
+p
+= @shipping_address.phone
+
+h1 Billing Address
+
+= @billing_address.first_name
+p
+= @billing_address.last_name
+p
+= @billing_address.company
+p
+= @billing_address.line_1
+p
+= @billing_address.line_2
+p
+= @billing_address.city
+| ,
+= @billing_address.state
+p
+= @billing_address.zipcode
+p
+= @billing_address.phone
