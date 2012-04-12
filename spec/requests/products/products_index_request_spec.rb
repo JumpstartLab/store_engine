@@ -9,6 +9,8 @@ describe "Products Index Requests" do
      ]
     end
 
+    let!(:inactive_product) { Fabricate(:product, :retired => true) }
+
     before(:each) do
       visit "/products"
     end
@@ -41,6 +43,10 @@ describe "Products Index Requests" do
       page.should have_content(product.description)
       page.should have_content(product.price)
       page.should have_selector("img#product_image") if product.image?
+    end
+
+    it "only shows active products" do
+      page.should_not have_content(inactive_product.title)
     end
 
   end

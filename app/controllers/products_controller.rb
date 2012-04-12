@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all
+    @products = Product.active
     # if !logged_in?
     #   redirect_to signup_path
     # end
@@ -51,5 +51,5 @@ class ProductsController < ApplicationController
   def lookup_product
     @product = Product.find(params[:id])
   end
-  
+
 end

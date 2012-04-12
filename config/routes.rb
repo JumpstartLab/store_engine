@@ -27,6 +27,7 @@ StoreEngine::Application.routes.draw do
     resource :dashboard, :controller => "dashboard", :only => "show"
   end
 
+  resources :order_statuses, :only => [:create]
   resources :orders
   resources :categories
   resources :cart_products, :only => [:create, :destroy]

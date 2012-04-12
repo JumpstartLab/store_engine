@@ -30,7 +30,7 @@ describe "Products Admin Requests" do
 
     it "shows a link to add a product" do
       visit "admin/products"
-      within("p#add_link") do
+      within("#admin_bar") do
         page.should have_link('Add a product', href: new_product_path)
       end
     end

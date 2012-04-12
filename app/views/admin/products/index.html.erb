@@ -1,5 +1,5 @@
 <div id="admin_bar">
-<h4 id="add_link">This is the admin-only products index. You can also <%= link_to "Add a product", new_product_path %></h4>
+<h4>This is the admin-only products index. You can also <%= link_to "Add a product", new_product_path, :class => "add_link" %></h4>
 </div>
 <% if @active.any? %>
   <%= render :partial => "active_products" %>

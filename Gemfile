@@ -31,4 +31,6 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'guard-rspec'
+  gem 'simplecov'#, :group => :test
+  # gem 'reek'
 end
