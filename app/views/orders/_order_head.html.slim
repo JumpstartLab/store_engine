@@ -1,6 +1,6 @@
 / #date= order.user_email_address
 #date= order.created_at
-#date= number_to_currency(order.amount)
+
 #date= order.status
 /! MAKE DIFFERENT TRANSITIONS FOR DIFFERENT ORDER STATUSES
 = link_to 'Transition', order_path(order), :class => 'btn btn-mini btn-info'
