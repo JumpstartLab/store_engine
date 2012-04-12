@@ -66,11 +66,23 @@ describe "For orders" do
       end
     end
 
-    it "lists the quantity of each product"
-    it "lists the line item price of each product"
+    it "lists the quantity of each product" do
+      pending "TODO: Return when you can add products in a spec to a cart"
+    end
+    it "lists the line item price of each product" do
+      pending "TODO: Return when you can add products in a spec to a cart"
+    end
 
     it "includes a button to edit the order" do
       page.should have_selector("#edit_order_btn")
+    end
+  end
+
+  context "#edit" do
+    let!(:order) { Fabricate(:order) }
+
+    it "lists the products currently included in the order" do
+      pending "TODO: Return to this - needs to have products added to a cart"
     end
   end
 

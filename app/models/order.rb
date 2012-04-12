@@ -1,10 +1,14 @@
 class Order < ActiveRecord::Base
-  #attr_accessible
+  # attr_accessible :status_options
 
   has_many :order_items
   has_many :products, :through => :order_items
 
   belongs_to :user
+
+  def status_options
+    ["pending", "cancelled", "paid", "shipped", "returned"]
+  end
 
   def self.create_order_from_cart(cart_id)
     cart = Cart.find(cart_id)
@@ -36,4 +40,5 @@ class Order < ActiveRecord::Base
     product = Product.find(product_id)
     add_product(product)
   end
+
 end
