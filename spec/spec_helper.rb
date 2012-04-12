@@ -47,5 +47,7 @@ RSpec.configure do |config|
   config.include ExampleData::Projects
   config.include RequestHelpers::Login
   config.include RequestHelpers::SignUp
+  config.include RequestHelpers::AddBilling
+  config.include RequestHelpers::AddShipping
 end
 

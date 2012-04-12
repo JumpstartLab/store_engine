@@ -2,7 +2,8 @@ h1= @category.name
 table
   tr
     th Product Name
-    th Action
+    - if admin_view?
+      th Action
   tbody
     = render partial: "product", collection: @products
 br/

@@ -14,7 +14,7 @@ class ShippingAddressesController < ApplicationController
       order.update_attribute(:shipping_address_id, shipping.id)
       redirect_to order_path(order), notice: notice
     else
-      notice = 'Please input a valid shipping method'
+      notice = 'Please input a valid shipping address'
       redirect_to order_path(order), notice: notice
     end
   end
@@ -27,17 +27,25 @@ class ShippingAddressesController < ApplicationController
 
   def create
     shipping = ShippingAddress.new(params[:shipping_address])
-    order = Order.find(session[:order_id])
     if shipping.save
-      if session[:user_id]
-        shipping.update_attribute(:user_id, session[:user_id])
-      end
       notice = "Shipping Address Successfully Added"
-      order.update_attribute(:shipping_address_id, shipping.id)
-      redirect_to order_path(order), notice: notice
+      if logged_in?
+        shipping.update_attribute(:user_id, current_user.id)
+        if current_user.has_pending_order?
+          order = Order.find(session[:order_id])
+          order.update_attribute(:shipping_address_id, shipping.id)
+          redirect_to order_path(order), notice: notice
+        else
+          redirect_to user_path(current_user)
+        end
+      else
+        order = Order.find(session[:order_id])
+        order.update_attribute(:shipping_address_id, shipping.id)
+        redirect_to order_path(order), notice: notice
+      end
     else
-      notice = 'Please input a valid shipping method'
-      redirect_to order_path(order), notice: notice
+      notice = 'Please input a valid shipping address'
+      render :new, notice: notice
     end
   end
 

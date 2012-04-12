@@ -1,5 +1,6 @@
 tr
   td
     = link_to product.title, product_path(product)
-  td
-    = link_to "Remove", "#", class: "btn btn-danger btn-mini"
+  - if admin_view?
+    td
+      = link_to "Remove", "#", class: "btn btn-danger btn-mini"
