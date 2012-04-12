@@ -75,7 +75,7 @@ describe "User" do
       login(user)
       visit users_path
       within("#user_#{user2.id}") do
-        click_on "delete"
+        click_on "X"
       end
       #save_and_open_page
       page.should_not have_content(user2.email)

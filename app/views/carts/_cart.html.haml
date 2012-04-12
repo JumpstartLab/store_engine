@@ -4,14 +4,19 @@
     %th Quantity
     %th Price
     %th Remove
-  / - simple_form_for @products do |f|
-  - @cart.cart_products.each do |cp|
-    %tr{:id => "product_#{cp.product.id}"}
-      %td= cp.name
-      %td= cp.quantity
-      %td= cp.price
-      %td= link_to "X", cart_path(:product_id => cp.product.id), :method => :delete, :confirm => "Are you sure?"
-  %tr{:id => "total"}
-    %th{:colspan => 2} Total
-    %td= @cart.total_in_dollars
-    %td
+  = simple_form_for @cart, :url => "/cart/update_quantity" do |cart_form|
+    = cart_form.hidden_field :id
+    = cart_form.fields_for :cart_products do |cp|
+      %tr
+        %td= cp.object.name
+        %td= cp.number_field :quantity
+        %td= cp.object.price
+        %td= link_to "X", cart_path(:product_id => cp.object.product.id), 
+                                    :method => :delete, 
+                                    :confirm => "Are you sure?"
+    %tr{:id => "total"}
+      %th{:colspan => 2} Total
+      %td= @cart.total_in_dollars
+      %td
+    %tr
+      %td{:colspan => "4"}= cart_form.submit :class => "btn"

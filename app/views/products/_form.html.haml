@@ -1,7 +1,8 @@
 = simple_form_for @product do |f|
+  %legend legend_title
   = f.input :name
   = f.input :description, :input_html => { :rows => 10, :style => 'width: 300px' }
   = f.input :price
   = f.input :avatar
   = f.association :categories, :as => :check_boxes
-  = f.submit 'Save Product', :class => 'btn btn-primary'
+  = f.submit 'Save Product', :class => 'btn btn-primary controls'

@@ -65,7 +65,7 @@ nav.main a{
   padding:0 20px;
   height: 40px;
 }
-nav.main a:hover, .main.active{
+nav.main a:hover, nav a.active{
   color: #fff;
   height: 40px;
   text-decoration:none;

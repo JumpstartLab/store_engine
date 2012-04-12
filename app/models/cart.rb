@@ -1,9 +1,11 @@
 class Cart < ActiveRecord::Base
-  attr_accessible :current_cart
+  attr_accessible :current_cart, :individual_quantity
 
   belongs_to :user
   has_many :cart_products
   has_many :products, :through => :cart_products
+
+  accepts_nested_attributes_for :cart_products
 
   def add_product(id)
     p = Product.find(id)
@@ -14,6 +16,14 @@ class Cart < ActiveRecord::Base
     end
   end
 
+  def update_quantity(cps)
+    cps.each do |k, v|
+      select_cart_product(v[:id]).update_quantity(v[:quantity])
+    end
+  end
+  def select_cart_product(id)
+    cart_products.select { |cp| cp.id == id.to_i }.first
+  end
   def remove_product(id)
     products.delete(Product.find(id))
   end
@@ -32,6 +42,10 @@ class Cart < ActiveRecord::Base
 
   def total_in_dollars
     Money.new(total_in_cart).format
+  end
+
+  def individual_quantity
+    cart_products.quantity
   end
 
 end

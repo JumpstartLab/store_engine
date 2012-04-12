@@ -11,7 +11,11 @@ StoreEngine::Application.routes.draw do
     end
   end
 
-  resource :cart
+  resource :cart do
+    member do
+      put 'update_quantity'
+    end
+  end
 
   root :to => "products#index"
 

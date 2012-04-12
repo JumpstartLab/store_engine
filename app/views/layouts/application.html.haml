@@ -4,7 +4,9 @@
   #content
     #content-padding
       - if flash[:notice]
-        .alert.alert-info= flash[:notice]
+        .alert.alert-success= flash[:notice]
+      - elsif flash[:error]
+        .alert.alert-error= flash[:error]
       .row
         = yield
   = render :partial => 'layouts/footer'

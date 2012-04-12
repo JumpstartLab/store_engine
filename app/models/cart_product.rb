@@ -1,15 +1,18 @@
 class CartProduct < ActiveRecord::Base
+  attr_accessible :quantity
+  
   belongs_to :cart
   belongs_to :product
+
+  validates_numericality_of :quantity, :greater_than => 0
 
   def update_quantity(set=nil)
     if set
       self.quantity = set
-      self.save
     else
       self.quantity += 1
-      self.save
     end
+    self
   end
   ## Methods associated with Products
   def name
