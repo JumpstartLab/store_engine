@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
 
   has_many :order_items
   belongs_to :user
-  attr_accessible :user_id, :status, :total, :pay_type, :name, :address, :email, :order_items
+  attr_accessible :user_id, :status, :total, :pay_type, :name, :address, :email, :order_items, :cancelled_at
 
   validates :name, :address, :email, presence: true
   validates :pay_type, inclusion: PAYMENT_TYPES
@@ -12,11 +12,11 @@ class Order < ActiveRecord::Base
 
   def next_status
     case status 
-    when "pending" then 
-      "cancelled"
+    when "pending"
+      status = "cancelled"
       Order.cancelled_at = Time.now
-    when "paid" then
-      "shipped"
+    when "paid"
+      status = "shipped",
       Order.shipped_at = Time.now
     when "shipped" then "returned"
     end
