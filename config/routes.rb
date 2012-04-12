@@ -17,8 +17,10 @@ StoreEngine::Application.routes.draw do
     resources :products
     resources :orders, only: [:index, :show, :update]
     resources :users, only: [:show]
+    resources :dashboard, only: [:show]
   end
 
+  match '/admin/dashboard', :to => 'admin/dashboard#show'
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy', via: :delete

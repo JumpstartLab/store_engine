@@ -13,7 +13,7 @@ class Order < ActiveRecord::Base
       Stripe::Charge.create(amount: cart_total_in_cents,
                             currency: 'usd',
                             customer: customer_token)
-      self.update_attribute(:status, 'success')
+      self.update_attribute(:status, 'paid')
   rescue Stripe::InvalidRequestError => e
     send_charge_error(e)
   end
