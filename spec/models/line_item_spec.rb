@@ -30,11 +30,15 @@ describe LineItem do
         pending
         item_id = item.id
         item.update_attributes({order_id: ord.id, product_id: prod.id})
-        stub(has_product?: true)
         LineItem.increment_or_create_line_item(order_id: ord.id, product_id: prod.id)
         updated_item = LineItem.find(item_id)
         updated_item.quantity.should == 2
       end
+    end
+  end
+  describe "#clean_price" do
+    it "returns a big decimal of the price" do
+      item.clean_price.should == BigDecimal.new(item.price,2)
     end
   end
 end

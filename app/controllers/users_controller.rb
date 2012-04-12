@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :lookup_user, :only => [:show, :edit, :destroy, :update, :view_as_admin, :view_as_normal]
   before_filter :require_user, :only => [:show, :edit, :update]
-  before_filter :require_admin, :only => [:index, :destroy, :create]
+  before_filter :require_admin, :only => [:index, :destroy]
 
   def index
     @users = User.all

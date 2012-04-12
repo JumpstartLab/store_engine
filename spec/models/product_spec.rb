@@ -69,4 +69,27 @@ describe Product do
       end
     end
   end
+
+  describe "#image" do
+    let(:product) {Fabricate(:product)}
+    context "when there is a photo_url" do
+      it "returns the photo_url" do
+        image_address = "http://image.com/image.jpg"
+        product.update_attribute(:photo_url, image_address)
+        product.image.should == image_address
+      end
+    end
+    context "when there is no photo_url" do
+      it "returns the logo" do
+        product.update_attribute(:photo_url, "")
+        product.image.should == "/logo.png"
+      end
+    end
+  end
+  describe "#to_param" do
+    it "returns the dom_id of the product" do
+      product = Fabricate(:product)
+      product.to_param.should == "#{product.id}-#{product.title.downcase.gsub(" ","-")}"
+    end
+  end
 end

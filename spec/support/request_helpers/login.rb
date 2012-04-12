@@ -1,10 +1,10 @@
 module RequestHelpers
   module Login
-    def login(email, password)
-      within("#session") do
-        fill_in 'Email', :with => email
-        fill_in 'Password', :with => password
-        click_link 'Sign-In'
+    def login(params)
+      within(".main-content") do
+        fill_in 'Email', :with => params[:email]
+        fill_in 'Password', :with => params[:password]
+        click_link_or_button 'Sign-In'
       end
     end
   end
