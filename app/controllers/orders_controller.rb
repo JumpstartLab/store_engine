@@ -42,11 +42,11 @@ class OrdersController < ApplicationController
 
   def create
     @cart = current_cart
-    @order.add_contents_of_cart(@cart, @order)
     @order.user = current_user
 
     respond_to do |format|
       if @order.save
+        @order.add_contents_of_cart(@cart, @order)
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         format.html { redirect_to products_path, notice: "Thank you for your order" }
