@@ -1,5 +1,6 @@
 <div class="span12">
   <h1>Order Up!</h1>
+  
   <table class="table">
     <tr>
       <th>Order ID:</th>
@@ -17,19 +18,19 @@
   </table>
 </div>
 <div class="span12">
-  <table id="items">
+  <table class="table" id="items">
     <tr>
       <th>Product</th>
       <th>Item Price</th>
       <th>Quantity</th>
       <th>Item Total</th>
     </tr>
-    <% products.each do |product| %>
+    <% order.order_items.each do |order_item| %>
       <tr>
-        <td><%= product.title %></td>
-        <td><%= product.price %></td>
-        <td><%= product.quantity %></td>
-        <td><%= product.price * product.quantity %></td>
+        <td><%= link_to order_item.product.title, product_path(order_item.product_id) %></td>
+        <td><%= order_item.product.price %></td>
+        <td><%= order_item.quantity %></td>
+        <td><%= order_item.total_price %></td>
       </tr>
     <% end %>
   </table>
