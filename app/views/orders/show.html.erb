@@ -1,28 +1,38 @@
-<h1>This is an order!</h1>
+<h1>Order Details</h1>
 
-<ul>
-  <li>Order number: <%= @order.id %></li>
-  <li>Date: <%= @order.created_at %></li>
-  <li>Status: <%= @order.status %></li>
-</ul>
+<div class="row">
+  <div class="span3" style="background-color: #eee; padding: 10px">
+    <h2>Order Details</h2>
+    <ul class="unstyled">
+      <li>Order number: <%= @order.id %></li>
+      <li>Date: <%= @order.created_at %></li>
+      <li>Status: <%= @order.status %></li>
+    </ul>
+  </div>
+</div>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    <%= render :partial => "shared/order_products", :collection => @order.order_products, as: :order_products %>
+<br />
 
-    <tr id="total-row">
-      <td colspan="2"></td>
-      <td style="border-left: 0px; border-right: 0px;">Total</td>
-      <td><%= @order.order_total %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="row">
+  <div class="span12">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render :partial => "shared/order_products", :locals => { :order_products => @order.order_products } %>
+
+        <tr id="total-row">
+          <td colspan="2"></td>
+          <td style="border-left: 0px; border-right: 0px;">Total</td>
+          <td><%= @order.order_total %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

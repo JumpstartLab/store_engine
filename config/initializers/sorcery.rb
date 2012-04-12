@@ -11,14 +11,14 @@ Rails.application.config.sorcery.configure do |config|
   # override the 'not_authenticated' method of course.
   # Default: `:not_authenticated`
   #
-  # config.not_authenticated_action =
+  config.not_authenticated_action = 'redirect_to_login'
 
 
   # When a non logged in user tries to enter a page that requires login, save
   # the URL he wanted to reach, and send him there after login, using 'redirect_back_or_to'.
   # Default: `true`
   #
-  # config.save_return_to_url =
+  config.save_return_to_url = true
 
 
   # Set domain option for cookies; Useful for remember_me submodule.

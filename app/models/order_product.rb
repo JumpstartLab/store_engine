@@ -6,4 +6,20 @@ class OrderProduct < ActiveRecord::Base
 
   monetize :price_cents, :target_name => "price"
 
+  def name
+    product.name
+  end
+
+  def subtotal
+    product.price * self.quantity
+  end
+
+  def price
+    product.price #Adjust for sale price.
+  end
+
+  def price_in_cents
+    product.price_cents #Adjust for sale price.
+  end
+
 end
