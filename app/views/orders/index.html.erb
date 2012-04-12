@@ -9,6 +9,7 @@
       <th>Created At</th>
       <th>Updated At</th>
       <th>Order Total</th>
+      <th>Order Status</th>
     </tr>
     <% @orders.each do |order| %>
       <tr id="order_<%= order.id %>">
@@ -18,6 +19,7 @@
         <td><%= order.created_at %></td>
         <td><%= order.updated_at %></td>
         <td><%= order.total_price %></td>
+        <td><%= order.status %></td>
       </tr>
     <% end %>
   </table>

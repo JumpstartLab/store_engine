@@ -68,6 +68,10 @@ describe "For orders" do
 
     it "lists the quantity of each product"
     it "lists the line item price of each product"
+
+    it "includes a button to edit the order" do
+      page.should have_selector("#edit_order_btn")
+    end
   end
 
 end
