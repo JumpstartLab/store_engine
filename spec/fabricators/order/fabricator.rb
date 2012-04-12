@@ -1,0 +1,3 @@
+Fabricator(:order) do
+  
+end

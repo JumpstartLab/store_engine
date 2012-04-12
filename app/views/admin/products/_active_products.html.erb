@@ -1,0 +1,27 @@
+<div id="products_intro">
+<p id="add_link"><%= link_to "Add a product", new_product_path %></p>
+</div>
+<div id="active_products">
+  <h2>Active Products</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Blah</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+  <% @active.each do |product| %>
+    <tr class="product" id="product_<%= product.id %>">
+      <td><%= link_to product.title, product_path(product) %></td>
+      <td><%= product.price %></td>
+      <td><%= %></td>
+      <td><%=  %></td>
+      <td><%= link_to "Retire", product_retirements_path(product), :method => :post %></td>
+    </tr>
+  <% end %>
+    </tbody>
+  </table>
+</div>

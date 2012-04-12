@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe DashboardController do
+describe Admin::DashboardController do
 
 end

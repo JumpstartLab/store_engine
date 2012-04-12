@@ -24,13 +24,13 @@ StoreEngine::Application.routes.draw do
 
   namespace :admin do
     resources :products, :only => [:index]
+    resource :dashboard, :controller => "dashboard", :only => "show"
   end
 
   resources :orders
   resources :categories
   resources :cart_products, :only => [:create, :destroy]
 
-  resource :dashboard, :controller => "dashboard", :only => "show"
   resource :cart do
     get 'show', :on => :member
     put 'update', :on => :member

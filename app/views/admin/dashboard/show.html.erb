@@ -1,22 +1,26 @@
+<div id="orders">
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Order Id</th>
       <th>Shipping Address</th>
       <th>Billing Address</th>
+      <th>Status</th>
+      <th>Date Placed</th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
   <% @orders.each do |order| %>
-    <% unless order.order_products.empty? %>
-    <tr>
+    <tr id="order_<%= order.id %>">
       <td><%= link_to order.id, order_path(order) %></td>
-      <td><%= order.billing_address %></td>
-      <td><%= order.shipping_address %></td>
-      <td><%#= order.status %></td>
+      <td><%= order.billing_address.id %></td>
+      <td><%= order.shipping_address.id %></td>
+      <td class="status"><%= order.status %></td>
+      <td class="date"><%= order.created_at %>
+      </td>
+      <td></td>
     </tr>
-    <% end %>
   <% end %>
   <tr id="total">
     <td></td>
@@ -27,4 +31,5 @@
   </tr>
   </tbody>
 </table>
+</div>
 
