@@ -58,4 +58,12 @@ describe "Shopping Cart Requests" do
       find_field(text_field_id2).value.should == "9"
     end
   end
+
+  context "When I check out" do
+    it "brings me to the shipping address page" do
+      visit shopping_cart_path
+      click_link("Checkout")
+      current_path.should == new_shipping_address_path
+    end
+  end
 end

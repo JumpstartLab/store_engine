@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120409221750) do
+ActiveRecord::Schema.define(:version => 20120412175759) do
+
+  create_table "billing_addresses", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "company"
+    t.string   "line_1"
+    t.string   "line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "phone"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "cart_items", :force => true do |t|
     t.integer  "quantity"
@@ -29,9 +43,23 @@ ActiveRecord::Schema.define(:version => 20120409221750) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "orders", :force => true do |t|
+  create_table "order_items", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "order_id"
+    t.integer  "price"
+    t.integer  "quantity"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "status_id"
+    t.integer  "user_id"
+    t.integer  "shipping_address_id"
+    t.integer  "billing_address_id"
+    t.datetime "status_updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "product_categories", :force => true do |t|
@@ -49,6 +77,20 @@ ActiveRecord::Schema.define(:version => 20120409221750) do
     t.datetime "updated_at",  :null => false
   end
 
+  create_table "shipping_addresses", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "company"
+    t.string   "line_1"
+    t.string   "line_2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "phone"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "shoppers", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -56,6 +98,12 @@ ActiveRecord::Schema.define(:version => 20120409221750) do
 
   create_table "shopping_carts", :force => true do |t|
     t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "statuses", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
