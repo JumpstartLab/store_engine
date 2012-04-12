@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_cart
 
   def require_admin
+    puts current_user.inspect
     return if current_user && current_user.admin?
 
     flash.notice = "You do not have admin rights!"

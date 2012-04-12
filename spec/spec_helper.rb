@@ -32,3 +32,10 @@ RSpec.configure do |config|
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
 end
+
+def log_in(test_user, password)
+  visit login_path
+  fill_in "Email", with: test_user.email
+  fill_in "Password", with: password
+  click_button "Sign In"
+end
