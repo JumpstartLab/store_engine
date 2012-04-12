@@ -14,7 +14,7 @@
       <td id="order_item_<%=order_item.id%>_add"><%= link_to order_item.product.title, product_path(order_item.product_id) %></td>
       <td><%= order_item.product.description %></td>
       <td><%= order_item.product.price %></td>
-      <td><%= order_item.product_quantity %></td>
+      <td><%= order_item.quantity %></td>
       <td><%= order_item.total_price %></td>
     </tr>
     <% end %>

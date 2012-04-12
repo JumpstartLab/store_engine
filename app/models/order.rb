@@ -13,7 +13,7 @@ class Order < ActiveRecord::Base
       order_item = OrderItem.new
       order_item.order_id = new_order.id
       order_item.product_id = cart_item.product_id
-      order_item.product_quantity = cart_item.quantity
+      order_item.quantity = cart_item.quantity
       order_item.total_price = cart_item.total
       order_item.save
     end
