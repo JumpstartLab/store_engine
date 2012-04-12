@@ -12,6 +12,7 @@ StoreEngine::Application.routes.draw do
 
     collection do
       get 'track'
+      get 'my_orders'
     end
   end
 
