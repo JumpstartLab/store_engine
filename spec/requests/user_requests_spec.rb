@@ -10,6 +10,10 @@ describe User do
   end
 
   context "with role admin can" do
+    let!(:order) { Fabricate(:order) }
+    let!(:category) { Fabricate(:category) }
+    let!(:product) { Fabricate(:product) }
+
     before(:each) do
       user.set_role('admin')
       login_as(user)
@@ -45,8 +49,6 @@ describe User do
     end
 
     describe "category" do
-      let(:category) { Fabricate(:category) }
-
       before(:each) do
         visit admin_categories_path
       end
@@ -65,10 +67,20 @@ describe User do
         page.should have_content("SUCKA!")
       end
 
-      it "view categories"
+      it "view with associated products" do
+        category.add_product(product)
+        click_link "#{category.name}"
+        page.should have_content("#{category.name}")
+        page.should have_content("#{product.title}")
+      end
     end
 
-    it "view orders"
+    it "view orders" do
+      order.add_product(product)
+      visit admin_orders_path
+      click_link "#{order.title}"
+      page.should have_content("#{order.items.first.title}")
+    end
     context "edit orders and" do
       it "change quantity of products on pending orders"
       it "can't change quantity of products on non-pending orders"

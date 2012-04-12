@@ -9,6 +9,8 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def show
+    @category = Category.find(params[:id])
+    @products = ProductCategory.find_all_by_category_id(params[:id]).map(&:product)
   end
 
   def edit

@@ -5,7 +5,7 @@ table
     td Category Name
 - @categories.each do |category|
   tr
-    td = category.name
+    td = link_to category.name, admin_category_path(category)
     td = link_to "Edit", edit_admin_category_path(category)
 
 = link_to "New Category", new_admin_category_path
