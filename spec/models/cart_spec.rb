@@ -12,5 +12,6 @@ describe Cart do
     it "sums up the total" do
       cart.total_in_cart.should == 40000
     end
-  end
+    
+  end  
 end

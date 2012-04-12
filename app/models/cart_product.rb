@@ -11,6 +11,7 @@ class CartProduct < ActiveRecord::Base
       self.quantity = set
     else
       self.quantity += 1
+      self.save      
     end
     self
   end
