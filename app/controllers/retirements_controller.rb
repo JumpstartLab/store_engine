@@ -6,7 +6,7 @@ class RetirementsController < ApplicationController
     retirement = Retirement.new(params[:product_id])
     retirement.retire
 
-    redirect_to products_path
+    redirect_to admin_products_path
     # @product.update_attributes(:retired => true)
   end
 
