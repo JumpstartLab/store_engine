@@ -36,4 +36,12 @@ class User < ActiveRecord::Base
     shipping_address ? true : false
   end
 
+ def enable_admin_view
+  update_attribute(:admin_view, true)
+ end
+
+ def disable_admin_view
+  update_attribute(:admin_view, false)
+ end
+
 end

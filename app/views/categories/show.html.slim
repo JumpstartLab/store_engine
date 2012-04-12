@@ -6,7 +6,7 @@ table
   tbody
     = render partial: "product", collection: @products
 br/
-- if admin?
+- if admin_view?
   p
     = link_to "Edit", edit_category_path, class: "btn"
     = link_to "Destroy", category_path(@category), :method => :delete, confirm: "Delete \"#{@category.name}\"?", class: "btn btn-danger"

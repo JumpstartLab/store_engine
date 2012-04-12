@@ -4,7 +4,13 @@ StoreEngine::Application.routes.draw do
   post 'sessions/create', :as => 'login'
   delete 'sessions/destroy', :as => 'logout'
 
-  resources :users
+  resources :users do
+    member do
+      put :view_as_admin
+      put :view_as_normal
+    end
+  end
+
   resources :products
   resources :categories
   resources :orders

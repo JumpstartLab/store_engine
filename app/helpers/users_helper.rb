@@ -16,4 +16,12 @@ module UsersHelper
     end
   end
 
+  def admin_view?
+   if current_user.present?
+      current_user.admin_view
+    else
+      false
+    end
+  end
+
 end

@@ -1,5 +1,5 @@
 #products
   = render partial: "product", collection: @products
-- if admin?
+- if admin_view?
   .span7
     = link_to 'New', new_product_path, :class => 'btn btn-primary'
