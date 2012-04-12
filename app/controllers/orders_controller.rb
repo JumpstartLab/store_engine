@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.new.create_order_by_cart_id(params[:cart_id])
+    @order = Order.create_order_from_cart(params[:cart_id])
   end
 
   def show

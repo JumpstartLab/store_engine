@@ -10,7 +10,6 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    # raise category.inspect
     category.update_attributes(params[:category])
     redirect_to categories_path
   end

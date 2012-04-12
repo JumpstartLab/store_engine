@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :user
 
-  def create_order_by_cart_id(cart_id)
+  def self.create_order_from_cart(cart_id)
     cart = Cart.find(cart_id)
     new_order = Order.create
     cart.cart_items.each do |cart_item|
@@ -17,7 +17,7 @@ class Order < ActiveRecord::Base
       order_item.total_price = cart_item.total
       order_item.save
     end
-    new_order.total_price = new_order.total
+    new_order.total_price = cart.total
     new_order.save
     return new_order
   end
