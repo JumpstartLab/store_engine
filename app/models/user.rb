@@ -17,6 +17,15 @@ class User < ActiveRecord::Base
   has_one :cart
   has_one :address
 
+  def update_address(input)
+    self.address = nil
+    addr = Address.new(
+                        :street => input[:street], 
+                        :zipcode => input[:zipcode]
+                      )
+    self.address = addr if addr.save
+  end
+
   def admin
     permission == 9
   end
@@ -39,7 +48,7 @@ class User < ActiveRecord::Base
   end
   def zipcode
     if address
-      address.street
+      address.zipcode
     else
       ""
     end

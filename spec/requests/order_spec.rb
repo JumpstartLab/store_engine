@@ -5,7 +5,6 @@ describe "Indivdiaul Order" do
     visit "/orders/new"
     page.should have_content "You must login first"
   end
-
   context "order show page" do
     let!(:user) do
       FactoryGirl.create(:admin, :password => "mike")
