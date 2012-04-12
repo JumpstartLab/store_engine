@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :message => "should match confirmation", :if => :password
 
   has_one :shopping_cart
+  has_many :orders
+  has_many :shipping_addresses
+  has_many :billing_addresses
 
   def cart?
     if shopping_cart.nil?
