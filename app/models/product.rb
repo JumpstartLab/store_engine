@@ -2,6 +2,7 @@
   has_many :line_items
   has_many :category_assignments
   has_many :categories, through: :category_assignments
+  has_many :order_items
 
   before_destroy :ensure_not_in_line_item
   

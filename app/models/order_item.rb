@@ -1,7 +1,7 @@
 class OrderItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :line_item
-  has_one :product
+  belongs_to :product
   attr_accessible :order_id, :price, :quantity, :subtotal, :line_item, :id, :order, :product
 
   def set_price(line_item)
