@@ -31,4 +31,5 @@ group :development, :test do
   gem 'faker'
   gem 'debugger'
   gem 'simplecov'  
+  gem 'guard-spork'
 end
