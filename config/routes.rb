@@ -18,7 +18,7 @@ StoreEngine::Application.routes.draw do
     resources :categories
     resources :orders, only: [:index, :show, :update]
     resources :users, only: [:show]
-    resources :dashboard, only: [:show]
+    resource :dashboards, only: [:show]
   end
 
   match '/admin/dashboard', :to => 'admin/dashboard#show'

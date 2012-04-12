@@ -37,6 +37,14 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def self.orders_by_filter(status)
+    if status.nil?
+      Order.all
+    else
+      Order.find_all_by_status(status)
+    end
+  end
+
 private
 
   def send_charge_error(e)
