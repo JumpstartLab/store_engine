@@ -24,7 +24,7 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'fabrication'
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'

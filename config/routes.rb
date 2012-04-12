@@ -8,7 +8,8 @@ StoreEngine::Application.routes.draw do
   resource :edit
   resources :categories
 
-  get 'logout', to: 'sessions#destroy', as: 'logout'
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
 
   resource :cart, :only => [:show, :update]
 

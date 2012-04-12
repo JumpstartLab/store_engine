@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe 'using the shopping cart' do
+  
   context "When I'm on a product page" do
-    let(:product) { Fabricate(:product) }
+    let(:product) { FactoryGirl.create(:product) }
     before(:each) { visit product_path(product) }
 
     context "and I click add to cart" do
