@@ -76,7 +76,6 @@ describe "Orders" do
 
       context "and I fill out the form" do
         it "creates a new order via the form" do
-          
           click_link_or_button "Place Order"
           within(".new_order") do
             # billing address
@@ -101,11 +100,11 @@ describe "Orders" do
 
             # credit card info / transaction
 
-            fill_in 'order_transactions_credit_card_number', :with => ''
-            fill_in 'order_transactions_expiration_month', :with => ''
-            fill_in 'order_transactions_expiration_year', :with => ''
-            fill_in 'order_transactions_credit_card_verification_number', :with => ''
-            fill_in 'order_transactions_cardholder_name', :with => ''
+            fill_in 'order_credit_cards_credit_card_number', :with => ''
+            fill_in 'order_credit_cards_expiration_month', :with => ''
+            fill_in 'order_credit_cards_expiration_year', :with => ''
+            fill_in 'order_credit_cards_credit_card_verification_number', :with => ''
+            fill_in 'order_credit_cards_cardholder_name', :with => ''
           end
           click_button 'Confirm'
           current_path.should == "/orders/1"
