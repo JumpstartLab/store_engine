@@ -1,5 +1,6 @@
-<h3><%= @category.name %></h3>
-
+<div id="products_intro">
+  <h2><%= @category.name %></h2>
+</div>
 <% if @category.products.any? %>
 <div class="row-fluid">
   <%= render :partial => "category_product", :collection => @category.products %>

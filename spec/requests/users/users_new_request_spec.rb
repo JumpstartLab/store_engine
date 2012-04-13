@@ -16,6 +16,9 @@ describe "Create New User" do
       end
       click_button 'Sign up'
       current_path.should == "/"
+      user = User.find_by_first_name("Worace")
+      @users = User.all
+      @users.should include(user)
     end
 
   end
