@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.billing_address = Address.new(params[:order][:billing_address])
     @order.shipping_address = Address.new(params[:order][:shipping_address])
-    @order.transactions << Transaction.new(params[:order][:transactions])
+    @order.credit_cards << CreditCard.new(params[:order][:credit_card])
     @order.add_products_by_cart_id(params[:order][:cart_id])
 
     if @order.save
