@@ -26,6 +26,11 @@ describe "Products Requests" do
         page.should have_content(category2.name)
       end
 
+      it "redirects to admin products path" do
+        click_button "Create Product"
+        current_path.should == admin_products_path
+      end
+
       context "and no categories are chosen" do
         it "saves a new product with no categories" do
           click_button "Create Product"
@@ -90,9 +95,10 @@ describe "Products Requests" do
         page.should have_content(category2.name)
         page.should_not have_content(category.name)
       end
-
-      it "lists categories only once" do
-
+      
+      it "redirects to admin products page" do
+        click_button("Update Product")
+        current_path.should == admin_product_path(product)
       end
 
       context "and no categories are selected" do

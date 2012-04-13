@@ -15,7 +15,7 @@ class Admin::ProductsController < ApplicationController
     @product = Product.new(params[:product])
     set_categories
     @product.save
-    redirect_to products_path
+    redirect_to admin_products_path
   end
 
   def show  
@@ -27,7 +27,7 @@ class Admin::ProductsController < ApplicationController
   def update
     @product.update_attributes(params[:product])
     set_categories
-    redirect_to product_path(@product)
+    redirect_to admin_product_path(@product)
   end
 
   private
