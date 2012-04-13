@@ -16,13 +16,8 @@ class BillingMethodsController < ApplicationController
     billing = BillingMethod.new(params[:billing_method])
     if billing.save
       notice = "Billing Address Successfully Added"
-      if logged_in?
-        billing.update_attribute(:user_id, current_user.id)
-        if current_user.has_pending_order?
-          order = Order.find(session[:order_id])
-          order.update_attribute(:billing_method_id, billing.id)
-        end
-      else
+      billing.update_attribute(:user_id, current_user.id) if logged_in?
+      if session[:order_id]
         order = Order.find(session[:order_id])
         order.update_attribute(:billing_method_id, billing.id)
       end
