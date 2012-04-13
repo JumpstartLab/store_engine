@@ -2,7 +2,6 @@ class Order < ActiveRecord::Base
   attr_accessible :billing_address, :shipping_address, 
                   :transactionsuser_id, :billing_address_id, 
                   :shipping_address_id, :user_id
-                  
   belongs_to :user
 
   has_many :order_products
@@ -10,6 +9,7 @@ class Order < ActiveRecord::Base
   has_many :order_statuses
 
   has_many :transactions
+  has_many :credit_cards, :through => :transactions
 
   belongs_to :billing_address, :class_name => "Address"
   belongs_to :shipping_address, :class_name => "Address"

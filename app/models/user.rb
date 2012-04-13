@@ -10,9 +10,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
 
   has_many :orders
-
   has_many :addresses
-
+  has_many :credit_cards
   has_one :cart
 
   def is_admin?
@@ -24,7 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def create_cart
-    self.build_cart unless self.cart 
+    self.build_cart unless self.cart
   end
 
 end

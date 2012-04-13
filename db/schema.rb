@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120412205234) do
+ActiveRecord::Schema.define(:version => 20120413011321) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(:version => 20120412205234) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "credit_cards", :force => true do |t|
+    t.string   "credit_card_number"
+    t.string   "expiration_month"
+    t.string   "expiration_year"
+    t.string   "credit_card_verification_number"
+    t.string   "cardholder_name"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "order_products", :force => true do |t|
@@ -113,14 +123,9 @@ ActiveRecord::Schema.define(:version => 20120412205234) do
   end
 
   create_table "transactions", :force => true do |t|
-    t.string   "credit_card_number"
-    t.string   "expiration_month"
-    t.string   "expiration_year"
-    t.string   "credit_card_verification_number"
-    t.string   "cardholder_name"
-    t.string   "status"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "credit_card_id"
     t.integer  "order_id"
   end
 
