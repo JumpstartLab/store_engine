@@ -18,6 +18,13 @@ describe "logged in user" do
         end
       end
     end
+    it "can log out" do
+      within ".nav" do
+        click_link_or_button "Logout"
+      end
+        current_path.should == "/"
+        page.should_not have_content "My Account"
+    end
   end
   context "My Account" do
     let(:billing) {{credit_card_number: 555555555555, credit_card_expiration_date: 03052013, street: "One Mockingbird Lane", city: "Anytown", state: "VA", zipcode: 22209, name: "Favorite Billing"}}
@@ -75,6 +82,25 @@ describe "logged in user" do
       click_link_or_button "Update Shipping address"
       current_path.should == user_path(user)
       page.should have_content "New Favorite Shipping"
+    end
+    it "can view it's orders" do
+      product = Fabricate(:product)
+      visit "/"
+      click_link_or_button "Add to Cart"
+      click_link_or_button "My Account"
+      click_link_or_button "View Orders"
+      current_path.should == orders_path
+      page.should have_content product.title
+    end
+    it "cannot view anyone else's orders" do
+      other_user = Fabricate(:user)
+      product = Fabricate(:product)
+      order = Fabricate(:order)
+      line_item = Fabricate(:line_item)
+      line_item.update_attributes({product_id: product.id, order_id: order.id})
+      order.update_attribute(:user_id, other_user.id)
+      click_link_or_button "View Orders"
+      page.should_not have_content product.title
     end
   end
 end

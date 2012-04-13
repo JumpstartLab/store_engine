@@ -26,4 +26,8 @@ class LineItem < ActiveRecord::Base
     self.save
     self.quantity
   end
+
+  def title
+    product.title
+  end
 end
