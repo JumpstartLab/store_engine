@@ -66,5 +66,5 @@ StoreEngine::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   # Heroku error fix?
-  StoreEngine::ActiveSupport::Deprecation.silenced = true
+  ::ActiveSupport::Deprecation.silenced = true
 end
