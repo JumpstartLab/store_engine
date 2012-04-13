@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.active
+    @products = Product.search(params[:search])
     @categories = Category.all
   end
 

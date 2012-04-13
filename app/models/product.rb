@@ -19,6 +19,13 @@ class Product < ActiveRecord::Base
     where(:retired => true)
   end
 
+  def self.search(search)
+    if search
+      find(:all, :conditions => ["name LIKE ? and retired=?", "#{search}", false])
+    else
+      find(:all, :conditions => ["retired=?", false])
+    end
+  end
 
   def retire
     self.retired = true

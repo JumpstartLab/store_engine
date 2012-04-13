@@ -1,7 +1,7 @@
-<h1>Your Cart </h1>
-
+<div id="intro">
+  <h2>Your Cart </h2>
+</div>
 <div id="cart">
-
 <% if cart.cart_products.any? %>
   <%= render :partial => "carts/cart_table" %>
   <%= link_to "Place Order", place_order_path(:cart_id => cart.id) %>
@@ -9,3 +9,4 @@
   <p>Your cart is empty! Don't do Worace's Workshop like that. Go shop!</p>
 <% end %>
 <%= link_to "Continue Shopping", products_path %>
+</div>
