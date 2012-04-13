@@ -45,6 +45,11 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def self.user_by_order_id(id)
+    order = Order.find_by_id(id)
+    order.user if order
+  end
+
 private
 
   def send_charge_error(e)

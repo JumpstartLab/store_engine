@@ -4,7 +4,7 @@ class Cart < ActiveRecord::Base
   has_many :cart_products, :dependent => :destroy
   has_many :products, :through => :cart_products
   belongs_to :user
-  validates_uniqueness_of :user_id
+  validates_uniqueness_of :user_id, :allow_nil => true
 
   def add_product_by_id(id)
     product = Product.find(id)
@@ -62,6 +62,10 @@ class Cart < ActiveRecord::Base
 
   def has_products?
     cart_products.any?
+  end
+
+  def is_empty?
+    cart_products.empty?
   end
 
   def cart_total

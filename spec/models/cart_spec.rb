@@ -6,14 +6,14 @@ describe Cart do
   let(:product_two) { FactoryGirl.create(:product) }
   let(:products) { [ product_one, product_two ] }
   
-  describe "#items" do
-    context "when items have been added to the cart" do
-      before(:each) do
-        products.each do |product|
-          cart.add_product(product)
-        end
+  context "when items have been added to the cart" do
+    before(:each) do
+      products.each do |product|
+        cart.add_product(product)
       end
+    end
 
+    describe "#items" do
       it "returns the items" do
         cart.products.count.should == products.count
         # save_and_open_page
@@ -22,67 +22,81 @@ describe Cart do
         end
       end
     end
+
+    describe "#cart_count" do
+      it "should return the number of items added" do
+        cart.cart_count.should == products.size
+      end
+    end
+
+    describe "#cart_total" do
+      it "should return the total" do
+        cart.cart_total.should == products.map(&:price).inject(:+)
+      end
+    end
+
+    describe "#cart_total_in_cents" do
+      it "should return the total in cents" do
+        cart.cart_total_in_cents.should == products.map(&:price).inject(:+) * 100
+      end
+    end
+
+    describe "#is_empty?" do
+      it "returns false" do
+        cart.is_empty? == false
+      end
+    end
+
+    describe "#assign_cart_to_order_and_destroy" do
+      let!(:order) { FactoryGirl.create(:order) }
+
+      it "destroys the cart" do
+        cart.assign_cart_to_order_and_destroy(order)
+        Cart.all.should be_empty
+      end
+
+      it "creates order products and attaches them to order" do
+        cart.assign_cart_to_order_and_destroy(order)
+        order.products == products
+      end
+
+      context "when there are items in the cart with quantity > 1" do
+        before(:each) { cart.add_product(product_one) }
+
+        it "creates order products with quantity 2" do
+          cart.assign_cart_to_order_and_destroy(order)
+          order.order_products.find(product_one).quantity == 2
+        end
+      end
+    end
   end
 
-  describe "#cart_count" do
-    context "when no items have been added to the cart" do
+  context "when no items have been added to the cart" do
+    describe "#cart_total" do
+      it "should return 0" do
+        cart.cart_total.should == 0
+      end
+    end
+
+    describe "#cart_total_in_cents" do
+      it "should return 0" do
+        cart.cart_total.should == 0
+      end
+    end
+
+    describe "#cart_count" do
       it "should return 0" do
         cart.cart_count.should == 0
       end
     end
 
-    context "when items have been added to the cart" do
-      before do
-        products.each do |product|
-          cart.add_product(product)
-        end
-      end
-
-      it "should return the number of items added" do
-        cart.cart_count.should == products.size
+    describe "#is_empty?" do
+      it "returns true" do
+        cart.is_empty? == true
       end
     end
   end
 
-  describe "#cart_total" do
-    context "when no items have been added to the cart" do
-      it "should return 0" do
-        cart.cart_total.should == 0
-      end
-    end
-
-    context "when items have been added to the cart" do
-      before do
-        products.each do |product|
-          cart.add_product(product)
-        end
-      end
-
-      it "should return the number of items added" do
-        cart.cart_total.should == products.map(&:price).inject(:+)
-      end
-    end
-  end
-
-  describe "#cart_total_in_cents" do
-    context "when no items have been added to the cart" do
-      it "should return 0" do
-        cart.cart_total.should == 0
-      end
-    end
-
-    context "when items have been added to the cart" do
-      before do
-        products.each do |product|
-          cart.add_product(product)
-        end
-      end
-
-      it "should return the number of items added" do
-        cart.cart_total_in_cents.should == products.map(&:price).inject(:+) * 100
-      end
-    end
-  end
 
   describe "#has_products?" do
     context "when no items have been added to the cart" do
@@ -141,4 +155,50 @@ describe Cart do
     end
   end
 
+  describe "#assign_cart_to_user" do
+    let!(:user) { FactoryGirl.create(:user) }
+
+    context "when the cart has no products in it" do
+      it "destroys the cart" do
+        cart.assign_cart_to_user(user)
+        Cart.all.should be_empty
+      end
+    end
+
+    context "when the cart has products in it" do
+      before(:each) do
+        products.each do |product|
+          cart.add_product(product)
+        end
+      end
+
+      context "if the user has no existing carts" do
+        it "gives the cart to the user" do
+          user.cart.should == nil
+          cart.assign_cart_to_user(user)
+          user.cart.should == cart
+        end
+      end
+
+      context "if the user has an existing cart" do
+        let!(:user_cart) { FactoryGirl.create(:cart) }
+        before(:each) { user.cart = user_cart }
+        context "and the new cart has products in it"
+          it "should replace the existing cart" do
+            user.cart.should_not == nil
+            cart.assign_cart_to_user(user)
+            user.cart.should_not == user_cart
+            Cart.find_by_id(user_cart.id).should == nil
+          end
+        context "and the new cart does not have products in it" do
+          let!(:new_cart) { FactoryGirl.create(:cart, :user_id => nil) }
+
+          it "should not replace the existing cart" do
+            new_cart.assign_cart_to_user(user)
+            user.cart.should == user_cart
+          end
+        end
+      end
+    end
+  end
 end

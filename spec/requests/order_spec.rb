@@ -4,7 +4,8 @@ describe "When I am placing an order" do
   before(:each) { visit new_order_path }
 
   context "and I submit enter invalid information" do
-    before(:each) do 
+    before(:each) do
+      # save_and_open_page
       fill_in "Credit Card Number", with: 123
       click_link_or_button('Create Order')
     end
