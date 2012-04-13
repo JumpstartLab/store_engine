@@ -20,3 +20,4 @@
     Rake::Task["db:seed"].invoke
     Rake::Task["db:test:prepare"].invoke
   end
+

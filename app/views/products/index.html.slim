@@ -3,4 +3,3 @@ h1 Products
 ul
   - @products.each do |product|
       li = link_to product.title, product_path(product)
-= link_to "Create new product", new_product_path

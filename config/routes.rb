@@ -1,6 +1,6 @@
 StoreEngine::Application.routes.draw do
-  resources :categories
-  resources :products
+  resources :categories, :only => [:index, :show]
+  resources :products, :only => [:index, :show]
   resource :shopping_cart, :controller => "shopping_cart"
   resources :user_sessions
   resources :users
@@ -12,6 +12,7 @@ StoreEngine::Application.routes.draw do
 
   namespace :admin do
     resources :products
+    resources :categories
   end
 
   match 'login' => 'user_sessions#new', :as => :login
