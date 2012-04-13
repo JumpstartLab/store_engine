@@ -22,3 +22,4 @@
 </ul>
 <% end %>
 <%= link_to "add to cart", cart_products_path(:product_id => @product), :method => :post %>
+<%= link_to "Instant Checkout", instant_orders_path(:product_id => @product), :method => :post %>

@@ -29,11 +29,15 @@ describe "Products Show Requests" do
       page.should have_content(product.description)
       page.should have_content(product.price) 
     end
-    
+
     it "shows a link to all products" do
       within("ul#options") do
         page.should have_link('All Products', href: products_path)
       end
+    end
+
+    it "has a one-click checkout link" do
+      page.should have_link("Instant Checkout")
     end
   end
 end

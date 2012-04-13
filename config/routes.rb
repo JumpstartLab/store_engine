@@ -32,6 +32,7 @@ StoreEngine::Application.routes.draw do
   resources :orders
   resources :categories
   resources :cart_products, :only => [:create, :destroy]
+  resources :instant_orders, :only => [:create]
 
   resource :cart do
     get 'show', :on => :member
