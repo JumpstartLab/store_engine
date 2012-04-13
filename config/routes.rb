@@ -1,5 +1,7 @@
 StoreEngine::Application.routes.draw do
 
+  resources :searches
+
   resources :products
   resources :orders
   resources :users
@@ -7,6 +9,7 @@ StoreEngine::Application.routes.draw do
   resources :cart_items
   resource :edit
   resources :categories
+  resource :search
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"

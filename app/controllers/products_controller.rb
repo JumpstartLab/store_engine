@@ -4,7 +4,14 @@ class ProductsController < ApplicationController
   before_filter :admin_authorize, only: [:destroy]
   
   def index
-    @products = Product.all
+    
+    if params[:search_title] && params[:search_title].length > 0
+      @products = Product.find_by_title(params[:search_title])
+    elsif params[:search_category] && params[:search_category].length > 0
+      @products = Product.find_by_category(params[:search_category])
+    else
+      @products = Product.all
+    end
   end
 
   def new

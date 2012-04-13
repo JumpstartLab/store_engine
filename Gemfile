@@ -10,6 +10,7 @@ gem 'stripe'
 gem 'sorcery'
 gem 'carrierwave'
 gem 'bcrypt-ruby'
+gem 'nifty-generators', :group => :development
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,3 +36,5 @@ group :test do
   gem 'spork'
   gem 'simplecov', :require => false
 end
+
+gem "mocha", :group => :test

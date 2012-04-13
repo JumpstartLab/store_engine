@@ -1,5 +1,23 @@
 <h1>Products</h1>
 
+<% "Search" %>
+
+<%= form_tag products_path, method: :get %>
+  <p>
+    <%= label_tag :search_title %><br />
+    <%= text_field_tag :search_title %>
+  </p>
+  OR
+  <p>
+    <%= label_tag :search_category %><br />
+    <%= text_field_tag :search_category %>
+  </p>
+  <p><%= submit_tag "Search!" %></p>
+
+
+<p><%= link_to "All Products", products_path %></p>
+
+
 <ul id="products">
   <%= render :partial => "product", :collection => @products %>
 </ul>

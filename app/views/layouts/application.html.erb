@@ -14,7 +14,7 @@
       <li class="active">
         <a href="/">Home</a>
       </li>
-      <li><%= link_to "Products by Category", categories_path %></li>
+      <li><%= link_to "Product Search", new_search_path %></li>
       <li id="cart_count"><%= link_to "Cart", cart_path %> (<%= @cart.quantity %>): <%= number_to_currency(@cart.total_price) %></li>
       <% if current_user %>
       <li>Logged in as <%= current_user.full_name %><%= link_to "Log Out", logout_path %></li>
