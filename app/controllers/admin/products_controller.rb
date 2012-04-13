@@ -14,7 +14,11 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
     set_categories
-    @product.save
+    if @product.save
+      flash[:notice] = "Product added"
+    else
+      flash[:notice] = "Faied to add product"
+    end
     redirect_to admin_products_path
   end
 

@@ -8,6 +8,9 @@ class Product < ActiveRecord::Base
   has_many :categories, :through => :product_categories
   has_many :cart_items
   attr_accessible :title, :description, :price, :retired
+  validates :title, :description, :price, :presence => true
+  validates :title, :uniqueness => true
+  validates :price, :numericality => { :greater_than => 0 }
 
   def set_categories(category_ids)
     category_ids.uniq!
