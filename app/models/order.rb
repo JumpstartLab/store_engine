@@ -1,9 +1,10 @@
 class Order < ActiveRecord::Base
-  attr_accessible :status, :total_price
+  attr_accessible :status, :total_price, :user, :products
   attr_accessor :stripe_card_token
   attr_accessible :stripe_card_token
 
-  validates :status, :inclusion => { :in => %w(pending cancelled shipped paid)}
+  validates :status, :inclusion => { :in => %w(pending cancelled shipped paid) }
+  validates_presence_of :user, :products, :order_items
 
   has_many :order_items
   has_many :products, through: :order_items
@@ -30,41 +31,20 @@ class Order < ActiveRecord::Base
         :customer => customer.id,
         :description => "order##{id}" )
 
-      # self.stripe_customer_token = customer.id
       save!
     end
     rescue Stripe::InvalidRequestError => e
-  logger.error "Stripe error while creating customer: #{e.message}"
-  errors.add :base, "There was a problem with your credit card."
-  end
-
-  def populate_from(cart)
-  	Cart.find_by_id(cart)
+    logger.error "Stripe error while creating customer: #{e.message}"
+    errors.add :base, "There was a problem with your credit card."
   end
 
   def add_order_items_from(cart)
-  	# raise cart.items.inspect
   	cart.cart_items.each do |item|
   		oi = OrderItem.new(	quantity: item.quantity,
   							unit_price: item.individual_price,
-  							order_id: self.id)# take each cart_item and convert it to an order_item
+  							order_id: self.id)
   		oi.product = item.product
   		oi.save
   	end
   end
 end
-
-# order_items = OrderItem.new( 
-#   quantity: 10, 
-#   unit_price: 50, 
-#   product_id: products.first.id,
-#   order_id: orders.first.id )
-
-# create_table "order_items", :force => true do |t|
-#     t.integer  "product_id"
-#     t.integer  "order_id"
-#     t.integer  "quantity"
-#     t.decimal  "unit_price", :precision => 12, :scale => 2
-#     t.datetime "created_at",                                :null => false
-#     t.datetime "updated_at",                                :null => false
-#   end

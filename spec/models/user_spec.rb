@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe User do
+  let(:test_user) { FactoryGirl.create(:user) }
   before(:each) do
     @attr = {
       full_name: "Chris Manderson",
@@ -12,6 +13,12 @@ describe User do
 
   it "should create a new instance of user given valid attributes" do
     User.create!(@attr)
+  end
+  
+  it "doesn't allow assignment of admin" do
+    expect do
+      User.new(admin: true)
+    end.should raise_error(ActiveModel::MassAssignmentSecurity::Error)
   end
 
   it "should require a name" do
