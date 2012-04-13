@@ -34,4 +34,8 @@ StoreEngine::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Heroku fix
+  ::ActiveSupport::Deprecation.silenced = true
+
 end
