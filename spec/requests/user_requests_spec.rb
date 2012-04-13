@@ -75,19 +75,23 @@ describe User do
       end
     end
 
-    it "view orders" do
-      order.add_product(product)
-      visit admin_orders_path
-      click_link "#{order.title}"
-      page.should have_content("#{order.items.first.title}")
+    context "orders" do
+      it "views" do
+        order.add_product(product)
+        visit admin_orders_path
+        click_link "#{order.id}"
+        save_and_open_page
+        page.should have_content("#{order.items.first.title}")
+      end
+
+      context "edit orders and" do
+        it "change quantity of products on pending orders"
+        it "can't change quantity of products on non-pending orders"
+        it "remove products"
+        it "change the status"
+      end
+      it "not edit users personal data"
     end
-    context "edit orders and" do
-      it "change quantity of products on pending orders"
-      it "can't change quantity of products on non-pending orders"
-      it "remove products"
-      it "change the status"
-    end
-    it "not edit users personal data"
   end
 
   context "after logging in" do
