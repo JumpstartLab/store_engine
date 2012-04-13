@@ -16,7 +16,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -28,12 +27,13 @@ class UsersController < ApplicationController
   end
 
   def show
+    @orders = current_user.orders
   end
 
   private
 
   def lookup_user
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
 end

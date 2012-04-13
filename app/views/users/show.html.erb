@@ -1,2 +1,17 @@
-<p>Welcome, <%= @user.name %></p>
+<div id="intro">
+  <h3>Welcome, <%= @user.name %></h3>
+</div>
+<div>
+  <p><%=  %></p>
+  <p><%= %></p>
+  <p><%= %></p>
+  <p><%= %></p>
+</div>
+
 <%= link_to "Edit your profile", edit_user_path %>
+
+<% if @orders.any? %>
+<%#= render :partial => "orders/user_orders" %>
+<% else %>
+<h3>You haven't ordered anything yet. Why are you a hater?</h3>
+<% end %>
