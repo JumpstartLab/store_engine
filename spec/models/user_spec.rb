@@ -36,22 +36,23 @@ describe User do
       user.save
     end
     it "can set a default billing address" do
-        ba = user.addresses.first
-        user.set_default_billing_address_by_id(ba.id)
-        user.default_billing_address.should == ba
+        #raise user.addresses.first.inspect
+        billing = user.addresses.first
+        user.set_default_billing_address_by_id(billing.id)
+        user.default_billing_address.should == billing
     end
 
-    it "defaults the defaults to the user's last credit card" do
+    it "defaults to the user's last address" do
         user.default_billing_address.should == user.addresses.last
     end
 
     it "can set a default shipping address" do
-        sa = user.addresses.first
-        user.set_default_shipping_address_by_id(sa.id)
-        user.default_shipping_address.should == sa
+        shipping = user.addresses.first
+        user.set_default_shipping_address_by_id(shipping.id)
+        user.default_shipping_address.should == shipping
     end
 
-    it "defaults the defaults to the user's last credit card" do
+    it "defaults to the user's last address" do
       user.default_shipping_address.should == user.addresses.last
     end
   end

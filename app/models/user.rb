@@ -36,4 +36,24 @@ class User < ActiveRecord::Base
     self.default_credit_card_id = id
     save
   end
+
+  def default_billing_address
+    self.default_billing_address_id ||= self.addresses.last.id
+    Address.find_by_id(default_billing_address_id)
+  end
+
+  def set_default_billing_address_by_id(id)
+    self.default_billing_address_id = id
+    save
+  end
+
+  def default_shipping_address
+    self.default_shipping_address_id ||= self.addresses.last.id
+    Address.find_by_id(default_shipping_address_id)
+  end
+
+  def set_default_shipping_address_by_id(id)
+    self.default_shipping_address_id = id
+    save
+  end
 end
