@@ -1,3 +1,7 @@
+/ = form_for product, :html => { :class => 'form-horizontal' } do |f|
 = link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini'
-= link_to 'Retire', product_path(product), :method => :retire, :confirm => 'Are you sure?', :class => 'btn btn-warning btn-mini'
+/ = hidden_field_tag "product[retired]", true
+/ = f.submit 'Retire', :class => 'btn btn-warning btn-mini'
+= link_to 'Retire', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger btn-mini'
 = link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-danger btn-mini'
+

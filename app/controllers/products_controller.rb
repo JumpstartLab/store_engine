@@ -34,6 +34,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    # raise params.inspect
     @product.update_attributes(params[:product])
     redirect_to product_path(@product)
   end

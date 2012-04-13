@@ -17,7 +17,7 @@ describe "Products Requests" do
     before(:each) { visit new_product_path }
     it "has a form with all of the correct fields" do
       within ("form#new_product") do
-        Product.new.attributes.keys[1..-3].each do |key|
+        Product.new.attributes.keys[1..-4].each do |key|
           page.should have_selector("input#product_#{key}")
         end
       end

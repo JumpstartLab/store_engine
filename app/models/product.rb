@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :title, :description, :price, :photo_url, :category_ids
+  attr_accessible :title, :description, :price, :photo_url, :category_ids, :retired
   has_many :product_categorizations
   has_many :categories, :through => :product_categorizations
   has_many :line_items

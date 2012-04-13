@@ -85,7 +85,34 @@ describe "admin" do
       end
     end
   end
-  context "product"
+  context "product" do
+    let!(:product) { Fabricate(:product) }
+    before(:each) do
+      visit product_path(product)
+    end
+    it "has admin buttons" do
+      ["Edit", "Retire", "Destroy"].each do |button|
+        page.should have_content button
+      end
+    end
+    it "can edit a product" do
+      click_link_or_button "Edit"
+      fill_in "Title", with: "Other Product"
+      click_link_or_button "Update Product"
+      page.should_not have_content product.title
+      page.should have_content "Other Product"
+    end
+    it "can destroy a product" do
+      click_link_or_button "Destroy"
+      page.should_not have_content product.title
+    end
+    it "can retire a product" do
+      pending
+      click_link_or_button "Retire"
+      click_link_or_button "User View"
+      page.should_not have_content product.title
+    end
+  end
   context "user"
   context "category"
 end
