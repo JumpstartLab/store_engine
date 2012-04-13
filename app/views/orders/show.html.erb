@@ -5,7 +5,7 @@
     <h2>Order Details</h2>
     <ul class="unstyled">
       <li>Order number: <%= @order.id %></li>
-      <li>Date: <%= @order.created_at %></li>
+      <li>Date: <%= @order.created_at.to_s(:pretty) %></li>
       <li>Status: <%= @order.status %></li>
     </ul>
   </div>

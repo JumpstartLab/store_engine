@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
 private
   def is_current_user?
-    redirect_to_last_page unless User.find(params[:id]) == current_user
+    redirect_to_last_page unless User.find_by_id(params[:id]) == current_user
   end
 
 end

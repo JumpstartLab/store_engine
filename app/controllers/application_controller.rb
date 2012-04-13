@@ -33,21 +33,18 @@ private
   def find_or_create_cart
     if session[:cart_id] && cart = Cart.find_by_id(session[:cart_id])
       cart
-    elsif user_signed_in_has_cart
+    elsif current_user
       get_cart_from_user
     else
       Cart.create.tap{ |cart| session[:cart_id] = cart.id; }
-    end
+    end    
   end
 
   def get_cart_from_user
-    cart = current_user.cart || Cart.create
+    # raise Cart.find_by_user_id(current_user.id).inspect
+    cart = current_user.cart || Cart.create!
     session[:cart_id] = cart.id
     current_user.cart = cart
-  end
-
-  def user_signed_in_has_cart
-    current_user && current_user.cart
   end
 
   def set_last_page

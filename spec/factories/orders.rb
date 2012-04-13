@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :order do
     status "shipped"
-    user "1"
+    user_id 1
   end
 end

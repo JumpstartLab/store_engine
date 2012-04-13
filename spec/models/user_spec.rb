@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe User do
   context "valid attributes" do
-    let(:user) { FactoryGirl.build(:user)}
+    let(:user) { FactoryGirl.build(:user) }
 
     it "is valid with valid attributes" do
       user.should be_valid
