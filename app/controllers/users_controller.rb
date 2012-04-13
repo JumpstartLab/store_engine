@@ -41,13 +41,15 @@ class UsersController < ApplicationController
   end
 
   def view_as_admin
+    session[:return_to] ||= request.referrer
     @user.enable_admin_view
-    redirect_to root_url
+    redirect_to session[:return_to], notice: "Viewing as admin"
   end
 
   def view_as_normal
+    session[:return_to] ||= request.referrer
     @user.disable_admin_view
-    redirect_to root_url
+    redirect_to session[:return_to], notice: "Viewing as normal user"
   end
 
   private

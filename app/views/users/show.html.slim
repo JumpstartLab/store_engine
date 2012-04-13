@@ -3,7 +3,7 @@ p
   = @user.full_name
   br/
   = @user.email_address
-  p = link_to "Edit", edit_user_path(@user), class: "btn"
+  p = link_to "Edit Information", edit_user_path(@user), class: "btn"
   = render partial: "billing", locals: { user: @user }
   = render partial: "shipping", locals: { user: @user }
 
