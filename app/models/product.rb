@@ -21,7 +21,7 @@ class Product < ActiveRecord::Base
 
   def self.search(search)
     if search
-      find(:all, :conditions => ["name LIKE ? and retired=?", "#{search}", false])
+      find(:all, :conditions => ["title LIKE ? and retired=?", "%#{search}%", false])
     else
       find(:all, :conditions => ["retired=?", false])
     end
