@@ -4,19 +4,8 @@ p
   br/
   = @user.email_address
   p = link_to "Edit", edit_user_path(@user), class: "btn"
-- if @user.billing_method.present?
-  h2 Billing Method
-  - bm = @user.billing_method
-  p = bm.name
-  p Card Number: #{bm.credit_card_number}
-  p Exp Date: #{bm.credit_card_expiration_date}
-  p Street: #{bm.street}
-  | City: #{bm.city}
-  | State: #{bm.state}
-  | Zipcode: #{bm.zipcode}
-  p = link_to "Change Billing Method", edit_billing_method_path(bm), class: "btn"
-- else
-  p = link_to "Add a Billing Method", new_billing_method_path, class: "btn"
+  = render partial: "billing", locals: { user: @user }
+  = render partial: "shipping", locals: { user: @user }
 
 
 - if admin_view?

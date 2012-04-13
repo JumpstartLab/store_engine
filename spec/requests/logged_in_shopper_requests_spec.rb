@@ -21,6 +21,7 @@ describe "logged in user" do
   end
   context "My Account" do
     let(:billing) {{credit_card_number: 555555555555, credit_card_expiration_date: 03052013, street: "One Mockingbird Lane", city: "Anytown", state: "VA", zipcode: 22209, name: "Favorite Billing"}}
+    let(:shipping) {{street: "One Mockingbird Lane", city: "Anytown", state: "VA", zipcode: 22209, name: "Favorite Billing"}}
     before(:each) do
       visit user_path(user)
     end
@@ -49,10 +50,31 @@ describe "logged in user" do
         click_link_or_button "Change Billing Method"
       end
       fill_in "Name", with: "New Favorite Billing"
-      # save_and_open_page
       click_link_or_button "Update Billing method"
       current_path.should == user_path(user)
       page.should have_content "New Favorite Billing"
+    end
+    it "can add shipping info" do
+      within ".main-content" do
+        page.should have_content "Add a Shipping Address"
+        click_link_or_button "Add a Shipping Address"
+      end
+      current_path.should == new_shipping_address_path
+      add_shipping(shipping)
+      current_path.should == user_path(user)
+      page.should have_content shipping[:name]
+    end
+    it "can edit shipping info" do
+      click_link_or_button "Add a Shipping Address"
+      add_shipping(shipping)
+      within ".main-content" do
+        page.should have_content "Change Shipping Address"
+        click_link_or_button "Change Shipping Address"
+      end
+      fill_in "Name", with: "New Favorite Shipping"
+      click_link_or_button "Update Shipping address"
+      current_path.should == user_path(user)
+      page.should have_content "New Favorite Shipping"
     end
   end
 end
