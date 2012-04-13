@@ -54,10 +54,18 @@ class Order < ActiveRecord::Base
     cart.empty
   end
 
+  def add_product_by_product_id(product_id, quantity = 1)
+    order_product = order_products.new
+    order_product.product_id = product_id
+    order_product.quantity = quantity
+    save
+  end
+
   def create_order_product_from_cart_product(cart_product)
     order_product = order_products.new
     order_product.product_id = cart_product.product_id
     order_product.quantity = cart_product.quantity
+    save
   end
 
   def billing_address
