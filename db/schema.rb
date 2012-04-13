@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120413011321) do
+ActiveRecord::Schema.define(:version => 20120413023032) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20120413011321) do
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
     t.string   "tag",          :default => "address"
+    t.integer  "user_id"
   end
 
   create_table "billing_addresses", :force => true do |t|
@@ -67,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20120413011321) do
     t.string   "cardholder_name"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
+    t.integer  "user_id"
   end
 
   create_table "order_products", :force => true do |t|
@@ -141,6 +143,9 @@ ActiveRecord::Schema.define(:version => 20120413011321) do
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.boolean  "admin",                        :default => false
+    t.integer  "default_billing_address_id"
+    t.integer  "default_shipping_address_id"
+    t.integer  "default_credit_card_id"
   end
 
 end
