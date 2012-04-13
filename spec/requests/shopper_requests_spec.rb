@@ -218,4 +218,22 @@ describe "shopper" do
       page.should have_selector ".cart"
     end
   end
+  context "restrictions" do
+    let!(:other_user) { Fabricate(:user) }
+    it "cannot see another user's account page" do
+      visit user_path(other_user)
+      current_path.should == "/"
+      page.should have_content "not allowed"
+    end
+    it "cannot see another user's orders" do
+      product = Fabricate(:product)
+      order = Fabricate(:order)
+      order.update_attribute(:user_id, other_user.id)
+      li = Fabricate(:line_item)
+      li.update_attributes( { product_id: product.id, order_id: order.id } )
+      visit order_path(order)
+      current_path.should == "/"
+      page.should have_content "not allowed"
+    end
+  end
 end

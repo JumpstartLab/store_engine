@@ -42,4 +42,8 @@ describe "admin" do
       end
     end
   end
+  context "order"
+  context "product"
+  context "user"
+  context "category"
 end
