@@ -42,7 +42,49 @@ describe "admin" do
       end
     end
   end
-  context "order"
+  context "another user's order" do
+    let!(:order) {
+      ord = Fabricate(:order)
+      ord.update_attributes({billing_method_id: nil, shipping_address_id: nil})
+      ord
+    }
+    let!(:product) { Fabricate(:product) }
+    let!(:line_item) {
+      li = Fabricate(:line_item)
+      li.update_attributes( { product_id: product.id, order_id: order.id} )
+      li
+    }
+    before(:each) do
+      other_user = Fabricate(:user)
+      order.update_attribute(:user_id, other_user.id)
+      visit order_path(order)
+    end
+    it "can see another user's order" do
+      current_path.should have_content "orders"
+      page.should have_content product.title
+    end
+    it "cannot edit another user's billing on an order" do
+      pending
+      click_link_or_button "Add a Billing Method"
+      current_path.should == "/"
+      page.should have_content "Sorry"
+    end
+    it "cannot edit another user's shipping on an order" do
+      pending
+      click_link_or_button "Add a Shipping Address"
+      current_path.should == "/"
+      page.should have_content "Sorry"
+    end
+    it "can edit the quantity of a product on an order" do
+      click_link_or_button "Update"
+      page.should have_content "Quantity"
+      fill_in "Quantity", with: "2"
+      click_link_or_button "Update Quantity"
+      within ".main-content" do
+        page.should have_content "2"
+      end
+    end
+  end
   context "product"
   context "user"
   context "category"

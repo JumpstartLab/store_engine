@@ -6,7 +6,6 @@ table.table.table-striped
     th Unit Price
     th Subtotal
   = render partial: "line_item", collection: @order.line_items
-
 - if @order.has_billing_method?
   - billing = @order.find_billing
   h2 Billing Method

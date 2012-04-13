@@ -13,4 +13,8 @@ class BillingMethod < ActiveRecord::Base
   def self.find_by_order_id(order_id)
     self.find(Order.find(order_id).billing_method_id)
   end
+
+  def has_user?
+    user ? true : false
+  end
 end

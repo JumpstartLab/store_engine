@@ -6,9 +6,6 @@ class LineItemsController < ApplicationController
     @line_items = LineItem.all
   end
 
-  def show
-  end
-
   def new
     @line_item = LineItem.new
   end

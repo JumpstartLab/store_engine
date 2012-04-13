@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
-  before_filter :require_order, :only => [:show, :edit, :update]
+  before_filter :require_order_or_admin, :only => [:show, :edit, :update]
   # before_filter :require_admin
 
   def index
@@ -8,14 +8,6 @@ class OrdersController < ApplicationController
   end
 
   def show
-  end
-
-
-  def new
-    @order = Order.new
-  end
-
-  def create
   end
 
   def destroy
