@@ -12,7 +12,7 @@ class Admin::CategoriesController < ApplicationController
   def create
     category = Category.new(params[:category])
     category.save
-    redirect_to categories_path
+    redirect_to admin_categories_path
   end
 
   def edit
@@ -23,6 +23,6 @@ class Admin::CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     @category.update_attributes(params[:category])
     @category.save
-    redirect_to categories_path
+    redirect_to admin_categories_path
   end
 end
