@@ -1,3 +1,4 @@
+<%= render :partial => "search_form" %>
 <div id="orders">
 <table class="table table-striped">
   <thead>
@@ -13,13 +14,6 @@
   </thead>
   <tbody>
   <%= render :partial => "order", :collection => @orders %>
-  <tr id="total">
-    <td><%= @orders.count %></td>
-    <td></td>
-    <td>Total:</td>
-    <td ><%= cart.total %></td>
-    <td></td>
-  </tr>
   </tbody>
 </table>
 </div>

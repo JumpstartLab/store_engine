@@ -3,22 +3,26 @@
   <table class="table">
     <thead>
       <tr>
+        <th>#</th>
         <th>Product</th>
         <th>Price</th>
         <th>Quantity</th>
         <th>Total</th>
-        <th>Options</th>
+        <th>Actions</th>
       </tr>
     </thead>
-  <% @retired.each do |product| %>
-    <tr class="product" id="product_<%= product.id %>">
-      <td><%= link_to product.title, product_path(product) %></td>
-      <td><%= product.price %></td>
-      <td><%= %></td>
-      <td><%= %></td>
-      <td><%= link_to "Activate", product_activations_path(product), :method => :post %></td>
-    </tr>
-  <% end %>
+    <tbody>
+    <%= render :partial => "retired_product", :collection => @retired %>
     </tbody>
+    <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    </tfoot>
   </table>
 </div>
