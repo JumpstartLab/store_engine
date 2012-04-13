@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   after_initialize :create_cart 
   authenticates_with_sorcery!
   
-  attr_accessible :email, :password, :password_confirmation, :display_name, :first_name, :last_name, :admin
+  attr_accessible :email, :password, :password_confirmation,
+                  :display_name, :first_name, :last_name, :admin, :default_credit_card_id
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
@@ -26,4 +27,13 @@ class User < ActiveRecord::Base
     self.build_cart unless self.cart
   end
 
+  def default_credit_card
+    self.default_credit_card_id ||= self.credit_cards.last.id
+    CreditCard.find_by_id(default_credit_card_id)
+  end
+
+  def set_default_credit_card_by_id(id)
+    self.default_credit_card_id = id
+    save
+  end
 end
