@@ -20,6 +20,7 @@ describe "logged in user" do
     end
   end
   context "My Account" do
+    let(:billing) {{credit_card_number: 555555555555, credit_card_expiration_date: 03052013, street: "One Mockingbird Lane", city: "Anytown", state: "VA", zipcode: 22209, name: "Favorite Billing"}}
     before(:each) do
       visit user_path(user)
     end
@@ -36,8 +37,22 @@ describe "logged in user" do
         click_link_or_button "Add a Billing Method"
       end
       current_path.should == new_billing_method_path
-      billing = {credit_card_number: 555555555555, credit_card_expiration_date: 03052013, street: "One Mockingbird Lane", city: "Anytown", state: "VA", zipcode: 22209, name: "Favorite Billing"}
       add_billing(billing)
+      current_path.should == user_path(user)
+      page.should have_content billing[:name]
+    end
+    it "can edit billing info" do
+      click_link_or_button "Add a Billing Method"
+      add_billing(billing)
+      within ".main-content" do
+        page.should have_content "Change Billing Method"
+        click_link_or_button "Change Billing Method"
+      end
+      fill_in "Name", with: "New Favorite Billing"
+      # save_and_open_page
+      click_link_or_button "Update Billing method"
+      current_path.should == user_path(user)
+      page.should have_content "New Favorite Billing"
     end
   end
 end
