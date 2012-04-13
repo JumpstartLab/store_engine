@@ -5,8 +5,10 @@ class Product < ActiveRecord::Base
   has_many :line_items
 
   validates_presence_of :title, :description, :price
+  validates_format_of :title, :description, with: /\w/
   validates_uniqueness_of :title
   validates_numericality_of :price
+  validates_format_of :price, with: /^[1-9]/
   validates_format_of :photo_url, with: /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpg|gif|png|jpeg)$/,
   allow_nil: true, unless: Proc.new { |p| p.photo_url.blank? }
 
