@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
 gem 'jquery-rails'
 
 gem 'growl'
@@ -24,7 +23,12 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 end
 
+group :production do
+  gem 'pg'
+end
+
 group :development, :test do
+  gem 'sqlite3'
   gem 'fabrication'
   gem 'faker'
   gem 'rspec-rails'
