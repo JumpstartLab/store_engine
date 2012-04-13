@@ -4,5 +4,4 @@ class Admin::DashboardController < ApplicationController
     @orders = Order.orders_by_filter(params[:order_status])
   end
 
-
 end
