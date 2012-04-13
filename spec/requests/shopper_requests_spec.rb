@@ -64,9 +64,10 @@ describe "shopper" do
         end
       end
       it "removes a product" do
+        pending
         within ".cart" do
-          page.should have_content "Remove"
-          click_link_or_button "Remove"
+          page.should have_content "Update"
+          click_link_or_button "Update"
         end
         within ".cart" do
           page.should_not have_content product.title
