@@ -11,7 +11,8 @@ gem 'anjlab-bootstrap-rails', '>= 2.0', :require => 'bootstrap-rails'
 gem 'simple_form'
 gem 'stripe'
 gem 'geocoder'
-
+gem 'pjax_rails'
+gem 'jquery-star-rating-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

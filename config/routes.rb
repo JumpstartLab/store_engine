@@ -7,7 +7,7 @@ StoreEngine::Application.routes.draw do
   resources :users, :categories, :sessions, :search
   
   resources :products do
-    resources :product_ratings
+    resources :product_ratings, :only => [:create, :destroy]
   end
   resources :orders do
     member do

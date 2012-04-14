@@ -12,6 +12,7 @@
  *= require responsive
  *= require_self
  *= require_tree .
+ *= require jquery-star-rating
 */
 html{
   margin: 0;

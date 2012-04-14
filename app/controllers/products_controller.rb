@@ -45,8 +45,10 @@ class ProductsController < ApplicationController
 
 private
 
-  def can_rate(id)
-    true if current_user.products.find(id)
+  def can_rate(id) ## Users can only rate if they have purchased the product
+    if current_user && current_user.products.find_by_id(id)
+      true
+    end
   end
 
 end

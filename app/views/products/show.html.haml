@@ -15,17 +15,4 @@
         %a= link_to 'Edit item', edit_product_path(@product), :class => 'btn'
         %a= link_to "Delete item", product_path(@product), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger'
     %br
-    - if @product.product_ratings.empty?
-      %h2 Be the first to comment!
-    - @product.product_ratings.each do |rating|
-      = rating.name
-      = rating.body
-      = rating.rating
-      = rating.user.name
-    - if @can_rate
-      = simple_form_for [@product, @product.product_ratings.build] do |f|
-        %legend New Comment
-        = f.input :name
-        = f.input :body, :as => "string"
-        = f.input :rating
-        = f.submit :class => "btn btn-primary controls"
+    = render :partial => "ratings"

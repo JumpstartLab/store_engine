@@ -17,7 +17,7 @@ describe User do
     FactoryGirl.create(:cart, :products => products, :user => user)
   end
   let!(:ratings) do
-    (1..5).map { FactoryGirl.create(:product_rating, :user => user)}
+    (1..5).map { FactoryGirl.create(:product_rating, :user => user, :product => products.first)}
   end
   context "User edit" do
     it "can't update permission" do

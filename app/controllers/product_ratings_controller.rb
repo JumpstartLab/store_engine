@@ -3,10 +3,10 @@ class ProductRatingsController < ApplicationController
     p = params[:product_rating]
     product = Product.find(params[:product_id])
     product.product_ratings.new(:name => p[:name], 
-                                   :body => p[:body], 
-                                   :rating =>  p[:rating], 
-                                   :user => current_user
-                                  )
+                                :body => p[:body], 
+                                :rating =>  p[:rating], 
+                                :user => current_user
+                               )
     if product.save
       redirect_to product, :notice => "Comment successfully added"    
     else

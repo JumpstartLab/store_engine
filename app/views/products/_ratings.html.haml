@@ -1,0 +1,23 @@
+- if @product.product_ratings.empty?
+  %h2 Be the first to comment!
+%h2 Ratings
+- @product.product_ratings.each do |rating|
+  %b= rating.name
+  %p= rating.body
+  - rating.rating.times do 
+    = image_tag "star-on.png"
+  %p 
+    By
+    = rating.user.name
+- if @can_rate
+  = simple_form_for [@product, @product.product_ratings.build] do |f|
+    %legend New Comment
+    = f.input :name
+    = f.input :body, :as => "string"
+    = f.input :rating, :collection => 1..5, :as => :radio_buttons, :class => "star"
+    / %div{:class => "control-group"}
+    /   %label{:class => "control-label"} Rating
+    /   .controls
+    /     - 5.times do 
+    /       = f.radio_button :rating, nil, :class => "star"
+    = f.submit :class => "btn btn-primary controls"

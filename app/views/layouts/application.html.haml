@@ -7,6 +7,6 @@
         .alert.alert-success= flash[:notice]
       - elsif flash[:error]
         .alert.alert-error= flash[:error]
-      .row
+      %div{"data-pjax-container" => ""}
         = yield
   = render :partial => 'layouts/footer'
