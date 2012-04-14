@@ -9,6 +9,10 @@
   has_many :line_items
   has_many :products, through: :line_items
 
+  def date
+    created_at.strftime("%m/%d/%Y")
+  end
+
   def user
     User.find(user_id)
   end

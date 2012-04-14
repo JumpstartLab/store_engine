@@ -1,0 +1,14 @@
+- if @user.billing_method.present?
+  h2 Billing Method
+  - bm = @user.billing_method
+  p Tagged As: #{bm.name}
+  p Card Type: #{bm.card_type}
+  p Card Number: Ending in ****#{bm.credit_card_number.last(4)}
+  p Exp Date: #{bm.credit_card_expiration_date}
+  p Street: #{bm.street}
+  p City: #{bm.city}
+  p State: #{bm.state}
+  p Zipcode: #{bm.zipcode}
+  p = link_to "Change Billing Method", edit_billing_method_path(bm), class: "btn"
+- else
+  p = link_to "Add a Billing Method", new_billing_method_path, class: "btn"
