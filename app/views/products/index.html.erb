@@ -1,49 +1,52 @@
-<%if notice %>
-  <p id="notice"> <%= notice %>
-<% end %>
+<h1>All Products</h1>
 
-<h1>Exotic Fruit 4U</h1>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Photo</th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Description</th>
-      <th>Price</th>
-      <% if can? :create, @product %>
-      <th>Retired?</th>
-      <% end %>
-      <th>Actions</th>
-    </tr>
-  </thead>
+<table class="table table-condensed">
+
   <tbody>
+
+    <% if can? :create, @product %>
+      <h3> Admin Actions</h3>
+        <%= link_to 'Create New Product', new_product_path, :class => 'btn btn-primary' %>
+        <%= link_to 'Create New Category', new_category_path, :class => 'btn btn-primary' %>
+        <%= link_to 'List Categories', categories_path, :class => 'btn btn-primary' %>
+    <% end %>
+    
     <% @products.each do |product|%>
       <% if product.retired == false || (can? :create, @product) %>
+        
         <tr>
-          <td><%= image_tag(product.photo, :size => "200x200") %></td>
-          <td><%= link_to product.title, product_path(product) %></td>
-          <td><% product.category_assignments.each do |ca| %>
-              <%= link_to ca.category.name, category_path(ca.category) %>
-              <% end %></td>
-          <td><%= product.description %></td>
-          <td><%= sprintf("$%0.02f", product.price) %></td>
-          <% if can? :create, @product %>
-          <td><%=product.retired? %>
-              <%= form_for product do |f| %>
-                <%= f.hidden_field :retired, :value => product.retired_switch %>
-                <%= f.submit "mark as #{product.retired_switch}" %>
-              <% end %>  
-
-          </td>
-          <% end %>
-          <td>
-          <% if product.retired == false %>
-            <%= link_to 'Add to Cart', line_items_path(product_id: product), :method => :post, :class => 'btn btn-mini'%>
-          <% end %>
-            <% if can? :update, product %>
-            <%= link_to 'Edit Product', edit_product_path(product), :class => 'btn btn-mini' %>
-            <% end %>
+          <td class="photo"><%= image_tag(product.photo, :size => "200x200") %></td>
+          <td class="description">
+            <%= link_to product.title, product_path(product) %>
+            <p>
+              <%= product.description %>
+              <br />
+              <%= sprintf("$%0.02f", product.price) %>
+            </p>
+            
+            <p>
+              <% if product.retired == false %>
+               <%= link_to 'Add to Cart', 
+                   line_items_path(product_id: product), 
+                   :method => :post, 
+                   :class => 'btn btn-mini'%>
+              <% end %>
+              <% if can? :update, product %>
+                <%= link_to 'Edit Product', 
+                edit_product_path(product), 
+                :class => 'btn btn-mini' %>
+              <% end %>
+              <br />
+              <% if can? :create, @product %>
+                  <%="Retired? " + product.retired?.to_s %>
+                  <%= form_for product do |f| %>
+                    <%= f.hidden_field :retired, 
+                                       :value => product.retired_switch %>
+                    <%= f.submit "mark as #{product.retired_switch}", 
+                                 :class => 'btn btn-mini' %>
+                  <% end %>  
+              <% end %>
+            </p>
           </td>
         </tr>
       <% end %>
@@ -51,12 +54,4 @@
   </tbody>
 </table>
 
-<% if can? :create, @product %>
-<h3> Admin Actions</h3>
-<%= link_to 'Create New Product', new_product_path, :class => 'btn btn-primary' %>
-<%= link_to 'Create New Category', new_category_path, :class => 'btn btn-primary' %>
-<%= link_to 'List Categories', categories_path, :class => 'btn btn-primary' %>
-<% end %>
-<% if can? :edit, @order %>
-<%= link_to 'View Orders', orders_path, :class => 'btn btn-primary' %>
-<% end %>
+

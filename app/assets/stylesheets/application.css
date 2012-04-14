@@ -8,11 +8,12 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require bootstrap_and_overrides
  *= require_self
  *= require_tree .
 */
 
-* {
+/** {
     padding: 0;
     margin: 0;
 }
@@ -178,4 +179,4 @@ menu, #ticket .state, .states {
 
 .comment, .new_comment {
     width: 75%;
-}
+}*/

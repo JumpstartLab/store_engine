@@ -47,4 +47,15 @@ FactoryGirl.define do
     user_name "andy_glass"
     password "hungry"
   end
+
+  factory :category_assignment do
+    id 1
+    category
+    product
+  end
+
+  factory :category do
+    name "robots"
+    id 1
+  end
 end
