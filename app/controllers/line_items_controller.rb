@@ -29,7 +29,7 @@ class LineItemsController < ApplicationController
 
   def destroy
     LineItem.destroy(@line_item)
-    redirect_to root_url
+    redirect_to order_path(@order)
   end
 
   def edit
