@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
+gem 'pg'
 gem 'jquery-rails'
 gem 'rails3-generators'
 gem "twitter-bootstrap-rails"
@@ -28,4 +28,5 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'simplecov'
   gem 'factory_girl_rails'
+  gem 'sqlite3'
 end
