@@ -15,7 +15,8 @@
         <a href="/">Home</a>
       </li>
       <li><%= link_to "Product Search", new_search_path %></li>
-      <li id="cart_count"><%= link_to "Cart", cart_path %> (<%= @cart.quantity %>): <%= number_to_currency(@cart.total_price) %></li>
+      <li id="cart_count"><%= link_to "Cart", cart_path %> 
+        <div id="cart_info">(<%= @cart.quantity %>): <%= number_to_currency(@cart.total_price) %></li>
       <% if current_user %>
       <li>Logged in as <%= current_user.full_name %><%= link_to "Log Out", logout_path %></li>
       <li><%= link_to "Orders", orders_path %></li>
@@ -25,7 +26,7 @@
       <% end %>
     </ul>
 
-    <br />
+    <!-- <br />
     <% if current_user %>
       <%= "Hey! You are logged in." %>
     <% else %>
@@ -36,7 +37,7 @@
       <%= "YOU ARE AN ADMIN AND ARE AWESOME" %>
     <% else %>
       <%= "YOU ARE NOT AN ADMIN AND ARE LAME" %>
-    <% end %>
+    <% end %> -->
 
     <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, id: "flash_#{name}" %>

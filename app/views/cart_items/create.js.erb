@@ -1,3 +1,3 @@
-$('#cart_count').html("<%=j link_to "Cart", cart_path %> (<%= @cart.quantity %>): <%= number_to_currency(@cart.total_price) %>");
+$('#cart_info').html("<%= @cart.quantity %> | <%= number_to_currency(@cart.total_price) %>");
 
 

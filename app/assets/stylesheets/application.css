@@ -53,3 +53,9 @@ ul.nav li{
   color: red;
   font-weight: 700;
 }
+
+#cart_info {
+	display: inline;
+	color: #53f139;
+	font-weight: 700;
+}
