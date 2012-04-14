@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20120414202643) do
     t.string   "status"
     t.integer  "user_id"
     t.decimal  "total_price", :precision => 12, :scale => 2
+    t.integer  "address_id"
     t.datetime "created_at",                                 :null => false
     t.datetime "updated_at",                                 :null => false
   end

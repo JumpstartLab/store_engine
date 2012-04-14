@@ -22,4 +22,12 @@ FactoryGirl.define do
 
   factory :cart do
   end
+
+  factory :address do
+    street_1 Faker::Address.street_address
+    zip_code Faker::Address.zip_code
+    city     Faker::Address.city
+    state    Faker::Address.state_abbr
+    association :user
+  end
 end
