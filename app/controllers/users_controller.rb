@@ -1,6 +1,24 @@
 class UsersController < ApplicationController
+
+  before_filter :authorize
+  before_filter :edit_self, :only => [:edit, :update]
+
+  def show
+    @user = User.find_by_id(params[:id])
+  end
+
   def new
     @user = User.new
+  end
+
+  def edit
+    @user = User.find_by_id(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update_attributes(params[:user])
+    redirect_to user_path(@user)
   end
 
   def create
@@ -10,6 +28,16 @@ class UsersController < ApplicationController
       redirect_to root_url, notice: "Thank you for signing up!"
     else
       render "new"
+    end
+  end
+
+  private
+
+  def edit_self
+    if current_user == false || current_user.nil?
+      redirect_to '/login', :notice => "Please log in."
+    elsif current_user.id != params[:id]
+      redirect_to root_url, :notice => "You can only edit yourself."
     end
   end
 end

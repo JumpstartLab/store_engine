@@ -39,7 +39,6 @@ describe 'using the shopping cart' do
     let(:products) do
       (1..5).map { FactoryGirl.create(:product) }
     end
-    let(:product) { FactoryGirl.create(:product) }
     let(:test_cart) { FactoryGirl.create(:cart, :products => products)}
 
     before(:each) { load_cart_with_products(products) }
@@ -56,6 +55,7 @@ describe 'using the shopping cart' do
     end
 
     it "shows the total price for each item" do
+      product = FactoryGirl.create(:product) 
       n = rand(2..100)
       n.times { load_cart_with_products([product]) }
       page.should have_content(number_to_currency(product.price * n))
