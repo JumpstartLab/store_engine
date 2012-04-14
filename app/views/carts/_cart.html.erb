@@ -8,7 +8,7 @@
 
   <ul>
     <% cart.cart_items.each do |item| %>
-      <li><%= item.product.title %> | 
+      <li id="product_<%= item.id %>"><%= item.product.title %> | 
         Individual price: <%= number_to_currency(item.individual_price) %> | 
         Quantity: <%= item.quantity %> 
         | Total Price: <%= number_to_currency(item.price) %>

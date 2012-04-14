@@ -19,4 +19,7 @@ FactoryGirl.define do
     username Faker::Name.first_name
     email Faker::Internet.email
   end
+
+  factory :cart do
+  end
 end
