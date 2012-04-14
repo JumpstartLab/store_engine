@@ -1,5 +1,5 @@
 class Product < ActiveRecord::Base
-  attr_accessible :title, :description, :activity, :price, :image_link, :categories
+  attr_accessible :title, :description, :activity, :price, :image_link, :category_ids
 
   validates_presence_of :title, :description
   validates_numericality_of :price, :greater_than => 0
@@ -11,6 +11,7 @@ class Product < ActiveRecord::Base
   has_many :categories, :through => :product_categories
   has_many :orders, through: :order_items
 
+  default_scope where(:activity => true)
 
   def self.find_by_title(search_term)
     Product.where("upper(title) like ?", "%#{search_term.upcase}%")
@@ -23,5 +24,9 @@ class Product < ActiveRecord::Base
       results << category.products.all
     end
     results.flatten.uniq
+  end
+
+  def status?
+    activity
   end
 end

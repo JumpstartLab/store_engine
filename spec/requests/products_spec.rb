@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe "Products" do
+  let!(:products) do
+    (1..5).map { FactoryGirl.create(:product) }
+  end
+  let!(:retired_product) { FactoryGirl.create(:product, :activity => false) }
+  let!(:user) { FactoryGirl.create(:user, :admin => true) }
+
   describe "GET /products" do
     it "works! (now write some real specs)" do
       # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
@@ -11,11 +17,9 @@ describe "Products" do
 
   context "when I'm on the products page" do
     before(:each) { visit products_path }
-      context "and I click add to cart on a product" do
-        # before(:each) { click_link_or_button('Add to cart') }
-        # it "should add the item to the cart" do
-          
-        # end
-      end
+    it "does not display retired products" do
+      visit products_path
+      page.should_not have_content(retired_product.title)
+    end
   end
 end

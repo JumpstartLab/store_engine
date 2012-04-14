@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :product do
     sequence(:title)  { |n| "New Product ##{n}" } 
-    description "Fantastic product"
+    description Faker::Lorem.paragraph(sentence_count = 3)
     price 500 
   end
 
