@@ -28,7 +28,7 @@ products = Product.create([{ title: 'Stiletto',
                        description: "for the old people. no really, you shoudn't see this.", 
                              price: 10.00, 
                         image_link: "http://s3.amazonaws.com/VibramFiveFingers/m108-hero.jpg",
-                          activity: false
+                          activity: false,
                         categories: [male_category]},
                            { title: 'Sneaker', 
                        description: 'Old faithful', 
