@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Order do
-  let!(:order) {FactoryGirl.create(:order, id: 1)}
+  let!(:order) {FactoryGirl.build(:order, id: 1)}
   let!(:cart)  {FactoryGirl.create(:cart, id: 1)}
   let!(:product) {FactoryGirl.create(:product)}
   
@@ -52,6 +52,13 @@ describe Order do
         order.add_contents_of_cart(cart, order)
         order.order_items.should_not be_empty
       end
+    end
+  end
+
+  describe ".count_status(status)" do
+    let!(:order) {FactoryGirl.build(:order, id: 1)}
+    it "returns a count of orders with specified status" do
+
     end
   end
 end
