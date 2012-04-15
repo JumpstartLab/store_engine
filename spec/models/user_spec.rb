@@ -27,8 +27,26 @@ describe User do
     user.should respond_to(:password_confirmation)
   end
 
+  it "has an authenticate method" do
+    user.should respond_to(:authenticate)
+  end
+
   it "should respond to name and email validations" do
     user.should be_valid
+  end
+
+  it "has a remember token attribute" do
+    user.should respond_to(:remember_token)
+  end
+
+  context "remember token" do
+    before(:each) do
+      user.save
+    end
+
+    it "should have a remember token created after it is saved" do
+      user.remember_token.should_not be_blank
+    end
   end
 
   context "when name is not present" do

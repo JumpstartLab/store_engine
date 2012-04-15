@@ -7,12 +7,15 @@ StoreEngine::Application.routes.draw do
   resources :products
   resources :orders
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
   resources :category_products, only: :create
 
   resources :cart_items, only: :create
   resource :cart, :only => [:show, :destroy]
   
   match '/signup',  to: 'users#new'
+  match '/signin',  to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
