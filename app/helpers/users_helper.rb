@@ -39,7 +39,6 @@ module UsersHelper
   def require_admin
     unless admin?
       redirect_to root_url, :notice => "Unauthorized Access"
-      false
     end
   end
 

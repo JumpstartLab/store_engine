@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+    session[:order_id] = nil if @order.id == session[:order_id]
     Order.destroy(@order)
     redirect_to orders_path
   end

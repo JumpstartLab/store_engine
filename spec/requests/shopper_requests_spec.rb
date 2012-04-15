@@ -63,12 +63,13 @@ describe "shopper" do
           page.should have_content "2"
         end
       end
-      it "removes a product" do
-        pending
+      it "removes a product by changing the quantity to 0" do
         within ".cart" do
           page.should have_content "Update"
           click_link_or_button "Update"
         end
+        fill_in :quantity, with: "0"
+        click_link_or_button "Update"
         within ".cart" do
           page.should_not have_content product.title
         end
@@ -163,15 +164,31 @@ describe "shopper" do
         page.should have_content "Welcome"
         page.should have_content "My Account"
       end
+      it "can sign up and maintain its cart" do
+        click_link_or_button "Add to Cart"
+        click_link_or_button "Sign-Up"
+        sign_up({full_name: "Test User", email: "test@test.com", password: "test", display_name: "Test"})
+        within ".cart" do
+          page.should have_content product.title
+        end
+      end
     end
     context "signing in" do
+      let(:user) { Fabricate(:user) }
       it "creates a new session with this user" do
-        user = Fabricate(:user)
         click_link_or_button "Sign-In"
         login({email: user.email_address, password: user.password})
         current_path.should == "/"
         page.should have_content "Welcome"
         page.should have_content "My Account"
+      end
+      it "can sign in and maintain its cart" do
+        click_link_or_button "Add to Cart"
+        click_link_or_button "Sign-In"
+        login({email: user.email_address, password: user.password})
+        within ".cart" do
+          page.should have_content product.title
+        end
       end
     end
   end
@@ -234,6 +251,23 @@ describe "shopper" do
       visit order_path(order)
       current_path.should == "/"
       page.should have_content "not allowed"
+    end
+    it "can visit the category index page" do
+      category = Fabricate(:category)
+      product.categories << category
+      visit categories_path
+      page.should have_content category.name
+      click_link_or_button category.name
+      page.should have_content product.title
+    end
+    it "cannot create or edit a category" do
+      visit new_category_path
+      current_path.should == "/"
+      page.should have_content "Unauthorized"
+      category = Fabricate(:category)
+      visit edit_category_path(category)
+      current_path.should == "/"
+      page.should have_content "Unauthorized"
     end
   end
 end

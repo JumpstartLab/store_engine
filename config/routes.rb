@@ -4,7 +4,7 @@ StoreEngine::Application.routes.draw do
   post 'sessions/create', :as => 'login'
   delete 'sessions/destroy', :as => 'logout'
 
-  resources :users do
+  resources :users, except: :destroy do
     member do
       put :view_as_admin
       put :view_as_normal
@@ -15,7 +15,7 @@ StoreEngine::Application.routes.draw do
   resources :categories
   resources :orders, except: [:new, :create]
   resources :billing_methods, except: [:show, :index, :destroy]
-  resources :line_items, except: :show
+  resources :line_items, except: [:show, :new, :index, :destroy]
   resources :shipping_addresses, except: [:show, :index, :destroy]
   root to: "products#index"
 

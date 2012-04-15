@@ -42,7 +42,7 @@ describe "admin" do
       end
     end
   end
-  context "another user's order" do
+  context "orders" do
     let!(:order) {
       ord = Fabricate(:order)
       ord.update_attributes({billing_method_id: nil, shipping_address_id: nil})
@@ -84,6 +84,14 @@ describe "admin" do
         page.should have_content "2"
       end
     end
+    it "can destroy an order" do
+      visit orders_path
+      click_link_or_button "Destroy"
+      current_path.should == orders_path
+      within ".main-content" do
+        page.should_not have_content order.id
+      end
+    end
   end
   context "product" do
     let!(:product) { Fabricate(:product) }
@@ -99,8 +107,10 @@ describe "admin" do
       click_link_or_button "Edit"
       fill_in "Title", with: "Other Product"
       click_link_or_button "Update Product"
-      page.should_not have_content product.title
-      page.should have_content "Other Product"
+      within ".product-title" do
+        page.should_not have_content product.title
+        page.should have_content "Other Product"
+      end
     end
     it "can destroy a product" do
       click_link_or_button "Destroy"
@@ -112,7 +122,50 @@ describe "admin" do
       click_link_or_button "User View"
       page.should_not have_content product.title
     end
+    it "doesn't allow missing product information" do
+      visit new_product_path
+      click_link_or_button "Create Product"
+      current_path.should == products_path
+      page.should have_content "errors"
+    end
   end
-  context "user"
-  context "category"
+  context "user" do
+    let!(:other_user) { Fabricate(:user) }
+    it "cannot edit another user's information" do
+
+      visit user_path(other_user)
+      click_link_or_button "Edit"
+      current_path.should == "/"
+      page.should have_content "not allowed"
+    end
+    it "can view a list of users" do
+      visit users_path
+      page.should have_content other_user.full_name
+    end
+  end
+  context "category" do
+    before(:each) do
+      visit new_category_path
+      fill_in "Name", with: "baseballs"
+      click_link_or_button "Create Category"
+    end
+    it "can create a category" do
+      current_path.should have_content "baseballs"
+    end
+    it "can edit a category" do
+      visit category_path(Category.last)
+      click_link_or_button "Edit"
+      fill_in "Name", with: "tennis equipment"
+      click_link_or_button "Update Category"
+      current_path.should == category_path(Category.last)
+      page.should_not have_content "baseballs"
+      page.should have_content "tennis equipment"
+    end
+    it "can delete a category" do
+      visit category_path(Category.last)
+      click_link_or_button "Destroy"
+      current_path.should == categories_path
+      page.should_not have_content "baseballs"
+    end
+  end
 end

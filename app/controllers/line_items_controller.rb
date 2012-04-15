@@ -2,14 +2,6 @@ class LineItemsController < ApplicationController
   before_filter :lookup_line_item, :only => [:show, :edit, :destroy, :update]
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
 
-  def index
-    @line_items = LineItem.all
-  end
-
-  def new
-    @line_item = LineItem.new
-  end
-
   def create
     if !session[:order_id]
       order = Order.create()
@@ -21,11 +13,6 @@ class LineItemsController < ApplicationController
     end
     params[:line_item][:order_id] = session[:order_id]
     LineItem.increment_or_create_line_item(params[:line_item])
-    redirect_to root_url
-  end
-
-  def destroy
-    LineItem.destroy(@line_item)
     redirect_to root_url
   end
 

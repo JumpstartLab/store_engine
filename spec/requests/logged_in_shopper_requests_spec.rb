@@ -120,6 +120,17 @@ describe "logged in user" do
           end
         end
       end
+      it "can add item, logout, add item, login, and items are merged" do
+        visit "/"
+        click_link_or_button "Add to Cart"
+        click_link_or_button "Logout"
+        click_link_or_button "Add to Cart"
+        click_link_or_button "Sign-In"
+        login({email: user.email_address, password: user.password})
+        within ".cart" do
+          page.should have_content "2"
+        end
+      end
     end
     context "restrictions" do
       let!(:other_user) { Fabricate(:user) }
@@ -138,6 +149,10 @@ describe "logged in user" do
         current_path.should == "/"
         page.should have_content "not allowed"
       end
+      it "cannot view a list of users" do
+      visit users_path
+      page.should_not have_content other_user.full_name
+    end
     end
   end
 end

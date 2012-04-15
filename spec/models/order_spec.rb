@@ -58,4 +58,22 @@ describe Order do
       ord.has_product?(prod.id).should == true
     end
   end
+  describe "#try_to_add_billing_and_shipping" do
+    it "adds a billing method to the order if the user has one" do
+      user = Fabricate(:user)
+      billing = Fabricate(:billing_method)
+      billing.update_attribute(:user_id, user.id)
+      ord.stub(user: user)
+      ord.try_to_add_billing_and_shipping(user.id)
+      ord.find_billing.should == billing
+    end
+    it "adds a shipping address to the order if the user has one" do
+      user = Fabricate(:user)
+      shipping = Fabricate(:shipping_address)
+      shipping.update_attribute(:user_id, user.id)
+      ord.stub(user: user)
+      ord.try_to_add_billing_and_shipping(user.id)
+      ord.find_shipping.should == shipping
+    end
+  end
 end

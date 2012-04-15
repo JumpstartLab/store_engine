@@ -14,9 +14,9 @@ class Product < ActiveRecord::Base
     [id, title.downcase.split(" ")].join("-")
   end
 
-  def create_new_category(params)
-    raise params.inspect
-  end
+  # def create_new_category(params)
+  #   raise params.inspect
+  # end
 
   def category_ids=(params)
     self.categories = []

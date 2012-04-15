@@ -28,11 +28,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    User.destroy(@user)
-    redirect_to users_path
-  end
-
   def edit
   end
 
