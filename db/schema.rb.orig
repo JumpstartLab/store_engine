@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20120415130841) do
+=======
 ActiveRecord::Schema.define(:version => 20120415170101) do
+>>>>>>> master
 
   create_table "billing_addresses", :force => true do |t|
     t.string   "first_name"
@@ -41,6 +45,13 @@ ActiveRecord::Schema.define(:version => 20120415170101) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "credit_cards", :force => true do |t|
+    t.string   "stripe_customer_token"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "stripe_card_token"
   end
 
   create_table "order_items", :force => true do |t|
@@ -111,10 +122,8 @@ ActiveRecord::Schema.define(:version => 20120415170101) do
 
   create_table "transactions", :force => true do |t|
     t.string   "stripe_card_token"
-    t.integer  "user_id"
-    t.string   "stripe_customer_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "users", :force => true do |t|

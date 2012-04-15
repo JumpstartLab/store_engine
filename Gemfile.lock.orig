@@ -209,6 +209,9 @@ DEPENDENCIES
   slim
   sorcery
   sqlite3
+<<<<<<< HEAD
   stripe
+=======
   twitter-bootstrap-rails
+>>>>>>> master
   uglifier (>= 1.0.3)
