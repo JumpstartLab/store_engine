@@ -1,15 +1,18 @@
 StoreEngine::Application.routes.draw do
+  get "users/new"
 
   root to: "products#index"
 
   resources :categories
   resources :products
+  resources :orders
+  resources :users
   resources :category_products, only: :create
 
   resources :cart_items, only: :create
   resource :cart, :only => [:show, :destroy]
-
-  resources :orders
+  
+  match '/signup',  to: 'users#new'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
