@@ -33,29 +33,29 @@ FactoryGirl.define do
   end
 
   factory :product do
-    id 1
+    # id 1
     title "yo-yo"
     description "A fun and cheap toy!"
     price 2.45
     photo "http://photo.jpg"
-  end
-  
-  factory :user do
-    full_name "Andrew Glass"
-    email "andy@livingsocial.com"
-    admin false
-    user_name "andy_glass"
-    password "hungry"
-  end
-
-  factory :category_assignment do
-    id 1
-    category
-    product
   end
 
   factory :category do
     name "robots"
     id 1
   end
+  
+  factory :user do
+    full_name "Andrew Glass"
+    email "andy@livingsocial.com"
+    admin false
+    password "hungry"
+  end
+
+  factory :category_assignment do
+    id 1
+    product
+    category
+  end
+
 end

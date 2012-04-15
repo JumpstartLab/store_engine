@@ -23,7 +23,6 @@
     end
   end
 
-
 #  private
 
   def ensure_not_in_line_item

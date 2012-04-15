@@ -26,7 +26,6 @@ describe Cart do
       it "should increase the line_item's quantity by 1" do
         cart.add_product(1)
         cart.add_product(1)
-        puts cart.line_items.inspect
         cart.line_items.each do |line_item|
           line_item.quantity.should == 2
         end
