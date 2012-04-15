@@ -1,6 +1,6 @@
 <h1>All Products</h1>
 
-<table class="table table-condensed">
+<table class="table">
 
   <tbody>
 
@@ -15,7 +15,7 @@
       <% if product.retired == false || (can? :create, @product) %>
         
         <tr>
-          <td class="photo"><%= image_tag(product.photo, :size => "200x200") %></td>
+          <td class="photo"><%= image_tag(product.photo) %></td>
           <td class="description">
             <%= link_to product.title, product_path(product) %>
             <p>

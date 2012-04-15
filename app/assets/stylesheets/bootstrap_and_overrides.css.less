@@ -40,7 +40,7 @@ body { padding-top: 60px; }
 }
 
 body {
-  padding-top: 200px;
+  padding-top: 220px;
   background-color: #D4DDB1;
 }
 
@@ -58,7 +58,7 @@ h1 {
   line-height: 36px;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h3 a {
   font-family: 'Average', serif;
   color: #7A6448;
 }
@@ -74,10 +74,19 @@ h1, h2, h3 {
 
 .table tr, .table tbody tr:hover td, .table tbody tr:hover th {
   background-color: #D4DDB1;
+  border: none;
+}
+
+.table td, .table th, .form-actions { 
+    border: 0 !important
 }
 
 .table td.photo {
   width: 200px;
+}
+
+.table td.photo img {
+  max-width: 200px;
 }
 
 .table td.description {
@@ -88,6 +97,26 @@ h1, h2, h3 {
   font-family: 'Average', serif;
   color: #7A6448;
   font-size: 18px;
+}
+
+.table td a.btn {
+  font-family: sans-serif;
+  color: black;
+  font-size: 12px;
+}
+
+p {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.product_detail img {
+  padding-right: 20px;
+  float: left;
+}
+
+.form-actions {
+  background-color: #D4DDB1; 
 }
 
 footer {

@@ -1,16 +1,15 @@
 <% if @product.retired == false || (can? :create, @product) %>
 
-  <h1><%= @product.title %></h1>
-
-  <p>
-    <b>Categories</b><br>
+    <h3>
     <% @product.category_assignments.each do |ca| %>
         <%= link_to ca.category.name, category_path(ca.category) %>
         <% end %>
-  </p>
+  </h3>
 
-  <p>
-    <b>Description</b><br>
+  <h1><%= @product.title %></h1>
+
+  <p class="product_detail">
+    <%= image_tag(@product.photo) %>
     <%= @product.description %>
   </p>
 
@@ -20,8 +19,8 @@
   </p>
 
   <p>
-    <b>Photo</b><br>
-    <%= image_tag(@product.photo) %>
+
+    
   </p>
 
   <p>
