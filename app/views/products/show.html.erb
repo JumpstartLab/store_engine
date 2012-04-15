@@ -1,3 +1,9 @@
+<% if @product.retired %>
+  <div id="admin_bar">
+    <h4>This product was retired at <%= @product.retired_at %></h4>
+  </div>
+<% end %>
+
 <h1><%= @product.title %></h1>
 <p><%= @product.description %></p>
 <p><%= @product.price %></p>
@@ -21,5 +27,5 @@
   <% end %>
 </ul>
 <% end %>
-<%= link_to "add to cart", cart_products_path(:product_id => @product), :method => :post %>
-<%= link_to "Instant Checkout", instant_orders_path(:product_id => @product), :method => :post %>
+<%= link_to "add to cart", cart_products_path(:product_id => @product), :method => :post unless @product.retired %>
+<%= link_to "Instant Checkout", instant_orders_path(:product_id => @product), :method => :post, :confirm => "Really order #{@product.title}?" %>

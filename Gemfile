@@ -27,6 +27,8 @@ group :production do
 end
 
 group :development, :test do
+  # gem 'capybara-webkit'
+  # gem 'prickle'
   gem 'growl'
   gem 'sqlite3'
   gem 'fabrication'

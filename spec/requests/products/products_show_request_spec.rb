@@ -13,6 +13,7 @@ describe "Products Show Requests" do
       ]
     end
 
+
     before(:each) do
       visit "/products/#{product.id}"
     end
@@ -38,6 +39,26 @@ describe "Products Show Requests" do
 
     it "has a one-click checkout link" do
       page.should have_link("Instant Checkout")
+    end
+
+    context "when a product has been retired" do
+      let!(:retired_product) { Fabricate(:product) }
+
+      before(:each) do
+        retired_product.retire
+        visit product_path(retired_product)
+      end
+      it "is still visible if retired" do
+        page.should have_content(retired_product.title)
+      end
+
+      it "deactivates add to cart if retired" do
+        page.should_not have_content("add to cart")
+      end
+
+      it "shows a timestamp for when the product was retired" do
+        page.should have_content(retired_product.retirements.last.created_at)
+      end
     end
   end
 end

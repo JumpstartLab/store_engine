@@ -28,8 +28,11 @@ class User < ActiveRecord::Base
   end
 
   def default_credit_card
-    self.default_credit_card_id ||= self.credit_cards.last.id
-    CreditCard.find_by_id(default_credit_card_id)
+    if self.default_credit_card_id
+      CreditCard.find_by_id(default_credit_card_id)
+    else
+      nil
+    end
   end
 
   def set_default_credit_card_by_id(id)
@@ -38,8 +41,11 @@ class User < ActiveRecord::Base
   end
 
   def default_billing_address
-    self.default_billing_address_id ||= self.addresses.last.id
-    Address.find_by_id(default_billing_address_id)
+    if self.default_billing_address_id
+      Address.find_by_id(default_billing_address_id)
+    else
+      nil
+    end
   end
 
   def set_default_billing_address_by_id(id)
@@ -48,8 +54,11 @@ class User < ActiveRecord::Base
   end
 
   def default_shipping_address
-    self.default_shipping_address_id ||= self.addresses.last.id
-    Address.find_by_id(default_shipping_address_id)
+    if self.default_shipping_address_id
+      Address.find_by_id(default_shipping_address_id)
+    else
+      nil
+    end
   end
 
   def set_default_shipping_address_by_id(id)

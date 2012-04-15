@@ -1,4 +1,4 @@
-require 'credit_card'
+require 'credit_card_fabricate'
 
 Fabricator(:credit_card) do
   credit_card_number  { Faker::CreditCard.visa }

@@ -1,11 +1,5 @@
-class Retirement
+class Retirement < ActiveRecord::Base
 
-  def initialize(product_id)
-    @product = Product.find(product_id)
-  end
-
-  def retire
-    @product.retire
-  end
+  belongs_to :product
 
 end

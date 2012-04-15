@@ -1,11 +1,5 @@
-class Activation
+class Activation < ActiveRecord::Base
 
-  def initialize(product_id)
-    @product = Product.find(product_id)
-  end
-
-  def activate
-    @product.activate
-  end
+  belongs_to :product
 
 end

@@ -9,6 +9,10 @@ describe "Instant Orders" do
   let(:user)        { Fabricate(:user, :password => 'password',
                                    :admin => 'false') }
 
+  let(:user2)       { Fabricate(:user,
+                                :password => 'password',
+                                :admin => 'false')}
+
   before(:each) do
     user.addresses << billing
     user.addresses << shipping
@@ -21,14 +25,40 @@ describe "Instant Orders" do
 
   context "when viewing a product page" do
     before(:each) do
-      visit_page product_path(product)
+      visit product_path(product)
     end
-    it "places an instant order" do
-      click_link_or_button "Instant Checkout"
-      page.should have_content("Really order #{product.title}?")
-      #click_link_or_button "Confirm"
-      page.should have_content "Your Order"
+
+    context "and I try to place an instant order" do
+
+      context "and the user has set their defaults" do
+        before(:each) do
+          # using user with defaults set above
+          login(user)
+          visit product_path(product)
+          click_link_or_button "Instant Checkout"
+        end
+
+        it "places an instant order" do
+          # click_link_or_button "Confirm"
+          page.should have_content "Your Order"
+        end
+      end
+
+      context "and the user hasn't set their defaults" do
+        before(:each) do
+          # using user without defaults
+          login(user2)
+          visit product_path(product)
+          click_link_or_button "Instant Checkout"
+        end
+
+        it "redirects to user profile if no default billing info" do
+          pending
+        end
+
+      end
     end
+
   end
 
 end

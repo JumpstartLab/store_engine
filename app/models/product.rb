@@ -9,6 +9,9 @@ class Product < ActiveRecord::Base
   has_many :product_categories
   has_many :categories, :through => :product_categories
 
+  has_many :retirements
+  has_many :activations
+
   mount_uploader :image, ImageUploader
 
   def self.active
@@ -28,13 +31,23 @@ class Product < ActiveRecord::Base
   end
 
   def retire
+    self.retirements << Retirement.new
     self.retired = true
     save
   end
 
   def activate
+    self.activations << Activation.new
     self.retired = false
     save
+  end
+
+  def retired_at
+    if self.retired
+      self.retirements.last.created_at
+    else
+      nil
+    end
   end
 
 end

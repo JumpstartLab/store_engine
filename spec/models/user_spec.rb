@@ -24,9 +24,6 @@ describe User do
       user.set_default_credit_card_by_id(cc.id)
       user.default_credit_card.should == cc
     end
-    it "defaults the defaults to the user's last credit card" do
-      user.default_credit_card.should == user.credit_cards.last
-    end
   end
 
   context "when a user has addresses" do
@@ -36,14 +33,9 @@ describe User do
       user.save
     end
     it "can set a default billing address" do
-        #raise user.addresses.first.inspect
         billing = user.addresses.first
         user.set_default_billing_address_by_id(billing.id)
         user.default_billing_address.should == billing
-    end
-
-    it "defaults to the user's last address" do
-        user.default_billing_address.should == user.addresses.last
     end
 
     it "can set a default shipping address" do
@@ -52,8 +44,9 @@ describe User do
         user.default_shipping_address.should == shipping
     end
 
-    it "defaults to the user's last address" do
-      user.default_shipping_address.should == user.addresses.last
+    it "returns nil if no default is set" do
+      user.default_shipping_address.should == nil
+      user.default_billing_address.should == nil
     end
   end
 end

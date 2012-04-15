@@ -1,9 +1,8 @@
 class RetirementsController < ApplicationController
 
   def create
-    retirement = Retirement.new(params[:product_id])
-    retirement.retire
-
+    product = Product.find(params[:product_id])
+    product.retire
     redirect_to admin_products_path
   end
 
