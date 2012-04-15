@@ -49,7 +49,7 @@ describe "Products Requests" do
         login_user_post("admin", "admin")
         visit admin_products_path 
         find_link("Foo").click
-        current_path.should == product_path(product)
+        current_path.should == admin_product_path(product)
       end
     end
 

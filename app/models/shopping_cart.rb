@@ -31,4 +31,8 @@ class ShoppingCart < ActiveRecord::Base
       sum += cart_item.price * cart_item.quantity
     end
   end
+
+  def clear
+    cart_items.clear
+  end
 end

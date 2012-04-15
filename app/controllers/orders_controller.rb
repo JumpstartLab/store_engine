@@ -8,9 +8,12 @@ class OrdersController < ApplicationController
     cart.cart_items.each do |item|
       @order.order_items << OrderItem.new(:product => item.product, :price => item.price, :quantity => item.quantity)
     end
-    @order.save
-    flash[:notice] = "Thank you for your order"
-    redirect_to order_path(@order)
+
+    if @order.save
+      flash[:notice] = "Thank you for your order"
+      cart.clear
+      redirect_to order_path(@order)
+    end
   end
 
   def show
