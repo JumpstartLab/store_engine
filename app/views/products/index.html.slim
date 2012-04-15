@@ -1,5 +1,14 @@
 h1 Products
 
-ul
+table class="table table-striped"
+  tr
+    th Name
+    th Price
+
   - @products.each do |product|
-      li = link_to product.title, product_path(product)
+    tr
+      td = link_to product.title, product_path(product)
+      td = product.price
+
+
+= link_to "Create new product", new_admin_product_path, :class => 'btn btn-mini'

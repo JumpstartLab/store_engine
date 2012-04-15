@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
+  before_filter :admin?, :only => [:index, :new, :create]
+
   def index
     @users = User.all
-
-    respond_to do |format|
-      format.html 
-    end
   end
  
   def new
@@ -20,9 +18,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(:users, :notice => 'Registration successful. 
-                                  Check your email for activation 
-                                  instructions.') }
+        format.html { redirect_to(:root, :notice => 'Registration successful.') }
       else
         format.html { render :action => "new" }
       end

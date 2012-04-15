@@ -81,4 +81,19 @@ describe ShoppingCart do
       end
     end
   end
+
+  describe "#clear" do
+    context "When the cart has items" do
+      let(:cart_item) { Fabricate(:cart_item, :quantity => 4) }
+      let(:cart_item2) { Fabricate(:cart_item, :quantity => 7) }
+      let(:cart_items) { [cart_item, cart_item2] }
+      let!(:cart) { Fabricate(:shopping_cart, :cart_items => cart_items) }
+
+      it "removes all items from the cart" do
+        cart.cart_items.length.should == 2
+        cart.clear
+        cart.cart_items.length.should == 0
+      end
+    end
+  end
 end

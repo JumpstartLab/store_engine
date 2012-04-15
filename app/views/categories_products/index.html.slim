@@ -1,0 +1,4 @@
+h1 = @category.name
+
+- @products.each do |product|
+  = link_to product.title, product_path(product)

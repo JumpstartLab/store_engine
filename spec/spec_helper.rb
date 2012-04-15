@@ -40,6 +40,7 @@ RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
   config.include ExampleData::Projects
   config.include Sorcery::TestHelpers::Rails
+  config.include StoreEngine::TestHelpers
 end
 
 module Sorcery
@@ -47,6 +48,10 @@ module Sorcery
     module Rails
       def login_user_post(user, password)
         page.driver.post(user_sessions_url, { username: user, password: password}) 
+      end
+
+      def login
+        login_user_post("foo", "foo")
       end
     end
   end
