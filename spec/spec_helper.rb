@@ -49,6 +49,10 @@ module Sorcery
       def login_user_post(user, password)
         page.driver.post(user_sessions_url, { username: user, password: password}) 
       end
+
+      def login
+        login_user_post("foo", "foo")
+      end
     end
   end
 end

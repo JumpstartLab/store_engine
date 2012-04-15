@@ -1,14 +1,13 @@
 require 'spec_helper'
 
 describe "Categories Requests" do
-  let!(:user) { Fabricate(:user) }
   let!(:category) { Fabricate(:category, :name => "Apples") }
   let!(:category2) { Fabricate(:category, :name => "Oranges") }
 
   context "when logged in as admin " do
-    before(:each) do
-      login_user_post("admin", "admin")
-    end
+    let!(:user) { Fabricate(:user, :admin => true) }
+    before(:each) { login }
+
     context "When we edit a category" do
       before(:each) do
         visit edit_admin_category_path(category) 
@@ -36,8 +35,6 @@ describe "Categories Requests" do
   end
 
   context "when not an admin" do
-    let(:category) { Fabricate(:category) }
-
     it "shows categories page not found" do
       validate_not_found(admin_categories_path)
     end

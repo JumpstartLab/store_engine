@@ -1,10 +1,10 @@
 Fabricator(:user, :class_name => "User") do
   id { sequence }
-  username { "admin" }
-  password { "admin" }
-  first_name { "Admin" }
+  username { "foo" }
+  password { "foo" }
+  first_name { "Beverly" }
   last_name { "BOOM" }
-  admin { true }
+  admin { false }
   email { "whatever@whatever.com" }
   salt { "asdasdastr4325234324sdfds" }
   crypted_password { Sorcery::CryptoProviders::BCrypt.encrypt("secret", 

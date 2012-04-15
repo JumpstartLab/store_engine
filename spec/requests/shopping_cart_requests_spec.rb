@@ -15,9 +15,7 @@ describe "Shopping Cart Requests" do
     end
 
     context "and logged in" do
-      before(:each) do
-        login_user_post("admin", "admin")
-      end
+      before(:each) { login }
 
       it "shows the logged in users' cart items " do
         user.shopping_cart = Fabricate(:shopping_cart)
@@ -50,7 +48,7 @@ describe "Shopping Cart Requests" do
     let(:cart) { Fabricate(:shopping_cart) }
 
     before(:each) do
-      login_user_post("admin", "admin")
+      login
       user.shopping_cart = cart
       cart.add_item(product.id, 10)
     end
@@ -75,6 +73,10 @@ describe "Shopping Cart Requests" do
       find_field(text_field_id).value.should == "3"
       find_field(text_field_id2).value.should == "9"
     end
+  end
+
+  context "logged in as admin" do
+    it "verifies"
   end
 
 end
