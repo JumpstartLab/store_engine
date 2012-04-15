@@ -4,8 +4,12 @@ class BillingAddressesController < ApplicationController
   end
 
   def create
-    @address = BillingAddress.create(params[:billing_address])
-    session[:billing_address] = @address.id
-    redirect_to order_summary_path
+    @address = BillingAddress.new(params[:billing_address])
+    if @address.save
+      session[:billing_address] = @address.id
+      redirect_to order_summary_path
+    else
+      render :action => "new"
+    end
   end
 end

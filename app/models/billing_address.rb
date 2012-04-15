@@ -3,4 +3,5 @@ class BillingAddress < ActiveRecord::Base
                   :city, :state, :zipcode,:phone
   belongs_to :user
   has_one :order
+  validates :first_name, :last_name, :line_1, :city, :state, :zipcode,:phone, :presence => true
 end
