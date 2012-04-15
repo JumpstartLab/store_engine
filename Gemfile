@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'slim'
 gem 'sorcery'
 gem 'money'
+gem 'stripe'
 #gem 'money-rails'
 
 # Gems used only for assets and not required

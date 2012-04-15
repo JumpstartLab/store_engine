@@ -1,4 +1,5 @@
 StoreEngine::Application.routes.draw do
+
   resources :products, :only => [:index, :show]
   resource :shopping_cart, :controller => "shopping_cart"
   resources :user_sessions
@@ -8,6 +9,7 @@ StoreEngine::Application.routes.draw do
   resources :billing_addresses
   resource :order_summary,  :controller => "order_summary"
   resources :orders
+  resources :transactions
 
   namespace :admin do
     resources :products

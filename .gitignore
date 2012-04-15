@@ -15,3 +15,6 @@
 /tmp
 coverage
 .DS_Store
+
+# Ignore Stripe initializer -- contains secret API key
+/config/initializers/stripe.rb

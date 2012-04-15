@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :shipping_addresses
   has_many :billing_addresses
+  has_many :transactions
 
   def cart?
     if shopping_cart.nil?

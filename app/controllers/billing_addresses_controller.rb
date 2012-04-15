@@ -6,6 +6,6 @@ class BillingAddressesController < ApplicationController
   def create
     @address = BillingAddress.create(params[:billing_address])
     session[:billing_address] = @address.id
-    redirect_to order_summary_path
+    redirect_to new_transaction_path
   end
 end
