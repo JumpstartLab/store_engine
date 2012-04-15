@@ -14,6 +14,7 @@
       <ul class="dropdown-menu">
         <li class="nav-header"><%= current_user.name %></li>
         <li><%= link_to "My Orders", user_path(current_user) %></li>
+        <li class="divider"></li>
         <li><%= link_to "Logout", logout_path %></li>
       </ul>
     </li>

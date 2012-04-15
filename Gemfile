@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 gem 'jquery-rails'
-gem 'rake'
-gem 'growl'
+
 gem 'sorcery'
 
 #gem 'rmagick'
@@ -24,10 +23,12 @@ group :assets do
 end
 
 group :production do
+  gem 'rake'
   gem 'pg'
 end
 
 group :development, :test do
+  gem 'growl'
   gem 'sqlite3'
   gem 'fabrication'
   gem 'faker'
