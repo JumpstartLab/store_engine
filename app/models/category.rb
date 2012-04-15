@@ -5,7 +5,7 @@ class Category < ActiveRecord::Base
 
   before_destroy :ensure_not_assigned
   
-  private
+  # private
 
   def ensure_not_assigned
     if products.empty? 

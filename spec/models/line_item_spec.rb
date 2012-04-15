@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe LineItem do
 
-  let!(:product) { Product.create(id: 1, price: 2, title: "yo-yo") }
+  let!(:product) { Product.create(price: 2, title: "yo-yo") }
   let!(:line_item) do
     li = LineItem.new(product: product)
     li.quantity = 2
