@@ -2,28 +2,29 @@
 <p id="notice"><%= notice %></p>
 <% end %>
 
-<h2>Your Motha Fucking Exotic Fruit Cart</h2>
+<h2>Your Cart </h2>
 <h3>Cart Total: <%= sprintf("$%0.02f", @cart.total_price) %></h3>
-<table class="table table-striped">
+<table class="table">
+  <% if @cart.line_items.empty? == false %>
   <thead>
     <tr>
-      <th>Photo</th>
-      <th>Name</th>
-      <th>Description</th>
+      <th></th>
+      <th></th>
       <th>Price</th>
       <th>Quantity</th>
       <th>Subtotal</th>
     </tr>
   </thead>
+  <% end %>
   <tbody>
     <% if @cart.line_items.empty? %>
-      <h1>Theres nothing in the cart</h1>
+      <h3>Your cart currently has no items.</h3>
     <% end %>
     <% @cart.line_items.each do |line_item| %>
       <tr>
-        <td><%= image_tag(line_item.product.photo) %></td>
-        <td><%= link_to line_item.product.title, product_path(line_item.product) %></td>
-        <td><%= line_item.product.description %></td>
+        <td class="photo"><%= image_tag(line_item.product.photo) %></td>
+          <td class="description">
+            <%= link_to line_item.product.title, product_path(line_item.product) %></td>
         <td><%= sprintf("$%0.02f", line_item.product.price) %></td>
         <td><%= line_item.quantity %> 
         <td><%= sprintf("$%0.02f", line_item.subtotal) %></td>
