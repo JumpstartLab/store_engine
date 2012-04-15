@@ -1,0 +1,22 @@
+h3 Order Status
+
+table
+  th
+    tr
+      td Pending
+      td Cancelled
+      td Paid
+      td Shipped
+      td Returned
+  tr
+    td = @dashboard.total_pending_orders 
+    td = @dashboard.total_cancelled_orders 
+    td = @dashboard.total_paid_orders 
+    td = @dashboard.total_shipped_orders 
+    td = @dashboard.total_returned_orders 
+     
+= form_for :status do |f|
+  = f.select(:name, options_for_select(status_options))
+  = f.submit "Filter"
+
+

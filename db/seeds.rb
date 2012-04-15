@@ -13,6 +13,8 @@ Category.create(:name => "pretty terrible")
 
 30.times { Fabricate(:product).save } 
 
-["pending", "cancelled", "paid", "shipped", "returned"].each do |s|
-  Status.create(:name => s)
-end
+Status.create(:name => StoreEngine::Status::PENDING)
+Status.create(:name => StoreEngine::Status::CANCELLED)
+Status.create(:name => StoreEngine::Status::PAID)
+Status.create(:name => StoreEngine::Status::SHIPPED)
+Status.create(:name => StoreEngine::Status::RETURNED)

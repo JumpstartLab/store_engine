@@ -16,6 +16,7 @@ StoreEngine::Application.routes.draw do
   namespace :admin do
     resources :products
     resources :categories
+    resources :dashboard, :controller => "dashboard", :only => [:index]
   end
 
   match 'login' => 'user_sessions#new', :as => :login
