@@ -23,7 +23,6 @@ group :assets do
 end
 
 group :production do
-  gem 'rake'
   gem 'pg'
 end
 

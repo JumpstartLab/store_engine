@@ -203,7 +203,6 @@ DEPENDENCIES
   mini_magick
   pg
   rails (= 3.2.3)
-  rake
   rspec-rails
   sass-rails (~> 3.2.3)
   simplecov
