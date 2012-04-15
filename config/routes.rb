@@ -13,7 +13,10 @@ StoreEngine::Application.routes.draw do
   match "place_order", :to => "orders#new", :as => "place_order"
   # match "process_order/:id", :to => "orders#update", :as => "process_order"
   
-  resources :users
+  resources :users do
+    resources :addresses, :only => [:create]
+  end
+  
   resources :sessions
   resources :products
 

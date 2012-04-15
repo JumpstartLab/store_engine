@@ -16,6 +16,50 @@
 <h3>You haven't ordered anything yet. Why are you a hater?</h3>
 <% end %>
 
-<%= form_for Address.new %>
 
+<p><%= @user.default_billing_address.inspect %> </p>
+<p><%= @user.default_shipping_address.inspect %> </p>
+
+
+<% unless @user.default_shipping_address %>
+  <h2>Please add a default shipping address</h2>
+  <%= form_for Address.new, :url => user_addresses_path(:user_id => current_user.id, :type => "shipping") do |f| %>
+    <%= f.label :street %>
+    <%= f.text_field :street %>
+    <%= f.label :street_two %>
+    <%= f.text_field :street_two %>
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+    <%= f.label :state %>
+    <%= f.text_field :state %>
+    <%= f.label :country %>
+    <%= f.text_field :country %>
+    <%= f.label :zipcode %>
+    <%= f.text_field :zipcode %>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number %>
+    <%= f.submit %>
+  <% end %>
 <% end %>
+
+<% unless @user.default_billing_address %>
+  <h2>Please Add a default billing address</h2>
+  <%= form_for Address.new, :url => user_addresses_path(:user_id => current_user.id, :type => "billing") do |f| %>
+    <%= f.label :street %>
+    <%= f.text_field :street %>
+    <%= f.label :street_two %>
+    <%= f.text_field :street_two %>
+    <%= f.label :city %>
+    <%= f.text_field :city %>
+    <%= f.label :state %>
+    <%= f.text_field :state %>
+    <%= f.label :country %>
+    <%= f.text_field :country %>
+    <%= f.label :zipcode %>
+    <%= f.text_field :zipcode %>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
+
