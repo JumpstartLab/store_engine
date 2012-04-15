@@ -13,13 +13,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def admin_or_redirect
-    #if !current_user || !current_user.admin?
-      #flash[:notice] = "You are not admin. Replace me with 404"
-      #redirect_to root_path
-    #end
-  end
-
   helper_method :cart
   def cart
     unless current_user
