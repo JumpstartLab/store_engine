@@ -10,7 +10,7 @@
   has_many :products, through: :line_items
 
   def date
-    created_at.strftime("%m/%d/%Y")
+    created_at.strftime("%B %d at %l:%M %p")
   end
 
   def user

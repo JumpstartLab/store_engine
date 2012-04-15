@@ -1,5 +1,6 @@
 tr
-  td = line_item.product.title
+  td
+    = link_to line_item.product.title, product_path(line_item.product)
   td
     = line_item.quantity
     = link_to "Update", edit_line_item_path(line_item), class: 'btn'

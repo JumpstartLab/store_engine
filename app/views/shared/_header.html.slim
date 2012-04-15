@@ -25,6 +25,7 @@
             li= link_to "My Account", user_url(current_user)
             li= link_to "Logout", logout_path, :method => :delete
             - if admin?
+              li = link_to "Dashboard", orders_path
               - if admin_view?
                 li=link_to "User View", view_as_normal_user_path(current_user), method: :put
               - else
