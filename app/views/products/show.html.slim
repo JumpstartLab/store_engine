@@ -7,7 +7,7 @@ p
   = @product.price
 p
   - @product.categories.each do |category|
-    = category.name
+    = link_to category.name, category_products_path(category)
     br
 
 - unless @product.retired
