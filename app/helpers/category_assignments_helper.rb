@@ -1,2 +1,0 @@
-module CategoryAssignmentsHelper
-end
