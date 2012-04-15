@@ -5,15 +5,7 @@ describe "Shopping Cart Requests" do
   let!(:product) { Fabricate(:product, :title => "iPod") }
   let!(:product2) { Fabricate(:product, :title => "Macbook Pro") }
 
-
-  context "when I visit the shopping cart" do
-    context "and not logged in" do
-      it "does not allow checkout" do
-        visit shopping_cart_path
-        page.should_not have_content("Checkout")
-      end
-    end
-
+  context "when logged in as a normal user" do
     context "and logged in" do
       before(:each) { login }
 
@@ -42,41 +34,43 @@ describe "Shopping Cart Requests" do
         end
       end
     end
+
+    context "When I update the shopping cart" do
+      let(:cart) { Fabricate(:shopping_cart) }
+
+      before(:each) do
+        login
+        user.shopping_cart = cart
+        cart.add_item(product.id, 10)
+      end
+      let(:text_field_id) { "quantity[#{cart.cart_items.first.id}]" }
+
+      it "changes the quantity of an item" do
+        visit shopping_cart_path
+
+        fill_in text_field_id, :with => 3
+        click_button("Update Shopping cart")
+        find_field(text_field_id).value.should == "3"
+      end
+
+      it "changes the quantity of multiple item" do
+        cart.add_item(product2.id, 50)
+        visit shopping_cart_path
+
+        text_field_id2 = "quantity[#{cart.cart_items.second.id}]"
+        fill_in text_field_id, :with => 3
+        fill_in text_field_id2, :with => 9
+        click_button("Update Shopping cart")
+        find_field(text_field_id).value.should == "3"
+        find_field(text_field_id2).value.should == "9"
+      end
+    end
   end
 
-  context "When I update the shopping cart" do
-    let(:cart) { Fabricate(:shopping_cart) }
-
-    before(:each) do
-      login
-      user.shopping_cart = cart
-      cart.add_item(product.id, 10)
-    end
-    let(:text_field_id) { "quantity[#{cart.cart_items.first.id}]" }
-
-    it "changes the quantity of an item" do
+  context "when not logged in" do
+    it "does not allow checkout" do
       visit shopping_cart_path
-
-      fill_in text_field_id, :with => 3
-      click_button("Update Shopping cart")
-      find_field(text_field_id).value.should == "3"
-    end
-
-    it "changes the quantity of multiple item" do
-      cart.add_item(product2.id, 50)
-      visit shopping_cart_path
-
-      text_field_id2 = "quantity[#{cart.cart_items.second.id}]"
-      fill_in text_field_id, :with => 3
-      fill_in text_field_id2, :with => 9
-      click_button("Update Shopping cart")
-      find_field(text_field_id).value.should == "3"
-      find_field(text_field_id2).value.should == "9"
+      page.should_not have_content("Checkout")
     end
   end
-
-  context "logged in as admin" do
-    it "verifies"
-  end
-
 end
