@@ -6,7 +6,7 @@
     %th Remove
   = simple_form_for @cart, :url => "/cart/update_quantity" do |cart_form|
     = cart_form.hidden_field :id
-    = cart_form.fields_for :cart_products do |cp|
+    = cart_form.fields_for :order_products do |cp|
       %tr{:id => "product_#{cp.object.product.id}"}
         %td= cp.object.name
         %td= cp.number_field :quantity
@@ -16,7 +16,7 @@
                                     :confirm => "Are you sure?"
     %tr{:id => "total"}
       %th{:colspan => 2} Total
-      %td= @cart.total_in_dollars
+      %td= @cart.total_price_in_dollars
       %td
     %tr
       %td{:colspan => "4"}= cart_form.submit :class => "btn"

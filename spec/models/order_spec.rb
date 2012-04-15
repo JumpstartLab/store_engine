@@ -12,7 +12,7 @@ describe Order do
       FactoryGirl.create(:cart, :user => user, :products => products)
     end
     it "process_cart" do
-      order = Order.process_cart(cart)
+      order = Order.find_cart(cart.id)
       order.products.should have(4).products
     end
   end

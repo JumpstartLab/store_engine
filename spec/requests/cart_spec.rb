@@ -43,14 +43,14 @@ describe "Cart", :focus => true do
       end
       it "With valid number" do
         within("#product_#{p1.id}") do
-          fill_in "cart[cart_products_attributes][0][quantity]", :with => 5
+          fill_in "cart[order_products_attributes][0][quantity]", :with => 5
         end
         click_on "Update Cart"
         page.should have_content("Cart updated successfully")
       end
       it "with an invalid number" do
         within("#product_#{p1.id}") do
-          fill_in "cart[cart_products_attributes][0][quantity]", :with => -5
+          fill_in "cart[order_products_attributes][0][quantity]", :with => -5
         end
         click_on "Update Cart"
         page.should have_content(5)        

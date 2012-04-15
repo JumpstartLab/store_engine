@@ -4,7 +4,9 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :user_id
       t.string :status_id
       t.string :unique_url
-      
+      t.integer :is_cart, :default => 1
+
+
       t.datetime :shipped_at
       t.datetime :returned_at
       t.datetime :cancelled_at

@@ -35,20 +35,6 @@ ActiveRecord::Schema.define(:version => 20120412181312) do
     t.datetime "updated_at",           :null => false
   end
 
-  create_table "cart_products", :force => true do |t|
-    t.integer  "cart_id"
-    t.integer  "product_id"
-    t.integer  "quantity",   :default => 1
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  create_table "carts", :force => true do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.integer  "active",     :default => 1
@@ -76,11 +62,12 @@ ActiveRecord::Schema.define(:version => 20120412181312) do
     t.integer  "user_id"
     t.string   "status_id"
     t.string   "unique_url"
+    t.integer  "is_cart",      :default => 1
     t.datetime "shipped_at"
     t.datetime "returned_at"
     t.datetime "cancelled_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "product_ratings", :force => true do |t|

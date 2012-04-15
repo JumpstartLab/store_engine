@@ -21,17 +21,19 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order = Order.process_cart(@cart)
+    @order = Order.find_cart(@cart.id)
   end
 
   def update
-    @order = Order.process_cart(@cart)
-    if @order.user.update_address(params[:order][:user_attributes])
-        @order.save
-        @order.charge(params[:order][:stripe_card_token])
-        redirect_to order_path(@order), 
+    order = Order.process_cart(@cart.id)
+    if order.user.update_address(params[:order][:user_attributes])
+        order.save
+        order.charge(params[:order][:stripe_card_token])
+        cookies[:cart_id] = nil
+        redirect_to order_path(order), 
           :notice => "Congrats on giving us your money"
     else
+      @order = order
       flash[:error] = "Address is invalid"
       render 'new'
     end

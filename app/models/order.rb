@@ -1,8 +1,10 @@
 class Order < ActiveRecord::Base
-  attr_accessible :status, :user, :products, :stripe_card_token
-  before_create :generate_unique_url
+  attr_accessible :status, :user, :products, :stripe_card_token, :is_cart
+  default_scope :conditions => { :is_cart => 0 }
+  validates_presence_of :status
+  validates_presence_of :user, :products, :if => :not_a_cart
 
-  validates_presence_of :user, :status
+  before_create :generate_unique_url
 
   belongs_to :user
   belongs_to :status
@@ -10,32 +12,35 @@ class Order < ActiveRecord::Base
   has_many :order_products
   has_many :products, :through => :order_products
 
-  def self.process_cart(cart)
-    o = Order.new
-    o.user = cart.user
-    o.status = Status.find_or_create_by_name("incomplete")
-    o.save
-    o.convert_cart_product_to_order_product(cart.cart_products)
-    o
+  def not_a_cart
+    true if not self.is_a?(Cart)
+  end
+  def self.process_cart(cart_id)
+    Order.find_cart(cart_id)
   end
 
-  def convert_cart_product_to_order_product(cps)
-    cps.each do |cp|
-      self.order_products.create(:product => cp.product, 
-                                 :quantity => cp.quantity,
-                                 :price_in_cents => cp.product.price_in_cents
-                                )
-    end
+  def self.find_cart(cart_id)
+    Order.unscoped.find(cart_id)
   end
 
   def total_price_in_cents
     order_products.sum(&:total_price_in_cents)
   end
+
+  def total_price_in_dollars
+    Money.new(total_price_in_cents).format
+  end
+
   def stripe_card_token
     
   end
+
   def total_price
     Money.new(total_price_in_cents).format
+  end
+
+  def individual_quantity
+    order_products.quantity
   end
 
   def create_user(token)
@@ -55,7 +60,7 @@ class Order < ActiveRecord::Base
         :customer => user.stripe_id
       )
     self.status = Status.find_or_create_by_name("pending")
-    self.user.cart.destroy
+    self.is_cart = false
     self.save
   end
 

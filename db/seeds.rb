@@ -71,12 +71,14 @@ p3 = Product.create(
 o1 = Order.create(
                    :user => u1,
                    :status => s1,
-                   :products => [p1, p2]
+                   :products => [p1, p2],
+                   :is_cart => false
                   )
 o2 = Order.create(
                    :user => u1,
                    :status => s2,
-                   :products => [p1, p3]
+                   :products => [p1, p3],
+                   :is_cart => false
                   )
 
 

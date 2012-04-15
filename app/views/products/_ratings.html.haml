@@ -1,6 +1,7 @@
 - if @product.product_ratings.empty?
   %h2 Be the first to comment!
-%h2 Ratings
+- if @product.product_ratings.nil?
+  %h2 Ratings
 - @product.product_ratings.each do |rating|
   %b= rating.name
   %p= rating.body

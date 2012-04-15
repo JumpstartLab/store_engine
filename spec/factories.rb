@@ -11,6 +11,7 @@
     end
   end
   factory :cart do
+    is_cart true
   end
   
   factory :status do
@@ -20,6 +21,7 @@
   factory :order do
     user
     status
+    is_cart false
   end
 
   factory :product_rating do
@@ -27,7 +29,9 @@
     name "AWESOME PRODUCT"
     rating 4
   end
-  factory :cart_product do 
+  factory :order_product do
+    # order_product.association(:product)
+    # order
     quantity 1
   end
 

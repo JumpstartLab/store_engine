@@ -1,6 +1,6 @@
 #cart
   %a{"data-toggle" => "modal", :href => "#myCart"}
-    = "Cart ( #{@cart.cart_products.count} )"
+    = "Cart ( #{@cart.order_products.count} )"
 #myCart.modal.hide.fade
   .modal-header
     %a.close{"data-dismiss" => "modal"} ×

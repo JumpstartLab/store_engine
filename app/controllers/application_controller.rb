@@ -23,8 +23,8 @@ private
   def find_cart
     if current_user
       current_user.cart = Cart.create if current_user.cart.nil?
+      merge_carts(cookies[:cart_id]) if !cookies[:cart_id].blank?
       @cart = current_user.cart
-      merge_carts if !cookies[:cart_id].blank?
     else
       if cookies[:cart_id].blank?
         @cart = Cart.create
@@ -35,10 +35,8 @@ private
     end
   end
 
-  def merge_carts
-    Cart.find(cookies[:cart_id]).products.each do |p|
-      @cart.add_product(p.id)
-    end
+  def merge_carts(old_cart_id)
+    current_user.cart.merge(old_cart_id)
     destroy_cart
   end
 

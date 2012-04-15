@@ -10,7 +10,7 @@ describe Cart do
     end
 
     it "sums up the total" do
-      cart.total_in_cart.should == 40000
+      cart.total_price_in_cents.should == 40000
     end
     
   end  
