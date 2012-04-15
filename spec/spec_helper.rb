@@ -40,6 +40,7 @@ RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
   config.include ExampleData::Projects
   config.include Sorcery::TestHelpers::Rails
+  config.include StoreEngine::TestHelpers
 end
 
 module Sorcery
