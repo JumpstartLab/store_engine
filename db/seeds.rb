@@ -45,7 +45,7 @@ admin_user = User.new(  full_name: "Chad Fowler",
 admin_user.admin = true
 admin_user.save
 
-User.create(  full_name: "Matt Yoho",
+u = User.create!(  full_name: "Matt Yoho",
               password: "hungry",
               password_confirmation: "hungry",
               email: "matt.yoho@livingsocial.com" )
@@ -55,6 +55,12 @@ User.create(  full_name: "Jeff Casimir",
               password_confirmation: "hungry",
               email: "jeff.casimir@livingsocial.com",
               username: "j3" )
+
+Address.create(  street_1: "10 Street",
+                  city: "Washington",
+                state: "DC",
+                     zip_code: "20001",
+                  user: admin_user)
 
 # orders = Order.create([{ status: "pending", total_price: 5000},
 #                       { status: "shipped", total_price: 10000}])

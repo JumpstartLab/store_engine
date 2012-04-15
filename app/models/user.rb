@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_one :cart
   has_many :addresses
+  has_many :orders
 
   attr_accessible :full_name, :email, :username, :password, :password_confirmation
 
