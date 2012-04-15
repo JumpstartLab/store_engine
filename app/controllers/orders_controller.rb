@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
                        :shipping_address => ShippingAddress.find(session[:shipping_address]), 
                        :billing_address => BillingAddress.find(session[:billing_address]), :status_updated_at => DateTime.now)
     cart.cart_items.each do |item|
-      @order.order_items << OrderItem.build(:product => item.product, :price => item.price, :quantity => item.quantity)
+      @order.order_items << OrderItem.new(:product => item.product, :price => item.price, :quantity => item.quantity)
     end
     @order.save
     redirect_to order_path(@order)
