@@ -1,0 +1,10 @@
+h1 Product Categories
+
+ul
+  - @categories.each do |category|
+      li
+        = category.name
+        p
+        = link_to "Edit", edit_admin_category_path(category)
+
+= link_to "Create new category", new_admin_category_path

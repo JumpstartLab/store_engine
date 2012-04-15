@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
       true
     end
   end
+  
+  def admin?
+    admin
+  end
 end
