@@ -1,3 +1,5 @@
+require 'faker'
+
 FactoryGirl.define do
   
   sequence :title do |n|
@@ -44,12 +46,11 @@ FactoryGirl.define do
     name "robots"
     id 1
   end
-  
-  factory :user do
-    full_name "Andrew Glass"
-    email "andy@livingsocial.com"
-    admin false
-    password "hungry"
+
+  factory :user, do |f|
+    f.full_name { "#{Faker::Name.first_name} #{Faker::Name.last_name}"}
+    f.password "password"
+    f.email "email@email.com"
   end
 
   factory :category_assignment do

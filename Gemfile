@@ -30,4 +30,5 @@ group :development, :test do
   gem 'simplecov'
   gem 'factory_girl_rails'
   gem 'sqlite3'
+  gem 'faker'
 end
