@@ -9,6 +9,10 @@ StoreEngine::Application.routes.draw do
   resource :order_summary,  :controller => "order_summary"
   resources :orders
 
+  resources :categories do
+    resources :products, :only => [:index], :controller => "categories_products"
+  end
+
   namespace :admin do
     resources :products
     resources :categories
