@@ -10,6 +10,8 @@ Category.create(:name => "awesome")
 Category.create(:name => "not as awesome")
 Category.create(:name => "pretty terrible")
 
+30.times { Fabricate(:product).save } 
+
 ["pending", "cancelled", "paid", "shipped", "returned"].each do |s|
   Status.create(:name => s)
 end
