@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   before_filter :categories, :only => [:new, :edit]
 
   def index
-    @products = Product.all
+    @products = Product.find(:all, :conditions => { :retired => false })
   end
 
   def new

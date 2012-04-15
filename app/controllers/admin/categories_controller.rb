@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  before_filter :admin_or_redirect
+  before_filter :admin?
 
   def index
     @categories = Category.all

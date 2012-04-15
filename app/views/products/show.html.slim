@@ -10,15 +10,15 @@ p
   = @product.price
 p
   - @product.categories.each do |category|
-    = category.name
+    = link_to category.name, category_products_path(category)
     br
 
-= form_for CartItem.new, :method => "post", :url => {:controller => 'cart_items', :action => "create", :product => @product } do |f|
-  = f.label :quantity
-  = f.select :quantity, options_for_select(1..30)
-  = f.submit "Add to Cart", :product => @product
+- unless @product.retired
+  = form_for CartItem.new, :method => "post", :url => {:controller => 'cart_items', :action => "create", :product => @product } do |f|
+    = f.label :quantity
+    = f.select :quantity, options_for_select(1..30)
+    = f.submit "Add to Cart", :product => @product
 
 p
-= link_to "Edit Product", edit_admin_product_path(@product), :class => 'btn btn-mini'
-|  |  
+
 = link_to "Back to all products", products_path, :class => 'btn btn-mini'

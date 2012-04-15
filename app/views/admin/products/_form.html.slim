@@ -23,4 +23,6 @@
      = check_box_tag("category[#{category.name}]", category.id, @product.categories.include?(category))
      = label_tag("category[#{category.name}]", category.name)
      br
+
+  = f.select(:retired, options_for_select([['Active', false], ['Retired', true]], @product.retired))
   = f.submit nil, :class => 'btn btn-primary'

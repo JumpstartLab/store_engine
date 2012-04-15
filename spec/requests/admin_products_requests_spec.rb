@@ -2,13 +2,15 @@ require 'spec_helper'
 
 describe "Products Requests" do
   context "when an admin is logged in" do
-    context "when I create a product" do
-      let!(:user) { Fabricate(:user) }
-      let!(:category) { Fabricate(:category) }
-      let!(:category2) { Fabricate(:category) }
+    let!(:user) { Fabricate(:user, :admin => true) }
+    let!(:product) { Fabricate(:product) }
+    let!(:category) { Fabricate(:category) }
+    let!(:category2) { Fabricate(:category) }
 
+    before(:each) { login }
+
+    context "when I create a product" do
       before(:each) do
-        login_user_post("admin", "admin")
         visit new_admin_product_path
         fill_in "Title", :with => "Test product"
         fill_in "Description", :with => "Test description"
@@ -42,25 +44,17 @@ describe "Products Requests" do
     end
 
     context "when I view a product" do 
-      let!(:user) { Fabricate(:user) }
       let!(:product) { Fabricate(:product, :title => "Foo") }
 
       it "shows product page" do
-        login_user_post("admin", "admin")
         visit admin_products_path 
         find_link("Foo").click
-        current_path.should == product_path(product)
+        current_path.should == admin_product_path(product)
       end
     end
 
     context "When I edit a product" do
-      let!(:user) { Fabricate(:user) }
-      let!(:product) { Fabricate(:product) }
-      let!(:category) { Fabricate(:category) }
-      let!(:category2) { Fabricate(:category) }
-
       before(:each) do
-        login_user_post("admin", "admin")
         product.categories << category2
         visit edit_admin_product_path(product)
       end
@@ -95,7 +89,7 @@ describe "Products Requests" do
         page.should have_content(category2.name)
         page.should_not have_content(category.name)
       end
-      
+
       it "redirects to admin products page" do
         click_button("Update Product")
         current_path.should == admin_product_path(product)
@@ -110,6 +104,33 @@ describe "Products Requests" do
           page.should_not have_content(category2.name)
         end
       end
+    end
+  end
+
+  context "when not an admin" do
+    let(:product) { Fabricate(:product) }
+
+    it "shows users page not found" do
+      validate_not_found(admin_products_path)
+    end
+
+    it "shows new user page not found" do
+      validate_not_found(new_admin_product_path)
+    end
+
+    it "shows create user page not found" do
+      validate_not_found(admin_products_path(product), "post")
+    end
+    it "shows user page not found" do
+      validate_not_found(admin_product_path(product))
+    end
+
+    it "shows user edit page not found" do
+      validate_not_found(edit_admin_product_path(product))
+    end
+
+    it "shows user update page not found" do
+      validate_not_found(admin_product_path(product), "put")
     end
   end
 end

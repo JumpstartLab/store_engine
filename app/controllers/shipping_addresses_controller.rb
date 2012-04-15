@@ -4,8 +4,12 @@ class ShippingAddressesController < ApplicationController
   end
 
   def create
-    @address = ShippingAddress.create(params[:shipping_address])
-    session[:shipping_address] = @address.id
-    redirect_to new_billing_address_path
+    @address = ShippingAddress.new(params[:shipping_address])
+    if @address.save
+      session[:shipping_address] = @address.id
+      redirect_to new_billing_address_path
+    else
+      render :action => "new"
+    end
   end
 end

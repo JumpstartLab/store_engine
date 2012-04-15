@@ -1,10 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def admin_or_redirect
-    if current_user.nil? || !current_user.admin?
-      flash[:notice] = "You are not admin. Replace me with 404"
-      redirect_to root_path
+  def admin?
+    if !current_user || !current_user.admin?
+      not_found
     end
   end
 
@@ -32,5 +31,9 @@ class ApplicationController < ActionController::Base
     else
       ShoppingCart.find(session[:cart_id])
     end
+  end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
   end
 end
