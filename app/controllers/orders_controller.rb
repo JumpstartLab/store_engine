@@ -9,10 +9,11 @@ class OrdersController < ApplicationController
       @order.order_items << OrderItem.new(:product => item.product, :price => item.price, :quantity => item.quantity)
     end
     @order.save
+    flash[:notice] = "Thank you for your order"
     redirect_to order_path(@order)
   end
 
   def show
     @order = Order.find(params[:id])
   end
-end
+end 
