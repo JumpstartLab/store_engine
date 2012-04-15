@@ -1,12 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def logged_in?
-    if !current_user
-      not_found
-    end
-  end
-
   def admin?
     if !current_user || !current_user.admin?
       not_found

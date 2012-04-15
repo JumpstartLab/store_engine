@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :admin?, :only => [:index, :new, :create]
+  #before_filter :admin?, :only => [:index, :new, :create]
 
   def index
     @users = User.all
