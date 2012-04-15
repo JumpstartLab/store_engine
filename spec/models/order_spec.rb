@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Order do
-  let!(:order) {FactoryGirl.build(:order, id: 1)}
-  let!(:cart)  {FactoryGirl.create(:cart, id: 1)}
-  let!(:product) {FactoryGirl.create(:product)}
+  let!(:order) { FactoryGirl.build(:order) }
+  let!(:cart)  { FactoryGirl.create(:cart) }
+  let!(:product) { FactoryGirl.build(:product) }
   
 
   context "#status" do
@@ -56,9 +56,9 @@ describe Order do
   end
 
   describe ".count_status(status)" do
-    let!(:order) {FactoryGirl.build(:order, id: 1)}
+    let!(:order) {FactoryGirl.create(:order)}
     it "returns a count of orders with specified status" do
-
+       Order.count_status("pending").should == 1
     end
   end
 end
