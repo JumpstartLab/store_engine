@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120412175759) do
+ActiveRecord::Schema.define(:version => 20120415170101) do
 
   create_table "billing_addresses", :force => true do |t|
     t.string   "first_name"
@@ -73,8 +73,9 @@ ActiveRecord::Schema.define(:version => 20120412175759) do
     t.string   "title"
     t.string   "description"
     t.integer  "price_cents"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "retired",     :default => false
   end
 
   create_table "shipping_addresses", :force => true do |t|

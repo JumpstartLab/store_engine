@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
   has_many :product_categories
   has_many :categories, :through => :product_categories
   has_many :cart_items
-  attr_accessible :title, :description, :price
+  attr_accessible :title, :description, :price, :retired
 
   def set_categories(category_ids)
     category_ids.uniq!
@@ -17,5 +17,13 @@ class Product < ActiveRecord::Base
 
   def price_string
     price.to_s
+  end
+
+  def display_retired
+    if retired
+      "Retired"
+    else
+      "Active"
+    end
   end
 end
