@@ -1,7 +1,7 @@
 module RequestHelpers
   module SignUp
     def sign_up(params)
-      within(".new_user") do
+      within("#new_user") do
         fill_in 'Full name', :with => params[:full_name]
         fill_in 'Email address', :with => params[:email]
         fill_in 'Display name', :with => params[:display_name]

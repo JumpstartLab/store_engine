@@ -25,7 +25,7 @@ describe "shopper" do
         category = Fabricate(:category)
         product.categories << category
         visit "/"
-        within ".main-content" do
+        within "#main-content" do
           page.should have_content category.name
           click_link_or_button category.name
           current_path.should == category_path(category)
@@ -43,7 +43,7 @@ describe "shopper" do
     context "checking out" do
       before(:each) { click_link_or_button "Add to Cart" }
       it "can add an item to the cart" do
-        within ".cart" do
+        within "#cart" do
           page.should have_content product.title
         end
       end
@@ -53,7 +53,7 @@ describe "shopper" do
         within "##{dom_id(product2)}" do
           click_link_or_button "Add to Cart"
         end
-        within ".cart" do
+        within "#cart" do
           page.should have_content product.title
         end
       end
@@ -64,18 +64,18 @@ describe "shopper" do
         end
       end
       it "removes a product by changing the quantity to 0" do
-        within ".cart" do
+        within "#cart" do
           page.should have_content "Update"
           click_link_or_button "Update"
         end
         fill_in :quantity, with: "0"
         click_link_or_button "Update"
-        within ".cart" do
+        within "#cart" do
           page.should_not have_content product.title
         end
       end
       it "views the cart" do
-        within ".cart" do
+        within "#cart" do
           page.should have_content "View Cart"
           click_link_or_button "View Cart"
         end
@@ -84,7 +84,7 @@ describe "shopper" do
       context "two-click checkout" do
         context "if the order has no billing or shipping info" do
           it "directs the user to input that information" do
-            within ".cart" do
+            within "#cart" do
               page.should have_content "Two-Click Check Out"
               click_link_or_button "Two-Click Check Out"
             end
@@ -98,7 +98,7 @@ describe "shopper" do
           it "can do two-click checkout" do
             Order.any_instance.stub(billing_method_id: 1)
             Order.any_instance.stub(shipping_address_id: 1)
-            within ".cart" do
+            within "#cart" do
               page.should have_content "Two-Click Check Out"
               click_link_or_button "Two-Click Check Out"
             end
@@ -134,7 +134,7 @@ describe "shopper" do
         it "can check out" do
           Order.any_instance.stub(billing_method_id: 1)
           Order.any_instance.stub(shipping_address_id: 1)
-          within ".main-content" do
+          within "#main-content" do
             page.should have_content "Check Out"
             click_link_or_button "Check Out"
           end
@@ -144,7 +144,7 @@ describe "shopper" do
         it "does not checkout without valid billing" do
           shipping = Fabricate(:shipping_address)
           Order.last.update_attribute(:shipping_address_id, shipping.id)
-          within ".main-content" do
+          within "#main-content" do
             page.should have_content "Check Out"
             click_link_or_button "Check Out"
           end
@@ -154,7 +154,7 @@ describe "shopper" do
         it "does not checkout without valid shipping" do
           billing = Fabricate(:billing_method)
           Order.last.update_attribute(:billing_method_id, billing.id)
-          within ".main-content" do
+          within "#main-content" do
             page.should have_content "Check Out"
             click_link_or_button "Check Out"
           end
@@ -176,7 +176,7 @@ describe "shopper" do
         click_link_or_button "Add to Cart"
         click_link_or_button "Sign-Up"
         sign_up({full_name: "Test User", email: "test@test.com", password: "test", display_name: "Test"})
-        within ".cart" do
+        within "#cart" do
           page.should have_content product.title
         end
       end
@@ -194,7 +194,7 @@ describe "shopper" do
         click_link_or_button "Add to Cart"
         click_link_or_button "Sign-In"
         login({email: user.email_address, password: user.password})
-        within ".cart" do
+        within "#cart" do
           page.should have_content product.title
         end
       end
@@ -206,7 +206,7 @@ describe "shopper" do
     end
     context "when viewing the page" do
       it "display the product properly" do
-        within ".main-content" do
+        within "#main-content" do
           page.should have_selector "img"
           [product.title.to_s, "Add to Cart"].each do |cont|
             page.should have_content cont
@@ -214,7 +214,7 @@ describe "shopper" do
         end
       end
       it "does not have admin buttons" do
-        within ".main-content" do
+        within "#main-content" do
           ["Edit", "Retire", "Destroy"].each do |cont|
             page.should_not have_content cont
           end
@@ -222,7 +222,7 @@ describe "shopper" do
       end
     end
     it "has the cart" do
-      page.should have_selector ".cart"
+      page.should have_selector "#cart"
     end
   end
   context "category page" do
@@ -235,12 +235,12 @@ describe "shopper" do
       page.should have_content product.title
     end
     it "doesn't have admin stuff" do
-      within ".main-content" do
+      within "#main-content" do
         page.should_not have_content "Remove"
       end
     end
     it "has a cart" do
-      page.should have_selector ".cart"
+      page.should have_selector "#cart"
     end
   end
   context "restrictions" do

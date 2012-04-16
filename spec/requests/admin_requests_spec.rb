@@ -22,7 +22,7 @@ describe "admin" do
       end
     end
     it "has admin buttons" do
-      within ".main-content" do
+      within "#main-content" do
         ["Edit", "Retire", "Destroy"].each do |button|
           page.should have_content button
         end
@@ -80,7 +80,7 @@ describe "admin" do
       page.should have_content "Quantity"
       fill_in "Quantity", with: "2"
       click_link_or_button "Update Quantity"
-      within ".main-content" do
+      within "#main-content" do
         page.should have_content "2"
       end
     end
@@ -88,7 +88,7 @@ describe "admin" do
       visit orders_path
       click_link_or_button "Destroy"
       current_path.should == orders_path
-      within ".main-content" do
+      within "#main-content" do
         page.should_not have_content order.id
       end
     end

@@ -53,7 +53,7 @@ describe "logged in user" do
       visit user_path(user)
     end
     it "displays user information properly" do
-      within ".main-content" do
+      within "#main-content" do
         ["Change Profile", user.display_name, "Orders"].each do |good|
           page.should have_content good
         end
@@ -67,7 +67,7 @@ describe "logged in user" do
       page.should have_content "My New Name"
     end
     it "can add billing info" do
-      within ".main-content" do
+      within "#main-content" do
         page.should have_content "Add a Billing Method"
         click_link_or_button "Add a Billing Method"
       end
@@ -79,7 +79,7 @@ describe "logged in user" do
     it "can edit billing info" do
       click_link_or_button "Add a Billing Method"
       add_billing(billing)
-      within ".main-content" do
+      within "#main-content" do
         page.should have_content "Change Billing Method"
         click_link_or_button "Change Billing Method"
       end
@@ -89,7 +89,7 @@ describe "logged in user" do
       page.should have_content "New Favorite Billing"
     end
     it "can add shipping info" do
-      within ".main-content" do
+      within "#main-content" do
         page.should have_content "Add a Shipping Address"
         click_link_or_button "Add a Shipping Address"
       end
@@ -101,7 +101,7 @@ describe "logged in user" do
     it "can edit shipping info" do
       click_link_or_button "Add a Shipping Address"
       add_shipping(shipping)
-      within ".main-content" do
+      within "#main-content" do
         page.should have_content "Change Shipping Address"
         click_link_or_button "Change Shipping Address"
       end
@@ -127,13 +127,13 @@ describe "logged in user" do
         li.update_attributes({product_id: product.id, order_id: order.id})
         order.update_attribute(:user_id, other_user.id)
         click_link_or_button "View Orders"
-        within ".main-content" do
+        within "#main-content" do
           page.should_not have_content product.title
         end
       end
       it "does not see admin stuff" do
         click_link_or_button "View Orders"
-        within ".main-content" do
+        within "#main-content" do
           ["Destroy", "Edit", "Actions", "Transition", "ID", "Name"].each do |bad|
             page.should_not have_content bad
           end
@@ -146,7 +146,7 @@ describe "logged in user" do
         click_link_or_button "Add to Cart"
         click_link_or_button "Sign-In"
         login({email: user.email_address, password: user.password})
-        within ".cart" do
+        within "#cart" do
           page.should have_content "2"
         end
       end
