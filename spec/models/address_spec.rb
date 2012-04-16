@@ -10,17 +10,12 @@ describe Address do
       zip_code: 20001,
       street_1: "1445 New York Ave, NW",
       street_2: "Second Floor",
-      user_id: user.id
+      user_id: user
     }
   end
 
   it "creates a new product given valid attributes" do
     Address.create!(@attr)
-  end
-
-  it "requires a user id" do
-    no_city_product = Address.new(@attr.merge(user_id: ""))
-    no_city_product.should_not be_valid
   end
 
   it "requires a city" do
