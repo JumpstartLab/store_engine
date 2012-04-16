@@ -1,3 +1,15 @@
+<% content_for :head do %>
+<script type="text/javascript">
+  $(function(){
+    $("#anim").click(function(){
+      $("#test").effect("transfer", { to: "#cart", className: "cart-drop" }, 800, function(){
+        $("#cart").effect("highlight", {}, 1000);
+      });
+    });
+  });
+  </script>
+<% end %>
+
 <% if @product.retired %>
   <div id="admin_bar">
     <h4>This product was retired at <%= @product.retired_at %></h4>
@@ -7,6 +19,7 @@
 <h1><%= @product.title %></h1>
 <p><%= @product.description %></p>
 <p><%= @product.price %></p>
+<p id="test"></p>
 <p><%= image_tag @product.image_url(:normal).to_s, :id => "product_image" if @product.image? %></p>
 
 
@@ -27,5 +40,5 @@
   <% end %>
 </ul>
 <% end %>
-<%= link_to "add to cart", cart_products_path(:product_id => @product), :method => :post unless @product.retired %>
+<%= link_to "add to cart", cart_products_path(:product_id => @product), :id => "anim", :method => :post, :remote => true unless @product.retired %>
 <%= link_to "Instant Checkout", instant_orders_path(:product_id => @product), :method => :post, :confirm => "Really order #{@product.title}?" %>

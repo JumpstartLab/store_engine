@@ -15,7 +15,6 @@
     <%= f.text_field :zipcode %>
     <%= f.label :phone_number %>
     <%= f.text_field :phone_number %><br>
-    <%= f.submit %>
+    <%= f.submit %>&nbsp;&nbsp;<%= link_to "cancel", nil, :id => "cancel_default_shipping", :remote => true %>
   <% end %>
 <% end %>
-<%= link_to "cancel", nil, :id => "cancel_default_shipping", :remote => true %>
