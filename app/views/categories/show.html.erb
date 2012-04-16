@@ -1,1 +1,5 @@
-<h1>Products by Category</h1>
+<h1>Products by <%=@category.title %></h1>
+
+<ul id="products">
+  <%= render :partial => "products/product", :collection => @products %>
+</ul>

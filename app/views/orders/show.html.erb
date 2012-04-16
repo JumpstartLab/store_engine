@@ -9,7 +9,8 @@
     <% end %>
 </ul>
 
-<h2>Total Price: <%= @order.total_price %></h2>
+<h2>Shipped to:</h2><%= render @address %>
+<h2>Total Price: <%= number_to_currency(@order.total_price) %></h2>
 
 <%= link_to "Edit", edit_order_path(@order) %>
 <%= link_to "Back to All Orders", orders_path %>

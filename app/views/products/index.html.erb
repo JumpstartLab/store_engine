@@ -16,6 +16,10 @@
 
 
 <p><%= link_to "All Products", products_path %></p>
+<% Category.all.each do |c| %>
+  <%= link_to c.title, category_path(c) %>
+  <% end %>
+
 
 
 <ul id="products">

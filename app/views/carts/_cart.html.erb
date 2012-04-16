@@ -3,6 +3,9 @@
 <h3>Your cart is empty. Buy stuff!</h3>
 <% else %>
 <h3>You have <%= cart.quantity %> items in your cart.</h3>
+  <div id="checkout" class="button">
+    <%= link_to "Checkout", new_order_path %>
+  </div>
 <% end %>
 
 
@@ -19,7 +22,4 @@
   </ul>
 
   <h3>Total Price: <%= number_to_currency(cart.total_price) %></h3>
-  <div id="checkout" class="button">
-    <%= link_to "Checkout", new_order_path %>
-  </div>
 </div>

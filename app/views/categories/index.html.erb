@@ -1,6 +1,10 @@
+<!-- <form class="filter_options_container">
 <h1>Filter Products by Category <%= select('product', 
                                            'category', 
-                                           %w(all male female)) %>
+                                           Category.all.collect(&:title)) %>
+                              <input type="submit" value="Filter" />
+                            </form> -->
+
 </h1>
 
   

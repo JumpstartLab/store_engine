@@ -1,6 +1,9 @@
  <li id="<%= product.id %>"> <%= link_to product.title, product_path(product) %> 
     | <%= product.description %> <img height=100 src="<%= product.image_link %>"></img>
     | <%= number_to_currency(product.price) %>
+    <% product.categories.each do |c| %> | 
+      <%= link_to c.title, category_path(c) %>
+      <% end %>
      <% if admin? %>
     |	<%= link_to 'Destroy', product, confirm: 'Are you sure?', method: :delete %>
     | <%= link_to 'Edit', edit_product_path(product) %>

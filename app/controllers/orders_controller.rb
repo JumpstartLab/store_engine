@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @address = @order.address
   end
 
   def new
