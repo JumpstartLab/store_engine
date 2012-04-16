@@ -16,12 +16,6 @@ describe "Products Requests" do
       find_link("Foo").visible?
       find_link("Bar").visible?
     end
-
-    it "creates a list of the products" do
-      within ("li") do
-        find_link("Foo").visible?
-      end
-    end
   end
 
   context "when I view a product" do 

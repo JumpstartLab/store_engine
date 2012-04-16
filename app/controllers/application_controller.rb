@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  def current_user_or_not_found
+  def current_user_or_admin_or_not_found
     if !current_user || current_user.id != params[:id].to_i && !current_user.admin? 
       not_found
     end

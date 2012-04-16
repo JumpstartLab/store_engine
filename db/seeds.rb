@@ -28,12 +28,12 @@ billing_address.save
 item = OrderItem.new(:product => Product.find(1))
 item2 = OrderItem.new(:product => Product.find(3))
 items = [item, item2]
-Order.create(:user => matt, :status => pending, :order_items => items, 
+Fabricate(:order, :user => matt, :status => pending, :order_items => items, 
                     :shipping_address => shipping_address, 
-                    :billing_address => billing_address)
-Order.create(:user => jeff, :status => shipped , :order_items => items, 
+                    :billing_address => billing_address).save
+Fabricate(:order, :user => jeff, :status => shipped , :order_items => items, 
                     :shipping_address => shipping_address, 
-                    :billing_address => billing_address)
-Order.create(:user => jeff, :status => paid, :order_items => items, 
+                    :billing_address => billing_address).save
+Fabricate(:order, :user => jeff, :status => paid, :order_items => items, 
                     :shipping_address => shipping_address, 
-                    :billing_address => billing_address)
+                    :billing_address => billing_address).save
