@@ -1,5 +1,9 @@
 /! MAKE DIFFERENT TRANSITIONS FOR DIFFERENT ORDER STATUSES
-= link_to "Transition to '#{order.next_transition}'", order_path(order), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-info'
+- unless order.status == "returned" || order.status == "cancelled"
+  = link_to "Mark as '#{order.next_transition}'", order_path(order), :method => :put, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-info'
+
 = link_to 'Edit', edit_order_path(order), :class => 'btn btn-mini'
-= link_to 'Destroy', order_path(order), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
+
+- if order.status == "pending"
+  = link_to 'Cancel', order_path(order), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger'
 

@@ -21,13 +21,25 @@
     line_items.map(&:subtotal).inject(:+)
   end
 
+  def transition
+    if status == "pending"
+      if billing_method_id && shipping_address_id
+        update_attribute(:status, next_transition)
+      else
+        false
+      end
+    else
+      update_attribute(:status, next_transition)
+    end
+  end
+
   def next_transition
     if status == "pending"
       "paid"
     elsif status == "paid"
       "shipped"
-    else
-      "pending"
+    elsif status == "shipped"
+      "returned"
     end
   end
 

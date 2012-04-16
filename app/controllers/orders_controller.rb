@@ -11,26 +11,24 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    session[:order_id] = nil if @order.id == session[:order_id]
-    Order.destroy(@order)
-    redirect_to orders_path
+    session[:return_to] = request.referrer
+    @order.update_attribute(:status, "cancelled")
+    notice = "Order Cancelled"
+    redirect_to session[:return_to], notice: notice
   end
 
   def edit
   end
 
   def update
-    if @order.billing_method_id && @order.shipping_address_id
-      @order.update_attribute(:status, "paid")
+    if @order.status == "pending" && @order.transition
       notice = "Thank you for your purchase. You will receive an email confirmation shortly"
       session[:order_id] = nil
       redirect_to root_path, notice: notice
-    elsif @order.billing_method_id
-      notice = "Please input a valid shipping address"
-      redirect_to order_path(@order), notice: notice
-    elsif @order.shipping_address_id
-      notice = "Please input a valid billing method"
-      redirect_to order_path(@order), notice: notice
+    elsif @order.transition
+      session[:return_to] = request.referrer
+      notice = "Transition successful"
+      redirect_to session[:return_to], notice: notice
     else
       notice = "Please input valid billing and shipping information."
       redirect_to order_path(@order), notice: notice

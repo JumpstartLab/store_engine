@@ -29,8 +29,6 @@ describe Order do
       ord.next_transition.should == "paid"
       ord.update_attributes(status: "paid")
       ord.next_transition.should == "shipped"
-      ord.update_attributes(status: "")
-      ord.next_transition.should == "pending"
     end
   end
 
