@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :user_id, :status, :credit_card_id
+  attr_accessible :user_id, :status, :credit_card_id, :current_status
   attr_accessor :stripe_card_token
 
   belongs_to :user
@@ -8,17 +8,17 @@ class Order < ActiveRecord::Base
   has_many :order_products, :dependent => :destroy
   has_many :products, :through => :order_products
   validates_presence_of :user_id
-  has_many :order_statuses
+  has_one :order_status
 
   scope :desc, order("id DESC")
 
   def mark_as_paid
     #update_attribute(:status, 'paid')
-    self.order_statuses.create(:status => 'paid')
+    self.order_status.update_attributes(:status => 'paid')
   end
 
-  def current_status
-    self.order_statuses.last.status
+  def status
+    self.order_status.status
   end
 
   def charge(cart)
@@ -36,7 +36,7 @@ class Order < ActiveRecord::Base
       credit_card.add_details_from_stripe_card_token(self.stripe_card_token)
       if credit_card.add_user_to_credit_card(user)
         self.update_attributes( :credit_card_id => credit_card.id )
-        self.order_statuses.create( :status => 'pending')
+        self.order_status.status = 'pending'
       end
     end
   end
@@ -47,7 +47,7 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def self.orders_by_filter(status)
+  def self.orders_by_status(status=nil)
     if status.nil?
       Order.all
     else

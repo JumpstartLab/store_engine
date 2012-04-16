@@ -1,6 +1,6 @@
 <h1><%= @category.name %></h1>
 
-<h3>Here are the products assigned to <%= @category.name %></h3>
+<h3>Here are the products assigned to <%= @category.name %></h3></br />
 <table class="table table-bordered table-striped">
   <tr>
     <th>Name</th>
@@ -9,7 +9,6 @@
     <th>Photo</th>
     <th>All categories</th>
     <th>Buy it!</th>
-    <th>Retire it!</th>
   </tr>
 
 <%= render :partial => "products/product", :collection => @products %>

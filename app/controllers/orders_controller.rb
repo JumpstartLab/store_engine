@@ -17,6 +17,7 @@ class OrdersController < ApplicationController
 
     if @order.save_credit_card && @order.charge(current_cart)
         current_cart.assign_cart_to_order_and_destroy(@order)
+        OrderStatus.create(:status => 'paid', :order_id => @order.id)
         redirect_to @order, :notice => "Thank you for placing an order."
     else
       render :new
