@@ -9,6 +9,7 @@ StoreEngine::Application.routes.draw do
   resources :users
   resources :sessions
   resources :line_items
+  resources :order_items
   resources :carts
   root to: "products#index"
   resources :products

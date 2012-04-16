@@ -26,10 +26,12 @@
           <td class="description">
             <%= link_to line_item.product.title, product_path(line_item.product) %></td>
         <td><%= sprintf("$%0.02f", line_item.product.price) %></td>
+
         <td> <%= form_for line_item do |f| %>
                 <%= f.number_field :quantity, :value => line_item.quantity, :size =>100, :min => 1 %>
                 <%= f.submit "update quantity" %> 
                 <% end %></td>
+                
         <td><%= sprintf("$%0.02f", line_item.subtotal) %></td>
         <td><%= link_to 'Remove From Cart', line_item, method: :delete, confirm: "Are you sure?", :class => 'btn' %></td>
       </tr>

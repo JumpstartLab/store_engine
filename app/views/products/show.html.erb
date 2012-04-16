@@ -19,15 +19,16 @@
   </p>
 
   <p>
-
-    
-  </p>
-
-  <p>
     <% if can? :update, @product %>
-    <b>Retired</b><br>
+    <b>Retired</b>
     <%= @product.retired %>
+    <%= form_for @product do |f| %>
+    <%= f.hidden_field :retired, 
+                       :value => @product.retired_switch %>
+    <%= f.submit "mark as #{@product.retired_switch}", 
+                 :class => 'btn btn-mini' %>
     <% end %>
+    <% end %> 
   </p>
 
   <div class="form-actions">

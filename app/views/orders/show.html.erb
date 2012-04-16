@@ -46,10 +46,25 @@
 <h3>Products Ordered:</h3>
 <p> 
   <% @order.order_items.each do |order_item| %>
-    <%= link_to order_item.product.title, product_path %> <br />
+    <%= link_to order_item.product.title, product_path(order_item.product) %> <br />
+    <% if order_item.product.retired? %>
+    Product is currently retired
+    <br/>
+    <% end %>
+    <br/>
     Quantity: <%= order_item.quantity%> <br />
+
+    <%# if can? :update, @order %>
+     <td> <%= form_for order_item do |f| %>
+          <%= f.number_field :quantity, :value => order_item.quantity, :size =>10, :min => 1 %>
+          <%= f.submit "update quantity" %> 
+          <%# end %></td>
+    <% end %>
+
+
     Price: <%= sprintf("$%0.02f", order_item.product.price) %><br />
     Subtotal: <%= sprintf("$%0.02f", order_item.subtotal) %><br />
+    <br/>
   <% end %>
 </p>  
 
