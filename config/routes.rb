@@ -11,7 +11,12 @@ StoreEngine::Application.routes.draw do
     end
   end
 
-  resources :products
+  resources :products do
+    member  do
+      put :retire
+    end
+  end
+
   resources :categories
   resources :orders, except: [:new, :create]
   resources :billing_methods, except: [:show, :index, :destroy]

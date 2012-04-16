@@ -12,13 +12,23 @@ class Product < ActiveRecord::Base
   validates_format_of :photo_url, with: /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpg|gif|png|jpeg)$/,
   allow_nil: true, unless: Proc.new { |p| p.photo_url.blank? }
 
+  default_scope order(:title)
+
   def to_param
     [id, title.downcase.split(" ")].join("-")
   end
 
-  # def create_new_category(params)
-  #   raise params.inspect
-  # end
+  def retire
+    update_attribute(:retired, true)
+  end
+
+  def make_active_again
+    update_attribute(:retired, false)
+  end
+
+  def self.active
+    where(retired: false)
+  end
 
   def category_ids=(params)
     self.categories = []
@@ -52,5 +62,9 @@ class Product < ActiveRecord::Base
     else
       self.photo_url
     end
+  end
+
+  def status
+    self.retired ? "retired" : "active"
   end
 end

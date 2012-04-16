@@ -4,7 +4,13 @@ class OrdersController < ApplicationController
   before_filter :require_admin, :only => [:destroy]
 
   def index
-    @orders = Order.all
+    if params[:status] == "all"
+      @orders = Order.all
+    elsif params[:status]
+      @orders = Order.where(:status => params[:status])
+    else
+      @orders = Order.all
+    end
   end
 
   def show

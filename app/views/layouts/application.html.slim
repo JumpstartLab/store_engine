@@ -12,6 +12,10 @@ html
     = render partial: "shared/header"
     .container data-pjax-container=""
       .row
-        = notice
-        .span8#main-content = yield
-        = render partial: "shared/cart", locals: {user: current_user}
+        - unless notice.nil?
+          .span8#notice = notice
+        - unless admin_view?
+          .span8#main-content = yield
+          = render partial: "shared/cart", locals: {user: current_user}
+        - else
+          .span16#main-content = yield

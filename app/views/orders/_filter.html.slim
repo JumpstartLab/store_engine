@@ -1,0 +1,6 @@
+h3 Filter Order By Status
+= form_tag orders_path, method: :get do
+  = select_tag :status, options_for_select([["all", "all"], ["pending", "pending"], ["cancelled", "cancelled"], ["paid", "paid"], ["shipped", "shipped"], ["returned", "returned"]]), :prompt => "Status", class: 'text_field'
+  = submit_tag "Update"
+
+
