@@ -9,16 +9,17 @@ describe "Orders requests" do
     let!(:order2) { Fabricate(:order, :user => user2) }
 
     before(:each)  do
-      login 
+      login_user_post("woah", "woah") 
       visit orders_path
     end 
 
     it "shows current users orders" do
-      page.should have_content("#{order.id}")
+      page.should have_content("#{order2.updated_at}")
     end
 
-    it "does not show other users orders" do
-      page.should_not have_content("#{order2.id}")
+    it "shows individual order page" do
+      click_link "#{order.updated_at}"
+      page.current_path.should == order_path(order2.id)
     end
   end
 

@@ -1,5 +1,4 @@
 Fabricator(:user, :class_name => "User") do
-  id { sequence }
   username { "foo" }
   password { "foo" }
   first_name { "Beverly" }

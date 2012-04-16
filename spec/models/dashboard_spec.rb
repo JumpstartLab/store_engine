@@ -5,7 +5,7 @@ describe "Dashboard" do
 
   context "#total_pending_orders" do
     context "when there are pending orders" do
-      let!(:status) { Fabricate(:status) }
+      let!(:status) { Fabricate(:status, :name => StoreEngine::Status::PENDING) }
       let!(:order) { Fabricate(:order, :status => status) }
       let!(:order1) { Fabricate(:order, :status => status) }
 

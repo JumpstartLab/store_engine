@@ -1,6 +1,4 @@
-Fabricator(:shipping_address, :class_name => "ShippingAddress") do
-  id { sequence }
-  first_name {sequence }
+Fabricator(:shipping_address, :aliases => [:shipping_addres]) do
   first_name { Faker::Lorem.words(1).join }
   last_name { Faker::Lorem.words(1).join }
   company { Faker::Lorem.words(1).join }
