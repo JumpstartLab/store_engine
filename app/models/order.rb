@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   STATUSES = ["pending", "cancelled", "paid", "shipped", "returned"]
   attr_accessible :user_id, :status, :billing_address, :shipping_address
 
-  has_many :order_items, :dependent => :destroy
+  has_many :order_items, :dependent => :destroy, :autosave => true
   has_many :items, through: :order_items
   belongs_to :user
 
@@ -49,5 +49,25 @@ class Order < ActiveRecord::Base
   def attach_addresses(params)
     update_attributes(shipping_address: params[:shipping_address],
                        billing_address: params[:billing_address])
+  end
+
+  def set_quantities(quantities)
+    quantities.each do |id, quantity|
+      quantity = quantity.to_i
+      item     = @order.order_items.find(id)
+
+      if quantity > 0
+        item.quantity = quantity
+      else
+        # TODO:
+        # What's the best way to do this?
+        # This destroys the items immediately;
+        # I only want to destroy them when save is called,
+        # conditioned on wheather the order has no errors.
+        # However, it's also invalid for an OrderItem to have quantity of 0...
+        # So the save would never happen, so I can't use an after-save hook...
+        item.destroy
+      end
+    end
   end
 end

@@ -21,23 +21,10 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    @order = Order.find(params[:id])
+    @order     = Order.find(params[:id])
     quantities = params[:order_item_quantities]
 
-    # TODO: This could probably factored out into Order
-    # TODO: Should probably be in a transaction.
-    quantities.each do |id, quantity|
-      quantity = quantity.to_i
-      item = @order.order_items.find(id)
-
-      if quantity > 0
-        item.quantity = quantity
-        item.save!
-      else
-        item.destroy
-      end
-    end
-
+    @order.set_quantities(quantities)
     @order.status = params[:status]
 
     if @order.save
