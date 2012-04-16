@@ -24,8 +24,11 @@
               li= link_to "Cart", order_path(cart)
             li= link_to "My Account", user_url(current_user)
             li= link_to "Logout", logout_path, :method => :delete
-            - if admin?
-              li= link_to "Admin Dashboard", "#"
+            - if admin_view?
+              li = link_to "Dashboard", orders_path
+              li=link_to "User View", view_as_normal_user_path(current_user), method: :put
+            - elsif admin?
+              li= link_to "Admin View", view_as_admin_user_path(current_user), method: :put
           - else
             li= link_to "Sign-In", login_page_path
             li= link_to "Sign-Up", new_user_path

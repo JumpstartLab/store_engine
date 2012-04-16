@@ -16,4 +16,30 @@ module UsersHelper
     end
   end
 
+  def admin_view?
+   if current_user.present?
+      current_user.admin_view
+    else
+      false
+    end
+  end
+
+  def require_user
+    if current_user.nil? || current_user != @user
+      redirect_to root_url, notice: "Sorry, you are not allowed to view that page"
+    end
+  end
+
+  def require_user_or_admin
+    if current_user.nil? || (current_user != @user && !admin?)
+      redirect_to root_url, notice: "Sorry, you are not allowed to view that page"
+    end
+  end
+
+  def require_admin
+    unless admin?
+      redirect_to root_url, :notice => "Unauthorized Access"
+    end
+  end
+
 end

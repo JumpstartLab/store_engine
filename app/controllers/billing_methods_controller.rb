@@ -1,36 +1,45 @@
 class BillingMethodsController < ApplicationController
+  # before_filter :protect_against_other_users, only: [:new, :edit, :update, :create, :destroy]
   def new
+    session[:return_to] = request.referrer
     @billing_method = BillingMethod.new
   end
   def edit
-    @billing_method = BillingMethod.find_by_order_id(session[:order_id])
+    session[:return_to] = request.referrer
+    if logged_in?
+      @billing_method = current_user.billing_method
+    else
+      @billing_method = BillingMethod.find_by_order_id(session[:order_id])
+    end
   end
 
   def create
     billing = BillingMethod.new(params[:billing_method])
-    order = Order.find(session[:order_id])
     if billing.save
-      if session[:user_id]
-        billing.update_attribute(:user_id, session[:user_id])
-      end
       notice = "Billing Address Successfully Added"
-      order.update_attribute(:billing_method_id, billing.id)
-      redirect_to order_path(order), notice: notice
+      billing.update_attribute(:user_id, current_user.id) if logged_in?
+      if session[:order_id]
+        order = Order.find(session[:order_id])
+        order.update_attribute(:billing_method_id, billing.id)
+      end
     else
       notice = 'Please input a valid billing method'
-      redirect_to order_path(order), notice: notice
     end
+    redirect_to session[:return_to], notice: notice
   end
 
   def update
-    order = Order.find(session[:order_id])
-    billing = BillingMethod.find(order.billing_method_id)
+    if logged_in?
+      billing = current_user.billing_method
+    else
+      order = Order.find(session[:order_id])
+      billing = BillingMethod.find(order.billing_method_id)
+    end
     if billing.update_attributes(params[:billing_method])
       notice = "Billing Address Successfully Saved"
-      redirect_to order_path(order), notice: notice
     else
       notice = 'Please input a valid billing method'
-      redirect_to order_path(order), notice: notice
     end
+    redirect_to session[:return_to], notice: notice
   end
 end

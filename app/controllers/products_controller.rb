@@ -15,10 +15,11 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(params[:product])
-    @notice = 'Product was successfully created.'
+
     respond_to do |format|
       if @product.save
-        format.html { redirect_to product_path(@product), notice: @notice }
+        notice = 'Product was successfully created.'
+        format.html { redirect_to product_path(@product), notice: notice }
       else
         format.html { render action: "new" }
       end
@@ -34,6 +35,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    # raise params.inspect
     @product.update_attributes(params[:product])
     redirect_to product_path(@product)
   end

@@ -4,13 +4,19 @@ StoreEngine::Application.routes.draw do
   post 'sessions/create', :as => 'login'
   delete 'sessions/destroy', :as => 'logout'
 
-  resources :users
+  resources :users, except: :destroy do
+    member do
+      put :view_as_admin
+      put :view_as_normal
+    end
+  end
+
   resources :products
   resources :categories
-  resources :orders
-  resources :billing_methods
-  resources :line_items
-  resources :shipping_addresses
+  resources :orders, except: [:new, :create]
+  resources :billing_methods, except: [:show, :index, :destroy]
+  resources :line_items, except: [:show, :new, :index]
+  resources :shipping_addresses, except: [:show, :index, :destroy]
   root to: "products#index"
 
 end

@@ -11,9 +11,14 @@
     legend
       | Input your billing info
       .control-group
+        = f.label :card_type, class: 'control-label'
+        .controls
+          = f.select :card_type, options_for_select([["Visa", "Visa"], ["M/C", "M/C"], ["Discover", "Discover"], ["Amex", "Amex"]]), :prompt => "Card Type", class: 'text_field'
+
+      .control-group
         = f.label :credit_card_number, class: 'control-label'
         .controls
-        = f.text_field :credit_card_number, class: 'text_field'
+          = f.text_field :credit_card_number, class: 'text_field'
 
       .control-group
         = f.label :credit_card_expiration_date, class: 'control-label'

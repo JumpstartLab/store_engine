@@ -13,6 +13,6 @@ div id="products" class="span7"
       = render partial: "category", collection: product.categories
     p#product-id id: #{product.id}
     p created at: #{product.created_at.to_date}
-
-  .span7
-    = render partial: "admin_buttons", locals: {product: product}
+  - if admin_view?
+    .span7
+      = render partial: "admin_buttons", locals: {product: product}

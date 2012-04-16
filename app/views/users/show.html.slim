@@ -1,21 +1,11 @@
 h1 Welcome Back, #{@user.display_name}
-p
-  = @user.full_name
-  br/
-  = @user.email_address
-  p = link_to "Edit", edit_user_path(@user), class: "btn"
-h2 Billing Information
-- bm = @user.billing_method
-p = bm.name
-p Card Number: #{bm.credit_card_number}
-p Exp Date: #{bm.credit_card_expiration_date}
-p Street: #{bm.street}
-| City: #{bm.city}
-| State: #{bm.state}
-| Zipcode: #{bm.zipcode}
-p = link_to "Edit", edit_billing_method_path(bm), class: "btn"
 
-- if admin?
+/ = render partial: 'user_order_history'
+= render partial: 'user_acct_info'
+= render partial: 'user_billing'
+= render partial: 'user_shipping'
+
+- if admin_view?
   = link_to "Destroy", user_path(@user), :method => :delete, confirm: "Delete \"#{@user.display_name}\"?", class: "btn btn-danger"
   = link_to "Back to All Users", users_path, class: "btn btn-info"
-p = link_to "Orders", orders_path, class: "btn btn-success"
+p = link_to "View Orders", orders_path, class: "btn btn-success"

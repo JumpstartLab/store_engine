@@ -1,4 +1,4 @@
-class Order < ActiveRecord::Base
+ class Order < ActiveRecord::Base
   attr_accessible :billing_method_id, :user_id, :status, :shipping_address_id
 
   validates_presence_of :status
@@ -9,12 +9,28 @@ class Order < ActiveRecord::Base
   has_many :line_items
   has_many :products, through: :line_items
 
+  def date
+    created_at.strftime("%B %d at %l:%M %p")
+  end
+
   def user
-    User.find(user_id)
+    User.find(self.user_id)
   end
 
   def amount
     line_items.map(&:subtotal).inject(:+)
+  end
+
+  def transition
+    if status == "pending"
+      if billing_method_id && shipping_address_id
+        update_attribute(:status, next_transition)
+      else
+        false
+      end
+    else
+      update_attribute(:status, next_transition)
+    end
   end
 
   def next_transition
@@ -22,8 +38,8 @@ class Order < ActiveRecord::Base
       "paid"
     elsif status == "paid"
       "shipped"
-    else
-      "pending"
+    elsif status == "shipped"
+      "returned"
     end
   end
 
@@ -36,11 +52,7 @@ class Order < ActiveRecord::Base
   end
 
   def has_product?(product_id)
-    if products.include? Product.find(product_id.to_i)
-      true
-    else
-      false
-    end
+    products.include? Product.find(product_id.to_i)
   end
 
   def has_billing_method?
@@ -78,6 +90,10 @@ class Order < ActiveRecord::Base
     if user.has_shipping_address?
       update_attribute(:shipping_address_id, user.shipping_address_id)
     end
+  end
+
+  def total_items
+    line_items.sum(&:quantity)
   end
 
 end

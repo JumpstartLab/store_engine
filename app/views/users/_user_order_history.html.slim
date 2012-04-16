@@ -1,0 +1,25 @@
+h2 Order History
+-if @user.orders.present?
+  - @user.orders.each do |ord|
+    p Placed On: #{ord.date}
+    - if ord.has_billing_method?
+      p Billing Method: #{ord.billing_method.name}
+    - if ord.has_shipping_address?
+      p Shipping Address: #{ord.shipping_address.name}
+    p Order Summary
+    table.table.table-striped
+      thead
+        tr
+          th Product Name
+          th Quantity
+          th Unit Price
+          th Subtotal
+      tbody
+        - ord.line_items.each do |li|
+          tr
+            td = li.product.title
+            td = li.quantity
+            td = li.price
+            td = number_to_currency(li.subtotal)
+- else
+  = "No orders to date"

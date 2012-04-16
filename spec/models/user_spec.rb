@@ -91,7 +91,23 @@ describe User do
         order2.save
         user1.pending_order.should == nil
       end
-
     end
   end
+  describe "#shipping_address_id" do
+    it "returns the shipping address id for the user" do
+      shipping = Fabricate(:shipping_address)
+      user = Fabricate(:user)
+      shipping.update_attribute(:user_id, user.id)
+      user.shipping_address_id.should == shipping.id
+    end
+  end
+  describe "#billing_method_id" do
+    it "returns the billing method id for the user" do
+      billing = Fabricate(:billing_method)
+      user = Fabricate(:user)
+      billing.update_attribute(:user_id, user.id)
+      user.billing_method_id.should == billing.id
+    end
+  end
+
 end

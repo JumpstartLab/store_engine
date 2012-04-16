@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :lookup_user, :only => [:show, :edit, :destroy, :update]
-  before_filter :require_user, :only => [:show, :edit, :update]
-  before_filter :require_admin, :only => [:index, :destroy, :create]
+  before_filter :lookup_user, :only => [:show, :edit, :destroy, :update, :view_as_admin, :view_as_normal]
+  before_filter :require_user, :only => [:edit, :update]
+  before_filter :require_user_or_admin, :only => [:show]
+  before_filter :require_admin, :only => [:index, :destroy]
 
   def index
     @users = User.all
@@ -27,17 +28,24 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-    User.destroy(@user)
-    redirect_to users_path
-  end
-
   def edit
   end
 
   def update
     @user.update_attributes(params[:user])
     redirect_to user_path(@user)
+  end
+
+  def view_as_admin
+    session[:return_to] = request.referrer
+    @user.enable_admin_view
+    redirect_to session[:return_to], notice: "Viewing as admin"
+  end
+
+  def view_as_normal
+    session[:return_to] = request.referrer
+    @user.disable_admin_view
+    redirect_to session[:return_to], notice: "Viewing as normal user"
   end
 
   private

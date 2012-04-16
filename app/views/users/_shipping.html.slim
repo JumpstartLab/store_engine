@@ -1,0 +1,11 @@
+- if user.shipping_address.present?
+  h2 Shipping Address
+  - sa = user.shipping_address
+  p = sa.name
+  p Street: #{sa.street}
+  | City: #{sa.city}
+  | State: #{sa.state}
+  | Zipcode: #{sa.zipcode}
+  p = link_to "Change Shipping Address", edit_shipping_address_path(sa), class: "btn"
+- else
+  p = link_to "Add a Shipping Address", new_shipping_address_path, class: "btn"

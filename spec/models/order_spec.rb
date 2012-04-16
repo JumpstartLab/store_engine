@@ -29,8 +29,6 @@ describe Order do
       ord.next_transition.should == "paid"
       ord.update_attributes(status: "paid")
       ord.next_transition.should == "shipped"
-      ord.update_attributes(status: "")
-      ord.next_transition.should == "pending"
     end
   end
 
@@ -51,11 +49,29 @@ describe Order do
   end
 
   describe "#has_product?" do
-    it "returns a bool of whether the order has a product" do
+    it "returns a boolean of whether the order has a product" do
       prod = Fabricate(:product)
       ord.has_product?(prod.id).should == false
       LineItem.create(order_id: ord.id, product_id: prod.id)
       ord.has_product?(prod.id).should == true
+    end
+  end
+  describe "#try_to_add_billing_and_shipping" do
+    it "adds a billing method to the order if the user has one" do
+      user = Fabricate(:user)
+      billing = Fabricate(:billing_method)
+      billing.update_attribute(:user_id, user.id)
+      ord.stub(user: user)
+      ord.try_to_add_billing_and_shipping(user.id)
+      ord.find_billing.should == billing
+    end
+    it "adds a shipping address to the order if the user has one" do
+      user = Fabricate(:user)
+      shipping = Fabricate(:shipping_address)
+      shipping.update_attribute(:user_id, user.id)
+      ord.stub(user: user)
+      ord.try_to_add_billing_and_shipping(user.id)
+      ord.find_shipping.should == shipping
     end
   end
 end

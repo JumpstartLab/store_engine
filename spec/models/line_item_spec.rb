@@ -11,7 +11,7 @@ describe LineItem do
 
   describe "#increment_quantity" do
     it "increments the quantity of the line item" do
-      item.increment_quantity
+      item.increment_quantity(1)
       item.quantity.should == 2
     end
   end
@@ -27,13 +27,18 @@ describe LineItem do
     end
     context "when a line item for the product exists" do
       it "increments quantity of the line item" do
+        pending
         item_id = item.id
         item.update_attributes({order_id: ord.id, product_id: prod.id})
-        stub(has_product?: true)
         LineItem.increment_or_create_line_item(order_id: ord.id, product_id: prod.id)
         updated_item = LineItem.find(item_id)
         updated_item.quantity.should == 2
       end
+    end
+  end
+  describe "#clean_price" do
+    it "returns a big decimal of the price" do
+      item.clean_price.should == BigDecimal.new(item.price,2)
     end
   end
 end

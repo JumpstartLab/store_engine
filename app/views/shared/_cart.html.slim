@@ -1,4 +1,4 @@
-.span3.cart
+.span3#cart
   h2 Shopping Cart
   - if session[:user_id]
     - if user.has_pending_order?
@@ -7,13 +7,14 @@
     - cart = Order.find(session[:order_id])
     - cart.line_items.each do |li|
       p
-        #cart_item_title = link_to li.product.title, line_item_path(li)
+        #cart_item_title = link_to li.product.title, product_path(li.product_id)
         #cart_item_unit #{li.quantity} * #{number_to_currency(li.price)} ea
         #cart_item_subtotal = number_to_currency(li.subtotal)
-        = link_to 'Remove', line_item_path(li), :method => :delete, :class => 'btn btn-mini btn-danger'
+        = link_to "Update Quantity", edit_line_item_path(li), class: 'btn btn-mini'
     p
       = number_to_currency(cart.amount)
     p
       = link_to "View Cart", order_path(cart), class: "btn"
+      = link_to "Two-Click Check Out", order_path(session[:order_id]), method: :put, confirm: "Place an order for #{pluralize(cart.total_items, "item")}?", class: "btn btn-success"
   - else
     p Nothing in your cart

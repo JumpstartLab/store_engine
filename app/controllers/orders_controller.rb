@@ -1,46 +1,34 @@
 class OrdersController < ApplicationController
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
-  # before_filter :require_admin
+  before_filter :require_order_or_admin, :only => [:show, :edit, :update]
+  before_filter :require_admin, :only => [:destroy]
 
   def index
     @orders = Order.all
   end
 
   def show
-    @billing = BillingMethod.new
-  end
-
-  def new
-    @order = Order.new
-  end
-
-  def create
-    # order = Order.create(params[:order])
-    # if session[:user_id]
-    #   order.update_attribute(:user_id, session[:user_id])
-    # redirect_to root_url
   end
 
   def destroy
-    Order.destroy(@order)
-    redirect_to orders_path
+    session[:return_to] = request.referrer
+    @order.update_attribute(:status, "cancelled")
+    notice = "Order Cancelled"
+    redirect_to session[:return_to], notice: notice
   end
 
   def edit
   end
 
   def update
-    if @order.billing_method_id && @order.shipping_address_id
-      @order.update_attribute(:status, "paid")
+    if @order.status == "pending" && @order.transition
       notice = "Thank you for your purchase. You will receive an email confirmation shortly"
       session[:order_id] = nil
       redirect_to root_path, notice: notice
-    elsif @order.billing_method_id
-      notice = "Please input a valid shipping address"
-      redirect_to order_path(@order), notice: notice
-    elsif @order.shipping_address_id
-      notice = "Please input a valid billing method"
-      redirect_to order_path(@order), notice: notice
+    elsif @order.status != "pending" && @order.transition
+      session[:return_to] = request.referrer
+      notice = "Transition successful"
+      redirect_to session[:return_to], notice: notice
     else
       notice = "Please input valid billing and shipping information."
       redirect_to order_path(@order), notice: notice

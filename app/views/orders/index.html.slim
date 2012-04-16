@@ -1,10 +1,15 @@
+h1 Orders
 table.table.table-striped
   thead
     tr
-      th Order ID
-      th Purchaser
-      th Amount
+      - if admin_view?
+        th Actions
+        th Order ID
+        th Purchaser
+        th Email
+      th Items
+      th Subtotal
       th Status
-      th Actions
+      th Date
   tbody
     = render partial: "order", collection: @orders
