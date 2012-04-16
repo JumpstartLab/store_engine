@@ -1,34 +1,25 @@
 class CategoriesController < ApplicationController
-  # GET /categories
-  # GET /categories.json
+
 
   def show
     @category = Category.find(params[:id])
   end
-  # GET /categories/1
-  # GET /categories/1.json
 
-  # GET /categories/new
-  # GET /categories/new.json
   def new
     @category = Category.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @category }
     end
   end
 
-  # GET /categories/1/edit
   def edit
     @category = Category.find(params[:id])
   end
 
-  # POST /categories
-  # POST /categories.json
   def create
     @category = Category.new(params[:category])
-
     respond_to do |format|
       if @category.save
         format.html { redirect_to new_product_path, notice: 'Category was successfully created.' }

@@ -47,7 +47,7 @@ FactoryGirl.define do
     id 1
   end
 
-  factory :user, do |f|
+  factory :user do |f|
     f.full_name { "#{Faker::Name.first_name} #{Faker::Name.last_name}"}
     f.password "password"
     f.email "email@email.com"
