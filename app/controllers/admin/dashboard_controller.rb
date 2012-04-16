@@ -1,6 +1,11 @@
 class Admin::DashboardController < ApplicationController
   def index
-    @status_options = [['Pending', 'Pending'], ['Cancelled', 'Cancelled']]
     @dashboard = Dashboard.new 
+
+    @status = params[:status]
+    if @status.nil?
+      @status = StoreEngine::Status::PENDING
+    end
+    @orders = @dashboard.orders_with_status(@status)
   end
 end

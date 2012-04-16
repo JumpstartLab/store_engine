@@ -15,8 +15,24 @@ table
     td = @dashboard.total_shipped_orders 
     td = @dashboard.total_returned_orders 
      
-= form_for :status do |f|
-  = f.select(:name, options_for_select(status_options))
-  = f.submit "Filter"
+p
+h1 Orders
+p
+= form_tag admin_dashboard_index_path, :method => :get do |f|
+  = select_tag("status", options_for_select(status_options, @status))
+  = submit_tag "Filter", :name => nil 
+
+ul
+  - @orders.each do |order|
+    li = link_to "Order ##{order.id}", order_path(order)
+    - if @status == "pending"
+        | Cancel
+    - elsif @status == "shipped"
+        | Mark as returned
+    - elsif @status == "paid"
+        | Mark as shipped
+  
+       
+
 
 
