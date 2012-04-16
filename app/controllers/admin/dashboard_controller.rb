@@ -1,4 +1,6 @@
 class Admin::DashboardController < ApplicationController
+  before_filter :admin?
+
   def index
     @dashboard = Dashboard.new 
 
