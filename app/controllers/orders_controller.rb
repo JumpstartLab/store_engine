@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
     @order = Order.new(:user_id => current_user.id, :status => 'pending')
     @order.stripe_card_token = params[:order][:stripe_card_token]
 
-    if @order.save_credit_card && @order.charge(cart)
+    if @order.save_credit_card && @order.charge(current_cart)
         current_cart.assign_cart_to_order_and_destroy(@order)
         redirect_to @order, :notice => "Thank you for placing an order."
     else

@@ -10,24 +10,6 @@ describe Order do
     end    
   end
 
-  context "#stripe_create_customer" do
-    context "if stripe_card_token is not set" do
-      it "should do nothing" do
-        order.stripe_create_customer
-        Stripe::Customer.should_not_receive(:create)
-      end
-    end
-
-    context "if stripe_card_token is set" do
-      before(:each){ order.stripe_card_token = "tok_KM1feeMHDhSgiq" }
-
-      it "should create a customer_token" do
-        order.stripe_create_customer
-        Stripe::Customer.should_receive(:create)
-      end
-    end
-  end
-
   context "#mark_as_paid" do
     it "should update the order status to 'paid'" do
       order.mark_as_paid
@@ -41,7 +23,9 @@ describe Order do
     end
 
     context "if order is valid" do
+
       it "should attach a user to the credit card" do
+        # user.credit_card.should be == credit_card
       end
 
       it "should create a credit card object" do

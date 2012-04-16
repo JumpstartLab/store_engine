@@ -3,9 +3,22 @@ class CreditCard < ActiveRecord::Base
   validates_presence_of :user_id
   belongs_to :user
 
-  def self.create_from_stripe_token(customer_token)
-    credit_card = parse_stripe_customer_token(customer_token)
-    credit_card
+  def initialize(user)
+    super()
+    self.user_id = user.id
+  end
+
+  def add_details_from_stripe_card_token(stripe_card_token)
+    stripe_customer_token = stripe_get_customer_token(stripe_card_token)
+    credit_card = parse_stripe_customer_token(stripe_customer_token)
+  end
+
+  def stripe_get_customer_token(stripe_card_token)
+    Stripe::Customer.create( description: "Mittenberry Customer ##{user.id}",
+                                      card: stripe_card_token)
+
+  rescue Stripe::InvalidRequestError => e
+    send_customer_create_error(e)
   end
 
   def charge(cart_total_in_cents)
@@ -16,19 +29,17 @@ class CreditCard < ActiveRecord::Base
     send_charge_error(e)
   end
 
-  def add_user_to_credit_card(user)
-    self.user = user
-    save
-  end
-
 private
 
-  def self.parse_stripe_customer_token(customer)
-    CreditCard.new(  :stripe_customer_token => customer.id,
-                     :last_four => customer.active_card[:last4],
-                     :credit_card_type => customer.active_card[:type],
-                     :exp_month => customer.active_card[:exp_month],
-                     :exp_year => customer.active_card[:exp_year] )
+  def parse_stripe_customer_token(customer_token)
+    self.stripe_customer_token = user.id
+    card_details = customer_token["active_card"]
+    self.last_four = card_details[:last4]
+    self.credit_card_type = card_details[:type]
+    self.exp_month = card_details[:exp_month]
+    self.exp_year = card_details[:exp_year]
+
+    save
   end
 
   def send_charge_error(e)
@@ -36,5 +47,12 @@ private
     errors.add :base, "There was a problem with the charge."
     false
   end
+
+  def send_customer_create_error(e)
+    logger.error "Stripe error while creating customer: #{e.message}"
+    errors.add :base, "There was a problem with your credit card."
+    false
+  end
+
 
 end
