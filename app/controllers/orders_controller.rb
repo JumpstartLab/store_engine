@@ -13,6 +13,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @order_cart = @cart
+    @order.build_address
   end
 
   def edit
@@ -31,6 +32,9 @@ class OrdersController < ApplicationController
     @order.user_id = current_user.id
     @order.save
     @order.add_order_items_from(@cart) 
+    @order.address.user = current_user
+    @cart.destroy
+    session[:cart_id] = nil
     
 
     if @order.save_with_payment

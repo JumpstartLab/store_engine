@@ -19,6 +19,8 @@
     </div>
   <% end %>
 
+ 
+
 
   <div class="field">
       <%= label_tag :card_number, "Credit Card Number " %>
@@ -33,7 +35,30 @@
     <%= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month"}%>
     <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
   </div>
+  <br />
 
+ <%= f.fields_for :address do |builder| %>
+ <p>
+  <%= builder.label :street_1, "Street" %>
+  <%= builder.text_field :street_1 %>
+</p>
+  
+<p>
+  <%= builder.label :city %>
+  <%= builder.text_field :city %>
+</p>
+
+<p>
+  <%= builder.label :state %>
+  <%= builder.text_field :state %>
+</p>
+
+<p>
+  <%= builder.label :zip_code %>
+  <%= builder.text_field :zip_code %>
+</p>
+
+  <% end %>
   <%= f.hidden_field :stripe_card_token %>
   <div class="actions"><%= f.submit "Place order" %></div>
 <% end %>

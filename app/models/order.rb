@@ -1,16 +1,18 @@
 class Order < ActiveRecord::Base
-  attr_accessible :status, :total_price, :user, :products
+  attr_accessible :status, :total_price, :user, :products, :address_attributes, :address, :address_id
   attr_accessor :stripe_card_token
   attr_accessible :stripe_card_token
 
   validates :status, :inclusion => { :in => %w(pending cancelled shipped paid) }
-  validates_presence_of :user, :products, :order_items
+  # validates_presence_of :user, :products, :order_items
 
   has_many :order_items
   has_many :products, through: :order_items
   
   belongs_to :user
   belongs_to :address
+
+  accepts_nested_attributes_for :address
   
   def total_price
     order_items.inject(0) do |result, item|

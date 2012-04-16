@@ -6,5 +6,4 @@ class Address < ActiveRecord::Base
   validates_format_of :zip_code, :with => /^[-0-9]+$/
 
   belongs_to :user
-  has_many :orders
 end
