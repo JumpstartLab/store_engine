@@ -1,21 +1,19 @@
-h1 = @product.title
-
-p
+div class="span3"
+  = image_tag(@product.photo, :size => "200x200")
+div class="span3"
+  h3 = @product.title
   = @product.description
-
-p
+  p
+  | $
   = @product.price
-p
-  - @product.categories.each do |category|
-    = category.name
-    br
+  p
+    - @product.categories.each do |category|
+      = link_to category.name, category_products_path(category)
+      br
 
-= form_for CartItem.new, :method => "post", :url => {:controller => 'cart_items', :action => "create", :product => @product } do |f|
-  = f.label :quantity
-  = f.select :quantity, options_for_select(1..30)
-  = f.submit "Add to Cart", :product => @product
-  = @product.display_retired
+    = @product.display_retired
 
-p
-= link_to "Edit Product", edit_admin_product_path(@product)
-= link_to "Back to all products", admin_products_path
+  p
+  = link_to "Edit Product", edit_admin_product_path(@product), :class => 'btn btn-mini'
+  p
+  = link_to "Back to all products", admin_products_path, :class => 'btn btn-mini'

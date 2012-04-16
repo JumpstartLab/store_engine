@@ -1,21 +1,25 @@
-h1 = @product.title
-
-p
+div class="span4"
+  - if @product.photo.nil?
+    = image_tag('pug.jpg', :size => '250x250')
+  - else
+    = image_tag(@product.photo, :size => "250x250")
+div class="span3"
+  h3 = @product.title
   = @product.description
-
-p
+  p
+  | $
   = @product.price
-p
-  - @product.categories.each do |category|
-    = link_to category.name, category_products_path(category)
-    br
+  p
+    - @product.categories.each do |category|
+      = link_to category.name, category_products_path(category)
+      br
 
-- unless @product.retired
-  = form_for CartItem.new, :method => "post", :url => {:controller => 'cart_items', :action => "create", :product => @product } do |f|
-    = f.label :quantity
-    = f.select :quantity, options_for_select(1..30)
-    = f.submit "Add to Cart", :product => @product
+  - unless @product.retired
+    = form_for CartItem.new, :method => "post", :url => {:controller => 'cart_items', :action => "create", :product => @product } do |f|
+      = f.label :quantity
+      = f.select :quantity, options_for_select(1..30)
+      = f.submit "Add to Cart", :product => @product, :class => 'btn'
 
-p
+  p
 
-= link_to "Back to all products", products_path, :class => 'btn btn-mini'
+  = link_to "Back to all products", products_path, :class => 'btn btn-mini'

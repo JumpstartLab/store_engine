@@ -1,15 +1,20 @@
 class UsersController < ApplicationController
-  before_filter :admin?, :only => [:index, :new, :create]
+  before_filter :current_user_or_admin_or_not_found, :only => [:show]
+  before_filter :admin_or_not_found, :only => [:index, :create]
 
   def index
     @users = User.all
   end
  
-  def new
-    @user = User.new
+  def show
+    @user = User.find(params[:id])
+  end
 
-    respond_to do |format|
-      format.html 
+  def new
+    if logged_in? && !current_user.admin?
+      redirect_to :root
+    else 
+      @user = User.new
     end
   end
 

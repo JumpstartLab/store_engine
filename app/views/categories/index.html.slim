@@ -1,9 +1,6 @@
-h1 Product Categories
-
+h3 Categories
+p
 table class="table table-striped"
   - @categories.each do |category|
       tr
-        td = category.name
-        td = link_to "Edit", edit_category_path(category)
-
-= link_to "Create new category", new_category_path
+        td = link_to category.name, category_products_path(category)

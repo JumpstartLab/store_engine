@@ -35,4 +35,16 @@ class ShoppingCart < ActiveRecord::Base
   def clear
     cart_items.clear
   end
+
+  def item_count
+    count = 0
+    cart_items.each do |cart_item|
+      count +=  cart_item.quantity
+    end
+    if count == 1
+      "1 item"
+    else
+      "#{count} items"
+    end
+  end
 end

@@ -3,6 +3,8 @@ require 'spec_helper'
 describe "Users requests" do
   context "when a normal user is logged in" do
     let!(:user) { Fabricate(:user)}
+    let!(:user2) { Fabricate(:user, :email => "omg@omg.com",
+                             :username => "woah", :password => "woah")}
     before(:each)  { login }
 
     it "shows users page not found" do
@@ -10,13 +12,23 @@ describe "Users requests" do
     end
 
     it "shows new user page not found" do
-      validate_not_found(new_user_path)
+      visit new_user_path
+      page.current_path.should == root_path
     end
 
     it "shows create user page not found" do
       validate_not_found(users_path, "post")
     end
 
+    it "shows user page" do
+      visit user_path(user)
+      page.current_path.should == user_path(user)
+    end
+
+    it "shows page not found for another user" do
+      validate_not_found(user_path(user2))
+    end
+    
     it "logs a user out" do
       visit products_path
       find_link("Logout").click
@@ -26,21 +38,30 @@ describe "Users requests" do
   end
 
   context "when not logged in" do
+    let!(:user) { Fabricate(:user)}
+
     it "shows user page not found" do
       validate_not_found(users_path)
     end
 
-    it "shows new user page not found" do
-      validate_not_found(new_user_path)
+    it "shows new user page" do
+      visit new_user_path
+      page.current_path.should == new_user_path
     end
 
     it "shows create user page not found" do
       validate_not_found(users_path, "post")
     end
+
+    it "shows page not found" do 
+      validate_not_found(user_path(user))
+    end
   end
 
   context "when admin is logged in" do
     let!(:user) { Fabricate(:user, :admin => true)}
+    let!(:user2) { Fabricate(:user, :email => "omg@omg.com",
+                             :username => "woah", :password => "woah")}
     before(:each)  { login }
 
     it "shows users" do
@@ -62,6 +83,13 @@ describe "Users requests" do
       click_button("Create User")
       page.current_path.should == root_path
       page.should have_content("Registration successful")
+    end
+
+    it "shows any user" do
+      visit user_path(user)
+      page.current_path.should == user_path(user)
+      visit user_path(user2)
+      page.current_path.should == user_path(user2)
     end
   end
 end
