@@ -171,4 +171,50 @@ describe "admin" do
       page.should_not have_content "baseballs"
     end
   end
+  context "dashboard" do
+    context "filtering" do
+      let!(:shipping) { Fabricate(:shipping_address) }
+      let!(:orders) {
+        orders = []
+        6.times do |i|
+          orders[i] = Fabricate(:order)
+          orders[i].update_attributes(user_id: nil, shipping_address_id: shipping.id)
+        end
+        orders
+      }
+      let!(:products) {
+        products = []
+        3.times do |i|
+          products[i] = Fabricate(:product)
+        end
+        products
+      }
+      before(:each) do
+        6.times do |i|
+          line_item = Fabricate(:line_item)
+          line_item.update_attributes(order_id: orders.sample.id, product_id: products.sample.id)
+        end
+        visit orders_path
+      end
+      it "displays all orders" do
+        within "#main-content" do
+          orders.each {|o| page.should have_content o.id}
+        end
+      end
+      it "filters properly" do
+        orders[0].update_attribute(:status, "paid")
+        orders[1].update_attribute(:status, "shipped")
+        orders[2].update_attribute(:status, "cancelled")
+        orders[3].update_attribute(:status, "returned")
+        orders[4].update_attribute(:status, "paid")
+        ["pending","paid","shipped","cancelled","returned"].each do |option|
+          select(option, from: "status")
+          click_link_or_button "Update"
+          within "#main-content" do
+            orders.each {|o| page.should have_content o.id if o.status == option }
+          end
+        end
+      end
+    end
+  end
 end

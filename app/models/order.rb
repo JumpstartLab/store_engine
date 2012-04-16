@@ -14,6 +14,7 @@
   end
 
   def user
+    return nil if self.user_id == nil
     User.find(self.user_id)
   end
 
@@ -44,11 +45,16 @@
   end
 
   def user_name
+    return "Guest" if user.nil?
     user.display_name
   end
 
   def user_email_address
     user.email_address
+  end
+
+  def guest_email_address
+    find_shipping.email_address
   end
 
   def has_product?(product_id)
