@@ -20,7 +20,7 @@ describe "User pages" do
 
     context "with valid signup information" do
 
-      before do
+      before(:each) do
         fill_in "Name",         with: "Example User"
         fill_in "Email",        with: "foobarbaz@example.com"
         fill_in "Password",     with: "foobar"
@@ -33,10 +33,10 @@ describe "User pages" do
 
       context "after saving the user" do
         before(:each) do
-          click_link_or_button submit
+          click_link_or_button "Create my account"
         end
 
-        let(:user) { User.find_by_email('user@example.com') }
+        let(:user) { User.find_by_email('foobarbaz@example.com') }
 
         it "should have a title including the user's name" do
           page.should have_selector('title', text: user.name)
@@ -47,17 +47,17 @@ describe "User pages" do
         end
 
         it "should have sign out link" do
-          page.should have_link('Sign out')
-        end
-      end
-
-      context "followed by signout" do
-        before(:each) do
-          click_link_or_button "Sign out"
+          page.should have_link('Sign out', href: signout_path)
         end
 
-        it "should have a sign in link" do
-          page.should have_link('Sign in')
+        context "followed by signout" do
+          before(:each) do
+            click_link_or_button 'Sign out'
+          end
+
+          it "should have a sign in link" do
+            page.should have_link('Sign in')
+          end
         end
       end
     end
