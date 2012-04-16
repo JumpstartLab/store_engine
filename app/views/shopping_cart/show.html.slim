@@ -7,8 +7,10 @@ form class="well" = form_for cart, :as => :put, :url => shopping_cart_path do |f
       td Price
       td Quantity
       td
-    tr 
-      - @cart_items.each do |cart_item|
+    
+    
+    - @cart_items.each do |cart_item|
+      tr
         td class="span1" = image_tag(cart_item.product.photo, :size => "50x50")
         td class="span10" = link_to cart_item.product.title, product_path(cart_item.product)
         td class="span1" 
@@ -24,5 +26,5 @@ h3 Order Total
 
 p
 - unless current_user.nil?
-  = link_to "Checkout", new_shipping_address_path
+  button class="btn" = link_to "Checkout", new_shipping_address_path
 
