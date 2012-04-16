@@ -8,11 +8,17 @@ class Order < ActiveRecord::Base
   has_many :order_products, :dependent => :destroy
   has_many :products, :through => :order_products
   validates_presence_of :user_id
+  has_many :order_statuses
 
   scope :desc, order("id DESC")
 
   def mark_as_paid
-    update_attribute(:status, 'paid')
+    #update_attribute(:status, 'paid')
+    self.order_statuses.create(:status => 'paid')
+  end
+
+  def current_status
+    self.order_statuses.last.status
   end
 
   def charge(cart)
@@ -27,9 +33,10 @@ class Order < ActiveRecord::Base
   def save_credit_card
     if valid?
       credit_card = CreditCard.new(user)
-      if credit_card.add_details_from_stripe_card_token(self.stripe_card_token)
-        self.update_attributes( :status => 'payment info entered',
-                                :credit_card_id => credit_card.id )
+      credit_card.add_details_from_stripe_card_token(self.stripe_card_token)
+      if credit_card.add_user_to_credit_card(user)
+        self.update_attributes( :credit_card_id => credit_card.id )
+        self.order_statuses.create( :status => 'pending')
       end
     end
   end

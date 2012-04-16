@@ -26,7 +26,7 @@ class Product < ActiveRecord::Base
 
   def retire
     self.retired = true
-    cart_products.destroy_all
+    self.cart_products.destroy_all
     save
   end
 
