@@ -5,7 +5,9 @@ gem 'jquery-rails'
 gem 'slim'
 gem 'rack-pjax'
 gem 'twitter-bootstrap-rails'
-gem 'pg'
+group :production do
+  gem 'pg'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
