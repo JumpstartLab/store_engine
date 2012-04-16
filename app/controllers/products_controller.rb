@@ -1,9 +1,13 @@
 class ProductsController < ApplicationController
-  before_filter :lookup_product, :only => [:show, :edit, :destroy, :update]
+  before_filter :lookup_product, :only => [:show, :edit, :destroy, :update, :retire]
 
   def index
-    @products = Product.all
-    @line_item = LineItem.new
+    if admin_view?
+      @products = Product.all
+    else
+      @products = Product.active.all
+      @line_item = LineItem.new
+    end
   end
 
   def show
@@ -31,11 +35,22 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  def retire
+    product = Product.find(params[:id])
+    if product.retired?
+      product.make_active_again
+      redirect_to products_path
+    else
+      product.retire
+      redirect_to products_path
+    end
+  end
+
+
   def edit
   end
 
   def update
-    # raise params.inspect
     @product.update_attributes(params[:product])
     redirect_to product_path(@product)
   end
