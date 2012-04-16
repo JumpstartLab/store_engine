@@ -35,4 +35,12 @@ class ShoppingCart < ActiveRecord::Base
   def clear
     cart_items.clear
   end
+
+  def item_count
+    if cart_items.length == 1
+      "item"
+    else
+      "items"
+    end
+  end
 end

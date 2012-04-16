@@ -1,4 +1,4 @@
-= form_for @product, :url => path, :html => { :class => 'form-horizontal'} do |f|
+form class="well"= form_for @product, :url => path, :html => { :class => 'form-horizontal'} do |f|
   div class="control-group"
     = f.label :title, :class => 'control-label'
     div class="controls"
@@ -25,4 +25,5 @@
      br
 
   = f.select(:retired, options_for_select([['Active', false], ['Retired', true]], @product.retired))
+  p
   = f.submit nil, :class => 'btn btn-primary'

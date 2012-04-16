@@ -1,23 +1,28 @@
 h3 Shopping Cart
 
-= form_for cart, :as => :put, :url => shopping_cart_path do |f|
+form class="well" = form_for cart, :as => :put, :url => shopping_cart_path do |f|
   table class="table table-striped"
     th
-      tr
-        td Name
-        td Price
-        td Quantity
-    - @cart_items.each do |cart_item|
-      tr
-        td = link_to cart_item.product.title, product_path(cart_item.product)
-        td = cart_item.price
-        td = text_field_tag "quantity[#{cart_item.id}]", cart_item.quantity
-        td = link_to "Remove", cart_item_path(cart_item), :method => :delete
+      td Item
+      td Price
+      td Quantity
+      td
+    tr 
+      - @cart_items.each do |cart_item|
+        td class="span1" = image_tag(cart_item.product.photo, :size => "50x50")
+        td class="span10" = link_to cart_item.product.title, product_path(cart_item.product)
+        td class="span1" 
+          | $
+          = cart_item.price
+        td class="span1" = text_field_tag "quantity[#{cart_item.id}]", cart_item.quantity
+        td class="span1" = link_to "Remove", cart_item_path(cart_item), :method => :delete
   = f.submit     
 
 h3 Order Total 
+| $
 = cart.total  
 
+p
 - unless current_user.nil?
   = link_to "Checkout", new_shipping_address_path
 
