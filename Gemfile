@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'slim'
 gem 'rack-pjax'
-
+gem 'twitter-bootstrap-rails'
+gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -17,7 +17,6 @@ group :assets do
   # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails'
 end
 
 group :development, :test do
@@ -33,4 +32,5 @@ group :development, :test do
   gem 'bcrypt-ruby'
   gem 'cane'
   gem 'reek'
+  gem 'sqlite3'
 end
