@@ -33,7 +33,6 @@ group :development, :test do
   gem 'simplecov'
   gem 'growl'
   gem 'faker'
-  gem 'bcrypt-ruby'
   gem 'cane'
   gem 'reek'
   gem 'sqlite3'
