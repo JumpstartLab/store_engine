@@ -30,14 +30,31 @@ describe "logged in user" do
     end
   end
   context "My Account" do
-    let(:billing) {{credit_card_number: 555555555555, credit_card_expiration_date: 03052013, street: "One Mockingbird Lane", city: "Anytown", state: "VA", zipcode: 22209, name: "Favorite Billing"}}
-    let(:shipping) {{street: "One Mockingbird Lane", city: "Anytown", state: "VA", zipcode: 22209, name: "Favorite Billing"}}
+    let(:billing) {
+      { credit_card_number: 555555555555,
+        credit_card_expiration_date: 03052013,
+        street: "One Mockingbird Lane",
+        city: "Anytown",
+        state: "VA",
+        zipcode: 22209,
+        name: "Favorite Billing",
+        card_type: 'Visa'
+      }
+    }
+    let(:shipping) {
+      { street: "One Mockingbird Lane",
+        city: "Anytown",
+        state: "VA",
+        zipcode: 22209,
+        name: "Favorite Billing"
+      }
+    }
     before(:each) do
       visit user_path(user)
     end
     it "displays user information properly" do
       within ".main-content" do
-        ["Edit", user.display_name, "Orders"].each do |good|
+        ["Change Profile", user.display_name, "Orders"].each do |good|
           page.should have_content good
         end
       end

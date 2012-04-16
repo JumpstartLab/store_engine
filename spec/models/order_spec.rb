@@ -51,7 +51,7 @@ describe Order do
   end
 
   describe "#has_product?" do
-    it "returns a bool of whether the order has a product" do
+    it "returns a boolean of whether the order has a product" do
       prod = Fabricate(:product)
       ord.has_product?(prod.id).should == false
       LineItem.create(order_id: ord.id, product_id: prod.id)

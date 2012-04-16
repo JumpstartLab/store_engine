@@ -1,35 +1,35 @@
-= render partial: "order_header", locals: {order: @order}
-table.table.table-striped
-  tr
-    th Product Name
-    th Product Quantity
-    th Unit Price
-    th Subtotal
-  = render partial: "line_item", collection: @order.line_items
-- if @order.has_billing_method?
-  - billing = @order.find_billing
-  h2 Billing Method
-  | Credit Card ending in: #{@order.credit_card_last_four}
-  br/
-  = link_to "Change Billing Method", edit_billing_method_path(billing), class: "btn-mini btn"
-- else
-  = link_to "Add a Billing Method", new_billing_method_path, class: "btn-mini btn"
+- if @order.line_items.present?
+  = render partial: "order_header", locals: {order: @order}
+  table.table.table-striped
+    tr
+      th Product Name
+      th Product Quantity
+      th Unit Price
+      th Subtotal
+      th Actions
+      = render partial: "line_item", collection: @order.line_items
 
-- if @order.has_shipping_address?
-  - shipping = @order.find_shipping
-  h2 Shipping Address
-  | Street: #{@order.shipping_street}
-  br/
-  = link_to "Change Shipping Address", edit_shipping_address_path(shipping), class: "btn-mini btn"
-- else
-  br/
-  = link_to "Add a Shipping Address", new_shipping_address_path, class: "btn-mini btn"
+  - if @order.has_billing_method?
+    - billing = @order.find_billing
+    h2 Billing Method
+    | Credit Card ending in: #{@order.credit_card_last_four}
+    br/
+    = link_to "Change Billing Method", edit_billing_method_path(billing), class: "btn-mini btn"
+  - else
+    = link_to "Add a Billing Method", new_billing_method_path, class: "btn-mini btn"
 
-  / / SHOW LIST OF shipping ADDRESSES
-  / br/
-  / = link_to "Add a Shipping Method", new_shipping_address_path
-br/
-/ = render partial: "billing"
-h2#subtotal Total: #{ number_to_currency(@order.amount)}
-br/
-= link_to "Check Out", order_path(@order), method: :put, class: "btn btn-success"
+  - if @order.has_shipping_address?
+    - shipping = @order.find_shipping
+    h2 Shipping Address
+    | Street: #{@order.shipping_street}
+    br/
+    = link_to "Change Shipping Address", edit_shipping_address_path(shipping), class: "btn-mini btn"
+  - else
+    br/
+    = link_to "Add a Shipping Address", new_shipping_address_path, class: "btn-mini btn"
+  h2#subtotal Total: #{ number_to_currency(@order.amount)}
+  br/
+  = link_to "Check Out", order_path(@order), method: :put, class: "btn btn-success"
+-else
+  h3 #{"Your Cart is Empty"}
+  = link_to "Browse Products", root_path, class: "btn btn-success"

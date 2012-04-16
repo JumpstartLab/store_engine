@@ -1,4 +1,5 @@
 h1 Welcome Back, #{@user.display_name}
+<<<<<<< HEAD
 p
   = @user.full_name
   br/
@@ -6,7 +7,13 @@ p
   p = link_to "Edit Information", edit_user_path(@user), class: "btn"
   = render partial: "billing", locals: { user: @user }
   = render partial: "shipping", locals: { user: @user }
+=======
+>>>>>>> 43d0a84bf80d7034f3b5dda7de2ec2ffb6a80e75
 
+= render partial: 'user_order_history'
+= render partial: 'user_acct_info'
+= render partial: 'user_billing'
+= render partial: 'user_shipping'
 
 - if admin_view?
   = link_to "Destroy", user_path(@user), :method => :delete, confirm: "Delete \"#{@user.display_name}\"?", class: "btn btn-danger"

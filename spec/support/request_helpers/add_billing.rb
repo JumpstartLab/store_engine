@@ -1,6 +1,7 @@
 module RequestHelpers
   module AddBilling
     def add_billing(params)
+      fill_in 'Card Type', :with => params[:card_type]
       fill_in 'Credit card number', :with => params[:credit_card_number]
       fill_in 'Credit card expiration date', :with => params[:credit_card_expiration_date]
       fill_in 'Street', :with => params[:street]
@@ -11,6 +12,7 @@ module RequestHelpers
       click_link_or_button 'Create Billing method'
     end
     def add_non_user_billing(params)
+      fill_in 'Card Type', :with => params[:card_type]
       fill_in 'Credit card number', :with => params[:credit_card_number]
       fill_in 'Credit card expiration date', :with => params[:credit_card_expiration_date]
       fill_in 'Street', :with => params[:street]
