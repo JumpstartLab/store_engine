@@ -40,6 +40,45 @@ describe Product do
     product_with_duplicate_title = Product.new(@attr)
     product_with_duplicate_title.should_not be_valid
   end
+
+  describe ".find_by_title" do
+    let!(:product) { FactoryGirl.create(:product, title: "Lightsaber") }
+    it "returns a match with the exact string" do
+      p = Product.find_by_title(product.title)
+      p.first.title.should == product.title
+    end
+
+    it "returns a match with the lowercase string" do
+      p = Product.find_by_title("lightsaber")
+      p.first.title.should == product.title
+    end
+  end
+
+  describe ".find_by_category" do
+    let(:category) { FactoryGirl.create(:category) }
+    let!(:product) { FactoryGirl.create(:product, categories: [category]) }
+    it "returns a match with the exact string" do
+      p = Product.find_by_category(category.title)
+      p.first.title.should == product.title
+    end
+
+    it "returns a match with the lowercase string" do
+      p = Product.find_by_category(category.title.downcase)
+      p.first.title.should == product.title
+    end
+  end
+
+  describe "#status" do
+    let(:product) { FactoryGirl.create(:product, :activity => false) }
+    let(:product_2) { FactoryGirl.create(:product) }
+    it "returns false if the item is retired" do
+      product.status?.should be_false
+    end
+
+    it "returns true for new items" do
+      product_2.should be_true
+    end
+  end
 end
 
 
