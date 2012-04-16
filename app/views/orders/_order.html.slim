@@ -4,6 +4,7 @@
       td = render partial: "admin_buttons", locals: { order: order }
       td = link_to order.id, order_path(order)
       td = link_to order.user_name, user_path(order.user)
+      td = link_to order.email_address, user_path(order.user)
     td = render partial: "order_item", collection: order.line_items
     td = number_to_currency(order.amount)
     td = order.status
