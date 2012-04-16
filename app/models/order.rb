@@ -14,7 +14,7 @@
   end
 
   def user
-    User.find(user_id)
+    User.find(self.user_id)
   end
 
   def amount

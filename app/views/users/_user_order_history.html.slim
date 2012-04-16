@@ -20,6 +20,6 @@ h2 Order History
             td = li.product.title
             td = li.quantity
             td = li.price
-            td = li.subtotal
+            td = number_to_currency(li.subtotal)
 - else
   = "No orders to date"

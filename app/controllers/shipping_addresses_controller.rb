@@ -1,11 +1,11 @@
 class ShippingAddressesController < ApplicationController
   # before_filter :protect_against_admin, only: [:new, :edit, :update, :create, :destroy]
   def new
-    session[:return_to] ||= request.referrer
+    session[:return_to] = request.referrer
     @shipping_address = ShippingAddress.new
   end
   def edit
-    session[:return_to] ||= request.referrer
+    session[:return_to] = request.referrer
     if logged_in?
       @shipping_address = current_user.shipping_address
     else
