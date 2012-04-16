@@ -4,9 +4,10 @@
 
  <% @users.each do |user| %>
    <li>
-    ID: <%= link_to user.id, user_path(user) %> <br />
+    ID: <%= user.id %> <br />
     Email: <%= user.email %>
     Username: <%= user.user_name %>
+    Admin : <%= user.admin %>
 
    </li>
 

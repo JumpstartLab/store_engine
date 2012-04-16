@@ -33,7 +33,6 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
-
   def lookup_product
     @product = Product.find(params[:id])
   end

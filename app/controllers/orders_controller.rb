@@ -32,10 +32,8 @@ class OrdersController < ApplicationController
       redirect_to products_path, notice: "Cart is empty"
       return 
     end
-
-
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @order }
     end
   end
@@ -43,7 +41,6 @@ class OrdersController < ApplicationController
   def create
     @cart = current_cart
     @order.user = current_user
-
     respond_to do |format|
       if @order.save
         @order.add_contents_of_cart(@cart, @order)
