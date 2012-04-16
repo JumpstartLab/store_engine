@@ -84,14 +84,6 @@ describe "admin" do
         page.should have_content "2"
       end
     end
-    it "can destroy an order" do
-      visit orders_path
-      click_link_or_button "Destroy"
-      current_path.should == orders_path
-      within "#main-content" do
-        page.should_not have_content order.id
-      end
-    end
   end
   context "product" do
     let!(:product) { Fabricate(:product) }
