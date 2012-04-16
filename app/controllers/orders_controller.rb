@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(params[:order])
-    @order.status = "pending"
+    @order.status = Status.new
     @order.user_id = current_user.id
     @order.save
     @order.add_order_items_from(@cart) 

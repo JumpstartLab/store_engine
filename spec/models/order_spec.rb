@@ -13,7 +13,6 @@ describe Order do
   
   before(:each) do
     @attr = {
-      status: "pending",
       user: test_user,
       products: test_products
     }
@@ -21,6 +20,14 @@ describe Order do
   
   it "should create an order given valid attributes" do
     Order.create(@attr)
+  end
+
+  it "should have a status" do
+    order.current_status.should_not == nil
+  end
+
+  it "should have a default status of 'pending'" do
+    order.current_status.should == "pending"
   end
 
   describe "#total_price" do

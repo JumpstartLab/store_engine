@@ -54,11 +54,11 @@ describe "Dashboard" do
     end
 
     it "displays the order status for each order" do
-      page.should have_content(order.status)
+      page.should have_content(order.current_status)
     end
 
     it "displays the timestamp for when an order was updated" do
-      page.should have_content(order.update_at)
+      page.should have_content(order.updated_at)
     end
   end
 end

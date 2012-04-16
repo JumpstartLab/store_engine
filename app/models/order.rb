@@ -3,14 +3,13 @@ class Order < ActiveRecord::Base
   attr_accessor :stripe_card_token
   attr_accessible :stripe_card_token
 
-  validates :status, :inclusion => { :in => %w(pending cancelled paid shipped returned) }
-  # validates_presence_of :user, :products, :order_items
-
   has_many :order_items
   has_many :products, through: :order_items
   
   belongs_to :user
   belongs_to :address
+  has_one :status
+
 
   accepts_nested_attributes_for :address
   
@@ -50,5 +49,9 @@ class Order < ActiveRecord::Base
   		oi.product = item.product
   		oi.save
   	end
+  end
+
+  def current_status
+    status.name
   end
 end
