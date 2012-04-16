@@ -10,7 +10,8 @@
 
   validates :title, :presence => true, :uniqueness => true
   validates :description, :presence => true
-  validates :price, :presence => true, :numericality => true
+  validates :price, :presence => true
+  validates_numericality_of :price#, :greater_than_or_equal_to => .01
 
   def category_list
     categories.map(&:name).join(", ")
@@ -22,6 +23,7 @@
     when false then true
     end
   end
+
 
 #  private
 
