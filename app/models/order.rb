@@ -8,6 +8,7 @@ class Order < ActiveRecord::Base
   has_many :order_products, :dependent => :destroy
   has_many :products, :through => :order_products
   validates_presence_of :user_id
+  has_many :order_statuses
 
   scope :desc, order("id DESC")
 
@@ -26,12 +27,17 @@ class Order < ActiveRecord::Base
   end
 
   def mark_as_paid
-    update_attribute(:status, 'paid')
+    #update_attribute(:status, 'paid')
+    self.order_statuses.create(:status => 'paid')
+  end
+
+  def current_status
+    self.order_statuses.last.status
   end
 
   def charge(cart)
     if credit_card.charge(cart.cart_total_in_cents)
-      @order.mark_as_paid
+      self.mark_as_paid
       true
     else
       false
@@ -43,8 +49,8 @@ class Order < ActiveRecord::Base
       customer_token = stripe_create_customer
       credit_card = CreditCard.create_from_stripe_token(customer_token)
       if credit_card.add_user_to_credit_card(user)
-        self.update_attributes( :status => 'payment info entered',
-                                :credit_card_id => credit_card.id )
+        self.update_attributes( :credit_card_id => credit_card.id )
+        self.order_statuses.create( :status => 'pending')
       end
     end
   rescue Stripe::InvalidRequestError => e
