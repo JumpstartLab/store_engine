@@ -18,7 +18,7 @@ body {
   font-size: 16px;
 }
 
-a {
+/*a {
   text-decoration: none;
   color: blue;
   font-weight: 900;
@@ -27,27 +27,8 @@ a {
 a:hover {
   color: white;
   background: blue;
-}
+}*/
 
-.nav {
-  background: #333;
-  color: white;
-}
-
-ul.nav {
-  padding: 1em;
-}
-ul.nav li{
-  color: green;
-  display: inline;
-  margin: 1em;
-  padding: 1em;
-}
-
-.nav a {
-  color: white;
-  padding: 1em;
-}
 
 #stripe_error {
   color: red;

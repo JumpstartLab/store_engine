@@ -1,3 +1,8 @@
-$('#cart_info').html("<%= @cart.quantity %> | <%= number_to_currency(@cart.total_price) %>");
+$('a#cart_count').text('Cart (<%= @cart.quantity %>)');
+var original_color = $('a#cart_count').css('color');
+$('a#cart_count').animate({ color: "lime"}, 200).delay(1000).animate({ color: original_color}, 400);
+
+
+
 
 

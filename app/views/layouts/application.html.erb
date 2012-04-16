@@ -10,20 +10,27 @@
 <body>
   <header>
 
-    <ul class="nav">
-      <li class="active">
-        <a href="/">Home</a>
-      </li>
-      <li id="cart_count"><%= link_to "Cart", cart_path %> 
-        <div id="cart_info">(<%= @cart.quantity %>): <%= number_to_currency(@cart.total_price) %></li>
-      <% if current_user %>
-      <li>Logged in as <%= current_user.full_name %><%= link_to "Log Out", logout_path %></li>
-      <li><%= link_to "Orders", orders_path %></li>
-      <% else %>
-      <li><%= link_to "Sign Up", new_user_path %></li> or
-      <li><%= link_to "Log In", new_session_path %></li>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="/">StoreEngine</a>
+          <ul class="nav">
+            <li>
+              <%= link_to("Cart (#{@cart.quantity})", cart_path, :id => "cart_count") %>
+            </li>
+            <!-- <p><%= link_to "Cart", cart_path %> 
+              <%= @cart.quantity %> <%= number_to_currency(@cart.total_price) %></p> -->
+            <% if current_user %>
+            <li>Logged in as <%= current_user.full_name %><%= link_to "Log Out", logout_path %></li>
+            <li><%= link_to "Orders", orders_path %></li>
+            <% else %>
+            <li><%= link_to "Sign Up", new_user_path %></li>
+            <li><%= link_to "Log In", new_session_path %></li>
+          </ul>
       <% end %>
-    </ul>
+        </div>
+      </div>
+    </div>
 
     <!-- <br />
     <% if current_user %>
