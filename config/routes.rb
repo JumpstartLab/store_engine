@@ -10,6 +10,7 @@ StoreEngine::Application.routes.draw do
   resource :edit
   resources :categories
   resource :search
+  resource :dashboard, :controller => 'dashboard'
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
