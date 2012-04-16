@@ -1,10 +1,11 @@
 div id==dom_id(product)
-  .span1
-    = image_tag product.image, class: "photo_sub"
-  .span3
+  .span2#product_image
+    = image_tag product.image, class: "product_photo"
+  .span2#product_info
     = link_to product.title, product_path(product), class: "product-title"
     .price
       = number_to_currency(product.price)
+      br/
       = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success'
-    p
+      br/
       = render partial: "category", collection: product.categories

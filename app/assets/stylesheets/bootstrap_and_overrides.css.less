@@ -38,11 +38,11 @@ body { padding-top: 60px; }
 
 /******PRODUCTS VARIABLES******/
 
-.title-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 32px; color: @title-color; }
+.title-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 28px; color: @title-color; }
 @price-color: @nav-color;/*#e19418;*/
 @title-color: @whale;/*#6aa3c4;*/
-.buy-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 28px; color: @price-color;}
-.buy-button{ padding: 5px; margin: 10px; font-size: 14px; .rounded(8px); float: right; }
+.buy-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 24px; color: @price-color;}
+.buy-button{ padding: 5px; margin: 5px; font-size: 14px; .rounded(8px); float: left; }
 @background: #ddd;
 
 
@@ -69,8 +69,10 @@ img.logo { width: 50px; float: left; padding-right: 15px; }
 
 /*********PRODUCTS********/
 div#products  {
-  .span1 { margin: 0; }
-  .span3 { padding: 10px; margin: 0 0 0 10px; vertical-align: top; float: left;
+  #product_image { margin: 0;
+    .product_photo { max-width: inherit; max-height: 100px; float: right; margin: 0; border: 2px solid @whale; overflow: hidden; }
+  }
+  #product_info { margin: 10px;
     a.product-title { .title-font }
   }
   div.price { .buy-font; padding: 20px 0;
@@ -81,7 +83,7 @@ div#products  {
   }
 }
 
-.photo_sub { width: 100%; }
+
 .quantity { width: 30px;  }
 
 /****************ORDERS**********/
