@@ -5,7 +5,8 @@ gem 'jquery-rails'
 gem 'slim'
 gem 'rack-pjax'
 gem 'twitter-bootstrap-rails'
-gem 'rake'
+gem 'bcrypt-ruby'
+
 group :production do
   gem 'pg'
 end
