@@ -41,7 +41,18 @@ describe "admin" do
         page.should have_content button
       end
     end
+
+    it "can un-retire a product" do
+      within "#main-content" do
+        click_link_or_button "Retire"
+      end
+      within "#main-content" do
+        click_link_or_button "Make Active Again"
+      end
+      page.should have_content "Retire"
+    end
   end
+
   context "orders" do
     let!(:order) {
       ord = Fabricate(:order)
