@@ -12,6 +12,25 @@ FactoryGirl.define do
   factory :cart_item do
     quantity { rand(1..100) } 
   end
+
+  factory :order_item do
+    quantity { rand(1..100) }
+    product
+    order
+  end
+
+  factory :order do
+    user
+    status "pending"
+    factory :order_with_items do
+      ignore do
+        order_item_count 5
+      end
+      after_create do |order, evaluator|
+        FactoryGirl.create_list(:order, evaluator.order_item_count, order: order)
+      end
+    end
+  end
   
   factory :user do
     full_name Faker::Name.name
@@ -25,7 +44,7 @@ FactoryGirl.define do
 
   factory :address do
     street_1 Faker::Address.street_address
-    zip_code Faker::Address.zip_code
+    zip_code "20001"
     city     Faker::Address.city
     state    Faker::Address.state_abbr
     association :user

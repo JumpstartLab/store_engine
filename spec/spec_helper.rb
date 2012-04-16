@@ -1,5 +1,5 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start 'rails'
 require 'rubygems'
 require 'spork'
 #uncomment the following line to use spork with the debugger

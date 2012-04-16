@@ -17,4 +17,12 @@ describe Order do
   it "should create an order given valid attributes" do
     Order.create(@attr)
   end
+
+  describe "#total_price" do
+    let(:order) { FactoryGirl.create(:order_with_items) }
+    it "gets the correct total price of the order" do
+
+    end
+  end
+
 end
