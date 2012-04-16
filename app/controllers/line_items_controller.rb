@@ -1,18 +1,15 @@
 class LineItemsController < ApplicationController
-  # GET /line_items
-  # GET /line_items.json
+
   load_and_authorize_resource
+
   def index
     @line_items = LineItem.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @line_items }
     end
   end
 
-  # GET /line_items/1
-  # GET /line_items/1.json
   def show
     @line_item = LineItem.find(params[:id])
 

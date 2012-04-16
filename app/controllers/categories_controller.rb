@@ -1,6 +1,15 @@
 class CategoriesController < ApplicationController
 
 
+  def index
+    @categories = Category.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @line_items }
+    end
+  end
+
   def show
     @category = Category.find(params[:id])
   end
@@ -31,11 +40,8 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # PUT /categories/1
-  # PUT /categories/1.json
   def update
     @category = Category.find(params[:id])
-
     respond_to do |format|
       if @category.update_attributes(params[:category])
         format.html { redirect_to categories_path, notice: 'Category was successfully updated.' }
@@ -47,8 +53,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # DELETE /categories/1
-  # DELETE /categories/1.json
   def destroy
     @category = Category.find(params[:id])
     @category.destroy
