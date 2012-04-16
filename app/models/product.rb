@@ -63,4 +63,8 @@ class Product < ActiveRecord::Base
       self.photo_url
     end
   end
+
+  def status
+    self.retired == true ? "retired" : "active"
+  end
 end

@@ -38,35 +38,41 @@ body { padding-top: 60px; }
 
 /******PRODUCTS VARIABLES******/
 
-.title-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 32px; color: @title-color; }
+.title-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 28px; color: @title-color; }
 @price-color: @nav-color;/*#e19418;*/
 @title-color: @whale;/*#6aa3c4;*/
-.buy-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 28px; color: @price-color;}
-.buy-button{ padding: 5px; margin: 10px; font-size: 14px; .rounded(8px); float: right; }
+.buy-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 24px; color: @price-color;}
+.buy-button{ padding: 5px; margin: 5px; font-size: 14px; .rounded(8px); float: left; }
 @background: #ddd;
 
 
 
 /********UNIVERSAL*********/
 body { background: url("background.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
-.container .span8, .container #cart { background: @background; padding: 15px; .rounded(8px); margin-bottom: 20px; float: left; }
+.container #main-content, .container #cart { background: @background; padding: 15px; .rounded(8px); margin-bottom: 20px; float: left; }
 input { height: 30px; }
 .navbar .navbar-inner {
   .gradient(@nav-color);
   height: 50px;
   padding-top: 15px;
-
+  ul { .gradient(@nav-color); }
   a, .nav li a { color: @whale; text-shadow: none; }
 }
 
-#main-content, #cart { margin-top: 30px; font-family: @font1;}
+#main-content, #cart, #notice { margin-top: 30px; font-family: @font1;}
 
 img.logo { width: 50px; float: left; padding-right: 15px; }
 
+/*.row{ margin: 0;
+  #notice { background: @background; margin: 30px 10px 0 2px; padding: 10px; font-family: @font1; .rounded(8px); }
+}*/
+
 /*********PRODUCTS********/
 div#products  {
-  .span1 { margin: 0; }
-  .span3 { padding: 10px; margin: 0 0 0 10px; vertical-align: top; float: left;
+  #product_image { margin: 0;
+    .product_photo { max-width: inherit; max-height: 100px; float: right; margin: 0; border: 2px solid @whale; overflow: hidden; }
+  }
+  #product_info { margin: 10px;
     a.product-title { .title-font }
   }
   div.price { .buy-font; padding: 20px 0;
@@ -77,5 +83,7 @@ div#products  {
   }
 }
 
-.photo_sub { width: 100%; }
+
 .quantity { width: 30px;  }
+
+/****************ORDERS**********/
