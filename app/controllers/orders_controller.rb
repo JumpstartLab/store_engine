@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
       notice = "Thank you for your purchase. You will receive an email confirmation shortly"
       session[:order_id] = nil
       redirect_to root_path, notice: notice
-    elsif @order.transition
+    elsif @order.status != "pending" && @order.transition
       session[:return_to] = request.referrer
       notice = "Transition successful"
       redirect_to session[:return_to], notice: notice
