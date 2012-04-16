@@ -4,6 +4,9 @@ p
   = @product.description
 
 p
+  = image_tag(@product.photo, :size => "200x200")
+
+p
   = @product.price
 p
   - @product.categories.each do |category|

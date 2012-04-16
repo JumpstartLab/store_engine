@@ -10,15 +10,22 @@ html
   div class="navbar navbar-fixed-top"
     div class="navbar-inner"
       div class="container-fluid"
-        a class="brand" href="#" StoreName
-        - if current_user
-          ul class="nav"
-            li class="active" = link_to "Edit Profile", edit_user_path(current_user.id)
+        a class="brand" href=root_path StoreName
+        ul class="nav pull-left"
+          li class="active" = link_to "Products", products_path
+          li class="active" = link_to "Categories", categories_path
+        ul class="nav pull-right"
+          li class="active" = link_to "Shopping Cart - #{cart.cart_items.length} #{cart.item_count}", shopping_cart_path
+          - if current_user
+            - if current_user.display_name
+              li class="active" = link_to current_user.display_name, edit_user_path(current_user.id)
+            -else
+              li class="active" = link_to current_user.email, edit_user_path(current_user.id)
             li class="active" = link_to "Logout", :logout
-        - else 
-          ul class="nav"
+          - else 
             li class="active" = link_to "Register", new_user_path 
             li class="active" = link_to "Login", :login
+     
 
   div class="container-fluid"
 

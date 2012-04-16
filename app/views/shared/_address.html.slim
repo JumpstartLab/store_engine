@@ -1,28 +1,45 @@
-= form_for @address do |f|
-  = f.label :first_name
+form class="well form-inline" = form_for @address do |f|
+  | *
+  = f.label :first_name 
+  |  
   = f.text_field :first_name
   p
+  | *
   = f.label :last_name
+  |  
   = f.text_field :last_name
   p
   = f.label :company
+  |  
   = f.text_field :company
   p
+  | *
   = f.label :line_1
+  |  
   = f.text_field :line_1
   p
   = f.label :line_2
+  |  
   = f.text_field :line_2
   p
+  | *
   = f.label :city
+  |  
   = f.text_field :city
   p
+  | *
   = f.label :state
+  |  
   = f.text_field :state
   p
+  | *
   = f.label :zipcode
+  |  
   = f.text_field :zipcode
   p
+  | *
   = f.label :phone
+  |  
   = f.text_field :phone
+  p
   =f.submit

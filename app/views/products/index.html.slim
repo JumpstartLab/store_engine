@@ -1,14 +1,10 @@
-h1 Products
-
-table class="table table-striped"
-  tr
-    th Name
-    th Price
-
+ul class="thumbnails"
   - @products.each do |product|
-    tr
-      td = link_to product.title, product_path(product)
-      td = product.price
-
-
-= link_to "Create new product", new_admin_product_path, :class => 'btn btn-mini'
+    li class="span3"
+      a href=product_path(product) class="thumbnail"
+        = image_tag(product.photo, :size => "100x100")
+        p 
+        strong = link_to product.title, product_path(product)
+        p = product.description
+        | $
+        = product.price
