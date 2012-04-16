@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   validates :display_name, length: { minimum: 2, maximum: 32 }, :unless => "display_name.blank?"
 
   has_many :orders
+  has_many :credit_cards
   has_one :cart
 
   def add_order(order)

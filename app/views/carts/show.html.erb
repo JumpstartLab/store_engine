@@ -13,23 +13,7 @@
       <% if current_cart.cart_products.empty? %>
       <td colspan=4>You have no items in your cart.</td>
       <% else %>
-        <% current_cart.cart_products.each do |cart_product| %>
-          <tr>
-            <td><%= link_to cart_product.name, cart_product.product %> 
-              <%= link_to cart_product_path(cart_product.id), :method => :delete do %>
-              <i class="icon-trash"></i> Remove from cart
-              <% end %>
-            </td>
-            <td>
-              <%= form_for cart_product do |f| %>
-                <%= f.text_field :quantity, :value => cart_product.quantity %>
-                <%= f.submit "update", :class => "btn btn-large btn-primary" %>
-              <% end %>
-            </td>
-            <td><%= cart_product.price %></td>
-            <td><%= cart_product.subtotal %></td>
-          </tr>
-        <% end %>
+        <%= render :partial => "cart_products", :locals => { cart_products: current_cart.cart_products } %>
         <tr id="total-row">
           <td colspan="2"></td>
           <td style="border-left: 0px; border-right: 0px;">Total</td>

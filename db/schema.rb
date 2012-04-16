@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120411191015) do
+ActiveRecord::Schema.define(:version => 20120415050527) do
 
   create_table "cart_products", :force => true do |t|
     t.integer  "cart_id"
@@ -35,6 +35,19 @@ ActiveRecord::Schema.define(:version => 20120411191015) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "credit_cards", :force => true do |t|
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.integer  "user_id"
+    t.string   "credit_card_type"
+    t.string   "last_four"
+    t.string   "exp_month"
+    t.string   "exp_year"
+    t.string   "stripe_customer_token"
+  end
+
+  add_index "credit_cards", ["user_id"], :name => "index_credit_cards_on_user_id"
+
   create_table "discounts", :force => true do |t|
     t.integer  "product_id"
     t.integer  "category_id"
@@ -55,9 +68,9 @@ ActiveRecord::Schema.define(:version => 20120411191015) do
   create_table "orders", :force => true do |t|
     t.string   "status"
     t.integer  "user_id"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
-    t.string   "stripe_customer_token"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "credit_card_id"
   end
 
   create_table "product_categories", :force => true do |t|
@@ -74,7 +87,7 @@ ActiveRecord::Schema.define(:version => 20120411191015) do
     t.string   "photo"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
-    t.boolean  "retired",                        :default => false
+    t.boolean  "retired",     :default => false
   end
 
   create_table "users", :force => true do |t|

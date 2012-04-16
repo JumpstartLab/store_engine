@@ -11,5 +11,7 @@ require 'spec_helper'
 #   end
 # end
 describe Admin::OrdersHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "order_actions_by_status(status,id)" do
+    
+  end
 end

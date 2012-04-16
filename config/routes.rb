@@ -1,6 +1,6 @@
 StoreEngine::Application.routes.draw do
 
-  resources :users
+  resources :users, only: [:show, :create, :new, :update]
 
   resource  :cart, only: [:show, :update]
   resources :sessions

@@ -11,6 +11,8 @@ module Admin::OrdersHelper
     when "pending"
       link_to "Mark as cancelled", 
         admin_orders_mark_cancelled_path(id: id), method: :put
+    when "returned"
+      "This order has been returned"
     else
       "This order's complete!"
     end

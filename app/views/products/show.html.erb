@@ -11,11 +11,13 @@
         <th>Buy it!</th>
       </tr>
     </thead>
-
+    <!-- don't use this partial... make a custom one for show so that there isn't 2 add to carts -->
     <%= render :partial => @product %>
 
   </table>
 </div>
 
-<%= link_to 'Add to cart', new_cart_product_path(:product_id => @product) %>
+<% if @product.active? %>
+  <%= link_to 'Add to cart', new_cart_product_path(:product_id => @product) %>
+<% end %>
 <%= link_to 'Back to products', products_path %>

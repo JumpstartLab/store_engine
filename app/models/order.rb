@@ -1,31 +1,51 @@
 class Order < ActiveRecord::Base
-  attr_accessible :user_id, :status, :stripe_customer_token
+  attr_accessible :user_id, :status, :credit_card_id
   attr_accessor :stripe_card_token
 
   belongs_to :user
+  belongs_to :credit_card
+
   has_many :order_products, :dependent => :destroy
   has_many :products, :through => :order_products
   validates_presence_of :user_id
 
   scope :desc, order("id DESC")
 
-  def charge(cart_total_in_cents)
-    #Charge must be in cents.
-    # raise cart_total_in_cents.inspect
-      Stripe::Charge.create(amount: cart_total_in_cents,
-                            currency: 'usd',
-                            customer: customer_token)
-      self.update_attribute(:status, 'paid')
+  def stripe_create_customer
+    if stripe_card_token.blank?
+      logger.error "Stripe error while creating customer: No card token present"
+      errors.add :base, "There was a problem with your credit card."
+      return false
+    end
+
+    Stripe::Customer.create( description: "Mittenberry Order #{id}",
+                                      card: stripe_card_token)
+
   rescue Stripe::InvalidRequestError => e
-    send_charge_error(e)
+    send_customer_create_error(e)
   end
 
-  def save_customer
+  def mark_as_paid
+    update_attribute(:status, 'paid')
+  end
+
+  def charge(cart)
+    if credit_card.charge(cart.cart_total_in_cents)
+      @order.mark_as_paid
+      true
+    else
+      false
+    end
+  end
+
+  def save_credit_card
     if valid?
-      customer = Stripe::Customer.create(description: 'test charges',
-                                         card: stripe_card_token)
-      self.update_attributes( :stripe_customer_token => customer.id,
-                              :status => 'payment info entered' )
+      customer_token = stripe_create_customer
+      credit_card = CreditCard.create_from_stripe_token(customer_token)
+      if credit_card.add_user_to_credit_card(user)
+        self.update_attributes( :status => 'payment info entered',
+                                :credit_card_id => credit_card.id )
+      end
     end
   rescue Stripe::InvalidRequestError => e
     send_customer_create_error(e)
@@ -52,20 +72,10 @@ class Order < ActiveRecord::Base
 
 private
 
-  def send_charge_error(e)
-    logger.error "Stripe error while charging customer: #{e.message}"
-    errors.add :base, "There was a problem with the charge."
-    false
-  end
-
   def send_customer_create_error(e)
     logger.error "Stripe error while creating customer: #{e.message}"
     errors.add :base, "There was a problem with your credit card."
     false
-  end
-
-  def customer_token
-    self.stripe_customer_token
   end
 
 end
