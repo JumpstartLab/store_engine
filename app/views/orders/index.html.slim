@@ -1,16 +1,19 @@
 h1 Orders
 = render partial: "filter"
-table.table.table-striped#order-table
-  thead
-    tr
-      - if admin_view?
-        th Actions
-        th Order ID
-        th Purchaser
-        th Email
-      th Items
-      th Subtotal
-      th Status
-      th Date
-  tbody
-    = render partial: "order", collection: @orders
+- if @orders.count > 1
+  table.table.table-striped#order-table
+    thead
+      tr
+        - if admin_view?
+          th Actions
+          th Order ID
+          th Purchaser
+          th Email
+        th Items
+        th Subtotal
+        th Status
+        th Date
+    tbody
+      = render partial: "order", collection: @orders
+- else
+ h3 = "No Orders Match Your Criteria"
