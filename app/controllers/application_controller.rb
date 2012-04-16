@@ -1,6 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  def current_user?
+    if !current_user || current_user.id != params[:id].to_i && !current_user.admin? 
+      not_found
+    end
+  end
+
   def admin?
     if !current_user || !current_user.admin?
       not_found

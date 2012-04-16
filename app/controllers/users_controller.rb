@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
+  before_filter :current_user?, :only => :show
   before_filter :admin?, :only => [:index, :new, :create]
 
   def index
     @users = User.all
   end
  
+  def show
+    @user = User.find(params[:id])
+  end
+
   def new
     @user = User.new
 

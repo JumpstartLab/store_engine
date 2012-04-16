@@ -1,1 +1,16 @@
 h1 = @user.username
+
+- unless @user.display_name.nil?
+  p
+  | Display Name: 
+  = @user.display_name
+p
+| First Name: 
+= @user.first_name
+p
+| Last Name: 
+= @user.last_name
+p 
+| Email:
+= @user.email
+

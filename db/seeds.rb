@@ -1,5 +1,6 @@
 matt = User.create(:username => "Matt Yoho", :first_name => "Matt", :last_name => "Yoho",
-            :email => "matt.yoho@livingsocial.com", :password => "hungry")
+            :email => "matt.yoho@livingsocial.com", :password => "hungry", 
+            :display_name => "The YOHO")
 jeff = User.create( :username => "Jeff", :first_name => "Jeff", :last_name => "Casimir",
             :email => "jeff.casimir@livingsocial.com",
             :password => "hungry")
