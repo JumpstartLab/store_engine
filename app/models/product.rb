@@ -29,6 +29,21 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def price
+    cents = BigDecimal.new(read_attribute(:price).to_s)
+    price = cents / 100
+  end
+
+  def price=(input)
+    super if input.nil?
+    if input.is_a? Numeric
+      cents = BigDecimal.new(input.to_s, 2) * 100
+      write_attribute(:price, cents)
+    else
+      super
+    end
+  end
+
   def image
     if !self.photo_url || self.photo_url == ""
       "/logo.png"
