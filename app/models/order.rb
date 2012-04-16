@@ -47,5 +47,4 @@ class Order < ActiveRecord::Base
   def self.count_status(status)
     Order.all.count{ |order| order.status == status }
   end
-
 end
