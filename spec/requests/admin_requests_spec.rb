@@ -95,6 +95,16 @@ describe "admin" do
         page.should have_content "2"
       end
     end
+    it "can cancel a pending order" do
+      visit orders_path
+      click_link_or_button "Cancel"
+      page.should have_content "cancelled"
+    end
+    it "can transition an order" do
+      visit orders_path
+      click_link_or_button "Cancel"
+      page.should have_content "cancelled"
+    end
   end
   context "product" do
     let!(:product) { Fabricate(:product) }
@@ -120,7 +130,6 @@ describe "admin" do
       page.should_not have_content product.title
     end
     it "can retire a product" do
-      pending
       click_link_or_button "Retire"
       click_link_or_button "User View"
       page.should_not have_content product.title
@@ -211,8 +220,13 @@ describe "admin" do
           select(option, from: "status")
           click_link_or_button "Update"
           within "#main-content" do
-            orders.each {|o| page.should have_content o.id if o.status == option }
+            orders.each { |o| page.should have_content o.id if o.status == option }
           end
+        end
+        select("all", from: "status")
+        click_link_or_button "Update"
+        within "#main-content" do
+          orders.each { |o| page.should have_content o.id }
         end
       end
     end

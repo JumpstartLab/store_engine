@@ -11,12 +11,11 @@ describe Order do
   end
   describe "#amount" do
     it "returns the total of the order" do
-      pending
       actual_total = 0
       li = {}
       3.times do |t|
         li[t] = Fabricate(:line_item)
-        li[t].order_id = ord.id
+        li[t].update_attribute(:order_id, ord.id)
         actual_total += li[t].subtotal
       end
       ord.amount.should == actual_total
