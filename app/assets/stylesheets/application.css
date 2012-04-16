@@ -40,3 +40,7 @@ a:hover {
 	color: #53f139;
 	font-weight: 700;
 }
+
+#products li {
+  background-color: red;
+}

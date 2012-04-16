@@ -13,6 +13,8 @@ class Order < ActiveRecord::Base
   belongs_to :address
 
   accepts_nested_attributes_for :address
+
+  scope :pending where(:status => "pending")
   
   def total_price
     order_items.inject(0) do |result, item|
