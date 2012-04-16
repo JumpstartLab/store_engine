@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-  before_filter :admin?
+  before_filter :admin_or_not_found
   before_filter :product, :only => [:show, :edit, :update]
   before_filter :categories, :only => [:new, :edit]
 

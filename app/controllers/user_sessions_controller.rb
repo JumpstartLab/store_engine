@@ -1,6 +1,10 @@
 class UserSessionsController < ApplicationController
   def new
-    @user = User.new
+    if logged_in?
+      redirect_to :root
+    else
+      @user = User.new
+    end
   end
   
   def create

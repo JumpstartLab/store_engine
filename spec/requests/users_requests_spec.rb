@@ -12,7 +12,8 @@ describe "Users requests" do
     end
 
     it "shows new user page not found" do
-      validate_not_found(new_user_path)
+      visit new_user_path
+      page.current_path.should == root_path
     end
 
     it "shows create user page not found" do
@@ -27,7 +28,7 @@ describe "Users requests" do
     it "shows page not found for another user" do
       validate_not_found(user_path(user2))
     end
-
+    
     it "logs a user out" do
       visit products_path
       find_link("Logout").click
@@ -43,8 +44,9 @@ describe "Users requests" do
       validate_not_found(users_path)
     end
 
-    it "shows new user page not found" do
-      validate_not_found(new_user_path)
+    it "shows new user page" do
+      visit new_user_path
+      page.current_path.should == new_user_path
     end
 
     it "shows create user page not found" do
@@ -54,7 +56,6 @@ describe "Users requests" do
     it "shows page not found" do 
       validate_not_found(user_path(user))
     end
-    
   end
 
   context "when admin is logged in" do
