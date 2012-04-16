@@ -28,6 +28,11 @@ class LineItemsController < ApplicationController
     redirect_to order_path(@order)
   end
 
+  def destroy
+    @line_item.destroy
+    redirect_to order_path(@order)
+  end
+
   private
 
   def lookup_line_item
