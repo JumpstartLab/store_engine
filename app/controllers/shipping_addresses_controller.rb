@@ -1,5 +1,5 @@
 class ShippingAddressesController < ApplicationController
-  # before_filter :protect_against_admin, only: [:new, :edit, :update, :create, :destroy]
+
   def new
     session[:return_to] = request.referrer
     @shipping_address = ShippingAddress.new

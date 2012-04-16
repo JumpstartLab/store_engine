@@ -1,8 +1,10 @@
 #products
   - unless admin_view?
-    = render partial: "product", collection: @products
+    ul.image-and-title
+      = render partial: "product", collection: @products
   - else
     h1 Products
+    = link_to 'New', new_product_path, :class => 'btn btn-primary'
     table.table.table-striped#order-table
       thead
         tr
@@ -15,5 +17,5 @@
         th Created At
       tbody
         = render partial: "admin_product", collection: @products
-    / .span7
-    /   = link_to 'New', new_product_path, :class => 'btn btn-primary'
+
+

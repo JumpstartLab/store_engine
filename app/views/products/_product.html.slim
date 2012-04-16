@@ -1,11 +1,23 @@
-div id==dom_id(product)
-  .span2#product_image
-    = image_tag product.image, class: "product_photo"
-  .span2#product_info
-    = link_to product.title, product_path(product), class: "product-title"
-    .price
-      = number_to_currency(product.price)
+/ div.span3.product id==dom_id(product)
+/   p
+/     = image_tag product.image, class: "product-photo"
+/   p
+/     = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success'
+/   p
+/     = link_to product.title, product_path(product), class: "product-title"
+/   p.price
+/     = number_to_currency(product.price)
+/   p
+/     = render partial: "category", collection: product.categories
+
+li.span2.product id==dom_id(product)
+  .image
+    = render partial: "category", collection: product.categories
+    = link_to image_tag(product.image), product_path(product)
+    .overlay
+      h3
+        = link_to product.title, product_path(product)
+        br/
+        = number_to_currency(product.price)
       br/
       = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success'
-      br/
-      = render partial: "category", collection: product.categories
