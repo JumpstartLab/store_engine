@@ -114,7 +114,15 @@ describe "shopper" do
         it "can add billing info" do
           click_link_or_button "Add a Billing Method"
           current_path.should == new_billing_method_path
-          billing = {credit_card_number: 555555555555, credit_card_expiration_date: 03052013, street: "One Mockingbird Lane", city: "Anytown", state: "VA", zipcode: 22209}
+          billing = {
+            credit_card_number: 555555555555,
+            credit_card_expiration_date: 03052013,
+            street: "One Mockingbird Lane",
+            city: "Anytown",
+            state: "VA",
+            zipcode: 22209,
+            card_type: 'Visa'
+          }
           add_non_user_billing(billing)
         end
         it "can add shipping info" do

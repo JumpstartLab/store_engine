@@ -60,7 +60,7 @@ describe "logged in user" do
       end
     end
     it "can edit it's information" do
-      click_link_or_button "Edit Information"
+      click_link_or_button "Change Profile"
       fill_in "Display name", with: "My New Name"
       click_link_or_button "Update Information"
       current_path.should == user_path(user)
@@ -127,7 +127,9 @@ describe "logged in user" do
         li.update_attributes({product_id: product.id, order_id: order.id})
         order.update_attribute(:user_id, other_user.id)
         click_link_or_button "View Orders"
-        page.should_not have_content product.title
+        within ".main-content" do
+          page.should_not have_content product.title
+        end
       end
       it "does not see admin stuff" do
         click_link_or_button "View Orders"

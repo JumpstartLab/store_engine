@@ -134,7 +134,7 @@ describe "admin" do
     it "cannot edit another user's information" do
 
       visit user_path(other_user)
-      click_link_or_button "Edit"
+      click_link_or_button "Change Profile"
       current_path.should == "/"
       page.should have_content "not allowed"
     end
