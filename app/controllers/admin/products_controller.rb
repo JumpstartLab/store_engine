@@ -15,6 +15,7 @@ class Admin::ProductsController < ApplicationController
     @categories = Category.all
 
     if @product.save
+      @product.update_categories(params[:categories][1..-1])
       redirect_to admin_product_path(@product), notice: 'Product was successfully created.'
     else
       @product.errors.full_messages.each do |msg|
