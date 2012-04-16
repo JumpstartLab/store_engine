@@ -37,10 +37,14 @@ class ShoppingCart < ActiveRecord::Base
   end
 
   def item_count
-    if cart_items.length == 1
-      "item"
+    count = 0
+    cart_items.each do |cart_item|
+      count +=  cart_item.quantity
+    end
+    if count == 1
+      "1 item"
     else
-      "items"
+      "#{count} items"
     end
   end
 end

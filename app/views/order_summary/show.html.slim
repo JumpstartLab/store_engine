@@ -1,43 +1,55 @@
-h1 Shipping Address
+h2 Review your order
+br
 
-= @shipping_address.first_name
-p
-= @shipping_address.last_name
-p
-= @shipping_address.company
-p
-= @shipping_address.line_1
-p
-= @shipping_address.line_2
-p
-= @shipping_address.city
-| ,
-= @shipping_address.state
-p
-= @shipping_address.zipcode
-p
-= @shipping_address.phone
+div class="row-fluid"
+  div class="span3"
+    h3 Shipping Address
 
-h1 Billing Address
+    address
+      #{@shipping_address.first_name} #{@shipping_address.last_name}
+      #{@shipping_address.company}
+      #{@shipping_address.line_1}
+      #{@shipping_address.line_2}
+      #{@shipping_address.city}, #{@shipping_address.state} #{@shipping_address.zipcode}
+      #{@shipping_address.phone}
 
-= @billing_address.first_name
-p
-= @billing_address.last_name
-p
-= @billing_address.company
-p
-= @billing_address.line_1
-p
-= @billing_address.line_2
-p
-= @billing_address.city
-| ,
-= @billing_address.state
-p
-= @billing_address.zipcode
-p
-= @billing_address.phone
+  div class="span3"
+    h3 Billing Address
 
-p
-p
-= link_to "Place Order", orders_path, :method => :post
+    address
+      #{@billing_address.first_name} #{@billing_address.last_name}
+      #{@billing_address.company}
+      #{@billing_address.line_1}
+      #{@billing_address.line_2}
+      #{@billing_address.city}, #{@billing_address.state} #{@billing_address.zipcode}
+      #{@billing_address.phone}
+
+  div class="span2"
+    button class="btn btn-large" 
+      = link_to "Place Order", orders_path, :method => :post
+
+br
+br
+br
+h3 Items
+div class="row-fluid"
+  div class="span7"
+    table class="table table-striped well"    
+      - cart.cart_items.each do |cart_item|
+        tr
+          - if cart_item.product.photo
+            td class="span1" = image_tag(cart_item.product.photo, :size => "50x50")
+          - else
+            td
+          td class="span1" = link_to cart_item.product.title, product_path(cart_item.product)
+          td class="span1" 
+            | $
+            = cart_item.price
+          td class="span1" Quantity: #{cart_item.quantity}
+
+br
+br
+br
+h3 Order Total
+="$#{cart.total}"
+        

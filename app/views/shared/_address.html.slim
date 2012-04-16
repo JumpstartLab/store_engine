@@ -1,6 +1,6 @@
-form class="well form-inline" = form_for @address do |f|
+= form_for @address, :html => { :class => 'well form-inline'} do |f|
   | *
-  = f.label :first_name 
+  = f.label :first_name
   |  
   = f.text_field :first_name
   p

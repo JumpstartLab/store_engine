@@ -13,9 +13,8 @@ html
         a class="brand" href=root_path StoreName
         ul class="nav pull-left"
           li class="active" = link_to "Products", products_path
-          li class="active" = link_to "Categories", categories_path
         ul class="nav pull-right"
-          li class="active" = link_to "Shopping Cart - #{cart.cart_items.length} #{cart.item_count}", shopping_cart_path
+          li class="active" = link_to "Shopping Cart - #{cart.item_count}", shopping_cart_path
           - if current_user
             - if current_user.display_name
               li class="active" = link_to current_user.display_name, edit_user_path(current_user.id)
@@ -28,10 +27,19 @@ html
      
 
   div class="container-fluid"
+    div class="row-fluid"
+      div class="span2"
+        h3 Categories
+        p
+        - categories.each do |category|
+          = link_to category.name, category_products_path(category)
+          p
+      div class="span10"
+        
 
-    div
-      p id="notice" = notice
-      p
-      p id="alert" = alert
+        div
+          p id="notice" = notice
+          p
+          p id="alert" = alert
 
-    = yield
+        = yield
