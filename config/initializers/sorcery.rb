@@ -31,7 +31,7 @@ Rails.application.config.sorcery.configure do |config|
   # How long in seconds to keep the session alive.
   # Default: `3600`
   #
-  # config.session_timeout =
+  #config.session_timeout = 1200
 
 
   # Use the last action as the beginning of session timeout.
@@ -119,7 +119,7 @@ Rails.application.config.sorcery.configure do |config|
     # specify username attributes, for example: [:username, :email].
     # Default: `[:username]`
     #
-    user.username_attribute_names = :email
+    user.username_attribute_names = [:email, :user_name]
 
 
     # change *virtual* password attribute, the one which is used until an encrypted one is generated.
