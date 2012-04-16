@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    @addresses = @user.addresses
   end
 
   def new
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
   def edit_self
     if current_user == false || current_user.nil?
       redirect_to '/login', :notice => "Please log in."
-    elsif current_user.id != params[:id]
+    elsif current_user && current_user.id.to_i != params[:id].to_i
       redirect_to root_url, :notice => "You can only edit yourself."
     end
   end
