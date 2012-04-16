@@ -6,4 +6,15 @@ class Order < ActiveRecord::Base
   belongs_to :shipping_address
   belongs_to :billing_address
   belongs_to :user
+
+  def charge(transaction_id, amount)
+    transaction = Transaction.find(transaction_id)
+
+    charge = Stripe::Charge.create(
+      :amount => amount, # amount in cents, again
+      :currency => "usd",
+      :customer => transaction.stripe_customer_id
+    )
+  end
+
 end
