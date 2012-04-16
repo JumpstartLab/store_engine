@@ -16,7 +16,7 @@ li.span2.product id==dom_id(product)
     = link_to image_tag(product.image), product_path(product)
     .overlay
       h3
-        = product.title
+        = link_to product.title, product_path(product)
         br/
         = number_to_currency(product.price)
       br/
