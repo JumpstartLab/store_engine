@@ -1,65 +1,54 @@
+<% content_for :head do %>
+<script type="text/javascript">
+  $(function(){
+    $('div#shipping').css("display", "none");
+    $('div#billing').css("display", "none");
+  });
+  $(function(){
+      $('a#default_billing').click(function(){
+        $('div#billing').css("display", "inline");
+      });
+    });
+  $(function(){
+    $('a#cancel_default_billing').click(function(){
+      $('div#billing').css("display", "none");
+    });
+  });
+  $(function(){
+    $('a#default_shipping').click(function(){
+      $('div#shipping').css("display", "inline");
+    });
+  });
+  $(function(){
+    $('a#cancel_default_shipping').click(function(){
+      $('div#shipping').css("display", "none");
+    });
+  });
+</script>
+<% end %>
 <div id="intro">
   <h3>Welcome, <%= @user.name %></h3>
+  <%= link_to "Edit your profile", edit_user_path %>
 </div>
-<div>
-  <p><%=  %></p>
-  <p><%= %></p>
-  <p><%= %></p>
-  <p><%= %></p>
-</div>
-
-<%= link_to "Edit your profile", edit_user_path %>
-
-<% if @user.orders.any? %>
-<%= render :partial => "orders/user_orders" %>
-<% else %>
-<h3>You haven't ordered anything yet. Why are you a hater?</h3>
-<% end %>
-
 
 <p><%= @user.default_billing_address.inspect %> </p>
 <p><%= @user.default_shipping_address.inspect %> </p>
+<div class="default-address">
+  <%= link_to "Add a default shipping address", nil, :id => "default_shipping", :remote => true %>
+  <div id="shipping">
+    <%= render :partial => "default_shipping_address" %>
+  </div>
+</div>
+<div class="default-address">
+  <%= link_to "Add a default billing address", nil, :id => "default_billing", :remote => true %>
+  <div id="billing">
+    <%= render :partial => "default_billing_address" %>
+  </div>
+</div>
 
-
-<% unless @user.default_shipping_address %>
-  <h2>Please add a default shipping address</h2>
-  <%= form_for Address.new, :url => user_addresses_path(:user_id => current_user.id, :type => "shipping") do |f| %>
-    <%= f.label :street %>
-    <%= f.text_field :street %>
-    <%= f.label :street_two %>
-    <%= f.text_field :street_two %>
-    <%= f.label :city %>
-    <%= f.text_field :city %>
-    <%= f.label :state %>
-    <%= f.text_field :state %>
-    <%= f.label :country %>
-    <%= f.text_field :country %>
-    <%= f.label :zipcode %>
-    <%= f.text_field :zipcode %>
-    <%= f.label :phone_number %>
-    <%= f.text_field :phone_number %>
-    <%= f.submit %>
-  <% end %>
+<h2>Order History</h2>
+<% if @user.orders.any? %>
+  <%= render :partial => "users/orders" %>
+<% else %>
+  <h3>You haven't ordered anything yet. Why are you a hater?</h3>
 <% end %>
-
-<% unless @user.default_billing_address %>
-  <h2>Please Add a default billing address</h2>
-  <%= form_for Address.new, :url => user_addresses_path(:user_id => current_user.id, :type => "billing") do |f| %>
-    <%= f.label :street %>
-    <%= f.text_field :street %>
-    <%= f.label :street_two %>
-    <%= f.text_field :street_two %>
-    <%= f.label :city %>
-    <%= f.text_field :city %>
-    <%= f.label :state %>
-    <%= f.text_field :state %>
-    <%= f.label :country %>
-    <%= f.text_field :country %>
-    <%= f.label :zipcode %>
-    <%= f.text_field :zipcode %>
-    <%= f.label :phone_number %>
-    <%= f.text_field :phone_number %>
-    <%= f.submit %>
-  <% end %>
-<% end %>
-
