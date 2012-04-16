@@ -23,6 +23,15 @@ chad = User.create(:first_name => "Chad",
                    :display_name => "SaxPlayer",
                    :admin => true)
 
+# matt's orders
+matt.orders << rand(1..10).times { Fabricate(:order) }
+
+# jeff's orders
+jeff.orders << rand(1..10).times { Fabricate(:order) }
+
+# chad's orders
+chad.orders << rand(1..10).times { Fabricate(:order) }
+
 # active products
 chair = Product.create(:title => "Sweet chair", 
                        :description => "This is a great chair",

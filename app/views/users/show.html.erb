@@ -10,8 +10,8 @@
 
 <%= link_to "Edit your profile", edit_user_path %>
 
-<% if @orders.any? %>
-<%#= render :partial => "orders/user_orders" %>
+<% if @user.orders.any? %>
+<%= render :partial => "orders/user_orders" %>
 <% else %>
 <h3>You haven't ordered anything yet. Why are you a hater?</h3>
 <% end %>
