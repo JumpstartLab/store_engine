@@ -8,5 +8,3 @@ div id==dom_id(product)
       = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success'
     p
       = render partial: "category", collection: product.categories
-    - if admin_view?
-      p = render partial: "admin_buttons", locals: {product: product}

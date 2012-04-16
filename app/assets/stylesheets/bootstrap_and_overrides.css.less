@@ -49,19 +49,23 @@ body { padding-top: 60px; }
 
 /********UNIVERSAL*********/
 body { background: url("background.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
-.container .span8, .container #cart { background: @background; padding: 15px; .rounded(8px); margin-bottom: 20px; float: left; }
+.container #main-content, .container #cart { background: @background; padding: 15px; .rounded(8px); margin-bottom: 20px; float: left; }
 input { height: 30px; }
 .navbar .navbar-inner {
   .gradient(@nav-color);
   height: 50px;
   padding-top: 15px;
-
+  ul { .gradient(@nav-color); }
   a, .nav li a { color: @whale; text-shadow: none; }
 }
 
-#main-content, #cart { margin-top: 30px; font-family: @font1;}
+#main-content, #cart, #notice { margin-top: 30px; font-family: @font1;}
 
 img.logo { width: 50px; float: left; padding-right: 15px; }
+
+/*.row{ margin: 0;
+  #notice { background: @background; margin: 30px 10px 0 2px; padding: 10px; font-family: @font1; .rounded(8px); }
+}*/
 
 /*********PRODUCTS********/
 div#products  {
@@ -79,3 +83,5 @@ div#products  {
 
 .photo_sub { width: 100%; }
 .quantity { width: 30px;  }
+
+/****************ORDERS**********/

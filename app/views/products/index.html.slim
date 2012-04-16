@@ -1,5 +1,19 @@
 #products
-  = render partial: "product", collection: @products
-- if admin_view?
-  .span7
-    = link_to 'New', new_product_path, :class => 'btn btn-primary'
+  - unless admin_view?
+    = render partial: "product", collection: @products
+  - else
+    h1 Products
+    table.table.table-striped#order-table
+      thead
+        tr
+        th Actions
+        th ID
+        th Title
+        th Categories
+        th Price
+        th Status
+        th Created At
+      tbody
+        = render partial: "admin_product", collection: @products
+    / .span7
+    /   = link_to 'New', new_product_path, :class => 'btn btn-primary'
