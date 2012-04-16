@@ -24,9 +24,13 @@
             <li>Logged in as <%= current_user.full_name %><%= link_to "Log Out", logout_path %></li>
             <li><%= link_to "Orders", orders_path %></li>
             <% else %>
-            <li><%= link_to "Sign Up", new_user_path %></li>
+            </ul>
+
+            <ul class="nav pull-right">
+            <li><%= link_to "Sign Up", new_user_path %></li>       
             <li><%= link_to "Log In", new_session_path %></li>
           </ul>
+          
       <% end %>
         </div>
       </div>
