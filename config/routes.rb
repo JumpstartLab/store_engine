@@ -4,6 +4,8 @@ StoreEngine::Application.routes.draw do
   post 'sessions/create', :as => 'login'
   delete 'sessions/destroy', :as => 'logout'
 
+  match '/code' => redirect('http://github.com/athal7/store_engine')
+
   resources :users, except: :destroy do
     member do
       put :view_as_admin

@@ -1,3 +1,3 @@
 ## StoreEngine
 
-http://tutorials.jumpstartlab.com/projects/store_engine.html
+[Link to the live site](http://theurbancyclist.herokuapp.com "The Urban Cyclist")
