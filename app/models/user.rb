@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   default_scope :conditions => { :active => 1 }
   authenticates_with_sorcery!
 
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, :case_sensitive => false
   validates_presence_of :name, :email
   validates_presence_of :password, :on => :create
 

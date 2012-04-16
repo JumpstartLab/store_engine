@@ -5,10 +5,6 @@ class Cart < Order
 
   default_scope :conditions => { :is_cart => 1 }
 
-  def status
-    self.status = Status.find_or_create_by_name("cart")
-  end
-
   def add_product(id)
     p = Product.find(id)
     if products.include? p

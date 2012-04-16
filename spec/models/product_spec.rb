@@ -11,7 +11,7 @@ describe Product do
   end
   context "Product can have an image uploaded from URL" do
     it "uploads image" do
-      product.avatar_from_url("http://goo.gl/8yWSX")
+      product.avatar_from_url=("http://goo.gl/8yWSX")
       product.save
     end
   end

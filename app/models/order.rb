@@ -1,8 +1,7 @@
 class Order < ActiveRecord::Base
   attr_accessible :status, :user, :products, :stripe_card_token, :is_cart
   default_scope :conditions => { :is_cart => 0 }
-  validates_presence_of :status
-  validates_presence_of :user, :products, :if => :not_a_cart
+  validates_presence_of :user, :products, :status, :if => :not_a_cart
 
   before_create :generate_unique_url
 
@@ -65,7 +64,7 @@ class Order < ActiveRecord::Base
         :currency => "usd",
         :customer => user.stripe_id
       )
-    self.status = Status.find_or_create_by_name("pending")
+    self.status = Status.find_or_create_by_name("paid")
     self.is_cart = false
     self.save
   end

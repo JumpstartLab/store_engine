@@ -2,11 +2,11 @@ require "open-uri"
 
 class Product < ActiveRecord::Base
   attr_accessible :description, :name, :price,
-                  :categories, :avatar, :category_ids
+                  :categories, :avatar, :category_ids, :avatar_from_url
   
   validates_presence_of :name, :description, :price
   validates_numericality_of :price_in_cents, :greater_than => 0
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :case_sensitive => false
 
   #default_scope :conditions => { :active => 1 }
   has_attached_file :avatar, :styles => { 
@@ -22,8 +22,11 @@ class Product < ActiveRecord::Base
 
   has_many :product_ratings
 
-  def avatar_from_url(url)
-    self.avatar = open(url)
+  def avatar_from_url
+    self.avatar
+  end
+  def avatar_from_url=(url)
+    self.avatar = open(url) if not url.start_with?("/")
   end
 
   def price=(dollar)
