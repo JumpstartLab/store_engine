@@ -11,27 +11,34 @@
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
           <a class="brand" href="#">
             Store Engine
           </a>
-          <ul class="nav">
-            <li class="active">
-              <a href="#">Home</a>
-            </li>
-            <li><a href="/products">Products</a></li>
-            <li><a href="/orders">Orders</a></li>
-          </ul>
-          <% if current_user %>
-            <ul class="nav pull-right">
-              <li><a href="#"><%= current_user.screen_name %></a></li>
-              <li class="divider-vertical"></li>
-              <li><a href="/logout">logout</a></li>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li class="active">
+                <a href="#">Home</a>
+              </li>
+              <li><a href="/products">Products</a></li>
+              <li><a href="/orders">Orders</a></li>
             </ul>
-          <% else %>
-            <ul class="nav pull-right">
-              <li><a href="/login">login</a></li>
-            </ul>
-          <% end %>
+            <% if current_user %>
+              <ul class="nav pull-right">
+                <li><a href="#"><%= current_user.screen_name %></a></li>
+                <li class="divider-vertical"></li>
+                <li><a href="/logout">logout</a></li>
+              </ul>
+            <% else %>
+              <ul class="nav pull-right">
+                <li><a href="/login">login</a></li>
+              </ul>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

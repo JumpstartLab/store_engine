@@ -8,11 +8,12 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require bootstrap
- *= require responsive
  *= require_self
  *= require_tree .
  */
+
+@import "bootstrap";
+@import "bootstrap-responsive";
 
 body {
   padding:    0px;
