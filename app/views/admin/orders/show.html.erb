@@ -19,5 +19,5 @@
     <td><%= order_item.line_price %></td>
   </tr>
   <% end %>
-
 </table>
+<%= render partial: 'controls', locals: {order: @order} %>

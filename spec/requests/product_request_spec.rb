@@ -1,10 +1,10 @@
   require 'spec_helper'
-  describe 'UserSession request' do
+  describe 'Product request' do
     describe '#index' do
       it "displays an index of existing products" do
-        Fabricate(:product)
+        @product = Fabricate(:product)
         visit products_path
-        page.should have_content "Sample Product 0"
+        page.should have_content @product.name
       end
     end
 

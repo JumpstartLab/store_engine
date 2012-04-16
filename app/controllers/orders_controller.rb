@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :skip_mini_cart
   before_filter :find_order, only: [:show, :destroy]
-  before_filter :require_login, only: :create
+  before_filter :require_login, only: [:create, :index, :show]
 
   def show
 
