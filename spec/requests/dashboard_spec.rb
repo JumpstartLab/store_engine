@@ -52,5 +52,13 @@ describe "Dashboard" do
     it "displays the total price for each order" do
       page.should have_content(order.total_price)
     end
+
+    it "displays the order status for each order" do
+      page.should have_content(order.status)
+    end
+
+    it "displays the timestamp for when an order was updated" do
+      page.should have_content(order.update_at)
+    end
   end
 end

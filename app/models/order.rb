@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   attr_accessor :stripe_card_token
   attr_accessible :stripe_card_token
 
-  validates :status, :inclusion => { :in => %w(pending cancelled shipped paid) }
+  validates :status, :inclusion => { :in => %w(pending cancelled paid shipped returned) }
   # validates_presence_of :user, :products, :order_items
 
   has_many :order_items

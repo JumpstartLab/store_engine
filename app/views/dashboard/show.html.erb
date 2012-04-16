@@ -1,6 +1,14 @@
 <h1>Dashboard</h1>
 <div id= "order_count">
-  <%= @orders.count %>
+  <h2>Total Orders: <%= @orders.count %></h2>
+  
+    <ul>Pending: </ul>
+    <ul>Cancelled: </ul>
+    <ul>Paid: </ul>
+    <ul>Shipped: </ul>
+    <ul>Returned: </ul>
+  
+
 </div>
 
 <h1>Orders</h1>
@@ -8,11 +16,13 @@
 <ul id="orders">
   <% @orders.each do |order| %>
   <li><%= link_to order.id, order_path(order) %>
-          | <%= order.created_at %> |
+          | Created: <%= order.created_at %> 
           | <%= order.user.full_name %> | 
           <% order.products.each do |t| %>
-          <%= t.title %>
-          <% end %>
+          <%= t.title %>, 
+          <% end %> |
+          <%= order.status %> |
+          Update: <%= order.updated_at %>
 
            |
           <%= order.total_price %> </li>
