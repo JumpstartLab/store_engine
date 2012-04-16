@@ -8,52 +8,15 @@
   <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
 </head>
 <body>
-  <header>
+  <%= render 'layouts/header' %>
 
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="/">StoreEngine</a>
-          <ul class="nav">
-            <li>
-              <%= link_to("Cart (#{@cart.quantity})", cart_path, :id => "cart_count") %>
-            </li>
-            <!-- <p><%= link_to "Cart", cart_path %> 
-              <%= @cart.quantity %> <%= number_to_currency(@cart.total_price) %></p> -->
-            <% if current_user %>
-            <li>Logged in as <%= current_user.full_name %><%= link_to "Log Out", logout_path %></li>
-            <li><%= link_to "Orders", orders_path %></li>
-            <% else %>
-            </ul>
-
-            <ul class="nav pull-right">
-            <li><%= link_to "Sign Up", new_user_path %></li>       
-            <li><%= link_to "Log In", new_session_path %></li>
-          </ul>
-          
-      <% end %>
-        </div>
-      </div>
-    </div>
-
-    <!-- <br />
-    <% if current_user %>
-      <%= "Hey! You are logged in." %>
-    <% else %>
-      <%= "You should log in or make a new count. It's what cool kids do." %>
-    <% end %>
-
-    <% if admin? %>
-      <%= "YOU ARE AN ADMIN AND ARE AWESOME" %>
-    <% else %>
-      <%= "YOU ARE NOT AN ADMIN AND ARE LAME" %>
-    <% end %> -->
 
     <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, id: "flash_#{name}" %>
       <% end %>
-
-<%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
 <%= debug(params) if Rails.env.development? %>
 </body>
 </html>
