@@ -8,7 +8,10 @@
     %br
     %p= @product.description
     %br
-    %p= link_to "Add To Cart", cart_path(:product_id => @product.id), :method => :put, :class => 'btn btn-info'
+    - if @product.active == 1
+      %p= link_to "Add To Cart", cart_path(:product_id => @product.id), :method => :put, :class => 'btn btn-info'
+      - if @product.can_two_click(current_user)
+        %p= link_to "Buy Instantly!", two_click_cart_path(:product_id => @product.id), :method => :put, :class => 'btn btn-primary', :confirm => "Are you sure you want to give us your money?"    
     - if current_user && current_user.admin
       %br
       .well

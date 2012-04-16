@@ -1,5 +1,5 @@
 = simple_form_for @product do |f|
-  %legend legend_title
+  %legend= legend_title
   = f.input :name
   = f.input :description, :input_html => { :rows => 10, :style => 'width: 300px' }
   = f.input :price

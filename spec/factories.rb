@@ -44,5 +44,14 @@
   factory :category do
     sequence(:name) { |n| "category#{n}" }
   end
-
+  factory :address do
+    street "1375 Kenyon Street NW"
+    zipcode "20010"
+    state "DC"
+  end
+  # factory :fake_address do
+  #   street "fdsfsddsf53232"
+  #   zipcode "234322"
+  #   state "fs"
+  # end
 end

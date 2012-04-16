@@ -23,6 +23,7 @@ StoreEngine::Application.routes.draw do
   resource :cart do
     member do
       put 'update_quantity'
+      put :two_click
     end
   end
 

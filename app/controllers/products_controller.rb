@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_filter :require_admin, :only => [:new, :create, :destroy, :edit, :update]
 
   def index
-    @products = Product.all
+    @products = Product.where(:active => 1)
     @categories = Category.all
   end
 
@@ -50,5 +50,5 @@ private
       true
     end
   end
-
+  
 end

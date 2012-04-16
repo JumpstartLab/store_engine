@@ -8,7 +8,7 @@ class Product < ActiveRecord::Base
   validates_numericality_of :price_in_cents, :greater_than => 0
   validates_uniqueness_of :name
 
-  default_scope :conditions => { :active => 1 }
+  #default_scope :conditions => { :active => 1 }
   has_attached_file :avatar, :styles => { 
                                           :medium => "300x300>", 
                                           :thumb => "100x100>" 
@@ -45,6 +45,14 @@ class Product < ActiveRecord::Base
   def destroy
     self.active = 0 
     self.save
+  end
+
+  def can_two_click(current_user)
+    if current_user && current_user.address && current_user.stripe_id
+      true
+    else
+      false
+    end
   end
 
   private

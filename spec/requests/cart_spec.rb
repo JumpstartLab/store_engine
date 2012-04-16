@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe "Cart", :focus => true do
+  let!(:real_address) do
+    FactoryGirl.create(:address)
+  end
   let!(:user) do 
-    FactoryGirl.create(:user, :password => "mike")
-  end 
+    FactoryGirl.create(:user, :password => "mike", :address => real_address, :stripe_id => "cus_aAiayNrIfqHjGZ")
+  end
   let!(:products) do
     (1..4).map { FactoryGirl.create(:product)}
   end  
@@ -101,10 +104,10 @@ describe "Cart", :focus => true do
       page.should have_content("")
     end
   end
-  it "prevents checkout until logged in" do
-    pending
-  end
-  it "checkout" do
-    pending
-  end
+  it "Buys with two clicks" do
+    login(user)
+    visit product_path(products[3])
+    click_on("Buy Instantly!")
+    page.should have_content("Congrats on giving us your money")
+  end  
 end

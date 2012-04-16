@@ -7,6 +7,16 @@ class CartsController < ApplicationController
     end
   end
 
+  def two_click
+    @cart.add_product(params[:product_id])
+    if @cart.save
+        order = Order.charge_two_click(@cart.id)
+        cookies[:cart_id] = nil
+        redirect_to order_path(order), 
+          :notice => "Congrats on giving us your money"
+    end    
+  end
+
   def show
   end
 
@@ -27,4 +37,5 @@ class CartsController < ApplicationController
       redirect_to cart_path
     end
   end
+
 end

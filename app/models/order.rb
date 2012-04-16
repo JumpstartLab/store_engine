@@ -15,6 +15,12 @@ class Order < ActiveRecord::Base
   def not_a_cart
     true if not self.is_a?(Cart)
   end
+  
+  def self.charge_two_click(cart_id)
+    o = Order.process_cart(cart_id)
+    o.charge if o.user.address && o.user.stripe_id
+    o
+  end
   def self.process_cart(cart_id)
     Order.find_cart(cart_id)
   end
@@ -52,7 +58,7 @@ class Order < ActiveRecord::Base
     user.save
   end
 
-  def charge(token)
+  def charge(token=nil)
     create_user(token) if !user.stripe_id
     Stripe::Charge.create(
         :amount => total_price_in_cents,

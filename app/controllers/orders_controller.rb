@@ -27,7 +27,6 @@ class OrdersController < ApplicationController
   def update
     order = Order.process_cart(@cart.id)
     if order.user.update_address(params[:order][:user_attributes])
-        order.save
         order.charge(params[:order][:stripe_card_token])
         cookies[:cart_id] = nil
         redirect_to order_path(order), 
