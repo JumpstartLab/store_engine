@@ -21,12 +21,6 @@ class OrderItemsController < ApplicationController
   def edit
   end
 
-  # def update
-  #   @order_item.update_attributes(params[:order_item])
-  #   @order_item.save
-  #   redirect_to order_path(@order_item.order)
-  # end
-
   def update
     @order_item = OrderItem.find(params[:id])
     respond_to do |format|
@@ -42,5 +36,14 @@ class OrderItemsController < ApplicationController
 
   def lookup_order_item
     @order_item = OrderItem.find(params[:id])
+  end
+
+  def destroy
+    @order_item = OrderItem.find(params[:id])
+    @order_item.destroy
+    respond_to do |format|
+      format.html { redirect_to order_path(@order_item.order) }
+      format.json { head :no_content }
+    end
   end
 end
