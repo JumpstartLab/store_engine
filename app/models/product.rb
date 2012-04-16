@@ -65,6 +65,6 @@ class Product < ActiveRecord::Base
   end
 
   def status
-    self.retired == true ? "retired" : "active"
+    self.retired ? "retired" : "active"
   end
 end

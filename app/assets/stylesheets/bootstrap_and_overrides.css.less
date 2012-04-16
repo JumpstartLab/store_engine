@@ -35,6 +35,12 @@ body { padding-top: 60px; }
   -webkit-border-radius: @amount;
   -moz-border-radius: @amount;
 }
+.bottom_rounded(@amount) {
+  -moz-border-radius: 0 0 @amount @amount;
+  -o-border-radius: 0 0 @amount @amount;
+  -webkit-border-radius: 0 0 @amount @amount;
+  border-radius: 0 0 @amount @amount;
+}
 
 /******PRODUCTS VARIABLES******/
 
@@ -65,25 +71,50 @@ img.logo { width: 50px; float: left; padding-right: 15px; }
 
 /*.row{ margin: 0;
   #notice { background: @background; margin: 30px 10px 0 2px; padding: 10px; font-family: @font1; .rounded(8px); }
-}*/
+  }*/
 
-/*********PRODUCTS********/
-div#products  {
-  #product_image { margin: 0;
-    .product_photo { max-width: inherit; max-height: 100px; float: right; margin: 0; border: 2px solid @whale; overflow: hidden; }
+  /*********PRODUCTS********/
+/*.product { padding: 10px; }
+.product-photo { max-width: inherit; max-height: 200px; margin: 0; border: 2px solid @whale; overflow: hidden; margin-bottom: 5px; }
+.product-title { .title-font }
+.price { .buy-font;
+  a { .buy-button; }
+  }*/
+  .product{ padding: 0 25px; }
+  .image-and-title {
+    margin: 0;
+    li {
+      .rounded(5px);
+      float: left;
+      list-style: none;
+      margin: 10px;
+      overflow: hidden;
+      img {
+        .bottom_rounded(5px);
+        width: 195px;
+        height: 180px;
+        overflow: hidden;
+      }
+      .overlay{
+        background: rgba(0,0,0,.5);
+        .bottom_rounded(5px);
+        width: 195px;
+        height: 60px;
+        position: relative;
+        bottom: 60px;
+        h3 {
+          color:white;
+          font-size:20px;
+          font-weight:100;
+          font-family:Helvetica;
+          margin-left:10px;
+          padding-top:5px;
+          line-height:24px;
+          letter-spacing:1px;
+          text-shadow: 0 1px 0 #333;
+        }
+      }
+    }
   }
-  #product_info { margin: 10px;
-    a.product-title { .title-font }
-  }
-  div.price { .buy-font; padding: 20px 0;
-    a { .buy-button; }
-  }
-  div.form-buttons { background-color: @background; border: none; text-align: center; margin-top: 40px;
-  a { margin-right: 10px; }
-  }
-}
 
-
-.quantity { width: 30px;  }
-
-/****************ORDERS**********/
+  /****************ORDERS**********/
