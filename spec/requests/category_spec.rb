@@ -4,9 +4,6 @@ describe "Test Category Auth" do
   let(:category) do
     FactoryGirl.create(:category) 
   end
-  let(:category2) do
-    FactoryGirl.create(:category) 
-  end
   context "Logged Out" do
     it "can't edit products" do
       visit edit_category_path(category)
@@ -71,6 +68,7 @@ describe "Test Category Auth" do
         end
       end
       context "DESTROY" do
+        let(:category2) { FactoryGirl.create(:category) }
         it "Can destory" do
            visit categories_path
            save_and_open_page
