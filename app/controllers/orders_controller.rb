@@ -38,8 +38,8 @@ class OrdersController < ApplicationController
     @cart.destroy
     session[:cart_id] = nil
     
-
     if @order.save_with_payment
+      @order.status.change
       redirect_to @order, :notice => "You bought something with Stripe. Want a medal or something?"
     else
       render :new

@@ -16,6 +16,7 @@ class TwoClickOrdersController < ApplicationController
 
       
       if @order.save_with_payment
+        @order.status.change
         redirect_to order_path(@order.id), :notice => "You bought something with Stripe. Want a medal or something?"
       else
         redirect_to '/'
