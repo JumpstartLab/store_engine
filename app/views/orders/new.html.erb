@@ -22,4 +22,4 @@
 <%= render :partial => "shipping_information/form" %>
 <%= render :partial => "billing_information/form" %>
 
-<%= link_to "Place Order", orders_path(order, :cart_id => @cart.id, :current_user_id => current_user), :method => :post, :class => "btn", :id => "place_order"%>
+<%= link_to "Place Order", orders_path(@order, :cart_id => @cart.id, :current_user_id => current_user), :method => :post, :class => "btn", :id => "place_order"%>

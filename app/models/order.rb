@@ -1,11 +1,9 @@
 class Order < ActiveRecord::Base
-  has_many :order_items
+  has_many :order_items, :dependent => :destroy
   has_many :products, :through => :order_items
   belongs_to :user
 
-  def self.create_order_from_cart(cart_id)
-    cart = Cart.find(cart_id)
-    new_order = Order.create
+  def create_and_order_item_to_order(cart)
     cart.cart_items.each do |cart_item|
       order_item = OrderItem.new
       order_item.order_id = new_order.id
@@ -14,6 +12,11 @@ class Order < ActiveRecord::Base
       order_item.total_price = cart_item.total
       order_item.save
     end
+
+  def self.create_order_from_cart(cart_id)
+    cart = Cart.find(cart_id)
+    new_order = Order.create
+    
     new_order.total_price = cart.total
     new_order.user
     new_order.save
