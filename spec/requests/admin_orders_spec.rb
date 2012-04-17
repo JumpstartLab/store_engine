@@ -60,5 +60,16 @@ require 'spec_helper'
       save_and_open_page
       page.should have_content(@order.order_items.first.product.price * 4)
     end
+
+    it "allows an admin to filter orders by status" do
+      u = Fabricate(:user)
+      u.update_attribute(:admin, true)
+      log_in(u, 'asdfasdf')
+      @order = Fabricate(:order)
+      visit admin_orders_path(@order, status_filter: 'pending')
+      page.should have_content @order.user.email
+      visit admin_orders_path(@order, status_filter: 'returned')
+      page.should_not have_content @order.user.email
+    end
   end
 
