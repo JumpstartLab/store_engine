@@ -1,14 +1,13 @@
 <h1>Log In</h1>
 
 <!-- this is where we'll want people to either login with email or username -->
-<%= form_tag sessions_path do %>
-  <div class="field">
-          <%= "Email or username" %><br />
+<%= form_tag sessions_path, :class=>'well' do %>
+  <label>
+          <%= "Email or username" %></label>
           <%= text_field_tag :account_name, params[:account_name] %>
-  </div>
-  <div class="field">
-          <%= label_tag :password %><br />
+  <label>
+          <%= label_tag :password %>
           <%= password_field_tag :password %>
-  </div>
-  <div class="actions"><%= submit_tag "Log In" %>
+  </label>
+  <div class="actions"><%= submit_tag "Log In", :class => 'btn' %>
 <% end %>

@@ -1,6 +1,8 @@
-$('a#cart_count').text('Cart (<%= @cart.quantity %>)');
-var original_color = $('a#cart_count').css('color');
-$('a#cart_count').animate({ color: "lime"}, 200).delay(1000).animate({ color: original_color}, 1000);
+$('span#cart_count').text('<%= @cart.quantity %>');
+
+$('#badger').transition({ scale: 1.5 },'out', function() {
+    $(this).transition({ scale: 1 });
+});
 
 
 
