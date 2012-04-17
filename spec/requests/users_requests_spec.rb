@@ -25,6 +25,11 @@ describe "Users requests" do
       page.current_path.should == user_path(user)
     end
 
+    it "shows user page" do
+      visit edit_user_path(user)
+      page.current_path.should == edit_user_path(user)
+    end
+
     it "shows page not found for another user" do
       validate_not_found(user_path(user2))
     end
@@ -55,6 +60,14 @@ describe "Users requests" do
 
     it "shows page not found" do 
       validate_not_found(user_path(user))
+    end
+
+    it "shows page not found" do 
+      validate_not_found(edit_user_path(user))
+    end
+
+    it "shows create user page not found" do
+      validate_not_found(user_path(user), "put")
     end
   end
 

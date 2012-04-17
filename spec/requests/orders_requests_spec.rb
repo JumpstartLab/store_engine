@@ -14,11 +14,11 @@ describe "Orders requests" do
     end 
 
     it "shows current users orders" do
-      page.should have_content("#{order2.updated_at}")
+      page.should have_content("#{order2.display_date}")
     end
 
     it "shows individual order page" do
-      click_link "#{order.updated_at}"
+      click_link "#{order.display_date}"
       page.current_path.should == order_path(order2.id)
     end
   end

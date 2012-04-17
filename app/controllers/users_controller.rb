@@ -19,12 +19,21 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    id = params[:id].to_i
+    if logged_in? && current_user.id == id
+      @user = User.find(id)
+    else
+      not_found
+    end
   end
 
   def update
-    user = User.find(params[:id]).update_attributes(params[:user])
-    redirect_to user_path(@user) 
+    if logged_in? && current_user.id == id
+      user = User.find(params[:id]).update_attributes(params[:user])
+      redirect_to user_path(@user) 
+    else 
+      not_found
+    end
   end
 
   def create
