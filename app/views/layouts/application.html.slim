@@ -18,9 +18,23 @@ html
           li class="active" = link_to "Shopping Cart - #{cart.item_count}", shopping_cart_path
           - if current_user
             - if current_user.display_name
-              li class="active" = link_to current_user.display_name, edit_user_path(current_user.id)
-            -else
-              li class="active" = link_to current_user.email, edit_user_path(current_user.id)
+              li id="fat-menu" class="dropdown"
+                a.dropdown-toggle*{'data-toggle' => "dropdown"} href="#"  
+                  | #{current_user.display_name} 
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    a href="#{orders_path}" Orders 
+                    a href="#" Settings 
+            - else
+              li id="fat-menu" class="dropdown"
+                a.dropdown-toggle*{'data-toggle' => "dropdown"} href="#"  
+                  | #{current_user.email} 
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    a href="#{orders_path}" Orders 
+                    a href="#" Settings 
             li class="active" = link_to "Logout", :logout
           - else 
             li class="active" = link_to "Register", new_user_path 
