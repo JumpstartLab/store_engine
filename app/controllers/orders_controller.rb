@@ -11,6 +11,14 @@ class OrdersController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    order.update_attributes(params[:order])
+    redirect_to order_path(order)
+  end
+
   def create
     order = Order.new(params[:cart])
     order.save

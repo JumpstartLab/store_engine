@@ -25,4 +25,5 @@ describe Cart do
       }.to change { cart.products.count }.by(1)
     end
   end
+
 end

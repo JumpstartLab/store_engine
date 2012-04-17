@@ -1,24 +1,13 @@
-<div class="span12">
+<div class="span10">
   <h1>Order Up!</h1>
+  <span class="badge badge-info" style="float:right; margin-bottom:2px;">Status: <%= order.status %></span>
+
+  <%= render :partial => "order_info" %>
   
-  <table class="table">
-    <tr>
-      <th>Order ID:</th>
-      <th>User ID:</th>
-      <th>Order Placed:</th>
-      <th>Order Edited:</th>
-      <th>Order Total</th>
-    </tr>
-      <td><%= order.id %></td>
-      <td>John Doe</td>
-      <td><%= order.created_at %></td>
-      <td><%= order.updated_at %></td>
-      <td><%= order.total_price %></td>
-    </tr>
-  </table>
 </div>
-<div class="span12">
-  <table class="table" id="items">
+<div class="span10">
+  <h2>Products</h2>
+  <table class="table table-striped" id="items">
     <tr>
       <th>Product</th>
       <th>Item Price</th>
@@ -34,4 +23,7 @@
       </tr>
     <% end %>
   </table>
+  <div class="span10">
+    <%= link_to "Edit Order", edit_order_path(order), :title =>"edit this order", :class => 'btn', :id =>'edit_order_btn' %>
+  </div>
 </div>
