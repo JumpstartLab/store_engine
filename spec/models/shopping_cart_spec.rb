@@ -96,4 +96,22 @@ describe ShoppingCart do
       end
     end
   end
+
+  describe "#merge_cart_items" do
+    let!(:cart) { Fabricate(:shopping_cart) }
+    let(:other_cart) { double("shopping_cart") }
+    let(:product) { double("product", :id => 1)}
+    let(:other_product) { double("product", :id => 4)}
+    let(:cart_item) { double("cart_item", :product => product, :quantity => 10) }
+    let(:other_cart_item) { double("cart_item", :product => other_product, 
+                                   :quantity => 99) }
+
+    it "adds items to current cart" do
+      other_cart = double("shopping_cart", 
+                          :cart_items => [cart_item, other_cart_item])
+      cart.should_receive(:add_item).with(1, 10)
+      cart.should_receive(:add_item).with(4, 99)
+      cart.merge_cart_items(other_cart)
+    end
+  end
 end
