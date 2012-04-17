@@ -31,7 +31,7 @@ module UsersHelper
   end
 
   def require_user_or_admin
-    if current_user.nil? || (current_user != @user && !admin?)
+    unless current_user == @user || admin_view?
       redirect_to root_url, notice: "Sorry, you are not allowed to view that."
     end
   end
