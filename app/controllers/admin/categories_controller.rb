@@ -1,4 +1,7 @@
 class Admin::CategoriesController < ApplicationController  
+  before_filter :require_login
+  before_filter :is_admin?
+
   def new
     @category = Category.new
   end
@@ -38,4 +41,5 @@ class Admin::CategoriesController < ApplicationController
       render 'edit'
     end
   end
+
 end

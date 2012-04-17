@@ -2,7 +2,7 @@
 
 <h2>Please enter your details</h2>
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :url => users_path(:last_page => session[:last_page]) do |f| %>
 
   <%= render 'errors', :object => @user, :field => :email %>
   <%= f.text_field :email, :placeholder => "E-mail Address" %>

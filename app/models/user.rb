@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
-  # attr_accessible :title, :body
 
+  #CONSIDER TAKING CART_ID AWAY.
   attr_accessible :email, :name, :display_name, :password, :password_confirmation, :cart_id
 
   validates_confirmation_of :password

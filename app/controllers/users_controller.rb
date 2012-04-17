@@ -9,9 +9,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      cart = current_cart
       user = login(params[:user][:email], params[:user][:password])
-      cart.assign_cart_to_user(user)
+      current_cart.assign_cart_to_user(user)
       redirect_to_last_page("Welcome! Thanks for signing up!")
     else
       render :new
