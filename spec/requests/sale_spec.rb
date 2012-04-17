@@ -12,10 +12,16 @@ describe "Sale", :focus => true do
     end
   end
   context "An admin can create a sale" do
-    it "Create a sale" do
-      fill_in => "sale[percent_off]", :with => 332
+    it "Passes" do
+      fill_in "sale[percent_off]", :with => 30
       click_on "Save Sale"
+      page.should have_content "Sale created."
     end
+    it "Fails" do
+      fill_in "sale[percent_off]", :with => 332
+      click_on "Save Sale"
+      page.should have_content "Please fix the form."
+    end    
   end
   context "Sales have end dates " do
     it "Can set end date" do
