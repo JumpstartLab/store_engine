@@ -25,15 +25,14 @@ class Order < ActiveRecord::Base
     total_price * 100
   end
 
-  def save_with_payment
+  def save_with_payment(token=nil)
     if valid?
-      customer = Stripe::Customer.create(description: user.email,
-      card: stripe_card_token)
+      create_stripe_user(token) if !user.stripe_id
 
       Stripe::Charge.create(
         :amount => total_price_in_cents.to_i,
         :currency => "usd",
-        :customer => customer.id,
+        :customer => user.stripe_id,
         :description => "order##{id}" )
 
       save!
@@ -41,6 +40,17 @@ class Order < ActiveRecord::Base
     rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error while creating customer: #{e.message}"
     errors.add :base, "There was a problem with your credit card."
+  end
+
+  def create_stripe_user(token)
+    customer = Stripe::Customer.create(description: user.email,
+      card: token)
+    user.stripe_id = customer.id
+    user.save
+  end
+
+  def self.charge_two_click(cart_id)
+    "BOOM"
   end
 
   def add_order_items_from(cart)
