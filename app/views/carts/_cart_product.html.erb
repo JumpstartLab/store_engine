@@ -1,7 +1,20 @@
+<%= content_for :head do %>
+<script type="text/javascript">
+$(function(){
+  $('select').live('change',function(){
+    $(this).closest('form.edit_cart_product').submit();
+  });
+});
+</script>
+<% end %>
 <tr class="cart-product" id="cart_product_<%= cart_product.id %>">  
   <td class="title"><%= cart_product.title %></td>
-  <td class="unit-price"><%= cart_product.unit_price %></td>
-  <td class="quantity"><%= cart_product.quantity %></td>
-  <td class="subtotal"><%= cart_product.total %></td>
+  <td class="unit-price"><%= number_to_currency(cart_product.unit_price) %></td>
+  <td class="quantity">
+  <%= form_for cart_product, :url => cart_product_path(cart_product), :method => :put do |f| %>
+    <%= f.select :quantity, (1..30), :selected => cart_product.quantity %>
+  <% end %>
+  </td>
+  <td class="subtotal"><%= number_to_currency(cart_product.total) %></td>
   <td><%= link_to "remove", cart_product_path(cart_product), :method => :delete %></td>
 </tr>

@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-      <%= render :partial => "orders/order_product", :collection => @order.order_products %>
+      <%= render :partial => "order_product", :collection => @order.order_products %>
       </tbody>
       <tfoot>
         <tr>
@@ -21,7 +21,7 @@
           <td></td>
           <td></td>
           <td>Total</td>
-          <td><%= @order.total %></td>      
+          <td><%= number_to_currency(@order.total) %></td>
         </tr>
       </tfoot>
     </table>

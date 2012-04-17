@@ -43,6 +43,7 @@ class Order < ActiveRecord::Base
     else
       order_statuses.new(:status => "pending")
       save
+      return order_statuses.last.status
     end
   end
 

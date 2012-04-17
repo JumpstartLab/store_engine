@@ -11,4 +11,13 @@ class CartProductsController < ApplicationController
     redirect_to cart_path
   end
 
+  def update
+    cart_product = CartProduct.find_by_id(params[:id])
+    if cart_product.update_attributes(:quantity => params[:cart_product][:quantity])
+      redirect_to cart_path
+    else
+      raise "whoops"
+    end
+  end
+
 end

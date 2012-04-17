@@ -33,8 +33,9 @@ StoreEngine::Application.routes.draw do
 
   resources :order_statuses, :only => [:create]
   resources :orders
+  resources :order_products, :only => [:update]
   resources :categories
-  resources :cart_products, :only => [:create, :destroy]
+  resources :cart_products, :only => [:create, :destroy, :update]
   resources :instant_orders, :only => [:create]
 
   resource :cart do

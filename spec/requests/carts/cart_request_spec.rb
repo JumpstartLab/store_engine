@@ -138,5 +138,11 @@ describe "Using the shopping cart" do
       end
     end
 
+    it "has a field for setting quantity" do
+      within ".cart-product" do
+        page.should have_selector(".edit_cart_product")
+      end
+    end
+
   end
 end
