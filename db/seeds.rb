@@ -4,9 +4,15 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.destroy_all
-User.create(full_name: 'Matt Yoho', email_address: 'matt.yoho@livingsocial.com', display_name: '', password: 'test')
-User.create(full_name: 'Jeff Casimir', email_address: 'jeff.casimir@livingsocial.com', display_name: 'j3', password: 'test')
-chad = User.create(full_name: 'Chad Fowler', email_address: 'chad.fowler@livingsocial.com', display_name: 'Chad', password: 'test')
+User.create(full_name: 'Matt Yoho',
+            email_address: 'matt.yoho@livingsocial.com', display_name: '',
+            password: 'test')
+User.create(full_name: 'Jeff Casimir',
+            email_address: 'jeff.casimir@livingsocial.com',
+            display_name: 'j3', password: 'test')
+chad = User.create(full_name: 'Chad Fowler',
+                   email_address: 'chad.fowler@livingsocial.com',
+                   display_name: 'Chad', password: 'test')
 chad.update_attribute(:admin, true)
 
 Category.destroy_all

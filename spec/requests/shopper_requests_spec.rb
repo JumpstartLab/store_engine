@@ -128,7 +128,9 @@ describe "shopper" do
         it "can add shipping info" do
           click_link_or_button "Add a Shipping Address"
           current_path.should == new_shipping_address_path
-          shipping = {street: "One Mockingbird Lane", city: "Anytown", state: "VA", zipcode: 22209, email_address: "test@test.com"}
+          shipping = {street: "One Mockingbird Lane", city: "Anytown",
+                      state: "VA", zipcode: 22209,
+                      email_address: "test@test.com"}
           add_non_user_shipping(shipping)
         end
         it "can check out" do
@@ -159,7 +161,7 @@ describe "shopper" do
             click_link_or_button "Check Out"
           end
           current_path.should have_content "orders"
-          page.should have_content "Please input valid billing and shipping information."
+          page.should have_content "Please input valid billing and shipping"
         end
       end
     end
@@ -167,7 +169,8 @@ describe "shopper" do
       it "can sign up" do
         click_link_or_button "Sign-Up"
         page.should have_selector ".new_user"
-        sign_up({full_name: "Test User", email: "test@test.com", password: "test", display_name: "Test"})
+        sign_up({full_name: "Test User", email: "test@test.com",
+                 password: "test", display_name: "Test"})
         current_path.should == "/"
         page.should have_content "Welcome"
         page.should have_content "My Account"
@@ -175,7 +178,8 @@ describe "shopper" do
       it "can sign up and maintain its cart" do
         click_link_or_button "Add to Cart"
         click_link_or_button "Sign-Up"
-        sign_up({full_name: "Test User", email: "test@test.com", password: "test", display_name: "Test"})
+        sign_up({full_name: "Test User", email: "test@test.com",
+                 password: "test", display_name: "Test"})
         within "#cart" do
           page.should have_content product.title
         end

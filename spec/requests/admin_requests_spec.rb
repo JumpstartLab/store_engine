@@ -188,7 +188,8 @@ describe "admin" do
         orders = []
         6.times do |i|
           orders[i] = Fabricate(:order)
-          orders[i].update_attributes(user_id: nil, shipping_address_id: shipping.id)
+          orders[i].update_attributes(user_id: nil,
+                                      shipping_address_id: shipping.id)
         end
         orders
       }
@@ -203,7 +204,8 @@ describe "admin" do
       before(:each) do
         6.times do |i|
           line_item = Fabricate(:line_item)
-          line_item.update_attributes(order_id: orders.sample.id, product_id: products.sample.id)
+          line_item.update_attributes(order_id: orders.sample.id,
+                                      product_id: products.sample.id)
         end
         visit orders_path
       end
@@ -222,7 +224,9 @@ describe "admin" do
           select(option, from: "status")
           click_link_or_button "Update"
           within "#main-content" do
-            orders.each { |o| page.should have_content o.id if o.status == option }
+            orders.each do |o|
+              page.should have_content o.id if o.status == option
+            end
           end
         end
         select("all", from: "status")

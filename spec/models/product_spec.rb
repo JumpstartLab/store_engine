@@ -62,7 +62,8 @@ describe Product do
     let(:second_cat) { Fabricate(:category) }
     it "creates the category relationships for the product" do
       cat_ids = [first_cat.id, second_cat.id]
-      Product.create({title: "a", description: "b", price: 6, category_ids: cat_ids}).should be_valid
+      Product.create({title: "a", description: "b", price: 6,
+                      category_ids: cat_ids}).should be_valid
 
       cat_ids.each do |id|
         Product.last.categories.should include Category.find(id)
@@ -88,8 +89,8 @@ describe Product do
   end
   describe "#to_param" do
     it "returns the dom_id of the product" do
-      product = Fabricate(:product)
-      product.to_param.should == "#{product.id}-#{product.title.downcase.gsub(" ","-")}"
+      p = Fabricate(:product)
+      p.to_param.should == "#{p.id}-#{p.title.downcase.gsub(" ","-")}"
     end
   end
 end

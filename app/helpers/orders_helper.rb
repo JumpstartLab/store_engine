@@ -4,7 +4,7 @@ module OrdersHelper
   end
   def require_order_or_admin
     if (current_order.nil? || (current_order != @order)) && !admin?
-      redirect_to root_url, notice: "Sorry, you are not allowed to view that page"
+      redirect_to root_url, notice: "Sorry, you are not allowed to view that."
     end
   end
 end

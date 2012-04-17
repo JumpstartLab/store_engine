@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :lookup_user, :only => [:show, :edit, :destroy, :update, :view_as_admin, :view_as_normal]
+  before_filter :lookup_user,
+                :only => [:show, :edit, :destroy, :update, :view_as_admin,
+                 :view_as_normal]
   before_filter :require_user, :only => [:edit, :update]
   before_filter :require_user_or_admin, :only => [:show]
   before_filter :require_admin, :only => [:index, :destroy]

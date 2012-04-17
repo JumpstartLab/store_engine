@@ -1,5 +1,5 @@
 class BillingMethodsController < ApplicationController
-  # before_filter :protect_against_other_users, only: [:new, :edit, :update, :create, :destroy]
+
   def new
     session[:return_to] = request.referrer
     @billing_method = BillingMethod.new

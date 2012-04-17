@@ -132,9 +132,10 @@ describe "logged in user" do
         end
       end
       it "does not see admin stuff" do
+        adm_links = ["Destroy", "Edit", "Actions", "Transition", "ID", "Name"]
         click_link_or_button "View Orders"
         within "#main-content" do
-          ["Destroy", "Edit", "Actions", "Transition", "ID", "Name"].each do |bad|
+          adm_links.each do |bad|
             page.should_not have_content bad
           end
         end

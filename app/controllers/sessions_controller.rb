@@ -10,7 +10,9 @@ class SessionsController < ApplicationController
         if session[:order_id]
           order = Order.find(session[:order_id])
           order.line_items.each do |li|
-            LineItem.increment_or_create_line_item(price: li.price, product_id: li.product_id, quantity: li.quantity, order_id: user.pending_order.id)
+            LineItem.increment_or_create_line_item(price: li.price,
+              product_id: li.product_id, quantity: li.quantity,
+              order_id: user.pending_order.id)
           end
         end
         session[:order_id] = user.pending_order.id

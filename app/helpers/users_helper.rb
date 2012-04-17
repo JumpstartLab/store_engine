@@ -26,13 +26,13 @@ module UsersHelper
 
   def require_user
     if current_user.nil? || current_user != @user
-      redirect_to root_url, notice: "Sorry, you are not allowed to view that page"
+      redirect_to root_url, notice: "Sorry, you are not allowed to view that."
     end
   end
 
   def require_user_or_admin
     if current_user.nil? || (current_user != @user && !admin?)
-      redirect_to root_url, notice: "Sorry, you are not allowed to view that page"
+      redirect_to root_url, notice: "Sorry, you are not allowed to view that."
     end
   end
 

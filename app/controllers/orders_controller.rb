@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
   def update
     if @order.status == "pending" && @order.transition
-      notice = "Thank you for your purchase. You will receive an email confirmation shortly"
+      notice = "Thank you for purchasing. An email confirmation is on its way."
       session[:order_id] = nil
       redirect_to root_path, notice: notice
     elsif @order.status != "pending" && @order.transition

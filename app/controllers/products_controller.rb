@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_filter :lookup_product, :only => [:show, :edit, :destroy, :update, :retire]
+  before_filter :lookup_product,
+                :only => [:show, :edit, :destroy, :update, :retire]
 
   def index
     if admin_view?
