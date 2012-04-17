@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
-  before_filter :require_order_or_admin, :only => [:show, :edit, :update]
+  before_filter :current_user, only: [:show]
+  # before_filter :require_order_or_admin, :only => [:show, :edit, :update]
   before_filter :require_admin, :only => [:destroy]
 
   def index
