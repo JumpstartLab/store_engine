@@ -1,4 +1,5 @@
-h1 Order: #{@order.id}
+h1 Order - #{@order.id} 
+| Status - #{@order.status.name}
 
 p
 div class="row-fluid"
@@ -46,3 +47,6 @@ div class="row-fluid"
 
 h3 Order Total
 ="$#{cart.total}"
+
+p
+= link_to "Back to All Orders", orders_path, :class => "btn"
