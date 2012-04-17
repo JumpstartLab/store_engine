@@ -8,7 +8,7 @@ class Cart < ActiveRecord::Base
 
   def add_product_by_id(id)
     product = Product.find(id)
-    add_product(product)
+    add_product(product) if product.active?
   end
 
   def remove_product_by_id(id)

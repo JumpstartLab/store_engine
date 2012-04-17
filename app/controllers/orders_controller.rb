@@ -18,7 +18,6 @@ class OrdersController < ApplicationController
     @order = Order.create(:user_id => current_user.id)
     @order.stripe_customer_token = params[:order][:customer_token]
 
-    # raise @order.inspect
     if @order.find_credit_card && @order.charge(current_cart)
       current_cart.assign_cart_to_order_and_destroy(@order)
       redirect_to @order, :notice => "Thank you for placing an order."
