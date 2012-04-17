@@ -26,6 +26,8 @@ html
                   li
                     a href="#{orders_path}" Orders 
                     a href="#{user_path(current_user)}" Settings 
+                    - if current_user.admin?
+                      a href="#{admin_dashboard_index_path}" Admin Dashboard 
             - else
               li id="fat-menu" class="dropdown"
                 a.dropdown-toggle*{'data-toggle' => "dropdown"} href="#"  
@@ -35,6 +37,8 @@ html
                   li
                     a href="#{orders_path}" Orders 
                     a href="#{user_path(current_user)}" Settings 
+                    - if current_user.admin?
+                      a href="#{admin_dashboard_index_path}" Admin Dashboard
             li class="active" = link_to "Logout", :logout
           - else 
             li class="active" = link_to "Register", new_user_path 
