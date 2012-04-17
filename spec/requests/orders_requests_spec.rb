@@ -25,6 +25,14 @@ describe "For orders" do
         end
       end
     end
+
+    it "has a place to sort by status" do
+      page.should have_selector("#status_sort")
+    end
+
+    it "allows the user to sort by status" do
+      pending "Not sure how to set up the selecting on the page itself"
+    end
   end
 
   context "#show" do
