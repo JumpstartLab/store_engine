@@ -18,6 +18,7 @@ html
           = " or "
           = link_to("log in", login_path)
 
+      li = link_to "Browse by Category", categories_path      
       li = link_to "View Cart", cart_path
       
     - flash.each do |name, msg|

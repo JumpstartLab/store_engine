@@ -23,6 +23,7 @@ describe User do
 
     describe "dashboard" do
       it "view total number of orders by status"
+
       it "click links for each order"
       it "filter by status type"
 
@@ -45,9 +46,8 @@ describe User do
           end
         end
       end
-      
-    it "not edit users personal data"
-
+    end
+    
     describe "products" do
       before(:each) do
         user.cart = cart
