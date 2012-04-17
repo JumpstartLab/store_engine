@@ -6,6 +6,7 @@ class CreateProducts < ActiveRecord::Migration
       t.decimal :price, scale: 2
       t.string :photo
       t.boolean :retired, default: false
+      t.string :upc
       t.timestamps
     end
   end

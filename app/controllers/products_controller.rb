@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @badge_html = @product.badge_html
     @order = Order.new
   end
 

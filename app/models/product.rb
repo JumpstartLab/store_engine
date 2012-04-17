@@ -1,4 +1,6 @@
  class Product < ActiveRecord::Base
+  include HTTParty
+  base_uri 'http://api.goodguide.com/'
   has_many :line_items
   has_many :category_assignments
   has_many :categories, through: :category_assignments
@@ -6,7 +8,7 @@
 
   before_destroy :ensure_not_in_line_item
   
-  attr_accessible :title, :description, :price, :photo, :category_id, :category_ids, :retired, :id
+  attr_accessible :title, :description, :price, :photo, :category_id, :category_ids, :retired, :id, :upc
 
   validates :title, :presence => true, :uniqueness => true
   validates :description, :presence => true
@@ -24,6 +26,18 @@
     end
   end
 
+  def badge_html
+    response = retrieve_rating
+    if response.success?
+      entity = response.parsed_response["goodguide_response"]['entities']['entity']
+      if entity.instance_of? Array 
+        entity.first['small_badge_html']
+      else
+        entity['small_badge_html']
+      end
+    end
+  end
+
 
 #  private
 
@@ -36,5 +50,14 @@
     end
   end
 
+  def retrieve_rating
+    options = {
+      api_key: "5pa4ewzvcq85ycbzurschy4d",
+      api_version: "1.0",
+      api_format: "badge",
+      upc: upc
+    }
+    Product.get("/search.xml", query: options)
+  end
 
 end

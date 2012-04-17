@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20120410183448) do
     t.decimal  "price"
     t.string   "photo"
     t.boolean  "retired",     :default => false
+    t.string   "upc"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end

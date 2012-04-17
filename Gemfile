@@ -7,6 +7,7 @@ gem 'rails3-generators'
 gem "twitter-bootstrap-rails"
 gem 'sorcery'
 gem 'cancan'
+gem 'httparty'
 
 
 
