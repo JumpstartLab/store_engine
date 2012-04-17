@@ -5,11 +5,11 @@ class ProductsController < ApplicationController
   
   def index
     if params[:search_title] && params[:search_title].length > 0
-      @products = Product.find_by_title(params[:search_title])
+      @products = Product.active.find_by_title(params[:search_title])
     elsif params[:search_category] && params[:search_category].length > 0
-      @products = Product.find_by_category(params[:search_category])
+      @products = Product.active.find_by_category(params[:search_category])
     else
-      @products = Product.all
+      @products = Product.active
     end
   end
 

@@ -11,10 +11,14 @@ class Product < ActiveRecord::Base
   has_many :categories, :through => :product_categories
   has_many :orders, through: :order_items
 
-  default_scope where(:activity => true)
+  # default_scope where(:activity => true)
 
   def self.find_by_title(search_term)
     Product.where("upper(title) like ?", "%#{search_term.upcase}%")
+  end
+
+  def self.active
+    Product.where(:activity => true)
   end
 
   def self.find_by_category(search_term)
