@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :user_id, :status, :credit_card_id, :current_status
+  attr_accessible :user_id, :credit_card_id
   attr_accessor :stripe_customer_token
 
   belongs_to :user
@@ -7,24 +7,25 @@ class Order < ActiveRecord::Base
 
   has_many :order_products, :dependent => :destroy
   has_many :products, :through => :order_products
+  has_one :order_status, :dependent => :destroy
   validates_presence_of :user_id
-  has_one :order_status
 
   scope :desc, order("id DESC")
 
-  after_save :initialize_order_status
+  def create_pending_status
+    if self.order_status.nil?
+      OrderStatus.create(:status => 'pending', :order_id => self.id)
+    end
+  end
 
-  def initialize_order_status
-    OrderStatus.create(:status => 'pending', :order_id => self.id)
+
+  def status
+    result = self.order_status.status
+    result ? result : ""
   end
 
   def mark_as_paid
-    #update_attribute(:status, 'paid')
     self.order_status.update_attributes(:status => 'paid')
-  end
-
-  def status
-    self.order_status.status
   end
 
   def charge(cart)
@@ -48,13 +49,13 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def self.orders_by_status(status=nil)
-    if status.nil?
+  def self.orders_by_status(status_filter=nil)
+    if status_filter.nil?
       Order.all
     else
       #Order.joins('LEFT OUTER JOIN order_statuses ON order_statuses.order_id = order_id WHERE order_statuses.status = status')
       Order.joins('LEFT OUTER JOIN order_statuses ON orders.id = order_statuses.order_id').
-      where('order_statuses.status = ?', status)
+      where('order_statuses.status = ?', status_filter)
       #Order.find_all_by_status(status)
     end
   end

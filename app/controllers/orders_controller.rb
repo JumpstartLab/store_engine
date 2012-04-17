@@ -16,11 +16,12 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.create(:user_id => current_user.id)
+    @order.create_pending_status
     @order.stripe_customer_token = params[:order][:customer_token]
 
+    # raise @order.inspect
     if @order.find_credit_card && @order.charge(current_cart)
       current_cart.assign_cart_to_order_and_destroy(@order)
-      OrderStatus.create(:status => 'paid', :order_id => @order.id)
       redirect_to @order, :notice => "Thank you for placing an order."
     else
       render :new

@@ -50,9 +50,12 @@ describe CreditCard do
 
     it "saves the credit card to the database" do
       Stripe::Customer.should_receive(:create).and_return(json)
-      credit_card.add_details_from_stripe_card_token(stripe_card_token)
+      x = credit_card.add_details_from_stripe_card_token(stripe_card_token)
+      # raise CreditCard.all.inspect
+      # raise user.credit_cards.inspect
       CreditCard.all.count.should == 1
-      user.credit_cards.should == [ credit_card ]
+      CreditCard.last.user_id.should == user.id
+      # user.credit_cards.should == [ credit_card ]
     end
 
     # context "given invalid information" do
