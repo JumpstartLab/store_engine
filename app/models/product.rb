@@ -11,7 +11,7 @@
   validates :title, :presence => true, :uniqueness => true
   validates :description, :presence => true
   validates :price, :presence => true
-  validates_numericality_of :price#, :greater_than_or_equal_to => .01
+  validates_numericality_of :price, :greater_than => 0
 
   def category_list
     categories.map(&:name).join(", ")

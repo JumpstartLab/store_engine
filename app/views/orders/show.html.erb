@@ -28,6 +28,12 @@
 <p>
   <b>Status</b><br>
   <%= @order.status %>
+  <% if @order.status == "cancelled" %>
+  at: <%= @order.cancelled_at %>
+  <% elsif @order.status == "shipped" %>
+  at: <%= @order.shipped_at %>
+  <% end %>
+
     <% if can? :update, @order %> 
       <% if @order.next_status %>
         <%= form_for @order do |f| %>

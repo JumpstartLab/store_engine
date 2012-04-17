@@ -67,6 +67,11 @@ class OrdersController < ApplicationController
   def update
     @order.update_attributes(params[:order])
     @order.save
+    case params[:order][:status]
+      when "shipped" then @order.ship
+      when "cancelled" then @order.cancel
+      when "paid" then @order.pay
+    end
     redirect_to order_path(@order)
   end
 
