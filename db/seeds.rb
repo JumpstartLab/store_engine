@@ -56,20 +56,20 @@ accessory = Category.create(:name => "Accessory")
 
 # make orders
 20.times do |i|
-  Fabricate(:order, :user_id => rand(1..3).to_i)
-  OrderProduct.create(:quantity => rand(1..10).to_i,
-                      :product_id => rand(1..4).to_i,
+  Fabricate(:order, :user_id => Random.rand(1..3).to_i)
+  OrderProduct.create(:quantity => Random.rand(1..10).to_i,
+                      :product_id => Random.rand(1..4).to_i,
                       :order_id => i+1)
 end
 
 # make billing addresses
 3.times do
-  Fabricate(:order, :billing_address_id => rand(1..3).to_i)
+  Fabricate(:order, :billing_address_id => Random.rand(1..3).to_i)
 end
 
 # make shipping addresses
 2.times do
-  Fabricate(:order, :shipping_address_id => rand(4..5).to_i)
+  Fabricate(:order, :shipping_address_id => Random.rand(4..5).to_i)
 end
 
 # make addresses
