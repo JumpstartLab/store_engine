@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :current_user_or_admin_or_not_found, :only => [:show]
-  before_filter :admin_or_not_found, :only => [:index, :create]
+  before_filter :admin_or_not_found, :only => [:index]
 
   def index
     @users = User.all

@@ -16,10 +16,6 @@ describe "Users requests" do
       page.current_path.should == root_path
     end
 
-    it "shows create user page not found" do
-      validate_not_found(users_path, "post")
-    end
-
     it "shows user page" do
       visit user_path(user)
       page.current_path.should == user_path(user)
@@ -52,10 +48,6 @@ describe "Users requests" do
     it "shows new user page" do
       visit new_user_path
       page.current_path.should == new_user_path
-    end
-
-    it "shows create user page not found" do
-      validate_not_found(users_path, "post")
     end
 
     it "shows page not found" do 
