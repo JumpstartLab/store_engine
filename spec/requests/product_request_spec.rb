@@ -46,5 +46,22 @@
         visit product_path(p)
         page.should_not have_button "Add Item To Cart"
       end
+
+      it "allows me to two-click purchase an item" do
+        p = Fabricate(:product)
+        u = Fabricate(:user)
+        log_in(u, 'asdfasdf')
+        visit product_path(p)
+        click_button "Buy Now"
+        page.should have_content "Placed by #{u.email}"
+      end
+
+      it "redirects to root for guest users trying to two-click purchase" do
+        p = Fabricate(:product)
+        visit product_path(p)
+        click_button "Buy Now"
+        page.should have_content "You must be signed in"
+        URI.parse(current_url).path.should == root_path
+      end
     end
   end
