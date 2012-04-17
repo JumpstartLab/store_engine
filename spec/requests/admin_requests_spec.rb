@@ -126,8 +126,9 @@ describe "admin" do
       end
     end
     it "can destroy a product" do
+      page.should have_selector "#product-title"
       click_link_or_button "Destroy"
-      page.should_not have_content product.title
+      page.should_not have_selector "#product-title"
     end
     it "can retire a product" do
       click_link_or_button "Retire"
@@ -195,6 +196,7 @@ describe "admin" do
         products = []
         3.times do |i|
           products[i] = Fabricate(:product)
+          products[i] = Fabricate(:product) until products[i].valid?
         end
         products
       }
