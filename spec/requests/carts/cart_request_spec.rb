@@ -7,6 +7,8 @@ describe "Using the shopping cart" do
   let(:products)  {[product, new_product]}
   let(:user)      { Fabricate(:user, :password => 'password',
                                      :admin => 'false')}
+  let(:admin_user)      { Fabricate(:user, :password => 'password',
+                                    :admin => 'true')}
 
 
   context "when adding products to the cart" do
@@ -113,9 +115,20 @@ describe "Using the shopping cart" do
       login(user)
       visit "/cart"
 
-      within "#cart" do
-        page.should have_content(product.title)
-      end  
+      page.should have_content(product.title)
+    end
+
+    it "sets the quantity for a product added to the cart" do
+      visit product_path(product)
+      click_link_or_button "add to cart"
+      visit product_path(product)
+      click_link_or_button "add to cart"
+
+      login(user)
+      visit "/cart"
+      page.should have_content(product.title)
+
+      user.cart.cart_products.last.quantity.should == 3
     end
   end
 
@@ -143,6 +156,36 @@ describe "Using the shopping cart" do
         page.should have_selector(".edit_cart_product")
       end
     end
+  end
+
+  context "when a product gets retired" do
+    before (:each) do
+      login(user)
+      visit product_path(product)
+      click_link_or_button "add to cart"
+      visit logout_path
+      login(admin_user)
+
+      visit admin_products_path
+      within("tr#product_#{product.id}") do
+        click_link_or_button("Retire")
+      end
+      visit logout_path
+      login(user)
+      visit "/cart"
+    end
+
+    it "removes the product from the cart" do
+      page.should_not have_content(product.title)
+    end
 
   end
 end
+
+
+
+
+
+
+
+

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
 
+
   def create
     if session[:cart_id]
       temp_cart = Cart.find_by_id(session[:cart_id])
@@ -21,13 +22,4 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => "Logged out!"
   end
 
-  private
-
-  def add_session_cart_items(cart)
-    if cart.products.any?
-      cart.products.each do |product|
-        @user.cart.products << product
-      end
-    end
-  end
 end

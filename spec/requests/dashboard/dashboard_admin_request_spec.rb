@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe "Dashboard" do
-  let(:admin)    { Fabricate(:user, :admin => true)}
-  let(:user)     { Fabricate(:user) }
+  let(:admin)    { Fabricate(:user, :admin => true, 
+                             :password => "password")}
+  let(:user)     { Fabricate(:user, :password => "password") }
   let(:billing)  { Fabricate(:address) }
   let(:shipping) { Fabricate(:address) }
   let(:product)  { Fabricate(:product) }

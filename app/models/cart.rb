@@ -4,7 +4,7 @@ class Cart < ActiveRecord::Base
 
   has_many :cart_products
   has_many :products, :through => :cart_products
-  
+
   def add_product_by_id(product_id)
     product = Product.find_by_id(product_id)
     products << product

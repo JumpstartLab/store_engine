@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  let(:user) { Fabricate(:user) }
+  let(:user) { Fabricate(:user, :password => "password") }
   let(:address1) { Fabricate(:address) }
   let(:address2) { Fabricate(:address) }
 

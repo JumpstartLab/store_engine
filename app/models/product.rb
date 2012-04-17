@@ -8,13 +8,15 @@ class Product < ActiveRecord::Base
   
   validates :description, :presence => true
   
-  validates :price,       :presence => true
-                          # :numericality => {
-                          #   :only_integer => true }
-  validates_format_of :remote_image_url, 
+  validates :price,       :presence => true,
+                          :numericality => {
+                            :greater_than => 0
+                          }
+  validates_format_of :remote_image_url, :allow_blank => true,
   :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
 
   has_many :orders
+  has_many :cart_products
   
   has_many :product_categories
   has_many :categories, :through => :product_categories
@@ -43,7 +45,11 @@ class Product < ActiveRecord::Base
   def retire
     self.retirements << Retirement.new
     self.retired = true
-    save
+    if save
+      self.cart_products.each do |cp|
+        cp.destroy
+      end
+    end
   end
 
   def activate

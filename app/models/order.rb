@@ -4,7 +4,7 @@ class Order < ActiveRecord::Base
                   :shipping_address_id, :user_id
   belongs_to :user
 
-  validates_associated :user
+  validates_presence_of :user_id, :allow_nil => false
 
   has_many :order_products
   has_many :products, :through => :order_products
@@ -49,6 +49,10 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def placed_at
+    self.created_at.strftime("%I:%M %P on %m/%d/%y")
+  end
+
   def add_products_by_cart_id(cart_id)
     cart = Cart.find_by_id(cart_id.to_i)
     cart.cart_products.each do |cp|
@@ -78,7 +82,6 @@ class Order < ActiveRecord::Base
   def shipping_address
     Address.find_by_id(self.shipping_address_id)
   end
-
 
   def total
     order_products.sum(&:total)
