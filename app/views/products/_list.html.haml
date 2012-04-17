@@ -1,6 +1,6 @@
 .row
   - products.each do |product|
-    .product
+    .product.span3
       %h4= link_to product.name, product_path(product)
       %img{:src => product.avatar}
       %div= truncate(product.description, :length => 15)

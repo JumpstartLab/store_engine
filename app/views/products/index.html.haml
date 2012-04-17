@@ -1,7 +1,9 @@
 %h1 Products
 %hr
-#product_holder
-  = render 'products/list', :products => @products
-#category_holder
-  %br
-  = render 'categories/list', :categories => @categories
+
+.row
+  #product_holder.span7
+    = render 'products/list', :products => @products
+  #category_holder.span3
+    %br
+    = render 'categories/list', :categories => @categories
