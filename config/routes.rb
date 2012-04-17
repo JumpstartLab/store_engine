@@ -17,6 +17,7 @@ StoreEngine::Application.routes.draw do
     end
 
     collection do
+      put 'charge'
       get 'track'
       get 'my_orders'
     end

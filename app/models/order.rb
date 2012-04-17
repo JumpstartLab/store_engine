@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :status, :user, :products, :stripe_card_token, :is_cart
+  attr_accessible :status, :status_id, :user, :products, :stripe_card_token, :is_cart, :order_products_attributes
   default_scope :conditions => { :is_cart => 0 }
   validates_presence_of :user, :products, :status, :if => :not_a_cart
 
@@ -10,6 +10,7 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :user
   has_many :order_products
   has_many :products, :through => :order_products
+  accepts_nested_attributes_for :order_products, :allow_destroy => true
 
   def not_a_cart
     true if not self.is_a?(Cart)

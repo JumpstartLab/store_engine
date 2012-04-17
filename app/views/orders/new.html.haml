@@ -1,4 +1,4 @@
-= simple_form_for @order do |f|
+= simple_form_for @order, :url => charge_orders_path do |f|
   %fieldset
     %legend Credit Card Information
     = f.hidden_field :stripe_card_token
