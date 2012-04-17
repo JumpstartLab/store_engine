@@ -1,7 +1,7 @@
 class Transaction < ActiveRecord::Base
   belongs_to :user
 
-  attr_accessible :stripe_customer_id, :user_id
+  attr_accessible :stripe_card_token, :stripe_customer_id, :user_id
 
   # def save_with_payment
   #   if valid?

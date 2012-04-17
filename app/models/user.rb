@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
   validates :display_name, :allow_blank => true, :length => { :in => 2..32 }
   has_one :shopping_cart
   has_many :orders
-  has_many :shipping_addresses
-  has_many :billing_addresses
-  has_many :transactions
+  has_one :shipping_address
+  has_one :billing_address
+  has_one :transaction
 
   def cart?
     if shopping_cart.nil?

@@ -6,6 +6,6 @@ class ShoppingCartController < ApplicationController
 
   def update
     cart.update_quantities(params[:quantity])
-    render shopping_cart_path
+    redirect_to shopping_cart_path
   end
 end

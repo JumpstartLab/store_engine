@@ -37,8 +37,10 @@ describe "Products Requests" do
         it "saves a new product with no categories" do
           click_button "Create Product"
           click_link "Test product"
-          page.should_not have_content(category.name)
-          page.should_not have_content(category2.name)
+          within("#admin_product_show") do
+            page.should_not have_content(category.name)
+            page.should_not have_content(category2.name)
+          end
         end
       end
     end
@@ -86,8 +88,10 @@ describe "Products Requests" do
       it "saves categories" do
         check "category[#{category2.name}]"
         click_button("Update Product")
-        page.should have_content(category2.name)
-        page.should_not have_content(category.name)
+        within("#admin_product_show") do
+          page.should have_content(category2.name)
+          page.should_not have_content(category.name)
+        end
       end
 
       it "redirects to admin products page" do
@@ -100,8 +104,10 @@ describe "Products Requests" do
           other_product = Fabricate(:product)
           visit edit_admin_product_path(other_product)
           click_button("Update Product")
-          page.should_not have_content(category.name)
-          page.should_not have_content(category2.name)
+          within("#admin_product_show") do
+            page.should_not have_content(category.name)
+            page.should_not have_content(category2.name)
+          end
         end
       end
     end
