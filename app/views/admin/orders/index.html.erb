@@ -7,7 +7,7 @@
 
 <%= form_tag admin_orders_path, method: :get do |f| %>
   <%= select_tag :status_filter, options_for_select(Order::STATUSES.map(&:titleize)) %>
-  <%= submit_tag "Filter" %>
+  <%= submit_tag "Filter", class: "btn" %>
 <% end %>
 
 <table>
