@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'haml-rails'
 gem 'money'
@@ -28,6 +27,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'fabrication'
   gem 'rspec-rails'
   gem 'capybara'
