@@ -27,6 +27,10 @@ describe User do
     user.should respond_to(:password_confirmation)
   end
 
+  it "has an admin attribute" do
+    user.should respond_to(:admin)
+  end
+
   it "has an authenticate method" do
     user.should respond_to(:authenticate)
   end
@@ -35,8 +39,22 @@ describe User do
     user.should be_valid
   end
 
+  it "without the admin option set to true, the user should not be an admin" do
+    user.should_not be_admin
+  end
+
   it "has a remember token attribute" do
     user.should respond_to(:remember_token)
+  end
+
+  context "with admin attribute set to 'true'" do
+    before(:each) do
+      user.toggle!(:admin)
+    end
+
+    it "the user should be an admin" do
+      user.should be_admin
+    end
   end
 
   context "remember token" do

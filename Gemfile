@@ -4,6 +4,8 @@ gem 'rails', '3.2.3'
 gem 'sqlite3'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '3.0.1'
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.5'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -28,4 +30,5 @@ group :development, :test do
   gem 'growl'
   gem 'simplecov'
   gem 'faker'
+  gem 'factory_girl_rails', '1.4.0'
 end
