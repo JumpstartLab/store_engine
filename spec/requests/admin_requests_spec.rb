@@ -95,6 +95,16 @@ describe "admin" do
         page.should have_content "2"
       end
     end
+    it "can cancel a pending order" do
+      visit orders_path
+      click_link_or_button "Cancel"
+      page.should have_content "cancelled"
+    end
+    it "can transition an order" do
+      visit orders_path
+      click_link_or_button "Cancel"
+      page.should have_content "cancelled"
+    end
   end
   context "product" do
     let!(:product) { Fabricate(:product) }
@@ -110,17 +120,17 @@ describe "admin" do
       click_link_or_button "Edit"
       fill_in "Title", with: "Other Product"
       click_link_or_button "Update Product"
-      within ".product-title" do
+      within "#product-title" do
         page.should_not have_content product.title
         page.should have_content "Other Product"
       end
     end
     it "can destroy a product" do
+      page.should have_selector "#product-title"
       click_link_or_button "Destroy"
-      page.should_not have_content product.title
+      page.should_not have_selector "#product-title"
     end
     it "can retire a product" do
-      pending
       click_link_or_button "Retire"
       click_link_or_button "User View"
       page.should_not have_content product.title
@@ -169,6 +179,58 @@ describe "admin" do
       click_link_or_button "Destroy"
       current_path.should == categories_path
       page.should_not have_content "baseballs"
+    end
+  end
+  context "dashboard" do
+    context "filtering" do
+      let!(:shipping) { Fabricate(:shipping_address) }
+      let!(:orders) {
+        orders = []
+        6.times do |i|
+          orders[i] = Fabricate(:order)
+          orders[i].update_attributes(user_id: nil, shipping_address_id: shipping.id)
+        end
+        orders
+      }
+      let!(:products) {
+        products = []
+        3.times do |i|
+          products[i] = Fabricate(:product)
+          products[i] = Fabricate(:product) until products[i].valid?
+        end
+        products
+      }
+      before(:each) do
+        6.times do |i|
+          line_item = Fabricate(:line_item)
+          line_item.update_attributes(order_id: orders.sample.id, product_id: products.sample.id)
+        end
+        visit orders_path
+      end
+      it "displays all orders" do
+        within "#main-content" do
+          orders.each {|o| page.should have_content o.id}
+        end
+      end
+      it "filters properly" do
+        orders[0].update_attribute(:status, "paid")
+        orders[1].update_attribute(:status, "shipped")
+        orders[2].update_attribute(:status, "cancelled")
+        orders[3].update_attribute(:status, "returned")
+        orders[4].update_attribute(:status, "paid")
+        ["pending","paid","shipped","cancelled","returned"].each do |option|
+          select(option, from: "status")
+          click_link_or_button "Update"
+          within "#main-content" do
+            orders.each { |o| page.should have_content o.id if o.status == option }
+          end
+        end
+        select("all", from: "status")
+        click_link_or_button "Update"
+        within "#main-content" do
+          orders.each { |o| page.should have_content o.id }
+        end
+      end
     end
   end
 end

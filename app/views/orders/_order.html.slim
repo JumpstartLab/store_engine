@@ -2,9 +2,12 @@
   tr
     - if admin_view?
       td = render partial: "admin_buttons", locals: { order: order }
-      td = link_to order.id, order_path(order)
-      td = link_to order.user_name, user_path(order.user)
-      td = link_to order.user_email_address, user_path(order.user)
+      - if order.user.nil?
+        td Guest
+        td = order.guest_email_address
+      - else
+        td = link_to order.user_name, user_path(order.user)
+        td = link_to order.user_email_address, user_path(order.user)
     td = link_to order.id, order_path(order)
     td = order.date
     td = render partial: "order_item", collection: order.line_items
