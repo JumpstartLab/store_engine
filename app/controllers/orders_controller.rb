@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
 
   before_filter :authorize
+  before_filter :admin_authorize, only: [:edit, :update]
   
   def index
     @orders = Order.find_all_by_user_id(current_user.id)

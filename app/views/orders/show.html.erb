@@ -17,6 +17,7 @@
 <%= link_to "Edit", edit_order_path(@order) %> |
 
 <% if admin? %>
+  <%= link_to "Edit", edit_order_path(@order) %>
   <%= link_to "Your Orders", orders_path %> |
   <%= link_to "Dashboard", dashboard_path%>
    
