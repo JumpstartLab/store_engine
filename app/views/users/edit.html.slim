@@ -1,3 +1,5 @@
+h1 Edit user
+
 = form_for(@user) do |f|
   - if @user.errors.any?
     div id="error_explanation"
@@ -7,11 +9,6 @@
       ul
       - @user.errors.full_messages.each do |msg|
         li = msg
-
-  div class="field"
-    = f.label :username
-    br
-    = f.text_field :username
 
   div class="field"
     = f.label :display_name
@@ -33,15 +30,6 @@
     br
     = f.text_field :email
 
-  div class="field"
-    = f.label :password
-    br
-    = f.password_field :password 
-
-  div class="field"
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation
-
   div class="actions"
     = f.submit :class => "btn"
+= link_to 'Back', users_path

@@ -25,7 +25,7 @@ html
                 ul.dropdown-menu
                   li
                     a href="#{orders_path}" Orders 
-                    a href="#" Settings 
+                    a href="#{user_path(current_user)}" Settings 
             - else
               li id="fat-menu" class="dropdown"
                 a.dropdown-toggle*{'data-toggle' => "dropdown"} href="#"  
@@ -34,7 +34,7 @@ html
                 ul.dropdown-menu
                   li
                     a href="#{orders_path}" Orders 
-                    a href="#" Settings 
+                    a href="#{user_path(current_user)}" Settings 
             li class="active" = link_to "Logout", :logout
           - else 
             li class="active" = link_to "Register", new_user_path 
