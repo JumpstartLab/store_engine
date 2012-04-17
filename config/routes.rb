@@ -9,6 +9,7 @@ StoreEngine::Application.routes.draw do
   resources :cart_items
   resource :edit
   resources :categories
+  resource :two_click_orders
   resource :search
   resource :dashboard, :controller => 'dashboard'
 
