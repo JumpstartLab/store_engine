@@ -9,20 +9,14 @@
       <th>Categories</th>
       <th>&nbsp;</th>
     </tr>
+    <%= will_paginate %>
     <% @products.each do |product| %>
       <% if product.active? %>
-        <tr id="product_<%= product.id %>">
-          <td id="product_<%=product.id%>_add"><%= link_to product.title, product_path(product) %></td>
-          <td><%= product.description %></td>
-          <td><%= product.price %></td>
-          <td id="product_<%=product.id%>_categories"><% product.categories.each do |c| %>
-                          <%= c.name %>
-                        <% end %></td>
-          <td><%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post, :class => 'btn btn-success' %></td>
-        </tr>
+        <%= render product %>
       <% end %>
     <% end %>
   </table>
+  <%= will_paginate %>
   <%= link_to "Add a product", new_product_path, :id => "add_product", :class => 'btn btn-primary' %>
 </div>
 
@@ -37,19 +31,12 @@
       <th>Categories</th>
       <th>&nbsp;</th>
     </tr>
+    <%= will_paginate %>
     <% @products.each do |product| %>
       <% if product.active? == false %>
-        <tr id="product_<%= product.id %>">
-          <td id="product_<%=product.id%>_add"><%= link_to product.title, product_path(product) %></td>
-          <td><%= product.description %></td>
-          <td><%= product.price %></td>
-          <td id="product_<%=product.id%>_categories"><% product.categories.each do |c| %>
-                          <%= c.name %>
-                        <% end %></td>
-          <td><%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post, :class => 'btn btn-success' %></td>
-        </tr>
+        <%= render product %>
       <% end %>
     <% end %>
-
   </table>
+  <%= will_paginate %>
 </div>

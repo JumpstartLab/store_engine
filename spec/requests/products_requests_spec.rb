@@ -9,6 +9,21 @@ describe "Products Requests" do
       visit "/products/"
     end
 
+    describe "pagination" do
+      before(:all) { 30.times { FactoryGirl.create(:product) } }
+      after(:all)  { Product.delete_all }
+
+      it "should have a 'Next' button at the top of the screen" do
+        page.should have_selector("a[rel$='next']")
+      end
+
+      it "should list each user" do
+        Product.all[0..2].each do |product|
+          page.should have_selector('td', text: product.title)
+        end
+      end
+    end
+
     it "has category information for each product" do
       within("table#products") do
         products.each do |product|
