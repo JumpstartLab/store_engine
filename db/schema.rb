@@ -51,9 +51,9 @@ ActiveRecord::Schema.define(:version => 20120416214941) do
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
     t.integer  "total_price"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
-    t.string   "status",      :default => "pending"
+    t.string   "status"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "products", :force => true do |t|
