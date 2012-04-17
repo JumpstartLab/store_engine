@@ -15,7 +15,7 @@
           </li>
           <li>
             <% if @cart.quantity == 0 %>
-            <a><span class="badge badge" id="cart_count"><%= @cart.quantity %></span></a>
+            <a><div id="badger"><span class="badge badge" id="cart_count"><%= @cart.quantity %></span></div></a>
             <% else %>
             <a><div id="badger"><span class="badge badge-success" id="cart_count"><%= @cart.quantity %></span></div></a>
             <% end %>
