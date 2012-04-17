@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
 
   has_many :order_items
   belongs_to :user
-  attr_accessible :user_id, :user, :status, :total, :pay_type, :name, :address, :email, :order_items, :cancelled_at
+  attr_accessible :user_id, :user, :status, :total, :pay_type, :name, :address, :email, :order_items, :cancelled_at, :shipped_at
 
   validates :name, :address, :email, presence: true
   validates :pay_type, inclusion: PAYMENT_TYPES
@@ -44,7 +44,7 @@ class Order < ActiveRecord::Base
   end
 
   def pay
-    update_attribute(:status => "paid")
+    update_attributes(:status => "paid")
   end
 
   def add_contents_of_cart(cart, order)

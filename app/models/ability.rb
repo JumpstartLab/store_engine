@@ -1,30 +1,15 @@
 class Ability
   include CanCan::Ability
 
-  # def initialize(user)
-  #   user ||= User.new # guest user (not logged in)
-  #   if user.admin?
-  #     can :manage, :all
-  #   else
-  #     can :read, Product
-  #     can :manage, LineItem
-  #     can :manage, Cart
-  #     can :create, Order
-  #     can :create, User
-  #   end
-  # end
   def initialize(user)
     if user && user.admin?
       can :manage, :all
     elsif user
       can :read, Product
       can :manage, LineItem
-      can :manage, Cart
+      can :manage, Cart, :user_id => user.id
       can :manage, OrderItem, :user_id => user.id
       can :manage, Order, :user_id => user.id
-      #limit user access to read orders belonging to user
-      #can :read, Order
-      #change cart permission- only view cart if its their cart
     else
       can :read, Product
       can :manage, LineItem

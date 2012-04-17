@@ -18,8 +18,8 @@ describe User do
   end
 
   it "is invalid without a unique email" do
-    FactoryGirl.create(:user)
-    FactoryGirl.build(:user).should_not be_valid
+    FactoryGirl.create(:user, email: "test@sample.com")
+    FactoryGirl.build(:user, email: "test@sample.com").should_not be_valid
   end
 
   it "is invalid if the username is under 2 characters" do

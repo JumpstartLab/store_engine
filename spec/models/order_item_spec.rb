@@ -32,6 +32,20 @@ describe OrderItem do
     end
   end
 
+  describe "#set_price_from_product" do
+    it "sets the order_item's price from the product's price" do
+      order_item.set_price_from_product(product)
+      order_item.price.should == 2
+    end
+  end
+
+  describe "#set_product_from_product" do
+    it "sets the order_item's prodct" do
+      order_item.set_product_from_product(product)
+      order_item.product_id. should == 1
+    end
+  end
+
   describe "#subtotal" do
     before(:each) do 
       order_item.price = 2

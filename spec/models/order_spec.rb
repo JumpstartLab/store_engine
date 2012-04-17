@@ -6,7 +6,7 @@ describe Order do
   let!(:product) { FactoryGirl.build(:product) }
   
 
-  context "#status" do
+  describe "#status" do
     
     it "should have pending as default status" do
       order.status.should == "pending"
@@ -27,7 +27,48 @@ describe Order do
     end
   end
 
-  context "#total" do
+  describe ".one_click_order(product, user)" do
+    let!(:product) { FactoryGirl.create(:product) }
+    let!(:user) { FactoryGirl.create(:user) }
+    let!(:order) { FactoryGirl.create(:order, user: user) }
+    it "creates an order and order item from a product and user" do
+      Order.one_click_order(product, user).should_not be_nil
+    end
+  end
+
+  describe "#ship" do
+    let!(:order) { FactoryGirl.create(:order) }
+    it "creates a shipped_at time" do
+      order.ship
+      order.shipped_at.should_not be_nil
+    end
+    it "udates the status to shipped" do
+      order.ship
+      order.status.should == "shipped"
+    end
+  end
+
+  describe "#cancel" do
+    let!(:order) { FactoryGirl.create(:order) }
+    it "creates a cancelled_at time" do
+      order.cancel
+      order.cancelled_at.should_not be_nil
+    end
+    it "udates the status to cancelled" do
+      order.cancel
+      order.status.should == "cancelled"
+    end
+  end
+
+  describe "#pay" do
+    let!(:order) { FactoryGirl.create(:order) }
+    it "updates the status to paid" do
+      order.pay
+      order.status.should == "paid"
+    end
+  end
+
+  describe "#total" do
     let!(:order_item) { OrderItem.create(order: order )}
     it "calculates total order price from order_items" do
       order.stub(:order_items).and_return([order_item])

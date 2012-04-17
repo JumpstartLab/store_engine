@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_one :cart
   
-  attr_accessible :email, :password, :password_confirmation, :user_name, :full_name, :admin
+  attr_accessible :email, :password, :password_confirmation, :user_name, :full_name
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create

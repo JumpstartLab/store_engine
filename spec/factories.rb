@@ -50,7 +50,7 @@ FactoryGirl.define do
   factory :user do |f|
     f.full_name { "#{Faker::Name.first_name} #{Faker::Name.last_name}"}
     f.password "password"
-    f.email "email@email.com"
+    f.email { "#{Faker::Name.first_name}@#{Faker::Name.last_name}.com"}
   end
 
   factory :category_assignment do
