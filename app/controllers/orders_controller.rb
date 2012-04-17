@@ -1,7 +1,8 @@
 class OrdersController < ApplicationController
 
   def index
-    @orders = Order.all
+    # @orders = Order.all
+    @orders = Order.order(params[:sort])
   end
 
   def new
