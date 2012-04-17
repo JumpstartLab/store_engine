@@ -19,3 +19,9 @@
 
   <%= f.submit %>
 <% end %>
+
+<% if @product.retired? %>
+  <%= link_to "Unretire", unretire_admin_product_path(@product), method: :put %>
+<% else %>
+  <%= link_to "Retire", retire_admin_product_path(@product), method: :put %>
+<% end %>

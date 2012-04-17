@@ -2,6 +2,7 @@ class Admin::OrdersController < ApplicationController
 
   before_filter :require_admin
   before_filter :find_order, only: [:cancel, :ship, :return]
+  before_filter :skip_cart
 
   def index
     @count_report = Order.count_report

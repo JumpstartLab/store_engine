@@ -1,7 +1,8 @@
 class Admin::CategoriesController < ApplicationController
   before_filter :require_login
   before_filter :require_admin
-
+  before_filter :skip_cart
+  
   def new
     @category = Category.new
   end
