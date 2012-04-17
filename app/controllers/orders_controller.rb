@@ -30,7 +30,6 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(params[:order])
-    # raise params[:order].inspect
     @order.status = Status.new
     @order.user_id = current_user.id
     @order.save

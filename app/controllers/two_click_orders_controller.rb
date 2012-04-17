@@ -13,12 +13,16 @@ class TwoClickOrdersController < ApplicationController
       cart = Cart.create
       cart.add_or_increment_by_product(params[:product_id])
       @order.add_order_items_from(cart)
+
       
       if @order.save_with_payment
         redirect_to order_path(@order.id), :notice => "You bought something with Stripe. Want a medal or something?"
       else
-        redirect_to root_url
+        redirect_to '/'
       end
+    else 
+      @cart.add_or_increment_by_product(params[:product_id])
+      redirect_to '/cart', :alert => "You don't have a saved credit cart. Please buy something and then try again!"
     end
   end
 end
