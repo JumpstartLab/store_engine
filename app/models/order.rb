@@ -1,9 +1,6 @@
 class Order < ActiveRecord::Base
-  #attr_accessible
-
   has_many :order_items
   has_many :products, :through => :order_items
-
   belongs_to :user
 
   def self.create_order_from_cart(cart_id)
@@ -18,6 +15,7 @@ class Order < ActiveRecord::Base
       order_item.save
     end
     new_order.total_price = cart.total
+    new_order.user
     new_order.save
     return new_order
   end
@@ -28,12 +26,12 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def add_product(product)
-    products << product
-  end
+  # def add_product(product)
+  #   products << product
+  # end
 
-  def add_product_by_id(product_id)
-    product = Product.find(product_id)
-    add_product(product)
-  end
+  # def add_product_by_id(product_id)
+  #   product = Product.find(product_id)
+  #   add_product(product)
+  # end
 end

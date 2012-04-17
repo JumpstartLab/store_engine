@@ -1,3 +1,5 @@
-<h1>Process Order</h1>
+<h1>Review and Checkout</h1>
 
 <%= render :partial => "form" %>
+
+<%= link_to "Place Order", orders_path(order, :cart_id => cart, :current_user_id => current_user), :method => :post, :class => "btn", :id => "place_order"%>
