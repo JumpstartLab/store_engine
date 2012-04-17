@@ -54,10 +54,8 @@ require 'spec_helper'
       @order = Fabricate(:order)
       visit edit_admin_order_path(@order)
       fill_in "order_item_quantities", with: 4
-      save_and_open_page
       click_button "Update Order"
       visit admin_order_path(@order)
-      save_and_open_page
       page.should have_content(@order.order_items.first.product.price * 4)
     end
 

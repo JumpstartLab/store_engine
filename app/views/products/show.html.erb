@@ -14,4 +14,8 @@ Description: <%= @product.description %>
     <%= hidden_field_tag :product_id, @product.id %>
     <%= submit_tag "Add Item To Cart", class: "btn" %>
   <% end %>
+  <%= form_tag two_click_order_product_path do %>
+    <%= hidden_field_tag :product_id, @product.id %>
+    <%= submit_tag "Buy Now!", confirm: "Confirm purchase?" %>
+  <% end %>
 <% end %>
