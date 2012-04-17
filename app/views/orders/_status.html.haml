@@ -1,5 +1,4 @@
 - if current_user and current_user.admin
-  = link_to '[edit]', edit_order_path(order)
   - if order.status.pending?
     = link_to '[cancel]', status_order_path(order)
   - elsif order.status.shipped?

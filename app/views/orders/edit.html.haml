@@ -7,16 +7,18 @@
       %td
         = "Status"
       %td
-        = o.association :status, :label => '&nbsp;'
+        = @order.status.name.titlecase
+        = render 'orders/status', :order => @order
 
-    %tr
-      %td
-        = "Products"
-      %td
-        = o.fields_for :order_products do |op|
-          %h4= op.object.product.name
-          %div.pull-right= op.link_to_remove "Remove #{op.object.product.name}"
-          = op.input :quantity
+    - if @order.status.pending? or @order.status.paid?
+      %tr
+        %td
+          = "Products"
+        %td
+          = o.fields_for :order_products do |op|
+            %h4= op.object.product.name
+            %div.pull-right= op.link_to_remove "Remove #{op.object.product.name}"
+            = op.input :quantity
     %tr
       %td
       %td
