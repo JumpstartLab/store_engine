@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    # raise @order.inspect
     @address = @order.address
   end
 
@@ -29,6 +30,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new(params[:order])
+    # raise params[:order].inspect
     @order.status = Status.new
     @order.user_id = current_user.id
     @order.save

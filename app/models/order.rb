@@ -29,15 +29,15 @@ class Order < ActiveRecord::Base
     total_price * 100
   end
 
-  def save_with_payment(token=nil)
+  def save_with_payment
     if valid?
-      customer = Stripe::Customer.create(description: user.email, card:stripe_card_token)
-      # create_stripe_user(token) if !user.stripe_id
+      # customer = Stripe::Customer.create(description: user.email, card:stripe_card_token)
+      create_stripe_user(stripe_card_token) if !user.stripe_id
 
       Stripe::Charge.create(
         :amount => total_price_in_cents.to_i,
         :currency => "usd",
-        :customer => customer.id,
+        :customer => user.stripe_id,
         :description => "order##{id}" )
 
       save!
