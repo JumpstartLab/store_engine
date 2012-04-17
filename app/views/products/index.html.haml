@@ -1,2 +1,7 @@
 %h1 Products
-= render :partial => "/shared/show_products"
+%hr
+#product_holder
+  = render 'products/list', :products => @products
+#category_holder
+  %br
+  = render 'categories/list', :categories => @categories

@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require bootstrap
- * require responsive
+ *= require responsive
  *= require_self
  *= require_tree .
  *= require jquery-star-rating
@@ -179,11 +179,15 @@ label {
   border: 1px solid #ccc;
   padding: 5px;
   margin-bottom: 15px;
+  height:180px;
+  width:150px;
+  float:left;
+  margin-right:20px;
 }
 
 .product > img {
-  width: 128px;
-  height: 128px;
+  width: 100px;
+  height: 100px;
 }
 
 .center {
@@ -194,7 +198,14 @@ label {
   margin: 10px; 
   margin-left: 20px;
 }
-
+#product_holder{
+  float:left;
+  width:85%;
+}
+#category_holder{
+  float:right;
+  width:15%;
+}
 .bold {
   font-weight: bold;
 }

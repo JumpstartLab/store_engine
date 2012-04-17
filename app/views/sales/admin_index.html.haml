@@ -1,0 +1,17 @@
+%h1 Dashboard - Sales
+= render :partial => "admin/nav"
+
+%table#orders_by_status.table.table-bordered
+  %th
+  %th
+  %th Percent off
+  %th Products
+  %th Categories
+  - @sales.each do |sale|
+    %tr{:id => "category_#{sale.id}"}
+      %td= link_to 'X', sale_path(sale), :method => :delete
+      %td= link_to "Edit", edit_sale_path(sale)
+      %td= sale.display_percent
+      %td= sale.products.map(&:name).join(", ")
+      %td= sale.categories.map(&:name).join(", ")
+= link_to "New", new_sale_path, :class => "btn btn-primary btn-large right"
