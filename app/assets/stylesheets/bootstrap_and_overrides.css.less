@@ -1,5 +1,5 @@
 @import "twitter/bootstrap/bootstrap";
-body { padding-top: 60px; }
+body { padding-top: 80px; }
 
 @import "twitter/bootstrap/responsive";
 
@@ -27,3 +27,28 @@ body { padding-top: 60px; }
 //
 // Example:
 @baseFontSize: 16px;
+@navbarBackground: @white;
+@navbarBackgroundHighlight: @white;
+@navbarText: @grayDark;
+@navbarLinkColor: @grayDark;
+@navbarLinkColorHover: @blue;
+
+.navbar .nav > li > a {
+  line-height: 50px;
+  text-shadow: none;
+  font-weight: 900;
+  font-size: 18px;
+}
+.navbar .nav .active > a,
+.navbar .nav .active > a:hover {
+  height:50px;
+  text-shadow: none;
+  color: @blue;
+}
+
+.navbar .brand {
+  line-height: 50px;
+  color: @black;
+  font-size: 24px;
+  font-weight: bold;
+}
