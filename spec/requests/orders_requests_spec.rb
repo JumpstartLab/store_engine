@@ -55,7 +55,46 @@ describe "For orders" do
       it "lists returned orders" do
         page.should have_selector("#returned_orders")
       end
-      
+    end
+
+    context "listing total number of products by status" do
+      it "has an area to list # of orders by status" do
+        page.should have_selector("#status_count")
+      end
+      it "includes total # of orders" do
+        within ("#status_count") do
+          page.should have_content(Order.all.count)
+        end
+      end
+      it "lists number of pending orders" do
+        within ("#status_count") do
+          page.should have_content(Order.find_all_by_status("pending").count)
+        end
+      end
+
+      it "lists number of cancelled orders" do
+        within ("#status_count") do
+          page.should have_content(Order.find_all_by_status("cancelled").count)
+        end
+      end
+
+      it "lists number of paid orders" do
+        within ("#status_count") do
+          page.should have_content(Order.find_all_by_status("paid").count)
+        end
+      end
+
+      it "lists number of shipped orders" do
+        within ("#status_count") do
+          page.should have_content(Order.find_all_by_status("shipped").count)
+        end
+      end
+
+      it "lists number of returned orders" do
+        within ("#status_count") do
+          page.should have_content(Order.find_all_by_status("returned").count)
+        end
+      end
 
     end
   end
