@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   attr_accessible :user_id, :status, :credit_card_id, :current_status
-  attr_accessor :stripe_card_token
+  attr_accessor :stripe_customer_token
 
   belongs_to :user
   belongs_to :credit_card
@@ -11,6 +11,12 @@ class Order < ActiveRecord::Base
   has_one :order_status
 
   scope :desc, order("id DESC")
+
+  after_save :initialize_order_status
+
+  def initialize_order_status
+    OrderStatus.create(:status => 'pending', :order_id => self.id)
+  end
 
   def mark_as_paid
     #update_attribute(:status, 'paid')
@@ -30,14 +36,9 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def save_credit_card
-    if valid?
-      credit_card = CreditCard.new(user)
-      credit_card.add_details_from_stripe_card_token(self.stripe_card_token)
-      if credit_card.add_user_to_credit_card(user)
-        self.update_attributes( :credit_card_id => credit_card.id )
-        self.order_status.status = 'pending'
-      end
+  def find_credit_card
+    if credit_card = user.credit_cards.find_by_stripe_customer_token(stripe_customer_token)
+      self.update_attributes( :credit_card_id => credit_card.id)
     end
   end
 
