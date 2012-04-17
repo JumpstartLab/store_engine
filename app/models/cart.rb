@@ -1,8 +1,6 @@
 class Cart < Order
   attr_accessible :current_cart, :individual_quantity
 
-  accepts_nested_attributes_for :order_products
-
   default_scope :conditions => { :is_cart => 1 }
 
   def add_product(id)

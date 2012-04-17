@@ -1,0 +1,24 @@
+%h1 Edit Order
+%br
+
+%table.table
+  = simple_nested_form_for @order do |o|
+    %tr
+      %td
+        = "Status"
+      %td
+        = o.association :status, :label => '&nbsp;'
+
+    %tr
+      %td
+        = "Products"
+      %td
+        = o.fields_for :order_products do |op|
+          %h4= op.object.product.name
+          %div.pull-right= op.link_to_remove "Remove #{op.object.product.name}"
+          = op.input :quantity
+    %tr
+      %td
+      %td
+        = o.submit 'Save Order', :class => 'btn btn-primary controls'
+        

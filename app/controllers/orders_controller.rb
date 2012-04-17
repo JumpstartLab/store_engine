@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :require_admin, :only => [:index, :status]
+  before_filter :require_admin, :only => [:index, :status, :edit, :update]
   before_filter :require_logged_in, :except => [:track]
   before_filter :is_owner_or_admin, :only => [:show]
 
@@ -16,6 +16,10 @@ class OrdersController < ApplicationController
     @order_count = Order.all.count
   end
 
+  def edit
+    @order = Order.find(params[:id], :include => :order_products)
+  end
+
   def show
     @order = Order.find(params[:id])
   end
@@ -25,6 +29,15 @@ class OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find(params[:id])
+    @order.update_attributes(params[:order])
+    @order.save()
+    
+    flash[:notice] = 'Order has been updated'
+    redirect_to order_path(@order)
+  end
+
+  def charge
     order = Order.process_cart(@cart.id)
     if order.user.update_address(params[:order][:user_attributes])
         order.charge(params[:order][:stripe_card_token])

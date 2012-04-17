@@ -13,6 +13,8 @@ gem 'stripe'
 gem 'geocoder'
 gem 'pjax_rails'
 gem 'jquery-star-rating-rails'
+gem "nested_form"
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
