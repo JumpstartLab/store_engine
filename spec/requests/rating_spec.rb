@@ -9,15 +9,26 @@ describe "Product Rating", :focus => true do
   context "Can submit ratings while logged in" do
     before(:each) do
       login(user)
-    end    
-    it "visit product path and submit tweet with success" do
-      visit product_path(product)
-      fill_in "product_rating[name]", :with => "Amazing"
-      fill_in "product_rating_body", :with => "This product is awesome!"
-      choose("product_rating_rating_3")
-      click_on "Create Product rating"
-      page.should have_content(user.name)
-      page.should have_content("Comment successfully added")
+    end  
+    context "visit product path" do  
+      before(:each) do
+        visit product_path(product)
+        fill_in "product_rating[name]", :with => "Amazing"
+      end
+      it "submit tweet with success" do
+        fill_in "product_rating_body", :with => "This product is awesome!"
+        choose("product_rating_rating_3")
+        click_on "Create Product rating"
+        page.should have_content(user.name)
+        page.should have_content("Comment successfully added")
+      end
+      it "validation errors" do
+        fill_in "product_rating_body", :with => ""
+        choose("product_rating_rating_3")
+        click_on "Create Product rating"
+        page.should have_content(user.name)
+        page.should have_content("There was an error with your comment")
+      end
     end
   end
   context "Can't rate while not logged in" do

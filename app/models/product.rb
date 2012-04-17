@@ -29,7 +29,7 @@ class Product < ActiveRecord::Base
     self.avatar
   end
   def avatar_from_url=(url)
-    self.avatar = open(url) if not url.start_with?("/")
+    self.avatar = open(url) if url.start_with?("http://")
   end
   
   def price
