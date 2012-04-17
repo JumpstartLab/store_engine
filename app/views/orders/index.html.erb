@@ -24,15 +24,15 @@
 </div>
 
 <div id="status_sort span10">
-  <button class="btn" data-toggle="collapse" data-target="#all_list">View All</button>
-  <button class="btn" data-toggle="collapse" data-target="#pending_list">View Pending</button>
-  <button class="btn" data-toggle="collapse" data-target="#cancelled_list">View Cancelled</button>
-  <button class="btn" data-toggle="collapse" data-target="#paid_list">View Paid</button>
-  <button class="btn" data-toggle="collapse" data-target="#shipped_list">View Shipped</button>
-  <button class="btn" data-toggle="collapse" data-target="#returned_list">View Returned</button>
+  <button class="btn" data-toggle="collapse" data-target="#all_list">All</button>
+  <button class="btn" data-toggle="collapse" data-target="#pending_list">Pending</button>
+  <button class="btn" data-toggle="collapse" data-target="#cancelled_list">Cancelled</button>
+  <button class="btn" data-toggle="collapse" data-target="#paid_list">Paid</button>
+  <button class="btn" data-toggle="collapse" data-target="#shipped_list">Shipped</button>
+  <button class="btn" data-toggle="collapse" data-target="#returned_list">Returned</button>
 </div>
 
-<div>
+<div data-parent="order_list_collapse_parent">
   <div class="collapse in" id="all_list">
   <h2>All Orders</h2>
     <table id="orders" class="table table-striped table-bordered">
