@@ -22,6 +22,15 @@ class SalesController < ApplicationController
     
   end
 
+  def create
+    @sale = Product.new(params[:sale])
+    if @sale.save
+      redirect_to sale_path(@sale), :notice => "Sale created."
+    else
+      render 'new'
+    end
+  end
+
   def update
     if @sale.update_attributes(params[:sale])
     redirect_to sale_path(@sale), :notice => "Sale updated."

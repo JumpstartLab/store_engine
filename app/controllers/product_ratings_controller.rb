@@ -14,7 +14,4 @@ class ProductRatingsController < ApplicationController
       redirect_to product
     end
   end
-
-  def destroy
-  end
 end
