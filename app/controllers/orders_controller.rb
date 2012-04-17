@@ -4,6 +4,9 @@ class OrdersController < ApplicationController
   before_filter :belongs_to_current_user?, only: [:show]
 
   def new
+    redirect_to new_credit_card_path if current_user.credit_cards.empty?
+
+    @credit_card = current_user.credit_cards.last
     @order = Order.new
   end
 
@@ -12,13 +15,13 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(:user_id => current_user.id)
-    @order.stripe_card_token = params[:order][:stripe_card_token]
+    @order = Order.create(:user_id => current_user.id)
+    @order.stripe_customer_token = params[:order][:customer_token]
 
-    if @order.save_credit_card && @order.charge(current_cart)
-        current_cart.assign_cart_to_order_and_destroy(@order)
-        OrderStatus.create(:status => 'paid', :order_id => @order.id)
-        redirect_to @order, :notice => "Thank you for placing an order."
+    if @order.find_credit_card && @order.charge(current_cart)
+      current_cart.assign_cart_to_order_and_destroy(@order)
+      OrderStatus.create(:status => 'paid', :order_id => @order.id)
+      redirect_to @order, :notice => "Thank you for placing an order."
     else
       render :new
     end

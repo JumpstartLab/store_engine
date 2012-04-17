@@ -12,6 +12,7 @@ StoreEngine::Application.routes.draw do
   end
   resources :categories , only: [:show]
   resources :orders, only: [:index, :new, :show, :create]
+  resources :credit_cards, only: [:new, :create, :index]
 
   namespace :admin do
     resources :products
