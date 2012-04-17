@@ -54,10 +54,10 @@ class Order < ActiveRecord::Base
   def set_quantities(quantities)
     quantities.each do |id, quantity|
       quantity = quantity.to_i
-      item     = @order.order_items.find(id)
+      item     = order_items.find(id)
 
       if quantity > 0
-        item.quantity = quantity
+        item.update_attribute(:quantity, quantity)
       else
         # TODO:
         # What's the best way to do this?
