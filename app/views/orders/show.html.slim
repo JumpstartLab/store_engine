@@ -1,13 +1,48 @@
-| Order status: 
-= @order.status.name
+h1 Order: #{@order.id}
 
-| Shipping Address:
-= @order.shipping_address.first_name
-= @order.shipping_address.last_name
-= @order.shipping_address.company
-= @order.shipping_address.line_1
-= @order.shipping_address.line_2
-= @order.shipping_address.city
-= @order.shipping_address.state
-= @order.shipping_address.zipcode
-= @order.shipping_address.phone
+p
+div class="row-fluid"
+  div class="span3"
+    h3 Shipping Address
+
+    address
+      #{@shipping_address.first_name} #{@shipping_address.last_name}
+      #{@shipping_address.company}
+      #{@shipping_address.line_1}
+      #{@shipping_address.line_2}
+      #{@shipping_address.city}, #{@shipping_address.state} #{@shipping_address.zipcode}
+      #{@shipping_address.phone}
+
+  div class="span3"
+    h3 Billing Address
+
+    address
+      #{@billing_address.first_name} #{@billing_address.last_name}
+      #{@billing_address.company}
+      #{@billing_address.line_1}
+      #{@billing_address.line_2}
+      #{@billing_address.city}, #{@billing_address.state} #{@billing_address.zipcode}
+      #{@billing_address.phone}
+
+br
+br
+br
+| Date: #{@order.display_date}
+h3 Items
+div class="row-fluid"
+  div class="span7"
+    table class="table table-striped well"    
+      - @order.order_items.each do |order_item|
+        tr
+          - if order_item.product.photo
+            td class="span1" = image_tag(order_item.product.photo, :size => "50x50")
+          - else
+            td
+          td class="span1" = link_to order_item.product.title, product_path(order_item.product)
+          td class="span1" 
+            | $
+            = order_item.price
+          td class="span1" Quantity: #{order_item.quantity}
+
+h3 Order Total
+="$#{cart.total}"
