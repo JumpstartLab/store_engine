@@ -13,7 +13,6 @@ describe "shopper" do
           page.should have_content "Categories"
           page.should have_content "Sign-In"
           page.should have_content "Sign-Up"
-          page.should have_content "Contact Us"
         end
       end
       it "has a clickable listing of products" do
@@ -43,7 +42,7 @@ describe "shopper" do
     context "checking out" do
       before(:each) { click_link_or_button "Add to Cart" }
       it "can add an item to the cart" do
-        within "#cart" do
+        within "#cart-aside" do
           page.should have_content product.title
         end
       end
@@ -53,7 +52,7 @@ describe "shopper" do
         within "##{dom_id(product2)}" do
           click_link_or_button "Add to Cart"
         end
-        within "#cart" do
+        within "#cart-aside" do
           page.should have_content product.title
         end
       end
@@ -64,18 +63,18 @@ describe "shopper" do
         end
       end
       it "removes a product by changing the quantity to 0" do
-        within "#cart" do
+        within "#cart-aside" do
           page.should have_content "Update"
           click_link_or_button "Update"
         end
         fill_in :quantity, with: "0"
         click_link_or_button "Update"
-        within "#cart" do
+        within "#cart-aside" do
           page.should_not have_content product.title
         end
       end
       it "views the cart" do
-        within "#cart" do
+        within "#cart-aside" do
           page.should have_content "View Cart"
           click_link_or_button "View Cart"
         end
@@ -84,7 +83,7 @@ describe "shopper" do
       context "two-click checkout" do
         context "if the order has no billing or shipping info" do
           it "directs the user to input that information" do
-            within "#cart" do
+            within "#cart-aside" do
               page.should have_content "Two-Click Check Out"
               click_link_or_button "Two-Click Check Out"
             end
@@ -98,7 +97,7 @@ describe "shopper" do
           it "can do two-click checkout" do
             Order.any_instance.stub(billing_method_id: 1)
             Order.any_instance.stub(shipping_address_id: 1)
-            within "#cart" do
+            within "#cart-aside" do
               page.should have_content "Two-Click Check Out"
               click_link_or_button "Two-Click Check Out"
             end
@@ -180,7 +179,7 @@ describe "shopper" do
         click_link_or_button "Sign-Up"
         sign_up({full_name: "Test User", email: "test@test.com",
                  password: "test", display_name: "Test"})
-        within "#cart" do
+        within "#cart-aside" do
           page.should have_content product.title
         end
       end
@@ -198,7 +197,7 @@ describe "shopper" do
         click_link_or_button "Add to Cart"
         click_link_or_button "Sign-In"
         login({email: user.email_address, password: user.password})
-        within "#cart" do
+        within "#cart-aside" do
           page.should have_content product.title
         end
       end
@@ -226,7 +225,7 @@ describe "shopper" do
       end
     end
     it "has the cart" do
-      page.should have_selector "#cart"
+      page.should have_selector "#cart-aside"
     end
   end
   context "category page" do
@@ -244,7 +243,7 @@ describe "shopper" do
       end
     end
     it "has a cart" do
-      page.should have_selector "#cart"
+      page.should have_selector "#cart-aside"
     end
   end
   context "restrictions" do

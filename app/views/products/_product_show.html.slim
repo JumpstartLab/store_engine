@@ -2,10 +2,10 @@ div#product.span8
   .span3
     = image_tag product.image, id: "product-show-photo"
   .span3#info
-    h3 = link_to product.title, product_path(product), id: "product-title"
+    h3#name = link_to product.title, product_path(product), id: "product-title"
     .price
       p = number_to_currency(product.price)
-      p = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: session[:order_id], price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success', id: "buy"
+      p = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: session[:order_id], price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success', id: "buy", name: "add-to-cart"
     p = render partial: "category", collection: product.categories
     p = product.description
   - if admin_view?
@@ -13,6 +13,6 @@ div#product.span8
     p created at: #{product.created_at.to_date}
 
     .span7
-      = render partial: "admin_buttons", locals: {product: product}
+      = render partial: "shared/admin_buttons", locals: {product: product}
 br/
 p = render partial: "similar", locals: {product: product}

@@ -1,5 +1,7 @@
 li.span2.product id==dom_id(product)
   .image
+    - if current_page?(root_url) || current_page?(products_path)
+      = render partial: "category", collection: product.categories
     = link_to image_tag(product.image), product_path(product)
     .overlay
       h3

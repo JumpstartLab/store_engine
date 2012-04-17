@@ -147,7 +147,7 @@ describe "logged in user" do
         click_link_or_button "Add to Cart"
         click_link_or_button "Sign-In"
         login({email: user.email_address, password: user.password})
-        within "#cart" do
+        within "#cart-aside" do
           page.should have_content "2"
         end
       end

@@ -2,7 +2,7 @@ h2 = @category.name
 #products
   - unless admin_view?
     ul.image-and-title
-      = render partial: "product", collection: @products
+      = render partial: "shared/product", collection: @products
   - else
     h1 Products
     = link_to 'New', new_product_path, :class => 'btn btn-primary'
@@ -17,6 +17,6 @@ h2 = @category.name
           th Status
           th Created At
       tbody
-        = render partial: "admin_product", collection: @products
+        = render partial: "shared/admin_product", collection: @products
 
 

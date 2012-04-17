@@ -1,5 +1,5 @@
 tr
-  td = render partial: "admin_buttons", locals: {product: admin_product}
+  td = render partial: "shared/admin_buttons", locals: {product: admin_product}
   td = admin_product.id
   td = link_to admin_product.title, product_path(admin_product)
   td
