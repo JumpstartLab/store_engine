@@ -35,11 +35,9 @@
   <% end %>
 
     <% if can? :update, @order %> 
-      <% if @order.next_status %>
         <%= form_for @order do |f| %>
-          <%= f.hidden_field :status, :value => @order.next_status, :class => 'btn' %>
-          <%= f.submit "mark as #{@order.next_status}", :class => 'btn' %>
-        <% end %>
+          <%= f.select :status, Order::STATUSES %>
+          <%= f.submit "update order status", :class => 'btn' %> 
       <% end %>
     <% end %> 
 </p>
