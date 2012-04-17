@@ -18,7 +18,6 @@ class Order < ActiveRecord::Base
     end
   end
 
-
   def status
     result = self.order_status.status
     result ? result : ""
@@ -53,10 +52,8 @@ class Order < ActiveRecord::Base
     if status_filter.nil?
       Order.all
     else
-      #Order.joins('LEFT OUTER JOIN order_statuses ON order_statuses.order_id = order_id WHERE order_statuses.status = status')
-      Order.joins('LEFT OUTER JOIN order_statuses ON orders.id = order_statuses.order_id').
-      where('order_statuses.status = ?', status_filter)
-      #Order.find_all_by_status(status)
+      Order.joins(:order_status).
+        where('order_statuses.status = ?', status_filter)
     end
   end
 
