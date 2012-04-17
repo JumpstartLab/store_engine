@@ -33,3 +33,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'ruby_gntp'
 end
+
+group :production do
+  gem 'pg'
+end
