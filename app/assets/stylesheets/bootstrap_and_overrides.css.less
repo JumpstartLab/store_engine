@@ -42,12 +42,6 @@ body { padding-top: 60px; }
   border-radius: 0 0 @amount @amount;
 }
 
-/******PRODUCTS VARIABLES******/
-
-
-
-
-
 /********UNIVERSAL*********/
 body { background: url("background.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
 .container #main-content, .container #cart { background: @background; padding: 15px; .rounded(8px); margin-bottom: 20px; float: left; }
@@ -63,6 +57,10 @@ input { height: 30px; }
 #main-content, #cart, #notice { margin-top: 30px; font-family: @font1;}
 
 img.logo { width: 50px; float: left; padding-right: 15px; }
+
+.row{ margin: 0;
+  #notice { background: @background; margin: 30px 10px 0 30px; padding: 10px; font-family: @font1; .rounded(8px); }
+}
 
 /*********PRODUCTS********/
 .title-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 32px; color: @title-color; }

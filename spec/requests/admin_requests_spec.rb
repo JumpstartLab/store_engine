@@ -166,7 +166,9 @@ describe "admin" do
       current_path.should have_content "baseballs"
     end
     it "can edit a category" do
-      visit category_path(Category.last)
+      p = Fabricate(:product)
+      p.categories << Category.last
+      visit categories_path
       click_link_or_button "Edit"
       fill_in "Name", with: "tennis equipment"
       click_link_or_button "Update Category"
@@ -175,7 +177,9 @@ describe "admin" do
       page.should have_content "tennis equipment"
     end
     it "can delete a category" do
-      visit category_path(Category.last)
+      p = Fabricate(:product)
+      p.categories << Category.last
+      visit categories_path
       click_link_or_button "Destroy"
       current_path.should == categories_path
       page.should_not have_content "baseballs"
