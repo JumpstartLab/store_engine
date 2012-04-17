@@ -7,6 +7,7 @@ gem 'money-rails'
 gem 'paranoia'
 gem 'addressable'
 gem 'dynamic_form'
+gem 'rspec-rails'
 #gem 'anjlab-bootstrap-rails', '>= 2.0', :require => 'bootstrap-rails'
 
 # Gems used only for assets and not required
@@ -25,7 +26,6 @@ end
 group :development, :test do
   gem 'simplecov'
   gem 'fabrication'
-  gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
   gem 'guard'
