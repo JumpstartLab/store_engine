@@ -38,9 +38,26 @@ class OrdersController < ApplicationController
     end
   end
 
+  def one_click
+    product = Product.find(params[:product_id])
+    @order = Order.one_click_order(product, current_user)
+
+    respond_to do |format|
+      if @order.errors.empty?
+        format.html { redirect_to product_path(product), notice: "Thank you for your order" }
+        format.json { render json: @order, status: :created, location: @order }
+      else
+        @cart = current_cart
+        format.html { render action: 'new' }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
+  end  
+
   def create
     @cart = current_cart
     @order.user = current_user
+
     if @cart.line_items.empty?
       redirect_to products_path, notice: "Cart is empty"
       return 

@@ -1,9 +1,9 @@
 <% if @product.retired == false || (can? :create, @product) %>
 
-    <h3>
+  <h3>
     <% @product.category_assignments.each do |ca| %>
-        <%= link_to ca.category.name, category_path(ca.category) %>
-        <% end %>
+      <%= link_to ca.category.name, category_path(ca.category) %>
+    <% end %>
   </h3>
 
   <h1><%= @product.title %></h1>
@@ -20,27 +20,32 @@
 
   <p>
     <% if can? :update, @product %>
-    <b>Retired</b>
-    <%= @product.retired %>
-    <%= form_for @product do |f| %>
-    <%= f.hidden_field :retired, 
-                       :value => @product.retired_switch %>
-    <%= f.submit "mark as #{@product.retired_switch}", 
-                 :class => 'btn btn-mini' %>
-    <% end %>
+      <b>Retired</b>
+      <%= @product.retired %>
+      <%= form_for @product do |f| %>
+        <%= f.hidden_field :retired, 
+                           :value => @product.retired_switch %>
+        <%= f.submit "mark as #{@product.retired_switch}", :class => 'btn btn-mini' %>
+      <% end %>
     <% end %> 
   </p>
 
   <div class="form-actions">
     <% if @product.retired == false %>
-    <%= link_to 'Add to Cart', line_items_path(product_id: @product), :method => :post, :class => 'btn'%>
+      <%= link_to 'Add to Cart', line_items_path(product_id: @product), :method => :post, :class => 'btn'%>
     <% end %>
+    
     <%= link_to 'View all Products', products_path, :class => 'btn'  %>
+    
     <% if can? :update, @product %>
       <%= link_to 'Edit Product', edit_product_path(@product), :class => 'btn' %>
     <% end %>
 
   </div>
+    
+  <% if current_user.orders != [] %>
+    <%= link_to "One-Click Checkout", one_click_path(@product), method: :post, :class => 'btn btn-primary', confirm: "Are you sure?" %>
+  <% end %>
 <% else %>
 <h1>This Product is no longer offered for sale</h1>
 <% end %>

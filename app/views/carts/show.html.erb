@@ -42,18 +42,6 @@
 <%= link_to 'Empty Cart', @cart, method: :delete, confirm: "Are you sure?", :class => 'btn' %>
 <% if can? :create, Order %>
   <%= link_to 'Checkout', new_order_path, method: :get, :class => 'btn' %>
-  
-  <% if current_user.orders != [] %>
-     <%= form_for @order do |f| %>
-        <%= f.hidden_field :email, :value => current_user.orders.last.email %>
-        <%= f.hidden_field :name, :value => current_user.orders.last.name %>
-        <%= f.hidden_field :address, :value => current_user.orders.last.address %>
-        <%= f.hidden_field :pay_type, :value => current_user.orders.last.pay_type %>
-        <br />
-        <%= f.submit "One-Click Checkout", method: :post, :class => 'btn btn-primary' %>
-      <% end %>
-  <% end %>  
-
 <% else %>
     <%= link_to 'Create an Account to Checkout', new_user_path(cart_id: current_cart.id), method: :get, :class => 'btn' %>
   <% end %>

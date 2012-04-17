@@ -20,9 +20,8 @@ class Ability
       can :read, Product
       can :manage, LineItem
       can :manage, Cart
-      can :create, Order
-      can :read, Order, :user_id => user.id
-      can :create, User
+      can :manage, OrderItem, :user_id => user.id
+      can :manage, Order, :user_id => user.id
       #limit user access to read orders belonging to user
       #can :read, Order
       #change cart permission- only view cart if its their cart

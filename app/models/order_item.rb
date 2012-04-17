@@ -16,6 +16,14 @@ class OrderItem < ActiveRecord::Base
     self.quantity = line_item.quantity
   end
 
+  def set_price_from_product(product)
+    self.price = product.price
+  end
+
+  def set_product_from_product(product)
+    self.product_id = product.id
+  end
+
   def subtotal
     self.price * self.quantity
   end

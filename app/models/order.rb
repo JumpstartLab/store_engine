@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
 
   has_many :order_items
   belongs_to :user
-  attr_accessible :user_id, :status, :total, :pay_type, :name, :address, :email, :order_items, :cancelled_at
+  attr_accessible :user_id, :user, :status, :total, :pay_type, :name, :address, :email, :order_items, :cancelled_at
 
   validates :name, :address, :email, presence: true
   validates :pay_type, inclusion: PAYMENT_TYPES
@@ -19,6 +19,24 @@ class Order < ActiveRecord::Base
     when "shipped" then "returned"
     end
   end
+
+  def self.one_click_order(product, user)
+    order_item = OrderItem.new
+    order = Order.new(user: user)
+    order_item.set_price_from_product(product)
+    order_item.product = product
+    order_item.quantity = 1
+    order_item.order = order
+    order_item.save
+    order.name = user.orders.last.name
+    order.email = user.orders.last.email
+    order.address = user.orders.last.address
+    order.pay_type = user.orders.last.pay_type
+    order.save
+
+    order
+  end
+
 
   def add_contents_of_cart(cart, order)
     cart.line_items.each do |line_item|
