@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  # attr_accessible :status_options
+  attr_accessible :status
 
   has_many :order_items
   has_many :products, :through => :order_items
