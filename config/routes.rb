@@ -1,5 +1,7 @@
 StoreEngine::Application.routes.draw do
 
+  resources :sales, :only => [:index]
+
   get "dashboard" => "dashboard#index"
   get "login" => 'sessions#new'
   get "logout" => 'sessions#destroy', :as => "logout"

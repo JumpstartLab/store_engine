@@ -6,6 +6,8 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :price_in_cents
       t.integer :active, :default => 1
       t.timestamp :inactive_date
+      t.integer :sale_id
+      
       t.timestamps
     end
   end

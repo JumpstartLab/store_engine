@@ -4,7 +4,7 @@ class Category < ActiveRecord::Base
 
   has_many :category_products
   has_many :products, :through => :category_products
-
+  belongs_to :sale
   validates_presence_of :name
 
   def destroy

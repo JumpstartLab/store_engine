@@ -49,6 +49,9 @@
     zipcode "20010"
     state "DC"
   end
+  factory :sale do
+
+  end
   # factory :fake_address do
   #   street "fdsfsddsf53232"
   #   zipcode "234322"

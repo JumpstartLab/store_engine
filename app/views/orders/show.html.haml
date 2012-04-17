@@ -19,18 +19,20 @@
     %td
       %table.table
         %th Name
-        %th Price
+        %th Original Price
+        %th Price Paid
         %th Quantity
         %th Subtotal
         - @order.order_products.each do |op|
           %tr
             %td= link_to op.product.name, product_path(op.product)
             %td= op.price
+            %td= op.sale_price
             %td= op.quantity
-            %td= op.price
+            %td= op.total_price_after_sale_in_dollars
   %tr
     %td Total Price
-    %td= @order.total_price
+    %td= @order.total_price_after_sale_in_dollars
   %tr
     %td Status
     %td

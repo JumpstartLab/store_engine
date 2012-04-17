@@ -1,4 +1,12 @@
 .row
   - products.each do |product|
     .span3
-      = render 'products/product', :product => product
+      .product
+        %h4= link_to product.name, product_path(product)
+        %img{:src => product.avatar}
+        %div= product.description
+        - if product.best_sale
+          %div{:style=> "text-decoration:line-through;"}= product.price
+          .bold= product.sale_price_in_dollars
+        - else
+          .bold= product.price

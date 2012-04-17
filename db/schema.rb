@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120412181312) do
+ActiveRecord::Schema.define(:version => 20120416205314) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20120412181312) do
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.integer  "active",     :default => 1
+    t.integer  "sale_id"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
   end
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20120412181312) do
     t.integer  "product_id",                    :null => false
     t.integer  "price_in_cents"
     t.integer  "quantity",       :default => 1
+    t.integer  "percent_off",    :default => 0
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end
@@ -87,12 +89,20 @@ ActiveRecord::Schema.define(:version => 20120412181312) do
     t.integer  "price_in_cents"
     t.integer  "active",              :default => 1
     t.datetime "inactive_date"
+    t.integer  "sale_id"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+  end
+
+  create_table "sales", :force => true do |t|
+    t.integer  "percent_off"
+    t.datetime "end_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "statuses", :force => true do |t|

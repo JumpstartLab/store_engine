@@ -4,7 +4,11 @@
   .span6
     %h2= @product.name
     %h4= @product.categories.map(&:name).join(', ') 
-    %h4= @product.price
+    - if @product.best_sale
+      %h6{:style=> "text-decoration:line-through;"}= @product.price
+      %h4= "#{@product.sale_price_in_dollars} | #{@product.best_sale.display_percent} off!" 
+    - else
+      %h4= @product.price
     %br
     %p= @product.description
     %br

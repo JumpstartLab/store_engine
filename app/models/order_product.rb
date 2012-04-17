@@ -3,6 +3,7 @@ class OrderProduct < ActiveRecord::Base
 
   #validates_presence_of :order
   validates_presence_of :product
+  validates_numericality_of :quantity, :greater_than => 0
 
   belongs_to :product
   belongs_to :order
@@ -10,17 +11,33 @@ class OrderProduct < ActiveRecord::Base
   before_save :add_current_price
 
   def add_current_price
-    self.price_in_cents = product.price_in_cents
+   self.percent_off = product.best_sale.percent_off if product.best_sale
+   self.price_in_cents = product.price_in_cents
   end
 
   def price
-    Money.new(price_in_cents.to_i).format
+    Money.new(total_price_in_cents).format
+  end
+
+  def sale_price
+    Money.new(price_in_cents * percent).format
   end
 
   def total_price_in_cents
     price_in_cents.to_i * quantity
   end
-  validates_numericality_of :quantity, :greater_than => 0
+
+  def total_price_in_dollars
+    Money.new(total_price_in_cents).format
+  end
+
+  def total_price_after_sale_in_cents
+    ((price_in_cents * percent) * quantity)
+  end
+
+  def total_price_after_sale_in_dollars
+    Money.new(total_price_after_sale_in_cents).format
+  end
 
   def update_quantity(set=nil)
     if set
@@ -31,17 +48,14 @@ class OrderProduct < ActiveRecord::Base
     end
     self
   end
+
+  def percent
+    (1 - (self.percent_off / 100.00)).round(2)
+  end
+
   ## Methods associated with Products
   def name
     product.name
-  end
-
-  def price
-    product.price
-  end
-
-  def price_in_cents
-    product.price_in_cents
   end
 
   def total_for_product

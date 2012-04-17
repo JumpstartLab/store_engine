@@ -36,6 +36,14 @@ class Order < ActiveRecord::Base
     Money.new(total_price_in_cents).format
   end
 
+  def total_price_after_sale_in_cents
+    order_products.sum(&:total_price_after_sale_in_cents).to_i
+  end
+
+  def total_price_after_sale_in_dollars
+    Money.new(total_price_after_sale_in_cents).format      
+  end
+
   def stripe_card_token
     
   end
@@ -60,7 +68,7 @@ class Order < ActiveRecord::Base
   def charge(token=nil)
     create_user(token) if !user.stripe_id
     Stripe::Charge.create(
-        :amount => total_price_in_cents,
+        :amount => total_price_after_sale_in_cents,
         :currency => "usd",
         :customer => user.stripe_id
       )
