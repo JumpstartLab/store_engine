@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :find_cart, :verify_user
+  before_filter :find_cart, :verify_user, :stripe_api_key
 
   def require_admin
     if current_user && !current_user.admin
@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
   end
 
 private
+
+  def stripe_api_key
+    Stripe.api_key = ENV['STRIPE_TOKEN'] if Rails.env.to_s == "production"
+  end
 
   def find_cart
     if current_user

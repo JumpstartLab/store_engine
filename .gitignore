@@ -15,4 +15,5 @@
 /tmp
 coverage/*
 
+/config/initializers/stripe_secret_key.rb
 /public/system
