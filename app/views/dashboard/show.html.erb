@@ -2,16 +2,21 @@
 <div id= "order_count">
   <h2>Total Orders: <%= @orders.count %></h2>
   
-    <ul>Pending: </ul>
-    <ul>Cancelled: </ul>
-    <ul>Paid: </ul>
-    <ul>Shipped: </ul>
-    <ul>Returned: </ul>
+    <ul><%= link_to "Pending:", statuses_path(:name => "pending") %> 
+        <%= Order.pending.count %></ul>
+    <ul><%= link_to "Cancelled:", statuses_path(:name => "cancelled") %> 
+        <%= Order.cancelled.count %></ul>
+    <ul><%= link_to "Paid:", statuses_path(:name => "paid") %>
+        <%= Order.paid.count %></ul>
+    <ul><%= link_to "Shipped:", statuses_path(:name => "shipped") %>
+        <%= Order.shipped.count %></ul>
+    <ul><%= link_to "Returned:", statuses_path(:name => "returned") %> 
+        <%= Order.returned.count %></ul>
   
 
 </div>
 
-<h1>Orders</h1>
+<h1>All Orders</h1>
 
 <ul id="orders">
   <% @orders.each do |order| %>
@@ -22,9 +27,9 @@
           <%= t.title %>, 
           <% end %> |
           <%= order.current_status %> |
-          Update: <%= order.updated_at %>
+          Updated: <%= order.updated_at %>
 
            |
-          <%= order.total_price %> </li>
+          $<%= order.total_price %> </li>
   <% end %>
 </ul>

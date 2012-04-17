@@ -23,6 +23,9 @@
       <li><%= link_to "Sign Up", new_user_path %></li> or
       <li><%= link_to "Log In", new_session_path %></li>
       <% end %>
+      <% if admin? %>
+      <li><%= link_to "Dashboard", dashboard_path %></li>
+      <% end %>
     </ul>
 
     <!-- <br />

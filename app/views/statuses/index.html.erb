@@ -1,0 +1,14 @@
+<h1>Filtered Orders</h1>
+<% @orders.each do |order| %>
+  <li><%= link_to order.id, order_path(order) %>
+          | Created: <%= order.created_at %> 
+          | <%= order.user.full_name %> | 
+          <% order.products.each do |t| %>
+          <%= t.title %>, 
+          <% end %> |
+          <%= order.current_status %> |
+          Updated: <%= order.updated_at %>
+
+           |
+          $<%= order.total_price %> </li>
+  <% end %>

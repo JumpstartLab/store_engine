@@ -1,7 +1,6 @@
 StoreEngine::Application.routes.draw do
 
   resources :searches
-
   resources :products
   resources :orders
   resources :users
@@ -11,6 +10,7 @@ StoreEngine::Application.routes.draw do
   resources :categories
   resource :search
   resource :dashboard, :controller => 'dashboard'
+  resources :statuses
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"

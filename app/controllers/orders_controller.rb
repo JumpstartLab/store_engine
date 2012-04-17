@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    @order.update_attributes(params[:order])
+    @order.status.update_attribute(:name, params[:order][:status])
     redirect_to order_path(@order)
   end
 

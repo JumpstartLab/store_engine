@@ -9,7 +9,12 @@ class Order < ActiveRecord::Base
   belongs_to :user
   belongs_to :address
   has_one :status
-
+  
+  scope :pending, includes(:status).where("statuses.name" => "pending")
+  scope :paid, includes(:status).where("statuses.name" => "paid")
+  scope :shipped, includes(:status).where("statuses.name" => "shipped")
+  scope :cancelled, includes(:status).where("statuses.name" => "cancelled")
+  scope :returned, includes(:status).where("statuses.name" => "returned")
 
   accepts_nested_attributes_for :address
   

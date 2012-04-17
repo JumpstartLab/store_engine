@@ -62,6 +62,12 @@ Address.create(  street_1: "10 Street",
                      zip_code: "20001",
                   user: admin_user)
 
+# Status.create(name: "pending")
+# Status.create(name: "paid")
+# Status.create(name: "cancelled")
+# Status.create(name: "shipped")
+# Status.create(name: "returned")
+
 # orders = Order.create([{ status: "pending", total_price: 5000},
 #                       { status: "shipped", total_price: 10000}])
 

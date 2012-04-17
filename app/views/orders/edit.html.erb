@@ -1,11 +1,10 @@
 <%= form_for(@order) do |o| %>
 <p>
-  Order Status: <%= select('order', 'status', %w(pending cancelled shipped paid)) %>
-  
+  Order Status: <%= select('order', 'status', %w(pending cancelled shipped paid returned)) %>
 </p>
 
-   <p>
-    <%= o.submit %> 
-  </p>
+<p>
+  <%= o.submit %> 
+</p>
 
-  <% end %>
+<% end %>
