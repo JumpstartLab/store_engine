@@ -1,0 +1,15 @@
+h1 = "Order ##{@order.id}"
+
+table
+  tr
+    td Item Title
+    td Price
+    td Quantity
+    td Subtotal
+  - @order.items.each do |item|
+    tr
+      td = item.title
+      td = item.price
+      td.quantity = item.quantity
+      td = item.subtotal
+      td = link_to "Remove", admin_order_path(:item_id => item.id), :method => :delete

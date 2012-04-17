@@ -1,10 +1,4 @@
 StoreEngine::Application.routes.draw do
-  get "orders/index"
-
-  get "orders/show"
-
-  get "orders/edit"
-
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
@@ -22,6 +16,7 @@ StoreEngine::Application.routes.draw do
   
   namespace :admin do
     resources :orders
+    resources :order_items
     resources :products
     resources :categories
   end

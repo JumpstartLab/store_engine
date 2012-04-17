@@ -19,6 +19,35 @@ describe User do
       login_as(user)
     end
 
+    it "not edit users personal data"
+
+    describe "dashboard" do
+      it "view total number of orders by status"
+      it "click links for each order"
+      it "filter by status type"
+
+      context "order" do
+        it "cancel if pending"
+        it "mark as returned if shipped"
+        it "mark as shipped if paid"
+
+        context "view" do
+          it "date and time"
+          it "purchaser full name and address"
+          it "total"
+          it "status"
+
+          describe "products" do
+            it "link to product page"
+            it "quantity"
+            it "price"
+            it "line item subtotal"
+          end
+        end
+      end
+      
+    it "not edit users personal data"
+
     describe "products" do
       before(:each) do
         user.cart = cart
@@ -80,17 +109,45 @@ describe User do
         order.add_product(product)
         visit admin_orders_path
         click_link "#{order.id}"
-        save_and_open_page
         page.should have_content("#{order.items.first.title}")
       end
 
-      context "edit orders and" do
-        it "change quantity of products on pending orders"
-        it "can't change quantity of products on non-pending orders"
-        it "remove products"
-        it "change the status"
+      context "edit and" do
+        it "change the status" do
+          visit admin_orders_path
+          click_link "Edit"
+          fill_in "Status", :with => "shipped"
+          click_button "Update Order"
+          page.should have_content("shipped")
+        end
+
+        it "can't change quantity of products on non-pending orders" do
+          order.status = "shipped"
+          order.save
+          order.add_product(product)
+          visit admin_orders_path
+          click_link "#{order.id}"
+          page.should_not have_content("Edit")
+        end
+
+        it "remove products" do
+          order.add_product(product)
+          visit admin_order_path(order)
+          click_link "Remove"
+          page.should have_content("Item Deleted Bitch")
+          page.should_not have_content(product.title)
+        end
+
+        it "change quantity of products on pending orders" do
+          order.add_product(product)
+          visit admin_orders_path
+          click_link "Edit"
+          fill_in "order_order_items_attributes_0_quantity", :with => "2"
+          click_button "Update Order"
+          click_link "#{order.id}"
+          find(".quantity").text.should == "2"
+        end
       end
-      it "not edit users personal data"
     end
   end
 
