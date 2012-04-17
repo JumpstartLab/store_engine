@@ -17,3 +17,13 @@ u2 = User.create(full_name: "Charles Strahan", email: "b@c.com", password: "asdf
 u3 = User.create(full_name: "Happy Admin", email: "admin@store.com", password: "asdfasdf", password_confirmation: "asdfasdf")
 u3.update_attribute(:admin, true)
 u3.update_attributes(billing_address: "My Billing Address", shipping_address: "My Shipping Address")
+
+u4 = User.create(full_name: "Matt Yoho", email: "matt.yoho@livingsocial.com", display_name: "", password: "hungry", password_confirmation: "hungry")
+u5 = User.create(full_name: "Jeff Casimir", email: "jeff.casimir@livingsocial.com", display_name: "j3", password: "hungry", password_confirmation: "hungry")
+u6 = User.create(full_name: "Chad Fowler", email: "chad.fowler@livingsocial.com", display_name: "sax_player", password: "hungry", password_confirmation: "hungry")
+
+
+
+
+
+
