@@ -7,8 +7,7 @@ module Admin::OrdersHelper
     when "shipped"
       returned_link(id)
     when "pending"
-      link_to "Mark as cancelled", 
-        admin_orders_mark_cancelled_path(id: id), method: :put
+      cancelled_link(id)
     when "returned"
       cancelled_link(id)
     else
@@ -18,17 +17,20 @@ module Admin::OrdersHelper
 
   def shipped_link(id)
     link_to("Mark as shipped", 
-        admin_orders_mark_shipped_path(id: id), method: :put)
+        admin_order_status_path(order_id: id, new_status: 'shipped'),
+        method: :put)
   end
 
   def returned_link(id)
     link_to("Mark as returned", 
-        admin_orders_mark_returned_path(id: id), method: :put)
+        admin_order_status_path(order_id: id, new_status: 'returned'),
+        method: :put)
   end
 
   def cancelled_link(id)
     link_to("Mark as cancelled", 
-        admin_orders_mark_cancelled_path(id: id), method: :put)
+        admin_order_status_path(order_id: id, new_status: 'cancelled'),
+        method: :put)
   end
 
 end

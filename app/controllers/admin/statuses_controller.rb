@@ -1,10 +1,13 @@
 class Admin::StatusesController < ApplicationController
 
   def create
-    # status_update = Status.new(params[:order_id])
-    # status_update.update_status(params[:status])
+    raise params.inspect
+  end
 
-    #redirect_to admin_products_path
+  def update
+    @order_status = OrderStatus.find_by_order_id(params[:order_id])
+    @order_status.update_status(params[:new_status])
+    redirect_to admin_dashboard_path
   end
 
 end
