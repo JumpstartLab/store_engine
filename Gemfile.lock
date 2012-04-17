@@ -123,6 +123,7 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    pg (0.13.2)
     pjax_rails (0.2.0)
       jquery-rails
     polyglot (0.3.3)
@@ -232,6 +233,7 @@ DEPENDENCIES
   money
   nested_form
   paperclip
+  pg
   pjax_rails
   rails (= 3.2.3)
   rspec-rails
