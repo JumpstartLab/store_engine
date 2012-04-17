@@ -5,7 +5,7 @@
   <%= label_tag :status %>
   <%= select_tag :status, options_for_select(Order::STATUSES.map(&:titleize), @order.status.titleize) %>
 
-  <table>
+  <table class="table table-striped">
     <tr>
       <th>Product Name</th>
       <th>Quantity</th>

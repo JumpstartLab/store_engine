@@ -8,7 +8,8 @@ gem 'paranoia'
 gem 'addressable'
 gem 'dynamic_form'
 gem 'rspec-rails'
-  gem 'bootstrap-sass', '~> 2.0.2'
+gem 'bootstrap-sass', '~> 2.0.2'
+gem 'chosen-rails'
 
 #gem 'anjlab-bootstrap-rails', '>= 2.0', :require => 'bootstrap-rails'
 
