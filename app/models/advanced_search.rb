@@ -21,7 +21,7 @@ class AdvancedSearch < ActiveRecord::Base
     if order_date.present? and order_date_operator.present?
       orders = orders.where("DATE(created_at) > ?", self.order_date) if order_date_operator == '>'
       orders = orders.where("DATE(created_at) < ?", self.order_date) if order_date_operator == '<'
-      orders = orders.where("DATE(created_at) == ?", self.order_date) if order_date_operator == '='
+      orders = orders.where("DATE(created_at) = ?", self.order_date) if order_date_operator == '='
     end
 
     orders = orders.includes(:user).all
