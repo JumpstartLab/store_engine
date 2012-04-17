@@ -1,18 +1,18 @@
-div id="products" class="span7"
+div#product.span8
   .span3
-    = image_tag product.image, class: "photo_sub"
-  .span3
-    h3 = link_to product.title, product_path(product), class: "product-title"
-    = product.description
-    br/
+    = image_tag product.image, id: "product-show-photo"
+  .span3#info
+    h3 = link_to product.title, product_path(product), id: "product-title"
     .price
-      |$
-      = product.price
-      = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: session[:order_id], price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success', id: "buy"
-    p
-      = render partial: "category", collection: product.categories
+      p = number_to_currency(product.price)
+      p = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: session[:order_id], price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success', id: "buy"
+    p = render partial: "category", collection: product.categories
+    p = product.description
+  - if admin_view?
     p#product-id id: #{product.id}
     p created at: #{product.created_at.to_date}
-  - if admin_view?
+
     .span7
       = render partial: "admin_buttons", locals: {product: product}
+br/
+p = render partial: "similar", locals: {product: product}

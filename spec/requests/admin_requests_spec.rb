@@ -120,7 +120,7 @@ describe "admin" do
       click_link_or_button "Edit"
       fill_in "Title", with: "Other Product"
       click_link_or_button "Update Product"
-      within ".product-title" do
+      within "#product-title" do
         page.should_not have_content product.title
         page.should have_content "Other Product"
       end
