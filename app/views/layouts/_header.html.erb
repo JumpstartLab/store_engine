@@ -19,6 +19,7 @@
             <% else %>
             <a><div id="badger"><span class="badge badge-success" id="cart_count"><%= @cart.quantity %></span></div></a>
             <% end %>
+
           </li>
         </ul>
 
@@ -28,10 +29,12 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account</a>
             <ul class="dropdown-menu">
               <li><%= current_user.full_name %></li>
+              <li><%= link_to "Dashboard", dashboard_path if current_user.admin? %></li>
               <li><%= link_to "Log Out", logout_path %></li>
               <li><%= link_to "Orders", orders_path %></li>
             </ul>
           </li>
+
 
           <% else %>
           <ul class="nav pull-right">
