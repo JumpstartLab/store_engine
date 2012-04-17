@@ -9,4 +9,8 @@ class Category < ActiveRecord::Base
   def to_param
     [id, name.downcase.split(" ")].join("-")
   end
+
+  def image
+    products.first.image
+  end
 end

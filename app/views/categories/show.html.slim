@@ -1,14 +1,22 @@
-h1= @category.name
-table
-  tr
-    th Product Name
-    - if admin_view?
-      th Action
-  tbody
-    = render partial: "product", collection: @products
-br/
-- if admin_view?
-  p
-    = link_to "Edit", edit_category_path, class: "btn"
-    = link_to "Destroy", category_path(@category), :method => :delete, confirm: "Delete \"#{@category.name}\"?", class: "btn btn-danger"
-    = link_to "Back to All Categories", categories_path, class: "btn"
+h2 = @category.name
+#products
+  - unless admin_view?
+    ul.image-and-title
+      = render partial: "product", collection: @products
+  - else
+    h1 Products
+    = link_to 'New', new_product_path, :class => 'btn btn-primary'
+    table.table.table-striped#order-table
+      thead
+        tr
+        th Actions
+        th ID
+        th Title
+        th Categories
+        th Price
+        th Status
+        th Created At
+      tbody
+        = render partial: "admin_product", collection: @products
+
+

@@ -1,12 +1,4 @@
-h1 Categories
-table.table.table-striped
-  thead
-    tr
-      th ID
-      th Name
-      - if admin_view?
-        th Actions
-  tbody
-    = render partial: "category", collection: @categories
+ul.image-and-title
+  = render partial: "category", collection: @categories
 - if admin_view?
   = link_to 'New', new_category_path, :class => 'btn btn-primary'
