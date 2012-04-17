@@ -5,10 +5,24 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation,
                   :display_name, :first_name, :last_name, :admin, :default_credit_card_id
 
-  validates_confirmation_of :password
-  validates_presence_of :password, :on => :create
-  validates_presence_of :email
-  validates_uniqueness_of :email
+  validates :password,  :presence => true,
+                        :confirmation => true,
+                        :length => { 
+                          :in => 4..12,
+                          :too_short => "Must be at least 4 characters.",
+                          :too_long => "No more than 10 characters."
+                        }
+
+  validates :email,     :presence => true,
+                        :uniqueness => true
+
+  #validates :full_name, :presence => true
+
+  validates :display_name, :allow_nil => true,
+                      :length => { 
+                      :in => 2..32,
+                      :too_short => "Try a longer name.",
+                      :too_long => "Try a shorter name." }
 
   has_many :orders
   has_many :addresses

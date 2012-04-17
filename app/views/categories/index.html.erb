@@ -3,7 +3,11 @@
 <h4 id="add_link">Since you are an admin, you can <%= link_to "Add a category", new_category_path, :class => "add_link" %></h4>
 </div>
 <% end %>
-
+<% if notice %>
+  <div class="alert alert-info">
+    <p id="notice"><%= flash.now[:notice] %></p>
+  </div>
+<% end %>
 
 <div id="intro">
 <h2>Categories</h2>

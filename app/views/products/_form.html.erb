@@ -1,7 +1,6 @@
 <%= form_for @product, :html => { :multipart => true } do |f| %>
   <% if @product.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
+    <div class="alert alert-error">
       <ul>
         <% for message in @product.errors.full_messages %>
           <li><%= message %></li>

@@ -1,3 +1,8 @@
+<% if notice %>
+  <div class="alert alert-info">
+    <p id="notice"><%= flash.now[:notice] %></p>
+  </div>
+<% end %>
 <div id="thinForm">
 <h3>Add your product</h3>
 <%= render :partial => 'products/form' %>

@@ -1,3 +1,8 @@
+<% if notice %>
+  <div class="alert alert-info">
+    <p id="notice"><%= flash.now[:notice] %></p>
+  </div>
+<% end %>
 <div id="intro">
   <h2>Your Cart </h2>
 </div>

@@ -1,3 +1,9 @@
+<% if notice %>
+  <div class="alert alert-info">
+    
+    <p id="notice"><%= flash.now[:notice] %></p>
+  </div>
+<% end %>
 <h2>Your Order from <%= @order.created_at.strftime("%m/%d/%Y") %>:</h2>
 <div class="row-fluid">
   <div class="span8">

@@ -16,6 +16,11 @@
     <h4>This product was retired at <%= @product.retired_at %></h4>
   </div>
 <% end %>
+<% if notice %>
+  <div class="alert alert-info">
+    <p id="notice"><%= flash.now[:notice] %></p>
+  </div>
+<% end %>
 
 <h1><%= @product.title %></h1>
 <p><%= @product.description %></p>

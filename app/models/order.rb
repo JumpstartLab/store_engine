@@ -4,6 +4,8 @@ class Order < ActiveRecord::Base
                   :shipping_address_id, :user_id
   belongs_to :user
 
+  validates_associated :user
+
   has_many :order_products
   has_many :products, :through => :order_products
   has_many :order_statuses

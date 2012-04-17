@@ -15,3 +15,7 @@
 //= require jquery-ui
 //= require twitter/bootstrap
 //= require_tree .
+
+$(function(){
+  $('.alert-info').delay(1600).fadeOut(200);
+});

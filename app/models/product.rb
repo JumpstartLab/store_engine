@@ -4,6 +4,16 @@ class Product < ActiveRecord::Base
                   :retired, :category_ids
 
 
+  validates :title,       :presence => true
+  
+  validates :description, :presence => true
+  
+  validates :price,       :presence => true
+                          # :numericality => {
+                          #   :only_integer => true }
+  validates_format_of :remote_image_url, 
+  :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+
   has_many :orders
   
   has_many :product_categories
