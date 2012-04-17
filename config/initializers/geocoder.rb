@@ -1,1 +1,1 @@
-Geocoder::Configuration.lookup = :geocoder_ca
+Geocoder::Configuration.lookup = :google
