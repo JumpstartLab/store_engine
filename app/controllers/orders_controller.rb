@@ -16,7 +16,6 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.create(:user_id => current_user.id)
-    @order.create_pending_status
     @order.stripe_customer_token = params[:order][:customer_token]
 
     # raise @order.inspect

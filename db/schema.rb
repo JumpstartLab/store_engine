@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417123650) do
+ActiveRecord::Schema.define(:version => 20120417222656) do
 
   create_table "cart_products", :force => true do |t|
     t.integer  "cart_id"
@@ -103,15 +103,16 @@ ActiveRecord::Schema.define(:version => 20120417123650) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                        :null => false
-    t.string   "name",                         :null => false
+    t.string   "email",                                           :null => false
+    t.string   "name",                                            :null => false
     t.string   "display_name"
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.boolean  "admin",                        :default => false
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

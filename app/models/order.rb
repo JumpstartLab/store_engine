@@ -10,12 +10,15 @@ class Order < ActiveRecord::Base
   has_one :order_status, :dependent => :destroy
   validates_presence_of :user_id
 
+  #after_initialize... always runs even when recalling from database. check if order_status is nil?
+  #before_create... only happens once.
+
+  before_create :make_new_order_status
+
   scope :desc, order("id DESC")
 
-  def create_pending_status
-    if self.order_status.nil?
-      OrderStatus.create(:status => 'pending', :order_id => self.id)
-    end
+  def make_new_order_status
+    self.build_order_status
   end
 
   def status
@@ -29,7 +32,7 @@ class Order < ActiveRecord::Base
 
   def charge(cart)
     if credit_card.charge(cart.cart_total_in_cents)
-      self.mark_as_paid
+      mark_as_paid
       true
     else
       false

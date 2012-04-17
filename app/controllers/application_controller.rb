@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_last_page(message=nil)
-    last_page = session[:last_page]
+    last_page = session[:last_page] || params[:last_page]
     if last_page
       redirect_to(last_page, :notice => message)
     else 
@@ -26,6 +26,10 @@ class ApplicationController < ActionController::Base
 
   def redirect_to_login(message=nil)
     redirect_to signin_path
+  end
+
+  def is_admin?
+    redirect_to_last_page unless current_user.admin
   end
 
 private

@@ -39,6 +39,7 @@ class Cart < ActiveRecord::Base
     end
   end
 
+  #better name? transfer cart to order
   def assign_cart_to_order_and_destroy(order)
     if has_products?
       order_products = cart_products.collect do |cart_prod|
