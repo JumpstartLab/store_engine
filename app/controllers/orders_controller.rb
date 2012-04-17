@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.new
+    @order.user = current_user
     @order.billing_address = Address.new(params[:order][:billing_address])
     @order.shipping_address = Address.new(params[:order][:shipping_address])
     @order.credit_cards << CreditCard.new(params[:order][:credit_card])

@@ -6,6 +6,7 @@ class InstantOrdersController < ApplicationController
 
     if user.default_billing_address && user.default_shipping_address && user.default_credit_card
       @order = Order.new
+      @order.user = current_user
       @order.billing_address = user.default_billing_address
       @order.shipping_address = user.default_shipping_address
       @order.credit_cards << user.default_credit_card
