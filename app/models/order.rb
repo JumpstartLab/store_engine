@@ -52,7 +52,7 @@ class Order < ActiveRecord::Base
       Order.all
     else
       #Order.joins('LEFT OUTER JOIN order_statuses ON order_statuses.order_id = order_id WHERE order_statuses.status = status')
-      Order.joins('LEFT OUTER JOIN order_statuses ON order_statuses.order_id').
+      Order.joins('LEFT OUTER JOIN order_statuses ON orders.id = order_statuses.order_id').
       where('order_statuses.status = ?', status)
       #Order.find_all_by_status(status)
     end
