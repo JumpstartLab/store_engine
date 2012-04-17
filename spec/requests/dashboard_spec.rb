@@ -21,7 +21,8 @@ describe "Dashboard" do
 
     let!(:orders) do
       [FactoryGirl.create(:order, :products => products, :status => statuses.last), 
-        FactoryGirl.create(:order, :products => products, :status => statuses.first)]
+        FactoryGirl.create(:order, :products => products, :status => statuses.first),
+        FactoryGirl.create(:order, :products => products, :status => statuses[1])]
     end
 
     before(:each) do
