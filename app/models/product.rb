@@ -88,7 +88,7 @@ class Product < ActiveRecord::Base
   end
 
   def sale_price_in_cents
-    sale_price
+    (sale_price || price_in_cents).to_i
   end
 
   def sale_price_in_dollars

@@ -50,7 +50,7 @@
     state "DC"
   end
   factory :sale do
-
+    end_at 30.days.from_now
   end
   # factory :fake_address do
   #   street "fdsfsddsf53232"

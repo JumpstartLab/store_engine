@@ -15,9 +15,6 @@ describe "Order New" do
         click_on "Add To Cart"
       end      
     end
-    it "displays total" do
-      pending
-    end
     it "Address Updated with valid address" do
       visit cart_path
       click_on "Checkout"

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Cart", :focus => true do
+describe "Cart" do
   let!(:real_address) do
     FactoryGirl.create(:address)
   end
@@ -56,6 +56,7 @@ describe "Cart", :focus => true do
           fill_in "cart[order_products_attributes][0][quantity]", :with => -5
         end
         click_on "Update Cart"
+        #save_and_open_page
         page.should have_content(5)        
       end
     end
