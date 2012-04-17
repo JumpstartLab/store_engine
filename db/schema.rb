@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20120416200617) do
-=======
 ActiveRecord::Schema.define(:version => 20120417113706) do
->>>>>>> ui
 
   create_table "addresses", :force => true do |t|
     t.string   "street_1"

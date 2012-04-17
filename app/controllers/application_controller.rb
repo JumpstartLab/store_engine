@@ -24,11 +24,13 @@ class ApplicationController < ActionController::Base
 
   def merge_cart(session_cart_id)
     session_cart = Cart.find_by_id(session_cart_id)
-    session_cart.cart_items.each do |ci|
-      if !@cart.items.include?(ci.product)
-        @cart.cart_items << ci
-      else
-        @cart.increment_quantity_for(ci.product_id, ci.quantity)
+    if !session_cart.nil?
+      session_cart.cart_items.each do |ci|
+        if !@cart.items.include?(ci.product)
+          @cart.cart_items << ci
+        else
+          @cart.increment_quantity_for(ci.product_id, ci.quantity)
+        end
       end
     end
     session[:cart_id] = @cart.id

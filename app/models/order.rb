@@ -31,12 +31,13 @@ class Order < ActiveRecord::Base
 
   def save_with_payment(token=nil)
     if valid?
-      create_stripe_user(token) if !user.stripe_id
+      customer = Stripe::Customer.create(description: user.email, card:stripe_card_token)
+      # create_stripe_user(token) if !user.stripe_id
 
       Stripe::Charge.create(
         :amount => total_price_in_cents.to_i,
         :currency => "usd",
-        :customer => user.stripe_id,
+        :customer => customer.id,
         :description => "order##{id}" )
 
       save!
@@ -51,10 +52,6 @@ class Order < ActiveRecord::Base
       card: token)
     user.stripe_id = customer.id
     user.save
-  end
-
-  def self.charge_two_click(cart_id)
-    "BOOM"
   end
 
   def add_order_items_from(cart)

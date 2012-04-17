@@ -6,7 +6,7 @@ class TwoClickOrdersController < ApplicationController
     if current_user.addresses.first && current_user.stripe_id
       order = Order.new
       order.user = current_user
-      order.status = "pending"
+      # order.status = "pending"
       order.save
       order.address = current_user.addresses.first
       
