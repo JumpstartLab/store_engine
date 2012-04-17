@@ -8,44 +8,16 @@
   <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
 </head>
 <body>
-  <header>
-
-    <ul class="nav">
-      <li class="active">
-        <a href="/">Home</a>
-      </li>
-      <li id="cart_count"><%= link_to "Cart", cart_path %> 
-        <div id="cart_info">(<%= @cart.quantity %>): <%= number_to_currency(@cart.total_price) %></li>
-      <% if current_user %>
-      <li>Logged in as <%= current_user.full_name %><%= link_to "Log Out", logout_path %></li>
-      <li><%= link_to "Orders", orders_path %></li>
-      <% else %>
-      <li><%= link_to "Sign Up", new_user_path %></li> or
-      <li><%= link_to "Log In", new_session_path %></li>
-      <% end %>
-      <% if admin? %>
-      <li><%= link_to "Dashboard", dashboard_path %></li>
-      <% end %>
-    </ul>
-
-    <!-- <br />
-    <% if current_user %>
-      <%= "Hey! You are logged in." %>
-    <% else %>
-      <%= "You should log in or make a new count. It's what cool kids do." %>
-    <% end %>
-
-    <% if admin? %>
-      <%= "YOU ARE AN ADMIN AND ARE AWESOME" %>
-    <% else %>
-      <%= "YOU ARE NOT AN ADMIN AND ARE LAME" %>
-    <% end %> -->
-
+  <%= render 'layouts/header' %>
+  <div class="container">
     <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, id: "flash_#{name}" %>
-      <% end %>
-
-<%= yield %>
+      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+        <a class="close" data-dismiss="alert">×</a>
+        <%= msg %>
+      </div>
+    <% end %>
+    <%= yield %>
+  </div>
 <%= debug(params) if Rails.env.development? %>
 </body>
 </html>

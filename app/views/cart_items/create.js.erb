@@ -1,3 +1,15 @@
-$('#cart_info').html("<%= @cart.quantity %> | <%= number_to_currency(@cart.total_price) %>");
+var count = $('span#cart_count').text();
+
+$('span#cart_count').text('<%= @cart.quantity %>');
+
+$('#badger').transition({ scale: 1.5 },'out', function() {
+    $(this).transition({ scale: 1 });
+});
+
+if (count == 0) {
+  $('span#cart_count').removeClass("badge badge").addClass("badge badge-success");
+}
+
+
 
 

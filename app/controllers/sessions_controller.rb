@@ -4,7 +4,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       if session[:request_page].blank?
-        redirect_to root_url
+        respond_to do |format|
+          format.html { redirect_to root_url, notice: "Logged in!" }
+        end
       else
         new_session = session[:request_page]
         session[:request_page] = nil
@@ -20,7 +22,10 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     session[:cart_id] = nil
-    redirect_to root_url, notice: "Logged out!"
+    
+    respond_to do |format| 
+      format.html { redirect_to root_url, notice: "Logged out!" }
+    end
   end
 
   private
