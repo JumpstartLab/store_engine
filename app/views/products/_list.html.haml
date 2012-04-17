@@ -1,11 +1,10 @@
-.row
-  - products.each do |product|
-    .product.span3
-      %h4= link_to product.name, product_path(product)
-      %img{:src => product.avatar}
-      %div= truncate(product.description, :length => 15)
-      - if product.best_sale
-        %div{:style=> "text-decoration:line-through;"}= product.price
-        .bold= product.sale_price_in_dollars
-      - else
-        .bold= product.price
+- products.each do |product|
+  .product
+    %h4= link_to product.name, product_path(product)
+    %img{:src => product.avatar}
+    %div= truncate(product.description, :length => 15)
+    - if product.best_sale
+      %div{:style=> "text-decoration:line-through;"}= product.price
+      .bold= product.sale_price_in_dollars
+    - else
+      .bold= product.price

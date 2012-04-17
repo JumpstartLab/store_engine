@@ -1,7 +1,7 @@
 class Sale < ActiveRecord::Base
-  attr_accessible :category, :end_at, :percent_off, 
-                  :product
-
+  attr_accessible :categories, :end_at, :percent_off, 
+                  :products, :product_ids, :category_ids
+                  
   has_many :categories
   has_many :products
 

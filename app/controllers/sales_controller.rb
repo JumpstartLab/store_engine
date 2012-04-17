@@ -11,7 +11,7 @@ class SalesController < ApplicationController
   end
 
   def new
-    @sale = Sale.new  
+    @sale = Sale.new
   end
 
   def edit
@@ -23,10 +23,11 @@ class SalesController < ApplicationController
   end
 
   def create
-    @sale = Product.new(params[:sale])
+    @sale = Sale.new(params[:sale])
     if @sale.save
       redirect_to sale_path(@sale), :notice => "Sale created."
     else
+      flash[:error] = "Please fix the form."
       render 'new'
     end
   end
