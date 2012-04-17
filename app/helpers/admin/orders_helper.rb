@@ -1,17 +1,24 @@
 module Admin::OrdersHelper
 
-  def order_actions_by_status(status, id)
-    case status
+  def order_actions_by_status(order)
+    case order.status
     when "paid"
-      shipped_link(id) + " | " + cancelled_link(id)
+      shipped_link(order.id) + " | " + cancelled_link(order.id)
     when "shipped"
-      returned_link(id)
+      returned_link(order.id)
     when "pending"
-      cancelled_link(id)
+      cancelled_link(order.id)
     when "returned"
-      cancelled_link(id)
-    else
-      "Looks like your work here is done!"
+      "Returned"
+    when "cancelled"
+      "Cancelled."
+    end
+  end
+
+  def timestamp(order)
+    case order.status
+    when 'shipped', 'cancelled'
+      "#{order.status.capitalize} on #{order.updated_at.to_s(:pretty)}"
     end
   end
 

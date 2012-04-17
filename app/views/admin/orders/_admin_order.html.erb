@@ -2,5 +2,5 @@
   <td><%= link_to admin_order.user.name, admin_order_path(admin_order) %></td>
   <td><%= admin_order.created_at %></td>
   <td><%= admin_order.status %></td>
-  <td><%= order_actions_by_status(admin_order.status, admin_order.id) %></td>
+  <td><%= order_actions_by_status(admin_order) %></td>
 </tr>

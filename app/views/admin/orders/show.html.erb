@@ -1,3 +1,40 @@
-<h1>This is an order!</h1>
+<h1>Order Details - Admin View</h1>
 
-<%= @order.id %>
+<div class="row">
+  <div class="span3" style="background-color: #eee; padding: 10px">
+    <h2>Order Details</h2>
+    <ul class="unstyled">
+      <li>Order number: <%= @order.id %></li>
+      <li>Date: <%= @order.created_at.to_s(:pretty) %></li>
+      <li>Status: <%= @order.status %></li>
+      <li><%= timestamp(@order) %></li>
+      <li>Actions: <%= order_actions_by_status(@order) %></li>
+    </ul>
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="span12">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render :partial => "shared/order_products", :locals => { :order_products => @order.order_products } %>
+
+        <tr id="total-row">
+          <td colspan="2"></td>
+          <td style="border-left: 0px; border-right: 0px;">Total</td>
+          <td><%= @order.order_total %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
