@@ -44,7 +44,7 @@ describe "Test Category Auth" do
           visit edit_category_path(category)
           fill_in "category[name]", :with => "foooooo"
           click_on "Save Category"
-          page.should have_content("Category upated.")
+          page.should have_content("Category updated.")
         end
         it "validation failed" do
           visit edit_category_path(category)
@@ -68,10 +68,9 @@ describe "Test Category Auth" do
         end
       end
       context "DESTROY" do
-        let(:category2) { FactoryGirl.create(:category) }
+        let!(:category2) { FactoryGirl.create(:category) }
         it "Can destory" do
            visit categories_path
-           save_and_open_page
            within("#category_#{category2.id}") do
             click_on "X"
            end

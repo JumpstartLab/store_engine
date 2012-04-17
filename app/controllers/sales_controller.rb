@@ -34,9 +34,9 @@ class SalesController < ApplicationController
 
   def update
     if @sale.update_attributes(params[:sale])
-    redirect_to sale_path(@sale), :notice => "Sale updated."
+      redirect_to sale_path(@sale), :notice => "Sale updated."
     else
-      render 'edit'
+      render 'edit', :notice => "Please fix the form."
     end      
   end
 

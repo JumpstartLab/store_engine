@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe "Sale", :focus => true do
+  let!(:user) { FactoryGirl.create(:admin, :password => "mike")}
   let!(:sale) { FactoryGirl.create(:sale, :percent_off => 50) }
-  let!(:category) { FactoryGirl.create(:category, :sale => sale_category) }
+  let!(:category) { FactoryGirl.create(:category, :sale => sale) }
   let!(:product) { FactoryGirl.create(:product, :sale => sale, :price_in_cents => 33322) }
 
   context "View all sales" do
@@ -11,24 +12,49 @@ describe "Sale", :focus => true do
       page.should have_content(product.name)
     end
   end
+  before(:each) do
+    login(user)
+  end
   context "An admin can create a sale" do
+    before(:each) do
+      visit new_sale_path
+    end
     it "Passes" do
       fill_in "sale[percent_off]", :with => 30
+      select('2014', :from => 'sale[end_at(1i)]')
       click_on "Save Sale"
       page.should have_content "Sale created."
     end
-    it "Fails" do
+    it "Fails" do  
       fill_in "sale[percent_off]", :with => 332
       click_on "Save Sale"
       page.should have_content "Please fix the form."
     end    
   end
-  context "Sales have end dates " do
-    it "Can set end date" do
-
+  context "An admin can modify a sale" do
+    before(:each) do
+      visit edit_sale_path(sale)
     end
-    it "Can't view a product's sale if the date expired" do
-
+    it "Passes" do
+      fill_in "sale[percent_off]", :with => 30
+      select('2014', :from => 'sale[end_at(1i)]')
+      click_on "Save Sale"
+      page.should have_content "Sale updated."      
+    end
+    it "Fails" do
+      fill_in "sale[percent_off]", :with => 332
+      click_on "Save Sale"
+      #save_and_open_page
+      page.should have_content "is not included in the list"
+    end
+  end
+  context "Can delete a sale" do
+    it "deletes a sale" do
+      visit admin_index_sales_path
+      within("#sale_#{sale.id}") do
+        click_on "X"
+      end
+      page.should have_content "Sale Removed"
     end
   end
 

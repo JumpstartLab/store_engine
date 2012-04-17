@@ -8,7 +8,7 @@
   %th Products
   %th Categories
   - @sales.each do |sale|
-    %tr{:id => "category_#{sale.id}"}
+    %tr{:id => "sale_#{sale.id}"}
       %td= link_to 'X', sale_path(sale), :method => :delete
       %td= link_to "Edit", edit_sale_path(sale)
       %td= sale.display_percent
