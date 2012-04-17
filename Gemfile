@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'sorcery'
 gem 'money-rails'
@@ -32,6 +31,7 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'ruby_gntp'
+  gem 'sqlite3'
 end
 
 group :production do
