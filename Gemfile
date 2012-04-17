@@ -23,7 +23,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
