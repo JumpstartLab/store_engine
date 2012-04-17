@@ -95,6 +95,7 @@ GEM
       multi_json (~> 1.0)
     paranoia (1.1.0)
       activerecord (>= 3.0.0)
+    pg (0.13.2)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -188,6 +189,7 @@ DEPENDENCIES
   launchy
   money-rails
   paranoia
+  pg
   rails (= 3.2.3)
   rspec-rails
   ruby_gntp
