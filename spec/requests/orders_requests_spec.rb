@@ -33,6 +33,31 @@ describe "For orders" do
     it "allows the user to sort by status" do
       pending "Not sure how to set up the selecting on the page itself"
     end
+
+    context "can filter orders by their status" do
+
+      it "lists pending orders" do
+        page.should have_selector("#pending_orders")
+      end
+
+      it "lists cancelled orders" do
+        page.should have_selector("#cancelled_orders")
+      end
+      
+      it "lists paid orders" do
+        page.should have_selector("#paid_orders")
+      end
+      
+      it "lists shipped orders" do
+        page.should have_selector("#shipped_orders")
+      end
+      
+      it "lists returned orders" do
+        page.should have_selector("#returned_orders")
+      end
+      
+
+    end
   end
 
   context "#show" do
