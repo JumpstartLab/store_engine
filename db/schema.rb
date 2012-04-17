@@ -11,11 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20120416214941) do
-=======
-ActiveRecord::Schema.define(:version => 20120412202159) do
->>>>>>> dev
+ActiveRecord::Schema.define(:version => 20120417140443) do
+
+  create_table "billing_informations", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "credit_card_type"
+    t.integer  "credit_card_number"
+    t.date     "credit_card_expiration"
+    t.string   "billing_address_line_1"
+    t.string   "billing_address_line_2"
+    t.string   "billing_address_city"
+    t.string   "billing_address_state"
+    t.integer  "billing_address_zipcode"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+  end
 
   create_table "cart_items", :force => true do |t|
     t.integer  "cart_id"
@@ -70,10 +80,20 @@ ActiveRecord::Schema.define(:version => 20120412202159) do
     t.datetime "updated_at",                     :null => false
   end
 
+  create_table "shipping_informations", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "shipping_address_line_1"
+    t.string   "shipping_address_line_2"
+    t.string   "shipping_address_city"
+    t.string   "shipping_address_state"
+    t.integer  "shipping_address_zipcode"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "display_name"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
     t.string   "password_digest"

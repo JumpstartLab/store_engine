@@ -18,5 +18,5 @@
     <td id="total"><%= cart.total %></td>
   </tr>
 </table>
-<%= link_to "Place Order", new_order_path(:cart_id => cart), :class => "btn", :id => "place_order"%>
+<%= link_to "Place Order", new_order_path(:cart_id => cart, :current_user_id => current_user), :class => "btn", :id => "place_order"%>
 <%= link_to "Destroy Cart", cart_path(cart), :method => :delete, :class => "btn btn-danger" %>

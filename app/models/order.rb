@@ -1,9 +1,8 @@
 class Order < ActiveRecord::Base
   attr_accessible :status
 
-  has_many :order_items
+  has_many :order_items, :dependent => :destroy
   has_many :products, :through => :order_items
-
   belongs_to :user
 
   def status_options
@@ -20,7 +19,7 @@ class Order < ActiveRecord::Base
       order_item.quantity = cart_item.quantity
       order_item.total_price = cart_item.total
       order_item.save
-    end
+    end    
     new_order.total_price = cart.total
     new_order.save
     return new_order
@@ -32,13 +31,12 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def add_product(product)
-    products << product
-  end
+  # def add_product(product)
+  #   products << product
+  # end
 
-  def add_product_by_id(product_id)
-    product = Product.find(product_id)
-    add_product(product)
-  end
-
+  # def add_product_by_id(product_id)
+  #   product = Product.find(product_id)
+  #   add_product(product)
+  # end
 end
