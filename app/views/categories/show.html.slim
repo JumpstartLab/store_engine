@@ -9,13 +9,13 @@ h2 = @category.name
     table.table.table-striped#order-table
       thead
         tr
-        th Actions
-        th ID
-        th Title
-        th Categories
-        th Price
-        th Status
-        th Created At
+          th Actions
+          th ID
+          th Title
+          th Categories
+          th Price
+          th Status
+          th Created At
       tbody
         = render partial: "admin_product", collection: @products
 
