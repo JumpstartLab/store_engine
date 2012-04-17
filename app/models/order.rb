@@ -12,10 +12,8 @@ class Order < ActiveRecord::Base
 
   def next_status
     case status 
-    when "pending" then status = "cancelled"
-    #Order.cancelled_at = Time.now
-    when "paid" then status = "shipped"
-    #Order.shipped_at = Time.now
+    when "pending" then "cancelled"
+    when "paid" then "shipped"
     when "shipped" then "returned"
     end
   end
@@ -37,9 +35,21 @@ class Order < ActiveRecord::Base
     order
   end
 
+  def ship
+    update_attributes(:shipped_at => Time.now, :status => "shipped")
+  end
+
+  def cancel
+    update_attributes(:cancelled_at => Time.now, :status => "cancelled")
+  end
+
+  def pay
+    update_attribute(:status => "paid")
+  end
 
   def add_contents_of_cart(cart, order)
     cart.line_items.each do |line_item|
+
       order_item = OrderItem.new
       order_item.set_price(line_item)
       order_item.set_product(line_item)

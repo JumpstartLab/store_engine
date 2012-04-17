@@ -31,6 +31,9 @@ class ProductsController < ApplicationController
   def update
     @product.update_attributes(params[:product])
     @product.save
+    if @product.retired
+      @product.line_items.map(&:destroy)
+    end
     redirect_to products_path
   end
 

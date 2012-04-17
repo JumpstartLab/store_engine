@@ -6,8 +6,6 @@ class LineItem < ActiveRecord::Base
   validates :quantity, :presence => true
   validates_numericality_of :quantity, :greater_than_or_equal_to => 1
 
-
-
   def subtotal
     self.product.price * quantity
   end
