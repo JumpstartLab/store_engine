@@ -1,13 +1,13 @@
 <table class="table">
   <tr>
     <th>Order ID:</th>
-    <th>User ID:</th>
+    <th>Customer:</th>
     <th>Order Placed:</th>
     <th>Order Edited:</th>
     <th>Order Total</th>
   </tr>
     <td><%= order.id %></td>
-    <td><%= order.user.id %></td>
+    <td><%= order.user.name %></td>
     <td><%= order.created_at %></td>
     <td><%= order.updated_at %></td>
     <td><%= order.total_price %></td>
