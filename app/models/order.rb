@@ -1,8 +1,7 @@
 class Order < ActiveRecord::Base
   STATUSES = ["pending", "cancelled", "paid", "shipped", "returned"]
-  attr_accessible :user_id, :status, :billing_address, :shipping_address
-  attr_accessible :credit_card, :email_address
-
+  DEFAULT_STATUS = "pending"
+  attr_accessible :user_id, :status, :billing_address, :shipping_address, :credit_card, :email_address
 
   has_many :order_items, :dependent => :destroy, :autosave => true
   has_many :items, through: :order_items
@@ -16,6 +15,21 @@ class Order < ActiveRecord::Base
   #validates :user, presence: true
   #validates :order_items, presence: true
   validates :status, inclusion: { in: STATUSES }
+
+  def self.build_with_user(params, user)
+    params.merge!(status: DEFAULT_STATUS)
+    order = self.new(params)
+    order.user = user if user
+    return order
+  end
+
+  def add_items_from_cart!(cart)
+    cart.cart_items.each do |cart_item|
+      order_items.create(product_id: cart_item.product_id,
+                         quantity: cart_item.quantity)
+    end
+    cart.destroy
+  end
 
   def assume_shipping_address
     if shipping_address.blank?

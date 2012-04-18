@@ -19,16 +19,24 @@
 
 <%= form_tag orders_path do %>
   <% if current_user %>
-    <%= hidden_field_tag :email_address, current_user.email %>
+    <%= hidden_field_tag "order[email_address]", current_user.email %>
+    <%= label_tag "order[credit_card]", "Credit Card" %><br/>
+    <%= text_field_tag "order[credit_card]", current_user.shipping_address %><br/>
+    <%= label_tag "order[billing_address]", "Billing Address" %><br/>
+    <%= text_field_tag "order[billing_address]", current_user.billing_address %><br/>
+    <%= label_tag "order[shipping_address]", "Shipping Address" %><br/>
+    <%= text_field_tag "order[shipping_address]", current_user.shipping_address %><br/>
+    <%= submit_tag "Place Order", class: "btn" %>
   <% else %>
-    <%= label_tag :email_address %>
-    <%= text_field_tag :email_address %><br/>
+    <%= label_tag "order[email_address]", "Email Address" %>
+    <%= text_field_tag "order[email_address]" %><br/>
+    <%= label_tag "order[credit_card]", "Credit Card" %><br/>
+    <%= text_field_tag "order[credit_card]" %><br/>
+    <%= label_tag "order[billing_address]", "Billing Address" %><br/>
+    <%= text_field_tag "order[billing_address]" %><br/>
+    <%= label_tag "order[shipping_address]", "Shipping Address" %><br/>
+    <%= text_field_tag "order[shipping_address]" %><br/>
+    <%= submit_tag "Place Order", class: "btn" %>  
   <% end %>
-  <%= label_tag :credit_card %><br/>
-  <%= text_field_tag :credit_card, current_user.shipping_address rescue "" %><br/>
-  <%= label_tag :billing_address %><br/>
-  <%= text_field_tag :billing_address, current_user.billing_address rescue "" %><br/>
-  <%= label_tag :shipping_address %><br/>
-  <%= text_field_tag :shipping_address, current_user.shipping_address rescue "" %><br/>
-  <%= submit_tag "Place Order", class: "btn" %>
+  
 <% end %>

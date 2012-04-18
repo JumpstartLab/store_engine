@@ -16,15 +16,14 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.create(params.merge(status: 'pending'))
-    @order.user_id = current_user.id if current_user
-    return redirect_to :back unless @order.save
-    current_cart.cart_items.each do |cart_item|
-      @order.order_items.create(product_id: cart_item.product_id,
-        quantity: cart_item.quantity)
+    @order = Order.build_with_user(params[:order], current_user)
+    if @order.save
+      @order.add_items_from_cart!(current_cart)
+      current_user.update_addresses(params) if current_user
+    else
+      flash[:error] = @order.errors.full_messages.join(", ").html_safe
+      redirect_to :back
     end
-    current_user.update_addresses(params) if current_user
-    current_cart.destroy
   end
 
   def destroy
