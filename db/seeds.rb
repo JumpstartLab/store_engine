@@ -30,21 +30,23 @@ u2.save
 User.create(
            :name => "Matt Yoho", 
            :password => "hungry", 
-           :email => "matt.yoho@livingsocial.com",
+           :email => "demoXX+matt@jumpstartlab.com",
            :display_name => ""
           )
 User.create(
            :name => "Jeff", 
            :password => "hungry", 
-           :email => "jeff.casimir@livingsocial.com",
+           :email => "demoXX+jeff@jumpstartlab.com",
            :display_name => "j3"
           )
-User.create(
+u3 = User.create(
            :name => "Chad Fowler", 
            :password => "hungry", 
-           :email => "chad.fowler@livingsocial.com",
+           :email => "demoXX+chad@jumpstartlab.com",
            :display_name => "SaxPlayer"
           )
+u3.permission = 9
+u3.save
 c1 = Category.create( :name => "Fruit"  )
 c2 = Category.create( :name => "Toys"   )
 c3 = Category.create( :name => "Wheels" ) 
