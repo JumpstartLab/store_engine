@@ -43,9 +43,10 @@ describe Product do
         fill_in "Description", with: "test_product description"
         fill_in "Price", with: 3.40
         fill_in "Photo", with: "http://www.sample.jpeg"
-        fill_in "product_upc", with: "072140002282"
+        fill_in "product_upc", with: "732140002282"
         click_button "Create Product"
         visit products_path
+        save_and_open_page
         page.should have_content("test_product")
       end
     end
