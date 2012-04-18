@@ -26,7 +26,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  gem 'factory_girl_rails', '1.4.0'
+  gem 'factory_girl_rails', '~> 3.1.0'
   gem 'guard'
   gem 'growl'
   gem 'simplecov'

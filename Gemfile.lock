@@ -53,10 +53,10 @@ GEM
     erubis (2.7.0)
     execjs (1.3.0)
       multi_json (~> 1.0)
-    factory_girl (2.3.2)
-      activesupport
-    factory_girl_rails (1.4.0)
-      factory_girl (~> 2.3.0)
+    factory_girl (3.1.1)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (3.1.0)
+      factory_girl (~> 3.1.0)
       railties (>= 3.0.0)
     faraday (0.7.6)
       addressable (~> 2.2)
@@ -183,7 +183,7 @@ DEPENDENCIES
   bootstrap-sass (= 2.0.0)
   capybara
   coffee-rails (~> 3.2.1)
-  factory_girl_rails (= 1.4.0)
+  factory_girl_rails (~> 3.1.0)
   growl
   guard
   jquery-rails

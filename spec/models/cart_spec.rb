@@ -47,28 +47,6 @@ describe Cart do
       end
     end
 
-    describe "#assign_cart_to_order_and_destroy" do
-      let!(:order) { FactoryGirl.create(:order) }
-
-      it "destroys the cart" do
-        cart.assign_cart_to_order_and_destroy(order)
-        Cart.all.should be_empty
-      end
-
-      it "creates order products and attaches them to order" do
-        cart.assign_cart_to_order_and_destroy(order)
-        order.products == products
-      end
-
-      context "when there are items in the cart with quantity > 1" do
-        before(:each) { cart.add_product(product_one) }
-
-        it "creates order products with quantity 2" do
-          cart.assign_cart_to_order_and_destroy(order)
-          order.order_products.find(product_one).quantity == 2
-        end
-      end
-    end
   end
 
   context "when no items have been added to the cart" do
