@@ -35,7 +35,8 @@ class ProductsController < ApplicationController
     if @product.retired
       @product.line_items.map(&:destroy)
     end
-    redirect_to products_path
+    redirect_to product_path(@product)
+    flash.now.alert = "Product has been updated"
   end
 
   def lookup_product

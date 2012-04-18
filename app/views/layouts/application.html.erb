@@ -96,19 +96,20 @@
                   <% end %>   
                 </ul>
               </div><!--/.well -->
-              <div class="well sidebar-nav">
-                            <div class = "admin_nav">
-                <% if can? :create, @product %>
-                  <h3> Admin Actions</h3>
-                  <ul class="nav nav-list">
-                    <li><%= link_to 'Create New Product', new_product_path %></li>
-                    <li><%= link_to 'Create New Category', new_category_path %></li>
-                    <li><%= link_to 'View All Categories', categories_path %></li>
-                    <li><%= link_to 'View All users', users_path%></li>
-                    <li><%= link_to "View Admin Order Report", admin_report_orders_path%></li>
-                <% end %>
-               </div> 
-               </div><!--/.well -->
+              <% if can? :create, @product %>
+                <div class="well sidebar-nav">
+                  <div class = "admin_nav">
+                    <h3>Admin Actions</h3>
+                    <ul class="nav nav-list">
+                      <li><%= link_to 'Create New Product', new_product_path %></li>
+                      <li><%= link_to 'Create New Category', new_category_path %></li>
+                      <li><%= link_to 'View All Categories', categories_path %></li>
+                      <li><%= link_to 'View All users', users_path%></li>
+                      <li><%= link_to "View Admin Order Report", admin_report_orders_path%></li>
+                    </ul>
+                  </div> 
+                </div><!--/.well -->
+              <% end %>
             </div><!--/span-->
         </div><!--/row-->
       </div><!--/content-->
