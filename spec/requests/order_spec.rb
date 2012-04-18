@@ -20,6 +20,7 @@ describe "Indivdiaul Order" do
 
   let!(:orders) do
     [FactoryGirl.create(:order, :products => products, :status => statuses.last), 
+      FactoryGirl.create(:order, :products => products, :status => statuses[1]),
       FactoryGirl.create(:order, :user => user, :products => products, :status => statuses.first)]
   end  
   it "Should be redirected if not logged in" do
@@ -99,6 +100,12 @@ describe "Indivdiaul Order" do
       visit "/orders/#{orders.last.id}"
       click_on '[mark as returned]'
       page.should have_content('Returned At')
+    end
+
+    it "displays when returned timestamp" do
+      visit "/orders/#{orders[1].id}"
+      click_on '[mark as shipped]'
+      page.should have_content('Shipped At')
     end
 
     it "displays if cancelled timestamp" do
