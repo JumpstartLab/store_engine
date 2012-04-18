@@ -5,4 +5,5 @@ Fabricator(:user) do
   password_confirmation 'asdfasdf'
   shipping_address 'Sample Shipping Address'
   billing_address 'Sample Billing Address'
+  credit_card 'Bogus Credit Card'
 end

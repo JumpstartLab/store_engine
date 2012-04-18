@@ -1,14 +1,27 @@
 class Order < ActiveRecord::Base
   STATUSES = ["pending", "cancelled", "paid", "shipped", "returned"]
   attr_accessible :user_id, :status, :billing_address, :shipping_address
+  attr_accessible :credit_card, :email_address
+
 
   has_many :order_items, :dependent => :destroy, :autosave => true
   has_many :items, through: :order_items
   belongs_to :user
+  validates_presence_of :billing_address
+  validates_presence_of :email_address
+  validates_presence_of :credit_card
 
-  validates :user, presence: true
+  after_save :assume_shipping_address
+
+  #validates :user, presence: true
   #validates :order_items, presence: true
   validates :status, inclusion: { in: STATUSES }
+
+  def assume_shipping_address
+    if shipping_address.blank?
+      update_attribute(:shipping_address, billing_address)
+    end
+  end
 
   def self.count_by_status(status)
     self.where(status: status).count
@@ -44,11 +57,6 @@ class Order < ActiveRecord::Base
 
   def cancellable?
     !cancelled? && !shipped?
-  end
-
-  def attach_addresses(params)
-    update_attributes(shipping_address: params[:shipping_address],
-                       billing_address: params[:billing_address])
   end
 
   def set_quantities(quantities)
