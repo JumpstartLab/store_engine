@@ -23,8 +23,10 @@
             <li><%= link_to "Browse Categories", categories_path %></li>
             <li><%= link_to "Browse Orders", orders_path %></li>
             <li><%= link_to "Your Cart", cart_path %></li>
+            <% if signed_in? && current_user.admin? %>
+            <li><%= link_to "Users", admin_users_path %></li>
+            <% end %>
             <% if signed_in? %>
-            <li><%= link_to "Users", users_path %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>

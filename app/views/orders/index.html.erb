@@ -4,7 +4,7 @@
   <table class="table table-condensed">
     <thead>
       <tr>
-        <th><h3>Total Orders</h3></th>
+        <th><h3>Your Total Orders</h3></th>
         <th><h4>Pending</h4></th>
         <th><h4>Cancelled</h4></th>
         <th><h4>Paid</h4></th>
@@ -13,12 +13,12 @@
       </tr>
     </thead>
     <tr>
-      <td><%= Order.count %></td>
-      <td><%= Order.find_all_by_status("pending").count %></td>
-      <td><%= Order.find_all_by_status("cancelled").count %></td>
-      <td><%= Order.find_all_by_status("paid").count %></td>
-      <td><%= Order.find_all_by_status("shipped").count %></td>
-      <td><%= Order.find_all_by_status("returned").count %></td>
+      <td><%= current_user.orders.count %></td>
+      <td><%= current_user.orders.find_all_by_status("pending").count %></td>
+      <td><%= current_user.orders.find_all_by_status("cancelled").count %></td>
+      <td><%= current_user.orders.find_all_by_status("paid").count %></td>
+      <td><%= current_user.orders.find_all_by_status("shipped").count %></td>
+      <td><%= current_user.orders.find_all_by_status("returned").count %></td>
     </tr>
   </table>
 </div>
@@ -51,7 +51,6 @@
         <th><%= link_to "Updated At",   :sort => :updated_at  %></th>
         <th><%= link_to "Order Total",  :sort => :total_price %></th>
         <th><%= link_to "Order Status", :sort => :status      %></th>
-        <th>Change Status:</th>
       </tr>
     </thead>
     <% @orders.each do |order| %>
@@ -63,12 +62,6 @@
         <td><%= order.updated_at %></td>
         <td><%= order.total_price %></td>
         <td><%= order.status %></td>
-        <td>
-          <%= form_for order do |f| %>
-            <%= f.select :status, order.status_options.collect {|s| s}, {}, :multiple => false, :id => "status" %>
-            <%= f.submit %>
-          <% end %>
-        </td>
       </tr>
     <% end %>
   </table>
