@@ -58,7 +58,7 @@ describe "Product Show Requests" do
     it "has a link to put the product on sale" do
       product = products.first
       visit product_path(product)
-      page.should have_link("Put on sale", :href => "/sales/new")
+      page.should have_link("Put on sale")
     end
 
     it "takes me to the form to create a sale for the product" do

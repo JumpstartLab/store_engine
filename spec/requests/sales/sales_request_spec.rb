@@ -12,10 +12,22 @@ describe "Sales" do
       login(admin_user)
       visit product_path(product)
       click_link_or_button("Put on sale")
-        within("#new_category") do
-          fill_in 'category_name', :with => "#{category.name}"
-        end
-      current_path.should == sale_path
+      fill_in 'sale_percentage', :with => "25"
+      fill_in 'sale_endtime', :with => "2012-05-17"
+      click_button 'Create Sale'
+      sale = Sale.last
+      current_path.should == sale_path(sale)
+    end
+
+    it "lets me create a sale for a category" do
+      login(admin_user)
+      visit category_path(category)
+      click_link_or_button("Put on sale")
+      fill_in 'sale_percentage', :with => "25"
+      fill_in 'sale_endtime', :with => "2012-05-17"
+      click_button 'Create Sale'
+      sale = Sale.last
+      current_path.should == sale_path(sale)
     end
   end
 
