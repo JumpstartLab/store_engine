@@ -6,6 +6,7 @@ class UserSessionsController < ApplicationController
   def create
     persisting_cart_id = current_cart.id
     user = login(params[:email], params[:password])
+    #raise "#{user.inspect}, #{params.inspect}"
     if user
       redirect_back_or_to root_url, :notice => "Logged in!"
     else

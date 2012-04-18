@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_cart
 
+  def not_authenticated
+    flash[:warning] = "Please sign in to continue."
+    redirect_to login_path
+  end
+
   def require_admin
     return if current_user && current_user.admin?
     flash.notice = "You do not have admin rights!"
