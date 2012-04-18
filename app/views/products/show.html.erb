@@ -1,9 +1,19 @@
-<%= render :partial => "carts/cart", :object => @cart %>
+
 
 <h1><%= @product.title %></h1>
+<% if @product.activity == false %>
+<div class="alert alert-error">
+  <a class="close" data-dismiss="alert">×</a>
+  <strong>This product is retired.</strong> Sorry, you can't buy any more of these.
+</div>
+<% end %>
 <p><img height="100" src="<%= @product.image_link %>"></img>
 <h3><%= @product.description %></h3>
 <h3><%= number_to_currency(@product.price) %></h3>
+<br />
+<p>Categories: <% @product.categories.each do |c| %>
+      <%= link_to c.title, category_path(c) %>
+      <% end %></p>
 
 <% if admin? %>
   <%= link_to "Edit", edit_product_path(@product) %> | <%= link_to 'Delete', @product, method: :delete %>

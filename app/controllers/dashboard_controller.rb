@@ -5,5 +5,6 @@ class DashboardController < ApplicationController
   def show
     @orders = Order.all
     @categories = Category.all
+    @products = Product.all
   end
 end

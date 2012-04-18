@@ -34,6 +34,15 @@ describe 'using the shopping cart' do
     end
   end
 
+  context "when I'm on a product page" do
+    let(:product) { FactoryGirl.create(:product, :activity => false) }
+    it "prevents me from adding a retired product to cart" do
+      visit product_path(product)
+      click_on "Add to Cart"
+      page.should have_content("Sorry, this product is retired.")
+    end
+  end
+
   context "when I'm on the cart" do
     let(:products) do
       (1..5).map { FactoryGirl.create(:product) }

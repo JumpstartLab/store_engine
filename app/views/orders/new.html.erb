@@ -35,7 +35,7 @@
     <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}%>
   </div>
   <br />
-
+  <h3>Billing and shipping address</h3>
  <%= f.fields_for :address do |builder| %>
  <p>
   <%= builder.label :street_1, "Street" %>

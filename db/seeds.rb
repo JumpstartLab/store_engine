@@ -39,7 +39,7 @@ products = Product.create([{ title: 'Stiletto',
 admin_user = User.new(  full_name: "Chad Fowler",
                         password: "hungry",
                         password_confirmation: "hungry",
-                        email: "chad.fowler@livingsocial.com",
+                        email: "demoXX+chad@jumpstartlab.com",
                         username: "SaxPlayer" )
 
 admin_user.admin = true
@@ -48,12 +48,12 @@ admin_user.save
 u = User.create!(  full_name: "Matt Yoho",
               password: "hungry",
               password_confirmation: "hungry",
-              email: "matt.yoho@livingsocial.com" )
+              email: "demoXX+matt@jumpstartlab.com" )
 
-User.create(  full_name: "Jeff Casimir",
+User.create(  full_name: "Jeff",
               password: "hungry",
               password_confirmation: "hungry",
-              email: "jeff.casimir@livingsocial.com",
+              email: "demoXX+jeff@jumpstartlab.com",
               username: "j3" )
 
 Address.create(  street_1: "10 Street",

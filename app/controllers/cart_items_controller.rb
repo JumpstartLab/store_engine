@@ -1,10 +1,15 @@
 class CartItemsController < ApplicationController
   def create
-    @cart.add_or_increment_by_product(params[:product_id])
-    
-    respond_to do |format|
-      format.html { redirect_to cart_path, notice: 'Added to cart.' }
-      format.js
+    product = Product.find_by_id(params[:product_id])
+    if product.activity == true
+      @cart.add_or_increment_by_product(params[:product_id])
+      
+      respond_to do |format|
+        format.html { redirect_to cart_path, notice: 'Added to cart.' }
+        format.js
+      end
+    else
+      redirect_to product_path(product), :alert => "Sorry, this product is retired."
     end
   end
 

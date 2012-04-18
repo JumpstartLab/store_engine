@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   
-  before_filter :admin_authorize
+  before_filter :admin_authorize, only: [:new, :create, :update, :edit]
+
+
 
   def index
     if (params[:category])
@@ -27,7 +29,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(params[:category])
     if @category.save
-      redirect_to categories_path, notice: "Categories all the way down!"
+      redirect_to category_path(@category), notice: "Categories all the way down!"
     else
       render 'new'
     end
