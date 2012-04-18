@@ -9,7 +9,7 @@ describe OrderItem do
     li.save
     li
   end
-  let!(:order_item) { OrderItem.create(line_item: line_item) }
+  let!(:order_item) { FactoryGirl.create(:order_item) }
   
   describe "#set_price" do
     it "sets the order item's price from the line_item price" do
