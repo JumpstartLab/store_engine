@@ -24,16 +24,18 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-group :development do
-  gem 'sqlite3'
-end
-
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
   gem 'faker'
+  gem 'sqlite3'
+end
+
+group :production do
+  gem 'pg'
+  gem 'thin'
 end
 
 group :test do
