@@ -1,7 +1,24 @@
-<h2>Order <%= @order.id %></h2>
+<h2>Your Order (#<%= @order.id %>)</h2>
+<h4>Your Order</h4>
 <p>Placed by <%= @order.user.email %></p>
-<p>Total cost:<%= @order.total_price%></p>
-<p>Status: <%= @order.status %></p>
+<table class="table table-striped">
+  <tr>
+    <th>Product Name</th>
+    <th>Quantity</th>
+    <th>Price / Each</th>
+    <th>Line Total</th>
+  </tr>
+  <% @order.order_items.each do |order_item| %>
+  <tr>
+    <td><%= link_to order_item.product.name, product_path(order_item.product) %></td>
+    <td><%= order_item.quantity %></td>
+    <td><%= order_item.product.price %></td>
+    <td><%= order_item.line_price %></td>
+  </tr>
+  <% end %>
+</table>
+<h4>Total: $<%= @order.total_price %></h4>
+<h4>Status: <%= @order.status %></p>
   <% if @order.cancellable? %>
     <p><%= link_to "Cancel Order", order_path(@order), method: :delete, confirm: "Cancel order?" %></p>
   <% end %>
