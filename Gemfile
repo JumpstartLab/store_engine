@@ -32,7 +32,7 @@ group :development, :test do
   gem 'tailor', '0.1.5'
   gem 'cane'
   gem 'simplecov', :require => false
-  gem "annotate", "~> 2.4.0"
+  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'reek', :git => 'git://github.com/mvz/reek.git', :branch =>
   'ripper_ruby_parser-2'
 end

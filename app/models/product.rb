@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id          :integer         not null, primary key
+#  title       :string(255)
+#  description :text
+#  price       :integer
+#  photo       :string(255)
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#
+
 class Product < ActiveRecord::Base
   attr_accessible :description, :price, :title, :photo
   has_many :order_items
