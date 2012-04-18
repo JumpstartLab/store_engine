@@ -1,3 +1,4 @@
+# connects orders with products
 class OrderProduct < ActiveRecord::Base
   attr_accessible :price_in_cents, :quantity, :product, :order
 
@@ -44,7 +45,7 @@ class OrderProduct < ActiveRecord::Base
       self.quantity = set
     else
       self.quantity += 1
-      self.save      
+      self.save
     end
     self
   end
@@ -61,5 +62,5 @@ class OrderProduct < ActiveRecord::Base
   def total_for_product
     quantity * price_in_cents
   end
-  
+
 end

@@ -1,3 +1,4 @@
+# A generic label for multiple products
 class Category < ActiveRecord::Base
   attr_accessible :name, :product_ids
   default_scope :conditions => { :active => 1 }

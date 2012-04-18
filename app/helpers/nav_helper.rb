@@ -5,9 +5,9 @@ module NavHelper
     nav_array["Home"] = root_path
     nav_array["Sales"] = sales_path
     if current_user && current_user.admin
-      nav_array["Dashboard"] = dashboard_path 
+      nav_array["Dashboard"] = dashboard_path
     end
-    if current_user 
+    if current_user
       nav_array["My Orders"] = my_orders_orders_path
       nav_array["Logout"] = logout_path
     else
@@ -17,11 +17,11 @@ module NavHelper
   end
 
   def dashboard_navigation
-    { 
-      "Products" => dashboard_path, 
-      "Orders" => orders_path, 
-      "Categories" => categories_path, 
-      "Users" => users_path, 
+    {
+      "Products" => dashboard_path,
+      "Orders" => orders_path,
+      "Categories" => categories_path,
+      "Users" => users_path,
       "Sales" => admin_index_sales_path
     }
   end

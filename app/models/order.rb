@@ -1,5 +1,7 @@
+# Order placed on the system by a user
 class Order < ActiveRecord::Base
-  attr_accessible :status, :status_id, :user, :products, :stripe_card_token, :is_cart, :order_products_attributes
+  attr_accessible :status, :status_id, :user, :products, :stripe_card_token,
+                  :is_cart, :order_products_attributes
   default_scope :conditions => { :is_cart => 0 }
   validates_presence_of :user, :products, :status, :if => :not_a_cart
 
@@ -15,7 +17,7 @@ class Order < ActiveRecord::Base
   def not_a_cart
     true if not self.is_a?(Cart)
   end
-  
+
   def self.charge_two_click(cart_id)
     o = Order.process_cart(cart_id)
     o.charge if o.user.address && o.user.stripe_id
@@ -42,11 +44,10 @@ class Order < ActiveRecord::Base
   end
 
   def total_price_after_sale_in_dollars
-    Money.new(total_price_after_sale_in_cents).format      
+    Money.new(total_price_after_sale_in_cents).format
   end
 
   def stripe_card_token
-    
   end
 
   def total_price
@@ -80,6 +81,21 @@ class Order < ActiveRecord::Base
 
   def generate_unique_url
     self.unique_url = (0...32).map{65.+(rand(25)).chr}.join
+  end
+
+  def cancel
+    self.status = Status.find_or_create_by_name('cancelled')
+    self.cancelled_at = DateTime.now
+  end
+
+  def return
+    self.status = Status.find_or_create_by_name('returned')
+    self.returned_at = DateTime.now
+  end
+
+  def ship
+    self.status = Status.find_or_create_by_name('shipped')
+    self.shipped_at = DateTime.now
   end
 
 end

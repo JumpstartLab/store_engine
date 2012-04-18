@@ -1,3 +1,4 @@
+# Address object w/ city, state, zip, etc -- uses geocoder gem
 class Address < ActiveRecord::Base
   attr_accessible :street, :zipcode
   before_validation :geocoder
@@ -13,5 +14,5 @@ class Address < ActiveRecord::Base
       self.formatted_address = g.formatted_address
     end
   end
-  
+
 end

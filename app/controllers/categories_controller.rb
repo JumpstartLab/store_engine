@@ -1,5 +1,7 @@
+# Allows restful actions for the categories
 class CategoriesController < ApplicationController
-  before_filter :require_admin, :only => [:new, :create, :update, :edit, :destroy]
+  before_filter :require_admin, :only => [:new, :create, :update,
+                :edit, :destroy]
 
   def index
     @categories = Category.all
@@ -11,7 +13,8 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
-    @products = @category.products.where(:active => 1).paginate(:page => params[:page])
+    @products = @category.products.where(:active => 1)
+                  .paginate(:page => params[:page])
     @categories = Category.all
   end
 

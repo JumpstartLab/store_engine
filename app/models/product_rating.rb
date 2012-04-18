@@ -1,3 +1,4 @@
+# Connects products to ratings
 class ProductRating < ActiveRecord::Base
   attr_accessible :body, :name, :product, :rating, :user
 

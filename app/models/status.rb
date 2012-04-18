@@ -1,3 +1,4 @@
+# Represents the status of the product
 class Status < ActiveRecord::Base
   attr_accessible :name
 

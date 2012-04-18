@@ -1,3 +1,4 @@
+# Allows authentication
 class SessionsController < ApplicationController
   before_filter :require_not_logged_in, :only => [:create]
 
@@ -6,13 +7,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = login(params[:user][:email], params[:user][:password], remember_me = false)
+    user = login(params[:user][:email], params[:user][:password],
+            remember_me = false)
     if user.nil?
       @user = User.new(params[:user])
       flash[:notice] = "You have entered an incorrect username or password"
       render 'new'
     else
-       redirect_back_or_to(root_path, :notice => 'Login successful.') 
+       redirect_back_or_to(root_path, :notice => 'Login successful.')
     end
   end
 

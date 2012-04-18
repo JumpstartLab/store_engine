@@ -1,3 +1,4 @@
+# Allows searching on the website (including advanced search)
 class SearchController < ApplicationController
   before_filter :require_admin, :only => [:new, :create]
 

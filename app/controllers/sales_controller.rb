@@ -1,13 +1,15 @@
+# Administrators can create sales
 class SalesController < ApplicationController
   before_filter :find_sale, :only => [:edit, :update, :destroy, :show]
-  before_filter :require_admin, :only => [:new, :create, :destroy, :edit, :update, :admin_index]
+  before_filter :require_admin, :only => [:new, :create, :destroy, :edit,
+                :update, :admin_index]
 
   def index
     @sales = Sale.all
   end
 
   def admin_index
-    @sales = Sale.all  
+    @sales = Sale.all
   end
 
   def new
@@ -15,11 +17,9 @@ class SalesController < ApplicationController
   end
 
   def edit
-    
   end
 
   def show
-    
   end
 
   def create
@@ -37,7 +37,7 @@ class SalesController < ApplicationController
       redirect_to sale_path(@sale), :notice => "Sale updated."
     else
       render 'edit', :notice => "Please fix the form."
-    end      
+    end
   end
 
   def destroy
@@ -48,7 +48,7 @@ class SalesController < ApplicationController
 private
 
   def find_sale
-    @sale = Sale.find(params[:id])  
+    @sale = Sale.find(params[:id])
   end
 
 end

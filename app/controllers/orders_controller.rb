@@ -1,3 +1,4 @@
+# Allows restful actions for orders + charging orders
 class OrdersController < ApplicationController
   before_filter :require_admin, :only => [:index, :status, :edit, :update]
   before_filter :require_login, :except => [:track]
@@ -32,7 +33,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.update_attributes(params[:order])
     @order.save()
-    
+
     flash[:notice] = 'Order has been updated'
     redirect_to order_path(@order)
   end
@@ -44,9 +45,11 @@ class OrdersController < ApplicationController
         cookies[:cart_id] = nil
 
         Notification.order_email(current_user, order).deliver
-        current_user.text("Your order has been placed! You bought: #{order.products.map(&:name).join(', ')} - Total: #{order.total_price_in_dollars}")
+        current_user.text("Your order has been placed!
+           You bought: #{order.products.map(&:name).join(', ')} -
+           Total: #{order.total_price_in_dollars}")
 
-        redirect_to order_path(order), 
+        redirect_to order_path(order),
           :notice => "Congrats on giving us your money"
     else
       @order = order
@@ -60,14 +63,11 @@ class OrdersController < ApplicationController
 
     if order
       if order.status.pending?
-        order.status = Status.find_or_create_by_name('cancelled')
-        order.cancelled_at = DateTime.now
+        order.cancel
       elsif order.status.shipped?
-        order.status = Status.find_or_create_by_name('returned')
-        order.returned_at = DateTime.now
+        order.return
       elsif order.status.paid?
-        order.status = Status.find_or_create_by_name('shipped')
-        order.shipped_at = DateTime.now
+        order.ship
       end
 
       order.save
@@ -90,7 +90,8 @@ class OrdersController < ApplicationController
     if st
       orders = current_user
                 .orders.joins(:products)
-                .where('products.name LIKE ? or products.description LIKE ?', "%#{st}%", "%#{st}%")
+                .where('products.name LIKE ? or products.description LIKE ?',
+                  "%#{st}%", "%#{st}%")
                 .uniq
     else
       orders = current_user.orders

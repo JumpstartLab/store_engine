@@ -1,16 +1,17 @@
 require "open-uri"
 
+# Product has multiple things including name, description, etc
 class Product < ActiveRecord::Base
   attr_accessible :description, :name, :price,
                   :categories, :avatar, :category_ids, :avatar_from_url
-  
+
   validates_presence_of :name, :description, :price
   validates_numericality_of :price_in_cents, :greater_than => 0
   validates_uniqueness_of :name, :case_sensitive => false
 
-  has_attached_file :avatar, :styles => { 
-                                          :medium => "300x300>", 
-                                          :thumb => "100x100>" 
+  has_attached_file :avatar, :styles => {
+                                          :medium => "300x300>",
+                                          :thumb => "100x100>"
                                         }
 
   has_many :category_products
@@ -51,7 +52,7 @@ class Product < ActiveRecord::Base
       self.avatar = open(url)
     end
   end
-  
+
   def price
     self.price_in_dollars
   end
@@ -78,7 +79,7 @@ class Product < ActiveRecord::Base
     if category_sale.percent_off > percent_off
       category_sale
     else
-      sale  
+      sale
     end
   end
 
@@ -87,7 +88,7 @@ class Product < ActiveRecord::Base
   end
 
   def destroy
-    self.active = 0 
+    self.active = 0
     self.save
   end
 
@@ -101,7 +102,7 @@ class Product < ActiveRecord::Base
 
   def sale_price
     self.price_in_cents * (1 - best_sale.percent) if best_sale
-  end 
+  end
 
   def percent_off
     sale.nil? ? 0 : sale.percent_off

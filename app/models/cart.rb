@@ -1,3 +1,4 @@
+# Cart object for a user / a guest
 class Cart < Order
   attr_accessible :current_cart, :individual_quantity
 

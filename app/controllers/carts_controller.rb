@@ -1,5 +1,6 @@
+# Allows restful actions for the cart
 class CartsController < ApplicationController
-  
+
   def update
     @cart.add_product(params[:product_id])
     if @cart.save
@@ -12,9 +13,9 @@ class CartsController < ApplicationController
     if @cart.save
         order = Order.charge_two_click(@cart.id)
         cookies[:cart_id] = nil
-        redirect_to order_path(order), 
+        redirect_to order_path(order),
           :notice => "Congrats on giving us your money"
-    end    
+    end
   end
 
   def show

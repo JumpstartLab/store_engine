@@ -1,3 +1,4 @@
+# Allows creating and modifying users
 class UsersController < ApplicationController
   before_filter :require_admin, :only => [:index,:destroy]
   before_filter :require_not_logged_in, :only => [:new, :create]
@@ -39,7 +40,7 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
-  private 
+  private
 
   def edit_personal
     if current_user == false || current_user.nil?
