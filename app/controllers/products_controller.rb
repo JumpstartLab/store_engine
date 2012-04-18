@@ -1,11 +1,9 @@
 class ProductsController < ApplicationController
 
   # before_filter :authorize, only: [:edit, :update]
-  before_filter :admin_authorize, only: [:destroy, :edit, :update]
+  before_filter :admin_authorize, only: [:destroy, :edit, :update, :create, :new]
   
   def index
-
-
     if params[:search] && params[:search].length > 0
       @products = Product.active.find_by(params[:search])
     else
@@ -18,9 +16,12 @@ class ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(params[:product])
-    product.save
-    redirect_to products_path
+    @product = Product.new(params[:product])
+    if @product.save
+      redirect_to product_path(@product), :notice => "Product created."
+    else
+      render 'new'
+    end
   end
 
   def show
@@ -33,13 +34,16 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    @product.update_attributes(params[:product])
-    redirect_to product_path(@product)
+    if @product.update_attributes(params[:product])
+      redirect_to product_path(@product), :notice => "Product updated."
+    else
+      render 'edit'
+    end
   end
 
   def destroy
     @product = Product.find(params[:id])
     @product.destroy
-    redirect_to products_path
+    redirect_to products_path, :alert => "Product deleted."
   end
 end

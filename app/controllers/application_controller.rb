@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_authorize
-    redirect_to root_url, alert: "Not an admin authorized" unless admin?
+    redirect_to root_url, alert: "Not an admin and totally not cool." unless admin?
   end
 
   def current_user

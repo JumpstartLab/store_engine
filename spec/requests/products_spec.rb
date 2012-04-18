@@ -40,5 +40,70 @@ describe "Products" do
       visit(edit_product_path(products.first))
       page.should have_content(products.first.title)
     end
+
+    it "edits a product when admin" do
+      login(admin_user)
+      visit(edit_product_path(products.first))
+      fill_in "product[title]", :with => "Lightsaber"
+      click_on "Update Product"
+      page.should have_content("Product updated.")
+    end
+
+    it "doesn't save non-valid product" do
+      login(admin_user)
+      visit(edit_product_path(products.first))
+      fill_in "product[title]", :with => ""
+      click_on "Update Product"
+      page.should have_content "Image link"
+    end
+  end
+
+  context "creating products" do
+    it "does not allow non-users to create products" do
+      visit(new_product_path)
+      page.should have_content("Not an admin")
+    end
+
+    it "doesn't allow non-admins to create products" do
+      login(user)
+      visit(new_product_path)
+      page.should have_content("Not an admin")
+    end
+
+    it "allows admines to create products" do
+      login(admin_user)
+      visit(new_product_path)
+      page.should have_content("New Product")
+    end
+
+    it "saves a new product created by an admin" do
+      login(admin_user)
+      visit new_product_path
+      fill_in "product[title]", :with => "iPhone 5"
+      fill_in "product[description]", :with => "Fancy new iphone"
+      fill_in "product[price]", :with => "199.00"
+      click_on "Create Product"
+      page.should have_content "Product created."
+    end
+
+    it "validation fails" do
+      login(admin_user)
+      visit new_product_path
+      fill_in "product[description]", :with => "MY AWESOME PRODUCT"
+      fill_in "product[price]", :with => "234"
+      click_on "Create Product"
+      page.should have_content "Image link"
+    end 
+  end
+
+  context "deleting products" do
+    describe "when I am admin" do
+      it "deletes the product" do 
+        login(admin_user)
+        visit product_path(products.first)
+        click_on 'Delete'
+        page.should have_content "Product deleted."
+      end
+    end
   end
 end
