@@ -114,12 +114,12 @@ describe "shopper" do
           click_link_or_button "Add a Billing Method"
           current_path.should == new_billing_method_path
           billing = {
-            credit_card_number: 555555555555,
-            credit_card_expiration_date: 03052013,
+            credit_card_number: "5555555555555555",
+            credit_card_expiration_date: "352013",
             street: "One Mockingbird Lane",
             city: "Anytown",
             state: "VA",
-            zipcode: 22209,
+            zipcode: "22209",
             card_type: 'Visa'
           }
           add_non_user_billing(billing)
@@ -128,7 +128,7 @@ describe "shopper" do
           click_link_or_button "Add a Shipping Address"
           current_path.should == new_shipping_address_path
           shipping = {street: "One Mockingbird Lane", city: "Anytown",
-                      state: "VA", zipcode: 22209,
+                      state: "VA", zipcode: "22209",
                       email_address: "test@test.com"}
           add_non_user_shipping(shipping)
         end

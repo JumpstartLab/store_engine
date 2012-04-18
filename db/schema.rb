@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417010840) do
+ActiveRecord::Schema.define(:version => 20120418130038) do
 
   create_table "billing_methods", :force => true do |t|
     t.string   "credit_card_number"
-    t.datetime "credit_card_expiration_date", :limit => 255
+    t.date     "credit_card_expiration_date", :limit => 255
     t.string   "street"
     t.string   "city"
     t.string   "state"
