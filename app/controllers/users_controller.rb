@@ -49,8 +49,11 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      # flash.now[:error] = "You are not logged in as the correct user"
-      redirect_to(root_path) && flash[:error] = "You are not logged in as the correct user" unless current_user?(@user)
+      redirect_to(root_path) && flash_error unless current_user?(@user)
+    end
+
+    def flash_error
+      flash[:error] = "You are not logged in as the correct user"
     end
 
     def shipping_information

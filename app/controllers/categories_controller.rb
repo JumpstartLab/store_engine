@@ -6,29 +6,6 @@ class CategoriesController < ApplicationController
   def show
   end
 
-  # def edit
-  # end
-
-  # def update
-  #   category.update_attributes(params[:category])
-  #   redirect_to categories_path
-  # end
-
-  # def new
-  #   @category = Category.new
-  # end
-
-  # def create
-  #   category = Category.new(params[:category])
-  #   category.save
-  #   redirect_to categories_path
-  # end
-
-  # def destroy
-  #   category.destroy
-  #   redirect_to categories_path
-  # end
-
   helper_method :category
 
   private

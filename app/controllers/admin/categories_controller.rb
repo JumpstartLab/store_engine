@@ -48,7 +48,7 @@ class Admin::CategoriesController < ApplicationController
     end
 
     def admin_user
-      redirect_to_last_page && flash_error unless current_user.admin?
+      redirect_to(root_path) && flash_error unless current_user.admin?
     end
 
     def flash_error
