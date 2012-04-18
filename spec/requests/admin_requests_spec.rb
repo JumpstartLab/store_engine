@@ -240,8 +240,7 @@ describe "admin" do
           orders.each { |o| page.should have_content o.id }
         end
       end
-      it "shows a timestamp of cancelled or shipped orders" do
-        pending
+      it "shows a timestamp of cancelled orders" do
         visit "/"
         click_link_or_button "User View"
         click_link_or_button "Add to Cart"
@@ -249,17 +248,30 @@ describe "admin" do
         click_link_or_button "Dashboard"
         click_link_or_button "Cancel"
         page.should have_content Order.last.action_time
+      end
+      it "shows a timestamp of shipped orders" do
+        billing = { credit_card_number: 555555555555,
+                    credit_card_expiration_date: 03052013,
+                    street: "One Mockingbird Lane",
+                    city: "Anytown", state: "VA",
+                    zipcode: 22209, name: "Favorite Billing",
+                    card_type: 'Visa'
+                  }
+        shipping = { street: "One Mockingbird Lane", city: "Anytown",
+                     state: "VA", zipcode: 22209, name: "Favorite Billing"
+                   }
         visit "/"
         click_link_or_button "User View"
         click_link_or_button "Add to Cart"
         visit order_path(Order.last)
         click_link_or_button "Add a Billing Method"
         add_billing(billing)
-        click_link_or_button "Add a Shipping Method"
+        visit order_path(Order.last)
+        click_link_or_button "Add a Shipping Address"
         add_shipping(shipping)
+        click_link_or_button "Check Out"
         click_link_or_button "Admin View"
         click_link_or_button "Dashboard"
-        click_link_or_button "Mark as 'paid'"
         click_link_or_button "Mark as 'shipped'"
         page.should have_content Order.last.action_time
       end
