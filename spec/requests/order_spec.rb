@@ -1,13 +1,19 @@
 require 'spec_helper'
 
 describe "When I am placing an order" do
-  before(:each) { visit new_order_path }
+  #before(:each) { visit new_order_path }
+  let!(:user) { FactoryGirl.create(:user) }
+
+  before(:each) do
+    login_user_post(user.email, "foobar")
+    visit new_order_path 
+  end
 
   context "and I submit enter invalid information" do
     before(:each) do
-      # save_and_open_page
+       save_and_open_page
       fill_in "Credit Card Number", with: 123
-      click_link_or_button('Create Order')
+      click_link_or_button('Create Credit card')
     end
     
     it "should stay on the current page" do
