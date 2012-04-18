@@ -65,9 +65,9 @@ require 'spec_helper'
       log_in(u, 'asdfasdf')
       @order = Fabricate(:order)
       visit admin_orders_path(@order, status_filter: 'pending')
-      page.should have_content @order.user.email
+      page.should have_content @order.email_address
       visit admin_orders_path(@order, status_filter: 'returned')
-      page.should_not have_content @order.user.email
+      page.should_not have_content @order.email_address
     end
   end
 
