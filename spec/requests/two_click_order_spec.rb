@@ -28,7 +28,7 @@ describe "ordering with two clicks" do
       end
       it "should redirect me to cart without a saved credit cart" do
         click_link_or_button "Buy instantly"
-        page.should have_content("Your Cart")
+        page.should have_css('h1', :text => 'Cart')
       end
 
       it "the cart should contain the item i tried to buy" do
