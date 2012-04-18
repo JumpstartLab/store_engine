@@ -11,7 +11,7 @@
       %table
       - @order.order_products.each do |op|
         %tr
-          %td= op.product.first.name
+          %td= op.product.name
           %td= op.quantity
     %p
       Use the link below to see your order details:
