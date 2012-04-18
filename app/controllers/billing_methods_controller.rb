@@ -36,14 +36,14 @@ class BillingMethodsController < ApplicationController
     end
     redirect_to session[:return_to], notice: notice
   end
-end
 
-private
+  private
 
-def load_billing_method
-  if logged_in?
-    @billing_method = current_user.billing_method
-  else
-    @billing_method = BillingMethod.find_by_order_id(session[:order_id])
+  def load_billing_method
+    if logged_in?
+      @billing_method = current_user.billing_method
+    else
+      @billing_method = BillingMethod.find_by_order_id(session[:order_id])
+    end
   end
 end

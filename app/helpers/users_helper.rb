@@ -17,12 +17,13 @@ module UsersHelper
   end
 
   def admin_view?
-   if current_user.present?
+    if current_user.present?
       current_user.admin_view
     else
       false
     end
   end
+
 
   def require_user
     if current_user.nil? || current_user != @user

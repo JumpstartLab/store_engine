@@ -125,7 +125,7 @@ describe "logged in user" do
         order = Fabricate(:order)
         li = Fabricate(:line_item)
         li.update_attributes({product_id: product.id,
-                              order_id: order.id})
+          order_id: order.id})
         order.update_attribute(:user_id, other_user.id)
         click_link_or_button "View Orders"
         within "#main-content" do
@@ -171,9 +171,9 @@ describe "logged in user" do
         page.should have_content "not allowed"
       end
       it "cannot view a list of users" do
-      visit users_path
-      page.should_not have_content other_user.full_name
-    end
+        visit users_path
+        page.should_not have_content other_user.full_name
+      end
     end
   end
 end

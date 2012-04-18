@@ -76,12 +76,12 @@ describe "admin" do
     end
     it "cannot edit another user's billing on an order" do
       billing = { credit_card_number: 555555555555,
-                    credit_card_expiration_date: 03052013,
-                    street: "One Mockingbird Lane",
-                    city: "Anytown", state: "VA",
-                    zipcode: 22209, name: "Favorite Billing",
-                    card_type: 'Visa'
-                  }
+        credit_card_expiration_date: 03052013,
+        street: "One Mockingbird Lane",
+        city: "Anytown", state: "VA",
+        zipcode: 22209, name: "Favorite Billing",
+        card_type: 'Visa'
+      }
       click_link_or_button "Add a Billing Method"
       add_non_user_billing(billing)
       current_path.should == "/"
@@ -89,12 +89,11 @@ describe "admin" do
     end
     it "cannot edit another user's shipping on an order" do
       shipping = { street: "One Mockingbird Lane", city: "Anytown",
-                     state: "VA", zipcode: 22209, name: "Favorite Billing"
-                   }
-      click_link_or_button "Add a Shipping Address"
-      add_non_user_shipping(shipping)
-      current_path.should == "/"
-      page.should have_content "Sorry"
+       state: "VA", zipcode: 22209, name: "Favorite Billing" }
+       click_link_or_button "Add a Shipping Address"
+       add_non_user_shipping(shipping)
+       current_path.should == "/"
+       page.should have_content "Sorry"
     end
     it "can edit the quantity of a product on an order" do
       click_link_or_button "Update"
@@ -261,30 +260,30 @@ describe "admin" do
       end
       it "shows a timestamp of shipped orders" do
         billing = { credit_card_number: 555555555555,
-                    credit_card_expiration_date: 03052013,
-                    street: "One Mockingbird Lane",
-                    city: "Anytown", state: "VA",
-                    zipcode: 22209, name: "Favorite Billing",
-                    card_type: 'Visa'
-                  }
+          credit_card_expiration_date: 03052013,
+          street: "One Mockingbird Lane",
+          city: "Anytown", state: "VA",
+          zipcode: 22209, name: "Favorite Billing",
+          card_type: 'Visa'
+        }
         shipping = { street: "One Mockingbird Lane", city: "Anytown",
-                     state: "VA", zipcode: 22209, name: "Favorite Billing"
-                   }
-        visit "/"
-        click_link_or_button "User View"
-        click_link_or_button "Add to Cart"
-        visit order_path(Order.find_by_user_id(user.id))
-        click_link_or_button "Add a Billing Method"
-        add_billing(billing)
-        visit order_path(Order.find_by_user_id(user.id))
-        click_link_or_button "Add a Shipping Address"
-        add_shipping(shipping)
-        click_link_or_button "Check Out"
-        click_link_or_button "Admin View"
-        click_link_or_button "Dashboard"
-        click_link_or_button "Mark as 'shipped'"
-        page.should have_content Order.last.action_time
-      end
-    end
-  end
+         state: "VA", zipcode: 22209, name: "Favorite Billing"
+       }
+       visit "/"
+       click_link_or_button "User View"
+       click_link_or_button "Add to Cart"
+       visit order_path(Order.find_by_user_id(user.id))
+       click_link_or_button "Add a Billing Method"
+       add_billing(billing)
+       visit order_path(Order.find_by_user_id(user.id))
+       click_link_or_button "Add a Shipping Address"
+       add_shipping(shipping)
+       click_link_or_button "Check Out"
+       click_link_or_button "Admin View"
+       click_link_or_button "Dashboard"
+       click_link_or_button "Mark as 'shipped'"
+       page.should have_content Order.last.action_time
+     end
+   end
+ end
 end

@@ -35,14 +35,14 @@ class ShippingAddressesController < ApplicationController
     end
     redirect_to session[:return_to], notice: notice
   end
-end
 
-private
+  private
 
-def load_shipping_address
-  if logged_in?
-    @shipping_address = current_user.shipping_address
-  else
-    @shipping_address = ShippingAddress.find_by_order_id(session[:order_id])
+  def load_shipping_address
+    if logged_in?
+      @shipping_address = current_user.shipping_address
+    else
+      @shipping_address = ShippingAddress.find_by_order_id(session[:order_id])
+    end
   end
 end
