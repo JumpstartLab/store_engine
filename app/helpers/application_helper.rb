@@ -1,4 +1,14 @@
 module ApplicationHelper
+  def nav_link_to(text, url)
+    class_attr = current_page?(url) ? 'class="active"' : '';
+    html =
+      "<li #{ class_attr }>
+        #{ link_to text, url }
+      </li>".html_safe
+
+    html
+  end
+
   # Bootstrap alert styles:
   #   alert alert-success alert-error alert-info
   def render_flashes

@@ -8,6 +8,7 @@
 
   <link href='http://fonts.googleapis.com/css?family=Great+Vibes' rel='stylesheet' type='text/css'>
 </head>
+
 <body>
   <div id="wrapper" class="clearfix">
     <div class="navbar">
@@ -23,16 +24,9 @@
           </a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li <% if current_page?("/") -%> class="active" <% end -%> >
-                <a href="/">Home</a>
-              </li>
-              <li <% if current_page?(products_path) -%> class="active" <% end -%> >
-                <a href="/products">Products</a>
-              </li>
+              <%= nav_link_to "Products", "/" %>
               <% if current_user -%>
-              <li <% if current_page?(orders_path) -%> class="active" <% end -%> >
-                <a href="/orders">Orders</a>
-              </li>
+              <%= nav_link_to "Orders", orders_path %>
               <% end -%>
             </ul>
             <% if current_user %>
