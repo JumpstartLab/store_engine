@@ -55,5 +55,17 @@ describe "Product Show Requests" do
       Product.all.should_not include(product)
     end
 
+    it "has a link to put the product on sale" do
+      product = products.first
+      visit product_path(product)
+      page.should have_link("Put on sale", :href => "/sales/new")
+    end
+
+    it "takes me to the form to create a sale for the product" do
+      product = products.first
+      visit product_path(product)
+      click_link_or_button("Put on sale")
+      current_path.should == new_sale_path
+    end
   end
 end

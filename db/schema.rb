@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417170958) do
+ActiveRecord::Schema.define(:version => 20120418211830) do
 
   create_table "activations", :force => true do |t|
     t.integer  "product_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20120417170958) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "sale_id"
   end
 
   create_table "credit_cards", :force => true do |t|
@@ -115,10 +116,18 @@ ActiveRecord::Schema.define(:version => 20120417170958) do
     t.datetime "updated_at",                     :null => false
     t.string   "image"
     t.boolean  "retired",     :default => false
+    t.integer  "sale_id"
   end
 
   create_table "retirements", :force => true do |t|
     t.integer  "product_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sales", :force => true do |t|
+    t.datetime "endtime"
+    t.decimal  "percentage"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

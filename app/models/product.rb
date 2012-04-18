@@ -23,6 +23,7 @@ class Product < ActiveRecord::Base
 
   has_many :retirements
   has_many :activations
+  belongs_to :sale
 
   mount_uploader :image, ImageUploader
 

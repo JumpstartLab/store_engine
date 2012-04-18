@@ -34,6 +34,7 @@
   <% if logged_in? && current_user.is_admin? %>
     <li><%= link_to "Edit Product", edit_product_path %></li>
     <li><%= link_to "Delete Product", product_path, :method => :delete, :confirm => "Are you sure?" %></li>
+    <li><%= link_to "Put on sale", new_sale_path(:product_id => @product.id) %></li>
   <% end %>
   <li><%= link_to "All Products", products_path %></li>
 </ul>
