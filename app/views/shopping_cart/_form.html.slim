@@ -10,10 +10,10 @@
     
     - @cart_items.each do |cart_item|
       tr
-        - if cart_item.product.photo
-          td class="span1" = image_tag(cart_item.product.photo, :size => "50x50")
-        - else
+        - if cart_item.product.photo.nil? || cart_item.product.photo == ""
           td
+        - else
+          td class="span1" = image_tag(cart_item.product.photo, :size => "50x50")
         td class="span7" = link_to cart_item.product.title, product_path(cart_item.product)
         td class="span2"
         td class="span2" 

@@ -2,7 +2,7 @@ ul class="thumbnails"
   - @products.each do |product|
     li class="span3"
       a href=product_path(product) class="thumbnail"
-        - if product.photo.nil?
+        - if product.photo.nil? || product.photo == ""
           = image_tag('pug.jpg', :height => "200")
         - else
           = image_tag(product.photo, :height => "200")

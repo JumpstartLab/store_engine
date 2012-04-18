@@ -1,5 +1,5 @@
 div class="span4"
-  - if @product.photo.nil?
+  - if @product.photo.nil? || @product.photo == ""
     = image_tag('pug.jpg', :size => '250x250')
   - else
     = image_tag(@product.photo, :size => "250x250")

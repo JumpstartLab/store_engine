@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
-  def show  
+  def show
   end
 
   def edit
