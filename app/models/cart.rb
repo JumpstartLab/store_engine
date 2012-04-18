@@ -38,4 +38,8 @@ class Cart < ActiveRecord::Base
     products.replace([])
     save
   end
+
+  def total_items
+    cart_products.sum(&:quantity)
+  end
 end

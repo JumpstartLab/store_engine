@@ -3,10 +3,6 @@ class ApplicationController < ActionController::Base
   helper :all
 
 
-  def not_authenticated
-    redirect_to login_url, :alert => "First login to access this page."
-  end
-
   private
 
   def cart
@@ -47,5 +43,19 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method :check_logged_in
+
+  def not_authenticated
+    redirect_to login_url, :alert => "First login to access this page."
+  end
+
+  def check_admin
+    if current_user.is_admin?
+      true
+    else
+      redirect_to root_url, :notice => "DON'T TOUCH THAT"
+    end
+  end
+
+  helper_method :check_admin
 
 end

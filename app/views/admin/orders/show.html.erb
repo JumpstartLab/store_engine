@@ -32,7 +32,11 @@
       <p><%= @order.user.name %></p>
       <p><%= @order.user.email %></p>
     <h3>Status</h3>
-      <p><%= @order.status.capitalize %></p>
+      <% @order.order_statuses.each do |order_status| %>
+        <% unless order_status.status == "pending" %>
+        <p><%= "#{order_status.status.capitalize}:" %><%= @order.send("#{order_status.status}_at") %></p>
+        <% end %>
+      <% end %>
     <h3>Billing Address</h3>
       <p><%= @order.billing_address.tag %></p>
     <h3>Shipping Address</h3>

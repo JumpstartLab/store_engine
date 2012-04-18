@@ -34,8 +34,12 @@
   <div class="span4">
     <h3>Placed at:</h3>
       <%= @order.placed_at %>
-    <h3>Status</h3>
-      <%= @order.status %>
+    <h3>Status: <%= @order.status.capitalize %></h3>
+      <% @order.order_statuses.each do |order_status| %>
+        <% unless order_status.status == "pending" %>
+        <p><%= "#{order_status.status.capitalize}:" %><%= @order.send("#{order_status.status}_at") %></p>
+        <% end %>
+      <% end %>
     <h3>Billing Address</h3>
       <%= @order.billing_address.tag %>
     <h3>Shipping Address</h3>

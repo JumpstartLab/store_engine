@@ -11,6 +11,11 @@ describe "Orders" do
   let(:pending_order)    { Order.create(:user_id => admin_user.id, 
                              :billing_address_id => billing.id,
                              :shipping_address_id => shipping.id ) }
+  let(:user)    { Fabricate(:user) }
+  let!(:order)    { Order.create(:user_id => user.id, 
+                             :billing_address_id => billing.id,
+                             :shipping_address_id => shipping.id ) }
+
 
 
   context "when logged in as an admin" do
@@ -41,5 +46,58 @@ describe "Orders" do
         end
       end
     end
+
+    context "and the order is paid" do
+      it "shows the time the order was marked paid" do
+        status = OrderStatus.create(:status => "paid")
+        status.created_at = Time.now + 120000000
+        status.save
+        order.order_statuses << status
+        order.save
+        visit admin_order_path(order)
+        page.should have_content(order.paid_at)
+      end
+    end
+
+    context "and the order is shipped" do
+      it "shows the time the order was marked shipped" do
+        status = OrderStatus.create(:status => "shipped")
+        status.created_at = Time.now + 130000000
+        status.save
+        order.order_statuses << status
+        order.save
+        visit admin_order_path(order)
+
+        page.should have_content(order.shipped_at)
+      end
+    end
+
+    context "and the order is cancelled" do
+      it "shows the time the order was marked cancelled" do
+        status = OrderStatus.create(:status => "cancelled")
+        status.created_at = Time.now + 140000000
+        status.save
+        order.order_statuses << status
+        order.save
+        visit admin_order_path(order)
+
+
+        page.should have_content(order.cancelled_at)
+      end
+    end
+
+    context "and the order is returned" do
+      it "shows the time the order was marked returned" do
+        status = OrderStatus.create(:status => "returned")
+        status.created_at = Time.now + 150000000
+        status.save
+        order.order_statuses << status
+        order.save
+        visit admin_order_path(order)
+
+        page.should have_content(order.returned_at)
+      end
+    end
+
   end
 end

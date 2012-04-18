@@ -118,7 +118,7 @@ describe "Using the shopping cart" do
       page.should have_content(product.title)
     end
 
-    it "sets the quantity for a product added to the cart" do
+    it "increments the quantity when adding the same product multiple times" do
       visit product_path(product)
       click_link_or_button "add to cart"
       visit product_path(product)
@@ -129,6 +129,7 @@ describe "Using the shopping cart" do
       page.should have_content(product.title)
 
       user.cart.cart_products.last.quantity.should == 3
+      user.cart.cart_products.count.should == 1
     end
   end
 

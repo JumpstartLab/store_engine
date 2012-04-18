@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery!
   
   attr_accessible :email, :password, :password_confirmation,
-                  :display_name, :first_name, :last_name,
-                  :admin, :default_credit_card_id
+                  :display_name, :first_name, :last_name
 
   validates :password,  :presence => true,
                         :confirmation => true,

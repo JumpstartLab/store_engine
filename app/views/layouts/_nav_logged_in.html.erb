@@ -4,7 +4,7 @@
 </ul>
 <%= render :partial => "products/search_form" %>
 <ul class="nav pull-right">
-  <li id="cart"><a href="/cart"><i class="icon-shopping-cart icon-white"></i> Cart</a></li>
+  <li id="cart"><a href="/cart"><i class="icon-shopping-cart icon-white"></i> Cart <%= "(#{cart.total_items})" if cart.cart_products.any? %></a></li>
   <li class="divider-vertical"></li>
   <ul class="nav">
     <li class="dropdown">

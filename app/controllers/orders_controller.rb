@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :check_logged_in, :only => :index
+  before_filter :check_logged_in
 
   def new
     @order = Order.new
@@ -26,16 +26,19 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @order ||= Order.find_by_id(params[:id])
+    @order ||= current_user.orders.find_by_id(params[:id])
   end
 
   def update
-    @order ||= Order.find_by_id(params[:id])
+    @order ||= current_user.orders.find_by_id(params[:id])
     redirect_to order_path(@order)
   end
 
   def show
-    @order = Order.find_by_id(params[:id])
+    @order = current_user.orders.find_by_id(params[:id])
+    unless @order
+      redirect_to root_url, :notice => "DON'T TOUCH THAT"
+    end
   end
 
 end

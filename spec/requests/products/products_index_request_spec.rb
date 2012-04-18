@@ -9,6 +9,10 @@ describe "Products Index Requests" do
      ]
     end
 
+    let!(:product1) { Fabricate(:product) }
+    let!(:product2) { Fabricate(:product) }
+    let!(:product3) { Fabricate(:product) }
+
     let!(:inactive_product) { Fabricate(:product, :retired => true) }
 
     before(:each) do
@@ -47,6 +51,15 @@ describe "Products Index Requests" do
 
     it "only shows active products" do
       page.should_not have_content(inactive_product.title)
+    end
+
+    it "finds a product via the search form" do
+      visit root_url
+      fill_in 'search', :with => product1.title
+      click_link_or_button " "
+      page.should have_content(product1.title)
+      page.should_not have_content(product2.title)
+      page.should_not have_content(product3.title)
     end
 
   end

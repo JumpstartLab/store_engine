@@ -8,7 +8,7 @@
 matt = User.create(:first_name => "Matt",
                    :last_name => "Yoho",
                    :email => "matt.yoho@livingsocial.com",
-                   :password => "hungry" )
+                   :password => "hungry")
 
 jeff = User.create(:first_name => "Jeff",
                    :last_name => "",
@@ -16,12 +16,14 @@ jeff = User.create(:first_name => "Jeff",
                    :password => "hungry",
                    :display_name => "j3")
 
-chad = User.create(:first_name => "Chad",
+chad = User.new(:first_name => "Chad",
                    :last_name => "Fowler",
                    :email => "chad.fowler@livingsocial.com",
                    :password => "hungry",
-                   :display_name => "SaxPlayer",
-                   :admin => true)
+                   :display_name => "SaxPlayer")
+
+chad.admin = true
+chad.save
 
 # active products
 chair = Product.create(:title => "Sweet chair", 
@@ -34,15 +36,15 @@ desk = Product.create(:title => "Amazing desk",
                       :price => "20.00",
                       :remote_image_url => "http://www.vintagedanishmodern.com/products/87381.jpg")
 
-stove = Product.create(:title => "Viking Range",
-                       :description => "The best cooking experience ever",
-                       :price => "5,200.00",
-                       :remote_image_url => "http://ecx.images-amazon.com/images/I/41XtFmar9UL._SL500_AA300_.jpg" )
-
-clock = Product.create(:title => "Clock", 
+clock = Product.create(:title => "Clock",
                        :description => "Crazy expensive Banker's Clock",
                        :price => "400.00",
                        :remote_image_url => "http://ecx.images-amazon.com/images/I/316DTOGbiRL._SL500_AA300_.jpg")
+
+stove = Product.create(:title => "Viking Range",
+                       :description => "The best cooking experience ever",
+                       :price => "5200.00",
+                       :remote_image_url => "http://ecx.images-amazon.com/images/I/41XtFmar9UL._SL500_AA300_.jpg")
 
 #inactive product
 table = Product.create(:title => "Great table",
@@ -56,20 +58,20 @@ accessory = Category.create(:name => "Accessory")
 
 # make orders
 20.times do |i|
-  Fabricate(:order, :user_id => Random.rand(1..3).to_i)
-  OrderProduct.create(:quantity => Random.rand(1..10).to_i,
-                      :product_id => Random.rand(1..4).to_i,
+  Fabricate(:order, :user_id => rand(1..3))
+  OrderProduct.create(:quantity => rand(1..10),
+                      :product_id => rand(1..4),
                       :order_id => i+1)
 end
 
 # make billing addresses
 3.times do
-  Fabricate(:order, :billing_address_id => Random.rand(1..3).to_i)
+  Fabricate(:order, :billing_address_id => rand(1..3))
 end
 
 # make shipping addresses
 2.times do
-  Fabricate(:order, :shipping_address_id => Random.rand(4..5).to_i)
+  Fabricate(:order, :shipping_address_id => rand(4..5))
 end
 
 # make addresses

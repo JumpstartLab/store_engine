@@ -47,9 +47,5 @@ describe "Product Show Requests" do
       end
     end
 
-    it "contains a link to the product's category" do
-      pending
-    end
-
   end
 end

@@ -53,19 +53,48 @@ class Order < ActiveRecord::Base
     self.created_at.strftime("%I:%M %P on %m/%d/%y")
   end
 
+  def paid_at
+    stamp = self.order_statuses.find_by_status("paid")
+    if stamp
+      stamp.created_at.strftime("%I:%M %P on %m/%d/%y")
+    else
+      nil
+    end
+  end
+
+  def shipped_at
+    stamp = self.order_statuses.find_by_status("shipped")
+    if stamp
+      stamp.created_at.strftime("%I:%M %P on %m/%d/%y")
+    else
+      nil
+    end
+  end
+
+  def returned_at
+    stamp = self.order_statuses.find_by_status("returned")
+    if stamp
+      stamp.created_at.strftime("%I:%M %P on %m/%d/%y")
+    else
+      nil
+    end
+  end
+
+  def cancelled_at
+    stamp = self.order_statuses.find_by_status("cancelled")
+    if stamp
+      stamp.created_at.strftime("%I:%M %P on %m/%d/%y")
+    else
+      nil
+    end
+  end
+
   def add_products_by_cart_id(cart_id)
     cart = Cart.find_by_id(cart_id.to_i)
     cart.cart_products.each do |cp|
       create_order_product_from_cart_product(cp)
     end
     cart.empty
-  end
-
-  def add_product_by_product_id(product_id, quantity = 1)
-    order_product = order_products.new
-    order_product.product_id = product_id
-    order_product.quantity = quantity
-    save
   end
 
   def create_order_product_from_cart_product(cart_product)
