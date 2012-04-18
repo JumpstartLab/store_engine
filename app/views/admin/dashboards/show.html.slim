@@ -11,7 +11,6 @@ div#orders_by_status
 
 div#orders
   = "Show:"
-  / = select("order", "status", Order.statuses)
   ul
     li = link_to "all", admin_dashboard_path
     - @statuses.each do |status|

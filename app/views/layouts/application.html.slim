@@ -7,19 +7,23 @@ html
     = csrf_meta_tags
 
   body
-    ul id="nav"
-      - if current_user
-        li 
-          = "Logged in as #{current_user.email}. "
-          = link_to("Log out", logout_path)
-      - else
-        li
-          = link_to("Sign up", signup_path)
-          = " or "
-          = link_to("log in", login_path)
-
-      li = link_to "Browse by Category", categories_path      
-      li = link_to "View Cart", cart_path
+    div class="navbar navbar-fixed-top"
+      div class="navbar-inner"
+        div class="container"
+          ul id="nav"
+            - if current_user
+              li.nav id="login"
+                = "Logged in as #{current_user.email}. "
+                = link_to("Log out", logout_path)
+            - else
+              li.nav id="login"
+                = link_to("Sign up", signup_path)
+                = " or "
+                = link_to("log in", login_path)
+            li.nav = "JD & Co."
+            li.nav = link_to "Home", root_path
+            li.nav = link_to "Browse by Category", categories_path      
+            li.nav = link_to "View Cart", cart_path
       
     - flash.each do |name, msg|
       = content_tag :div, msg, :id => "flash_#{name}"
