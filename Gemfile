@@ -38,5 +38,5 @@ group :development, :test do
   gem 'launchy'
   gem 'guard-rspec'
   gem 'simplecov'#, :group => :test
-  # gem 'reek'
+  gem 'reek'
 end
