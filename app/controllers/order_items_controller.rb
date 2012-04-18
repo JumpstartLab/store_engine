@@ -23,17 +23,10 @@ class OrderItemsController < ApplicationController
 
   def update
     @order_item = OrderItem.find(params[:id])
-    respond_to do |format|
-      if @order_item.update_attributes(params[:order_item])
-        format.html { redirect_to order_path(@order_item.order),
-                                  notice: 'Order was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to order_path(@order_item.order),
-                                  notice: 'Quantity must be greater than 0' }
-        format.json { render json: @order_item.order,
-                             status: :unprocessable_entity }
-      end
+    if @order_item.update_attributes(params[:order_item])
+      redirect_to order_path(@order_item.order), notice: 'Order was successfully updated.'
+    else
+      redirect_to order_path(@order_item.order), notice: 'Quantity must be greater than 0'
     end
   end
 
@@ -44,9 +37,6 @@ class OrderItemsController < ApplicationController
   def destroy
     @order_item = OrderItem.find(params[:id])
     @order_item.destroy
-    respond_to do |format|
-      format.html { redirect_to order_path(@order_item.order) }
-      format.json { head :no_content }
-    end
+    redirect_to order_path(@order_item.order)
   end
 end
