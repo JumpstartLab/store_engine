@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
 
+  def new
+    raise session.inspect
+  end
+
   def create
     if session[:cart_id]
       temp_cart = Cart.find_by_id(session[:cart_id])

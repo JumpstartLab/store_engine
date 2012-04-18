@@ -46,5 +46,5 @@
   <% end %>
 </ul>
 <% end %>
-<%= link_to "add to cart", cart_products_path(:product_id => @product), :id => "anim", :method => :post, :remote => true unless @product.retired %>
-<%= link_to "Instant Checkout", instant_orders_path(:product_id => @product), :method => :post, :confirm => "Really order #{@product.title}?" %>
+<%= link_to "add to cart", cart_products_path(:product_id => @product), :id => "anim", :method => :post unless @product.retired %>
+<%= link_to "Instant Checkout", instant_orders_path(:product_id => @product, :return_to => request.url), :method => :post, :confirm => "Really order #{@product.title}?" %>
