@@ -73,4 +73,10 @@ describe Order do
       ord.find_shipping.should == shipping
     end
   end
+  describe "#set_action_time" do
+    it "sets the action time for an object if cancelled or shipped" do
+      ord.set_action_time("cancelled")
+      ord.action_time.to_date.should == Time.now.to_date
+    end
+  end
 end

@@ -193,7 +193,7 @@ describe "admin" do
         6.times do |i|
           orders[i] = Fabricate(:order)
           orders[i].update_attributes(user_id: nil,
-                                      shipping_address_id: shipping.id)
+            shipping_address_id: shipping.id)
         end
         orders
       }
@@ -209,7 +209,7 @@ describe "admin" do
         6.times do |i|
           line_item = Fabricate(:line_item)
           line_item.update_attributes(order_id: orders.sample.id,
-                                      product_id: products.sample.id)
+            product_id: products.sample.id)
         end
         visit orders_path
       end
@@ -238,6 +238,15 @@ describe "admin" do
         within "#main-content" do
           orders.each { |o| page.should have_content o.id }
         end
+      end
+      it "shows a timestamp of cancelled or shipped orders" do
+        pending
+        visit "/"
+        click_link_or_button "User View"
+        click_link_or_button "Add to Cart"
+        click_link_or_button "Admin View"
+        click_link_or_button "Dashboard"
+        click_link_or_button "Cancel"
       end
     end
   end

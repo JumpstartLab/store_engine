@@ -31,6 +31,7 @@
       end
     else
       update_attribute(:status, next_transition)
+      set_action_time(next_transition)
     end
   end
 
@@ -41,6 +42,12 @@
       "shipped"
     elsif status == "shipped"
       "returned"
+    end
+  end
+
+  def set_action_time(transition)
+    if transition == "shipped" || transition == "cancelled"
+      update_attribute(:action_time, Time.now)
     end
   end
 
