@@ -3,6 +3,9 @@
     %img{:src => @product.avatar}
   .span6
     %h2= @product.name
+    - @product.star_rating.times do |star|
+      %input.star{:class => "{split:2}", :name => "adv1", :type => "radio", :disabled => "disabled", :checked => "checked"}
+    %br
     %h4= @product.categories.map(&:name).join(', ') 
     - if @product.best_sale
       %h6{:style=> "text-decoration:line-through;"}= @product.price

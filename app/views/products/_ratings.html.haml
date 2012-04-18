@@ -10,15 +10,12 @@
   %p 
     By
     = rating.user.name
+    - if ((rating.user == current_user) && (rating.created_at > Time.now - 15.minutes))
+      = link_to "Edit", edit_product_product_rating_path(@product, rating)
 - if @can_rate
   = simple_form_for [@product, @product.product_ratings.build] do |f|
     %legend New Comment
     = f.input :name
     = f.input :body, :as => "string"
     = f.input :rating, :collection => 1..5, :as => :radio_buttons, :class => "star"
-    / %div{:class => "control-group"}
-    /   %label{:class => "control-label"} Rating
-    /   .controls
-    /     - 5.times do 
-    /       = f.radio_button :rating, nil, :class => "star"
     = f.submit :class => "btn btn-primary controls"

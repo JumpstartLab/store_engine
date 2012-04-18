@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :require_admin, :only => [:index, :status, :edit, :update]
-  before_filter :require_logged_in, :except => [:track]
+  before_filter :require_login, :except => [:track]
   before_filter :is_owner_or_admin, :only => [:show]
 
   def index

@@ -6,4 +6,5 @@ class ProductRating < ActiveRecord::Base
 
   validates_presence_of :name, :body, :product
   validates_inclusion_of :rating, :in => 0..5
+
 end

@@ -10,15 +10,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_logged_in
-    redirect_to '/login', :notice => "You must login first" if !current_user
-  end
-
   def require_not_logged_in
     redirect_to root_url, :notice => 'Must not be logged in' unless !current_user
   end
 
 private
+
+  def not_authenticated
+    flash[:error] = "You must login first"
+    redirect_to '/login'
+  end
 
   def stripe_api_key
     Stripe.api_key = ENV['STRIPE_TOKEN'] if Rails.env.to_s == "production"
