@@ -2,15 +2,15 @@ require 'spec_helper'
 
 describe "For orders" do
   context "#index" do
-    let!(:orders) { [Fabricate(:order), Fabricate(:order)] }
-    let!(:admin) { Fabricate(:user, :admin => true) }
-      
+    let!(:user) { Fabricate(:user, email: "foozberry@example.com") }
+    let!(:orders) { [Fabricate(:order, :user_id => user.id), Fabricate(:order, :user_id => user.id)] }
+     
     before(:each) do
       visit signin_path
-      fill_in "Email",    with: admin.email
-      fill_in "Password", with: admin.password
+      fill_in "Email",        with: user.email
+      fill_in "Password",     with: user.password
       click_button "Sign in"
-      click_link_or_button "Browse Orders"
+      visit orders_path    
     end
 
     it "has an area that list the orders" do
@@ -18,7 +18,6 @@ describe "For orders" do
     end
 
     it "lists orders in the system" do
-      save_and_open_page
       within("table#orders") do
         orders.each do |order|
           page.should have_content(order.id)
@@ -108,10 +107,17 @@ describe "For orders" do
   end
 
   context "#show" do
-    let!(:order) { Fabricate(:order) }
+    let!(:user) { Fabricate(:user) }
+    let!(:order) { Fabricate(:order, :user_id => user.id) }
     let!(:products) { [Fabricate(:product), Fabricate(:product), Fabricate(:product)] }
-
-    before(:each) { visit order_path(order) }
+         
+    before(:each) do
+      visit signin_path
+      fill_in "Email",        with: user.email
+      fill_in "Password",     with: user.password
+      click_button "Sign in"
+      visit order_path(order)
+    end
 
     it "lists the order ID" do
       page.should have_content(order.id)

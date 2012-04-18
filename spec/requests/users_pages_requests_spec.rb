@@ -3,9 +3,9 @@ require 'spec_helper'
 describe "User pages" do
 
   describe "index" do
-    let!(:first_user) { Fabricate(:user) }
-    let!(:second_user) { Fabricate(:user) }
-    let!(:third_user) { Fabricate(:user) }
+    let!(:first_user) { Fabricate(:user, name: "Thor", email: "godofthunder@example.com") }
+    let!(:second_user) { Fabricate(:user, name: "Bob", email: "bob@example.com") }
+    let!(:third_user) { Fabricate(:user, name: "Ben", email: "ben@example.com") }
     before(:each) do      
       visit signin_path
       fill_in "Email",    with: first_user.email
@@ -20,7 +20,7 @@ describe "User pages" do
 
     it "should list each user" do
       User.all.each do |user|
-        page.should have_selector('li', text: user.name)
+        page.should have_selector('li', text: user.display_name)
       end
     end
 
@@ -34,7 +34,7 @@ describe "User pages" do
 
       it "should list each user" do
         User.all[0..2].each do |user|
-          page.should have_selector('li', text: user.name)
+          page.should have_selector('li', text: user.display_name)
         end
       end
     end
@@ -46,7 +46,7 @@ describe "User pages" do
     end
 
     context "as an admin user" do
-      let!(:admin) { Fabricate(:user, :admin => true) }
+      let!(:admin) { FactoryGirl.create(:admin) }
       before(:each) do
         visit signin_path
         fill_in "Email",    with: admin.email
@@ -137,8 +137,8 @@ describe "User pages" do
       visit user_path(user)
     end
 
-    it "should have the user name for the header and page title" do
-      page.should have_selector('h1', text: user.name)
+    it "should have the display name of the user for the header and page title" do
+      page.should have_selector('h1', text: user.display_name)
       page.should have_selector('title', text: user.name)
     end
   end
