@@ -25,7 +25,7 @@ class Order < ActiveRecord::Base
 
   def add_items_from_cart!(cart)
     cart.cart_items.each do |cart_item|
-      order_items.create(product_id: cart_item.product_id,
+      self.order_items.create!(product_id: cart_item.product_id,
                          quantity: cart_item.quantity)
     end
     cart.destroy
