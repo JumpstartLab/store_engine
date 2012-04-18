@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       user = login(params[:email], params[:password])
     end
 
-    session[:view_as_admin] = 'true' if user.admin?
+    session[:view_as_admin] = 'true' if user && user.admin?
 
     if user
       redirect_back_or_to root_url, :notice => "Logged in!"

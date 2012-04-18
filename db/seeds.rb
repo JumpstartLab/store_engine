@@ -15,20 +15,20 @@ end
 
 User.create(
   :name => 'Matt Yoho',
-  :email => 'demoXX+matt@jumpstartlab.com',
+  :email => 'demo10+matt@jumpstartlab.com',
   :password => 'hungry'
 )
 
 User.create(
   :name => 'Jeff',
-  :email => 'demoXX+jeff@jumpstartlab.com',
+  :email => 'demo10+jeff@jumpstartlab.com',
   :password => 'hungry',
   :username => 'j3'
 )
 
 User.create(
   :name => 'Chad Fowler',
-  :email => 'demoXX+chad@jumpstartlab.com',
+  :email => 'demo10+chad@jumpstartlab.com',
   :password => 'hungry',
   :username => 'SaxPlayer'
 ).set_role('admin')

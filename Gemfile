@@ -29,4 +29,5 @@ group :development, :test do
   gem 'debugger'
   gem 'slim'
   gem "seed_dump"
+  gem "simplecov", :require => false
 end

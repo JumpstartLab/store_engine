@@ -36,9 +36,9 @@ describe "Dashboard" do
 
   context "order" do
     it "cancel if pending" do
-      find("#order_#{order.id}").should have_link("Cancel")
-      find("#order_#{order.id}").click_link "Cancel"
-      Order.find(order.id).status.should == "cancelled"
+      find("#order_#{pending_order.id}").should have_link("Cancel")
+      find("#order_#{pending_order.id}").click_link "Cancel"
+      Order.find(pending_order.id).status.should == "cancelled"
     end
 
     it "mark as returned if shipped" do

@@ -9,6 +9,30 @@ describe User do
     User.destroy_all
   end
 
+  it "can signup a unique user" do
+    user.email = user.email + 'unique'
+    create_user(user)
+    page.should have_content("Signed up!")
+  end
+
+  it "can't signup with a duplicate email" do
+    create_user(user)
+    page.should have_content("Email has already been taken")
+  end
+
+  it "can't login with an invalid email" do
+    user.email = 'invalid@1337807.com'
+    login_as(user)
+    page.should have_content("invalid")
+  end
+
+  it "can logout" do
+    login_as(user)
+
+    click_link("Log out")
+    page.should have_content("Logged out.")
+  end
+
   context "with role admin can" do
     let(:address) { Fabricate(:address) }
     let!(:order) { Fabricate(:order, :user_id => user.id, :address_id => address.id) }
