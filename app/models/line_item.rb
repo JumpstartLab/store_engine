@@ -15,7 +15,7 @@ class LineItem < ActiveRecord::Base
   end
 
   def subtotal
-    BigDecimal.new(quantity.to_f * price.to_f, 2)
+    BigDecimal.new((quantity.to_f * price.to_f).to_s, 2)
   end
 
   def clean_price
