@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :authorize
+  before_filter :authorize, :only => [:edit, :update, :delete, :show]
   before_filter :edit_self, :only => [:edit, :update]
 
   def show

@@ -66,7 +66,6 @@ describe Order do
 
   describe "#create_stripe_user" do
     it "saves the token to the user" do
-      
       customer = Stripe::Customer.create(
         :description => "Customer for christopher.anderson@gmail.com",
         :card => {
@@ -75,12 +74,9 @@ describe Order do
         :exp_year => 2013,
         :cvc => 314
       },)
-      puts customer.id
       Stripe::Customer.stub!(:create).and_return(customer) 
       order.create_stripe_user(valid_card_data)
       test_user.stripe_id.should == customer.id
-
     end
   end
-
 end

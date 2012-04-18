@@ -55,4 +55,20 @@ describe "User" do
       end
     end
   end
+
+  context "creating new users" do
+    before(:each) { visit new_user_path }
+    it "does not requires login" do
+      page.should have_css('h1', :text => 'Sign Up')
+    end
+
+    it "creates a user given valid attributes" do
+      fill_in "user[full_name]", :with => "Luke Skysauce"
+      fill_in "user[email]", :with => "sky@walker.com"
+      fill_in "user[password]", :with => "foobar"
+      fill_in "user[password_confirmation]", :with => "foobar"
+      click_on "Create User"
+      page.should have_content "Thank you for signing up!"
+    end
+  end
 end

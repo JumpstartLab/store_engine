@@ -25,7 +25,6 @@ describe 'using the shopping cart' do
 
         it "increases the quantity for an existing item" do
           page.should have_content("2 items")
-          # page.should have_content("Quantity: 2")
         end
 
         it "should list only one copy of the item" do
