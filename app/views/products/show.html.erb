@@ -49,7 +49,7 @@
 
   </div>
     
-  <% if current_user.orders != [] %>
+  <% if current_user && current_user.orders != [] %>
     <%= link_to "One-Click Checkout", one_click_path(@product), method: :post, :class => 'btn btn-primary', confirm: "Are you sure?" %>
   <% end %>
 <% else %>

@@ -27,14 +27,18 @@
   end
 
   def badge_html
-    response = retrieve_rating
-    if response.success?
-      entity = response.parsed_response["goodguide_response"]['entities']['entity']
-      if entity.instance_of? Array 
-        entity.first['small_badge_html']
-      else
-        entity['small_badge_html']
+    begin
+      response = retrieve_rating
+      if response.success?
+        entity = response.parsed_response["goodguide_response"]['entities']['entity']
+        if entity.instance_of? Array 
+          entity.first['small_badge_html']
+        else
+          entity['small_badge_html']
+        end
       end
+    rescue
+      nil
     end
   end
 
