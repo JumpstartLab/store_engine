@@ -35,19 +35,26 @@ br
 | Date: #{@order.display_date}
 h3 Items
 div class="row-fluid"
-  div class="span7"
-    table class="table table-striped well"    
+  div class="span14"
+    table class="table table-striped"    
+      th
+        td Item
+        td
+        td Price
+        td Quantity
+        td
       - @order.order_items.each do |order_item|
         tr
-          - if order_item.product.photo
-            td class="span1" = image_tag(order_item.product.photo, :size => "50x50")
-          - else
+          - if order_item.product.photo.nil? || order_item.product.photo == ""
             td
-          td class="span1" = link_to order_item.product.title, product_path(order_item.product)
-          td class="span1" 
+          - else
+            td class="span1" = image_tag(order_item.product.photo, :size => "50x50")
+          td class="span7" = link_to order_item.product.title, product_path(order_item.product)
+          td class="span2"
+          td class="span2" 
             | $
             = order_item.price
-          td class="span2" Quantity: #{order_item.quantity}
+          td class="span1" = text_field_tag "quantity[#{order_item.id}]", order_item.quantity
 
 h3 Order Total
 ="$#{@order.total}"
