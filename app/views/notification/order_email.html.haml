@@ -11,9 +11,9 @@
       %table
       - @order.order_products.each do |op|
         %tr
-          %td = op.product.first.name
-          %td = op.quantity
+          %td= op.product.first.name
+          %td= op.quantity
     %p
       Use the link below to see your order details:
     %p
-      = link_to 'Order Details', track_orders_path(:id => @order.unique_url)
+      = link_to 'Order Details', track_orders_url(:id => @order.unique_url)
