@@ -39,16 +39,8 @@ class Product < ActiveRecord::Base
   end
 
   def update_categories(ids)
-    deleted = self.category_ids - ids
-    added = ids - self.category_ids
-
-    deleted.each do |id|
-      remove_category_by_id(id)
-    end
-
-    added.each do |id|
-      add_category_by_id(id)
-    end
+    self.categories.destroy_all
+    ids.each { |id| add_category_by_id(id) }
   end
 
   def add_category_by_id(id)
@@ -56,20 +48,20 @@ class Product < ActiveRecord::Base
     add_category(category)
   end
 
-  def remove_category_by_id(id)
-    category = Category.find(id)
-    remove_category(category)
-  end
+  # def remove_category_by_id(id)
+  #   category = Category.find(id)
+  #   remove_category(category)
+  # end
 
   def add_category(category)
     self.categories ||= [ ]
-    self.categories << category
+    self.categories << category unless self.categories.include? category
     self.categories.uniq
   end
 
-  def remove_category(category)
-    self.categories.delete(category)
-  end
+  # def remove_category(category)
+  #   self.categories.delete(category)
+  # end
 
   private
 

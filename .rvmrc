@@ -1,1 +1,1 @@
-rvm use --create 1.9.2@project_manager
+rvm use --create 1.9.2@store_engine
