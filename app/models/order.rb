@@ -7,6 +7,9 @@ class Order < ActiveRecord::Base
   has_many :order_products, :dependent => :destroy
   has_many :products, :through => :order_products
   has_one :order_status, :dependent => :destroy
+
+  has_one :order_shipping_detail
+  has_one :shipping_detail, :through => :order_shipping_detail
   validates_presence_of :user_id
   validates_presence_of :order_products
 

@@ -10,7 +10,16 @@
       <li><b><%= @credit_card.credit_card_type %></b></li>
       <li><%= @credit_card.formatted_last_four %></li>
       <li>Expires on: <%= @credit_card.formatted_exp_date %></li>
-      <li><%= link_to "Add a new credit card", new_credit_card_path %>
+      <li><%= link_to "Add a new credit card", new_credit_card_path %></li>
+    </ul>
+  </div>
+
+  <div class="span3" style="background-color: #eee; padding: 10px">
+    <h2>Your Shipping Address</h2>
+    <ul class="unstyled">
+      <%= f.hidden_field :shipping_detail_id, :value => @shipping_detail.id %>
+      <li><%= raw(formatted_shipping_address) %></li>
+      <li><%= link_to "Add a new shipping address", new_credit_card_path %></li>
     </ul>
   </div>
 </div>
