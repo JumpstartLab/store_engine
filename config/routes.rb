@@ -19,6 +19,7 @@ StoreEngine::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
 
   namespace :admin do
+    root :to => "dashboard#index"
     resources :products
     resources :categories
     resources :orders
