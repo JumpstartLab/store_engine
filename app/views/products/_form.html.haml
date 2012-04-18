@@ -7,6 +7,7 @@
   = f.input :avatar_from_url
   = f.association :categories, :as => :check_boxes
   = f.submit 'Save Product', :class => 'btn btn-primary controls'
+
 %hr
 - if @product and @product.id and @product.active == 1
   = link_to 'Retire Product', product_path(@product), :method => :delete
