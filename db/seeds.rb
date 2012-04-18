@@ -90,8 +90,8 @@ end
 end
 
 # make addresses
-Fabricate(:address, :id => 1)
-Fabricate(:address, :id => 2)
-Fabricate(:address, :id => 3)
-Fabricate(:address, :id => 4)
-Fabricate(:address, :id => 5)
+Fabricate(:address)
+Fabricate(:address)
+Fabricate(:address)
+Fabricate(:address)
+Fabricate(:address)
