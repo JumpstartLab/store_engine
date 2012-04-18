@@ -40,7 +40,7 @@ StoreEngine::Application.routes.draw do
 
   resource :cart do
     get 'show', :on => :member
-    put 'update', :on => :member
+    # put 'update', :on => :member
   end
 
   # The priority is based upon order of creation:

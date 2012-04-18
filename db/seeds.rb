@@ -53,6 +53,7 @@ table = Product.create(:title => "Great table",
                        :remote_image_url => "http://ecx.images-amazon.com/images/I/31lRJMSUDOL._SL500_AA300_.jpg",
                        :retired => true)
 
+# create categories
 furniture = Category.create(:name => "Furniture")
 accessory = Category.create(:name => "Accessory")
 

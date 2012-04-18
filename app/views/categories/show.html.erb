@@ -5,6 +5,10 @@
 <% end %>
 <div id="intro">
   <h2><%= @category.name %></h2>
+  <% if logged_in? && current_user.is_admin? %>
+  <%= link_to "Edit", edit_category_path(@category) %>
+  <%= link_to "Delete", category_path(@category), :method => :delete %>
+  <% end %>
 </div>
 <% if @category.products.any? %>
 <div class="row-fluid">

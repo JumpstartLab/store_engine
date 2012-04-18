@@ -25,15 +25,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def edit
-    @order ||= current_user.orders.find_by_id(params[:id])
-  end
-
-  def update
-    @order ||= current_user.orders.find_by_id(params[:id])
-    redirect_to order_path(@order)
-  end
-
   def show
     @order = current_user.orders.find_by_id(params[:id])
     unless @order

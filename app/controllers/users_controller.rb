@@ -20,7 +20,7 @@ class UsersController < ApplicationController
       @user = login(params[:user][:email].downcase, params[:user][:password])
       redirect_to root_url, :notice => "Logged in, New user #{@user.name}"
     else
-      render :new, :notice => "Way to go."
+      render :new
     end
   end
 

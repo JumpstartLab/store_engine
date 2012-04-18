@@ -24,6 +24,18 @@ describe "Create New User" do
         @users.should include(user)
       end
 
+      it "rejects an invalid user" do
+        within("#thinForm") do
+          fill_in 'user_first_name', :with => 'Worace'
+          fill_in 'user_last_name', :with => 'Hilliams'
+          fill_in 'user_email', :with => 'user'
+          fill_in 'user_password', :with => 'p'
+          fill_in 'user_password_confirmation', :with => 'p'
+        end
+        click_button 'Sign up'
+        current_path.should == users_path
+      end
+
       it "logs in the new user" do
         within("#thinForm") do
           fill_in 'user_first_name', :with => 'Worace'
@@ -38,6 +50,33 @@ describe "Create New User" do
           page.should have_content(user.name)
         end
       end
+    end
+
+    context "editing a user" do
+      let(:user) {Fabricate(:user)}
+      before(:each) do
+        login(user)
+        visit edit_user_path(user)
+      end
+
+      it "successfully updates the user via the form" do
+        within(".edit_user") do
+          fill_in 'user_first_name', :with => 'Worace'
+        end
+        click_button 'Update'
+        current_path.should == "/"
+      end
+
+      it "does not update the user via the form" do
+        within(".edit_user") do
+          fill_in 'user_first_name', :with => ''
+          fill_in 'user_last_name', :with => ''
+          fill_in 'user_email', :with => ''
+        end
+        click_button 'Update'
+        current_path.should == user_path(user)
+      end
+
     end
 
     context "and there are items in the cart" do

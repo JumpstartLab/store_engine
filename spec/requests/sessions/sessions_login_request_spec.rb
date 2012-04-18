@@ -17,5 +17,15 @@ describe "Logging in a User" do
       current_path.should == "/"
     end
 
+    it "redirects and shows an error for invalid user credentials" do
+      within("div#thinForm") do
+        fill_in 'email', :with => "poop"
+        fill_in 'password', :with => 'poopface'
+        click_button 'Log in'
+      end
+      current_path.should == sessions_path
+      page.should have_content("Invalid login/password.")
+    end
+
   end
 end

@@ -47,5 +47,13 @@ describe "Product Show Requests" do
       end
     end
 
+    it "allows you to remove a product" do
+      product = products.first
+      visit "/products/#{product.id}"
+      click_link("Delete Product")
+      current_path.should == "/products"
+      Product.all.should_not include(product)
+    end
+
   end
 end

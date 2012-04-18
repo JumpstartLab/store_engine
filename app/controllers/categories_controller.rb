@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_filter :lookup_category, :only => [:destroy, :edit, :update, :show]
+  before_filter :check_admin, :only => [:new, :create, :edit, :update, :destroy]
 
   def new
     @category = Category.new
@@ -28,7 +29,7 @@ class CategoriesController < ApplicationController
 
   def update
     if @category.update_attributes(params[:category])
-      redirect_to categories_path, :notice => "Updated successfully."
+      redirect_to category_path(@category), :notice => "Updated successfully."
     else
       render :edit
     end

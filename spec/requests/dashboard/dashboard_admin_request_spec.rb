@@ -96,6 +96,16 @@ describe "Dashboard" do
       page.should have_link("Mark Cancelled")
     end
 
+    it "shows mark as pending if an order has invalid status" do
+      paid_order.order_statuses.new(:status => "balkj")
+      paid_order.save
+
+      visit admin_dashboard_path
+      within("#order_#{paid_order.id}") do
+        page.should have_link("Mark Pending")
+      end
+    end
+
     it "changes the order status" do
       within("tr#order_#{pending_order.id}") do
         click_link_or_button("Mark Paid")

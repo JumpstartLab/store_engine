@@ -53,9 +53,24 @@ describe "Instant Orders" do
         end
 
         it "redirects to user profile if no default billing info" do
-          pending
+          current_path.should == user_path(user2)
+          page.should have_link("Add a default billing address")
+        end
+      end
+
+      context "and something goes wrong" do
+        before(:each) do
+          # using user without defaults
+          login(user)
+          visit product_path(product)
+          click_link_or_button "Instant Checkout"
         end
 
+        it "redirects back to the previous page" do
+          pending
+          # Order.stub(:create) { mock_model(Order, :save => false) }
+          # current_path.should == "/"
+        end
       end
     end
 

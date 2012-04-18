@@ -15,7 +15,7 @@ class InstantOrdersController < ApplicationController
         params[:order] = @order.to_param
         redirect_to order_path(@order)
       else
-        render :action => 'create', :notice => "Something went wrong."
+        redirect_to (:back), :notice => "Something went wrong."
       end
 
     else
