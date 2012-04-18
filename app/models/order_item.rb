@@ -29,4 +29,8 @@ class OrderItem < ActiveRecord::Base
   def subtotal
     self.price * self.quantity
   end
+
+  def title
+    product.title
+  end
 end

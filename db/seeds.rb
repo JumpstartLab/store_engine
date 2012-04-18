@@ -17,13 +17,13 @@ baby_wash = Product.create(title: "Aquaphor Baby Gentle Wash",
                            price: 7.59, 
                            photo: "http://static-resources.goodguide.net/images/entities/large/355628-2.jpg",
                            upc: "072140002282")
-CategoryAssignment.create(product: baby_wash, category: baby_products)
 
 chocolate_bar = Product.create(title: "Green and Blacks Dark 85% Chocolate Bar",
                                description: "Even the most casual food shoppers have probably noticed the increased quantity and variety of organic products available and they vary from food to detergent, cosmetics and many more.",
                                price: 4.00,
                                photo: "http://media.treehugger.com/assets/images/2011/10/chocolate-green.jpg",
                                upc: "708656100005")
+CategoryAssignment.create(product: baby_wash, category: baby_products)
 CategoryAssignment.create(product: chocolate_bar, category: snacks)
 CategoryAssignment.create(product: chocolate_bar, category: gifts)
 
