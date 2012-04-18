@@ -2,7 +2,8 @@
 
 <h1><%= @product.title %></h1>
 <p><img height="100" src="<%= @product.image_link %>"></img>
-<p><%= @product.description %></p>
+<h3><%= @product.description %></h3>
+<h3><%= number_to_currency(@product.price) %></h3>
 
 <% if admin? %>
   <%= link_to "Edit", edit_product_path(@product) %> | <%= link_to 'Delete', @product, method: :delete %>
