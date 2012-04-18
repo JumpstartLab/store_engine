@@ -1,6 +1,4 @@
  class Product < ActiveRecord::Base
-  include HTTParty
-  base_uri 'http://api.goodguide.com/'
   has_many :line_items
   has_many :category_assignments
   has_many :categories, through: :category_assignments
@@ -30,21 +28,8 @@
   end
 
   def badge_html
-    begin
-      response = retrieve_rating
-      if response.success?
-        e = response.parsed_response["goodguide_response"]['entities']['entity']
-        if e.instance_of? Array
-          e.first['small_badge_html']
-        else
-          e['small_badge_html']
-        end
-      end
-    rescue
-      nil
-    end
+    Rating.new(upc).to_html
   end
-
 
 #  private
 
@@ -56,15 +41,4 @@
       return false
     end
   end
-
-  def retrieve_rating
-    options = {
-      api_key: "5pa4ewzvcq85ycbzurschy4d",
-      api_version: "1.0",
-      api_format: "badge",
-      upc: upc
-    }
-    Product.get("/search.xml", query: options)
-  end
-
 end

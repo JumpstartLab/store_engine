@@ -8,6 +8,7 @@ gem "twitter-bootstrap-rails"
 gem 'sorcery'
 gem 'cancan'
 gem 'httparty'
+gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
 
 
 
