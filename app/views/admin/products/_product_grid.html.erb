@@ -1,0 +1,15 @@
+<tr>
+  <td><%= link_to product_grid.name, admin_product_path(product_grid) %></td>
+  <td><%= product_grid.description %></td>
+  <td><%= product_grid.price %></td>
+  <td><%= image_tag(product_grid.photo, :size => "50x50") %></td>
+  <td><ul><% product_grid.categories.each do |category| %>
+      <div id="<%= dom_id category %>">
+        <li><%= category.name %></li>
+      </div>
+      <% end %></ul>
+  <td><%= link_to 'Add to cart', new_cart_product_path(:product_id => product_grid) %></td>
+  <td><%= link_to 'Retire', product_retirement_path(product_grid), method: :post %></td>
+  <!--
+  <td><%= link_to 'Destroy', product_grid, confirm: 'Are you sure?', method: :delete %></td>-->
+</tr>

@@ -3,6 +3,5 @@
 #
 # Examples:
 #
-  require './lib/seeder'
 
   Seeder.build_db
