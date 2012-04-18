@@ -33,6 +33,14 @@ describe "sorting by categories" do
       click_on "Create Category"
       page.should have_content "Categories all the way down!"
     end
+
+    it "doesn't save an invalid category name" do
+      login(admin_user)
+      visit new_category_path
+      fill_in "category[title]", :with => ""
+      click_on "Create Category"
+      page.should have_content "can't"
+    end
   end
 
   context "editing categories" do

@@ -1,9 +1,5 @@
-<%= form_for(@category) do |c| %>
-  <p>
-    <%= c.label :title %><br />
-    <%= c.text_field :title %>
-  </p>
-  <p>
-    <%= c.submit %>
-  </p>
+<h1>Category Title</h1>
+<%= simple_form_for @category do |f| %>
+    <%= f.input :title, :label => false %>
+    <%= f.button :submit %>
 <% end %>
