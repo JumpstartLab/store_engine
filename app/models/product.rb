@@ -25,9 +25,9 @@ class Product < ActiveRecord::Base
   end
 
   def retire
-    self.retired = true
-    self.cart_products.destroy_all
-    save
+    if self.update_attribute(:retired, true)
+      self.cart_products.destroy_all
+    end
   end
 
   def active?
