@@ -15,7 +15,7 @@
     if File.exists?(dev_db) then File.delete(dev_db) end
     if File.exists?(test_db) then File.delete(test_db) end
     Rake::Task["db:migrate"].invoke
-    Rake::Task["import_stock"].invoke("db/stock.csv")
+    # Rake::Task["import_stock"].invoke("db/stock.csv")
 
     Rake::Task["db:seed"].invoke
     Rake::Task["db:test:prepare"].invoke

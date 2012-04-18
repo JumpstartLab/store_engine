@@ -10,10 +10,16 @@ chad = User.create( :username => "Chad Fowler", :first_name => "Chad",
 chad.admin = true
 chad.save!
 
-Category.create(:name => "awesome")
-Category.create(:name => "not as awesome")
-Category.create(:name => "pretty terrible")
-
+Category.create(:name => "cute pugs")
+Category.create(:name => "awesome pugs")
+Category.create(:name => "sweet pugs")
+Category.create(:name => "sad face pugs")
+Product.create(:title => "Bailey", :description => "Bailey is super cute!", :price => rand(10000).to_s,
+               :photo => "http://28.media.tumblr.com/tumblr_lirvqoFIAO1qaa50yo1_500.jpg")
+Product.create(:title => "Zeek", :description => "Zeek is the best pug you'll ever meet!",
+               :price => rand(10000).to_s, :photo => "http://24.media.tumblr.com/tumblr_lima5j6wR11qzqe35o1_500.jpg")
+Product.create(:title => "Lucy", :description => "Lucy is goosey!", :price => rand(10000).to_s,
+               :photo => "http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg")
 # 30.times { Fabricate(:product).save } 
 # 
 # pending = Status.create(:name => StoreEngine::Status::PENDING)
