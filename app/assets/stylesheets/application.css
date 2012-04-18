@@ -77,7 +77,7 @@ nav.main a:hover, nav a.active{
   border-bottom-right-radius: 20px;
   box-sizing: border-box;
   padding:2% 5%;
-  height:100%;
+  min-height:677px;
   clear:both;
 }
 #location{
