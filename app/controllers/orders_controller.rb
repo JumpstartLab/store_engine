@@ -17,12 +17,14 @@ class OrdersController < ApplicationController
   def create
     @order = current_user.orders.create
     @order.build_order_from_cart(current_cart)
-    @order.stripe_customer_token = params[:order][:customer_token]
+    token = params[:order][:customer_token] #from stripe
     @order.save
 
-    if @order.find_credit_card && @order.charge(current_cart)
-      current_cart.destroy      
-      redirect_to @order, :notice => "Thank you for placing an order."
+    if @order.set_cc_from_stripe_customer_token(token)
+      if @order.charge(current_cart)
+        current_cart.destroy
+        redirect_to @order, :notice => "Thank you for placing an order."
+      end
     else
       render :new
     end

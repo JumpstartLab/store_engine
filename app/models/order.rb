@@ -1,6 +1,5 @@
 class Order < ActiveRecord::Base
   attr_accessible :user_id, :credit_card_id
-  attr_accessor :stripe_customer_token
 
   belongs_to :user
   belongs_to :credit_card
@@ -50,9 +49,9 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def find_credit_card
+  def set_cc_from_stripe_customer_token(stripe_customer_token)
     if credit_card = user.credit_cards.find_by_stripe_customer_token(stripe_customer_token)
-      self.update_attributes( :credit_card_id => credit_card.id)
+      self.credit_card = credit_card
     end
   end
 
