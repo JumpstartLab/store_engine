@@ -24,10 +24,8 @@ class Admin::OrdersController < ApplicationController
   def update
     @order     = Order.find(params[:id])
     quantities = params[:order_item_quantities]
-
     @order.set_quantities(quantities)
     @order.status = params[:status]
-
     if @order.save
       redirect_to admin_order_path(@order)
     else
