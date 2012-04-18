@@ -8,9 +8,6 @@ gem "twitter-bootstrap-rails"
 gem 'sorcery'
 gem 'cancan'
 gem 'httparty'
-gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
-
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,4 +32,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'sqlite3'
   gem 'faker'
+  # gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
 end
