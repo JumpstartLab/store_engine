@@ -2,6 +2,12 @@ class ShoppingCart < ActiveRecord::Base
   belongs_to :user
   has_many :cart_items
 
+  def merge_cart_items(other)
+    other.cart_items.each do |cart_item|
+      add_item(cart_item.product.id, cart_item.quantity)
+    end
+  end
+
   def add_item(product_id, quantity)
     product = Product.find(product_id)
     item = cart_items.find(:first, :conditions => ["product_id = ?", product_id])

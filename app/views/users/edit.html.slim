@@ -1,3 +1,5 @@
+h1 Edit user
+
 = form_for(@user) do |f|
   - if @user.errors.any?
     div id="error_explanation"
@@ -9,37 +11,24 @@
         li = msg
 
   div class="field"
-    = f.label :username
-    = f.text_field :username
-
-  div class="field"
     = f.label :display_name
+    br
     = f.text_field :display_name
 
   div class="field"
     = f.label :first_name
+    br
     = f.text_field :first_name
 
   div class="field"
     = f.label :last_name
+    br
     = f.text_field :last_name
 
   div class="field"
     = f.label :email 
+    br
     = f.text_field :email
-
-  div class="field"
-    = f.label :password
-    = f.password_field :password 
-
-  div class="field"
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-  - if !current_user.nil? && current_user.admin?
-    div class="field"
-      label class="checkbox"
-        = f.check_box :admin
-        = f.label :admin 
 
   div class="actions"
     = f.submit :class => "btn btn-primary"

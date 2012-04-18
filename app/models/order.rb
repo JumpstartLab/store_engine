@@ -15,6 +15,9 @@ class Order < ActiveRecord::Base
       :currency => "usd",
       :customer => transaction.stripe_customer_id
     )
-  end
+   end
 
+  def display_date
+    created_at.strftime("%m/%d/%Y - %I:%S %p")
+  end
 end

@@ -33,5 +33,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @shipping_address = @order.shipping_address
+    @billing_address = @order.billing_address
   end
 end 

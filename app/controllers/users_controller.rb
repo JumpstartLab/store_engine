@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :current_user_or_admin_or_not_found, :only => [:show]
-  before_filter :admin_or_not_found, :only => [:index, :create]
+  before_filter :admin_or_not_found, :only => [:index]
 
   def index
     @users = User.all
@@ -18,8 +18,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    id = params[:id].to_i
+    if logged_in? && current_user.id == id
+      @user = User.find(id)
+    else
+      not_found
+    end
+  end
+
+  def update
+    if logged_in? && current_user.id == id
+      user = User.find(params[:id]).update_attributes(params[:user])
+      redirect_to user_path(@user) 
+    else 
+      not_found
+    end
+  end
+
   def create
-    @user = User.new(params[:user])
+    @user = User.new(params[:user], :as => :admin)
 
     respond_to do |format|
       if @user.save
