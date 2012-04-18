@@ -10,7 +10,7 @@ describe 'using the shopping cart' do
       before(:each) { click_link_or_button "Add to Cart" }
 
       it "takes me to the cart page" do
-        page.should have_content("Cart")
+        page.should have_css('h1', :text => 'Cart')
       end
 
       it "shows the product in my cart" do
