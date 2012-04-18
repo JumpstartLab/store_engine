@@ -2,7 +2,9 @@ class CartItemsController < ApplicationController
   before_filter :find_cart_item
 
   def create
-    if existing_item = current_cart.cart_items.find_by_product_id(params[:product_id])
+    existing_item =
+      current_cart.cart_items.find_by_product_id(params[:product_id])
+    if existing_item
       existing_item.update_attributes(quantity: existing_item.quantity + 1)
     elsif Product.find(params[:product_id]).retired?
       flash[:warning] = "This item has been retired and can no longer be purchased."
@@ -16,7 +18,7 @@ class CartItemsController < ApplicationController
   def increase
     if @cart_item
       @cart_item.update_attributes(quantity: @cart_item.quantity + 1)
-    end      
+    end
     redirect_to request.referer
   end
 

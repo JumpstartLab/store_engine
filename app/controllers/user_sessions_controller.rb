@@ -15,7 +15,6 @@ class UserSessionsController < ApplicationController
     session[:cart_id] = persisting_cart_id
   end
 
-  
   def destroy
     logout
     redirect_to root_url, :notice => "Logged out!"
