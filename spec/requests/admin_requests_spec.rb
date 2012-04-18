@@ -75,28 +75,10 @@ describe "admin" do
       page.should have_content product.title
     end
     it "cannot edit another user's billing on an order" do
-      billing = {
-        credit_card_number: "5555555555555555",
-            month: "4 - April",
-            year: "2012",
-            street: "One Mockingbird Lane",
-            city: "Anytown",
-            state: "Virginia",
-            zipcode: "22209",
-            card_type: 'Visa'
-      }
-      click_link_or_button "Add a Billing Method"
-      add_non_user_billing(billing)
-      current_path.should == "/"
-      page.should have_content "Sorry"
+      page.should_not have_content "Add a Billing Method"
     end
     it "cannot edit another user's shipping on an order" do
-      shipping = { street: "One Mockingbird Lane", city: "Anytown",
-       state: "VA", zipcode: 22209, name: "Favorite Shipping" }
-       click_link_or_button "Add a Shipping Address"
-       add_non_user_shipping(shipping)
-       current_path.should == "/"
-       page.should have_content "Sorry"
+      page.should_not have_content "Add a Shipping Address"
     end
     it "can edit the quantity of a product on an order" do
       click_link_or_button "Update"
@@ -272,7 +254,7 @@ describe "admin" do
             card_type: 'Visa'
         }
         shipping = { street: "One Mockingbird Lane", city: "Anytown",
-         state: "VA", zipcode: 22209, name: "Favorite Billing"
+         state: "Virginia", email_address: "test@test.com", zipcode: "22209", name: "Favorite Shipping"
        }
        visit "/"
        click_link_or_button "User View"

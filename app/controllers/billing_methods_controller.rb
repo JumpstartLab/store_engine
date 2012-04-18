@@ -3,7 +3,6 @@ class BillingMethodsController < ApplicationController
   before_filter :load_billing_method, only: [:edit, :update]
   before_filter :validate_billing_user, only: [:edit]
 
-
   def new
     session[:return_to] = request.referrer
     @billing_method = BillingMethod.new
@@ -14,9 +13,7 @@ class BillingMethodsController < ApplicationController
 
   def create
     @billing_method = BillingMethod.new(params[:billing_method])
-    if validate_billing_user
-      try_to_save_billing
-    end
+    try_to_save_billing
   end
 
   def update
@@ -41,7 +38,6 @@ class BillingMethodsController < ApplicationController
       end
       redirect_to session[:return_to]
     else
-      @billing_method = billing
       render :new
     end
   end

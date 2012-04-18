@@ -129,7 +129,7 @@ describe "shopper" do
           click_link_or_button "Add a Shipping Address"
           current_path.should == new_shipping_address_path
           shipping = {street: "One Mockingbird Lane", city: "Anytown",
-            state: "VA", zipcode: "22209",
+            state: "Virginia", zipcode: "22209",
             email_address: "test@test.com"}
             add_non_user_shipping(shipping)
           end

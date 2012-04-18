@@ -5,5 +5,5 @@
   br/
   - if order.pending?
     = link_to "Change Billing Method", edit_billing_method_path(billing), class: "btn-mini btn"
-- else
+- elsif order == current_order
   = link_to "Add a Billing Method", new_billing_method_path, class: "btn-mini btn"

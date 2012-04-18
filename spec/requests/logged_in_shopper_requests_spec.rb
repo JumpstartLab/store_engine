@@ -44,8 +44,9 @@ describe "logged in user" do
     let(:shipping) {
       { street: "One Mockingbird Lane",
         city: "Anytown",
-        state: "VA",
-        zipcode: 22209,
+        state: "Virginia",
+        zipcode: "22209",
+        email_address: "test@test.com",
         name: "Favorite Billing"
       }
     }

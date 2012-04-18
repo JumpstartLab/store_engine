@@ -5,6 +5,6 @@
   br/
   - if order.pending?
     = link_to "Change Shipping Address", edit_shipping_address_path(shipping), class: "btn-mini btn"
-- else
+- elsif order == current_order
   br/
   = link_to "Add a Shipping Address", new_shipping_address_path, class: "btn-mini btn"
