@@ -62,11 +62,6 @@ class Order < ActiveRecord::Base
     define_method(status + "?") do
       self.status == status
     end
-
-    define_method(status + "=") do |status|
-      status = status.downcase if status
-      write_attribute(:status, status)
-    end
   end
 
   def cancellable?
@@ -77,17 +72,9 @@ class Order < ActiveRecord::Base
     quantities.each do |id, quantity|
       quantity = quantity.to_i
       item     = order_items.find(id)
-
       if quantity > 0
         item.update_attribute(:quantity, quantity)
       else
-        # TODO:
-        # What's the best way to do this?
-        # This destroys the items immediately;
-        # I only want to destroy them when save is called,
-        # conditioned on wheather the order has no errors.
-        # However, it's also invalid for an OrderItem to have quantity of 0...
-        # So the save would never happen, so I can't use an after-save hook...
         item.destroy
       end
     end
