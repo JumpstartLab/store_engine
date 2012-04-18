@@ -6,6 +6,7 @@ gem 'slim'
 gem 'sorcery'
 gem 'money'
 gem 'stripe'
+gem 'twitter-bootstrap-rails'
 #gem 'money-rails'
 
 # Gems used only for assets and not required
@@ -18,7 +19,6 @@ group :assets do
   # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails'
 end
 
 group :development do
