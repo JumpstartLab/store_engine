@@ -37,6 +37,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'guard-rspec'
+  gem 'database_cleaner'
   gem 'simplecov'#, :group => :test
   gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
 end

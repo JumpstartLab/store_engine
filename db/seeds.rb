@@ -9,18 +9,18 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 matt = User.create(:first_name => "Matt",
                    :last_name => "Yoho",
-                   :email => "matt.yoho@livingsocial.com",
+                   :email => "demo07+matt@jumpstartlab.com",
                    :password => "hungry")
 
 jeff = User.create(:first_name => "Jeff",
                    :last_name => "",
-                   :email => "jeff.casimir@livingsocial.com",
+                   :email => "demo07+jeff@jumpstartlab.com",
                    :password => "hungry",
                    :display_name => "j3")
 
 chad = User.new(:first_name => "Chad",
                    :last_name => "Fowler",
-                   :email => "chad.fowler@livingsocial.com",
+                   :email => "demo07+chad@jumpstartlab.com",
                    :password => "hungry",
                    :display_name => "SaxPlayer")
 
@@ -62,7 +62,14 @@ table = Product.create(:title => "Great table",
 
 # create categories
 furniture = Category.create(:name => "Furniture")
-accessory = Category.create(:name => "Accessory")
+accessory = Category.create(:name => "Accessories")
+appliance = Category.create(:name => "Appliances")
+
+# fill categories
+
+accessory.products << clock
+furniture.products << [chair, desk, table]
+appliance.products << stove
 
 # make orders
 20.times do |i|

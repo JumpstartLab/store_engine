@@ -27,6 +27,8 @@ describe "Categories Show Requests" do
       ]
     end
 
+    let!(:inactive_product) { Fabricate(:product, :retired => true) }
+
     before(:each) do
       visit "/categories/1"
     end
@@ -36,6 +38,10 @@ describe "Categories Show Requests" do
         product = Product.find_by_id(product_category.product_id)
         page.should have_link(product.title, :href => product_path(product))
       end
+    end
+
+    it "doesn't list retired products for a category" do
+      page.should_not have_content(inactive_product.title)
     end
 
   end

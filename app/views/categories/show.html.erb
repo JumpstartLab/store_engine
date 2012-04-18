@@ -12,6 +12,6 @@
 </div>
 <% if @category.products.any? %>
 <div class="row-fluid">
-  <%= render :partial => "category_product", :collection => @category.products %>
+  <%= render :partial => "category_product", :collection => @category.products.active %>
 </div>
 <% end %>
