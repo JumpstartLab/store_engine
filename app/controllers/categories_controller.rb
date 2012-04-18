@@ -17,6 +17,16 @@ class CategoriesController < ApplicationController
     @products = @category.products
   end
 
+  def new
+    @category = Category.new
+  end
+
+  def create
+    category = Category.new(params[:category])
+    category.save
+    redirect_to categories_path
+  end
+
   # def filter_by_category
   #   @products = Product.find_all_by(params[:category])
   # end

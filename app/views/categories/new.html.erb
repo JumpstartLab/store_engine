@@ -1,0 +1,9 @@
+<%= form_for(@category) do |c| %>
+  <p>
+    <%= c.label :title %><br />
+    <%= c.text_field :title %>
+  </p>
+  <p>
+    <%= c.submit %>
+  </p>
+<% end %>
