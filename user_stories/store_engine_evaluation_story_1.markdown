@@ -47,8 +47,8 @@ title: StoreEngine Evaluation Story 1
         * When I purchase the order
         * Then I should see an order summary page
             * And I should see the order status as "paid"
-            * And I should see the order total as <dollar amount>
+            * And I should see the order total as <$7.59>
         * Or see a notice with a link to the order summary page
             * When I follow the link to the order summary page
             * Then I should see the order status as "paid"
-            * And I should see the order total as <dollar amount>
+            * And I should see the order total as <$7.59>
