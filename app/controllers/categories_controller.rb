@@ -25,9 +25,12 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    category = Category.new(params[:category])
-    category.save
-    redirect_to categories_path, notice: "Categories all the way down!"
+    @category = Category.new(params[:category])
+    if @category.save
+      redirect_to categories_path, notice: "Categories all the way down!"
+    else
+      render 'new'
+    end
   end
 
   def edit
