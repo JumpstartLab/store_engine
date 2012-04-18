@@ -1,3 +1,4 @@
+#
 class LineItemsController < ApplicationController
   before_filter :lookup_line_item, :only => [:show, :edit, :destroy, :update]
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]

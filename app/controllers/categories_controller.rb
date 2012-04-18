@@ -1,3 +1,4 @@
+#
 class CategoriesController < ApplicationController
   before_filter :lookup_category, :only => [:show, :edit, :destroy, :update]
   before_filter :require_admin, :except => [:index, :show]

@@ -1,3 +1,4 @@
+#
 class Product < ActiveRecord::Base
   attr_accessible :title, :description, :price, :photo_url, :category_ids,
   :retired
@@ -11,7 +12,8 @@ class Product < ActiveRecord::Base
   validates_numericality_of :price
   validates_format_of :price, with: /^[1-9]/
   validates_format_of :photo_url,
-  with: /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpg|gif|png|jpeg)$/,
+  with: /^https?:\/\/(?:[a-z\-]+\.)+
+        [a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpg|gif|png|jpeg)$/x,
   allow_nil: true, unless: Proc.new { |p| p.photo_url.blank? }
 
   default_scope order(:title)

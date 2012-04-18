@@ -1,4 +1,5 @@
- class Order < ActiveRecord::Base
+#
+class Order < ActiveRecord::Base
   attr_accessible :billing_method_id, :user_id, :status, :shipping_address_id
 
   validates_presence_of :status

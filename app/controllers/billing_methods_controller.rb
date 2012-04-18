@@ -1,3 +1,4 @@
+#
 class BillingMethodsController < ApplicationController
   before_filter :load_billing_method, only: [:edit, :update]
   before_filter :validate_billing_user, only: [:edit]
@@ -14,16 +15,7 @@ class BillingMethodsController < ApplicationController
   def create
     @billing_method = BillingMethod.new(params[:billing_method])
     if validate_billing_user
-      if @billing_method.save
-        notice = "Billing Address Successfully Added"
-        @billing_method.update_attribute(:user_id, current_user.id) if logged_in?
-        if session[:order_id]
-          order = Order.find(session[:order_id])
-          order.update_attribute(:billing_method_id, @billing_method.id)
-        end
-      else
-        notice = 'Please input a valid billing method'
-      end
+      try_to_save_billing
       redirect_to session[:return_to], notice: notice
     end
   end
@@ -38,6 +30,19 @@ class BillingMethodsController < ApplicationController
   end
 
   private
+
+  def try_to_save_billing
+    if @billing_method.save
+      notice = "Billing Address Successfully Added"
+      @billing_method.update_attribute(:user_id, current_user.id) if logged_in?
+      if session[:order_id]
+        order = Order.find(session[:order_id])
+        order.update_attribute(:billing_method_id, @billing_method.id)
+      end
+    else
+      notice = 'Please input a valid billing method'
+    end
+  end
 
   def load_billing_method
     if logged_in?

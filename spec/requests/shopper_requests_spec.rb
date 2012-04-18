@@ -150,7 +150,7 @@ describe "shopper" do
               click_link_or_button "Check Out"
             end
             current_path.should have_content "orders"
-            page.should have_content "Please input valid billing and shipping information."
+            page.should have_content "Please input valid billing and shipping"
           end
           it "does not checkout without valid shipping" do
             billing = Fabricate(:billing_method)

@@ -1,3 +1,4 @@
+#
 class UsersController < ApplicationController
   before_filter :lookup_user,
                 :only => [:show, :edit, :destroy, :update, :view_as_admin,
