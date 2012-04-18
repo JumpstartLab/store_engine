@@ -27,17 +27,19 @@ describe Order do
         page.should have_content("Cart is empty")
       end
 
-      # it "enables you to checkout if cart has contents" do
-      #   visit products_path
-      #   click_on "Add to Cart"
-      #   click_on "Checkout"
-      #   fill_in "order_name", with: "Testing1234"
-      #   fill_in "order_address", with: "1234 fake st"
-      #   fill_in "order_email", with: "testemail@fake.com"
-      #   page.select("Check", :from => "order_pay_type")
-      #   click_button "Place Order"
-      #   page.should have_content("Thank you for your order")
-      # end
+      it "enables you to checkout if cart has contents" do
+        visit products_path
+        click_on "Add to Cart"
+        click_on "Checkout"
+        save_and_open_page
+        fill_in "order_name", with: "Testing1234"
+        fill_in "order_address", with: "1234 fake st"
+        fill_in "order_email", with: "testemail@fake.com"
+        fill_in "order_cc_number", with: "1234567890"
+        fill_in "order_cc_expiry", with: "12/12"
+        click_button "Place Order"
+        page.should have_content("Thank you for your order")
+      end
 
       it "enables one-click checkout if there is a previous order" do
         visit products_path
