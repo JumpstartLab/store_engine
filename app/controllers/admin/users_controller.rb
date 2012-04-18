@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_filter :correct_user,   only: [:edit, :update]
-  before_filter :admin_user,     only: [:destroy]
+  before_filter :admin_user
 
   def index
     @users = User.paginate(page: params[:page])
@@ -44,7 +44,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
-    redirect_to users_path
+    redirect_to admin_users_path
   end
 
   helper_method :billing_information
@@ -60,33 +60,37 @@ class Admin::UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_path) && flash[:error] = "You are not logged in as the correct user" unless current_user?(@user)
+      redirect_to_last_page && flash_error unless current_user?(@user)
     end
 
     def admin_user
-      redirect_to(root_path) unless current_user.admin?
+      redirect_to_last_page && flash_error unless current_user.admin?
+    end
+
+    def flash_error
+      flash[:error] = "You are not logged in as the correct user"
     end
 
     def shipping_information
-    if current_user.shipping_information.nil?
-      current_user.shipping_information = ShippingInformation.new
-    else
-      current_user.shipping_information
+      if current_user.shipping_information.nil?
+        current_user.shipping_information = ShippingInformation.new
+      else
+        current_user.shipping_information
+      end
     end
-  end
 
-  def billing_information
-    if current_user.billing_information.nil?
-      current_user.billing_information = BillingInformation.new
-    else
-      current_user.billing_information
+    def billing_information
+      if current_user.billing_information.nil?
+        current_user.billing_information = BillingInformation.new
+      else
+        current_user.billing_information
+      end
     end
-  end
 
-  def signed_in_user
-    unless signed_in?
-      store_location
-      redirect_to signin_path, notice: "Please sign in."
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_path, notice: "Please sign in."
+      end
     end
-  end
 end

@@ -1,4 +1,6 @@
 class Admin::ProductsController < ApplicationController
+  before_filter :signed_in_user
+  before_filter :admin_user
 
   def index
     @products = Product.paginate(page: params[:page])
@@ -34,7 +36,22 @@ class Admin::ProductsController < ApplicationController
 
   private
 
-  def product
-    @product ||= Product.find(params[:id])
-  end
+    def product
+      @product ||= Product.find(params[:id])
+    end
+
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_path, notice: "Please sign in."
+      end
+    end
+
+    def admin_user
+      redirect_to_last_page && flash_error unless current_user.admin?
+    end
+
+    def flash_error
+      flash[:error] = "You are not logged in as the correct user"
+    end
 end
