@@ -20,6 +20,12 @@
       <th>ID</th>
       <th>Billed to</th>
       <th>Shipped to</th>
+
+      <% if can? :manage, :all %>
+        <th>ID</th>
+        <th>Name</th>
+      <% end %>
+      <th>Products Ordered</th>
       <th>Created</th>
       <th>Status</th>
       <th>Total</th>
@@ -33,22 +39,27 @@
       <tr>
         <td><%= link_to order.id, order_path(order) %></td>
         <td><%= order.user.full_name %></td>
+        <% end %>
+        <td>
+          <ul>
+            <% order.order_items.each do |order_item| %>
+              <li><%= link_to order_item.title, order_item.product %></li>
+            <% end %>
+          </ul>
+        </td>
         <td><%= order.name %></td>
         <td><%= distance_of_time_in_words_to_now(order.created_at) %></td>
         <td><%= order.status %></td>
         <td><%= sprintf("$%0.02f", order.total) %></td>
-          <% if can? :update, order %> 
+        <td>
+          <% if can? :manage, :all %> 
             <% if order.next_status %>
               <%= form_for order do |f| %>
                 <%= f.hidden_field :status, :value => order.next_status %>
                 <%= f.submit "mark as #{order.next_status}" %>
               <% end %>
             <% end %> 
-          <% end %>
-        </td>
-        <td>
-          <% if can? :manage, :all %>
-          <%= link_to 'Edit', edit_order_path(order), :class => 'btn btn-mini' %>
+          <%= link_to 'Edit', edit_order_path(order) %>
           <% end %>
         </td>
       </tr>
