@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :authorize
+  before_filter :authorize, :only => [:edit, :update, :delete, :show]
   before_filter :edit_self, :only => [:edit, :update]
 
   def show
@@ -18,8 +18,11 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update_attributes(params[:user])
-    redirect_to user_path(@user)
+    if @user.update_attributes(params[:user])
+      redirect_to user_path(@user), :notice => "User updated."
+    else
+      render 'edit'
+    end
   end
 
   def create

@@ -25,6 +25,7 @@ FactoryGirl.define do
   factory :user do
     full_name Faker::Name.name
     password "foo"
+    password_confirmation "foo"
     username Faker::Name.first_name
     sequence(:email) { |n| "person#{n}@example.com" }
   end

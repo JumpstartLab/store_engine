@@ -60,5 +60,10 @@ describe "Dashboard" do
     it "displays the timestamp for when an order was updated" do
       page.should have_content(order.updated_at)
     end
+
+    it "finds by status" do
+      click_on "Pending"
+      page.should have_content("Filtered Orders")
+    end
   end
 end

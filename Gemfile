@@ -9,6 +9,7 @@ gem 'launchy'
 gem 'stripe'
 gem 'sorcery'
 gem 'carrierwave'
+gem 'simple_form'
 gem 'bcrypt-ruby'
 gem 'nifty-generators', :group => :development
 
