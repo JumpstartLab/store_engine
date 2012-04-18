@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
   before_filter :current_user, only: [:show]
   # before_filter :require_order_or_admin, :only => [:index, :show, :edit, :update]
-  before_filter :require_user_or_admin, only: [:show]
+  before_filter :require_order_user_or_admin, only: [:show]
   before_filter :require_admin, :only => [:destroy]
 
   def index
@@ -16,14 +16,13 @@ class OrdersController < ApplicationController
   end
 
   def show
-    if @order.user_name != "Guest"
-      @user = @order.user
-    end
   end
 
   def destroy
     session[:return_to] = request.referrer
     @order.update_attribute(:status, "cancelled")
+    @order.set_action_time("cancelled")
+    session[:order_id] = nil if @order.user == current_user
     notice = "Order Cancelled"
     redirect_to session[:return_to], notice: notice
   end

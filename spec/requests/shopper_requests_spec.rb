@@ -256,7 +256,8 @@ describe "shopper" do
     it "cannot see another user's orders" do
       product = Fabricate(:product)
       order = Fabricate(:order)
-      order.update_attribute(:user_id, other_user.id)
+      order.update_attributes(user_id: other_user.id, billing_method_id: nil,
+                              shipping_address_id:nil)
       li = Fabricate(:line_item)
       li.update_attributes( { product_id: product.id, order_id: order.id } )
       visit order_path(order)

@@ -188,6 +188,7 @@ describe "admin" do
   context "dashboard" do
     context "filtering" do
       let!(:shipping) { Fabricate(:shipping_address) }
+      let!(:billing) { Fabricate(:billing_method) }
       let!(:orders) {
         orders = []
         6.times do |i|
@@ -247,6 +248,20 @@ describe "admin" do
         click_link_or_button "Admin View"
         click_link_or_button "Dashboard"
         click_link_or_button "Cancel"
+        page.should have_content Order.last.action_time
+        visit "/"
+        click_link_or_button "User View"
+        click_link_or_button "Add to Cart"
+        visit order_path(Order.last)
+        click_link_or_button "Add a Billing Method"
+        add_billing(billing)
+        click_link_or_button "Add a Shipping Method"
+        add_shipping(shipping)
+        click_link_or_button "Admin View"
+        click_link_or_button "Dashboard"
+        click_link_or_button "Mark as 'paid'"
+        click_link_or_button "Mark as 'shipped'"
+        page.should have_content Order.last.action_time
       end
     end
   end

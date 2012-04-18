@@ -30,8 +30,8 @@
         false
       end
     else
-      update_attribute(:status, next_transition)
       set_action_time(next_transition)
+      update_attribute(:status, next_transition)
     end
   end
 
