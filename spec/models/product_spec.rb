@@ -93,4 +93,12 @@ describe Product do
       p.to_param.should == "#{p.id}-#{p.title.downcase.gsub(" ","-")}"
     end
   end
+  describe "#active?" do
+    it "returns true if active and false if not" do
+      p = Fabricate(:product)
+      p.active?.should == true
+      p.update_attribute(:retired, true)
+      p.active?.should == false
+    end
+  end
 end

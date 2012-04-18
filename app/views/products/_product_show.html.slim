@@ -5,7 +5,8 @@ div#product.span8
     h3#name = link_to product.title, product_path(product), id: "product-title"
     .price
       p = number_to_currency(product.price)
-      p = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: session[:order_id], price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success', id: "buy", name: "add-to-cart"
+      - if product.active?
+        p = link_to 'Add to Cart', line_items_path(line_item:{product_id: product.id, order_id: session[:order_id], price: product.price, quantity: 1}), method: :post, :class => 'btn btn-success', id: "buy", name: "add-to-cart"
     p = render partial: "category", collection: product.categories
     p = product.description
   - if admin_view?

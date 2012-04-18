@@ -71,6 +71,6 @@ class Product < ActiveRecord::Base
   end
 
   def active?
-    status == "active" ? true : false
+    !retired
   end
 end
