@@ -11,7 +11,7 @@ StoreEngine::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :category_products, only: :create
 
-  resources :cart_items, only: [:create, :destroy]
+  resources :cart_items, only: [:create, :update, :destroy]
   resource :cart, :only => [:show, :destroy]
   
   match '/signup',  to: 'users#new'

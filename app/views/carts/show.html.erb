@@ -9,7 +9,12 @@
   <% cart.cart_items.each do |cart_item| %>
     <tr id="<%= cart_item.product.id %>_row">
       <td><%= cart_item.title %></td>
-      <td id="<%= cart_item.product.id %>_quant"><%= cart_item.quantity %></td>
+      <td id="<%= cart_item.product.id %>_quant">
+        <%= form_for(cart_item, url: cart_item_path(cart_item)) do |f| %>
+          <%= f.number_field :quantity, :min => 1, :id => "quantity" %>
+          <%= f.submit %>
+        <% end %>
+      </td>
       <td id="product_<%= cart_item.product.id %>_remove"><%= link_to "Remove Item", cart_item_path(cart_item), :method => :delete %></td>
       <td id="<%= cart_item.product.id %>_total"><%= cart_item.total %></td>
     </tr>
