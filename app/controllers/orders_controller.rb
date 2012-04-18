@@ -1,6 +1,9 @@
 require 'date'
 
 class OrdersController < ApplicationController
+  before_filter :find_order, :only => [:show, :update]
+  before_filter :admin_or_not_found, :only => :update
+
   def index
     unless logged_in?
       not_found
@@ -32,8 +35,19 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
     @shipping_address = @order.shipping_address
     @billing_address = @order.billing_address
+  end
+
+  def update
+    previous_status_name = @order.status.name
+    @order.update_status
+    redirect_to admin_dashboard_index_path(:status => previous_status_name)
+  end
+
+  private
+
+  def find_order
+    @order = Order.find(params[:id])
   end
 end 
