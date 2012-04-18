@@ -41,18 +41,15 @@
         <td><%= distance_of_time_in_words_to_now(order.created_at) %></td>
         <td><%= order.status %></td>
         <td><%= sprintf("$%0.02f", order.total) %></td>
-          <% if can? :update, order %> 
+        <td>
+          <% if can? :manage, :all %> 
             <% if order.next_status %>
               <%= form_for order do |f| %>
                 <%= f.hidden_field :status, :value => order.next_status %>
                 <%= f.submit "mark as #{order.next_status}" %>
               <% end %>
             <% end %> 
-          <% end %>
-        </td>
-        <td>
-          <% if can? :manage, :all %>
-          <%= link_to 'Edit', edit_order_path(order), :class => 'btn btn-mini' %>
+          <%= link_to 'Edit', edit_order_path(order) %>
           <% end %>
         </td>
       </tr>
