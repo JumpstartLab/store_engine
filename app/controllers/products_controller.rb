@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
 
-  # before_filter :authorize, only: [:edit, :update]
-  before_filter :admin_authorize, only: [:destroy, :edit, :update, :create, :new]
-  
+  before_filter :admin_authorize,
+                only: [:destroy, :edit, :update, :create, :new]
+
   def index
     if params[:search] && params[:search].length > 0
       @products = Product.active.find_by(params[:search])

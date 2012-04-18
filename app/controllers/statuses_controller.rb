@@ -1,5 +1,4 @@
 class StatusesController < ApplicationController
-  
   before_filter :admin_authorize
 
   def show

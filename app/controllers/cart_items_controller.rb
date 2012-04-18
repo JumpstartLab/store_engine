@@ -2,15 +2,19 @@ class CartItemsController < ApplicationController
   def create
     product = Product.find_by_id(params[:product_id])
     if product.activity == true
-      @cart.add_or_increment_by_product(params[:product_id])
-      
+      increment
+    else
+      redirect_to product_path(product),
+      :alert => "Sorry, this product is retired."
+    end
+  end
+
+  def increment
+    @cart.add_or_increment_by_product(params[:product_id])
       respond_to do |format|
         format.html { redirect_to cart_path, notice: 'Added to cart.' }
         format.js
       end
-    else
-      redirect_to product_path(product), :alert => "Sorry, this product is retired."
-    end
   end
 
   def edit
@@ -25,7 +29,7 @@ class CartItemsController < ApplicationController
   end
 
   def delete_on_zero
-    if @cart_item.quantity == 0 
+    if @cart_item.quantity == 0
       @cart_item.destroy
     end
   end

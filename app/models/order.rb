@@ -1,15 +1,17 @@
 class Order < ActiveRecord::Base
-  attr_accessible :status, :total_price, :user, :products, :address_attributes, :address, :address_id
+  attr_accessible :status, :total_price, :user,
+                  :products, :address_attributes,
+                  :address, :address_id
   attr_accessor :stripe_card_token
   attr_accessible :stripe_card_token
 
   has_many :order_items
   has_many :products, through: :order_items
-  
+
   belongs_to :user
   belongs_to :address
   has_one :status
-  
+
   scope :pending, includes(:status).where("statuses.name" => "pending")
   scope :paid, includes(:status).where("statuses.name" => "paid")
   scope :shipped, includes(:status).where("statuses.name" => "shipped")
@@ -23,7 +25,7 @@ class Order < ActiveRecord::Base
       result += order.total_price
     end
   end
-  
+
   def total_price
     order_items.inject(0) do |result, item|
       result += item.unit_price * item.quantity
@@ -45,27 +47,27 @@ class Order < ActiveRecord::Base
 
       save!
     end
-    rescue Stripe::InvalidRequestError => e
-    logger.error "Stripe error while creating customer: #{e.message}"
+    rescue Stripe::InvalidRequestError => error
+    logger.error "Stripe error while creating customer: #{error.message}"
     errors.add :base, "There was a problem with your credit card."
   end
 
   def create_stripe_user(token)
     customer = Stripe::Customer.create(description: user.email,
       card: token)
-    u = User.find_by_id(user.id)
-    u.stripe_id = customer.id
-    u.save(:validate => false)
+    stripe_user = User.find_by_id(user.id)
+    stripe_user.stripe_id = customer.id
+    stripe_user.save(:validate => false)
   end
 
   def add_order_items_from(cart)
-  	cart.cart_items.each do |item|
-  		oi = OrderItem.new(	quantity: item.quantity,
-  							unit_price: item.individual_price,
-  							order_id: self.id)
-  		oi.product = item.product
-  		oi.save
-  	end
+    cart.cart_items.each do |item|
+      oi = OrderItem.new( quantity: item.quantity,
+                unit_price: item.individual_price,
+                order_id: self.id)
+      oi.product = item.product
+      oi.save
+    end
   end
 
   def current_status
