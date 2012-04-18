@@ -1,0 +1,6 @@
+= simple_form_for [@product, @rating] do |f|
+  %legend Edit Rating
+  = f.input :name
+  = f.input :body, :as => "string"
+  = f.input :rating, :collection => 1..5, :as => :radio_buttons, :class => "star"
+  = f.submit :class => "btn btn-primary controls"

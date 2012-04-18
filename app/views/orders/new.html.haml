@@ -17,7 +17,7 @@
         = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"}
     #stripe_error
       %noscript JavaScript is not enabled and is required for this form. First enable it in your web browser settings.
-    %legend Billing Information & Shipping Information
+    %legend Billing & Shipping Address
     = f.fields_for :user do |user|
       .control-group
         = label_tag :street

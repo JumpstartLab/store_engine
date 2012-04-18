@@ -22,14 +22,34 @@ class Product < ActiveRecord::Base
   has_many :product_ratings
   belongs_to :sale
 
+  def average_rating
+    pr = product_ratings
+    if !pr.empty?
+      round_method((pr.sum(&:rating) / pr.count.to_f).round(1))
+    else
+      0
+    end
+  end
+
+  def round_method(value)
+    (value*2).round / 2.0
+  end
+
+  def star_rating
+    (average_rating * 2).to_i
+  end
+
   def name=(old_name)
     write_attribute(:name, old_name.strip)
   end
+
   def avatar_from_url
     self.avatar
   end
   def avatar_from_url=(url)
-    self.avatar = open(url) if url.start_with?("http://") or url.start_with?("https://")
+    if url.start_with?("http://") or url.start_with?("https://")
+      self.avatar = open(url)
+    end
   end
   
   def price

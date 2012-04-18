@@ -12,7 +12,7 @@ StoreEngine::Application.routes.draw do
     end
   end 
   resources :products do
-    resources :product_ratings, :only => [:create, :destroy]
+    resources :product_ratings
   end
   resources :orders do
     member do
@@ -34,6 +34,7 @@ StoreEngine::Application.routes.draw do
   end
 
   root :to => "products#index"
+  match "/code" => redirect("https://github.com/MikeSilvis/store_engine")
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
