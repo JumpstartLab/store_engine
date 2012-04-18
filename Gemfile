@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'growl'
 gem 'guard-rspec'
@@ -25,6 +24,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+group :development do
+  gem 'sqlite3'
+end
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
