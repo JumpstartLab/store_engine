@@ -31,7 +31,6 @@ class Order < ActiveRecord::Base
 
   def save_with_payment
     if valid?
-      # customer = Stripe::Customer.create(description: user.email, card:stripe_card_token)
       create_stripe_user(stripe_card_token) if !user.stripe_id
 
       Stripe::Charge.create(
