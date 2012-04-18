@@ -45,10 +45,6 @@ describe Order do
       page.should have_content(order.status)
     end
 
-    it "includes pay type" do
-      page.should have_content(order.pay_type)
-    end
-
     it "includes the product" do
       page.should have_content(order_item.product.title)
     end

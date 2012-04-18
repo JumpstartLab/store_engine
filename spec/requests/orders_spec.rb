@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Order do
   let!(:user) { FactoryGirl.create(:user, password: "123") }
   let!(:admin_user) { FactoryGirl.create(:user, password: "123", admin: true) }
-  let!(:product) { Product.create(title: "title", price: 2, description: "desc") }
+  let!(:product) { Product.create(title: "title", price: 2, description: "desc", upc: "072140002282") }
   let!(:order) { FactoryGirl.create(:order) }
   let!(:order_item) { OrderItem.create(order: order, product: product, quantity: 1, price: 2) }
   
@@ -46,7 +46,9 @@ describe Order do
         fill_in "order_name", with: "Testing1234"
         fill_in "order_address", with: "1234 fake st"
         fill_in "order_email", with: "testemail@fake.com"
-        page.select("Check", :from => "order_pay_type")
+        fill_in "order_email", with: "testemail@fake.com"
+        fill_in "order_cc_number", with: "1234567890"
+        fill_in "order_cc_expiry", with: "12/12"
         click_button "Place Order"
         visit product_path(product)
         click_on "One-Click Checkout"
@@ -76,10 +78,6 @@ describe Order do
 
       it "includes status" do
         page.should have_content(order.status)
-      end
-
-      it "includes pay type" do
-        page.should have_content(order.pay_type)
       end
 
       it "includes the product" do

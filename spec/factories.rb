@@ -19,7 +19,8 @@ FactoryGirl.define do
     name "Andy"
     email "andy@andy.com"
     address "123 Andy Street, Andy, AK 200001"
-    pay_type "Check"
+    cc_number 1234567890
+    cc_expiry "12/12"
     user
   end
 

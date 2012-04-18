@@ -43,6 +43,13 @@
     </div>
 
     <div class="control-group">
+      <%= f.label :upc, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :upc, :class => 'text_field' %>
+      </div>
+    </div>
+
+    <div class="control-group">
       <%= f.label :retired, :class => 'control-label' %>
       <div class="controls">
         <%= f.check_box :retired, :class => 'check_box' %>
