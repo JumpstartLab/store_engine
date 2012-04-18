@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @cart = Cart.find(params[:cart_id])
+    @cart.destroy
   end
 
   def edit
