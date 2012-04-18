@@ -3,6 +3,6 @@
 #
 # Examples:
 #
-  User.create( name: 'Matt Yoho', email: 'matt.yoho@livingsocial.com', password: 'hungry')
-  User.create( name: 'Jeff', display_name: 'j3', email: 'jeff.casimir@livingsocial.com', password: 'hungry')
-  User.create( name: 'Chad Fowler', display_name: 'SaxPlayer', email: 'chad.fowler@livingsocial.com', password: 'hungry')
+  require './lib/seeder'
+
+  Seeder.build_db
