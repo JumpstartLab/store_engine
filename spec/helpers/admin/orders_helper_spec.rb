@@ -11,7 +11,9 @@ require 'spec_helper'
 #   end
 # end
 describe Admin::OrdersHelper do
-  context "order_actions_by_status(status,id)" do
+
+  
+  context "order_actions_by_status(order)" do
     
   end
 end
