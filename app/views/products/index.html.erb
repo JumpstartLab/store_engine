@@ -30,16 +30,21 @@
   </div>
 </div>
 <% end %>
-
-<p><%= link_to "All Products", products_path %></p>
-<% Category.all.each do |c| %>
-  <%= link_to c.title, category_path(c) %>
+<ul class="nav nav-pills">
+  <li><%= link_to "All Products", products_path %></li>
+  <% Category.all.each do |c| %>
+  <li><%= link_to c.title, category_path(c) %></li>
+  
 <% end %>
 
 
-<ul class="thumbnails">
-  <%= render :partial => "product", :collection => @products %>
 </ul>
-
+<ul class="thumbnails">
+<% @products.each_slice(2) do |items_for_row| %>
+<li class="span6">
+  <%= render :partial => "product", :collection => items_for_row, :as => :product %>
+</li>
+<% end %>
+</ul>
 
  <%= render :partial => "addresses/address", :collection => @addresses %>

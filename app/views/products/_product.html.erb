@@ -1,4 +1,4 @@
- <li class="span3" id="<%= product.id %>"><div class="thumbnail">  
+ <div class="thumbnail" id="<%= product.id %>">
   <%= link_to product.title, product_path(product) %>
     | <%= product.description %> <%= image_tag(product.image_link, 
                                       :width => '100') %>
@@ -18,4 +18,4 @@
           :method => :post, :remote => true, :id => "product_#{product.id}" %>
     |
 </div>
-</li>
+
