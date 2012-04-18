@@ -32,8 +32,9 @@ class OrdersController < ApplicationController
 
   def update
     if @order.status == "pending" && @order.transition
+      link = "<a href=\"#{url_for(@order)}\">View Details</a>"
       notice = "Thank you for purchasing.
-                An email confirmation is on its way.".squish
+                An email confirmation is on its way. #{link}".squish.html_safe
       session[:order_id] = nil
       redirect_to root_url, notice: notice
     elsif @order.status != "pending" && @order.transition

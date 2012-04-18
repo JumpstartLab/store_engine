@@ -6,15 +6,17 @@
       th Product Quantity
       th Unit Price
       th Subtotal
-      th Actions
-      = render partial: "line_item", collection: @order.line_items
+      - if @order.pending?
+        th Actions
+      = render partial: "line_item", collection: @order.line_items, locals:{order: @order}
 
   = render partial: "billing", locals: {order: @order}
   = render partial: "shipping", locals: {order: @order}
 
   h2#subtotal Total: #{ number_to_currency(@order.amount)}
   br/
-  = link_to "Check Out", order_path(@order), method: :put, class: "btn btn-success"
+  - if @order.pending?
+    = link_to "Check Out", order_path(@order), method: :put, class: "btn btn-success"
 -else
   h3 #{"Your Cart is Empty"}
   = link_to "Browse Products", root_path, class: "btn btn-success"

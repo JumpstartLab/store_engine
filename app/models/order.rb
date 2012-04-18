@@ -14,6 +14,10 @@ class Order < ActiveRecord::Base
     created_at.strftime("%B %d at %l:%M %p")
   end
 
+  def pending?
+    status == "pending"
+  end
+
   def user
     return nil if self.user_id == nil
     User.find(self.user_id)

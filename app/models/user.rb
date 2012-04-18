@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     pending_order ? true : false
   end
 
+  def has_order?
+    orders.any?
+  end
+
   def billing_method_id
     billing_method.id
   end

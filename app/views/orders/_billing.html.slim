@@ -3,6 +3,7 @@
   h2 Billing Method
   | Credit Card ending in: #{order.credit_card_last_four}
   br/
-  = link_to "Change Billing Method", edit_billing_method_path(billing), class: "btn-mini btn"
+  - if order.pending?
+    = link_to "Change Billing Method", edit_billing_method_path(billing), class: "btn-mini btn"
 - else
   = link_to "Add a Billing Method", new_billing_method_path, class: "btn-mini btn"
