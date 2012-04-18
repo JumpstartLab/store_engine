@@ -1,6 +1,30 @@
 require 'spec_helper'
 
-describe "Using the shopping cart" do 
+describe "Using the shopping cart" do
+
+  context "when I'm on the main cart page" do
+
+    # it "has a link to return to the product list" do
+    #   page.should have_selector("a#to_products")
+    # end
+
+    context "and the cart contains at least one product" do
+
+      let(:product) { Fabricate(:product, :price => 50) } 
+      before(:each) { visit product_path(product)
+                      click_link_or_button "Add to Cart"
+                    }
+      it "has a button to remove the product from the cart" do
+        page.should have_selector("#product_#{product.id}_remove")
+      end
+
+      it "can remove a product from the cart" do
+        pending "Something funky with passing values going on here."
+        # within("##{}")
+        click_link_or_button "Remove Item"
+      end
+    end
+  end
   context "When I'm on a product page" do
     let(:product) { Fabricate(:product, :price => 10) }
 

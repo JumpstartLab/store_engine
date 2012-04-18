@@ -3,20 +3,24 @@
   <tr>
     <th>Item</th>
     <th>Quantity</th>
+    <th>&nbsp;</th>
     <th>Total Price</th>
   </tr>
   <% cart.cart_items.each do |cart_item| %>
-    <tr>
+    <tr id="<%= cart_item.product.id %>_row">
       <td><%= cart_item.title %></td>
       <td id="<%= cart_item.product.id %>_quant"><%= cart_item.quantity %></td>
+      <td id="product_<%= cart_item.product.id %>_remove">Remove Item</td>
       <td id="<%= cart_item.product.id %>_total"><%= cart_item.total %></td>
     </tr>
   <% end %>
   <tr>
     <td>&nbsp;</td>
-    <td>Total:</td>
-    <td id="total"><%= cart.total %></td>
+    <th>&nbsp;</th>
+    <td><strong>Total:</strong></td>
+    <td id="total"><strong><%= cart.total %></strong></td>
   </tr>
 </table>
 <%= link_to "Place Order", new_order_path(:cart_id => cart, :current_user_id => current_user), :class => "btn", :id => "place_order"%>
 <%= link_to "Destroy Cart", cart_path(cart), :method => :delete, :class => "btn btn-danger" %>
+<%= link_to "Continue Shopping", products_path, :class => "btn", :id => "to_products" %>
