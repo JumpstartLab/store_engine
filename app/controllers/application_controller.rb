@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_last_page(message=nil)
-    last_page = session[:last_page] || params[:last_page]
+    last_page = params[:last_page] || session[:last_page]
     if last_page
       redirect_to(last_page, :notice => message)
     else 

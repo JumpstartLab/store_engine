@@ -14,6 +14,8 @@ StoreEngine::Application.routes.draw do
   resources :orders, only: [:index, :new, :show, :create]
   resources :credit_cards, only: [:new, :create, :index]
 
+  resources :shipping_details, only: [:new, :create, :index]
+
   namespace :admin do
     resources :products
     resources :categories

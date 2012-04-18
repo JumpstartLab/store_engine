@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   has_many :orders
   has_many :credit_cards
+  has_many :shipping_details
   has_one :cart
 
   def add_order(order)

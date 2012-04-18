@@ -9,6 +9,14 @@
       <li>Status: <%= @order.status %></li>
     </ul>
   </div>
+
+  <div class="span3" style="background-color: #eee; padding: 10px">
+    <h2>Your Shipping Address</h2>
+    <ul class="unstyled">
+      <li><%= raw(formatted_shipping_address) %></li>
+    </ul>
+  </div>
+
 </div>
 
 <br />
