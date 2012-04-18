@@ -146,4 +146,16 @@ u5 = User.create!(full_name: "Jeff Casimir", email: "jeff.casimir@livingsocial.c
 u6 = User.create!(full_name: "Chad Fowler", email: "chad.fowler@livingsocial.com", display_name: "sax_player", password: "hungry", password_confirmation: "hungry")
 u6.update_attribute(:admin, true)
 
-
+o = []
+100.times do |i|
+o[i] = Order.create!(billing_address: "#{(rand * 10000).to_i} any street", 
+                   shipping_address: "Home Sweet Home",
+                   email_address: "Fakey Email #{i}",
+                   status: 'pending',
+                   credit_card: "Bogus Card # #{i}")
+     5.times do 
+          o[i].order_items.create!(product_id: (rand * 20).to_i + 1,
+                                  quantity: (rand * 10).to_i + 1)
+     end
+     o[i].update_attribute(:status, Order::STATUSES.sample)
+end
