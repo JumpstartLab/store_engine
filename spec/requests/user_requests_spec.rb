@@ -35,9 +35,15 @@ describe User do
 
   context "with role admin can" do
     let(:address) { Fabricate(:address) }
-    let!(:order) { Fabricate(:order, :user_id => user.id, :address_id => address.id) }
     let!(:category) { Fabricate(:category) }
     let!(:product) { Fabricate(:product) }
+    let!(:order) {
+      Fabricate(
+        :order,
+        :user_id => user.id,
+        :address_id => address.id
+      )
+    }
 
     before(:each) do
       user.set_role('admin')
@@ -57,7 +63,7 @@ describe User do
         fill_product_form
 
         expect {
-         click_button "Create Product" 
+         click_button "Create Product"
         }.to change{ Product.all.count }.by(1)
       end
 
@@ -154,7 +160,7 @@ describe User do
       click_link "Add to Cart"
       login_as(user)
     end
-    
+
     it "preserves the contents of my cart" do
       visit cart_path
       page.should have_content(product.title)
@@ -174,8 +180,8 @@ describe User do
       it "cannot visit the new product page" do
         login_as(user.set_role(nil))
         visit new_admin_product_path
-
-        page.should have_content("Access denied. This page is for administrators only.")
+        error = "Access denied. This page is for administrators only."
+        page.should have_content(error)
         page.should have_content("Products")
       end
     end
@@ -185,7 +191,8 @@ describe User do
         login_as(user.set_role(''))
         visit new_admin_product_path
 
-        page.should have_content("Access denied. This page is for administrators only.")
+        error = "Access denied. This page is for administrators only."
+        page.should have_content(error)
         page.should have_content("Products")
       end
     end
@@ -199,7 +206,8 @@ describe User do
         login_as(user)
         visit new_admin_product_path
 
-        page.should have_content("Access denied. This page is for administrators only.")
+        error = "Access denied. This page is for administrators only."
+        page.should have_content(error)
         page.should have_content("Products")
       end
     end

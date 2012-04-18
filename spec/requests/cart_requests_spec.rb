@@ -16,13 +16,13 @@ describe Cart do
 
       it "takes me to a billing page" do
         click_link "Checkout"
-        page.should have_content("Billing Information")  
+        page.should have_content("Billing Information")
       end
 
       it "creates a pending order" do
         count = Order.find_all_by_status("pending").count
         expect {
-          click_link "Checkout"  
+          click_link "Checkout"
         }.to change{ Order.find_all_by_status("pending").count }.by(1)
       end
 
@@ -37,14 +37,14 @@ describe Cart do
         it "creates a credit card" do
           fill_billing_form
           expect {
-            click_button "Submit" 
+            click_button "Submit"
           }.to change{ CreditCard.count }.by(1)
         end
 
         it "creates an address" do
           fill_billing_form
           expect {
-            click_button "Submit" 
+            click_button "Submit"
           }.to change{ Address.count }.by(1)
         end
       end
@@ -63,7 +63,7 @@ describe Cart do
         page.should have_content(product.title)
       end
     end
-  end 
+  end
 
   context "is linked from" do
     it "the products page" do

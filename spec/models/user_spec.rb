@@ -15,7 +15,7 @@ describe User do
 
   it "can't be created without a unique email address" do
     user
-    meguser = User.new(:name => "Meg", 
+    meguser = User.new(:name => "Meg",
       :email => "peter.griffin@livingsocial.com",
       :username => "unloved")
     meguser.should_not be_valid
@@ -24,5 +24,5 @@ describe User do
   it "can't be created with an invalid username" do
     user.username = "a"
     user.should_not be_valid
-  end  
+  end
 end

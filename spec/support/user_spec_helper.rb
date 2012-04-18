@@ -27,8 +27,10 @@ module UserHelper
     fill_in "Name", :with => user.name
     fill_in "Username", :with => user.username
     fill_in "Email", :with => user.email
-    fill_in "Password", :with => Fabricate.attributes_for(:user)[:password]
-    fill_in "Password confirmation", :with => Fabricate.attributes_for(:user)[:password]
+    fill_in "Password",
+      :with => Fabricate.attributes_for(:user)[:password]
+    fill_in "Password confirmation",
+      :with => Fabricate.attributes_for(:user)[:password]
   end
 
   def login_as(user)

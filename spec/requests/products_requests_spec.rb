@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Product do
   let!(:products) do
     [
-      Fabricate(:product), 
-      Fabricate(:product), 
+      Fabricate(:product),
+      Fabricate(:product),
       Fabricate(:product)
     ]
   end
@@ -26,7 +26,7 @@ describe Product do
     #   products.each do |product|
     #     page.should have_content(product.price)
     #   end
-    # end 
+    # end
 
     it "has links to show each product" do
       products.each do |product|

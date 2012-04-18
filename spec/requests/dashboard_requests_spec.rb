@@ -5,8 +5,8 @@ describe "Dashboard" do
   let (:product) { Fabricate(:product) }
   let (:cart) { Fabricate(:cart) }
   let (:order) { Fabricate(:order) }
-  let! (:pending_order) { Fabricate(:order, :status => "pending") } 
-  let! (:paid_order) { Fabricate(:order, :status => "paid") }     
+  let! (:pending_order) { Fabricate(:order, :status => "pending") }
+  let! (:paid_order) { Fabricate(:order, :status => "paid") }
   let! (:shipped_order) { Fabricate(:order, :status => "shipped") }
   let! (:cancelled_order) { Fabricate(:order, :status => "cancelled") }
   let! (:returned_order) { Fabricate(:order, :status => "returned") }
@@ -21,14 +21,15 @@ describe "Dashboard" do
     Order.statuses.each do |status|
       find("#orders_by_status").should have_content("#{status}")
     end
-    find(".#{order.status}_total").should have_content("#{Order.find_all_by_status(order.status).count}")
+    count_by_status = Order.find_all_by_status(order.status).count
+    find(".#{order.status}_total").should have_content(count_by_status)
   end
 
   it "click links for each order" do
     page.should have_link("#{order.id}", :href => admin_order_path(order))
   end
 
-  it "filter by status type" do    
+  it "filter by status type" do
     visit admin_dashboard_path
     click_link "pending"
     page.should_not have_link("#{paid_order.id}")
