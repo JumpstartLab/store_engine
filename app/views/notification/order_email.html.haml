@@ -6,4 +6,14 @@
     %h1
       Order Placed - #{@order.id}
     %p
-      Your order has been placed!
+      Your order has been placed! Products ordered:
+    %p
+      %table
+      - @order.order_products.each do |op|
+        %tr
+          %td = op.product.first.name
+          %td = op.quantity
+    %p
+      Use the link below to see your order details:
+    %p
+      = link_to 'Order Details', track_orders_path(:id => @order.unique_url)
