@@ -31,7 +31,9 @@ class ShippingAddressesController < ApplicationController
   def try_to_save_shipping
     if @shipping_address.save
       notice = "Shipping Address Successfully Added"
-      @shipping_address.update_attribute(:user_id, current_user.id) if logged_in?
+      if logged_in?
+        @shipping_address.update_attribute(:user_id, current_user.id)
+      end
       if session[:order_id]
         order = Order.find(session[:order_id])
         order.update_attribute(:shipping_address_id, @shipping_address.id)
