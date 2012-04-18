@@ -1,7 +1,3 @@
-<% if notice %>
-<p id="notice"><%= notice %></p>
-<% end %>
-
 <h2>Your Cart </h2>
 <h3>Cart Total: <%= sprintf("$%0.02f", @cart.total_price) %></h3>
 <table class="table">
@@ -43,5 +39,6 @@
 <% if can? :create, Order %>
   <%= link_to 'Checkout', new_order_path, method: :get, :class => 'btn' %>
 <% else %>
-    <%= link_to 'Create an Account to Checkout', new_user_path(cart_id: current_cart.id), method: :get, :class => 'btn' %>
+    <%= link_to 'Login to Checkout', new_session_path, method: :get, :class => 'btn' %>
+    <%= link_to 'Need an Account?', new_user_path(cart_id: current_cart.id), method: :get, :class => 'btn' %>
   <% end %>

@@ -18,9 +18,14 @@
     <%=f.text_field :name, size: 40 %>
   </div>
   <div class="field">
-    <%=f.label "Ship to " + :address.to_s %>
+    <%=f.label "Billing " + :address.to_s %>
     <br />
     <%=f.text_area :address, rows: 3, cols: 40 %>
+  </div>
+  <div class="field">
+    <%=f.label :shipping_address.upcase.to_s + " (Optional)" %>
+    <br />
+    <%=f.text_area :shipping_address, rows: 3, cols: 40 %>
   </div>
   <div class="field">
     <%=f.label "Confirmation " + :email.to_s %>
@@ -28,10 +33,16 @@
     <%=f.email_field :email, size: 40 %>
   </div>
   <div class="field">
-    <%=f.label :pay_type %>
+    <%=f.label "Credit Card Number" %>
     <br />
-    <%=f.select :pay_type, Order::PAYMENT_TYPES, prompt: 'select a payment method' %>
+    <%=f.text_field :cc_number, size: 40 %>
   </div>
+  <div class="field">
+    <%=f.label "Credit Card Expiry" %>
+    <br />
+    <%=f.text_field :cc_expiry, size: 40 %>
+  </div>
+  
   <div class="actions">
     <%= f.submit "Place Order" %>
   </div>

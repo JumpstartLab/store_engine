@@ -9,6 +9,9 @@ class CreateOrders < ActiveRecord::Migration
       t.string :pay_type
       t.datetime :shipped_at
       t.datetime :cancelled_at
+      t.string :shipping_address
+      t.string :cc_number
+      t.string :cc_expiry
       t.timestamps
     end
   end

@@ -2,9 +2,9 @@ Product.delete_all
 CategoryAssignment.delete_all
 Category.delete_all
 
-chad = User.create(full_name: "Chad Fowler", email: "chad.fowler@livingsocial.com", password: "hungry", user_name: "SaxPlayer")
-jeff = User.create(full_name: "Jeff", email: "jeff.casimir@livingsocial.com", password: "hungry", user_name: "j3")
-matt = User.create(full_name: "Matt Yoho", email: "matt.yoho@livingsocial.com", password: "hungry")
+chad = User.create(full_name: "Chad Fowler", email: "demo09+chad@jumpstartlab.com", password: "hungry", user_name: "SaxPlayer")
+jeff = User.create(full_name: "Jeff", email: "demo09+jeff@jumpstartlab.com", password: "hungry", user_name: "j3")
+matt = User.create(full_name: "Matt Yoho", email: "demo09+matt@jumpstartlab.com", password: "hungry")
 
 chad.update_attribute(:admin, true)
 

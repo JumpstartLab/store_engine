@@ -1,15 +1,17 @@
 class Order < ActiveRecord::Base
-  PAYMENT_TYPES = ["Check","Credit Card", "Purchase Order"]
   STATUSES = ["shipped","cancelled", "paid", "returned", "pending"]
 
   has_many :order_items
   belongs_to :user
   attr_accessible :user_id, :user, :status, :total,
                   :pay_type, :name, :address, :email,
-                  :order_items, :cancelled_at, :shipped_at
+                  :order_items, :cancelled_at, :shipped_at,
+                  :shipping_address, :cc_number, :cc_expiry
 
   validates :name, :address, :email, presence: true
-  validates :pay_type, inclusion: PAYMENT_TYPES
+  validates_numericality_of :cc_number
+  validates :cc_number, :presence => true
+  validates :cc_expiry, :presence => true
   validates :status, :presence => true
   validates :user_id, :presence => true
 

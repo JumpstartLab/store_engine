@@ -64,9 +64,11 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         @order.add_contents_of_cart(@cart, @order)
+        @order.status = "paid"
+        @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to products_path,
+        format.html { redirect_to orders_path,
                                   notice: "Thank you for your order" }
         format.json { render json: @order,
                              status: :created,

@@ -9,7 +9,7 @@ class Ability
       can :manage, LineItem
       can :manage, Cart
       can :manage, OrderItem, :user_id => user.id
-      can :manage, Order
+      can :manage, Order, :user_id => user.id
 
     else
       can :read, Product
