@@ -39,20 +39,6 @@ class Cart < ActiveRecord::Base
     end
   end
 
-  #better name? transfer cart to order
-  def assign_cart_to_order_and_destroy(order)
-    if has_products?
-      order_products = cart_products.collect do |cart_prod|
-        # raise cart_prod.price.inspect
-        OrderProduct.new(:order_id => order.id, :price_cents => cart_prod.price_in_cents,
-                         :product_id => cart_prod.product_id,
-                         :quantity => cart_prod.quantity)
-      end
-      order.order_products = order_products
-    end
-    destroy
-  end
-
   def remove_product(product)
     self.products.delete(product)
   end

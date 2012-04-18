@@ -9,6 +9,7 @@ class Order < ActiveRecord::Base
   has_many :products, :through => :order_products
   has_one :order_status, :dependent => :destroy
   validates_presence_of :user_id
+  validates_presence_of :order_products
 
   #after_initialize... always runs even when recalling from database. check if order_status is nil?
   #before_create... only happens once.
@@ -28,6 +29,16 @@ class Order < ActiveRecord::Base
 
   def mark_as_paid
     self.order_status.update_attributes(:status => 'paid')
+  end
+
+  def build_order_from_cart(cart)
+    if cart.has_products?
+      cart.cart_products.each do |cart_prod|
+        self.order_products.build(:price_cents => cart_prod.price_in_cents,
+                                  :product_id => cart_prod.product_id,
+                                  :quantity => cart_prod.quantity)    
+      end
+    end
   end
 
   def charge(cart)
