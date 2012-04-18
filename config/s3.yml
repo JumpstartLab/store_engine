@@ -1,0 +1,12 @@
+development:
+  bucket: eHipster
+  access_key_id: AKIAJTVTAXB4H3NTYECA
+  secret_access_key: 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
+test:
+  bucket: eHipster_test
+  access_key_id: AKIAJTVTAXB4H3NTYECA
+  secret_access_key: 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
+production:
+  bucket: eHipster
+  access_key_id: AKIAJTVTAXB4H3NTYECA
+  secret_access_key: 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

@@ -15,6 +15,8 @@ gem 'jquery-star-rating-rails'
 gem "nested_form"
 gem 'twilio-ruby'
 gem 'will_paginate'
+gem 'aws-s3', :require => 'aws/s3'
+gem 'aws-sdk'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -9,10 +9,13 @@ class Product < ActiveRecord::Base
   validates_numericality_of :price_in_cents, :greater_than => 0
   validates_uniqueness_of :name, :case_sensitive => false
 
-  has_attached_file :avatar, :styles => {
-                                          :medium => "300x300>",
-                                          :thumb => "100x100>"
-                                        }
+  has_attached_file :avatar, 
+      :storage => :s3,
+      :s3_credentials => "#{Rails.root}/config/s3.yml",
+      :styles => {
+                    :medium => "300x300>",
+                    :thumb => "100x100>"
+                 }
 
   has_many :category_products
   has_many :categories, :through => :category_products
