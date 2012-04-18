@@ -70,7 +70,7 @@ describe "Products" do
       page.should have_content("Not an admin")
     end
 
-    it "allows admines to create products" do
+    it "allows admins to create products" do
       login(admin_user)
       visit(new_product_path)
       page.should have_content("New Product")

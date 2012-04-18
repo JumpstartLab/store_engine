@@ -4,5 +4,6 @@ class DashboardController < ApplicationController
 
   def show
     @orders = Order.all
+    @categories = Category.all
   end
 end
