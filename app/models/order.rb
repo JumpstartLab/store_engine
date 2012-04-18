@@ -20,4 +20,18 @@ class Order < ActiveRecord::Base
   def display_date
     created_at.strftime("%m/%d/%Y - %I:%S %p")
   end
+
+  def update_status
+    case status.name
+    when StoreEngine::Status::PENDING
+      update_attributes(:status => 
+                        Status.find_by_name(StoreEngine::Status::CANCELLED))
+    when StoreEngine::Status::SHIPPED
+      update_attributes(:status => 
+                        Status.find_by_name(StoreEngine::Status::RETURNED))
+    when StoreEngine::Status::PAID
+      update_attributes(:status => 
+                        Status.find_by_name(StoreEngine::Status::SHIPPED))
+    end
+  end
 end
