@@ -27,6 +27,7 @@ class BillingMethodsController < ApplicationController
       notice = 'Please input a valid billing method'
       render :edit
     end
+    redirect_to session[:return_to], notice: notice
   end
 
   private
