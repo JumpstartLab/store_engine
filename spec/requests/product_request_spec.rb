@@ -3,7 +3,7 @@
     describe '#index' do
       it "displays an index of existing products" do
         @product = Fabricate(:product)
-        visit products_path
+        visit root_path
         page.should have_content @product.name
       end
     end
