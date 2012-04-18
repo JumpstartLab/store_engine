@@ -20,11 +20,6 @@
       <th>ID</th>
       <th>Billed to</th>
       <th>Shipped to</th>
-
-      <% if can? :manage, :all %>
-        <th>ID</th>
-        <th>Name</th>
-      <% end %>
       <th>Created</th>
       <th>Status</th>
       <th>Total</th>
@@ -50,7 +45,6 @@
                 <%= f.submit "mark as #{order.next_status}" %>
               <% end %>
             <% end %> 
-          <%= link_to 'Edit', edit_order_path(order) %>
           <% end %>
         </td>
       </tr>
