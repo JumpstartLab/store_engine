@@ -2,19 +2,12 @@ class CreditCard < ActiveRecord::Base
   attr_accessible :credit_card_type, :last_four, :exp_month, :exp_year, :stripe_customer_token, :user_id, :default_card
   attr_accessor :stripe_card_token
   validates_presence_of :user_id
-  # validates :single_default 
+  before_save :set_to_default
   belongs_to :user
 
-  # def single_default
-  #   if User.find(self.user_id).credit_cards.find_by_default_card(true)
-  #     errors.add(:card_default, "Can select only one default")
-  #   end
-  # end
-
-  def initialize(user)
-    super()
-    self.user_id = user.id
-    self.card_default = true if user.credit_cards.empty?
+  def set_to_default
+    user = User.find(self.user_id)
+    self.default_card = true unless user.credit_cards.find_by_default_card(true)
   end
 
   def add_details_from_stripe_card_token(stripe_card_token)
@@ -23,7 +16,7 @@ class CreditCard < ActiveRecord::Base
   end
 
   def stripe_get_customer_token(stripe_card_token)
-    Stripe::Customer.create( description: "Mittenberry Customer ##{user.id}",
+    Stripe::Customer.create( description: "Mittenberry Customer ##{self.user.id}",
                                       card: stripe_card_token)
 
   rescue Stripe::InvalidRequestError => e

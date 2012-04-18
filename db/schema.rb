@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417222656) do
+ActiveRecord::Schema.define(:version => 20120418025251) do
 
   create_table "cart_products", :force => true do |t|
     t.integer  "cart_id"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(:version => 20120417222656) do
     t.string   "exp_month"
     t.string   "exp_year"
     t.string   "stripe_customer_token"
-    t.boolean  "card_default",          :default => false
+    t.boolean  "default_card",          :default => false
   end
 
   add_index "credit_cards", ["user_id"], :name => "index_credit_cards_on_user_id"
