@@ -9,6 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :permission,          :default => 1
       t.integer :active,              :default => 1
       t.string :stripe_id
+      t.string :phone_number
 
       t.timestamps
     end

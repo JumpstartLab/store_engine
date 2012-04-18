@@ -44,6 +44,7 @@ class OrdersController < ApplicationController
         cookies[:cart_id] = nil
 
         Notification.order_email(current_user, order).deliver
+        current_user.text("Your order has been placed! You bought: #{order.products.map(&:name).join(', ')} - Total: #{order.total_price_in_dollars}")
 
         redirect_to order_path(order), 
           :notice => "Congrats on giving us your money"

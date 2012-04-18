@@ -100,6 +100,8 @@ GEM
     jquery-star-rating-rails (0.0.1)
       rails (>= 3.1.0)
     json (1.6.6)
+    jwt (0.1.4)
+      json (>= 1.2.4)
     launchy (2.0.5)
       addressable (~> 2.2.6)
     mail (2.4.4)
@@ -204,6 +206,10 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
+    twilio-ruby (3.6.0)
+      builder (>= 2.1.2)
+      jwt (>= 0.1.2)
+      multi_json (>= 1.0.3)
     tzinfo (0.3.32)
     uglifier (1.2.4)
       execjs (>= 0.3.0)
@@ -244,4 +250,5 @@ DEPENDENCIES
   sorcery
   sqlite3
   stripe
+  twilio-ruby
   uglifier (>= 1.0.3)

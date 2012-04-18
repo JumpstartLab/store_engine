@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20120416205314) do
     t.integer  "permission",       :default => 1
     t.integer  "active",           :default => 1
     t.string   "stripe_id"
+    t.string   "phone_number"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
   end
