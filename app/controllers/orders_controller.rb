@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @cart = Cart.find(params[:cart_id])
-    @cart.destroy
   end
 
   def edit
@@ -21,6 +20,7 @@ class OrdersController < ApplicationController
 
   def create
     order = Order.create_order_from_cart(cart, current_user)
+    cart.destroy
     redirect_to order_path(order)
   end
 
