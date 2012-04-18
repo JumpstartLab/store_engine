@@ -13,27 +13,9 @@ describe Product do
     product.should_not be_valid
   end
 
-  it "can be created with a blank price" do
+  it "creates with a 0 price if price is blank" do
     product.price = ""
-    product.should_not be_valid
-  end
-
-  it "must have a unique title" do
-    product2 = Product.new(:title => product.title,
-      :description => product.description)
-    product2.should_not be_valid
-  end
-
-  context "price" do
-    it "must be a number" do
-      product.price = 'puppy'
-      product.should_not be_valid
-    end
-
-    it "can't be negative" do
-      product.price = -123.45
-      product.should_not be_valid
-    end
+    product.price.should == 0
   end
 
   it "must have a URL photo" do
@@ -41,9 +23,8 @@ describe Product do
     product.should_not be_valid
   end
 
-  it "is cleaned when saved" do
-    product.price = "34.567"
-    product.save
-    product.price.to_s.should == "34.56"
+  it "rounds correctly" do
+    product.update_attributes(:price => "34.567")
+    Product.find(product.id).price.to_s.should == "34.57"
   end
 end
