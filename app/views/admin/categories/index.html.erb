@@ -3,9 +3,9 @@
 <table id="categories" class="table table-striped table-bordered">
   <% @categories.each do |category| %>
     <tr>
-      <td id="category_<%=category.id%>"><%= link_to category.name, category_path(category) %></td>
+      <td id="category_<%=category.id%>"><%= link_to category.name, admin_category_path(category) %></td>
     </tr>
   <% end %>
 </table>
 
-<%= link_to "Add a category", new_category_path, :id => "add_category", :class => 'btn btn-primary' %>
+<%= link_to "Add a category", new_admin_category_path, :id => "add_category", :class => 'btn btn-primary' %>

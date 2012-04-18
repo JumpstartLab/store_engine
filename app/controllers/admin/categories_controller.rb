@@ -1,5 +1,5 @@
 class Admin::CategoriesController < ApplicationController
-  before_filter :admin_required
+  # before_filter :admin_required
   
   def index
     @categories = Category.all
@@ -13,7 +13,7 @@ class Admin::CategoriesController < ApplicationController
 
   def update
     category.update_attributes(params[:category])
-    redirect_to categories_path
+    redirect_to admin_categories_path
   end
 
   def new
@@ -23,12 +23,12 @@ class Admin::CategoriesController < ApplicationController
   def create
     category = Category.new(params[:category])
     category.save
-    redirect_to categories_path
+    redirect_to admin_categories_path
   end
 
   def destroy
     category.destroy
-    redirect_to categories_path
+    redirect_to admin_categories_path
   end
 
   helper_method :category
