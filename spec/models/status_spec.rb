@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Status do
   let(:status) { Status.create }
+  let!(:order) { FactoryGirl.create(:order) }
   it "is 'pending' on creation" do
     status.name.should == "pending"
   end
@@ -33,5 +34,9 @@ describe Status do
     status.name = 'paid'
     status.cancel
     status.name.should == 'paid'
+  end
+
+  it "returns an order on search" do
+    Status.find_by_status("pending").should include order
   end
 end
