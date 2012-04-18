@@ -131,7 +131,7 @@ describe User do
           order.add_product(product)
           visit admin_order_path(order)
           click_link "Remove"
-          page.should have_content("Item Deleted Bitch")
+          page.should have_content("Item deleted.")
           page.should_not have_content(product.title)
         end
 

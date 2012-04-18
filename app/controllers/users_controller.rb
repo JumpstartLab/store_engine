@@ -12,11 +12,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def billing
-    @credit_cards = current_user.find_or_create_credit_cards
-    @addresses = current_user.find_or_create_addresses
-  end
-
   def create_billing
     current_user.add_credit_card(params[:credit_card])
     current_user.add_address(params[:address])
