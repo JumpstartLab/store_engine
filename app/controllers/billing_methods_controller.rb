@@ -16,17 +16,17 @@ class BillingMethodsController < ApplicationController
     @billing_method = BillingMethod.new(params[:billing_method])
     if validate_billing_user
       try_to_save_billing
-      redirect_to session[:return_to], notice: notice
     end
   end
 
   def update
     if @billing_method.update_attributes(params[:billing_method])
       notice = "Billing Address Successfully Saved"
+      redirect_to session[:return_to], notice: notice
     else
       notice = 'Please input a valid billing method'
+      render :edit
     end
-    redirect_to session[:return_to], notice: notice
   end
 
   private
@@ -39,8 +39,10 @@ class BillingMethodsController < ApplicationController
         order = Order.find(session[:order_id])
         order.update_attribute(:billing_method_id, @billing_method.id)
       end
+      redirect_to session[:return_to]
     else
-      notice = 'Please input a valid billing method'
+      @billing_method = billing
+      render :new
     end
   end
 

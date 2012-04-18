@@ -31,14 +31,14 @@ describe "logged in user" do
   end
   context "My Account" do
     let(:billing) {
-      { credit_card_number: 555555555555,
-        credit_card_expiration_date: 03052013,
-        street: "One Mockingbird Lane",
-        city: "Anytown",
-        state: "VA",
-        zipcode: 22209,
-        name: "Favorite Billing",
-        card_type: 'Visa'
+      { credit_card_number: "5555555555555555",
+            month: "4 - April",
+            year: "2012",
+            street: "One Mockingbird Lane",
+            city: "Anytown",
+            state: "Virginia",
+            zipcode: "22209",
+            card_type: 'Visa'
       }
     }
     let(:shipping) {
