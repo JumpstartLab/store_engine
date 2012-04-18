@@ -1,6 +1,7 @@
 <%= link_to "Browse By Category", categories_path %>
 <ul>
 <% @products.each do |product| %>
+  <% next if product.retired? %>
   <li><%= link_to(product.name, product_path(product)) %></li>
 <% end %>
 </ul>

@@ -5,6 +5,14 @@
   <%= f.label :price %>
   <%= f.text_field :price %><br />
 
+  <%= f.label :description %>
+  <%= f.text_field :description %><br />
+
+  <%= f.label :photo_url %>
+  <%= f.text_field :photo_url %><br />
+
+
+
   <% Category.all.each do |category| -%>
     <div>
       <%= check_box_tag :category_ids, category.id, @product.categories.include?(category), :name => 'product[category_ids][]' -%>
