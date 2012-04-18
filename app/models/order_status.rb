@@ -3,10 +3,6 @@ class OrderStatus < ActiveRecord::Base
 
   belongs_to :order
 
-  # def initialize(order_id)
-  #   @order = Order.find(order_id)
-  # end
-
   def update_status(action)
     case action
     when 'paid'
