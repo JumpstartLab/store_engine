@@ -65,7 +65,11 @@ class AdvancedSearch < ActiveRecord::Base
   end
 
   def find_by_email(orders)
-    orders.find_all { |o| o.user.email == email } if email.present?
+    if email.present?
+      orders.find_all { |o| o.user.email == email }
+    else
+      orders
+    end
   end
 
 end
