@@ -67,6 +67,14 @@ describe "sorting by categories" do
       click_on "Update Category"
       page.should have_content("Category updated.")
     end
+
+    it "prevents edits for bad categories" do
+      login(admin_user)
+      visit(edit_category_path(category))
+      fill_in "category[title]", :with => ""
+      click_on "Update Category"
+      page.should have_content("can't")
+    end
   end
 end
 
