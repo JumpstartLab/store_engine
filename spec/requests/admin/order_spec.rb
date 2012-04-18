@@ -29,9 +29,18 @@ describe "As an admin viewing an order's detail page" do
     end
 
     context "the order's status is pending" do
+      before(:each) { visit admin_order_path(order) }
+
       it "shows me a link to mark as cancelled" do
-        visit admin_order_path(order)
         page.should have_link("Mark as cancelled")
+      end
+
+      context "and I click the link to mark as cancelled" do
+        before(:each) { click_link_or_button('Mark as cancelled')}
+
+        it "updates the order's status to cancelled" do
+          page.should have_content('Status: cancelled')
+        end
       end
     end
 
@@ -46,6 +55,14 @@ describe "As an admin viewing an order's detail page" do
         page.should have_link("Mark as returned")
       end
 
+      context "and I click the link to mark as returned" do
+        before(:each) { click_link_or_button('Mark as returned')}
+
+        it "updates the order's status to returned" do
+          page.should have_content('Status: returned')
+        end
+      end
+
     end
 
     context "the order's status is paid" do
@@ -57,6 +74,14 @@ describe "As an admin viewing an order's detail page" do
 
       it "shows me a link to mark as shipped" do
         page.should have_link("Mark as shipped")
+      end
+
+      context "and I click the link to mark as shipped" do
+        before(:each) { click_link_or_button('Mark as shipped')}
+
+        it "updates the order's status to shipped" do
+          page.should have_content('Status: shipped')
+        end
       end
 
     end
