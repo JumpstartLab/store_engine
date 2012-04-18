@@ -34,6 +34,6 @@ group :development, :test do
   gem 'growl'
   gem 'faker'
   gem 'cane'
-  gem 'reek'
+  gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
   gem 'sqlite3'
 end
