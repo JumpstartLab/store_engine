@@ -67,17 +67,12 @@ class Product < ActiveRecord::Base
   end
 
   def category_sale
-    best_sale = Sale.new(:percent_off => 0)
-    categories.each do |cat|
-      if cat.sale
-        best_sale = cat.sale if cat.sale.percent_off > best_sale.percent_off
-      end
-    end
-    best_sale
+    max = categories.max_by { |c| c.sale ? c.sale.percent_off : 0 }
+    max.sale if max
   end
 
   def best_sale
-    if category_sale.percent_off > percent_off
+    if category_sale && category_sale.percent_off > percent_off
       category_sale
     else
       sale

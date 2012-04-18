@@ -1,5 +1,5 @@
-- if @product.product_ratings.empty?
-  %h2 Be the first to comment!
+- if @product.product_ratings.empty? && @can_rate
+  %h2 Be the first to rate!
 - if @product.product_ratings.nil?
   %h2 Ratings
 - @product.product_ratings.each do |rating|
@@ -19,3 +19,5 @@
     = f.input :body, :as => "string"
     = f.input :rating, :collection => 1..5, :as => :radio_buttons, :class => "star"
     = f.submit :class => "btn btn-primary controls"
+- elsif current_user
+  %b You need to have purchased the product before you can rate it.

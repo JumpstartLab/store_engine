@@ -1,8 +1,9 @@
 .row
+  %h1= @product.name
+  %hr
   .span3
     %img{:src => @product.avatar}
   .span6
-    %h2= @product.name
     - @product.star_rating.times do |star|
       %input.star{:class => "{split:2}", :name => "adv1", :type => "radio", :disabled => "disabled", :checked => "checked"}
     %br
