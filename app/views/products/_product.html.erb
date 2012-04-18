@@ -1,12 +1,23 @@
-<tr>
-  <td><%= link_to product.name, product %></td>
-  <td><%= product.description %></td>
-  <td><%= product.price %></td>
-  <td><%= image_tag(product.photo, :size => "50x50") %></td>
-  <td><ul><% product.categories.each do |category| %>
-      <div id="<%= dom_id category %>">
-        <li><%= category.name %></li>
-      </div>
-      <% end %></ul>
-  <td><%= link_to 'Add to cart', new_cart_product_path(:product_id => product) %></td>
-</tr>
+<li class="span4">
+  <div class="thumbnail">
+    <%= image_tag(product.photo, :size => "280x280", :class => "thumbnail") %>
+    <div class="caption">
+    <p>
+        <%= link_to product.name, product %> 
+        <h4>Price: <%= product.price %></h4>
+    </p>
+    <h5>Description</h5>
+    <p><%= product.description %></p>
+    <p>
+      <h6>Categories:<h6><br />
+        <% product.categories.each do |category| %>
+          <span class="label"><%= link_to category.name, category_path(category) %></span>
+        <% end %>
+    </p>
+    <p>
+      <%= link_to 'Add to cart', new_cart_product_path(:product_id => product), :class => "btn btn-primary" %>
+    </p>
+    </div>
+  </div>
+</li>
+

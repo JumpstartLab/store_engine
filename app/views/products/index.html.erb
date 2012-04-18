@@ -1,23 +1,18 @@
-<h1>Products</h1>
+<h1>Shop</h1>
 
-<table class="table table-bordered table-striped">
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Price</th>
-    <th>Photo</th>
-    <th>Categories</th>
-    <th>Buy it!</th>
-  </tr>
+<div class="row">
+  <div class="span12">
+    <ul class="nav nav-pills">
+      <h4>Browse by category:</h4><br />
+      <%= render :partial => "categories/category", :collection => @categories %>
+    </ul>
+  </div>
+</div>
 
-<%= render :partial => "product", :collection => @products %>
 
-</table>
-
-<h2>Categories</h2>
-
-<table class="table table-bordered table-striped">
-    <%= render :partial => "categories/category", :collection => @categories %>
-</table>
-
+<div class="row">
+  <ul class="thumbnails">
+    <%= render :partial => "product", :collection => @products %>
+  </ul>
+</div>
 
