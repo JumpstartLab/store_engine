@@ -18,7 +18,10 @@ html
   div class="navbar navbar-fixed-top"
     div class="navbar-inner"
       div class="container-fluid"
-        a class="brand" href=root_path PugMug
+        a class="brand" href=root_path 
+          | PugMug
+          | &nbsp;
+          = image_tag "logo.png", :size => "32x32"
         ul class="nav pull-left"
           li class="active" = link_to "Products", products_path
         ul class="nav pull-right"
