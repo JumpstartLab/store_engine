@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
-  before_filter :authorize, only: [:edit, :update]
-  before_filter :admin_authorize, only: [:destroy]
+  # before_filter :authorize, only: [:edit, :update]
+  before_filter :admin_authorize, only: [:destroy, :edit, :update]
   
   def index
 

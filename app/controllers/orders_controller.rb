@@ -9,14 +9,17 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    # raise @order.inspect
     @address = @order.address
   end
 
   def new
-    @order = Order.new
-    @order_cart = @cart
-    @order.build_address
+    if @cart.quantity == 0 
+      redirect_to '/', :alert => "You can't order something with nothing in your cart."
+    else
+      @order = Order.new
+      @order_cart = @cart
+      @order.build_address
+    end
   end
 
   def edit
