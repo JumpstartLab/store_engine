@@ -3,7 +3,8 @@
 <ul id="categories">
 
  <% @categories.each do |category| %>
-   <li>
+  <li><p id=<%="category_#{category.id}"%>>
+   
     ID: <%= link_to category.name, category_path(category) %> <br />
     <%= link_to 'Edit Category', 
                 edit_category_path(category), 
@@ -11,8 +12,8 @@
     <%= link_to 'Delete Category', 
                 category, :method => :delete,
                 :class => 'btn btn-mini' %>
-
-   </li>
+   </p></li>
+  
 
  <% end %>
 </ul>

@@ -48,8 +48,8 @@
 </p>
 
 <h3>Products Ordered:</h3>
-<p> 
   <% @order.order_items.each do |order_item| %>
+  <p id=<%="order_item_#{order_item.id}" %> >
     <%= link_to order_item.product.title, product_path(order_item.product) %>
     <% if can? :update, @order %>
     <%= link_to 'Remove Product from Order', order_item, method: :delete, confirm: "Are you sure?", :class => 'btn' %>
@@ -58,7 +58,6 @@
     <br/>
     <b>Product is currently retired</b>
     <br/>
-    
     <% end %>
     <br/>
     Quantity: <%= order_item.quantity%> <br />
@@ -75,8 +74,8 @@
     <br/>
     <br/>
     <br/>
+  </p>
   <% end %>
-</p>  
 
 
 

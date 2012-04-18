@@ -26,11 +26,15 @@ describe Product do
           page.should have_content(product.title)
         end
       end
-    end
 
       it "enables admin to change product prices" do
         visit edit_product_path(product)
-        fill_in
+        fill_in "Description", with: "this is new description"
+        click_button "Update Product"
+        visit product_path(product)
+        page.should have_content("this is new description")
+      end
+    end
 
     describe "POST /product" do
       it "is enables admins to add a product" do
@@ -75,5 +79,4 @@ describe Product do
       end
     end
   end
-
 end
