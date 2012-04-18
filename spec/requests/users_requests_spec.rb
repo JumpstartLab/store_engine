@@ -21,13 +21,20 @@ describe "Users requests" do
       page.current_path.should == user_path(user)
     end
 
-    it "shows edit page for user" do
-      visit edit_user_path(user)
-      page.current_path.should == edit_user_path(user)
-    end
+    context "when visiting the edit page" do
+      before(:each) { visit edit_user_path(user) }
 
-    it "shows edit page not found for another user" do
-      validate_not_found(edit_user_path(user2))
+      it "shows edit page for user" do
+        page.current_path.should == edit_user_path(user)
+      end
+
+      it "does not show admin option" do
+        page.should_not have_content("Admin")
+      end
+
+      it "shows edit page not found for another user" do
+        validate_not_found(edit_user_path(user2))
+      end
     end
 
     it "shows page not found for another user" do
@@ -119,6 +126,10 @@ describe "Users requests" do
       login_user_post("newuser", "cheeet")
       visit root_path
       page.should have_content("Admin Dashboard")
+    end
+
+    it "shows page not found when editing another user page" do
+      validate_not_found(edit_user_path(user2))
     end
 
     it "shows any user" do
