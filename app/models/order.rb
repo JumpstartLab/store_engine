@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   attr_accessible :billing_address, :shipping_address,
-                  :transactionsuser_id, :billing_address_id,
+                  :transactions, :user_id, :billing_address_id,
                   :shipping_address_id, :user_id
   belongs_to :user
 
