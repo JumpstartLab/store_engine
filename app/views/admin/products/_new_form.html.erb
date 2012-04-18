@@ -1,0 +1,22 @@
+<%= form_for(product, url: admin_products_path) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br />
+
+  <%= f.label :description %>
+  <%= f.text_area :description %><br />
+
+  <%= f.label :price %>
+  <%= f.text_field :price %><br />
+
+  <%= f.label :photo %>
+  <%= f.text_field :photo %><br />
+
+  <%= f.label :retired %>
+  <%= f.check_box :retired %><br /><br />
+
+  <%= f.label :categories %>
+  <%= f.select :category_ids, Category.all.collect {|c| [ c.name, c.id ] }, {}, :multiple=>true%>
+
+  <%= f.submit %>
+  
+<% end %>

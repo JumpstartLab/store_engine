@@ -1,9 +1,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  include SessionsHelper
+  # before_filter :return_current_page
   after_filter :return_last_page
-
   helper_method :cart
+
+  include SessionsHelper
 
   def redirect_to_last_page
     last_page = session[:last_page] || params[:last_page]
@@ -36,7 +37,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # def admin_required
+  #   if current_user.admin.true?
+  #     return_current_page
+  #   else
+  #     redirect_to signin_path
+  #   end
+  # end
+
   def return_last_page
     session[:last_page] = request.url
   end
+
+  # def return_current_page
+  #   session[:current_page] = request.url
+  # end
 end

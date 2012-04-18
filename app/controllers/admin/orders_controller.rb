@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+class Admin::OrdersController < ApplicationController
   before_filter :signed_in_user
 
   def index
