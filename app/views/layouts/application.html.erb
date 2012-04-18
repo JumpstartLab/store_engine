@@ -28,6 +28,9 @@
               <% if current_user -%>
               <%= nav_link_to "Orders", orders_path %>
               <% end -%>
+              <% if current_user && current_user.admin? %>
+              <%= nav_link_to "Admin", admin_path %>
+              <% end -%>
             </ul>
             <% if current_user %>
               <ul class="nav pull-right">
