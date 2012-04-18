@@ -22,6 +22,7 @@ class Product < ActiveRecord::Base
 
   has_many :product_ratings
   belongs_to :sale
+  self.per_page = 10
 
   def average_rating
     pr = product_ratings

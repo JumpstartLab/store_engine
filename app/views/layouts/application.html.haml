@@ -2,10 +2,9 @@
 %body
   = render :partial => 'layouts/nav'
   #content
-    #content-padding
-      - if flash[:notice]
-        .alert.alert-success= flash[:notice]
-      - elsif flash[:error]
-        .alert.alert-error= flash[:error]
-      = yield
+    - if flash[:notice]
+      .alert.alert-success= flash[:notice]
+    - elsif flash[:error]
+      .alert.alert-error= flash[:error]
+    = yield
   = render :partial => 'layouts/footer'
