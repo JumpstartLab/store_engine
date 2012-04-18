@@ -4,9 +4,11 @@ matt = User.create(:username => "Matt Yoho", :first_name => "Matt", :last_name =
 jeff = User.create( :username => "Jeff", :first_name => "Jeff", :last_name => "Casimir",
             :email => "jeff.casimir@livingsocial.com",
             :password => "hungry")
-User.create( :username => "Chad Fowler", :admin => true, :first_name => "Chad",
+chad = User.create( :username => "Chad Fowler", :first_name => "Chad",
              :last_name => "Fowler", :email => "chad.fowler@livingsocial.com", 
              :password => "hungry")
+chad.admin = true
+chad.save!
 
 Category.create(:name => "awesome")
 Category.create(:name => "not as awesome")
@@ -25,15 +27,18 @@ shipping_address.save
 billing_address = Fabricate(:billing_address)
 billing_address.save
 
-item = OrderItem.new(:product => Product.find(1))
-item2 = OrderItem.new(:product => Product.find(3))
-items = [item, item2]
-Order.create(:user => matt, :status => pending, :order_items => items,
+item = Fabricate(:order_item) 
+item2 = Fabricate(:order_item) 
+items = [Fabricate(:order_item),Fabricate(:order_item)]
+Order.create(:user => matt, :status => pending, 
+             :order_items => [Fabricate(:order_item),Fabricate(:order_item)],
                     :shipping_address => shipping_address, 
                     :billing_address => billing_address)
 Order.create(:user => jeff, :status => shipped,
+             :order_items => [Fabricate(:order_item),Fabricate(:order_item)],
                     :shipping_address => shipping_address, 
                     :billing_address => billing_address).save
 Order.create(:user => jeff, :status => paid,
+             :order_items => [Fabricate(:order_item),Fabricate(:order_item)],
                     :shipping_address => shipping_address, 
                     :billing_address => billing_address).save

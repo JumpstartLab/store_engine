@@ -34,4 +34,10 @@ class Order < ActiveRecord::Base
                         Status.find_by_name(StoreEngine::Status::SHIPPED))
     end
   end
+
+  def total
+    order_items.inject(Money.new(0)) do |sum, order_item|
+      sum += order_item.price * order_item.quantity
+    end
+  end
 end

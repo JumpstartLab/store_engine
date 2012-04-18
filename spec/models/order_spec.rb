@@ -41,4 +41,17 @@ describe Order, :model => :order do
       order.update_status
     end
   end
+
+  context "#total" do
+    it "returns the total of all cart items" do
+      item = Fabricate(:order_item)
+      item2 = Fabricate(:order_item)
+      order.should_receive(:order_items).and_return([item, item2])
+      order.total.should == Money.new(20000)
+    end
+
+    it "returns 0 if there are not cart items" do
+      order.total.should == Money.new(0)
+    end
+  end
 end
