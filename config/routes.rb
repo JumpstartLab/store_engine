@@ -32,7 +32,7 @@ StoreEngine::Application.routes.draw do
       put :two_click
     end
   end
-
+  match '/baller_logo' => "sessions#baller_logo"
   root :to => "products#index"
   match "/code" => redirect("https://github.com/MikeSilvis/store_engine")
 
