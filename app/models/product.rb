@@ -23,6 +23,10 @@ class Product < ActiveRecord::Base
   #default_scope where(retired: false)
   scope :retired, where(:retired => true)
 
+  def self.search_by_name(term)
+    self.where("upper(name) like ?", "%#{term.upcase}%")
+  end
+
   def categorize(categories)
     [categories].flatten.each do |category|
       product_categories.create(category_id: category.id)

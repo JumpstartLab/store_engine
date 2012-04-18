@@ -1,4 +1,13 @@
+<%= form_tag root_path, method: :get do %>
+  <%= label_tag :q, "Search: " %>
+  <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<%= button_to "Clear Search", root_path %>
+
 <%= link_to "Browse By Category", categories_path %>
+
 <ul>
 <% @products.each do |product| %>
   <% next if product.retired? %>
