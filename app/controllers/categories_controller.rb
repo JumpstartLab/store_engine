@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+  
+  before_filter :admin_authorize
+
   def index
     if (params[:category])
       current_category = Category.find_by_title(params[:category])
@@ -24,10 +27,20 @@ class CategoriesController < ApplicationController
   def create
     category = Category.new(params[:category])
     category.save
-    redirect_to categories_path
+    redirect_to categories_path, notice: "Categories all the way down!"
   end
 
-  # def filter_by_category
-  #   @products = Product.find_all_by(params[:category])
-  # end
+  def edit
+    @category = Category.find(params[:id])
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    if @category.update_attributes(params[:category])
+      redirect_to category_path(@category), :notice => "Category updated."
+    else
+      render 'edit'
+    end
+  end
+
 end
