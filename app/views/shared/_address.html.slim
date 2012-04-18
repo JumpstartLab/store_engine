@@ -1,4 +1,8 @@
 = form_for @address, :html => { :class => 'well'} do |f|
+  - if @address.errors.any?
+    ul
+      - @address.errors.full_messages.each do |msg|
+        li = msg
   = f.label :first_name, "* First name "
   = f.text_field :first_name
   p

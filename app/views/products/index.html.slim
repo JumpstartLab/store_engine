@@ -8,6 +8,6 @@ ul class="thumbnails"
           = image_tag(product.photo, :height => "200")
         p 
         strong = link_to product.title, product_path(product)
-        p = product.description
+        br
         | $
         = product.price

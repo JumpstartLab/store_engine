@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe "Order Summary" do
   context "When I am on the order summary page" do
+    let!(:user) { Fabricate(:user) }
+    before(:each) do
+      login
+    end
     it "shows the shipping address for the order" do
       visit new_shipping_address_path
       fill_in "First name", :with => "Jeff"

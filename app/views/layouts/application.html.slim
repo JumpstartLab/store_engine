@@ -8,10 +8,17 @@ html
     = csrf_meta_tags
     = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
   body
+    - if flash[:notice]
+      p class="flash-notice" = flash[:notice]
+    - if flash[:error]
+      p class="flash-error" = flash[:error]
+    - if flash[:alert]
+      p class="flash-alert" = flash[:alert]
+
   div class="navbar navbar-fixed-top"
     div class="navbar-inner"
       div class="container-fluid"
-        a class="brand" href=root_path StoreName
+        a class="brand" href=root_path PugMug
         ul class="nav pull-left"
           li class="active" = link_to "Products", products_path
         ul class="nav pull-right"
@@ -37,10 +44,5 @@ html
           p
       div class="span10"
         
-
-        div
-          p id="notice" = notice
-          p
-          p id="alert" = alert
 
         = yield

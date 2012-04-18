@@ -7,6 +7,7 @@ class ShippingAddressesController < ApplicationController
     @address = ShippingAddress.new(params[:shipping_address])
     if @address.save
       session[:shipping_address] = @address.id
+      current_user.shipping_address = @address
       redirect_to new_billing_address_path
     else
       render :action => "new"

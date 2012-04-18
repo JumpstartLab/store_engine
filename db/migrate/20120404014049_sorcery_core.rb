@@ -5,10 +5,13 @@ class SorceryCore < ActiveRecord::Migration
       t.string :display_name
       t.string :first_name
       t.string :last_name
+      t.references :shipping_address
+      t.references :billing_address
       t.string :email,            :default => nil 
       t.string :crypted_password, :default => nil
       t.string :salt,             :default => nil
       t.boolean :admin, :default => false
+
       t.timestamps
     end
   end
