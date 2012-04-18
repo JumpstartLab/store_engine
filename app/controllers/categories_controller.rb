@@ -31,11 +31,14 @@ class CategoriesController < ApplicationController
     @category = Category.new(params[:category])
     respond_to do |format|
       if @category.save
-        format.html { redirect_to new_product_path, notice: 'Category was successfully created.' }
-        format.json { render json: new_product_path, status: :created, location: new_product_path }
+        format.html { redirect_to new_product_path,
+                                  notice: 'Category was successfully created.' }
+        format.json { render json: new_product_path,
+                             status: :created, location: new_product_path }
       else
         format.html { render action: "new" }
-        format.json { render json: new_product_path, status: :unprocessable_entity }
+        format.json { render json: new_product_path,
+                             status: :unprocessable_entity }
       end
     end
   end
@@ -44,11 +47,13 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
     respond_to do |format|
       if @category.update_attributes(params[:category])
-        format.html { redirect_to categories_path, notice: 'Category was successfully updated.' }
+        format.html { redirect_to categories_path,
+                                  notice: 'Category was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: categories_path, status: :unprocessable_entity }
+        format.json { render json: categories_path,
+                             status: :unprocessable_entity }
       end
     end
   end

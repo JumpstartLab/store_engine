@@ -4,13 +4,13 @@ class Category < ActiveRecord::Base
   has_many :products, through: :category_assignments
 
   before_destroy :ensure_not_assigned
-  
+
   # private
 
   def ensure_not_assigned
-    if products.empty? 
+    if products.empty?
       return true
-    else 
+    else
       errors.add(:base, 'Assigned to a product')
       return false
     end

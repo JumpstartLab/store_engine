@@ -10,10 +10,13 @@ class LineItemsController < ApplicationController
       respond_to do |format|
         if @line_item.save
           format.html { redirect_to @line_item.cart}
-          format.json { render json: @line_item, status: :created, location: @line_item }
+          format.json { render json: @line_item,
+                               status: :created,
+                               location: @line_item }
         else
           format.html { render action: "new" }
-          format.json { render json: @line_item.errors, status: :unprocessable_entity }
+          format.json { render json: @line_item.errors,
+                               status: :unprocessable_entity }
         end
       end
     else
@@ -25,11 +28,14 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.find(params[:id])
     respond_to do |format|
       if @line_item.update_attributes(params[:line_item])
-        format.html { redirect_to cart_path(current_cart), notice: 'Item was successfully updated.' }
+        format.html { redirect_to cart_path(current_cart),
+                                  notice: 'Item was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to cart_path(current_cart), notice: 'Quantity must be greater than 0' }
-        format.json { render json: cart_path(current_cart), status: :unprocessable_entity }
+        format.html { redirect_to cart_path(current_cart),
+                                  notice: 'Quantity must be greater than 0' }
+        format.json { render json: cart_path(current_cart),
+                             status: :unprocessable_entity }
       end
     end
   end
