@@ -18,7 +18,7 @@
 //= require jquery-star-rating
 
 $(document).ready(function() {
-  $(".remove_nested_fields").click(function(e) {
+  $(".remove_product").click(function(e) {
     var id = $(this).siblings('input')[0].id;
     $("#"+id).val('true');
     $(this).parent().parent().hide();
