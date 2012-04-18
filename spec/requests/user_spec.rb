@@ -70,5 +70,13 @@ describe "User" do
       click_on "Create User"
       page.should have_content "Thank you for signing up!"
     end
+
+    it "fails to create a user given invalid attributes" do
+      fill_in "user[full_name]", :with => "Luke Skysauce"
+      fill_in "user[password]", :with => "foobar"
+      fill_in "user[password_confirmation]", :with => "foobar"
+      click_on "Create User"
+      page.should have_content "can't be blank"
+    end
   end
 end

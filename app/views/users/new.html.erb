@@ -2,34 +2,12 @@
 
 
 
-<%= form_for(@user) do |p| %>
-  <p>
-    <%= p.label :full_name %> <br />
-    <%= p.text_field :full_name %>
-  </p>
+<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :full_name %>
+  <%= f.input :email %>
+  <%= f.input :username %>
+  <%= f.input :password %>
+  <%= f.input :password_confirmation %>
+  <%= f.button :submit %>
+<% end %>
 
-   <p>
-    <%= p.label :email %> <br />
-    <%= p.text_field :email %>
-  </p>
-
-  <p>
-    <%= p.label :username %> <br />
-    <%= p.text_field :username %>
-  </p>
-
-  <p>
-    <%= p.label :password %> <br />
-    <%= p.password_field :password %>
-  </p>
-
-  <p>
-    <%= p.label :password_confirmation %> <br />
-    <%= p.password_field :password_confirmation %>
-  </p>
-
-  <p>
-    <%= p.submit %> 
-  </p>
-
-  <% end %>

@@ -8,6 +8,7 @@ describe User do
       email: "chris@weddingsoon.com",
       username: "mandy",
       password: "1234",
+      password_confirmation: "1234",
     }
   end
 
