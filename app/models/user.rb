@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :username, :password, :password_confirmation
 
   has_one :cart
+  has_one :address
   
   validates_presence_of :name, :email
   validates_presence_of :password, :on => :create

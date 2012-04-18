@@ -1,0 +1,20 @@
+h1 Dashboard
+
+div#orders_by_status
+  table
+    tr
+      - @statuses.each do |status|
+        th = status
+    tr
+      - @statuses.each do |status|
+        td[class="#{status}_total"] = @orders_by_status[status].count
+
+div#orders
+  = "Show:"
+  / = select("order", "status", Order.statuses)
+  ul
+    li = link_to "all", admin_dashboard_path
+    - @statuses.each do |status|
+      li = link_to status, admin_dashboard_path(:status => status)
+
+  = render :partial => "admin/orders/all"

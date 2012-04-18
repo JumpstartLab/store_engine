@@ -13,7 +13,7 @@ class Admin::OrdersController < ApplicationController
 
   def update
     Order.find(params[:id]).update_attributes(params[:order])
-    redirect_to admin_orders_path
+    redirect_to :back
   end
 
   def destroy

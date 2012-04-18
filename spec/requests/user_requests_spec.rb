@@ -10,7 +10,8 @@ describe User do
   end
 
   context "with role admin can" do
-    let!(:order) { Fabricate(:order) }
+    let(:address) { Fabricate(:address) }
+    let!(:order) { Fabricate(:order, :user_id => user.id, :address_id => address.id) }
     let!(:category) { Fabricate(:category) }
     let!(:product) { Fabricate(:product) }
 
@@ -20,33 +21,6 @@ describe User do
     end
 
     it "not edit users personal data"
-
-    describe "dashboard" do
-      it "view total number of orders by status"
-
-      it "click links for each order"
-      it "filter by status type"
-
-      context "order" do
-        it "cancel if pending"
-        it "mark as returned if shipped"
-        it "mark as shipped if paid"
-
-        context "view" do
-          it "date and time"
-          it "purchaser full name and address"
-          it "total"
-          it "status"
-
-          describe "products" do
-            it "link to product page"
-            it "quantity"
-            it "price"
-            it "line item subtotal"
-          end
-        end
-      end
-    end
     
     describe "products" do
       before(:each) do
@@ -118,6 +92,7 @@ describe User do
           click_link "Edit"
           fill_in "Status", :with => "shipped"
           click_button "Update Order"
+          visit admin_orders_path
           page.should have_content("shipped")
         end
 
@@ -141,10 +116,10 @@ describe User do
         it "change quantity of products on pending orders" do
           order.add_product(product)
           visit admin_orders_path
-          click_link "Edit"
+          find("#order_#{order.id}").click_link "Edit"
           fill_in "order_order_items_attributes_0_quantity", :with => "2"
           click_button "Update Order"
-          click_link "#{order.id}"
+          visit admin_order_path(order)
           find(".quantity").text.should == "2"
         end
       end
