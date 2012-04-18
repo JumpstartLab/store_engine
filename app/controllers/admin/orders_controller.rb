@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+class Admin::OrdersController < ApplicationController
   before_filter :signed_in_user
 
   def index
@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
     @cart = Cart.find(params[:cart_id])
-    @cart.destroy
   end
 
   def edit

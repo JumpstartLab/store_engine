@@ -1,13 +1,12 @@
 StoreEngine::Application.routes.draw do
-  get "users/new"
 
   root to: "products#index"
 
-  resources :categories
-  resources :products
-  resources :orders
+  resources :categories, only: [:index, :show]
+  resources :products, only: [:index, :show]
+  resources :orders, only: [:index, :show, :update, :create]
   resources :users
-  resources :shipping_informations
+  resources :shipping_informations, only: [:update, :create, :destroy]
   resources :billing_informations, only: [:update, :create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
   resources :category_products, only: :create
@@ -18,6 +17,13 @@ StoreEngine::Application.routes.draw do
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+
+  namespace :admin do
+    resources :products
+    resources :categories
+    resources :orders
+    resources :users
+  end
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
