@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "Viewing products" do
-  
   let(:product) { FactoryGirl.create(:product) }
 
   context "and I'm not logged in" do

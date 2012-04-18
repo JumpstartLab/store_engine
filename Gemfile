@@ -29,5 +29,9 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 3.1.0'
   gem 'guard'
   gem 'growl'
+  # gem 'cane'
+  gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
   gem 'simplecov'
+  gem 'faker'
+  #gem 'ruby-debug19', :require => 'ruby_debug'
 end

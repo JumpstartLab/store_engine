@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :user_id, :credit_card_id
+  attr_accessible :user_id, :credit_card_id, :order_products
 
   belongs_to :user
   belongs_to :credit_card

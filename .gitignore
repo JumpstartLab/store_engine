@@ -19,3 +19,6 @@
 
 # Ignore Stripe keys
 /config/initializers/stripe.rb
+
+# Ignore exec
+/exec
