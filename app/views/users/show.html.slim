@@ -1,4 +1,7 @@
 h1 = @user.username
+p
+- if @user.admin?
+  h3 Admin
 
 - unless @user.display_name.nil?
   p
@@ -13,7 +16,6 @@ p
 p 
 | Email:
 = @user.email
-
 p
 
 = link_to "Edit", edit_user_path(@user)
