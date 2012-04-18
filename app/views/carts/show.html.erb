@@ -12,7 +12,7 @@
       <td id="<%= cart_item.product.id %>_quant">
         <%= form_for(cart_item, url: cart_item_path(cart_item)) do |f| %>
           <%= f.number_field :quantity, :min => 1, :id => "quantity" %>
-          <%= f.submit %>
+          <%= f.submit "Update quantity" %>
         <% end %>
       </td>
       <td id="product_<%= cart_item.product.id %>_remove"><%= link_to "Remove Item", cart_item_path(cart_item), :method => :delete %></td>
