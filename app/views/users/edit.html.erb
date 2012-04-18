@@ -4,24 +4,31 @@
 <div class="row">
   <div class="span6 offset3">
   <%= form_for(@user) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
+    <%= render 'shared/error_messages' %>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
 
-      <%= f.label :email %>
-      <%= f.text_field :email %>
+    <%= f.label :display_name %>
+    <%= f.text_field :display_name %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
 
-      <%= f.label :password_confirmation, "Confirm Password" %>
-      <%= f.password_field :password_confirmation %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
 
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-    <% end %>
-
-    <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails">change</a>
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <%= f.password_field :password_confirmation %>
+    <br />
+    <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+  <% end %>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="span6 offset3">
+    <%= render :partial => "shipping_information/form" %>
+    <%= render :partial => "billing_information/form" %>
   </div>
 </div>

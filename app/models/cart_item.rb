@@ -9,4 +9,8 @@ class CartItem < ActiveRecord::Base
   def total
     product.price * quantity
   end
+
+  def attributes_for_order_item
+    { :product_id => product_id, :quantity => quantity, :total_price => total }
+  end
 end

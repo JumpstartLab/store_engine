@@ -7,6 +7,8 @@ StoreEngine::Application.routes.draw do
   resources :products
   resources :orders
   resources :users
+  resources :shipping_informations
+  resources :billing_informations, only: [:update, :create, :destroy]
   resources :sessions, only: [:new, :create, :destroy]
   resources :category_products, only: :create
 

@@ -1,6 +1,7 @@
 class Cart < ActiveRecord::Base
   has_many :cart_items
   has_many :products, :through => :cart_items
+  belongs_to :user
 
   def add_or_increment_by_product_id(product_id)
     if product_ids.include?(product_id.to_i)

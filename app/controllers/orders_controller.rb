@@ -1,15 +1,16 @@
 class OrdersController < ApplicationController
+  before_filter :signed_in_user
 
   def index
-    # @orders = Order.all
     @orders = Order.order(params[:sort])
   end
 
   def new
-    @order = Order.create_order_from_cart(params[:cart_id])
+    @order = Order.new
+    @cart = Cart.find(params[:cart_id])
   end
 
-  def show
+  def edit
   end
 
   def edit
@@ -21,17 +22,41 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.new(params[:cart])
-    order.save
+    order = Order.create_order_from_cart(cart, current_user)
     redirect_to order_path(order)
   end
 
   helper_method :order
-
+  helper_method :shipping_information
+  helper_method :billing_information
+  
 private
 
   def order
     @order ||= Order.find(params[:id])
+  end
+
+  def shipping_information
+    if current_user.shipping_information.nil?
+      current_user.shipping_information = ShippingInformation.new
+    else
+      current_user.shipping_information
+    end
+  end
+
+  def billing_information
+    if current_user.billing_information.nil?
+      current_user.billing_information = BillingInformation.new
+    else
+      current_user.billing_information
+    end
+  end
+
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Please sign in."
+    end
   end
   
 end

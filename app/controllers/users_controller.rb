@@ -47,6 +47,9 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  helper_method :billing_information
+  helper_method :shipping_information
+
   private
     def signed_in_user
       unless signed_in?
@@ -63,4 +66,27 @@ class UsersController < ApplicationController
     def admin_user
       redirect_to(root_path) unless current_user.admin?
     end
+
+    def shipping_information
+    if current_user.shipping_information.nil?
+      current_user.shipping_information = ShippingInformation.new
+    else
+      current_user.shipping_information
+    end
+  end
+
+  def billing_information
+    if current_user.billing_information.nil?
+      current_user.billing_information = BillingInformation.new
+    else
+      current_user.billing_information
+    end
+  end
+
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_path, notice: "Please sign in."
+    end
+  end
 end
