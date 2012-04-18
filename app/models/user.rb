@@ -4,12 +4,12 @@ class User < ActiveRecord::Base
 
   has_one :cart
   has_one :address
-  
+
   validates_presence_of :name, :email
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
   validates_uniqueness_of :email
-  validates_length_of :username, :within => 2..32, 
+  validates_length_of :username, :within => 2..32,
                       :too_long => "pick a shorter name",
                       :too_short => "pick a longer name"
 
@@ -31,13 +31,5 @@ class User < ActiveRecord::Base
   def add_address(address)
     address[:user_id] = id
     Address.create(address)
-  end
-
-  def find_or_create_credit_cards
-
-  end
-
-  def find_or_create_addresses
-    
   end
 end

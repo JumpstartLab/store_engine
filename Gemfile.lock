@@ -39,10 +39,13 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.2.7)
+    annotate (2.4.0)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     bootstrap-sass (2.0.2)
     builder (3.0.0)
+    cane (1.2.0)
+      tailor
     capybara (1.1.2)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -181,7 +184,10 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    tailor (0.1.5)
+      term-ansicolor (>= 1.0.5)
     temple (0.4.0)
+    term-ansicolor (1.0.7)
     thor (0.14.6)
     tilt (1.3.3)
     treetop (1.4.10)
@@ -198,7 +204,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate (~> 2.4.0)
   bootstrap-sass (~> 2.0.2)
+  cane
   capybara
   coffee-rails (~> 3.2.1)
   debugger
@@ -217,4 +225,5 @@ DEPENDENCIES
   simplecov
   slim
   sorcery
+  tailor (= 0.1.5)
   uglifier (>= 1.0.3)

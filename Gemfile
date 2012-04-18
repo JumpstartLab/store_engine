@@ -29,7 +29,10 @@ group :development, :test do
   gem 'debugger'
   gem 'slim'
   gem 'seed_dump'
+  gem 'tailor', '0.1.5'
+  gem 'cane'
   gem 'simplecov', :require => false
+  gem "annotate", "~> 2.4.0"
   gem 'reek', :git => 'git://github.com/mvz/reek.git', :branch =>
   'ripper_ruby_parser-2'
 end

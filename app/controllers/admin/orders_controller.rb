@@ -18,6 +18,7 @@ class Admin::OrdersController < ApplicationController
 
   def destroy
     OrderItem.find(params[:item_id]).destroy
-    redirect_to admin_order_path(Order.find(params[:id])), :notice => "Item Deleted Bitch"
+    notice = "Item deleted."
+    redirect_to admin_order_path(Order.find(params[:id])), :notice => notice
   end
 end

@@ -24,6 +24,6 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.all.sort_by { |category| category.name}
+    @categories = Category.all.sort_by { |category| category.name }
   end
 end

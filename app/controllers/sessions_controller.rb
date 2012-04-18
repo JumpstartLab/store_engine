@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def check_for_cart_and_login
     if session[:cart_id]
-      user = login_user_with_cart 
+      user = login_user_with_cart
     else
       user = login(params[:email], params[:password])
     end
@@ -26,7 +26,7 @@ class SessionsController < ApplicationController
     cart_id = session[:cart_id]
 
     user = login(params[:email], params[:password])
-    
+
     session[:cart_id] = cart_id
     user
   end

@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    redirect_to root_path, :alert => "Access denied. This page is for administrators only." unless current_user.admin?
+    alert = "Access denied. This page is for administrators only."
+    redirect_to root_path, :alert => alert unless current_user.admin?
   end
 end
 
