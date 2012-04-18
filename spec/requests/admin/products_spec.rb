@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe "As an admin updating products" do
+
+  let!(:user) { FactoryGirl.create(:user, :admin => true) }
+
+  before(:each) do
+    login_user_post(user.email, "foobar")
+  end
+  
   context "when I'm on the products index page"
     let(:product) { FactoryGirl.create(:product) }
     before(:each) { visit admin_products_path }

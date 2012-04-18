@@ -4,23 +4,16 @@ describe "As an admin updating categories" do
   let!(:user) { FactoryGirl.create(:user, :admin => true) }
 
   before(:each) do
-    #FactoryGirl.create(:admin_user)
     login_user_post(user.email, "foobar")
   end
 
   context "when I'm creating a new category" do
-    # before(:each) do
-    # #FactoryGirl.create(:admin_user)
-    #   login_user_post(user.email, "foobar")
-    #   visit new_admin_category_path
-    # end
 
     let(:category) { FactoryGirl.build(:category) }
     before(:each) {visit new_admin_category_path}
 
     context "and I enter invalid information" do
       it "prevents me from making a new category" do
-        save_and_open_page
         expect {click_link_or_button('Create Category')}.to_not change(Category, :count).by(1)
       end
 
