@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   rescue_from CanCan::AccessDenied do |exception|
-    raise exception
     redirect_to root_url, notice: "You do not have permission to access this."
   end
 

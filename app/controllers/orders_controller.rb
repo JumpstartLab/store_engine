@@ -3,11 +3,7 @@ class OrdersController < ApplicationController
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
 
   def index
-    if current_user
-      @orders = current_user.orders
-    else
-      return redirect_to login_path
-    end     
+    @orders = current_user.orders
   end
 
   def admin_report
