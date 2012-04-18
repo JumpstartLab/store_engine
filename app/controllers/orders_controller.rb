@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
     @order = Order.one_click_order(product, current_user)
 
     if @order.errors.empty?
-      redirect_to product_path(product),notice: "Thank you for your order" 
+      redirect_to order_path(@order),notice: "Thank you for your order" 
     else
       @cart = current_cart
       render action: 'new'
@@ -55,7 +55,7 @@ class OrdersController < ApplicationController
       @order.save
       Cart.destroy(session[:cart_id])
       session[:cart_id] = nil
-      redirect_to orders_path, notice: "Thank you for your order"
+      redirect_to order_path(@order), notice: "Thank you for your order"
     else
       @cart = current_cart
       render action: 'new'

@@ -6,7 +6,6 @@ class CreateOrders < ActiveRecord::Migration
       t.string :address
       t.string :email
       t.string :status, default: "pending"
-      t.string :pay_type
       t.datetime :shipped_at
       t.datetime :cancelled_at
       t.string :shipping_address

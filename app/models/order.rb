@@ -34,7 +34,8 @@ class Order < ActiveRecord::Base
     order.name = user.orders.last.name
     order.email = user.orders.last.email
     order.address = user.orders.last.address
-    order.pay_type = user.orders.last.pay_type
+    order.cc_number = user.orders.last.cc_number
+    order.cc_expiry = user.orders.last.cc_expiry
     order.save
 
     order
