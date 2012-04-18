@@ -77,6 +77,8 @@ nav.main a:hover, nav a.active{
   border-bottom-right-radius: 20px;
   box-sizing: border-box;
   padding:2% 5%;
+  height:100%;
+  clear:both;
 }
 #location{
   color: #909090;
@@ -97,6 +99,7 @@ nav.main a:hover, nav a.active{
   clear:both;
   padding:2% 5%;
   overflow:hidden;
+  font-size:14px;
 }
 .clear {
   clear:both;
@@ -167,7 +170,7 @@ nav.main a:hover, nav a.active{
 
 .product a > img{
   max-width: 100px;
-  max-  height: 100px;
+  max-height: 100px;
 }
 
 .center {
