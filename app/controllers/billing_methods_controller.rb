@@ -1,4 +1,5 @@
 class BillingMethodsController < ApplicationController
+before_filter :validate_billing_user, only: [:edit]
 
   def new
     session[:return_to] = request.referrer
@@ -14,18 +15,20 @@ class BillingMethodsController < ApplicationController
   end
 
   def create
-    billing = BillingMethod.new(params[:billing_method])
-    if billing.save
-      notice = "Billing Address Successfully Added"
-      billing.update_attribute(:user_id, current_user.id) if logged_in?
-      if session[:order_id]
-        order = Order.find(session[:order_id])
-        order.update_attribute(:billing_method_id, billing.id)
+    @billing_method = BillingMethod.new(params[:billing_method])
+    if validate_billing_user
+      if @billing_method.save
+        notice = "Billing Address Successfully Added"
+        @billing_method.update_attribute(:user_id, current_user.id) if logged_in?
+        if session[:order_id]
+          order = Order.find(session[:order_id])
+          order.update_attribute(:billing_method_id, @billing_method.id)
+        end
+      else
+        notice = 'Please input a valid billing method'
       end
-    else
-      notice = 'Please input a valid billing method'
+      redirect_to session[:return_to], notice: notice
     end
-    redirect_to session[:return_to], notice: notice
   end
 
   def update

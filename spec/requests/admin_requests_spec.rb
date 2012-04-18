@@ -75,14 +75,24 @@ describe "admin" do
       page.should have_content product.title
     end
     it "cannot edit another user's billing on an order" do
-      pending
+      billing = { credit_card_number: 555555555555,
+                    credit_card_expiration_date: 03052013,
+                    street: "One Mockingbird Lane",
+                    city: "Anytown", state: "VA",
+                    zipcode: 22209, name: "Favorite Billing",
+                    card_type: 'Visa'
+                  }
       click_link_or_button "Add a Billing Method"
+      add_non_user_billing(billing)
       current_path.should == "/"
       page.should have_content "Sorry"
     end
     it "cannot edit another user's shipping on an order" do
-      pending
+      shipping = { street: "One Mockingbird Lane", city: "Anytown",
+                     state: "VA", zipcode: 22209, name: "Favorite Billing"
+                   }
       click_link_or_button "Add a Shipping Address"
+      add_non_user_shipping(shipping)
       current_path.should == "/"
       page.should have_content "Sorry"
     end
@@ -263,10 +273,10 @@ describe "admin" do
         visit "/"
         click_link_or_button "User View"
         click_link_or_button "Add to Cart"
-        visit order_path(Order.last)
+        visit order_path(Order.find_by_user_id(user.id))
         click_link_or_button "Add a Billing Method"
         add_billing(billing)
-        visit order_path(Order.last)
+        visit order_path(Order.find_by_user_id(user.id))
         click_link_or_button "Add a Shipping Address"
         add_shipping(shipping)
         click_link_or_button "Check Out"

@@ -1,4 +1,5 @@
 class ShippingAddressesController < ApplicationController
+  before_filter :validate_billing_user, only: [:edit]
 
   def new
     session[:return_to] = request.referrer
@@ -14,18 +15,20 @@ class ShippingAddressesController < ApplicationController
   end
 
   def create
-    shipping = ShippingAddress.new(params[:shipping_address])
-    if shipping.save
-      notice = "Shipping Address Successfully Added"
-      shipping.update_attribute(:user_id, current_user.id) if logged_in?
-      if session[:order_id]
-        order = Order.find(session[:order_id])
-        order.update_attribute(:shipping_address_id, shipping.id)
+    @shipping_address = ShippingAddress.new(params[:shipping_address])
+    if validate_shipping_user
+      if @shipping_address.save
+        notice = "Shipping Address Successfully Added"
+        @shipping_address.update_attribute(:user_id, current_user.id) if logged_in?
+        if session[:order_id]
+          order = Order.find(session[:order_id])
+          order.update_attribute(:shipping_address_id, @shipping_address.id)
+        end
+      else
+        notice = 'Please input a valid shipping address'
       end
-    else
-      notice = 'Please input a valid shipping address'
+      redirect_to session[:return_to], notice: notice
     end
-    redirect_to session[:return_to], notice: notice
   end
 
   def update
