@@ -17,9 +17,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-
-      <% if can? :manage, :all %>
-        <th>ID<% end %></th>
+      <th>ID</th>
       <th>Billed to</th>
       <th>Shipped to</th>
       <th>Created</th>
@@ -33,9 +31,7 @@
   <tbody>
     <% @orders.each do |order|%>
       <tr>
-        <% if can? :manage, :all %>
         <td><%= link_to order.id, order_path(order) %></td>
-        <% end %>
         <td><%= order.user.full_name %></td>
         <td><%= order.name %></td>
         <td><%= distance_of_time_in_words_to_now(order.created_at) %></td>

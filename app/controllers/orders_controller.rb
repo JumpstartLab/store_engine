@@ -28,57 +28,37 @@ class OrdersController < ApplicationController
       redirect_to products_path, notice: "Cart is empty"
       return
     end
-    respond_to do |format|
-      format.html
-      format.json { render json: @order }
-    end
   end
 
   def one_click
     product = Product.find(params[:product_id])
     @order = Order.one_click_order(product, current_user)
 
-    respond_to do |format|
-      if @order.errors.empty?
-        format.html { redirect_to product_path(product),
-                                  notice: "Thank you for your order" }
-        format.json { render json: @order, status: :created, location: @order }
-      else
-        @cart = current_cart
-        format.html { render action: 'new' }
-        format.json { render json: @order.errors,
-                             status: :unprocessable_entity }
-      end
+    if @order.errors.empty?
+      redirect_to product_path(product),notice: "Thank you for your order" 
+    else
+      @cart = current_cart
+      render action: 'new'
     end
   end
 
   def create
     @cart = current_cart
     @order.user = current_user
-
     if @cart.line_items.empty?
       redirect_to products_path, notice: "Cart is empty"
       return
     end
-
-    respond_to do |format|
-      if @order.save
-        @order.add_contents_of_cart(@cart, @order)
-        @order.status = "paid"
-        @order.save
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
-        format.html { redirect_to orders_path,
-                                  notice: "Thank you for your order" }
-        format.json { render json: @order,
-                             status: :created,
-                             location: @order }
-      else
-        @cart = current_cart
-        format.html { render action: 'new' }
-        format.json { render json: @order.errors,
-                             status: :unprocessable_entity }
-      end
+    if @order.save
+      @order.add_contents_of_cart(@cart, @order)
+      @order.status = "paid"
+      @order.save
+      Cart.destroy(session[:cart_id])
+      session[:cart_id] = nil
+      redirect_to orders_path, notice: "Thank you for your order"
+    else
+      @cart = current_cart
+      render action: 'new'
     end
   end
 

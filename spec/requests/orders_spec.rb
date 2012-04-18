@@ -31,7 +31,6 @@ describe Order do
         visit products_path
         click_on "Add to Cart"
         click_on "Checkout"
-        save_and_open_page
         fill_in "order_name", with: "Testing1234"
         fill_in "order_address", with: "1234 fake st"
         fill_in "order_email", with: "testemail@fake.com"

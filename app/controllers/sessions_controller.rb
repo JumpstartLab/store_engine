@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       session[:cart_id] = cart_id
       redirect_to cart_path(current_cart), :notice => "Logged in!"
     else
-      flash.now.alert = "Email or password was invalid"
+      flash.now.notice = "Email or password was invalid"
       render :new
     end
   end

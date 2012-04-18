@@ -1,6 +1,4 @@
 
-<% if @product.retired == false || (can? :create, @product) %>
-
   <h3>
     <% @product.category_assignments.each do |ca| %>
       <%= link_to ca.category.name, category_path(ca.category) %>
@@ -24,17 +22,18 @@
     <b>Price</b><br>
     <%= sprintf("$%0.02f", @product.price) %>
     <br />
-      <% if current_user && current_user.orders != [] %>
-      <%= link_to "One-Click Checkout", 
-                   one_click_path(@product), 
-                   method: :post, 
-                   :class => 'btn btn-primary', 
-                   confirm: "Are you sure?" %>
-    <% end %>
+      
   </p>
 
   <div class="form-actions">
     <% if @product.retired == false %>
+      <% if current_user && current_user.orders != [] %>
+        <%= link_to "One-Click Checkout", 
+                     one_click_path(@product), 
+                     method: :post, 
+                     :class => 'btn btn-primary', 
+                     confirm: "Are you sure?" %>
+        <% end %>
       <%= link_to 'Add to Cart', line_items_path(product_id: @product), :method => :post, :class => 'btn'%>
     <% end %>
     
@@ -62,7 +61,5 @@
 
 
   </div>
-<% else %>
-<h1>This Product is no longer offered for sale</h1>
-<% end %>
+
 
