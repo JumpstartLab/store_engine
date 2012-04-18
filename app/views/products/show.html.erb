@@ -13,27 +13,24 @@
   <% end %>
 
   <p class="product_detail">
-    <%= image_tag(@product.photo) %>
+    <td class="photo"><%= image_tag(@product.photo) %></td>
     <%= @product.description %>
+    <div class="rating">
+      <%= good_guide_image(@badge_html).html_safe %>
+    </div>
   </p>
 
   <p>
     <b>Price</b><br>
     <%= sprintf("$%0.02f", @product.price) %>
-  </p>
-
-  <%= good_guide_image(@badge_html).html_safe %>
-
-  <p>
-    <% if can? :update, @product %>
-      <b>Retired</b>
-      <%= @product.retired %>
-      <%= form_for @product do |f| %>
-        <%= f.hidden_field :retired, 
-                           :value => @product.retired_switch %>
-        <%= f.submit "mark as #{@product.retired_switch}", :class => 'btn btn-mini' %>
-      <% end %>
-    <% end %> 
+    <br />
+      <% if current_user && current_user.orders != [] %>
+      <%= link_to "One-Click Checkout", 
+                   one_click_path(@product), 
+                   method: :post, 
+                   :class => 'btn btn-primary', 
+                   confirm: "Are you sure?" %>
+    <% end %>
   </p>
 
   <div class="form-actions">
@@ -42,16 +39,29 @@
     <% end %>
     
     <%= link_to 'View all Products', products_path, :class => 'btn'  %>
-    
+    <p />
     <% if can? :update, @product %>
       <%= link_to 'Edit Product', edit_product_path(@product), :class => 'btn' %>
     <% end %>
+    <p />
+    <% if can? :update, @product %>
+      <% if @product.retired %>
+        <%= form_for @product do |f| %>
+          <%= f.hidden_field :retired,
+                             :value => @product.retired_switch %>
+          <%= f.submit "Unretire", :class => 'btn' %>
+        <% end %>
+      <% else %>
+        <%= form_for @product do |f| %>
+          <%= f.hidden_field :retired,
+                             :value => @product.retired_switch %>
+          <%= f.submit "Retire", :class => 'btn' %>
+        <% end %>
+      <% end %>
+    <% end %> 
+
 
   </div>
-    
-  <% if current_user && current_user.orders != [] %>
-    <%= link_to "One-Click Checkout", one_click_path(@product), method: :post, :class => 'btn btn-primary', confirm: "Are you sure?" %>
-  <% end %>
 <% else %>
 <h1>This Product is no longer offered for sale</h1>
 <% end %>

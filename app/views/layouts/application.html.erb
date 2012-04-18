@@ -43,15 +43,10 @@
             </p>  
             
             <ul class="nav">
+              <li><%= link_to "Why WholeEarth?", about_path %></li>
               <li>
                 <%= link_to "View Cart", cart_path(current_cart)  %>
               </li> 
-
-            <% if can? :manage, :orders %>
-              <li>
-                <%= link_to "View Admin Order Report", admin_report_orders_path %>
-              </li>
-            <% end %>
 
             <% if current_user %>
               <li>
@@ -68,6 +63,7 @@
                 <%= link_to "Log in", login_path %>
               </li>  
             <% end %>
+              <li><%= link_to "View the Code", code_path %></li>
           </ul>
 
           </div>
@@ -86,6 +82,7 @@
                 <%= notice %>
                 </div>
               <% end %>
+
               <%= yield %>
             </div>
 
@@ -98,11 +95,23 @@
                     <li> 
                       <%= link_to category.name, category_path(category) %>
                     </li>
-                  <% end %>
-                  
+                  <% end %>   
                 </ul>
-
               </div><!--/.well -->
+              <% if can? :create, @product %>
+                <div class="well sidebar-nav">
+                  <div class = "admin_nav">
+                    <h3>Admin Actions</h3>
+                    <ul class="nav nav-list">
+                      <li><%= link_to 'Create New Product', new_product_path %></li>
+                      <li><%= link_to 'Create New Category', new_category_path %></li>
+                      <li><%= link_to 'View All Categories', categories_path %></li>
+                      <li><%= link_to 'View All users', users_path%></li>
+                      <li><%= link_to "View Admin Order Report", admin_report_orders_path%></li>
+                    </ul>
+                  </div> 
+                </div><!--/.well -->
+              <% end %>
             </div><!--/span-->
         </div><!--/row-->
       </div><!--/content-->

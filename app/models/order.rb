@@ -4,7 +4,9 @@ class Order < ActiveRecord::Base
 
   has_many :order_items
   belongs_to :user
-  attr_accessible :user_id, :user, :status, :total, :pay_type, :name, :address, :email, :order_items, :cancelled_at, :shipped_at
+  attr_accessible :user_id, :user, :status, :total,
+                  :pay_type, :name, :address, :email,
+                  :order_items, :cancelled_at, :shipped_at
 
   validates :name, :address, :email, presence: true
   validates :pay_type, inclusion: PAYMENT_TYPES
@@ -12,7 +14,7 @@ class Order < ActiveRecord::Base
   validates :user_id, :presence => true
 
   def next_status
-    case status 
+    case status
     when "pending" then "cancelled"
     when "paid" then "shipped"
     when "shipped" then "returned"

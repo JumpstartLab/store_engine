@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
     @cart = current_cart
     if @cart.line_items.empty?
       redirect_to products_path, notice: "Cart is empty"
-      return 
+      return
     end
     respond_to do |format|
       format.html
@@ -40,15 +40,17 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.errors.empty?
-        format.html { redirect_to product_path(product), notice: "Thank you for your order" }
+        format.html { redirect_to product_path(product),
+                                  notice: "Thank you for your order" }
         format.json { render json: @order, status: :created, location: @order }
       else
         @cart = current_cart
         format.html { render action: 'new' }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        format.json { render json: @order.errors,
+                             status: :unprocessable_entity }
       end
     end
-  end  
+  end
 
   def create
     @cart = current_cart
@@ -56,20 +58,24 @@ class OrdersController < ApplicationController
 
     if @cart.line_items.empty?
       redirect_to products_path, notice: "Cart is empty"
-      return 
+      return
     end
-      
+
     respond_to do |format|
       if @order.save
         @order.add_contents_of_cart(@cart, @order)
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        format.html { redirect_to products_path, notice: "Thank you for your order" }
-        format.json { render json: @order, status: :created, location: @order }
+        format.html { redirect_to products_path,
+                                  notice: "Thank you for your order" }
+        format.json { render json: @order,
+                             status: :created,
+                             location: @order }
       else
         @cart = current_cart
         format.html { render action: 'new' }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        format.json { render json: @order.errors,
+                             status: :unprocessable_entity }
       end
     end
   end

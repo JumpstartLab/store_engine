@@ -25,11 +25,14 @@ class OrderItemsController < ApplicationController
     @order_item = OrderItem.find(params[:id])
     respond_to do |format|
       if @order_item.update_attributes(params[:order_item])
-        format.html { redirect_to order_path(@order_item.order), notice: 'Order was successfully updated.' }
+        format.html { redirect_to order_path(@order_item.order),
+                                  notice: 'Order was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { redirect_to order_path(@order_item.order), notice: 'Quantity must be greater than 0' }
-        format.json { render json: @order_item.order, status: :unprocessable_entity }
+        format.html { redirect_to order_path(@order_item.order),
+                                  notice: 'Quantity must be greater than 0' }
+        format.json { render json: @order_item.order,
+                             status: :unprocessable_entity }
       end
     end
   end

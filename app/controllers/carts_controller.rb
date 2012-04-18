@@ -1,21 +1,14 @@
+#gaming the system
 class CartsController < ApplicationController
 
   load_and_authorize_resource
 
   def show
     @cart = Cart.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.json { render json: @cart }
-    end
   end
 
   def new
     @cart = Cart.new
-    respond_to do |format|
-      format.html
-      format.json { render json: @cart }
-    end
   end
 
   def edit
@@ -24,39 +17,36 @@ class CartsController < ApplicationController
 
   def create
     @cart = Cart.new(params[:cart])
-    respond_to do |format|
-      if @cart.save
-        format.html { redirect_to @cart, notice: 'Cart was successfully created.' }
-        format.json { render json: @cart, status: :created, location: @cart }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @cart.errors, status: :unprocessable_entity }
-      end
-    end
+    react_to_save_cart_html(@cart.save)
   end
-
 
   def update
     @cart = Cart.find(params[:id])
-    respond_to do |format|
-      if @cart.update_attributes(params[:cart])
-        format.html { redirect_to @cart, notice: 'Cart was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @cart.errors, status: :unprocessable_entity }
-      end
+    save_result = @cart.update_attributes(params[:cart])
+    react_to_update_cart_html(save_result)
+  end
+
+  def destroy
+    current_cart.destroy
+    session[:cart_id] = nil
+    redirect_to products_path, notice: "Your cart is empty"
+  end
+
+private
+
+  def react_to_save_cart_html(result)
+    if result
+      redirect_to @cart, notice: 'Cart was successfully created.'
+    else
+      render action: "new"
     end
   end
 
-
-  def destroy
-    @cart = current_cart
-    @cart.destroy
-    session[:cart_id] = nil
-    respond_to do |format|
-      format.html { redirect_to products_path, notice: "Your cart is empty" }
-      format.json { head :ok }
+  def react_to_update_cart_html(result)
+    if result
+      redirect_to @cart, notice: 'Cart was successfully updated.'
+    else
+      render action: "edit"
     end
   end
 end

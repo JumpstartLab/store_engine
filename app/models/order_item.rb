@@ -2,7 +2,9 @@ class OrderItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :line_item
   belongs_to :product
-  attr_accessible :order_id, :price, :quantity, :subtotal, :line_item, :id, :order, :product
+  attr_accessible :order_id, :price,
+                  :quantity, :subtotal,
+                  :line_item, :id, :order, :product
 
   def set_price(line_item)
     self.price = line_item.product.price
@@ -27,5 +29,4 @@ class OrderItem < ActiveRecord::Base
   def subtotal
     self.price * self.quantity
   end
-  
 end
