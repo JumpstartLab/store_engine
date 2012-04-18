@@ -19,7 +19,8 @@ body { padding-top: 60px; }
 // @linkColor: #ff0000;
 
 /************VARIABLES AND MIXINS***********/
-@nav-color: #958d81;
+@nav-color: #d5cdc1;
+@background: #d5cdc1;
 @diff: #111111;
 @whale: #262626;
 @font1: Helvetica, Arial, Sans Serif;
@@ -47,6 +48,7 @@ body { background: url("background.jpg") no-repeat center center fixed; -webkit-
 .container #main-content, .container #cart-aside { background: @background; padding: 15px; .rounded(8px); margin-bottom: 20px; float: left; }
 input { height: 30px; }
 .navbar .navbar-inner {
+  font-size: 16px;
   .gradient(@nav-color);
   height: 50px;
   padding-top: 15px;
@@ -68,7 +70,6 @@ img.logo { width: 50px; float: left; padding-right: 15px; }
 @title-color: @whale;/*#6aa3c4;*/
 .buy-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 28px; color: @price-color; margin: 20px 0;}
 .buy-button{ padding: 10px; margin: 5px; font-size: 18px; .rounded(8px); }
-@background: #ddd;
 
 .product{ padding: 0 25px; }
 .image-and-title {
