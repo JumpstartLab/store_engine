@@ -19,9 +19,9 @@ class Order < ActiveRecord::Base
   end
 
   def self.charge_two_click(cart_id)
-    o = Order.process_cart(cart_id)
-    o.charge if o.user.address && o.user.stripe_id
-    o
+    order = Order.process_cart(cart_id)
+    order.charge if order.user.address && order.user.stripe_id
+    order
   end
   def self.process_cart(cart_id)
     Order.find_cart(cart_id)
@@ -59,11 +59,11 @@ class Order < ActiveRecord::Base
   end
 
   def create_user(token)
-    c = Stripe::Customer.create(
+    customer = Stripe::Customer.create(
           :card => token,
           :description => user.email
         )
-    user.stripe_id = c.id
+    user.stripe_id = customer.id
     user.save
   end
 

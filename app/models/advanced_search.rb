@@ -54,11 +54,11 @@ class AdvancedSearch < ActiveRecord::Base
 
   def find_by_order_total(orders)
     if order_total_operator == '='
-      orders = orders.find_all { |o| o.total_price_in_cents == order_total }
+      orders = orders.find_all { |ord| ord.total_price_in_cents == order_total }
     elsif order_total_operator == '>'
-      orders = orders.find_all { |o| o.total_price_in_cents > order_total }
+      orders = orders.find_all { |ord| ord.total_price_in_cents > order_total }
     elsif order_total_operator == '<'
-      orders = orders.find_all { |o| o.total_price_in_cents < order_total }
+      orders = orders.find_all { |ord| ord.total_price_in_cents < order_total }
     end
 
     orders
@@ -66,7 +66,7 @@ class AdvancedSearch < ActiveRecord::Base
 
   def find_by_email(orders)
     if email.present?
-      orders.find_all { |o| o.user.email == email }
+      orders.find_all { |order| order.user.email == email }
     else
       orders
     end

@@ -5,11 +5,11 @@ class ProductRatingsController < ApplicationController
   before_filter :edit_with_time_limit, :only => [:edit, :update]
 
   def create
-    p = params[:product_rating]
+    product_rating = params[:product_rating]
     product = Product.find(params[:product_id])
-    product.product_ratings.new(:name => p[:name],
-                                :body => p[:body],
-                                :rating =>  p[:rating],
+    product.product_ratings.new(:name => product_rating[:name],
+                                :body => product_rating[:body],
+                                :rating =>  product_rating[:rating],
                                 :user => current_user
                                )
     if product.save
