@@ -106,10 +106,10 @@ describe "logged in user" do
         page.should have_content "Change Shipping Address"
         click_link_or_button "Change Shipping Address"
       end
-      fill_in "Name", with: "New Favorite Shipping"
+      fill_in "Name", with: "New Shipping"
       click_link_or_button "Update Shipping address"
       current_path.should == user_path(user)
-      page.should have_content "New Favorite Shipping"
+      page.should have_content "New Shipping"
     end
     context "orders" do
       let!(:product) { Fabricate(:product) }
