@@ -23,6 +23,7 @@ StoreEngine::Application.routes.draw do
     resources :categories
     resources :orders
     resources :users
+    resources :dashboard, only: :index
   end
   
   # The priority is based upon order of creation:

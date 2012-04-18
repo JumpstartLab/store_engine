@@ -1,0 +1,76 @@
+<div class="row">
+
+  <div class="span10">
+    <h1>Admin Dashboard</h1>
+  </div>
+
+  <div class="span10">
+    <h2>Sales Statistics</h2>
+    <div class="well span1">
+      <h3 align="center">Total</h3>
+      <p align="center"><%= Order.all.count %></p>
+    </div>
+    <div class="well span1">
+      <h3 align="center">Pending</h3>
+      <p align="center"><%= Order.find_all_by_status("pending").count %></p>
+    </div>
+    <div class="well span1">
+      <h3 align="center">Cancelled</h3>
+      <p align="center"><%= Order.find_all_by_status("cancelled").count %></p>
+    </div>
+    <div class="well span1">
+      <h3 align="center">Paid</h3>
+      <p align="center"><%= Order.find_all_by_status("paid").count %></p>
+    </div>
+    <div class="well span1">
+      <h3 align="center">Shipped</h3>
+      <p align="center"><%= Order.find_all_by_status("shipped").count %></p>
+    </div>
+    <div class="well span1">
+      <h3 align="center">Returned</h3>
+      <p align="center"><%= Order.find_all_by_status("returned").count %></p>
+    </div>
+    <div class="well span1">
+      <h3 align="center">Total Sales</h3>
+      <p align="center">
+        <% total = 0 %>
+        <% Order.all.each do |order| %>
+          <% total = total + order.total_price %>
+        <% end %>
+        $<%= total %>
+      </p>
+    </div>
+  </div>
+
+  <div class="span10">
+    <h2>Product Information</h2>
+    <div class="well span2">
+      <h3>Total Products</h3>
+      <p>
+        <%= Product.all.count %>
+      </p>
+    </div>
+    <div class="well span2">
+      <h3>Total Categories</h3>
+      <p>
+        <%= Category.all.count %>
+      </p>
+    </div>
+    <div class="well span2">
+      <h3>Most Popular Category</h3>
+      <p>
+        ADD LATER
+      </p>
+    </div>
+  </div>
+
+  <div class="span10">
+    <h2>Customer Information</h2>
+    <div class="well span2">
+      <h3>Total Customers</h3>
+      <p>
+        <%= User.all.count %>
+      </p>
+    </div>
+  </div>
+</div>
