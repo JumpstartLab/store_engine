@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'slim'
 gem 'sorcery'
@@ -22,8 +21,9 @@ group :assets do
   gem 'twitter-bootstrap-rails'
 end
 
-group :development, :test do
+group :development do
   gem 'fabrication'
+  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
@@ -34,4 +34,8 @@ group :development, :test do
   gem 'fabrication'
   gem 'faker'
   # gem 'growl_notify'
+end
+
+group "production" do
+  gem 'pg'
 end
