@@ -6,7 +6,7 @@ feature "Public User Views Products", :acceptance => true do
   context "the root page" do
     before(:each) do
       visit root_path
-    end    
+    end
 
     it "displays products" do
       within("#products") do

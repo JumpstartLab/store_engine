@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
-  before_filter :lookup_category, :only => [:destroy, :edit, :update, :show]
-  before_filter :check_admin, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :lookup_category, :only => [:destroy, :edit,
+                                            :update, :show]
+  before_filter :check_admin, :only => [:new, :create,
+                                        :edit, :update, :destroy]
 
   def new
     @category = Category.new

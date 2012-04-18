@@ -22,7 +22,7 @@ describe "Using the shopping cart" do
         before(:each) do
           click_link_or_button "add to cart"
         end
-    
+
         it "takes me to my cart" do
           page.should have_content("Your Cart")
         end

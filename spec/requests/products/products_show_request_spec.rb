@@ -7,9 +7,15 @@ describe "Products Show Requests" do
       10.times {Fabricate(:category)}
     end
     let!(:product_categories) do
-      [p_c_one = Fabricate(:product_category, :product_id => 1, :category_id => 1),
-       p_c_two = Fabricate(:product_category, :product_id => 1, :category_id => 2),
-       p_c_three = Fabricate(:product_category, :product_id => 1, :category_id => 3),
+      [p_c_one = Fabricate(:product_category,
+                           :product_id => 1,
+                           :category_id => 1),
+       p_c_two = Fabricate(:product_category,
+                           :product_id => 1,
+                           :category_id => 2),
+       p_c_three = Fabricate(:product_category,
+                             :product_id => 1,
+                             :category_id => 3),
       ]
     end
 
@@ -28,7 +34,7 @@ describe "Products Show Requests" do
     it "displays product info" do
       page.should have_content(product.title)
       page.should have_content(product.description)
-      page.should have_content(product.price) 
+      page.should have_content(product.price)
     end
 
     it "shows a link to all products" do

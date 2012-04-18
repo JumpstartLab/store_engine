@@ -9,7 +9,8 @@
 #         begin
 #           custom_create_product(attributes)
 #         rescue NoMethodError
-#           raise NotImplementedError.new("Expected product fabricator, factory, or method `custom_create_product' to be defined")
+#           raise NotImplementedError.new("Expected product fabricator,
+#           factory, or method `custom_create_product' to be defined")
 #         end
 #       end
 

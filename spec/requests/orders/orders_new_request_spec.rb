@@ -6,7 +6,7 @@ describe "Orders" do
   let(:products)  {[product, new_product]}
   let(:user)        { Fabricate(:user, :password => 'password',
                                    :admin => 'false') }
-  
+
   context "when placing an order" do
     context "and I'm logged in" do
       before(:each) do
@@ -64,7 +64,8 @@ describe "Orders" do
             page.should have_field("Credit card number", :type => "text")
             page.should have_field("Expiration month", :type => "text")
             page.should have_field("Expiration year", :type => "text")
-            page.should have_field("Credit card verification number", :type => "text")
+            page.should have_field("Credit card verification number",
+                                  :type => "text")
             page.should have_field("Cardholder name", :type => "text")
           end
 
@@ -103,7 +104,8 @@ describe "Orders" do
             fill_in 'order_credit_cards_credit_card_number', :with => ''
             fill_in 'order_credit_cards_expiration_month', :with => ''
             fill_in 'order_credit_cards_expiration_year', :with => ''
-            fill_in 'order_credit_cards_credit_card_verification_number', :with => ''
+            fill_in 'order_credit_cards_credit_card_verification_number',
+                    :with => ''
             fill_in 'order_credit_cards_cardholder_name', :with => ''
           end
           click_button 'Confirm'
@@ -114,5 +116,4 @@ describe "Orders" do
     end
   end
 
-  
 end

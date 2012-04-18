@@ -1,7 +1,9 @@
 # The first thing you need to configure is which modules you need in your app.
-# The default is nothing which will include only core features (password encryption, login/logout).
+# The default is nothing which will include only core features
+# (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
-# :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
+# :reset_password, :session_timeout, :brute_force_protection,
+# :activity_logging, :external
 Rails.application.config.sorcery.submodules = [:remember_me]
 
 # Here you can configure each submodule's features.
@@ -15,7 +17,8 @@ Rails.application.config.sorcery.configure do |config|
 
 
   # When a non logged in user tries to enter a page that requires login, save
-  # the URL he wanted to reach, and send him there after login, using 'redirect_back_or_to'.
+  # the URL he wanted to reach, and send him there after login,
+  # using 'redirect_back_or_to'.
   # Default: `true`
   #
   # config.save_return_to_url =
@@ -41,7 +44,8 @@ Rails.application.config.sorcery.configure do |config|
 
 
   # -- http_basic_auth --
-  # What realm to display for which controller name. For example {"My App" => "Application"}
+  # What realm to display for which controller name.
+  # For example {"My App" => "Application"}
   # Default: `{"application" => "Application"}`
   #
   # config.controller_to_realm_map =
@@ -67,13 +71,15 @@ Rails.application.config.sorcery.configure do |config|
 
 
   # -- external --
-  # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :google, :liveid] .
+  # What providers are supported by this app,
+  # i.e. [:twitter, :facebook, :github, :google, :liveid] .
   # Default: `[]`
   #
   # config.external_providers =
 
 
-  # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
+  # You can change it by your local ca_file.
+  # i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
   # Default: `'path/to/ca_file'`
   #
@@ -85,22 +91,26 @@ Rails.application.config.sorcery.configure do |config|
   #
   # config.twitter.key = ""
   # config.twitter.secret = ""
-  # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
+  # config.twitter.callback_url =
+  # "http://0.0.0.0:3000/oauth/callback?provider=twitter"
   # config.twitter.user_info_mapping = {:email => "screen_name"}
   #
   # config.facebook.key = ""
   # config.facebook.secret = ""
-  # config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
+  # config.facebook.callback_url =
+  # "http://0.0.0.0:3000/oauth/callback?provider=facebook"
   # config.facebook.user_info_mapping = {:email => "name"}
   #
   # config.github.key = ""
   # config.github.secret = ""
-  # config.github.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=github"
+  # config.github.callback_url =
+  # "http://0.0.0.0:3000/oauth/callback?provider=github"
   # config.github.user_info_mapping = {:email => "name"}
   #
   # config.google.key = ""
   # config.google.secret = ""
-  # config.google.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=google"
+  # config.google.callback_url =
+  # "http://0.0.0.0:3000/oauth/callback?provider=google"
   # config.google.user_info_mapping = {:email => "email", :username => "name"}
   #
   # To use liveid in development mode you have to replace mydomain.com with
@@ -109,7 +119,8 @@ Rails.application.config.sorcery.configure do |config|
   #
   # config.liveid.key = ""
   # config.liveid.secret = ""
-  # config.liveid.callback_url = "http://mydomain.com:3000/oauth/callback?provider=liveid"
+  # config.liveid.callback_url =
+  # "http://mydomain.com:3000/oauth/callback?provider=liveid"
   # config.liveid.user_info_mapping = {:username => "name"}
 
 
@@ -122,7 +133,8 @@ Rails.application.config.sorcery.configure do |config|
     user.username_attribute_names = :email
 
 
-    # change *virtual* password attribute, the one which is used until an encrypted one is generated.
+    # change *virtual* password attribute,
+    # the one which is used until an encrypted one is generated.
     # Default: `:password`
     #
     # user.password_attribute_name =
@@ -165,7 +177,8 @@ Rails.application.config.sorcery.configure do |config|
 
 
     # encryption key used to encrypt reversible encryptions such as AES256.
-    # WARNING: If used for users' passwords, changing this key will leave passwords undecryptable!
+    # WARNING: If used for users' passwords,
+    # changing this key will leave passwords undecryptable!
     # Default: `nil`
     #
     # user.encryption_key =
@@ -177,13 +190,15 @@ Rails.application.config.sorcery.configure do |config|
     # user.custom_encryption_provider =
 
 
-    # encryption algorithm name. See 'encryption_algorithm=' for available options.
+    # encryption algorithm name.
+    # See 'encryption_algorithm=' for available options.
     # Default: `:bcrypt`
     #
     # user.encryption_algorithm =
 
 
-    # make this configuration inheritable for subclasses. Useful for ActiveRecord's STI.
+    # make this configuration inheritable for subclasses.
+    # Useful for ActiveRecord's STI.
     # Default: `false`
     #
     # user.subclasses_inherit_config =
@@ -208,7 +223,8 @@ Rails.application.config.sorcery.configure do |config|
     # user.activation_token_expires_at_attribute_name =
 
 
-    # how many seconds before the activation code expires. nil for never expires.
+    # how many seconds before the activation code expires.
+    # nil for never expires.
     # Default: `nil`
     #
     # user.activation_token_expiration_period =
@@ -218,14 +234,14 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `nil`
     #
     # user.user_activation_mailer =
-    
-    
+
+
     # when true sorcery will not automatically
     # email activation details and allow you to
     # manually handle how and when email is sent.
     # Default: `false`
     #
-    # user.activation_mailer_disabled = 
+    # user.activation_mailer_disabled =
 
 
     # activation needed email method on your mailer class.
@@ -240,7 +256,8 @@ Rails.application.config.sorcery.configure do |config|
     # user.activation_success_email_method_name =
 
 
-    # do you want to prevent or allow users that did not activate by email to login?
+    # do you want to prevent or allow users that
+    # did not activate by email to login?
     # Default: `true`
     #
     # user.prevent_non_active_users_to_login =
@@ -282,24 +299,25 @@ Rails.application.config.sorcery.configure do |config|
     # manually handle how and when email is sent
     # Default: `false`
     #
-    # user.reset_password_mailer_disabled =                                      
+    # user.reset_password_mailer_disabled =
 
-                                                                          
-    # reset password email                                                                                   
+
+    # reset password email
     # method on your mailer
     # class.
     # Default: `:reset_password_email`
     #
-    # user.reset_password_email_method_name =                            
+    # user.reset_password_email_method_name =
 
-                                                                                         
+
     # how many seconds before the reset request expires. nil for never expires.
     # Default: `nil`
     #
     # user.reset_password_expiration_period =
 
 
-    # hammering protection, how long to wait before allowing another email to be sent.
+    # hammering protection, how long to wait
+    # before allowing another email to be sent.
     # Default: `5 * 60`
     #
     # user.reset_password_time_between_emails =
@@ -312,7 +330,8 @@ Rails.application.config.sorcery.configure do |config|
     # user.failed_logins_count_attribute_name =
 
 
-    # This field indicates whether user is banned and when it will be active again.
+    # This field indicates whether user is banned
+    # and when it will be active again.
     # Default: `:lock_expires_at`
     #
     # user.lock_expires_at_attribute_name =

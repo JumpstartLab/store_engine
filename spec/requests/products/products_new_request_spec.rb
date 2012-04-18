@@ -14,7 +14,8 @@ describe "Create New Product" do
       it "allows admins to create a new product via the from" do
         within(".new_product") do
           fill_in 'product_title', :with => 'Womb Chair'
-          fill_in 'product_description', :with => 'Modern elegance in a minimal package.'
+          fill_in 'product_description',
+                  :with => 'Modern elegance in a minimal package.'
           fill_in 'product_price', :with => '500'
           fill_in 'product_remote_image_url', :with => ''
         end
@@ -26,7 +27,7 @@ describe "Create New Product" do
     end
 
     context "and logged in as regular user" do
-      
+
       it "shouldn't even allow the user to access the new action" do
         login(user)
         visit "/products/new"
@@ -36,5 +37,5 @@ describe "Create New Product" do
     end
 
   end
-  
+
 end

@@ -3,7 +3,7 @@
   <td><%= link_to order_product.title, product_path(order_product.product) %></td>
   <td>
     <% if order_product.order.status == "pending" %>
-    <%= form_for order_product, :url => order_product_path(order_product), :method => :put do |f| %>
+    <%= form_for order_product, :url => order_product_path(order_product),:method => :put do |f| %>
       <%= f.select :quantity, (1..30), :selected => order_product.quantity %>
     <% end %>
     <% else %>

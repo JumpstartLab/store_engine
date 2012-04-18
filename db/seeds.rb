@@ -1,5 +1,7 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+# This file should contain all the record creation
+# needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed
+# (or created alongside the db with db:setup).
 #
 # Examples:
 #
@@ -26,32 +28,37 @@ chad.admin = true
 chad.save
 
 # active products
-chair = Product.create(:title => "Sweet chair", 
-                       :description => "This is a great chair",
-                       :price => "5.00",
-                       :remote_image_url => "http://ecx.images-amazon.com/images/I/31pVwh3qNvL._SL500_AA300_.jpg")
+chair = Product.create(:title => "Sweet chair",
+        :description => "This is a great chair",
+        :price => "5.00",
+        :remote_image_url =>
+        "http://ecx.images-amazon.com/images/I/31pVwh3qNvL._SL500_AA300_.jpg")
 
 desk = Product.create(:title => "Amazing desk",
-                      :description => "This is the coolest desk",
-                      :price => "20.00",
-                      :remote_image_url => "http://www.vintagedanishmodern.com/products/87381.jpg")
+        :description => "This is the coolest desk",
+        :price => "20.00",
+        :remote_image_url =>
+        "http://www.vintagedanishmodern.com/products/87381.jpg")
 
 clock = Product.create(:title => "Clock",
-                       :description => "Crazy expensive Banker's Clock",
-                       :price => "400.00",
-                       :remote_image_url => "http://ecx.images-amazon.com/images/I/316DTOGbiRL._SL500_AA300_.jpg")
+        :description => "Crazy expensive Banker's Clock",
+        :price => "400.00",
+        :remote_image_url =>
+        "http://ecx.images-amazon.com/images/I/316DTOGbiRL._SL500_AA300_.jpg")
 
 stove = Product.create(:title => "Viking Range",
-                       :description => "The best cooking experience ever",
-                       :price => "5200.00",
-                       :remote_image_url => "http://ecx.images-amazon.com/images/I/41XtFmar9UL._SL500_AA300_.jpg")
+        :description => "The best cooking experience ever",
+        :price => "5200.00",
+        :remote_image_url =>
+        "http://ecx.images-amazon.com/images/I/41XtFmar9UL._SL500_AA300_.jpg")
 
 #inactive product
 table = Product.create(:title => "Great table",
-                       :description => "This is the sweetest table",
-                       :price => "10.00",
-                       :remote_image_url => "http://ecx.images-amazon.com/images/I/31lRJMSUDOL._SL500_AA300_.jpg",
-                       :retired => true)
+        :description => "This is the sweetest table",
+        :price => "10.00",
+        :remote_image_url =>
+        "http://ecx.images-amazon.com/images/I/31lRJMSUDOL._SL500_AA300_.jpg",
+        :retired => true)
 
 # create categories
 furniture = Category.create(:name => "Furniture")

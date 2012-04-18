@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
-  attr_accessible :billing_address, :shipping_address, 
-                  :transactionsuser_id, :billing_address_id, 
+  attr_accessible :billing_address, :shipping_address,
+                  :transactionsuser_id, :billing_address_id,
                   :shipping_address_id, :user_id
   belongs_to :user
 
@@ -16,7 +16,9 @@ class Order < ActiveRecord::Base
   belongs_to :billing_address, :class_name => "Address"
   belongs_to :shipping_address, :class_name => "Address"
 
-  # accepts_nested_attributes_for :billing_address, :shipping_address, :transactions
+  # accepts_nested_attributes_for :billing_address,
+  #                                 :shipping_address,
+  #                                 :transactions
 
   def self.pending
     Order.all.select {|order| order.status == "pending"}

@@ -1,35 +1,35 @@
 require 'spec_helper'
 
 describe "Dashboard" do
-  let(:admin)    { Fabricate(:user, :admin => true, 
+  let(:admin)    { Fabricate(:user, :admin => true,
                              :password => "password")}
   let(:user)     { Fabricate(:user, :password => "password") }
   let(:billing)  { Fabricate(:address) }
   let(:shipping) { Fabricate(:address) }
   let(:product)  { Fabricate(:product) }
 
-  let(:pending_order)    { Order.create(:user_id => user.id, 
+  let(:pending_order)    { Order.create(:user_id => user.id,
                              :billing_address_id => billing.id,
                              :shipping_address_id => shipping.id ) }
 
 
-  let(:paid_order)       { Order.create(:user_id => user.id, 
+  let(:paid_order)       { Order.create(:user_id => user.id,
                              :billing_address_id => billing.id,
                              :shipping_address_id => shipping.id ) }
 
-  let(:cancelled_order)  { Order.create(:user_id => user.id, 
+  let(:cancelled_order)  { Order.create(:user_id => user.id,
                              :billing_address_id => billing.id,
                              :shipping_address_id => shipping.id ) }
 
-  let(:shipped_order)    { Order.create(:user_id => user.id, 
+  let(:shipped_order)    { Order.create(:user_id => user.id,
                              :billing_address_id => billing.id,
                              :shipping_address_id => shipping.id ) }
 
-  let(:returned_order)   { Order.create(:user_id => user.id, 
+  let(:returned_order)   { Order.create(:user_id => user.id,
                              :billing_address_id => billing.id,
                              :shipping_address_id => shipping.id ) }
 
-  let(:orders) {{"pending"   => pending_order, 
+  let(:orders) {{"pending"   => pending_order,
                  "paid"      => paid_order,
                  "cancelled" => cancelled_order,
                  "shipped"   => shipped_order,

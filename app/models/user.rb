@@ -1,14 +1,14 @@
 class User < ActiveRecord::Base
-  after_initialize :create_cart 
+  after_initialize :create_cart
   authenticates_with_sorcery!
-  
+
   attr_accessible :email, :password, :password_confirmation,
                   :display_name, :first_name, :last_name
 
   validates :password,  :presence => true,
                         :confirmation => true,
                         :on => :create,
-                        :length => { 
+                        :length => {
                           :in => 4..12,
                           :too_short => "Must be at least 4 characters.",
                           :too_long => "No more than 10 characters."
@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   #validates :full_name, :presence => true
 
   validates :display_name, :allow_blank => true,
-                      :length => { 
+                      :length => {
                       :in => 2..32,
                       :too_short => "Try a longer name.",
                       :too_long => "Try a shorter name." }

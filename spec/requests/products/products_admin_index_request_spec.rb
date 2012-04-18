@@ -37,7 +37,7 @@ describe "Products Admin Requests" do
 
     it "shows a button to retire a product" do
       visit "admin/products"
-      products.each do |product| 
+      products.each do |product|
         within("tr.product") do
           page.should have_link("Retire")
         end

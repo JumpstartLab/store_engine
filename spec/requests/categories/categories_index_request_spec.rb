@@ -8,7 +8,7 @@ describe "Category Requests" do
        category_three = Fabricate(:category)
       ]
     end
-  
+
     before(:each) do
       visit "/categories"
     end
@@ -16,7 +16,8 @@ describe "Category Requests" do
     it "links to each category" do
       within("#categories") do
         categories.each do |category|
-          page.should have_link(category.name, :href => category_path(category))
+          page.should have_link(category.name,
+                                :href => category_path(category))
         end
       end
     end
@@ -33,5 +34,4 @@ describe "Category Requests" do
     end
 
   end
-  
 end

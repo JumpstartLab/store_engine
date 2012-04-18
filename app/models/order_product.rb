@@ -16,7 +16,7 @@ class OrderProduct < ActiveRecord::Base
   end
 
   def total
-    price * quantity    
+    price * quantity
   end
 
 end

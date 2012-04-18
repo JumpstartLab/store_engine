@@ -12,11 +12,11 @@ StoreEngine::Application.routes.draw do
 
   match "place_order", :to => "orders#new", :as => "place_order"
   # match "process_order/:id", :to => "orders#update", :as => "process_order"
-  
+
   resources :users do
     resources :addresses, :only => [:create]
   end
-  
+
   resources :sessions
   resources :products
 
@@ -54,7 +54,8 @@ StoreEngine::Application.routes.draw do
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
+  # Sample resource route
+  # (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
   # Sample resource route with options:
@@ -96,7 +97,9 @@ StoreEngine::Application.routes.draw do
 
   # See how all your routes lay out with "rake routes"
 
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
+  # This is a legacy wild controller route that's
+  # not recommended for RESTful applications.
+  # Note: This route will make all actions in every
+  # controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end

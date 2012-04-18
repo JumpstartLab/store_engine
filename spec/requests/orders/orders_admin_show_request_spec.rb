@@ -8,11 +8,11 @@ describe "Orders" do
                                    :admin => 'true') }
   let(:billing)  { Fabricate(:address) }
   let(:shipping) { Fabricate(:address) }
-  let(:pending_order)    { Order.create(:user_id => admin_user.id, 
+  let(:pending_order)    { Order.create(:user_id => admin_user.id,
                              :billing_address_id => billing.id,
                              :shipping_address_id => shipping.id ) }
   let(:user)    { Fabricate(:user) }
-  let!(:order)    { Order.create(:user_id => user.id, 
+  let!(:order)    { Order.create(:user_id => user.id,
                              :billing_address_id => billing.id,
                              :shipping_address_id => shipping.id ) }
 
@@ -22,9 +22,11 @@ describe "Orders" do
     before(:each) do
       pending_order.order_statuses.create(:status => "pending")
       login(admin_user)
-      pending_order.order_products << OrderProduct.create(:product_id => product.id, :quantity => 1)
+      pending_order.order_products << OrderProduct.create(
+                              :product_id => product.id,
+                              :quantity => 1)
     end
-    
+
     context "and the order is pending" do
       it "has a field for setting quantity" do
         visit admin_order_path(pending_order)

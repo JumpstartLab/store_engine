@@ -4,7 +4,9 @@ class InstantOrdersController < ApplicationController
     params[:quantity] ||= 1
     user = current_user
 
-    if user.default_billing_address && user.default_shipping_address && user.default_credit_card
+    if user.default_billing_address &&
+        user.default_shipping_address &&
+          user.default_credit_card
       @order = Order.new
       @order.user = current_user
       @order.billing_address = user.default_billing_address

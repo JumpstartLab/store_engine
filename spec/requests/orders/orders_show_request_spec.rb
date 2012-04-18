@@ -10,7 +10,7 @@ describe "Orders" do
 
   let(:billing)  { Fabricate(:address) }
   let(:shipping) { Fabricate(:address) }
-  let!(:order)    { Order.create(:user_id => user.id, 
+  let!(:order)    { Order.create(:user_id => user.id,
                              :billing_address_id => billing.id,
                              :shipping_address_id => shipping.id ) }
   let!(:order2)    { Order.create(:user_id => user2.id,

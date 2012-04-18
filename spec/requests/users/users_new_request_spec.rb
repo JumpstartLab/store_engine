@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Create New User" do
-  
+
   context "when creating a new user" do
 
     context "and there are no items in the cart" do
@@ -100,5 +100,5 @@ describe "Create New User" do
     end
 
   end
-  
+
 end

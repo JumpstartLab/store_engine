@@ -21,7 +21,7 @@ describe Cart do
       end
       describe "#remove_product_by_id" do
         it "removes the product from the cart" do
-          expect do 
+          expect do
             cart.remove_product_by_id(product.id)
           end.to change {cart.products.count}.by(-1)
           cart.products.should_not include(product)
@@ -55,6 +55,4 @@ describe Cart do
     end
   end
 
-  
-  
 end
