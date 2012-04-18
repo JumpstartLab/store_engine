@@ -24,6 +24,8 @@
     <%= label_tag :email_address %>
     <%= text_field_tag :email_address %><br/>
   <% end %>
+  <%= label_tag :credit_card %><br/>
+  <%= text_field_tag :credit_card, current_user.shipping_address %><br/>
   <%= label_tag :billing_address %><br/>
   <%= text_field_tag :billing_address, current_user.billing_address %><br/>
   <%= label_tag :shipping_address %><br/>
