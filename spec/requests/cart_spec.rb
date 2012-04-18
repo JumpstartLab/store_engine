@@ -60,5 +60,14 @@ describe 'using the shopping cart' do
       n.times { load_cart_with_products([product]) }
       page.should have_content(number_to_currency(product.price * n))
     end
+
+    it "lets me update quantity of the items" do
+      within("#product_#{products.first.id}") do
+        click_link_or_button "Edit Quantity"
+      end
+      fill_in "cart_item_quantity", :with => "96"
+      click_on "Update Cart item"
+      page.should have_content("96")
+    end
   end
 end

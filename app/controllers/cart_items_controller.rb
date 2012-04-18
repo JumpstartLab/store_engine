@@ -13,7 +13,7 @@ class CartItemsController < ApplicationController
   end
 
   def update
-    @cart_item = current_cart.cart_items.find(params[:id])
+    @cart_item = @cart.cart_items.find(params[:id])
     @cart_item.update_attributes(params[:cart_item])
     delete_on_zero
     redirect_to cart_path
