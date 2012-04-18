@@ -1,4 +1,4 @@
 Fabricator(:order) do
   user_id 1
-  status "pending"
+  status ["pending", "cancelled", "paid", "shipped", "returned"].sample
 end
