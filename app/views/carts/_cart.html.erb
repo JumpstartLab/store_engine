@@ -23,8 +23,8 @@
         <td><%= number_to_currency(item.individual_price) %></td>
         <td><%= item.quantity %></td>
         <td><%= number_to_currency(item.price) %></td>
-        <td><%= link_to "Edit Quantity", edit_cart_item_path(item) %></td>
-        <td><%= link_to "Remove item", cart_item_path(item), :method => :delete %></td>
+        <td><%= link_to "Edit Quantity", edit_cart_item_path(item), :class => 'btn' %></td>
+        <td><%= link_to "Remove item", cart_item_path(item), :method => :delete, :class => 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
