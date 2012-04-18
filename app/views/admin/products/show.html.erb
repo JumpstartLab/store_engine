@@ -1,23 +1,18 @@
 <h1>Admin Product Details</h1>
-<div id="product">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Photo</th>
-        <th>Categories</th>
-        <th>Buy it!</th>
-        <th>Retire It!</th>
-      </tr>
-    </thead>
+<ul class="thumbnails">
+  <div class="row" style="margin-bottom:20px">
+   <%= render :partial => @product %>
+    <li class="span8">
+      <h1><%= @product.name.capitalize %></h1>
+      <h4>Description:</h4><br />
+      <%= @product.description %>
+      <br />
+      <br />
+      <br />
+      <%= link_to 'Back to products', products_path, :class => "btn" %>
+    </li>
+  </div>
+</ul>
 
-    <%= render :partial => @product %>
-
-  </table>
-</div>
-
-<%= link_to 'Add to cart', new_cart_product_path(:product_id => @product) %><br />
-<td><%= link_to 'Edit this product', edit_admin_product_path(@product) %></td><br />
+<%= link_to 'Add to cart', new_cart_product_path(:product_id => @product) %><br /><br />
 <%= link_to 'Back to products', products_path %>

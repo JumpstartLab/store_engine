@@ -1,23 +1,14 @@
-<h1>Product Details</h1>
-<div id="product">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Photo</th>
-        <th>Categories</th>
-        <th>Buy it!</th>
-      </tr>
-    </thead>
-    <!-- don't use this partial... make a custom one for show so that there isn't 2 add to carts -->
-    <%= render :partial => @product %>
-
-  </table>
-</div>
-
-<% if @product.active? %>
-  <%= link_to 'Add to cart', new_cart_product_path(:product_id => @product) %>
-<% end %>
-<%= link_to 'Back to products', products_path %>
+<ul class="thumbnails">
+  <div class="row" style="margin-bottom:20px">
+   <%= render :partial => @product %>
+    <li class="span8">
+      <h1><%= @product.name.capitalize %></h1>
+      <h4>Description:</h4><br />
+      <%= @product.description %>
+      <br />
+      <br />
+      <br />
+      <%= link_to 'Back to products', products_path, :class => "btn" %>
+    </li>
+  </div>
+</ul>
