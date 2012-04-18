@@ -106,4 +106,13 @@ describe "Products" do
       end
     end
   end
+
+  context "searching products" do
+    it "searches given a valid param" do
+      visit products_path
+      fill_in "search", :with => products.first.title
+      click_on "Search!"
+      page.should have_content products.first.title
+    end
+  end
 end
