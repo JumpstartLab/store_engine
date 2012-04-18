@@ -11,18 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120418002816) do
+=======
+ActiveRecord::Schema.define(:version => 20120417010840) do
+>>>>>>> 517b7209ef569b45799572a6194137d608a62f00
 
   create_table "billing_methods", :force => true do |t|
     t.string   "credit_card_number"
-    t.string   "credit_card_expiration_date"
+    t.datetime "credit_card_expiration_date", :limit => 255
     t.string   "street"
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
     t.string   "name"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.integer  "user_id"
     t.string   "card_type"
   end
