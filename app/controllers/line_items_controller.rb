@@ -22,7 +22,7 @@ class LineItemsController < ApplicationController
   end
 
   def update
-    @line_item = current_cart.line_items.find(params[:id])
+    @line_item = LineItem.find(params[:id])
     respond_to do |format|
       if @line_item.update_attributes(params[:line_item])
         format.html { redirect_to cart_path(current_cart), notice: 'Item was successfully updated.' }
