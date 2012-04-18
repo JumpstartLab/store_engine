@@ -21,7 +21,7 @@
                 = link_to "All Categories", categories_path
           - if session[:order_id]
             - cart = Order.find(session[:order_id])
-            li= link_to "Cart", order_path(cart), id: "cart", name: "cart"
+            li= link_to "Cart (#{cart.total_items})", order_path(cart), id: "cart", name: "cart"
           - if logged_in?
             - if current_user.has_order?
               li = link_to "Orders", orders_path
