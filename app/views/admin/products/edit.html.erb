@@ -1,27 +1,29 @@
-<%= form_for @product, :url => [:admin, @product] do |f| %>
-  <%= error_messages_for :product %>
+<%= simple_form_for @product, :url => [:admin, @product], :html => { class: "form-horizontal" } do |f| %>
+  <fieldset>
+    <%= f.error_notification %>
+    <%= error_messages_for :product %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %><br />
+    <%= f.input :name, :input_html => { :class => "span3" } %>
 
-  <%= f.label :price %>
-  <%= f.text_field :price %><br />
+    <%= f.input :price, :wrapper => :prepend do %>
+      <%# TODO: WTF. The SimpleForm documentation puts these one two lines and it works... %>
+      <%= content_tag :span, "$", :class => "add-on" %><%= f.input_field :price, class: "span3" %>
+    <% end %>
 
-  <%= f.label :photo_url %>
-  <%= f.text_field :photo_url %><br />
+    <%= f.input :photo_url, :input_html => { :class => "span3" } %>
 
-  <% Category.all.each do |category| -%>
-    <div>
-      <%= check_box_tag :category_ids, category.id, @product.categories.include?(category), :name => 'product[category_ids][]' -%>
-      <%= label_tag :category_ids, category.name -%>
+    <%= f.input :category_ids, :collection => Category.all, :as => :check_boxes %>
+
+    <div class="form-actions">
+      <%= f.button :submit, :class => 'btn-primary' %>
+
+      <% if @product.retired? %>
+        <%= link_to "Unretire", unretire_admin_product_path(@product), class: "btn btn-warning", method: :put %>
+      <% else %>
+        <%= link_to "Retire", retire_admin_product_path(@product), class: "btn btn-warning", method: :put %>
+      <% end %>
     </div>
-  <% end -%>
 
-  <%= f.submit %>
+  </fieldset>
 <% end %>
 
-<% if @product.retired? %>
-  <%= link_to "Unretire", unretire_admin_product_path(@product), method: :put %>
-<% else %>
-  <%= link_to "Retire", retire_admin_product_path(@product), method: :put %>
-<% end %>

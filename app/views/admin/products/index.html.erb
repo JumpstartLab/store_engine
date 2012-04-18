@@ -2,7 +2,8 @@
 <% @products.each do |product| %>
   <%= link_to product.name, admin_product_path(product) %>
   <%= link_to "Retire", retire_admin_product_path(product),
-    :method => :put,
+    :class   => "btn btn-mini",
+    :method  => :put,
     :confirm => "Retire \"#{product.name}\"?"%>
   <br />
 <% end %>
