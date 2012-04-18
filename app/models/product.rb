@@ -13,18 +13,19 @@ class Product < ActiveRecord::Base
 
   default_scope where(:activity => true)
 
-  def self.find_by_title(search_term)
-    Product.where("upper(title) like ?", "%#{search_term.upcase}%")
+  def self.find_by(search_term)
+    Product.where("upper(title) like ?", "%#{search_term.upcase}%") + 
+    Category.where("upper(title) like ?", search_term.upcase).map {|c| c.products}.flatten
   end
 
-  def self.find_by_category(search_term)
-    categories = Category.where("upper(title) like ?", search_term.upcase).all
-    results = []
-    categories.each do |category|
-      results << category.products.all
-    end
-    results.flatten.uniq
-  end
+  # def self.find_by_category(search_term)
+  #   categories = Category.where("upper(title) like ?", search_term.upcase).all
+  #   results = []
+  #   categories.each do |category|
+  #     results << category.products.all
+  #   end
+  #   results.flatten.uniq
+  # end
 
   def status?
     activity

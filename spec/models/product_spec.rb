@@ -41,29 +41,31 @@ describe Product do
     product_with_duplicate_title.should_not be_valid
   end
 
-  describe ".find_by_title" do
+  describe ".find_by with a product title" do
     let!(:product) { FactoryGirl.create(:product, title: "Lightsaber") }
-    it "returns a match with the exact string" do
-      p = Product.find_by_title(product.title)
-      p.first.title.should == product.title
-    end
+    context "when searching by product titles"
+      it "returns a match with the exact string" do
+        p = Product.find_by(product.title)
+        p.first.title.should == product.title
+      end
 
-    it "returns a match with the lowercase string" do
-      p = Product.find_by_title("lightsaber")
-      p.first.title.should == product.title
-    end
+      it "returns a match with the lowercase string" do
+        p = Product.find_by("lightsaber")
+        p.first.title.should == product.title
+      end
+    context "when searching by category"
   end
 
-  describe ".find_by_category" do
+  describe ".find_by with a category" do
     let(:category) { FactoryGirl.create(:category) }
     let!(:product) { FactoryGirl.create(:product, categories: [category]) }
     it "returns a match with the exact string" do
-      p = Product.find_by_category(category.title)
+      p = Product.find_by(category.title)
       p.first.title.should == product.title
     end
 
     it "returns a match with the lowercase string" do
-      p = Product.find_by_category(category.title.downcase)
+      p = Product.find_by(category.title.downcase)
       p.first.title.should == product.title
     end
   end
