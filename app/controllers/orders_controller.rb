@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
   before_filter :signed_in_user
 
   def index
-    # @orders = Order.all
     @orders = Order.order(params[:sort])
   end
 
@@ -23,8 +22,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    order = Order.create_order_from_cart(cart.id)
-    order.save
+    order = Order.create_order_from_cart(cart, current_user)
     redirect_to order_path(order)
   end
 

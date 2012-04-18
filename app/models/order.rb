@@ -9,18 +9,14 @@ class Order < ActiveRecord::Base
     ["pending", "cancelled", "paid", "shipped", "returned"]
   end
 
-  def self.create_order_from_cart(cart_id)
-    cart = Cart.find(cart_id)
-    new_order = Order.create
+  def self.create_order_from_cart(cart, current_user)
+    new_order = new
     cart.cart_items.each do |cart_item|
-      order_item = OrderItem.new
-      order_item.order_id = new_order.id
-      order_item.product_id = cart_item.product_id
-      order_item.quantity = cart_item.quantity
-      order_item.total_price = cart_item.total
-      order_item.save
+      new_order.order_items.build(cart_item.attributes_for_order_item, 
+                                  :without_protection => true)
     end    
     new_order.total_price = cart.total
+    new_order.user = current_user
     new_order.save
     return new_order
   end

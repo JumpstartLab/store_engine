@@ -43,8 +43,8 @@
     <% @orders.each do |order| %>
       <tr id="order_<%= order.id %>">
         <td id="order_<%=order.id%>_add"><%= link_to order.id, order_path(order) %></td>
-        <td>John Doe</td>
-        <td>An ID</td>
+        <td><%= order.user.name %></td>
+        <td><%= link_to order.user.id, user_path(order.user) %></td>
         <td><%= order.created_at %></td>
         <td><%= order.updated_at %></td>
         <td><%= order.total_price %></td>

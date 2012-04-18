@@ -3,14 +3,22 @@ require 'spec_helper'
 describe "For orders" do
   context "#index" do
     let!(:orders) { [Fabricate(:order), Fabricate(:order)] }
-
-    before(:each) { visit orders_path }
+    let!(:admin) { Fabricate(:user, :admin => true) }
+      
+    before(:each) do
+      visit signin_path
+      fill_in "Email",    with: admin.email
+      fill_in "Password", with: admin.password
+      click_button "Sign in"
+      click_link_or_button "Browse Orders"
+    end
 
     it "has an area that list the orders" do
       page.should have_selector("table#orders")
     end
 
     it "lists orders in the system" do
+      save_and_open_page
       within("table#orders") do
         orders.each do |order|
           page.should have_content(order.id)

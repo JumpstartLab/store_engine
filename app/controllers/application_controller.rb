@@ -1,8 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
+  after_filter :return_last_page
 
   helper_method :cart
+
+  def redirect_to_last_page
+    last_page = session[:last_page] || params[:last_page]
+    if last_page
+      redirect_to(last_page)
+    else 
+      redirect_to(root_path)
+    end
+  end
 
   private
 
@@ -24,5 +34,9 @@ class ApplicationController < ActionController::Base
     else 
       Cart.find_by_id(session[:cart_id])
     end
+  end
+
+  def return_last_page
+    session[:last_page] = request.url
   end
 end
