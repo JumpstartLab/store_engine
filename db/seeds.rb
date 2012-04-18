@@ -22,11 +22,11 @@ Product.create(:title => "Lucy", :description => "Lucy is goosey!", :price => ra
                :photo => "http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg")
 # 30.times { Fabricate(:product).save } 
 # 
-# pending = Status.create(:name => StoreEngine::Status::PENDING)
-# Status.create(:name => StoreEngine::Status::CANCELLED)
-# paid = Status.create(:name => StoreEngine::Status::PAID)
-# shipped = Status.create(:name => StoreEngine::Status::SHIPPED)
-# Status.create(:name => StoreEngine::Status::RETURNED)
+ pending = Status.create(:name => StoreEngine::Status::PENDING)
+ Status.create(:name => StoreEngine::Status::CANCELLED)
+ paid = Status.create(:name => StoreEngine::Status::PAID)
+ shipped = Status.create(:name => StoreEngine::Status::SHIPPED)
+ Status.create(:name => StoreEngine::Status::RETURNED)
 # 
 # shipping_address = Fabricate(:shipping_address)
 # shipping_address.save

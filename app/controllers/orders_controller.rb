@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
                        :status_updated_at => DateTime.now)
     cart.cart_items.each do |item|
       @order.order_items << OrderItem.new(:product => item.product, 
-                                          :price => item.price, 
+                                          :price => item.price.cents.to_s, 
                                           :quantity => item.quantity)
     end
 
