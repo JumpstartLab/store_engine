@@ -16,9 +16,29 @@ class Product < ActiveRecord::Base
     Category.where("upper(title) like ?", search_term.upcase).map {|c| c.products}.flatten
   end
 
+  def self.top_grossing
+    Product.active.sort do |a, b|
+      a.revenue <=> b.revenue
+    end.last
+  end
+
+  def sales
+    sales = order_items.inject(0) { |sum, oi| sum + oi.quantity }
+  end
+
+  def self.top_selling
+    Product.active.sort do |a, b|
+      a.sales <=> b.sales
+    end.last
+  end
+
 
   def self.active
     Product.where(:activity => true)
+  end
+
+  def revenue
+    revenue = order_items.inject(0) { |sum, oi| sum + oi.price }
   end
 
   # def self.find_by_category(search_term)

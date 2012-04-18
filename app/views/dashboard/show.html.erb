@@ -82,6 +82,8 @@
     <th>Name</th>
     <th>Active</th>
     <th>Price</th>
+    <th>Revenue</th>
+    <th>Sales count</th>
     <th>Categories</th>
     <th>Edit</th>
   </thead>
@@ -89,7 +91,9 @@
     <% @products.each do |product| %><tr>
       <td><%= link_to product.title, product_path(product) %></td>
       <td><%= product.activity %></td>
+      <td><%= number_to_currency(product.revenue) %></td>
       <td><%= number_to_currency(product.price) %></td>
+      <td><%= product.sales %></td>
       <td><%= product.categories.map! { |k| "#{k.title}" }.join(", ") %></td>
       <td><%= link_to "Edit", edit_product_path(product) %></td>
     </tr><% end %>

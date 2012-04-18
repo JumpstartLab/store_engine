@@ -13,7 +13,7 @@
 */
 
 body {
-  font-family: "museo-slab", "Helvetica Neue";
+  /*font-family: "museo-slab", "Helvetica Neue";*/
   color: #262626;
   font-size: 16px;
 }
@@ -42,6 +42,5 @@ a:hover {
 	font-weight: 700;
 }
 
-#products li {
-  background-color: red;
-}
+
+

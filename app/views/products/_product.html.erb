@@ -3,6 +3,8 @@
     | <%= product.description %> <%= image_tag(product.image_link, 
                                       :width => '100') %>
     | <%= number_to_currency(product.price) %>
+
+
     <% product.categories.each do |c| %> | 
       <%= link_to c.title, category_path(c) %>
       <% end %>

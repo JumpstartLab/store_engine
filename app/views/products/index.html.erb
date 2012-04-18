@@ -10,6 +10,27 @@
   <p><%= submit_tag "Search!" %></p>
 
 
+<div class="hero-unit">
+  <div class="row-fluid">
+    <div class="span7">
+      <% p = Product.top_selling %>
+      <% if !p.nil? %>
+      <h1><%=  p.title %></h1>
+      <p><%=  p.description %></p>
+      <div id="info">
+      <p id="price"><%= number_to_currency(p.price) %>
+      <%= link_to "Add to Cart", cart_items_path(:product_id => p), 
+          :method => :post, :remote => true, :id => "product_#{p.id}", :class => "btn" %>
+        </div>
+    </div>
+    <div class="span5">
+      <%= image_tag(p.image_link) %>
+      
+    </div>
+  </div>
+</div>
+<% end %>
+
 <p><%= link_to "All Products", products_path %></p>
 <% Category.all.each do |c| %>
   <%= link_to c.title, category_path(c) %>

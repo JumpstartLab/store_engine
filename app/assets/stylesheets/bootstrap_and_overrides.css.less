@@ -14,7 +14,6 @@ body { padding-top: 80px; }
 @fontAwesomeSvgzPath: asset-path('fontawesome-webfont.svgz');
 @fontAwesomeSvgPath: asset-path('fontawesome-webfont.svg');
 
-@headingsFontFamily: "museo-slab", @baseFontFamily;
 
 // Font Awesome
 @import "fontawesome";
@@ -53,5 +52,50 @@ body { padding-top: 80px; }
   color: @black;
   font-size: 24px;
   font-weight: bold;
+}
+
+.hero-unit {
+  padding: 30px;
+  margin-bottom: 30px;
+  background-color: #eeeeee;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  
+}
+.hero-unit h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  color: inherit;
+  letter-spacing: -1px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+
+#info {
+  padding-top: 40px;
+}
+
+.hero-unit img {
+  width: 90%;
+  float: right;
+  padding: 0;
+}
+.hero-unit p {
+  font-size: 20px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);  font-weight: 300;
+  line-height: 27px;
+  color: inherit;
+  letter-spacing: 0px;
+}
+
+.hero-unit p#price {
+  color:  #46a546;
+  font-weight: 300;
+  font-size: 50px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
 }
 
