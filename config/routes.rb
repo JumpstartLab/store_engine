@@ -3,6 +3,7 @@ StoreEngine::Application.routes.draw do
 
   resources :categories
 
+  match "/about" => "pages#about", :as => :about
   match "/code" => redirect("https://github.com/eliseworthy/store_engine"), :as => :code
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
