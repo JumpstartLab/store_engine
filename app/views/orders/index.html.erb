@@ -1,14 +1,20 @@
 <h1>Orders</h1>
-
-<ul id="orders">
-  <% @orders.each do |order| %>
-  <li><%= link_to order.id, order_path(order) %>
-          | <%= order.created_at %> |
-          <% order.products.each do |t| %>
-          <%= t.title %>
-          <% end %>
-
-           |
-          <%= order.total_price %> </li>
-  <% end %>
-</ul>
+<br />
+<table class="table table-striped table-condensed" id="orders">
+  <thead>
+    <th>Order ID</th>
+    <th>Created</th>
+    <th>Products</th>
+    <th>Total Price</th>
+  </thead>
+  <tbody>
+      <% @orders.each do |order| %><tr>
+      <td><%= link_to order.id, order_path(order) %></td>
+      <td><%= order.created_at %></td>
+      <td><% order.products.each do |t| %>
+            <%= t.title %>,
+          <% end %></td>
+      <td><%= order.total_price %></td>
+      </tr><% end %>
+  </tbody>
+</table>
