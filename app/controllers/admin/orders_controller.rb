@@ -1,5 +1,6 @@
 class Admin::OrdersController < ApplicationController
   before_filter :signed_in_user
+  before_filter :admin_user
 
   def index
     @orders = Order.order(params[:sort])
@@ -29,31 +30,38 @@ class Admin::OrdersController < ApplicationController
   
 private
 
-  def order
-    @order ||= Order.find(params[:id])
-  end
-
-  def shipping_information
-    if current_user.shipping_information.nil?
-      current_user.shipping_information = ShippingInformation.new
-    else
-      current_user.shipping_information
+    def order
+      @order ||= Order.find(params[:id])
     end
-  end
 
-  def billing_information
-    if current_user.billing_information.nil?
-      current_user.billing_information = BillingInformation.new
-    else
-      current_user.billing_information
+    def admin_user
+      redirect_to_last_page && flash_error unless current_user.admin?
     end
-  end
 
-  def signed_in_user
-    unless signed_in?
-      store_location
-      redirect_to signin_path, notice: "Please sign in."
+    def flash_error
+      flash[:error] = "You are not logged in as the correct user"
     end
-  end
-  
+
+    def shipping_information
+      if current_user.shipping_information.nil?
+        current_user.shipping_information = ShippingInformation.new
+      else
+        current_user.shipping_information
+      end
+    end
+
+    def billing_information
+      if current_user.billing_information.nil?
+        current_user.billing_information = BillingInformation.new
+      else
+        current_user.billing_information
+      end
+    end
+
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_path, notice: "Please sign in."
+      end
+    end  
 end
