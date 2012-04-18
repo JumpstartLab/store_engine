@@ -27,7 +27,7 @@ title: StoreEngine Evaluation Story 1
         * And I am viewing my cart
         * When I check out
         * Then I should be asked to login
-        * When I log in
+        * When I log in as "demoXX+matt@jumpstartlab.com"
         * Then I am viewing my cart
         * And my cart should contain <product name> with quantity 1
 
