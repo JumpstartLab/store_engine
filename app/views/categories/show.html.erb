@@ -1,8 +1,13 @@
-<h1><%= @category.name %></h1>
+<h3>Products assigned to <%= @category.name %></h3></br />
 
-<h3>Here are the products assigned to <%= @category.name %></h3></br />
 <div class="row">
-  <ul class="thumbnails">
-    <%= render :partial => "products/product", :collection => @products %>
-  </ul>
+  <%= link_to 'Back to all products', products_path, :class => "btn" %>
 </div>
+<br />
+<ul class="thumbnails">
+ <% @products.each_slice(3) do |slice| %>
+   <div class="row" style="margin-bottom:20px">
+   <%= render :partial => "products/product", :collection => slice, :as => "product" %>
+   </div>
+ <% end %>
+</ul>
