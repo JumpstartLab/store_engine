@@ -3,12 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if session[:cart_id]
-      user = login_user_with_cart 
-    else
-      user = login(params[:email], params[:password])
-    end
-
+    user = check_for_cart_and_login
     session[:view_as_admin] = 'true' if user && user.admin?
 
     if user
@@ -16,6 +11,14 @@ class SessionsController < ApplicationController
     else
       flash.now.alert = "Email or password was invalid, fucker."
       render :new
+    end
+  end
+
+  def check_for_cart_and_login
+    if session[:cart_id]
+      user = login_user_with_cart 
+    else
+      user = login(params[:email], params[:password])
     end
   end
 

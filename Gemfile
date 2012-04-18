@@ -30,7 +30,6 @@ group :development, :test do
   gem 'slim'
   gem 'seed_dump'
   gem 'simplecov', :require => false
-  gem 'cane'
   gem 'reek', :git => 'git://github.com/mvz/reek.git', :branch =>
   'ripper_ruby_parser-2'
 end

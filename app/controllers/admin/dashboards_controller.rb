@@ -3,8 +3,10 @@ class Admin::DashboardsController < ApplicationController
     @statuses = Order.statuses
     @orders_by_status = Order.collect_by_status
 
-    if params[:status]
-      @orders = @orders_by_status[params[:status]]
+    status = params[:status]
+
+    if status
+      @orders = @orders_by_status[status]
     else
       @orders = Order.all
     end

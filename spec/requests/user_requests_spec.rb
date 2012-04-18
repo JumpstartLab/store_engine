@@ -44,8 +44,6 @@ describe User do
       login_as(user)
     end
 
-    it "not edit users personal data"
-    
     describe "products" do
       before(:each) do
         user.cart = cart
