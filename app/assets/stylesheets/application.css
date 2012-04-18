@@ -17,7 +17,6 @@
 html{
   margin: 0;
   padding: 0;
-  padding-bottom:50px;
   background: url(/assets/bg.png);
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -26,10 +25,10 @@ html{
   font-family: "Arial Rounded MT Bold";
 }
 body {
+  background:transparent;
   width:80%;
   margin:0 auto;
   margin-top: 30px;
-  margin-bottom: 50px;
 }
 #header {
   background: #262626;
@@ -52,16 +51,15 @@ body {
   margin-top:-5px;
 }
 nav.main{
-  float:left;
-  width:100%;
   height: 40px;
   background-color: #454545;
   font-size: 14px;
   line-height: 40px;
+  overflow: hidden;
 }
 nav.main a{
+  float:left;
   color: #5db1d3;
-  float: left;
   text-decoration: none;
   padding:0 20px;
   height: 40px;
@@ -73,16 +71,12 @@ nav.main a:hover, nav a.active{
   background: url(/assets/nav-hover.png); 
 }
 #content{
-  float:left;
+  overflow: hidden;
   background-color:white;
-  width:100%;
   border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;  
-}
-#content-padding {
-  float:left;
-  width:91%;
-  padding:2% 5% 2% 5%;
+  border-bottom-right-radius: 20px;
+  box-sizing: border-box;
+  padding:2% 5%;
 }
 #location{
   color: #909090;
@@ -91,36 +85,22 @@ nav.main a:hover, nav a.active{
 .right{
   float:right;
 }
-/*fieldset{
-  background-color: #e6e6e6;
-  margin-top: 30px;
-  font-size: 16px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  padding: 20px;
-  color: #454545;
-  -moz-box-shadow: 2px 2px 2px #bebebe;
-  -webkit-box-shadow: 2px 2px 2px #bebebe;
-  box-shadow: 2px 2px 2px #bebebe;
-  float:left;
-  width:100%;
-}
-label {
-  width:100%;
+#footer {
+  margin-top:20px;
+  height:15px;
+  background-color:#262626;
+  -webkit-border-top-left-radius: 20px;
+  -webkit-border-top-right-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-topright: 20px;  
+  color:white;
   clear:both;
-  float:left;
-}*/
-/*input {
-  width: 98%;
-  border-style:solid;
-  border-color:#bebebe;
-  float: left;
-  height: 50px;
-  font-size: 30px;
-  margin: 10px 0px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-}*/
+  padding:2% 5%;
+  overflow:hidden;
+}
+.clear {
+  clear:both;
+}
 #cart{ 
   width:100px;
   color: white;
@@ -185,9 +165,9 @@ label {
   margin-right:20px;
 }
 
-.product > img {
-  width: 100px;
-  height: 100px;
+.product a > img{
+  max-width: 100px;
+  max-  height: 100px;
 }
 
 .center {
