@@ -29,9 +29,10 @@ class OrdersController < ApplicationController
 
   def update
     if @order.status == "pending" && @order.transition
-      notice = "Thank you for purchasing. An email confirmation is on its way."
+      notice = "Thank you for purchasing.
+                An email confirmation is on its way.".squish
       session[:order_id] = nil
-      redirect_to root_path, notice: notice
+      redirect_to root_url, notice: notice
     elsif @order.status != "pending" && @order.transition
       session[:return_to] = request.referrer
       notice = "Transition successful"

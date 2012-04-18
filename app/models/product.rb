@@ -59,14 +59,18 @@ class Product < ActiveRecord::Base
   end
 
   def image
-    if !self.photo_url || self.photo_url == ""
+    if !photo_url || photo_url == ""
       "/logo.png"
     else
-      self.photo_url
+      photo_url
     end
   end
 
   def status
     self.retired ? "retired" : "active"
+  end
+
+  def active?
+    status == "active" ? true : false
   end
 end

@@ -124,7 +124,8 @@ describe "logged in user" do
         other_user = Fabricate(:user)
         order = Fabricate(:order)
         li = Fabricate(:line_item)
-        li.update_attributes({product_id: product.id, order_id: order.id})
+        li.update_attributes({product_id: product.id,
+                              order_id: order.id})
         order.update_attribute(:user_id, other_user.id)
         click_link_or_button "View Orders"
         within "#main-content" do
