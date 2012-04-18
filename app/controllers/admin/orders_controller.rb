@@ -15,12 +15,12 @@ class Admin::OrdersController < ApplicationController
 
   def update
     order.update_attributes(params[:order])
-    redirect_to order_path(order)
+    redirect_to admin_order_path(order)
   end
 
   def create
     order = Order.create_order_from_cart(cart, current_user)
-    redirect_to order_path(order)
+    redirect_to admin_order_path(order)
   end
 
   helper_method :order

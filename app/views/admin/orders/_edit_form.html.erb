@@ -1,4 +1,4 @@
-<%= form_for order do |f| %>
+<%= form_for(order, url: admin_order_path(order)) do |f| %>
   <%= f.label :status %>
   <%= f.select :status, order.status_options.collect { |s| s }, {}, :multiple=>false, :id=>"status"%><br />
 

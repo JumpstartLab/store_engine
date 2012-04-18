@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_filter :signed_in_user
 
   def index
-    @orders = Order.order(params[:sort])
+    @orders = current_user.orders.order(params[:sort])
   end
 
   def new
