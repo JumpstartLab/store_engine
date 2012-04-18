@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/mvz/reek.git
+  revision: c21b666e8249627f78024065d99c5f4329355e99
+  branch: ripper_ruby_parser-2
+  specs:
+    reek (1.2.8)
+      ruby2ruby (~> 1.2.5)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -169,7 +179,12 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.9.0)
+    ruby2ruby (1.2.5)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
     ruby_gntp (0.3.4)
+    ruby_parser (2.3.1)
+      sexp_processor (~> 3.0)
     rubyzip (0.9.6.1)
     sass (3.1.15)
     sass-rails (3.2.5)
@@ -181,6 +196,7 @@ GEM
       ffi (~> 1.0)
       multi_json (~> 1.0)
       rubyzip
+    sexp_processor (3.2.0)
     simple_form (2.0.1)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -243,6 +259,7 @@ DEPENDENCIES
   pg
   pjax_rails
   rails (= 3.2.3)
+  reek!
   rspec-rails
   ruby_gntp
   sass-rails (~> 3.2.3)

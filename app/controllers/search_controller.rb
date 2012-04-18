@@ -3,8 +3,8 @@ class SearchController < ApplicationController
   before_filter :require_admin, :only => [:new, :create]
 
   def index
-    q = params[:q]
-    search(q)
+    query = params[:q]
+    search(query)
   end
 
   def new
@@ -24,9 +24,9 @@ class SearchController < ApplicationController
 
   private
 
-  def search(q)
-    v = "%#{q}%"
-    @products = Product.where("name LIKE ? OR description LIKE ?", v, v)
+  def search(query)
+    value = "%#{query}%"
+    @products = Product.where("name LIKE ? OR description LIKE ?", value, value)
   end
 
 end

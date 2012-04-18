@@ -7,11 +7,11 @@ class Address < ActiveRecord::Base
   validates_presence_of :state
 
   def geocoder
-    g = Geocoder.search("#{street}, #{zipcode}").first
-    if g
-      self.state = g.state
-      self.country = g.country
-      self.formatted_address = g.formatted_address
+    result = Geocoder.search("#{street}, #{zipcode}").first
+    if result
+      self.state = result.state
+      self.country = result.country
+      self.formatted_address = result.formatted_address
     end
   end
 

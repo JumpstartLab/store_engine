@@ -42,4 +42,5 @@ group :development, :test do
   gem 'debugger'
   gem 'simplecov'  
   gem 'guard-spork'
+  gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
 end
