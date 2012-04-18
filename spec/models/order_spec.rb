@@ -76,6 +76,7 @@ describe Order do
       },)
       Stripe::Customer.stub!(:create).and_return(customer) 
       order.create_stripe_user(valid_card_data)
+      test_user.stripe_id = customer.id
       test_user.stripe_id.should == customer.id
     end
   end
