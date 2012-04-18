@@ -1,0 +1,97 @@
+<div class="page-header">
+<h1>Dashboard</h1>
+</div>
+<br />
+<div class="well">
+  <h2>Total revenue: <%= number_to_currency(Order.revenue) %></h2>
+  <h2>Total Orders: <%= @orders.count %></h2>
+</div>
+<div id= "order_count">
+
+  
+  <table id="status_numbers">
+    <tbody>
+      <td style="width: 110px"><%= link_to "Pending:", statuses_path(:name => "pending") %> 
+          <%= Order.pending.count %></td>
+      <td style="width: 120px"><%= link_to "Cancelled:", statuses_path(:name => "cancelled") %> 
+          <%= Order.cancelled.count %></td>
+      <td style="width: 90px"><%= link_to "Paid:", statuses_path(:name => "paid") %>
+          <%= Order.paid.count %></td>
+      <td style="width: 120px"><%= link_to "Shipped:", statuses_path(:name => "shipped") %>
+          <%= Order.shipped.count %></td>
+      <td style="width: 120px"><%= link_to "Returned:", statuses_path(:name => "returned") %> 
+          <%= Order.returned.count %></td>
+    </tbody>
+  </table>
+  
+
+</div>
+<br />
+<br />
+
+<h1>All Orders</h1>
+<br />
+<table class="table table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Created</th>
+      <th>User</th>
+      <th>Products</th>
+      <th>Status</th>
+      <th>Updated</th>
+      <th>Total Price</th>
+    </tr>
+  </thead>
+  <tbody id="orders">
+    <% @orders.each do |order| %><tr>
+        <td><%= link_to order.id, order_path(order) %></td>
+            <td><%= order.created_at.strftime("%m/%d/%Y  %I:%M%p") %></td>
+            <td><%= order.user.full_name %></td>
+            <td><% order.products.each do |t| %>
+                    <%= t.title %>, 
+                  <% end %></td>
+            <td><%= order.current_status %></td>
+            <td><%= order.updated_at.strftime("%m/%d/%Y  %I:%M%p") %>
+            <td>$<%= order.total_price %></td>
+    </tr><% end %>
+  </tbody>
+</table>
+<br />
+<%= link_to "Add product", new_product_path, :class => "btn btn-large" %>
+<%= link_to "Add category", new_category_path, :class => "btn btn-large" %>
+<br />
+<br />
+<h1>Categories</h1>
+<table class="table table-striped table-condensed">
+  <thead>
+    <th>Title</th>
+    <th>Edit</th>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %><tr>
+      <td><%= link_to category.title, category_path(category) %></td>
+      <td><%= link_to "Edit", edit_category_path(category) %></td>
+    </tr><% end %>
+  </tbody> 
+</table>
+
+<h1>Products</h1>
+<table class="table table-striped table-condensed">
+  <thead>
+    <th>Name</th>
+    <th>Active</th>
+    <th>Price</th>
+    <th>Categories</th>
+    <th>Edit</th>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %><tr>
+      <td><%= link_to product.title, product_path(product) %></td>
+      <td><%= product.activity %></td>
+      <td><%= number_to_currency(product.price) %></td>
+      <td><%= product.categories.map! { |k| "#{k.title}" }.join(", ") %></td>
+      <td><%= link_to "Edit", edit_product_path(product) %></td>
+    </tr><% end %>
+  </tbody> 
+</table>

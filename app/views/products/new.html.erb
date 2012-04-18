@@ -1,0 +1,28 @@
+<h2>New Product</h2>
+
+<%= form_for(@product) do |p| %>
+  <p>
+    <%= p.label :title %> <br />
+    <%= p.text_field :title %>
+  </p>
+
+   <p>
+    <%= p.label :description %> <br />
+    <%= p.text_area :description %>
+  </p>
+
+  <p>
+    <%= p.label :price %> <br />
+    <%= p.text_field :price %>
+  </p>
+
+  <p>
+    <%= p.label :image_link %> <br />
+    <%= p.text_field :image_link %>
+  </p>
+
+  <p>
+    <%= p.submit %> 
+  </p>
+
+  <% end %>

@@ -1,4 +1,24 @@
 StoreEngine::Application.routes.draw do
+
+  resources :searches
+  resources :products
+  resources :orders
+  resources :users
+  resources :sessions
+  resources :cart_items
+  resource :edit
+  resources :categories
+  resource :two_click_orders
+  resource :search
+  resource :dashboard, :controller => 'dashboard'
+  resources :statuses
+
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+
+  resource :cart, :only => [:show, :update]
+
+  root :to => 'products#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

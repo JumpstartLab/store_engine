@@ -1,0 +1,24 @@
+<!-- <h1>Products</h1> -->
+
+<% "Search" %>
+
+<%= form_tag products_path, method: :get %>
+  <p>
+    <%= label_tag :search %><br />
+    <%= text_field_tag :search %>
+  </p>
+  <p><%= submit_tag "Search!" %></p>
+
+
+<p><%= link_to "All Products", products_path %></p>
+<% Category.all.each do |c| %>
+  <%= link_to c.title, category_path(c) %>
+<% end %>
+
+
+<ul class="thumbnails">
+  <%= render :partial => "product", :collection => @products %>
+</ul>
+
+
+ <%= render :partial => "addresses/address", :collection => @addresses %>

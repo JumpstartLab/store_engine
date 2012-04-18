@@ -1,0 +1,49 @@
+<header>
+  <div class="navbar">
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+        <a class="brand" href="/">StoreEngine</a>
+        <ul class="nav">
+          <li>
+            <%= link_to("Cart", cart_path) %>
+          </li>
+          <li>
+            <% if @cart.quantity == 0 %>
+            <a><div id="badger"><span class="badge badge" id="cart_count"><%= @cart.quantity %></span></div></a>
+            <% else %>
+            <a><div id="badger"><span class="badge badge-success" id="cart_count"><%= @cart.quantity %></span></div></a>
+            <% end %>
+
+          </li>
+        </ul>
+
+          <% if current_user %>
+            <ul class="nav pull-right">
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account</a>
+            <ul class="dropdown-menu">
+              <li><%= current_user.full_name %></li>
+              <li><%= link_to "Dashboard", dashboard_path if current_user.admin? %></li>
+              <li><%= link_to "Log Out", logout_path %></li>
+              <li><%= link_to "Orders", orders_path %></li>
+            </ul>
+          </li>
+
+
+          <% else %>
+          <ul class="nav pull-right">
+            <li><%= link_to "Sign Up", new_user_path %></li>       
+            <li><%= link_to "Log In", new_session_path %></li>
+          <% end %>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

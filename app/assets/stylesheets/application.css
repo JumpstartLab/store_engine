@@ -11,3 +11,36 @@
  *= require_self
  *= require_tree .
 */
+
+body {
+  font-family: "Helvetica Neue";
+  color: #262626;
+  font-size: 16px;
+}
+
+/*a {
+  text-decoration: none;
+  color: blue;
+  font-weight: 900;
+}
+
+a:hover {
+  color: white;
+  background: blue;
+}*/
+
+
+#stripe_error {
+  color: red;
+  font-weight: 700;
+}
+
+#cart_info {
+	display: inline;
+	color: #53f139;
+	font-weight: 700;
+}
+
+#products li {
+  background-color: red;
+}
