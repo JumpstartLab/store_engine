@@ -45,6 +45,24 @@
         </div>
       </div>
     </div>
+    <% if signed_in? && current_user.admin? %>
+      <div class="navbar-inner admin_nav">
+        <div class="container">
+          
+          <h2 class="brand"><small>Admin Panel</small></h2>
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">All Products</a></li>
+              <li><a href="#">All Categories</a></li>
+              <li><a href="#">All Orders</a></li>
+              <li><a href="#">All Users</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
   <div class="container" id="main">
     <% flash.each do |key, value| %>
