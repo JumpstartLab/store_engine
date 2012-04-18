@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20120416205314) do
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
-    t.string   "status_id"
+    t.integer  "status_id"
     t.string   "unique_url"
     t.integer  "is_cart",      :default => 1
     t.datetime "shipped_at"

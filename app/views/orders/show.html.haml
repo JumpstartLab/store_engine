@@ -1,5 +1,6 @@
 %h1 Order details
-= link_to 'Edit Order', edit_order_path(@order), :class => 'pull-right'
+- if current_user and current_user.admin
+  = link_to 'Edit Order', edit_order_path(@order), :class => 'pull-right'
 %br
 
 %table.table.table-bordered

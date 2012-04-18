@@ -42,6 +42,9 @@ class OrdersController < ApplicationController
     if order.user.update_address(params[:order][:user_attributes])
         order.charge(params[:order][:stripe_card_token])
         cookies[:cart_id] = nil
+
+        Notification.order_email(current_user, order).deliver
+
         redirect_to order_path(order), 
           :notice => "Congrats on giving us your money"
     else

@@ -49,7 +49,7 @@ StoreEngine::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Enable threaded mode
   # config.threadsafe!
@@ -64,4 +64,15 @@ StoreEngine::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  # Email
+  config.action_mailer.delivery_method = :smtp
+  
+  ActionMailer::Base.smtp_settings = {
+    :address  => "smtp.mailgun.org",
+    :port  => 25,
+    :user_name  => "postmaster@app4079835.mailgun.org",
+    :password  => "00okho-v10h5",
+    :authentication  => :login
+  }
 end
