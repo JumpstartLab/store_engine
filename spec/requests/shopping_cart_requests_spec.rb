@@ -28,6 +28,8 @@ describe "Shopping Cart Requests" do
 
       context "When I check out" do
         it "brings me to the shipping address page" do
+          user.shopping_cart = Fabricate(:shopping_cart)
+          user.shopping_cart.add_item(product.id, 10)
           visit shopping_cart_path
           click_link("Checkout")
           current_path.should == new_shipping_address_path

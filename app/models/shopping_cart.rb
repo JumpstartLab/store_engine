@@ -28,6 +28,9 @@ class ShoppingCart < ActiveRecord::Base
   def update_quantities(item_to_quantities)
     cart_items.each do |cart_item|
       cart_item.quantity = item_to_quantities[cart_item.id.to_s]
+      if cart_item.quantity == 0
+        remove_item(cart_item.id)
+      end
       cart_item.save
     end
   end
