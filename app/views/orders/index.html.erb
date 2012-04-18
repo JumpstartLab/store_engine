@@ -10,7 +10,7 @@
   <tbody>
       <% @orders.each do |order| %><tr>
       <td><%= link_to order.id, order_path(order) %></td>
-      <td><%= order.created_at %></td>
+      <td><%= order.created_at.strftime("%m/%d/%Y  %I:%M%p") %></td>
       <td><% order.products.each do |t| %>
             <%= t.title %>,
           <% end %></td>

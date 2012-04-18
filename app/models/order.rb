@@ -18,6 +18,11 @@ class Order < ActiveRecord::Base
 
   accepts_nested_attributes_for :address
 
+  def self.revenue
+    Order.all.inject(0) do |result, order|
+      result += order.total_price
+    end
+  end
   
   def total_price
     order_items.inject(0) do |result, item|

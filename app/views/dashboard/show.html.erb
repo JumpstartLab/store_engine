@@ -1,7 +1,14 @@
+<div class="page-header">
 <h1>Dashboard</h1>
+</div>
 <br />
-<div id= "order_count">
+<div class="well">
+  <h2>Total revenue: <%= number_to_currency(Order.revenue) %></h2>
   <h2>Total Orders: <%= @orders.count %></h2>
+</div>
+<div id= "order_count">
+
+  
   <table id="status_numbers">
     <tbody>
       <td style="width: 110px"><%= link_to "Pending:", statuses_path(:name => "pending") %> 
@@ -39,13 +46,13 @@
   <tbody id="orders">
     <% @orders.each do |order| %><tr>
         <td><%= link_to order.id, order_path(order) %></td>
-            <td><%= order.created_at %></td>
+            <td><%= order.created_at.strftime("%m/%d/%Y  %I:%M%p") %></td>
             <td><%= order.user.full_name %></td>
             <td><% order.products.each do |t| %>
                     <%= t.title %>, 
                   <% end %></td>
             <td><%= order.current_status %></td>
-            <td><%= order.updated_at %>
+            <td><%= order.updated_at.strftime("%m/%d/%Y  %I:%M%p") %>
             <td>$<%= order.total_price %></td>
     </tr><% end %>
   </tbody>
