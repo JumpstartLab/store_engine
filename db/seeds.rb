@@ -32,7 +32,7 @@ def order(values)
               )
 end
 u1 = user(["Mike Silvis", "mike", "mikesilvis@gmail.com", "mike", 9])
-u2 = user(["Nisarg Shah", "nisarg", "nisargshah100@gmail.com", "nisarg"])
+u2 = user(["Nisarg Shah", "nisarg", "nisargshah100@gmail.com", "nisarg", 9])
 user(["Matt Yoho", "hungry", "demoXX+matt@jumpstartlab.com", ""])
 user(["Jeff", "hungry", "demoXX+jeff@jumpstartlab.com", "j3"])
 user(["Chad Fowler", "hungry", "demoXX+chad@jumpstartlab.com", "SaxPlayer", 9])
