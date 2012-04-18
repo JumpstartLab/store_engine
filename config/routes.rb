@@ -29,10 +29,10 @@ StoreEngine::Application.routes.draw do
   match '/admin/dashboard', :to => 'admin/dashboard#show'
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
-  match '/signout', :to => 'sessions#destroy', via: :delete
+  match '/signout', :to => 'sessions#destroy'
 
-  root :to => "static_pages#home"
-
+  # root :to => "static_pages#home"
+  root :to => "products#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

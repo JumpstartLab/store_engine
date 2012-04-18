@@ -66,7 +66,7 @@ class Product < ActiveRecord::Base
   private
 
   def check_for_photo
-    if self.photo == ""
+    if self.photo.blank?
       self.photo = 'http://i.imgur.com/JPby7.jpg'
     end
   end

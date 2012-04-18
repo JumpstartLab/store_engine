@@ -37,6 +37,8 @@ RSpec.configure do |config|
   config.include Rails.application.routes.url_helpers
   config.include ExampleData::Projects
   config.include Sorcery::TestHelpers::Rails
+  
+  ActiveSupport::Deprecation.silenced = true
 end
 
 module Sorcery

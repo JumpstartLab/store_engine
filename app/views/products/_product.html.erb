@@ -7,7 +7,7 @@
         <h4>Price: <%= product.price %></h4>
     </p>
     <h5>Description</h5>
-    <p><%= product.description %></p>
+    <p><%= truncate(product.description, :length=>100) %></p>
     <p>
       <h6>Categories:<h6><br />
         <% product.categories.each do |category| %>
@@ -15,9 +15,8 @@
         <% end %>
     </p>
     <p>
-      <%= button_to 'Add to cart', new_cart_product_path(:product_id => product.id), :class => "btn btn-primary", :disabled => product.retired?, :action => :new, :method => :get %>
+      <%= button_to 'Add to cart', new_cart_product_path, :class => "btn btn-primary", :disabled => product.retired?, :action => :new, :method => :get, :product_id => product.id %>
     </p>
     </div>
   </div>
 </li>
-
