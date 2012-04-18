@@ -22,19 +22,19 @@ describe LineItem do
     context "when a line item for the product doesn't exist" do
       it "creates a new line item for the product" do
         LineItem.increment_or_create_line_item(order_id: ord.id,
-                                               product_id: prod.id)
+         product_id: prod.id)
         LineItem.all.size.should == 1
       end
     end
     context "when a line item for the product exists" do
       it "increments quantity of the line item" do
         LineItem.increment_or_create_line_item({order_id: ord.id,
-                                                product_id: prod.id,
-                                                quantity: 1})
+          product_id: prod.id,
+          quantity: 1})
         line_item = LineItem.last
         LineItem.increment_or_create_line_item({order_id: ord.id,
-                                                product_id: prod.id,
-                                                quantity: 1})
+          product_id: prod.id,
+          quantity: 1})
         updated_item = LineItem.find(line_item.id)
         updated_item.quantity.should == 2
       end

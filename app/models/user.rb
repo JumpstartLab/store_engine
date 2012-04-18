@@ -1,3 +1,4 @@
+#
 class User < ActiveRecord::Base
   attr_accessible :email_address, :full_name, :display_name, :password
   attr_accessible :password_confirmation
@@ -9,10 +10,10 @@ class User < ActiveRecord::Base
   validates_presence_of :full_name, :email_address
   validates_format_of :full_name, with: /[a-zA-Z]/
   validates_format_of :email_address,
-                      :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/
+  :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/
   validates_uniqueness_of :email_address
   validates_length_of :display_name, :minimum => 2, :maximum => 32,
-             allow_nil: true, unless: Proc.new { |u| u.display_name.blank? }
+  allow_nil: true, unless: Proc.new { |u| u.display_name.blank? }
 
   def pending_order
     orders.find_by_status("pending")
@@ -20,6 +21,10 @@ class User < ActiveRecord::Base
 
   def has_pending_order?
     pending_order ? true : false
+  end
+
+  def has_order?
+    orders.any?
   end
 
   def billing_method_id
@@ -38,12 +43,12 @@ class User < ActiveRecord::Base
     shipping_address ? true : false
   end
 
- def enable_admin_view
-  update_attribute(:admin_view, true)
- end
+  def enable_admin_view
+    update_attribute(:admin_view, true)
+  end
 
- def disable_admin_view
-  update_attribute(:admin_view, false)
- end
+  def disable_admin_view
+    update_attribute(:admin_view, false)
+  end
 
 end

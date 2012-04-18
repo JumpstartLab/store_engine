@@ -31,14 +31,14 @@ describe "logged in user" do
   end
   context "My Account" do
     let(:billing) {
-      { credit_card_number: 555555555555,
-        credit_card_expiration_date: 03052013,
-        street: "One Mockingbird Lane",
-        city: "Anytown",
-        state: "VA",
-        zipcode: 22209,
-        name: "Favorite Billing",
-        card_type: 'Visa'
+      { credit_card_number: "5555555555555555",
+            month: "4 - April",
+            year: "2012",
+            street: "One Mockingbird Lane",
+            city: "Anytown",
+            state: "Virginia",
+            zipcode: "22209",
+            card_type: 'Visa'
       }
     }
     let(:shipping) {
@@ -125,7 +125,7 @@ describe "logged in user" do
         order = Fabricate(:order)
         li = Fabricate(:line_item)
         li.update_attributes({product_id: product.id,
-                              order_id: order.id})
+          order_id: order.id})
         order.update_attribute(:user_id, other_user.id)
         click_link_or_button "View Orders"
         within "#main-content" do
@@ -171,9 +171,9 @@ describe "logged in user" do
         page.should have_content "not allowed"
       end
       it "cannot view a list of users" do
-      visit users_path
-      page.should_not have_content other_user.full_name
-    end
+        visit users_path
+        page.should_not have_content other_user.full_name
+      end
     end
   end
 end

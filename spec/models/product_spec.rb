@@ -63,7 +63,7 @@ describe Product do
     it "creates the category relationships for the product" do
       cat_ids = [first_cat.id, second_cat.id]
       Product.create({title: "a", description: "b", price: 6,
-                      category_ids: cat_ids}).should be_valid
+        category_ids: cat_ids}).should be_valid
 
       cat_ids.each do |id|
         Product.last.categories.should include Category.find(id)

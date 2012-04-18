@@ -9,7 +9,8 @@ h1 Input Your Billing Info
       - @billing_method.errors.full_messages.each do |msg|
         li = msg
 
-  = f.select :card_type, options_for_select([["Visa", "Visa"], ["Mastercard", "Mastercard"], ["Discover", "Discover"], ["Amex", "Amex"]]), prompt: "Card Type"
+  = f.label :card_type
+  = f.select :card_type, options_for_select([["Visa", "Visa"], ["Mastercard", "Mastercard"], ["Discover", "Discover"], ["Amex", "Amex"]])
 
   = f.label :credit_card_number
   = f.text_field :credit_card_number

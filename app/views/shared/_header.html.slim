@@ -23,6 +23,8 @@
             - cart = Order.find(session[:order_id])
             li= link_to "Cart", order_path(cart), id: "cart", name: "cart"
           - if logged_in?
+            - if current_user.has_order?
+              li = link_to "Orders", orders_path
             li= link_to "My Account", user_url(current_user)
             li= link_to "Logout", logout_path, :method => :delete
             - if admin_view?

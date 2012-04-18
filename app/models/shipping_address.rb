@@ -1,3 +1,4 @@
+#
 class ShippingAddress < ActiveRecord::Base
   attr_accessible :city, :email_address, :name, :state, :street, :zipcode
 

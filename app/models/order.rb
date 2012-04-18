@@ -1,4 +1,5 @@
- class Order < ActiveRecord::Base
+#
+class Order < ActiveRecord::Base
   attr_accessible :billing_method_id, :user_id, :status, :shipping_address_id
 
   validates_presence_of :status
@@ -11,6 +12,10 @@
 
   def date
     created_at.strftime("%B %d at %l:%M %p")
+  end
+
+  def pending?
+    status == "pending"
   end
 
   def user
@@ -30,6 +35,7 @@
         false
       end
     else
+      set_action_time(next_transition)
       update_attribute(:status, next_transition)
     end
   end
@@ -41,6 +47,12 @@
       "shipped"
     elsif status == "shipped"
       "returned"
+    end
+  end
+
+  def set_action_time(transition)
+    if transition == "shipped" || transition == "cancelled"
+      update_attribute(:action_time, Time.now)
     end
   end
 

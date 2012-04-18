@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120418130038) do
+=======
+ActiveRecord::Schema.define(:version => 20120418002816) do
+>>>>>>> 73bd792656a4675e8184f21b15ddb5378d5bb3d1
 
   create_table "billing_methods", :force => true do |t|
     t.string   "credit_card_number"
@@ -49,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20120418130038) do
     t.datetime "updated_at",                                 :null => false
     t.string   "status",              :default => "pending"
     t.integer  "shipping_address_id"
+    t.string   "action_time"
   end
 
   create_table "product_categorizations", :force => true do |t|

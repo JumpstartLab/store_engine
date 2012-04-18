@@ -75,16 +75,28 @@ describe "admin" do
       page.should have_content product.title
     end
     it "cannot edit another user's billing on an order" do
-      pending
+      billing = {
+        credit_card_number: "5555555555555555",
+            month: "4 - April",
+            year: "2012",
+            street: "One Mockingbird Lane",
+            city: "Anytown",
+            state: "Virginia",
+            zipcode: "22209",
+            card_type: 'Visa'
+      }
       click_link_or_button "Add a Billing Method"
+      add_non_user_billing(billing)
       current_path.should == "/"
       page.should have_content "Sorry"
     end
     it "cannot edit another user's shipping on an order" do
-      pending
-      click_link_or_button "Add a Shipping Address"
-      current_path.should == "/"
-      page.should have_content "Sorry"
+      shipping = { street: "One Mockingbird Lane", city: "Anytown",
+       state: "VA", zipcode: 22209, name: "Favorite Shipping" }
+       click_link_or_button "Add a Shipping Address"
+       add_non_user_shipping(shipping)
+       current_path.should == "/"
+       page.should have_content "Sorry"
     end
     it "can edit the quantity of a product on an order" do
       click_link_or_button "Update"
@@ -188,12 +200,13 @@ describe "admin" do
   context "dashboard" do
     context "filtering" do
       let!(:shipping) { Fabricate(:shipping_address) }
+      let!(:billing) { Fabricate(:billing_method) }
       let!(:orders) {
         orders = []
         6.times do |i|
           orders[i] = Fabricate(:order)
           orders[i].update_attributes(user_id: nil,
-                                      shipping_address_id: shipping.id)
+            shipping_address_id: shipping.id)
         end
         orders
       }
@@ -209,7 +222,7 @@ describe "admin" do
         6.times do |i|
           line_item = Fabricate(:line_item)
           line_item.update_attributes(order_id: orders.sample.id,
-                                      product_id: products.sample.id)
+            product_id: products.sample.id)
         end
         visit orders_path
       end
@@ -239,6 +252,43 @@ describe "admin" do
           orders.each { |o| page.should have_content o.id }
         end
       end
-    end
-  end
+      it "shows a timestamp of cancelled orders" do
+        visit "/"
+        click_link_or_button "User View"
+        click_link_or_button "Add to Cart"
+        click_link_or_button "Admin View"
+        click_link_or_button "Dashboard"
+        click_link_or_button "Cancel"
+        page.should have_content Order.last.action_time
+      end
+      it "shows a timestamp of shipped orders" do
+        billing = { credit_card_number: "5555555555555555",
+            month: "4 - April",
+            year: "2012",
+            street: "One Mockingbird Lane",
+            city: "Anytown",
+            state: "Virginia",
+            zipcode: "22209",
+            card_type: 'Visa'
+        }
+        shipping = { street: "One Mockingbird Lane", city: "Anytown",
+         state: "VA", zipcode: 22209, name: "Favorite Billing"
+       }
+       visit "/"
+       click_link_or_button "User View"
+       click_link_or_button "Add to Cart"
+       visit order_path(Order.find_by_user_id(user.id))
+       click_link_or_button "Add a Billing Method"
+       add_billing(billing)
+       visit order_path(Order.find_by_user_id(user.id))
+       click_link_or_button "Add a Shipping Address"
+       add_shipping(shipping)
+       click_link_or_button "Check Out"
+       click_link_or_button "Admin View"
+       click_link_or_button "Dashboard"
+       click_link_or_button "Mark as 'shipped'"
+       page.should have_content Order.last.action_time
+     end
+   end
+ end
 end
