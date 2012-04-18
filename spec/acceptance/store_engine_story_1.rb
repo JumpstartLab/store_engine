@@ -41,12 +41,12 @@ feature "Checking Out While Logged Out" do
       end
 
       it "then I should see 'add to cart'" do
-        page.should have_link( "Add to Cart" )
+        page.should have_link( "add_to_cart_#{Product.first.id}" )
       end
 
       context "When I click 'add to cart'" do
         before(:each) do
-          click_link_or_button( "Add to Cart" )
+          click_link_or_button( "add_to_cart_#{Product.first.id}" )
         end
 
         it "then I should see my cart" do
@@ -69,7 +69,7 @@ feature "Checking Out While Logged Out" do
 
         context "When I check out" do
           before(:each) do
-            click_link("checkout")
+            click_link("go_checkout")
           end
 
           it "then I should be asked to login" do
@@ -77,8 +77,18 @@ feature "Checking Out While Logged Out" do
             "#{uri.path}".should == signin_path
           end
 
-        end
+          context "When I log in" do
+            before(:each) do
+              fill_in "email",    with: User.first.email
+              fill_in "password", with: "hungry"
+              click_link_or_button("go_log_in")
+            end
 
+            it "then I should be purchasing with quantity 1" do
+              save_and_open_page
+            end
+          end
+        end
       end
     end
   end
