@@ -4,9 +4,11 @@ matt = User.create(:username => "Matt Yoho", :first_name => "Matt", :last_name =
 jeff = User.create( :username => "Jeff", :first_name => "Jeff", :last_name => "Casimir",
             :email => "jeff.casimir@livingsocial.com",
             :password => "hungry")
-User.create( :username => "Chad Fowler", :admin => true, :first_name => "Chad",
+chad = User.create( :username => "Chad Fowler", :first_name => "Chad",
              :last_name => "Fowler", :email => "chad.fowler@livingsocial.com", 
              :password => "hungry")
+chad.admin = true
+chad.save!
 
 Category.create(:name => "awesome")
 Category.create(:name => "not as awesome")

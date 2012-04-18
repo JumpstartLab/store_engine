@@ -1,5 +1,9 @@
 h1 Order - #{@order.id} 
 | Status - #{@order.status.name}
+p
+| Name - #{@order.user.first_name + @order.user.last_name}
+p
+| Email - #{@order.user.email}
 
 p
 div class="row-fluid"
@@ -43,10 +47,10 @@ div class="row-fluid"
           td class="span1" 
             | $
             = order_item.price
-          td class="span1" Quantity: #{order_item.quantity}
+          td class="span2" Quantity: #{order_item.quantity}
 
 h3 Order Total
-="$#{cart.total}"
+="$#{@order.total}"
 
 p
 = link_to "Back to All Orders", orders_path, :class => "btn"
