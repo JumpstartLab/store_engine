@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
     else
       if params[:filtered].present?
         @products = Product.active.where(
-          ["title LIKE ?", "%#{params[:filtered]}%"]
+          ["title LIKE ?", "%#{params[:filtered].downcase}%"]
           )
       else
         @products = Product.active.all
