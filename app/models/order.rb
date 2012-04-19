@@ -46,6 +46,7 @@ class Order < ActiveRecord::Base
   def charge(cart)
     if credit_card.charge(cart.cart_total_in_cents)
       mark_as_paid
+      cart.destroy
       true
     else
       false

@@ -19,7 +19,7 @@
     <ul class="unstyled">
       <%= f.hidden_field :shipping_detail_id, :value => @shipping_detail.id %>
       <li><%= raw(formatted_shipping_address(@shipping_detail)) %></li>
-      <li><%= link_to "Add a new shipping address", new_credit_card_path %></li>
+      <li><%= link_to "Add a new shipping address", new_shipping_detail_path %></li>
     </ul>
   </div>
 </div>

@@ -30,15 +30,14 @@ end
 group :development, :test do
   # gem 'fabrication'
   gem 'sqlite3'
-  gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
   gem 'factory_girl_rails', '~> 3.1.0'
   gem 'guard'
   gem 'growl'
-  #gem 'cane'
   gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
+  gem 'cane', :git => "git://github.com/square/cane.git"
   gem 'simplecov'
   #gem 'ruby-debug19', :require => 'ruby_debug'
 end

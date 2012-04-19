@@ -18,9 +18,8 @@ class CreditCard < ActiveRecord::Base
   def stripe_get_customer_token(stripe_card_token)
     Stripe::Customer.create( description: "Mittenberry Customer ##{self.user.id}",
                                       card: stripe_card_token)
-
-  rescue Stripe::InvalidRequestError => e
-    send_customer_create_error(e)
+  rescue Stripe::InvalidRequestError => error
+    send_customer_create_error(error)
   end
 
   def formatted_last_four
@@ -37,20 +36,15 @@ class CreditCard < ActiveRecord::Base
     Stripe::Charge.create(amount: cart_total_in_cents,
                           currency: 'usd',
                           customer: stripe_customer_token)
-  rescue Stripe::InvalidRequestError => e
-    send_charge_error(e)
+  rescue Stripe::InvalidRequestError => error
+    send_charge_error(error)
   end
 
 private
 
   def parse_stripe_customer_token(customer_token)
     self.stripe_customer_token = customer_token["id"]
-    card_details = customer_token["active_card"]
-    self.last_four = card_details["last4"]
-    self.credit_card_type = card_details["type"]
-    self.exp_month = card_details["exp_month"]
-    self.exp_year = card_details["exp_year"]
-
+    save_card_details(customer_token["active_card"])
     save
   end
 
@@ -66,5 +60,11 @@ private
     false
   end
 
-
+  def save_card_details(card_details)
+    self.last_four = card_details["last4"]
+    self.credit_card_type = card_details["type"]
+    self.exp_month = card_details["exp_month"]
+    self.exp_year = card_details["exp_year"]
+    save
+  end
 end

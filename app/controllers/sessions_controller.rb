@@ -5,7 +5,6 @@ class SessionsController < ApplicationController
 
   def create
     cart = current_cart
-    #raise params.inspect
     user = login(params[:email], params[:password], params[:remember_me])
     if user
       cart.assign_cart_to_user(user)

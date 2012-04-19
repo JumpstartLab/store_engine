@@ -7,7 +7,8 @@ end
 def create
   @cc = CreditCard.new
   @cc.user = current_user
-  @cc.add_details_from_stripe_card_token( params[:credit_card][:stripe_card_token] )
+  @cc.add_details_from_stripe_card_token(
+    params[:credit_card][:stripe_card_token] )
   redirect_to new_order_path
 end
 
