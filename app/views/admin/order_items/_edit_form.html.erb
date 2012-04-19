@@ -1,0 +1,7 @@
+<%= form_for order_item do |f| %>
+  <%= f.label :quantity %>
+  <%= f.number_field :quantity, :min => 1, :id => "quantity" %>
+  
+  <%= f.submit "Update quantity" %>
+
+<% end %>

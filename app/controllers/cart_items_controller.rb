@@ -4,6 +4,12 @@ class CartItemsController < ApplicationController
     redirect_to cart_path
   end
 
+  def update
+    cart_item = CartItem.find_by_id(params[:id])
+    cart_item.update_attributes(params[:cart_item])
+    redirect_to cart_path
+  end
+
   def destroy
     cart_item = CartItem.find_by_id(params[:id])
     cart_item.destroy

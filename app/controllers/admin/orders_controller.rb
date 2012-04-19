@@ -16,7 +16,7 @@ class Admin::OrdersController < ApplicationController
 
   def update
     order.update_attributes(params[:order])
-    redirect_to admin_order_path(order)
+    redirect_to_last_page
   end
 
   def create

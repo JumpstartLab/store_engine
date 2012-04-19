@@ -9,7 +9,12 @@
   <% cart.cart_items.each do |cart_item| %>
     <tr id="<%= cart_item.product.id %>_row">
       <td><%= cart_item.title %></td>
-      <td id="<%= cart_item.product.id %>_quant"><%= cart_item.quantity %></td>
+      <td id="<%= cart_item.product.id %>_quant">
+      <%= form_for(cart_item, url: cart_item_path(cart_item)) do |f| %>
+        <%= f.number_field :quantity, :min => 1, :id => "quantity" %>
+        <%= f.submit "Update quantity" %>
+      <% end %>
+      </td>
       <td id="product_<%= cart_item.product.id %>_remove"><%= link_to "Remove Item", cart_item_path(cart_item), :method => :delete %></td>
       <td id="<%= cart_item.product.id %>_total"><%= cart_item.total %></td>
     </tr>
@@ -21,6 +26,6 @@
     <td id="total"><strong><%= cart.total %></strong></td>
   </tr>
 </table>
-<%= link_to "Place Order", new_order_path(:cart_id => cart, :current_user_id => current_user), :class => "btn", :id => "place_order"%>
-<%= link_to "Destroy Cart", cart_path(cart), :method => :delete, :class => "btn btn-danger" %>
-<%= link_to "Continue Shopping", products_path, :class => "btn", :id => "to_products" %>
+<%= link_to "Place Order", new_order_path(:cart_id => cart, :current_user_id => current_user), :class => "btn btn-success", :id => "place_order"%>
+<%= link_to "Continue Shopping", products_path, :class => "btn btn-primary", :id => "to_products" %>
+<%= link_to "Clear Cart", cart_path(cart), :method => :delete, :class => "btn btn-danger" %>

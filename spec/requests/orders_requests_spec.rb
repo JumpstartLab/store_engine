@@ -136,7 +136,7 @@ describe "For orders" do
     end
 
     it "lists the total price of all items in the order" do
-      page.should have_content(order.total_price)
+      page.should have_content(order.total)
     end
 
     it "has a list of products" do

@@ -1,4 +1,5 @@
 class CartItem < ActiveRecord::Base
+  attr_accessible :quantity
   belongs_to :cart
   belongs_to :product
 
@@ -11,6 +12,6 @@ class CartItem < ActiveRecord::Base
   end
 
   def attributes_for_order_item
-    { :product_id => product_id, :quantity => quantity, :total_price => total }
+    { :product_id => product_id, :quantity => quantity }
   end
 end

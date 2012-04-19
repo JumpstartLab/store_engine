@@ -56,18 +56,17 @@
     </thead>
     <% @orders.each do |order| %>
       <tr id="order_<%= order.id %>">
-        <td id="order_<%=order.id%>_add"><%= link_to order.id, admin_order_path(order) %></td>
+        <td id="order_<%=order.id%>_add"><%= link_to order.id, edit_admin_order_path(order) %></td>
         <td><%= order.user.name %></td>
         <td><%= order.user.id %></td>
         <td><%= order.created_at %></td>
         <td><%= order.updated_at %></td>
-        <td><%= order.total_price %></td>
+        <td><%= order.total %></td>
         <td><%= order.status %></td>
-        <td>
-          <%= form_for(order, url: admin_order_path(order)) do |f| %>
-            <%= f.select :status, order.status_options.collect {|s| s}, {}, :multiple => false, :id => "status" %>
-            <%= f.submit %>
-          <% end %>
+        <td><%= link_to "Edit Order", edit_admin_order_path(order), 
+            :title =>"edit this order", 
+            :class => 'btn', 
+            :id =>'edit_order_btn' %>
         </td>
       </tr>
     <% end %>
