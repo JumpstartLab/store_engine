@@ -5,12 +5,7 @@ class LineItemsController < ApplicationController
 
   def create
     if !session[:order_id]
-      order = Order.create()
-      if session[:user_id]
-        order.add_user(session[:user_id])
-        order.try_to_add_billing_and_shipping(session[:user_id])
-      end
-      session[:order_id] = order.id
+      create_order
     end
     params[:line_item][:order_id] = session[:order_id]
     LineItem.increment_or_create_line_item(params[:line_item])
@@ -35,6 +30,15 @@ class LineItemsController < ApplicationController
   end
 
   private
+
+  def create_order
+    order = Order.create()
+    if session[:user_id]
+      order.add_user(session[:user_id])
+      order.try_to_add_billing_and_shipping(session[:user_id])
+    end
+    session[:order_id] = order.id
+  end
 
   def lookup_line_item
     @line_item = LineItem.find(params[:id])

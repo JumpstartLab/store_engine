@@ -85,16 +85,16 @@ describe Product do
   end
   describe "#to_param" do
     it "returns the dom_id of the product" do
-      p = Fabricate(:product)
-      p.to_param.should == "#{p.id}-#{p.title.downcase.gsub(" ","-")}"
+      prod = Fabricate(:product)
+      prod.to_param.should == "#{prod.id}-#{prod.title.downcase.gsub(" ","-")}"
     end
   end
   describe "#active?" do
     it "returns true if active and false if not" do
-      p = Fabricate(:product)
-      p.active?.should == true
-      p.update_attribute(:retired, true)
-      p.active?.should == false
+      prod = Fabricate(:product)
+      prod.active?.should == true
+      prod.update_attribute(:retired, true)
+      prod.active?.should == false
     end
   end
 end

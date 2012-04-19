@@ -30,18 +30,22 @@ class BillingMethodsController < ApplicationController
 
   def try_to_save_billing
     if @billing_method.save
-      notice = "Billing Address Successfully Added"
-      if logged_in?
-        @billing_method.update_attribute(:user_id, current_user.id)
-      end
-      if session[:order_id]
-        order = Order.find(session[:order_id])
-        order.update_attribute(:billing_method_id, @billing_method.id)
-      end
-      redirect_to session[:return_to]
+      save_billing
     else
       render :new
     end
+  end
+
+  def save_billing
+    notice = "Billing Address Successfully Added"
+    if logged_in?
+      @billing_method.update_attribute(:user_id, current_user.id)
+    end
+    if session[:order_id]
+      order = Order.find(session[:order_id])
+      order.update_attribute(:billing_method_id, @billing_method.id)
+    end
+    redirect_to session[:return_to]
   end
 
   def load_billing_method

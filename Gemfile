@@ -33,7 +33,8 @@ group :development, :test do
   gem 'simplecov'
   gem 'growl'
   gem 'faker'
-  gem 'cane'
-  gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
+  gem 'reek', :git => "git://github.com/mvz/reek.git", :branch =>
+  "ripper_ruby_parser-2"
+  gem 'cane', :git => "git://github.com/square/cane.git"
   gem 'sqlite3'
 end

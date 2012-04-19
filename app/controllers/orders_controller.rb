@@ -20,9 +20,7 @@ class OrdersController < ApplicationController
 
   def destroy
     session[:return_to] = request.url
-    @order.update_attribute(:status, "cancelled")
-    @order.set_action_time("cancelled")
-    session[:order_id] = nil if @order.user == current_user
+    cancel_order
     notice = "Order Cancelled"
     redirect_to session[:return_to], notice: notice
   end
@@ -32,16 +30,9 @@ class OrdersController < ApplicationController
 
   def update
     if @order.status == "pending" && @order.transition
-      link = "<a href=\"#{url_for(@order)}\">View Details</a>"
-      notice = "Thank you for purchasing.
-                An email confirmation is on its way. #{link}".squish.html_safe
-      session[:previous_order_id] = session[:order_id] if !logged_in?
-      session[:order_id] = nil
-      redirect_to root_url, notice: notice
+      check_out
     elsif @order.status != "pending" && @order.transition
-      session[:return_to] = request.url
-      notice = "Transition successful"
-      redirect_to session[:return_to], notice: notice
+      transition_status
     else
       notice = "Please input valid billing and shipping information."
       redirect_to order_path(@order), notice: notice
@@ -52,6 +43,27 @@ class OrdersController < ApplicationController
 
   def lookup_order
     @order = Order.find(params[:id])
+  end
+
+  def cancel_order
+    @order.update_attribute(:status, "cancelled")
+    @order.set_action_time("cancelled")
+    session[:order_id] = nil if @order.user == current_user
+  end
+
+  def check_out
+    link = "<a href=\"#{url_for(@order)}\">View Details</a>"
+    notice = "Thank you for purchasing.
+    An email confirmation is on its way. #{link}".squish.html_safe
+    session[:previous_order_id] = session[:order_id] if !logged_in?
+    session[:order_id] = nil
+    redirect_to root_url, notice: notice
+  end
+
+  def transition_status
+    session[:return_to] = request.url
+    notice = "Transition successful"
+    redirect_to session[:return_to], notice: notice
   end
 
 end
