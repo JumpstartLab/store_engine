@@ -1,5 +1,14 @@
 <h1>Admin Dashboard</h1>
 
+<div class="row">
+  <div class="span6" style="margin-bottom:20px">
+    <h4>
+    <%= link_to 'Add a product', new_admin_product_path %> | 
+    <%= link_to 'Create a category', new_admin_category_path %>
+    </h4>
+  </div>
+</div>
+
 <h3>Orders by status</h3><br />
 <table class="table table-bordered table-striped">
   <tr>

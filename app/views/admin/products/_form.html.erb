@@ -2,17 +2,13 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
+    <%= f.text_field :name, :class => "product_name" %>
 
+    <%= f.text_field :price, :class => "product_price" %>
+  </div>
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :price, "Price" %><br />
-    <%= f.text_field :price %>
   </div>
 
   <div class="field">

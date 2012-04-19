@@ -100,3 +100,19 @@ footer ul li {
   float: left;
   margin-left: 10px;
 }
+
+input, textarea, select, .uneditable-input{
+  width: 400px
+}
+
+input.product_name{
+  width: 280px
+}
+
+input.product_price{
+  width: 105px
+}
+
+textarea{
+  height:150px
+}

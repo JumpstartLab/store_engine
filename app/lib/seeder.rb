@@ -2,6 +2,7 @@ class Seeder
 
   def self.build_db
     build_users
+    build_shipping_detail
     build_categories
     build_products(20)
     build_orders
@@ -15,6 +16,16 @@ class Seeder
     rand(max)+1
   end
 
+  def self.build_shipping_detail
+    User.all.each do |user|
+      Seeder.at_least_one(2).times do
+        user.shipping_details.create( :ship_to_name => user.name, :ship_to_address_1 => Faker::Address.street_address,
+          :ship_to_address_2 => Faker::Address.secondary_address, :ship_to_city => Faker::Address.city,
+          :ship_to_state => Faker::Address.state, :ship_to_country => "USA", :ship_to_zip => Faker::Address.zip_code )
+      end
+    end
+  end
+
   def self.build_orders
     [ 'pending', 'paid', 'shipped', 'cancelled' ].each do |status_i|
       Seeder.at_least_two(4).times do
@@ -26,6 +37,8 @@ class Seeder
           order.order_products.build(:price => product.price, :product => product, :quantity => Seeder.at_least_one(3))
         end
       order.save
+      shipping_details_for_user = order.user.shipping_details
+      order.shipping_detail = shipping_details_for_user[ rand(shipping_details_for_user.size) ]
       order.order_status.update_attribute(:status, status_i)
       end
     end

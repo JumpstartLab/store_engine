@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = login(params[:email], params[:password], params[:remember_me])
     if user
       cart.assign_cart_to_user(user)
-      redirect_to_last_page :notice => "Logged in!"
+      redirect_to_last_page("Logged in!")
     else
       flash.now.alert = "Email or password was invalid."
       session[:cart_id] = cart.id
