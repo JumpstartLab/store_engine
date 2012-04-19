@@ -31,4 +31,6 @@ group :development, :test do
   gem 'simplecov'
   gem 'faker'
   gem 'factory_girl_rails', '1.4.0'
+  gem 'reek', :git => "git://github.com/mvz/reek.git", :branch =>
+"ripper_ruby_parser-2"
 end

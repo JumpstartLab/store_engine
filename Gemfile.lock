@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/mvz/reek.git
+  revision: c21b666e8249627f78024065d99c5f4329355e99
+  branch: ripper_ruby_parser-2
+  specs:
+    reek (1.2.8)
+      ripper_ruby_parser (~> 0.0.5)
+      ruby2ruby (~> 1.2.5)
+      sexp_processor (~> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -119,6 +129,8 @@ GEM
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
+    ripper_ruby_parser (0.0.6)
+      sexp_processor (~> 3.0)
     rspec (2.9.0)
       rspec-core (~> 2.9.0)
       rspec-expectations (~> 2.9.0)
@@ -132,6 +144,11 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.9.0)
+    ruby2ruby (1.2.5)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    ruby_parser (2.3.1)
+      sexp_processor (~> 3.0)
     rubyzip (0.9.6.1)
     sass (3.1.15)
     sass-rails (3.2.5)
@@ -143,6 +160,7 @@ GEM
       ffi (~> 1.0)
       multi_json (~> 1.0)
       rubyzip
+    sexp_processor (3.2.0)
     simplecov (0.6.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -188,6 +206,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   rails (= 3.2.3)
+  reek!
   rspec-rails
   sass-rails (~> 3.2.3)
   simplecov
