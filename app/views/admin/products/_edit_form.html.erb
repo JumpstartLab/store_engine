@@ -29,7 +29,7 @@
 
     <div class="span5">
       <%= f.label :categories %>
-      <%= f.select :category_ids, Category.all.collect {|c| [ c.name, c.id ] }, {}, :multiple=>true, :class => "span5" %><br />
+        <%= f.select :category_ids, Category.all.collect {|c| [ c.name, c.id ] }, {}, :multiple=>true, :class=> "span5" %>
     </div>
 
     <div class="offset8 span2">

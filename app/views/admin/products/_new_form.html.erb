@@ -1,22 +1,41 @@
-<%= form_for(product, url: admin_products_path) do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %><br />
+<div class="row">
+  <div class="span10 well">
+    <div class="span10">
+      <%= form_for(product, url: admin_products_path) do |f| %>
+        <%= f.label :title %>
+        <%= f.text_field :title, :class =>"span6" %>
+        <span class="help-inline">* Your product title must be unique.</span><br />
+      </div>
 
-  <%= f.label :description %>
-  <%= f.text_area :description %><br />
+      <div class="span9">
+        <%= f.label :description %>
+        <%= f.text_area :description, :class => "span9" %><br />
+      </div>
 
-  <%= f.label :price %>
-  <%= f.text_field :price %><br />
+      <div class="span4">
+        <%= f.label :price %>
+        <%= f.text_field :price, :class => "span4" %><br />
+      </div>
 
-  <%= f.label :photo %>
-  <%= f.text_field :photo %><br />
+      <div class="span5">
+        <%= f.label :photo %>
+        <%= f.text_field :photo, :class => "span5" %><br />
+      </div>
 
-  <%= f.label :retired %>
-  <%= f.check_box :retired %><br /><br />
+      <div class="span4">
+        <%= f.label "Click here to retire this product:" %>
+        <%= f.check_box :retired %><br /><br />
+      </div>
 
-  <%= f.label :categories %>
-  <%= f.select :category_ids, Category.all.collect {|c| [ c.name, c.id ] }, {}, :multiple=>true%>
+      <div class="span5">
+        <%= f.label :categories %>
+        <%= f.select :category_ids, Category.all.collect {|c| [ c.name, c.id ] }, {}, :multiple=>true, :class=> "span5" %>
+      </div>
 
-  <%= f.submit %>
-  
-<% end %>
+      <div class="span2 offset8">
+        <%= f.submit :class => "btn btn-success"%>
+      </div>
+
+    <% end %>
+  </div>
+</div>
