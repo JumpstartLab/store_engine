@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'pg'
 gem 'jquery-rails'
 gem 'sorcery'
 gem 'bcrypt-ruby'
@@ -17,7 +16,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :production do
+  gem 'pg'
+end
+
 group :development, :test do
+  gem 'sqlite3'
   gem 'fabrication'
   gem 'rspec-rails'
   gem 'capybara'
