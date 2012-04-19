@@ -34,7 +34,7 @@ describe "Using the shopping cart" do
 
       it "shows a product quantity" do
         within("#cart") do
-          page.should have_selector("input#cart_product_quantity", :value => 1)
+          page.should have_selector("input#quantity_product_#{product.id}", :value => 1)
         end
       end
 
@@ -68,7 +68,7 @@ describe "Using the shopping cart" do
 
         it "shows an increased product quantity" do
           within("#cart") do
-            page.should have_selector("input#cart_product_quantity", :value => 2)
+            page.should have_selector("input#quantity_product_#{product.id}", :value => 2)
           end
         end
 
@@ -206,12 +206,12 @@ describe "Using the shopping cart" do
 
       context "when I try to update the quantity of a product" do
         before(:each) do
-          fill_in "cart_product_quantity",         with: "10"
+          fill_in "quantity_product_#{product.id}",         with: "10"
           click_button("update")
         end
 
         it "should update the quantity of the product" do
-          page.should have_selector("input#cart_product_quantity", :value => 10)
+          page.should have_selector("input#quantity_product_#{product.id}", :value => 10)
         end
 
         it "should update the cart counter in my header" do
@@ -229,9 +229,9 @@ describe "Using the shopping cart" do
 
       context "when I try to update the quantity of a product to 0" do
         it "should delete the product from my cart" do
-          fill_in "cart_product_quantity",         with: "0"
+          fill_in "quantity_product_#{product.id}",         with: "0"
           click_button("update")
-          page.should_not have_selector("input#cart_product_quantity")
+          page.should_not have_selector("input#quantity_product_#{product.id}")
           page.should_not have_content(product.name)
         end
       end

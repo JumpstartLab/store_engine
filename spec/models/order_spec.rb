@@ -36,7 +36,7 @@ describe Order do
       it "creates order products with quantity 2" do
         order.build_order_from_cart(cart)
         order.save
-        order.order_products.find_by_product_id(1).quantity == 2
+        order.order_products.find_by_product_id(product_one.id).quantity == 2
       end
     end
   end
@@ -82,7 +82,7 @@ describe Order do
 
   describe "#order_total" do
     it "should return the total of the order" do
-      order.order_total.should == product_one.price
+      order.order_total.should == product_one.price_cents
     end
 
     context "if there are two items in the order" do
@@ -91,7 +91,7 @@ describe Order do
       end
 
       it "should return the total of the order" do
-        order.order_total.should == product_one.price * 2
+        order.order_total.should == product_one.price_cents * 2
       end
     end
   end

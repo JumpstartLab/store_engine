@@ -68,42 +68,37 @@ feature "Admin Puts Product Through Lifecycle" do
               context "When I edit the product" do
                 before do
                   click_link("Edit this product")
-                  save_and_open_page
-
-                  check("Knives")
+                  check("category_knives")
                   click_link_or_button("Update Product")
                 end
 
-                it "then I should see the admin product page" do
-                  uri = URI.parse(current_url)
-                  "#{uri.path}".should == admin_products_path
+                context "When I browse to the category" do
+                  before do 
+                    visit admin_dashboard_path
+                    click_link_or_button("Knives")
+                  end
 
-                  context "When I browse to the category" do
-                    before { click_link_or_button("Knives") }
+                  it "then I should see the product" do
+                    page.should have_content(prod_name)
+                    page.should have_xpath("//img[@src=\"#{prod_photo}\"]")
+                  end
 
-                    it "then I should see the product" do
-                      page.should have_content(prod_name)
-                      page.should have_xpath("//img[@src=\"#{prod_photo}\"]")
+                  context "When I retire a product" do
+                    #Given I am editing a product that has been purchased by demo08+matt@jumpstartlab.com
+                    let(:user) { User.find_by_email("demo08+matt@jumpstartlab.com") }
+                    let(:product) { user.orders.first.products.first }
+                    before do
+                      visit admin_order_path(user.orders.first)
+                      click_link_or_button(product.name)
+                      click_link_or_button("Retire product")
                     end
 
-                    context "When I retire a product" do
-                      #Given I am editing a product that has been purchased by demo08+matt@jumpstartlab.com
-                      let(:user) { User.find_by_email("demo08+matt@jumpstartlab.com") }
-                      let(:product) { user.orders.first.products.first }
-                      before do
-                        visit admin_orders_path(user.orders.first)
-                        click_link_or_button(product.name)
-                        click_link_or_button("Retire product")
+                    context "When I log out" do
+                      it "then I should not see the product" do
+                        before { visit root_path }
+
+                        page.should_not have_content(product.name)
                       end
-
-                      context "When I log out" do
-                        it "then I should not see the product" do
-                          before { visit root_path }
-
-                          page.should_not have_content(product.name)
-                        end
-                      end
-
                     end
                   end
                 end
