@@ -58,7 +58,7 @@ describe "shopper" do
       end
       it "increments products" do
         click_link_or_button "Add to Cart"
-        within "#cart_item_unit" do
+        within "#cart_item_title" do
           page.should have_content "2"
         end
       end
@@ -68,7 +68,7 @@ describe "shopper" do
           click_link_or_button "Update"
         end
         fill_in :quantity, with: "0"
-        click_link_or_button "Update"
+        click_link_or_button "Update Quantity"
         within "#cart-aside" do
           page.should_not have_content product.title
         end
