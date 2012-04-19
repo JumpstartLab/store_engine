@@ -25,28 +25,17 @@ namespace :db do
                         display_name: "j3",
                         password: "hungry",
                         password_confirmation: "hungry")
-    25.times do |n|
-      name  = Faker::Name.name
-      display_name  = Faker::Name.name
-      email = "example-#{n+1}@example.org"
-      password  = "password"
-      User.create!(name: name,
-                   display_name: display_name,
-                   email: email,
-                   password: password,
-                   password_confirmation: password)
-    end
 
     @starter_category_count = 10
     @starter_category_count.times do |n|
-      name = Faker::Name.name
+      name = ["Category", n].join(' ')
       Category.create!(name: name)
     end
 
 
     product_one = Product.new
     product_one.title = "The First Product"
-    product_one.description = Faker::Lorem.paragraph
+    product_one.description = "Lorem ipsum dolor sit amet."
     product_one.price = rand(10000) + 1
     product_one.photo = "http://placehold.it/260x180"
     product_one.category_ids = [1, 2, 5]
@@ -55,7 +44,7 @@ namespace :db do
 
     product_two = Product.new
     product_two.title = "The Second Product"
-    product_two.description = Faker::Lorem.paragraph
+    product_two.description = "Lorem ipsum dolor sit amet."
     product_two.price = rand(10000) + 1
     product_two.photo = "http://placehold.it/260x180"
     product_two.category_ids = [3, 5, 8]
@@ -64,7 +53,7 @@ namespace :db do
 
     product_three = Product.new
     product_three.title = "The Third Product"
-    product_three.description = Faker::Lorem.paragraph
+    product_three.description = "Lorem ipsum dolor sit amet."
     product_three.price = rand(10000) + 1
     product_three.photo = "http://placehold.it/260x180"
     product_three.category_ids = [2, 6, 4]
@@ -72,8 +61,8 @@ namespace :db do
     product_three.save
 
     25.times do |n|
-      title = Faker::Lorem.words(1).first.capitalize
-      description = Faker::Lorem.paragraph
+      title = ["Product Name", n ].join(' ')
+      description = "Lorem ipsum dolor sit amet."
       price = rand(10000) + 1 
       photo = "http://placehold.it/260x180"
       category_ids = [1]
