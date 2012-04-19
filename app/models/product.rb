@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+  REGEX = 
   attr_accessible :description, :name, :photo, :price
   before_save :check_for_photo
 

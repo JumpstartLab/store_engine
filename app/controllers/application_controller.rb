@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     last_page = params[:last_page] || session[:last_page]
     if last_page
       redirect_to(last_page, :notice => message)
-    else 
+    else
       redirect_to(root_path, :notice => message)
     end
   end
@@ -41,7 +41,7 @@ private
       get_cart_from_user
     else
       Cart.create.tap{ |cart| session[:cart_id] = cart.id; }
-    end    
+    end
   end
 
   def get_cart_from_user

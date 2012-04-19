@@ -17,17 +17,12 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = current_user.orders.create
-    @order.build_order_from_cart(current_cart)
-    token = params[:order][:customer_token] #from stripe
-    @order.shipping_detail = current_user.shipping_details.find(params[:order][:shipping_detail_id])
-    @order.save
+    @or = current_user.orders.create
+    build_order_from_cart(params)
 
-    if @order.set_cc_from_stripe_customer_token(token)
-      if @order.charge(current_cart)
-        current_cart.destroy
-        redirect_to @order, :notice => "Thank you for placing an order."
-      end
+    if @or.set_cc_from_stripe_customer_token(params[:order][:customer_token])
+      redirect_to @or, 
+      :notice => "Thank you for placing an order." if @or.charge(current_cart)
     else
       render :new
     end
@@ -42,6 +37,12 @@ class OrdersController < ApplicationController
 private
   def belongs_to_current_user?
     redirect_to_last_page unless Order.user_by_order_id(params[:id]) == current_user
+  end
+
+  def build_order_from_cart(params)
+    @or.build_order_from_cart(current_cart)
+    @or.shipping_detail = current_user.shipping_details.find(params[:order][:shipping_detail_id])
+    @or.save
   end
 
 end

@@ -19,7 +19,8 @@ class Admin::ProductsController < ApplicationController
 
     if @product.save
       @product.update_categories(params[:categories][1..-1])
-      redirect_to admin_product_path(@product), notice: 'Product was successfully created.'
+      redirect_to admin_product_path(@product),
+        notice: 'Product was successfully created.'
     else
       @product.errors.full_messages.each do |msg|
         flash.now[:error] = msg
@@ -40,8 +41,18 @@ class Admin::ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
+    @categories = Category.all
     @product.update_attributes(params[:product])
-    @product.update_categories(params[:categories][1..-1])
-    redirect_to admin_product_path(@product), notice: 'Product was successfully updated.'
+
+    if @product.save
+      @product.update_categories(params[:categories][1..-1])
+      redirect_to admin_product_path(@product),
+        notice: 'Product was successfully updated.'
+    else
+      @product.errors.full_messages.each do |msg|
+        flash.now[:error] = msg
+      end
+      render 'edit'
+    end
   end
 end
