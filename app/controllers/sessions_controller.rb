@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
             remember_me = false)
     if user.nil?
       @user = User.new(params[:user])
-      flash[:notice] = "You have entered an incorrect username or password"
+      flash[:error] = "You have entered an incorrect username or password"
       render 'new'
     else
        redirect_back_or_to(root_path, :notice => 'Login successful.')

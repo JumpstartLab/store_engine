@@ -83,6 +83,18 @@ class Order < ActiveRecord::Base
     self.unique_url = (0...32).map{65.+(rand(25)).chr}.join
   end
 
+  def next_status
+    next_status = {
+                     "pending" => :cancel,
+                     "shipped" => :return,
+                     "paid"    => :ship
+                  }
+    if next_status["#{self.status.name}"]                  
+      send(next_status["#{self.status.name}"])
+    end
+    self.save
+  end
+  
   def cancel
     self.status = Status.find_or_create_by_name('cancelled')
     self.cancelled_at = DateTime.now

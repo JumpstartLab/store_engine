@@ -12,7 +12,6 @@ class OrdersController < ApplicationController
     else
       @orders = Order.where(:status_id => status.id)
     end
-
     @statuses = Status.all
     @order_count = Order.all.count
   end
@@ -60,19 +59,7 @@ class OrdersController < ApplicationController
 
   def status
     order = Order.find(params[:id])
-
-    if order
-      if order.status.pending?
-        order.cancel
-      elsif order.status.shipped?
-        order.return
-      elsif order.status.paid?
-        order.ship
-      end
-
-      order.save
-    end
-
+    order.next_status
     redirect_to order_path(order), :notice => 'Status has been updated'
   end
 
@@ -88,11 +75,10 @@ class OrdersController < ApplicationController
   def my_orders
     st = params[:mq]
     if st
-      orders = current_user
-                .orders.joins(:products)
-                .where('products.name LIKE ? or products.description LIKE ?',
-                  "%#{st}%", "%#{st}%")
-                .uniq
+      orders = current_user.orders.
+                            joins(:products).where('products.name LIKE ? or
+                            products.description LIKE ?',"%#{st}%",
+                            "%#{st}%").uniq
     else
       orders = current_user.orders
     end
