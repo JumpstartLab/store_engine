@@ -10,7 +10,6 @@ class Product < ActiveRecord::Base
   validates_format_of :title, :description, with: /\w/
   validates_uniqueness_of :title
   validates_numericality_of :price
-  validates_format_of :price, with: /^[1-9]/
   validates_format_of :photo_url,
   with: /^https?:\/\/(?:[a-z\-]+\.)+
         [a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpg|gif|png|jpeg)$/x,
@@ -52,8 +51,8 @@ class Product < ActiveRecord::Base
 
   def price=(input)
     super if input.nil?
-    if input.is_a? Numeric
-      cents = BigDecimal.new(input.to_s, 2) * 100
+    if /^[\d\.,]{1,20}/.match input
+      cents = BigDecimal.new(input.to_s, 2) * 100.0
       write_attribute(:price, cents)
     else
       super

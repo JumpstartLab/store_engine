@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    session[:return_to] = request.referrer
+    session[:return_to] = request.url
     @order.update_attribute(:status, "cancelled")
     @order.set_action_time("cancelled")
     session[:order_id] = nil if @order.user == current_user
@@ -39,7 +39,7 @@ class OrdersController < ApplicationController
       session[:order_id] = nil
       redirect_to root_url, notice: notice
     elsif @order.status != "pending" && @order.transition
-      session[:return_to] = request.referrer
+      session[:return_to] = request.url
       notice = "Transition successful"
       redirect_to session[:return_to], notice: notice
     else

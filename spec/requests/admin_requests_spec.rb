@@ -187,8 +187,7 @@ describe "admin" do
         orders = []
         6.times do |i|
           orders[i] = Fabricate(:order)
-          orders[i].update_attributes(user_id: nil,
-            shipping_address_id: shipping.id)
+          orders[i].update_attributes(user_id: nil, billing_method_id: billing.id, shipping_address_id: shipping.id)
         end
         orders
       }
@@ -269,7 +268,7 @@ describe "admin" do
        click_link_or_button "Admin View"
        click_link_or_button "Dashboard"
        click_link_or_button "Mark as 'shipped'"
-       page.should have_content Order.last.action_time
+       page.should have_content Order.last.action_time.first(10)
      end
    end
  end

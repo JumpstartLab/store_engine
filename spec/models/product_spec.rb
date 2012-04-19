@@ -26,16 +26,12 @@ describe Product do
         product.should_not be_valid
       end
 
-      it "is not valid without a price" do
-        product.price = nil
-        product.should_not be_valid
-      end
     end
 
     context "type validations" do
       it "does not allow a duplicate title to be created" do
-        prod_1 = {title: "a", description: "b", price: 5}
-        prod_2 = {title: "a", description: "c", price: 6}
+        prod_1 = {title: "a", description: "b", price: "5"}
+        prod_2 = {title: "a", description: "c", price: "6"}
         Product.create(prod_1)
         Product.create(prod_2).should_not be_valid
       end
@@ -62,7 +58,7 @@ describe Product do
     let(:second_cat) { Fabricate(:category) }
     it "creates the category relationships for the product" do
       cat_ids = [first_cat.id, second_cat.id]
-      Product.create({title: "a", description: "b", price: 6,
+      Product.create({title: "a", description: "b", price: "6",
         category_ids: cat_ids}).should be_valid
 
       cat_ids.each do |id|

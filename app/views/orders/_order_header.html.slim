@@ -7,4 +7,4 @@
   #order-status
     = order.status.upcase
   - if admin_view?
-    = render partial: "order_head"
+    = render partial: "order_head", locals: { order: order }

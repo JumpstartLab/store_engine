@@ -22,23 +22,20 @@
     .control-group
       = f.label :price, :class => 'control-label'
       .controls
-        = f.number_field :price, :class => 'number_field'
+        = f.number_field :price, :class => 'number_field', value: @product.price
     .control-group
       = f.label :photo_url, :class => 'control-label'
       .controls
         = f.text_field :photo_url, :class => 'text_field'
     .control-group
+      h3 Categories
+      br/
       = hidden_field_tag "product[category_ids][]", nil
       - Category.all.each do |category|
         = check_box_tag "product[category_ids][]", category.id, @product.category_ids.include?(category.id), id: dom_id(category)
         = label_tag dom_id(category), category.name
 
-    h3 Add a New Category
-    .control-group
-      = label_tag :new_category_name
-      .controls
-        = text_field_tag :new_category_name
-        br/
+    br/
     .form-actions
       = f.submit :class => 'btn btn-primary'
       = link_to 'Cancel', products_path, :class => 'btn'

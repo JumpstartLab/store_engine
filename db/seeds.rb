@@ -69,7 +69,9 @@ end
 
 #LineItems
 
-10.times do
-  prod = Product.all.sample
-  LineItem.create(order_id: orders.sample.id, price: prod.price, product_id: prod.id, quantity: [0..5].sample )
+orders.each do
+  ((rand*5+1).to_i).times do
+    prod = products.sample
+    LineItem.create(order_id: orders.sample.id, price: prod.price, product_id: prod.id, quantity: (1..5).to_a.sample)
+  end
 end

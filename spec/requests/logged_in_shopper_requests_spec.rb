@@ -46,7 +46,7 @@ describe "logged in user" do
         city: "Anytown",
         state: "Virginia",
         zipcode: "22209",
-        email_address: "test@test.com",
+        email_address: "test@test1.com",
         name: "Favorite Billing"
       }
     }
