@@ -33,7 +33,9 @@
                      method: :post, 
                      :class => 'btn btn-primary', 
                      confirm: "Are you sure?" %>
-        <% end %>
+      <% else %>
+      <i>One-click checkout available after first purchase</i>
+      <% end %>
       <%= link_to 'Add to Cart', line_items_path(product_id: @product), :method => :post, :class => 'btn'%>
     <% end %>
     
