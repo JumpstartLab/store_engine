@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-# Anonymous Shopper Makes a Purchase
-
 feature "Checking Out While Logged Out" do
 
   before(:all) do
@@ -58,7 +56,7 @@ feature "Checking Out While Logged Out" do
         end
 
         it "then my cart should show the product with quantity 1" do
-
+          page.has_field?("quantity_product_#{ Product.first.id }")
         end
 
         it "then my cart total should be correct" do
@@ -85,7 +83,9 @@ feature "Checking Out While Logged Out" do
             end
 
             it "then I should be purchasing with quantity 1" do
-              save_and_open_page
+              within "#cart-menu" do
+                page.should have_content("(1)")
+              end
             end
           end
         end
