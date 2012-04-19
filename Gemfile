@@ -38,4 +38,5 @@ group :development, :test do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'reek', :git => 'git://github.com/mvz/reek.git', :branch =>
   'ripper_ruby_parser-2'
+  gem 'ripper_ruby_parser'
 end
