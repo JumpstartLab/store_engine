@@ -7,7 +7,7 @@ Category.create(:name => "sexy pugs")
 def create_product(title, description, photo)
   product = Product.create(:title => title, :description => description, 
                  :price => rand(10000).to_s, :photo => photo)
-  ids = Category.all.sample(rand(3)).collect do |category| 
+  ids = Category.all.sample(rand(4)).collect do |category| 
     category.id
   end
   product.set_categories(ids)
