@@ -178,8 +178,6 @@ o9 = Order.create(user: jeff, name: "jeff casimir", address: "hungry academy", e
 o10 = Order.create(user: jeff, name: "jeff casimir", address: "hungry academy", email: "jeff@jumpstartlab.com", cc_number: "8538147230423", cc_expiry: "09/14", status: "cancelled")
 
 oi_1 = OrderItem.create(order: o1, product: jbp, quantity: 3)
-oi_1.set_price_from_product(jbp)
-oi_1.save
 oi_2 = OrderItem.create(order: o1, product: gold, quantity: 2)
 oi_3 = OrderItem.create(order: o1, product: california, quantity: 2)
 oi_4 = OrderItem.create(order: o2, product: foam, quantity: 1)
@@ -198,6 +196,10 @@ oi_16 = OrderItem.create(order: o9, product: now, quantity: 5)
 oi_17 = OrderItem.create(order: o10, product: earth_mate, quantity: 8)
 oi_18 = OrderItem.create(order: o10, product: republic, quantity: 3)
 
+OrderItem.all.each do |oi|
+  oi.set_price_from_product(oi.product)
+  oi.save
+end
 
 
 
