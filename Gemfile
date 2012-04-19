@@ -35,4 +35,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'sqlite3'
   gem 'faker'
+  gem 'heroku'
 end
