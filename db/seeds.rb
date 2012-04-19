@@ -65,9 +65,12 @@ create_product("Magic", "Just like the rails.",
                "http://28.media.tumblr.com/tumblr_lim8n49s881qa9dmvo1_500.jpg")
 create_product("Katie", "Why do people name their cute pugs after humans?", 
                "http://29.media.tumblr.com/tumblr_lixd8gn85W1qa1nfco1_500.jpg")
+
 pending = Status.create(:name => StoreEngine::Status::PENDING)
 paid = Status.create(:name => StoreEngine::Status::PAID)
-Status.create(:name => StoreEngine::Status::RETURNED)
+returned = Status.create(:name => StoreEngine::Status::RETURNED)
+shipped = Status.create(:name => StoreEngine::Status::SHIPPED)
+cancelled = Status.create(:name => StoreEngine::Status::CANCELLED)
 
  address = {:first_name => "Melanie", :last_name => "Gilman", 
             :company => "Living Social", :line_1 => "New York Ave", 
@@ -76,27 +79,29 @@ Status.create(:name => StoreEngine::Status::RETURNED)
  shipping_address = ShippingAddress.create(address)
  billing_address = BillingAddress.create(address)
  
-
  def create_order(user, status, shipping_address, billing_address)
-   Order.create(:user => user, :status => status, 
+   order = Order.create(:user => user, :status => status, 
                 :shipping_address => shipping_address, 
                 :billing_address => billing_address)
 
    products = Product.all
    product_count = rand(1..10)
    product_count.times do |i|
-     item = OrderItem.create(:order => order, :product => Product.find(i))
+     product= products[i] 
+     item = OrderItem.new(:product => product, :quantity => rand(1..30), 
+                          :price => product.price.cents.to_s)
+     item.order = order
+     item.save
    end
  end
-# item = OrderItem.new(:product => Product.find(1))
-# item2 = OrderItem.new(:product => Product.find(3))
-# items = [item, item2]
-# Order.create(:user => matt, :status => pending, :order_items => items,
-#                     :shipping_address => shipping_address, 
-#                     :billing_address => billing_address)
-# Order.create(:user => jeff, :status => shipped,
-#                     :shipping_address => shipping_address, 
-#                     :billing_address => billing_address).save
-# Order.create(:user => jeff, :status => paid,
-#                     :shipping_address => shipping_address, 
-#                     :billing_address => billing_address).save
+
+ create_order(matt, pending, shipping_address, billing_address)
+ create_order(jeff, pending, shipping_address, billing_address)
+ create_order(matt, paid, shipping_address, billing_address)
+ create_order(jeff, paid, shipping_address, billing_address)
+ create_order(matt, returned, shipping_address, billing_address)
+ create_order(jeff, returned, shipping_address, billing_address)
+ create_order(matt, shipped, shipping_address, billing_address)
+ create_order(jeff, shipped, shipping_address, billing_address)
+ create_order(matt, cancelled, shipping_address, billing_address)
+ create_order(jeff, cancelled, shipping_address, billing_address)
