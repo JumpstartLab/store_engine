@@ -47,11 +47,10 @@ class ProductsController < ApplicationController
     product = Product.find(params[:id])
     if product.retired?
       product.make_active_again
-      redirect_to products_path
     else
       product.retire
-      redirect_to products_path
     end
+    redirect_to root_url
   end
 
 

@@ -3,6 +3,10 @@ class SessionsController < ApplicationController
   def new
   end
 
+  def index
+    redirect_to root_url
+  end
+
   def create
     user = User.find_by_email_address(params[:email])
     if valid_user?(user)
