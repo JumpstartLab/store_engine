@@ -11,7 +11,7 @@ class InstantOrdersController < ApplicationController
         redirect_to (:back), :notice => "Something went wrong."
       end
     else
-      redirect_to user_path(user)
+      redirect_to user_path(current_user)
     end
   end
 
@@ -29,6 +29,7 @@ private
   def create_order_from_params(user)
     @order = Order.new
     @order.user = current_user
+    fill_in_order_from_user_defaults(current_user)
     @order.add_product_by_product_id(params[:product_id], params[:quantity])
     @order.order_statuses.new(:status => "paid")
   end

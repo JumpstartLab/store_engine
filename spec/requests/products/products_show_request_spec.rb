@@ -18,6 +18,8 @@ describe "Products Show Requests" do
                              :category_id => 3),
       ]
     end
+    let(:user)        { Fabricate(:user, :password => 'password',
+                                   :admin => 'false') }
 
 
     before(:each) do
@@ -44,6 +46,8 @@ describe "Products Show Requests" do
     end
 
     it "has a one-click checkout link" do
+      login(user)
+      visit product_path(product)
       page.should have_link("Instant Checkout")
     end
 

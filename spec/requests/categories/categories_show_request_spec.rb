@@ -34,15 +34,21 @@ describe "Categories Show Requests" do
     end
 
     it "lists the products for the category" do
-      product_categories.each do |product_category|
-        product = Product.find_by_id(product_category.product_id)
+      category = Category.find(1)
+      category.products.each do |product|
+        #product = Product.find_by_id(product_category.product_id)
         page.should have_link(product.title, :href => product_path(product))
       end
     end
 
     it "doesn't list retired products for a category" do
+      category = Category.find(1)
+      category.products << inactive_product
+      category.save
+      visit "/categories/1"
       page.should_not have_content(inactive_product.title)
     end
+
 
   end
 end

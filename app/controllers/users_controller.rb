@@ -8,9 +8,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-
-
     if @user.save
+      check_for_temp_cart
       create_cart_and_redirect
     else
       render :new
