@@ -9,7 +9,11 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_user.orders
+    if params[:q]
+      @orders = Order.search_by_item(params[:q], current_user)
+    else
+      @orders = current_user.orders
+    end
   end
 
   def new

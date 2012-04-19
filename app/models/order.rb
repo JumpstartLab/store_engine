@@ -23,6 +23,15 @@ class Order < ActiveRecord::Base
     return order
   end
 
+  def self.search_by_item(term, user)
+    items = Product.where("upper(name) like ? or upper(description) like ?",
+                          "%#{term.upcase}%", "%#{term.upcase}%")
+    orders = user.orders
+    orders.select do |order|
+      (order.order_items.map(&:product) & items.to_a).any?
+    end
+  end
+
   def add_items_from_cart!(cart)
     cart.cart_items.each do |cart_item|
       self.order_items.create!(product_id: cart_item.product_id,
