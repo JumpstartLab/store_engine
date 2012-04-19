@@ -14,6 +14,15 @@ describe "User" do
     end
   end
 
+  context "when logged in" do
+    before(:each) { login(user) }
+    it "logs me out" do
+      visit '/'
+      click_on "Log Out"
+      page.should have_content "Logged out"
+    end
+  end
+
   context "view a user" do
     it "requires login" do
       visit user_path(user)

@@ -7,7 +7,7 @@ StoreEngine::Application.routes.draw do
   resources :sessions
   resources :cart_items
   resource :edit
-  resources :categories
+  resources :categories, :except => [:index]
   resource :two_click_orders
   resource :search
   resource :dashboard, :controller => 'dashboard'

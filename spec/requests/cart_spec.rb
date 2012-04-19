@@ -2,8 +2,10 @@ require 'spec_helper'
  include ActionView::Helpers::NumberHelper
 
 describe 'using the shopping cart' do
+  let(:user) { FactoryGirl.create(:user) }
+  let(:product) { FactoryGirl.create(:product) }
   context "When I'm on a product page" do
-    let(:product) { FactoryGirl.create(:product) }
+    
     before(:each) { visit product_path(product) }
 
     context "and I click add to cart" do
@@ -31,6 +33,20 @@ describe 'using the shopping cart' do
           page.should_not have_selector('a', :href => product_path(product), :count => 2)
         end
       end 
+    end
+  end
+
+  context "when I have a cart" do
+    it "combines carts" do
+      login(user)
+      visit product_path(product)
+      click_link_or_button "Add to Cart"
+      click_on "Log Out"
+      visit product_path(product)
+      click_link_or_button "Add to Cart"
+      login(user)
+      click_on "Cart"
+      page.should have_content "2 items"
     end
   end
 

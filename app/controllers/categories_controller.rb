@@ -3,18 +3,6 @@ class CategoriesController < ApplicationController
 
 
 
-  def index
-    if (params[:category])
-      current_category = Category.find_by_title(params[:category])
-      if current_category.nil?
-        @products = Product.all?
-      else
-        @products = Category.find_by_title(params[:category])
-      end
-    else
-      @products = Product.all
-    end
-  end
 
   def show
     @category = Category.find_by_id(params[:id])

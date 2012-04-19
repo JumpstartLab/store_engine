@@ -58,6 +58,49 @@ describe 'checking out' do
         click_link_or_button "Checkout"
         page.should have_content(number_to_currency(test_cart.total_price))
       end
+
+      it "enters valid data" do
+        click_link_or_button "Checkout"
+        page.should have_content(number_to_currency(test_cart.total_price))
+        fill_in "card_number", :with => "4242424242424242"
+        fill_in "card_code", :with => "343"
+        select('2014', :from => 'card_year')
+        fill_in "order[address_attributes][street_1]", with: "3 Derby Ln" 
+        fill_in "order[address_attributes][city]", with: "Sunnydale"
+        fill_in "order[address_attributes][state]", with: "DC" 
+        fill_in "order[address_attributes][zip_code]", with: "24242" 
+        click_on "Place order"
+        page.should have_content "Transaction Complete"
+      end
     end
+  end
+
+  describe "admin actions" do
+    let!(:test_user) { FactoryGirl.create(:user) }
+    let!(:admin_user) { FactoryGirl.create(:user, :admin => true) }
+    let!(:test_products) do
+      (1..5).map { FactoryGirl.create(:product) }
+    end
+
+    let!(:order) { FactoryGirl.create(:order, :user => admin_user) }
+    let!(:order_item_1) { FactoryGirl.create(:order_item, :unit_price => 100, 
+      :quantity => 2, :product => test_products.first, :order => order) }
+    let!(:order_item_2) { FactoryGirl.create(:order_item, :unit_price => 200, 
+      :quantity => 2, :product => test_products.last, :order => order) }
+    let!(:oo) { [order_item_1, order_item_2] }
+
+    it "lets me edit the order" do
+      login(admin_user)
+      visit edit_order_path(order)
+      page.should have_content "Order Status"
+    end
+
+    # it "edits the order" do
+    #   login(admin_user)
+    #   visit edit_order_path(order)
+    #   select('shipped', :from => 'order[status]')
+    #   # save_and_open_page
+    #   click_on "Update Order"
+    # end
   end
 end

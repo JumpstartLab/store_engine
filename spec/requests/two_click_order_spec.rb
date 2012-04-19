@@ -55,6 +55,16 @@ describe "ordering with two clicks" do
       end
     end
   end
+
+  describe "when I'm not logged in and i click buy instantly" do
+    let(:product) { FactoryGirl.create(:product) }
+    it "directs me to home" do
+      visit product_path(product)
+      click_link_or_button "Buy instantly"
+      login(user)
+      page.should have_content "You need to be logged in to instant purchase."
+    end
+  end
 end
 
 # cus_dHvnvCMsbUCTjY

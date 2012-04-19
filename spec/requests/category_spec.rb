@@ -76,5 +76,19 @@ describe "sorting by categories" do
       page.should have_content("can't")
     end
   end
+
+  context "viewing categories" do
+    let(:category) { FactoryGirl.create(:category) }
+    it "appears on the homepage" do
+      visit ('/')
+      click_on category.title
+      page.should have_content("Products by #{category.title}")
+    end
+
+    it "loads one category for the category" do
+      visit category_path(category)
+      page.should have_content("Products by #{category.title}")
+    end
+  end
 end
 
