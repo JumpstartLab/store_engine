@@ -45,15 +45,15 @@ div.row
           td = link_to order.id, order_path(order.id)
           td = order.status.name
           - if @status == "pending"
-            td = button_to "Cancel", order_path(order), 
+            td = button_to "Cancel", order_path(order, :status_update => true),
                  :method => :put, :class => "btn btn-primary", 
                  :id => "cancel_order"
           - elsif @status == "shipped"
-            td = button_to "Mark as Returned", order_path(order), 
+            td = button_to "Mark as Returned", order_path(order, :status_update => true),
                  :method => :put, :class => "btn btn-primary", 
                  :id => "return_order"
           - elsif @status == "paid"
-            td = button_to "Mark as Shipped", order_path(order), 
+            td = button_to "Mark as Shipped", order_path(order, :status_update => true), 
                  :method => :put, :class => "btn btn-primary", 
                  :id => "shipped_order"
 div

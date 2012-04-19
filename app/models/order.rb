@@ -40,4 +40,14 @@ class Order < ActiveRecord::Base
       sum += order_item.price * order_item.quantity
     end
   end
+
+  def update_quantities(item_to_quantities)
+    order_items.each do |order_item|
+      order_item.quantity = item_to_quantities[order_item.id.to_s]
+      if order_item.quantity == 0
+        remove_item(order_item.id)
+      end
+      order_item.save
+    end
+  end
 end

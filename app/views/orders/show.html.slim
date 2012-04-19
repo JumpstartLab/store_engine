@@ -1,18 +1,5 @@
 h1 Order - #{@order.id} 
 | Status - #{@order.status.name}
-- if current_user.admin?
-    - if @order.status.name == "pending"
-        = button_to "Cancel", order_path(@order), 
-          :method => :put, :class => "btn btn-primary", 
-          :id => "cancel_order"
-    - elsif @order.status.name == "shipped"
-        = button_to "Mark as Returned", order_path(@order), 
-          :method => :put, :class => "btn btn-primary", 
-          :id => "return_order"
-    - elsif @order.status.name == "paid"
-        = button_to "Mark as Shipped", order_path(@order), 
-          :method => :put, :class => "btn btn-primary", 
-          :id => "shipped_order"
 p
 | Name - #{@order.user.first_name + @order.user.last_name}
 p
@@ -67,7 +54,7 @@ div class="row-fluid"
           td class="span2" 
             | $
             = order_item.price
-          td class="span1" = text_field_tag "quantity[#{order_item.id}]", order_item.quantity
+          td class="span1" = order_item.quantity
 
 h3 Order Total
 ="$#{@order.total}"
