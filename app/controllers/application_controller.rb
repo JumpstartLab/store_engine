@@ -24,13 +24,13 @@ class ApplicationController < ActionController::Base
       if session[:cart_id]
         cart_finder
       else
-        Cart.create.tap{ |c| session[:cart_id] = c.id }
+        Cart.create.tap{ |cart| session[:cart_id] = cart.id }
       end
     end
 
     def cart_finder
       if Cart.find_by_id(session[:cart_id]).nil?
-        Cart.create.tap{ |c| session[:cart_id] = c.id }
+        Cart.create.tap{ |cart| session[:cart_id] = cart.id }
       else
         Cart.find_by_id(session[:cart_id])
       end

@@ -28,7 +28,7 @@ class Cart < ActiveRecord::Base
   end
 
   def total
-    cart_items.sum{|i| i.total }
+    cart_items.sum{|item| item.total }
   end
 
 end
