@@ -167,6 +167,38 @@ CategoryAssignment.create(product: natures, category: baby_products)
 CategoryAssignment.create(product: jbp, category: baby_products)
 
 o1 = Order.create(user: matt, name: "matt yoho", address: "a cave", email: "matt@jumpstartlab.com", cc_number: "32131231242342", cc_expiry: "03/19", status: "pending")
+o2 = Order.create(user: matt, name: "matt yoho", address: "a cave", email: "matt@jumpstartlab.com", cc_number: "32131231242342", cc_expiry: "03/19", status: "pending")
+o3 = Order.create(user: matt, name: "matt yoho", address: "a cave", email: "matt@jumpstartlab.com", cc_number: "32131231242342", cc_expiry: "03/19", status: "shipped")
+o4 = Order.create(user: matt, name: "matt yoho", address: "a cave", email: "matt@jumpstartlab.com", cc_number: "32131231242342", cc_expiry: "03/19", status: "shipped")
+o5 = Order.create(user: matt, name: "matt yoho", address: "a cave", email: "matt@jumpstartlab.com", cc_number: "32131231242342", cc_expiry: "03/19", status: "paid")
+o6 = Order.create(user: matt, name: "matt yoho", address: "a cave", email: "matt@jumpstartlab.com", cc_number: "32131231242342", cc_expiry: "03/19", status: "paid")
+o7 = Order.create(user: jeff, name: "jeff casimir", address: "hungry academy", email: "jeff@jumpstartlab.com", cc_number: "8538147230423", cc_expiry: "09/14", status: "returned")
+o8 = Order.create(user: jeff, name: "jeff casimir", address: "hungry academy", email: "jeff@jumpstartlab.com", cc_number: "8538147230423", cc_expiry: "09/14", status: "returned")
+o9 = Order.create(user: jeff, name: "jeff casimir", address: "hungry academy", email: "jeff@jumpstartlab.com", cc_number: "8538147230423", cc_expiry: "09/14", status: "cancelled")
+o10 = Order.create(user: jeff, name: "jeff casimir", address: "hungry academy", email: "jeff@jumpstartlab.com", cc_number: "8538147230423", cc_expiry: "09/14", status: "cancelled")
+
+oi_1 = OrderItem.create(order: o1, product: jbp, quantity: 3)
+oi_1.set_price_from_product(jbp)
+oi_1.save
+oi_2 = OrderItem.create(order: o1, product: gold, quantity: 2)
+oi_3 = OrderItem.create(order: o1, product: california, quantity: 2)
+oi_4 = OrderItem.create(order: o2, product: foam, quantity: 1)
+oi_5 = OrderItem.create(order: o2, product: johnson, quantity: 1)
+oi_6 = OrderItem.create(order: o3, product: earth_baby, quantity: 3)
+oi_7 = OrderItem.create(order: o3, product: tea, quantity: 4)
+oi_8 = OrderItem.create(order: o4, product: earth_mate, quantity: 3)
+oi_9 = OrderItem.create(order: o5, product: earth_baby, quantity: 1)
+oi_10 = OrderItem.create(order: o5, product: now, quantity: 3)
+oi_11 = OrderItem.create(order: o6, product: now, quantity: 8)
+oi_12 = OrderItem.create(order: o7, product: tea, quantity: 3)
+oi_13 = OrderItem.create(order: o7, product: earth_baby, quantity: 2)
+oi_14 = OrderItem.create(order: o8, product: republic, quantity: 3)
+oi_15 = OrderItem.create(order: o8, product: earth_mate, quantity: 3)
+oi_16 = OrderItem.create(order: o9, product: now, quantity: 5)
+oi_17 = OrderItem.create(order: o10, product: earth_mate, quantity: 8)
+oi_18 = OrderItem.create(order: o10, product: republic, quantity: 3)
+
+
 
 
 
