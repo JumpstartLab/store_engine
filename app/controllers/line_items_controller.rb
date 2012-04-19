@@ -24,9 +24,9 @@ class LineItemsController < ApplicationController
   def update
     @line_item = LineItem.find(params[:id])
     if @line_item.update_attributes(params[:line_item])
-      redirect_to cart_path(current_cart), notice: 'Item was successfully updated.'
+      redirect_to cart_path(current_cart), notice: 'Item updated.'
     else
-      redirect_to cart_path(current_cart), notice: 'Quantity must be greater than 0'
+      redirect_to cart_path(current_cart), notice: 'Cannot update.'
     end
   end
 

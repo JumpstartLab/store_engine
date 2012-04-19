@@ -3,7 +3,7 @@ class CategoryAssignmentsController < ApplicationController
   def create
     @category_assignment = CategoryAssignment.new(params[:category_assignment])
     if @category_assignment.save
-      redirect_to @category_assignment, notice: 'Category assignment was successfully created.'
+      redirect_to @category_assignment
     else
       render action: "new"
     end
@@ -13,7 +13,7 @@ class CategoryAssignmentsController < ApplicationController
   def update
     @category_assignment = CategoryAssignment.find(params[:id])
     if @category_assignment.update_attributes(params[:category_assignment])
-      redirect_to @category_assignment, notice: 'Category assignment was successfully updated.'
+      redirect_to @category_assignment
     else
       render action: "edit"
     end

@@ -24,9 +24,9 @@ class OrderItemsController < ApplicationController
   def update
     @order_item = OrderItem.find(params[:id])
     if @order_item.update_attributes(params[:order_item])
-      redirect_to order_path(@order_item.order), notice: 'Order was successfully updated.'
+      redirect_to order_path(@order_item.order), notice: 'Order updated.'
     else
-      redirect_to order_path(@order_item.order), notice: 'Quantity must be greater than 0'
+      redirect_to order_path(@order_item.order), notice: 'Cannot update.'
     end
   end
 

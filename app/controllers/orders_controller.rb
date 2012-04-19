@@ -35,7 +35,7 @@ class OrdersController < ApplicationController
     @order = Order.one_click_order(product, current_user)
 
     if @order.errors.empty?
-      redirect_to order_path(@order),notice: "Thank you for your order" 
+      redirect_to order_path(@order),notice: "Thank you for your order"
     else
       @cart = current_cart
       render action: 'new'

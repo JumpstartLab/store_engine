@@ -7,11 +7,11 @@ class Rating
 
   def fetch_and_parse_rating(product_upc)
     response = RatingFetcher.fetch(product_upc)
-    entity = response.parsed_response['goodguide_response']['entities']['entity']
-    if entity.instance_of? Array
-      entity.first
+    item = response.parsed_response['goodguide_response']['entities']['entity']
+    if item.instance_of? Array
+      item.first
     else
-      entity
+      item
     end
   end
 
@@ -22,7 +22,7 @@ end
 
 class RatingFetcher
   include HTTParty
-  
+
   base_uri 'http://api.goodguide.com/'
 
   def self.fetch(upc)
