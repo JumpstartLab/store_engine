@@ -19,17 +19,17 @@ $.rails.allowAction = (element) ->
     # We want a button
     .addClass('btn').addClass('btn-success')
     # We want it to sound confirmy
-    .html("Place order")
+    .html("Confirm")
 
   # Create the modal box with the message
   modal_html = """
                <div class="modal" id="myModal">
                  <div class="modal-header">
                    <a class="close" data-dismiss="modal">×</a>
-                   <h3>#{message}</h3>
+                   <h3>Are you sure?</h3>
                  </div>
                  <div class="modal-body">
-                   <p>It will charge your card. So be careful.</p>
+                   <p>Think carefully!</p>
                  </div>
                  <div class="modal-footer">
                    <a data-dismiss="modal" class="btn">Cancel</a>
