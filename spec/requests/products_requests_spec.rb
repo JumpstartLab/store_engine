@@ -336,4 +336,20 @@ describe "Products Requests" do
     end
   end
 
+  context "when not logged in" do
+    let!(:product) { Fabricate(:product) }
+
+    before(:each) do
+      visit product_path(product)
+    end
+
+    describe "a product is added to the cart" do
+      it "creates a new cart" do
+        click_link_or_button("Add to Cart")
+        page.should have_content(product.title)
+        page.should have_content('Quantity')
+      end
+    end
+  end
+
 end

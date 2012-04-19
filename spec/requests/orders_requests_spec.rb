@@ -178,13 +178,23 @@ describe "For orders" do
       end
 
     context "#edit" do
-      let!(:order) { Fabricate(:order) }
+      # let!(:order) { Fabricate(:order) }
 
-      it "lists the products currently included in the order" do
-        pending "TODO: Return to this - needs to have products added to a cart"
+      let!(:product) { Fabricate(:product) }
+
+      before(:each) do
+        visit product_path(product)
+        click_link_or_button("Add to Cart")
+        click_link_or_button("Place Order")
+        click_link_or_button("Place Order")
       end
 
+      it "lists the products currently included in the order" do
+        page.should have_content(product.title)
+      end
     end
+
+
   end
 
 end
