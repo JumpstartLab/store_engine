@@ -1,10 +1,9 @@
-h1 Product Categories
-
-ul
+h3 Categories
+br
+table class="table table-striped"
   - @categories.each do |category|
-      li
-        = category.name
-        p
-        = link_to "Edit", edit_admin_category_path(category)
+      tr
+        td = link_to category.name, category_products_path(category)
+        td = link_to "Edit", edit_admin_category_path(category)
 
 = link_to "Create new category", new_admin_category_path

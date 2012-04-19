@@ -19,6 +19,9 @@ div class="span3"
       = f.label :quantity
       = f.select :quantity, options_for_select(1..30)
       = f.submit "Add to Cart", :product => @product, :class => 'btn'
+  
+  - if @product.retired
+    strong Retired
 
   p
 
