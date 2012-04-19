@@ -12,6 +12,10 @@ class Category < ActiveRecord::Base
   end
 
   def image
-    products.first.image
+    if products.any?
+      products.first.image
+    else
+      ""
+    end
   end
 end
