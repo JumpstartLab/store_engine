@@ -11,6 +11,7 @@ gem 'rspec-rails'
 gem 'bootstrap-sass', '~> 2.0.2'
 gem 'chosen-rails'
 gem 'simple_form'
+gem 'bcrypt-ruby'
 
 #gem 'anjlab-bootstrap-rails', '>= 2.0', :require => 'bootstrap-rails'
 
@@ -28,7 +29,7 @@ end
 
 group :development, :test do
   gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
-  gem 'cane'
+  gem 'cane', :git => "git://github.com/square/cane.git"
   gem 'simplecov'
   gem 'fabrication'
   gem 'capybara'

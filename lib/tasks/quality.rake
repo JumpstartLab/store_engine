@@ -11,7 +11,7 @@ reset   = escape[ 0]
 desc "Runs reek and cane."
 task :quality do
   puts yellow + "Cane " + "=" * 10 + reset
-  puts `cane --style-glob="{app,lib}/**/*.rb"`
+  puts `cane --style-glob="{app,lib}/**/*.rb" --no-doc`
 
   # Because reek's output isn't the nicest.
   puts yellow + "Reek " + "=" * 10 + reset
