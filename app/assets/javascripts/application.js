@@ -16,5 +16,5 @@
 //= require bootstrap
 
 $(document).ready(function() {
-  $('#add_to_cart').addClass('disabled').click(function() { return false; });
+  $('.disabled').click(function() { return false; });
 })

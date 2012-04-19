@@ -17,7 +17,8 @@
    <p>
      <%= link_to 'Add to cart', 
           new_cart_product_path(:product_id => product.id), 
-          :class => "btn btn-primary", :id => "add_to_cart_#{product.id}" %>
+          :class => "btn btn-primary #{add_class_disabled?(product)}", 
+          :id => "add_to_cart_#{product.id}" %>
    </p>
    </div>
  </div>
