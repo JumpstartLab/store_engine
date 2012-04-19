@@ -14,7 +14,7 @@ class CartItemsController < ApplicationController
         cart_items.
         create!(product_id: params[:product_id], quantity: 1)
     end
-    flash[:notice] = "Item added to cart!" && redirect_to (request.referer)
+    flash[:notice] = "Item added to cart!" && redirect_to request.referer
   end
 
   def increase
