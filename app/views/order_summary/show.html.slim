@@ -12,6 +12,8 @@ div class="row-fluid"
       #{@shipping_address.line_2}
       #{@shipping_address.city}, #{@shipping_address.state} #{@shipping_address.zipcode}
       #{@shipping_address.phone}
+    p
+    = link_to "Edit", edit_shipping_address_path(@shipping_address)
 
   div class="span3"
     h3 Billing Address
@@ -23,6 +25,8 @@ div class="row-fluid"
       #{@billing_address.line_2}
       #{@billing_address.city}, #{@billing_address.state} #{@billing_address.zipcode}
       #{@billing_address.phone}
+    p
+    = link_to "Edit", edit_billing_address_path(@billing_address)
 
   div class="span2"
     button class="btn btn-large" 

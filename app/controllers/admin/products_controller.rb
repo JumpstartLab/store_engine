@@ -17,7 +17,7 @@ class Admin::ProductsController < ApplicationController
     if @product.save
       flash[:notice] = "Product added"
     else
-      flash[:notice] = "Faied to add product"
+      flash[:notice] = "Failed to add product"
     end
     redirect_to admin_products_path
   end

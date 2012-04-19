@@ -1,4 +1,4 @@
-h3 Enter your billing address
+h3 Edit your billing address
 p
 = form_for @billing_address, :html => { :class => 'well'} do |f|
   - if @billing_address.errors.any?
@@ -31,9 +31,5 @@ p
   p
   = f.label :phone, "* Phone Number"
   = f.text_field :phone
-  p
-  label class="checkbox"
-    = check_box_tag("same_address")
-    = label_tag("same_address")
   p
   =f.submit :class => :btn

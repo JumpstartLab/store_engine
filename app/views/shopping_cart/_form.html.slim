@@ -42,9 +42,6 @@
       td
         button class="btn" 
           i class="icon-shopping-cart"
-          - if current_user.nil?
-            = link_to " Checkout", login_path
-          - else
-            = link_to " Checkout", new_shipping_address_path
+            = link_to " Checkout", checkout_path
       td
 
