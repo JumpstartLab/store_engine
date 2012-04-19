@@ -38,21 +38,12 @@ class OrdersController < ApplicationController
   end
 
   def charge
-    order = Order.process_cart(@cart.id)
-    if order.user.update_address(params[:order][:user_attributes])
-        order.charge(params[:order][:stripe_card_token])
-        cookies[:cart_id] = nil
-
-        Notification.order_email(current_user, order).deliver
-        current_user.text("Your order has been placed!
-           You bought: #{order.products.map(&:name).join(', ')} -
-           Total: #{order.total_price_in_dollars}")
-
-        redirect_to order_path(order),
-          :notice => "Congrats on giving us your money"
+    @order = Order.process_cart(@cart.id)
+    if @order.user.update_address(params[:order][:user_attributes])
+        @order.charge(params[:order][:stripe_card_token])
+        charge_shit_steps(@order)
     else
-      @order = order
-      flash[:error] = "Address is invalid"
+      flash[:alert] = "Address is invalid"
       render 'new'
     end
   end
@@ -87,13 +78,17 @@ class OrdersController < ApplicationController
     @orders = orders - current_user.orders.where(:status_id => status.id)
   end
 
-  private
-
   def is_owner_or_admin
     @order = Order.find_by_id(params[:id])
     if not current_user.admin and @order.user != current_user
       redirect_to root_url, :notice => 'That is not your order'
     end
+  end
+
+  def charge_shit_steps(order)
+    cookies[:cart_id] = nil
+    order.notify_charge
+    redirect_to order_path(@order), :notice => "I HAVE ALL YOUR MONEY!"
   end
 
 end

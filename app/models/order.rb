@@ -79,6 +79,13 @@ class Order < ActiveRecord::Base
     self.save
   end
 
+  def notify_charge
+    Notification.order_email(self.user, self).deliver
+    self.user.text("Your order has been placed!
+       You bought: #{self.products.map(&:name).join(', ')} -
+       Total: #{self.total_price_in_dollars}")        
+  end
+
   def generate_unique_url
     self.unique_url = (0...32).map{65.+(rand(25)).chr}.join
   end
@@ -94,7 +101,7 @@ class Order < ActiveRecord::Base
     end
     self.save
   end
-  
+
   def cancel
     self.status = Status.find_or_create_by_name('cancelled')
     self.cancelled_at = DateTime.now

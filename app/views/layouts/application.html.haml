@@ -6,5 +6,7 @@
       .alert.alert-success= flash[:notice]
     - elsif flash[:error]
       .alert.alert-error= flash[:error]
+    - elsif flash[:alert]
+      .alert.alert-error= flash[:alert]      
     = yield
   = render :partial => 'layouts/footer'
