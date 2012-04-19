@@ -4,7 +4,6 @@
       <%= link_to "mittenberry", root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
-          <li style="color: #fff"><%= @last_page %></li>
           <li><%= link_to "Products", products_path %></li>
           <li id="cart-menu"><%= link_to "Cart (#{get_cart_count})", cart_path %></li>
           <% if current_user %>

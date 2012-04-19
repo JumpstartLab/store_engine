@@ -22,21 +22,6 @@ describe Product do
     end
   end
 
-  describe "#remove_category_by_id" do
-    before(:each) do
-      categories.each do |category|
-        product.add_category(category)
-      end
-    end
-
-    it "removes a category from a product" do
-      product.categories.count == categories.count
-      expect {
-        product.remove_category_by_id(category_one.id)
-      }.to change { product.categories.count }.by(-1)
-    end
-  end
-
   describe "#add_category_by_id" do
     it "adds a category to a product" do
       expect {

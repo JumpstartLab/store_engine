@@ -15,6 +15,6 @@
 //= require_tree .
 //= require bootstrap
 
-$(document).ready(function() {
-  $('.disabled').click(function() { return false; });
-})
+//$(document).ready(function() {
+//  $('.disabled').click(function() { return false; });
+//})

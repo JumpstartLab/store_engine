@@ -37,7 +37,7 @@ describe "As an admin updating products" do
         before do
           fill_in "Name", with: new_product.name
           fill_in "Description", with: new_product.description
-          fill_in "Price", with: new_product.price
+          fill_in "product_price", with: new_product.price
         end
 
         it "successfully creates a product" do
@@ -63,7 +63,8 @@ describe "As an admin updating products" do
       before(:each) { click_link("Edit this product") }
 
       it "takes me a product's edit page" do
-        page.should have_content("Edit this product")
+        page.should have_content("Edit")
+        page.should have_button("Update Product")
       end
 
       context "and I update the product" do
