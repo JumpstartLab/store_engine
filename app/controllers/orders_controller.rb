@@ -4,6 +4,8 @@ class OrdersController < ApplicationController
   before_filter :belongs_to_current_user?, only: [:show]
 
   def new
+    raise current_user.credit_cards.inspect
+
     if current_user.credit_cards.empty?
       redirect_to new_credit_card_path and return
     end

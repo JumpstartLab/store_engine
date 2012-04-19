@@ -56,6 +56,7 @@ describe "When I want to place an order" do
     # end
   end
 
+
   context "and I enter valid information" do
     before do
       fill_in "Credit Card Number", with: 4242424242424242
@@ -67,4 +68,5 @@ describe "When I want to place an order" do
     #it "takes me to the order confirmation page"
     # need to figure out some way to test without making an inline API call
   end
+
 end
