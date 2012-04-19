@@ -24,7 +24,9 @@
             <ul class="nav">
               <li><%= link_to "Browse Products", products_path %></li>
               <li><%= link_to "Browse Categories", categories_path %></li>
-              <li><%= link_to "Browse Orders", orders_path %></li>
+              <% if signed_in? %>
+                <li><%= link_to "Browse Orders", orders_path %></li>
+              <% end %>
               <li><%= link_to "Your Cart", cart_path %></li>
               <% if signed_in? && current_user.admin? %>
               <li><%= link_to "Users", admin_users_path %></li>
