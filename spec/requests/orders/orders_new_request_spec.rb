@@ -34,8 +34,7 @@ describe "Orders" do
           it "shows what I'm buying" do
             within "#order" do
               products.each do |product|
-                pending
-                # page.should have_content(product.title)
+               page.should have_content(product.title)
               end
             end
           end
