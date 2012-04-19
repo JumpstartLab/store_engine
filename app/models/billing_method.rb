@@ -16,7 +16,8 @@ class BillingMethod < ActiveRecord::Base
   validates_format_of :street, with: /^[\da-zA-Z]{1,10}\s[a-zA-Z\d]{1,20}\s
                                      [a-zA-Z.]{1,20}/x
 
-
+  validates_format_of :year, with: /^2[01]\d{2}/
+  validates_format_of :month, with: /^0?1?\d/
 
   belongs_to :user
   has_many :orders
