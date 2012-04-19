@@ -21,10 +21,7 @@
   end
 
   def retired_switch
-    case retired
-    when true then false
-    when false then true
-    end
+    !retired
   end
 
   def badge_html
