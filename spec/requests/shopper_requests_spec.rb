@@ -31,12 +31,10 @@ describe "shopper" do
         end
       end
       it "searches products by their title" do
-        within "#main-content" do
-          page.should have_content "Find"
-          fill_in "filtered", with: product.title
-          click_link_or_button "Find"
-          page.should have_content product.title
-        end
+        page.should have_content "Find"
+        fill_in "filtered", with: product.title
+        click_link_or_button "Find"
+        page.should have_content product.title
       end
 
       it "has an add to cart button" do
