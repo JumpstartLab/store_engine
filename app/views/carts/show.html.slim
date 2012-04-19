@@ -1,4 +1,4 @@
-h1 Your Cart
+h1 = "Your Cart#{' is Empty.' if @cart.items.empty?}"
 
 div.cart id="cart"
   table

@@ -1,4 +1,6 @@
-h1 Order
+h1 "Order ##{@order.id}"
+h3 = "Status: #{@order.status}"
+h3 = "Total: #{@order.total}"
 
 table
   - @order.items.each do |item|

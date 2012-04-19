@@ -1,6 +1,8 @@
 h1 Billing Information
 
 = form_for(:billing) do |f| 
+  = f.hidden_field :order_id, :value => params[:order_id]
+
   = fields_for :credit_card do |cc_form|
     div class="field"
       = cc_form.label :credit_card_number

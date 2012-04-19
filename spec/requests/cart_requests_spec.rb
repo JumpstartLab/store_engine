@@ -28,9 +28,6 @@ describe Cart do
 
       context "and I submit new billing information" do
         before(:each) do
-          cart.add_product(product)
-          login_as(user)
-          visit cart_path
           click_link "Checkout"
         end
 
@@ -47,6 +44,42 @@ describe Cart do
             click_button "Submit"
           }.to change{ Address.count }.by(1)
         end
+
+        it "creates a paid order" do
+          fill_billing_form
+          expect {
+            click_button "Submit"
+          }.to change{ Order.find_all_by_status("paid").count }.by(1)
+        end
+
+        it "redirects me to see my order" do
+          fill_billing_form
+          click_button "Submit"
+          page.should have_content("Thank you!")
+          find('h1').should have_content("Order")
+        end
+
+        it "clears my cart" do
+          fill_billing_form
+          click_button "Submit"
+          visit cart_path
+          page.should have_content("Your Cart is Empty.")
+        end
+
+        context "paid order" do
+          before(:each) do
+            fill_billing_form
+            click_button "Submit"
+          end
+
+          it "shows the status as paid" do
+            page.should have_content("paid")
+          end
+
+          it "shows me the order total" do
+            page.should have_content(user.orders.last.total)
+          end
+        end
       end
     end
   end
@@ -62,6 +95,29 @@ describe Cart do
       within ("#cart") do
         page.should have_content(product.title)
       end
+    end
+
+    it "shows the correct total in the cart" do
+      find('#total').should have_content(product.price)
+    end
+  end
+
+  context "when an authenticated user clicks on 'add to cart'" do
+    before(:each) do
+      login_as(user)
+      visit product_path(product)
+      click_link "Add to Cart"
+    end
+
+    it "adds the product to the cart" do
+      visit cart_path
+      within ("#cart") do
+        page.should have_content(product.title)
+      end
+    end
+
+    it "shows the correct total in the cart" do
+      find('#total').should have_content(product.price)
     end
   end
 

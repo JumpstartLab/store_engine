@@ -35,7 +35,7 @@ class Order < ActiveRecord::Base
 
   def self.create_from_cart(cart)
     order = Order.create(:status => "pending")
-    order_items = cart.order_items
+    cart.products.each { |p| order.add_product(p) }
     order.save
     order
   end
