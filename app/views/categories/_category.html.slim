@@ -1,9 +1,6 @@
 li.span2.category id==dom_id(category)
   .image
-    - if category.image
-      = link_to image_tag(category.image), category_path(category), class: "image-link"
-    - else
-      = link_to image_tag(""), category_path(category), class: "image-link"
+    = link_to image_tag(category.image), category_path(category), class: "image-link"
   .overlay
     h3
       = link_to category.name, category_path(category)

@@ -14,6 +14,8 @@ class Category < ActiveRecord::Base
   def image
     if !products.empty?
       products.first.image
+    else
+      "icon.png"
     end
   end
 end
