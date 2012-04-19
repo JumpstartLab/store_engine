@@ -12,6 +12,6 @@
       %td= order.user.name
       %td= order.products.map(&:name).join (', ')
       %td= order.status.name
-      %td= order.total_price
+      %td= order.total_price_after_sale_in_dollars
       %td= order.created_at.strftime("%m/%d/%y at %I:%M%p")
       %td= render 'orders/status', :order => order
