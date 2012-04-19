@@ -41,7 +41,7 @@ div.row
             th Action
       - @orders.each do |order|
         tr
-          td = link_to order.display_date, order_path(order.id)
+          td = link_to order.created_display_date, order_path(order.id)
           td = link_to order.id, order_path(order.id)
           td = order.status.name
           - if @status == "pending"

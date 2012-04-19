@@ -1,10 +1,31 @@
 h1 Order - #{@order.id} 
+p
 | Status - #{@order.status.name}
+p
+| Order Date: #{@order.created_display_date}
+p
+- if @order.status.name == "shipped"
+    | Shipped Date: #{@order.updated_display_date}
+- elsif @order.status.name == "cancelled"
+    | Cancelled Date: #{@order.updated_display_date}
+p
+- if current_user.admin?
+  - if @order.status.name == "pending"
+      = button_to "Cancel", order_path(@order, :status_update => true),
+        :method => :put, :class => "btn btn-primary", :id => "cancel_order"
+  - elsif @order.status.name == "shipped"
+      = button_to "Mark as Returned", order_path(@order, :status_update => true),
+        :method => :put, :class => "btn btn-primary", 
+        :id => "return_order", :update_status => "true"
+  - elsif @order.status.name == "paid"
+      = button_to "Mark as Shipped", order_path(@order, :status_update => true),
+        :method => :put, :class => "btn btn-primary", 
+        :id => "shipped_order", :update_status => "true"
 p
 | Name - #{@order.user.first_name + @order.user.last_name}
 p
 | Email - #{@order.user.email}
-
+p
 p
 div class="row-fluid"
   div class="span3"
@@ -32,7 +53,6 @@ div class="row-fluid"
 br
 br
 br
-| Date: #{@order.display_date}
 h3 Items
 div class="row-fluid"
   div class="span14"
