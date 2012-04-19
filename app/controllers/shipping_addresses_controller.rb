@@ -19,6 +19,7 @@ class ShippingAddressesController < ApplicationController
   end
 
   def update
+    @shipping_address = current_user.shipping_address
     @shipping_address.update_attributes(params[:shipping_address])
     redirect_to order_summary_path
   end

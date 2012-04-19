@@ -19,6 +19,7 @@ class BillingAddressesController < ApplicationController
   end
 
   def update
+    @billing_address = current_user.billing_address
     @billing_address.update_attributes(params[:billing_address])
     redirect_to order_summary_path
   end
