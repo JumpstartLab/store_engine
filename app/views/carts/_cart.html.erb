@@ -21,11 +21,15 @@
   </tr>
   <% end %>
 </table>
+
 <h4>Current Total: $<%= current_cart.total %></h4>
-<div class="btn-group">
-  <%= link_to "Checkout", new_order_path, class: "btn" %>
-  <%= link_to "Clear Cart", cart_path(current_cart),
-  :method => :delete,
-  :confirm => "Clear your cart?",
-  :class => "btn btn-danger"%>
+
+<div class="form-actions">
+  <div class="btn-group">
+    <%= link_to "Checkout", new_order_path, class: "btn" %>
+    <%= link_to "Clear Cart", cart_path(current_cart),
+    :method => :delete,
+    :confirm => "Clear your cart?",
+    :class => "btn btn-danger"%>
+  </div>
 </div>
