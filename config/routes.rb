@@ -16,9 +16,10 @@ StoreEngine::Application.routes.draw do
 
   resources :users
 
-  get "cart" => "carts#index"
+  
   resources :carts
-
+  get "cart" => "carts#index"
+  
   resources :cart_items do
     member do
       post "increase"
