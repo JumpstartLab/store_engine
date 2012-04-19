@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 
   before_filter :authorize
   before_filter :admin_authorize, only: [:edit, :update]
-  
+
   def index
     @orders = Order.find_all_by_user_id(current_user.id)
   end
@@ -13,8 +13,9 @@ class OrdersController < ApplicationController
   end
 
   def new
-    if @cart.quantity == 0 
-      redirect_to '/', :alert => "You can't order something with nothing in your cart."
+    if @cart.quantity == 0
+      redirect_to '/',
+      :alert => "You can't order something with nothing in your cart."
     else
       @order = Order.new
       @order_cart = @cart
@@ -37,16 +38,28 @@ class OrdersController < ApplicationController
     @order.status = Status.new
     @order.user_id = current_user.id
     @order.save
-    @order.add_order_items_from(@cart) 
+    create_part_two
+  end
+
+  def create_part_two
+    @order.add_order_items_from(@cart)
     @order.address.user = current_user
     @cart.destroy
     session[:cart_id] = nil
-    
+    create_part_three
+  end
+
+  def create_part_three
     if @order.save_with_payment
-      @order.status.change
-      redirect_to @order, :notice => "You bought something with Stripe. Want a medal or something?"
+      create_part_four
     else
       render :new
     end
+  end
+
+  def create_part_four
+    @order.status.change
+    redirect_to @order,
+    :notice => "Transaction Complete"
   end
 end

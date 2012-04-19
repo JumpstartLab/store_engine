@@ -12,13 +12,17 @@ class ApplicationController < ActionController::Base
       if @cart.id != session[:cart_id]
         merge_cart(session[:cart_id]) if !session[:cart_id].blank?
       end
-    else 
-      if session[:cart_id]
-        @cart = Cart.find_by_id(session[:cart_id])
-      else
-        @cart ||= Cart.create
-        session[:cart_id] = @cart.id
-      end
+    else
+      new_cart
+    end
+  end
+
+  def new_cart
+    if session[:cart_id]
+      @cart = Cart.find_by_id(session[:cart_id])
+    else
+      @cart ||= Cart.create
+      session[:cart_id] = @cart.id
     end
   end
 
@@ -44,7 +48,8 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_authorize
-    redirect_to root_url, alert: "Not an admin and totally not cool." unless admin?
+    redirect_to root_url,
+    alert: "Not an admin and totally not cool." unless admin?
   end
 
   def current_user
