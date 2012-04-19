@@ -7,8 +7,12 @@ class ProductsController < ApplicationController
     if admin_view?
       @products = Product.all
     else
-      @products = Product.active.all
-      @line_item = LineItem.new
+      if params[:filtered].present?
+        @products = Product.active.where(["title LIKE ?", "%#{params[:filtered]}%"])
+      else
+        @products = Product.active.all
+        @line_item = LineItem.new
+      end
     end
   end
 
