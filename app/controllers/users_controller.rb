@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   def view_as_admin
     session[:return_to] = request.referrer
-    if logged_in? && @user.admin?
+    if logged_in? && admin?
       @user.enable_admin_view
       redirect_to session[:return_to], notice: "Viewing as admin"
     else
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 
   def view_as_normal
     session[:return_to] = request.referrer
-    if logged_in? && @user.admin?
+    if logged_in? && admin?
       @user.disable_admin_view
       redirect_to session[:return_to], notice: "Viewing as normal user"
     else
