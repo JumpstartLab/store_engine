@@ -28,9 +28,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    id = params[:id].to_i
     if logged_in? && current_user.id == id
-      user = User.find(params[:id]).update_attributes(params[:user])
-      redirect_to user_path(@user)
+      user = User.find(id)
+      user.update_attributes(params[:user])
+      redirect_to user_path(user)
     else
       not_found
     end
