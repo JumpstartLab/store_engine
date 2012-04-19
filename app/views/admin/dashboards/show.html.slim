@@ -1,19 +1,26 @@
 h1 Dashboard
 
+br
+h3 Breakdown of Orders
 div#orders_by_status
   table
     tr
       - @statuses.each do |status|
-        th = status
+        th#dashboard = status
     tr
       - @statuses.each do |status|
         td[class="#{status}_total"] = @orders_by_status[status].count
 
+br
+
+h3 List of All Orders
 div#orders
-  = "Show:"
   ul
-    li = link_to "all", admin_dashboard_path
+    li.dashboard#show = "Show: "
+    li.dashboard#show = link_to "all", admin_dashboard_path
     - @statuses.each do |status|
-      li = link_to status, admin_dashboard_path(:status => status)
+      li.dashboard#show = link_to status, admin_dashboard_path(:status => status)
+
+br
 
   = render :partial => "admin/orders/all"

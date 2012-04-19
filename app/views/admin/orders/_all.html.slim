@@ -1,14 +1,15 @@
 table
   tr
-    td Order ID
-    td Status
-    td Created At
+    th.dashboard#id Order ID
+    th.dashboard#status Status
+    th.dashboard#created Created At
+    th.dashboard#actions Actions
   - @orders.each do |order|
-    tr class="#{order.status}_order" id="order_#{order.id}"
+    tr.dashboard class="#{order.status}_order" id="order_#{order.id}"
       td = link_to order.id, admin_order_path(order)
       td = order.status
       td = order.created_at.to_s
-      td = link_to "Edit", edit_admin_order_path(order)
+      td.dashboard#order = link_to "Edit", edit_admin_order_path(order)
       td
         - case order.status
         - when "pending"

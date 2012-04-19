@@ -1,21 +1,30 @@
 h1 Your Cart
 
-= link_to "Checkout", checkout_path(:cart_id => @cart.id)
-
-div id="cart"
+div.cart id="cart"
   table
-  = form_for(@cart) do |f|
-    - @cart.items.each do |item|
+    tr 
+      th#cart Title
+      th#cart Price
+      th#cart Quantity
+      th#cart Subtotal
+      th#cart Actions
+    = form_for(@cart) do |f|
+      - @cart.items.each do |item|
+        tr#cart
+          td.title = item.title
+          td.price = item.price
+          td.quantity
+            = f.fields_for(item) do |i|
+              = i.hidden_field :id
+              / = i.label :quantity
+              = i.text_field :quantity
+          td.subtotal = item.subtotal
+          td = link_to "Remove", cart_item_path(:item_id => item.id), :method => :delete
       tr
-        td.title = item.title
-        td.price = item.price
-        td.quantity
-          = f.fields_for(item) do |i|
-            = i.hidden_field :id
-            = i.label :quantity
-            = i.text_field :quantity
-        td.subtotal = item.subtotal
-        td = link_to "Remove", cart_item_path(:item_id => item.id), :method => :delete
-      tr
-        td#total colspan="4" = @cart.total
-    = f.submit "Update Cart"
+        td
+        td
+        td#text Total: 
+        td#total = @cart.total
+      = f.submit "Update Cart"
+
+= link_to "Checkout", checkout_path(:cart_id => @cart.id)
