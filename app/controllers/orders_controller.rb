@@ -13,8 +13,8 @@ class OrdersController < ApplicationController
 
   def create
     status = Status.find_by_name("pending")
-    shipping_address = ShippingAddress.find(session[:shipping_address])
-    billing_address = BillingAddress.find(session[:billing_address])
+    shipping_address = current_user.shipping_address
+    billing_address = current_user.billing_address
     @order = Order.new(:status => status, :user => current_user,
                        :shipping_address => shipping_address,
                        :billing_address => billing_address, 
