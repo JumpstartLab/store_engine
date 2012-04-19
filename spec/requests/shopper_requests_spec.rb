@@ -115,7 +115,7 @@ describe "shopper" do
           current_path.should == new_billing_method_path
           billing = {
             credit_card_number: "5555555555555555",
-            month: "4 - April",
+            month: "4",
             year: "2012",
             street: "One Mockingbird Lane",
             city: "Anytown",
