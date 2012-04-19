@@ -16,7 +16,26 @@ h1 Billing Information
       = cc_form.label :expiration_date
       = cc_form.text_field :expiration_date
 
+  h4 Billing Address
   = fields_for :address do |address|
+    div class="field"
+      = address.label :street
+      = address.text_field :street
+
+    div class="field"
+      = address.label :city
+      = address.text_field :city
+
+    div class="field"
+      = address.label :state
+      = address.text_field :state
+
+    div class="field"
+      = address.label :zipcode
+      = address.text_field :zipcode
+
+  h4 Shipping Address
+  = fields_for :shipping_address do |address|
     div class="field"
       = address.label :street
       = address.text_field :street
