@@ -161,6 +161,39 @@ describe "Products Requests" do
         page.should have_selector("form")
       end
 
+      it "updates the title" do
+        fill_in "Title", with: "Test Title"
+        click_button "Update Product"
+        page.should have_content("Test Title")
+      end
+
+      it "updates the description" do
+        fill_in "Description", with: "New Description"
+        click_button "Update Product"
+        page.should have_content("New Description")
+      end
+
+      it "updates the price" do
+        fill_in "Price", with: "4738"
+        click_button "Update Product"
+        page.should have_content("4738")
+      end
+
+      it "updates the photo" do
+        pending "Check on selectors for images, etc"
+        fill_in "Photo", with: "http://adigitalnative.com/photo.jpg"
+        click_button "Update Product"
+        page.should have_selector("img")
+      end
+
+      it "updates the categories" do
+        pending "Need a way to test the selector"
+      end
+
+      it "updates the retired status" do
+        pending "Need a way to test the checkbox"
+      end
+
       context "the form" do
 
         it "asks for a title" do
@@ -281,6 +314,7 @@ describe "Products Requests" do
     end
 
     context "new" do
+
       before(:each) do
         visit new_admin_product_path
       end
@@ -289,7 +323,7 @@ describe "Products Requests" do
         page.should have_selector("form")
       end
 
-      context "the form" do
+      describe "filling out and submitting the form" do
 
         it "asks for a title" do
           within("form") do
@@ -332,6 +366,53 @@ describe "Products Requests" do
             page.should have_selector("input[name$='product[retired]'][type$='checkbox']")
           end
         end
+
+        it "saves the product name" do
+          fill_in "Title",        with: "New Product Title"
+          fill_in "Description",  with: "Sweet description"
+          fill_in "Price",        with: "493"
+          fill_in "Photo",        with: "http://adigitalnative.com/img.jpg"
+          click_link_or_button "Create Product"
+          page.should have_content("New Product Title")
+        end
+
+        it "saves the product description" do
+          fill_in "Title",        with: "New Product Title"
+          fill_in "Description",  with: "Sweet description"
+          fill_in "Price",        with: "493"
+          fill_in "Photo",        with: "http://adigitalnative.com/img.jpg"
+          click_link_or_button "Create Product"
+          page.should have_content("Sweet description")
+        end
+
+        it "saves the product price" do
+          fill_in "Title",        with: "New Product Title"
+          fill_in "Description",  with: "Sweet description"
+          fill_in "Price",        with: "493"
+          fill_in "Photo",        with: "http://adigitalnative.com/img.jpg"
+          click_link_or_button "Create Product"
+          page.should have_content("493")
+        end
+
+        it "saves the photo" do
+          pending "TODO: Figure out advanced selectors"
+          fill_in "Title",        with: "New Product Title"
+          fill_in "Description",  with: "Sweet description"
+          fill_in "Price",        with: "493"
+          fill_in "Photo",        with: "http://adigitalnative.com/img.jpg"
+          click_link_or_button "Create Product"
+          page.should have_content("New Product Title")
+        end
+
+        it "saves the categories" do
+          pending "TODO: Figure out multiselector submission"
+          fill_in "Title",        with: "New Product Title"
+          fill_in "Description",  with: "Sweet description"
+          fill_in "Price",        with: "493"
+          fill_in "Photo",        with: "http://adigitalnative.com/img.jpg"
+          click_link_or_button "Create Product"
+          page.should have_content("New Product Title")
+        end
       end
     end
   end
@@ -349,6 +430,17 @@ describe "Products Requests" do
         page.should have_content(product.title)
         page.should have_content('Quantity')
       end
+    end
+
+    context "visitor tries to access the admin products list" do
+      before(:each) do
+        visit '/admin/products/'
+      end
+
+      it "does not allow access" do
+        page.should_not have_selector("table#products")
+      end
+
     end
   end
 

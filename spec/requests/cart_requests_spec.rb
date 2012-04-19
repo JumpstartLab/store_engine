@@ -2,6 +2,43 @@ require 'spec_helper'
 
 describe "Using the shopping cart" do
 
+  context "signed in as a normal user" do
+    let!(:user) { Fabricate(:user, admin: true) }
+
+    before(:each) do
+      visit signin_path
+      fill_in "Email",        with: user.email
+      fill_in "Password",     with: user.password
+      click_button "Sign in"
+    end
+
+    context "when I'm checking out" do
+      let!(:product) { Fabricate(:product) }
+
+      before(:each) do 
+        visit product_path(product)
+        click_link_or_button("Add to Cart")
+        click_link_or_button("Place Order")
+      end
+
+      describe "and I update shipping information" do
+        it "updates the address when I click 'ship to this address" do
+          fill_in "shipping_address_line_1", with: "1234 Lane"
+          click_link_or_button('Ship to this address')
+          page.should have_content("Shipping information saved!")
+        end
+
+        it "saves the shipping address when I submit the order" do
+          fill_in "shipping_address_line_1", with: "1234 Lane"
+          click_link_or_button('Ship to this address')
+          click_link_or_button('Place Order')
+          # TODO: Return to this when shipping is integrated
+          # page.should have_content("1234 Lane")
+        end
+      end
+    end
+  end
+
   context "when I'm on the main cart page" do
 
     # it "has a link to return to the product list" do
