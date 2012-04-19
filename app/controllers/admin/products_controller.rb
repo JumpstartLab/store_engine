@@ -7,6 +7,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def show
+    @categories = Category.all
     @product = Product.find(params[:id])
   end
 
@@ -20,6 +21,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
+    @categories = Category.all
     @product = Product.find(params[:id])
   end
 

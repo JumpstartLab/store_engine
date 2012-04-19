@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = []
+    @orders = Order.find_all_by_user_id(current_user.id) if current_user
   end
 end

@@ -7,6 +7,6 @@ table
     th = "Total"
   - @orders.each do |order|
     tr
-      td = order.id
-      td = order.created_at
-      td = order.total
+      td = link_to(order.id, order_path(order))
+      td = link_to(order.created_at, order_path(order))
+      td = link_to(order.total, order_path(order))

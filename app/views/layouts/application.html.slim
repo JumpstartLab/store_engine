@@ -11,6 +11,8 @@ html
       div class="navbar-inner"
         div class="container"
           ul id="nav"
+            - if current_user && current_user.admin?
+              li.nav = link_to("Admin", admin_dashboard_path)
             - if current_user
               li.nav id="login"
                 = "Logged in as #{current_user.email}. "

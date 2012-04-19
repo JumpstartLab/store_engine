@@ -1,5 +1,10 @@
 h1 Dashboard
 
+ul
+  li = link_to "New Product", new_admin_product_path
+  li = link_to "New Category", new_admin_category_path
+  li = link_to "Browse Products", admin_products_path
+
 br
 h3 Breakdown of Orders
 div#orders_by_status

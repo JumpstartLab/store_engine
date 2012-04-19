@@ -1,11 +1,11 @@
-h1 "Order ##{@order.id}"
+h1 = "Order ##{@order.id}"
 h3 = "Status: #{@order.status}"
 h3 = "Total: #{@order.total}"
 
 table
   - @order.items.each do |item|
     tr
-      td = item.title
-      td = item.price
-      td = item.quantity
-      td = item.subtotal
+      td = link_to(item.title, product_path(item.product))
+      td = link_to(item.price, product_path(item.product))
+      td = link_to(item.quantity, product_path(item.product))
+      td = link_to(item.subtotal, product_path(item.product))

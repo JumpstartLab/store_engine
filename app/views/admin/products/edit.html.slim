@@ -1,2 +1,10 @@
 h1 Edit Product
+
+h3 Add Category to this Product
+- @categories.each do |category|
+  - unless @product.categories.include?(category)
+    li = link_to(category.name, 
+                 add_category_to_product_path(:product_id => @product.id,
+                                              :category_id => category.id))
+
 = render :partial => "form"

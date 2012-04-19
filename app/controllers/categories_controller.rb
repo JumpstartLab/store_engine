@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   def show
     id = params[:id]
+    @category = Category.find(id)
     @products = ProductCategory.find_all_by_category_id(id).map(&:product)
   end
 

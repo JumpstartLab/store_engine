@@ -41,15 +41,4 @@ describe "Orders Requests" do
       end
     end
   end
-
-  context "index" do
-    let!(:order1) { Fabricate(:order) }
-    let!(:order2) { Fabricate(:order) }
-
-    it "lists all of the orders" do
-      visit orders_path
-      page.should have_content order1.id
-      page.should have_content order2.id
-    end
-  end
 end
