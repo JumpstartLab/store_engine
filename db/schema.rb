@@ -119,13 +119,12 @@ ActiveRecord::Schema.define(:version => 20120418175418) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username",                               :null => false
     t.string   "display_name"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "shipping_address_id"
     t.integer  "billing_address_id"
-    t.string   "email"
+    t.string   "email",                                  :null => false
     t.string   "crypted_password"
     t.string   "salt"
     t.boolean  "admin",               :default => false

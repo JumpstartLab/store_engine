@@ -1,10 +1,9 @@
 Fabricator(:user, :class_name => "User") do
-  username { "foo" }
   password { "foo" }
   first_name { "Beverly" }
   last_name { "BOOM" }
   admin { false }
-  email { "whatever@whatever.com" }
+  email { "foo@foo.com" }
   salt { "asdasdastr4325234324sdfds" }
   crypted_password { Sorcery::CryptoProviders::BCrypt.encrypt("secret", 
                      "asdasdastr4325234324sdfds") }

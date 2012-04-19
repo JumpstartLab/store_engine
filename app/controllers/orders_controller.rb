@@ -42,7 +42,7 @@ class OrdersController < ApplicationController
   def update
     previous_status_name = @order.status.name
     @order.update_status
-    redirect_to admin_dashboard_index_path(:status => previous_status_name)
+    redirect_to request.referer
   end
 
   private

@@ -9,8 +9,8 @@
         li = msg
 
   div class="field"
-    = f.label :username
-    = f.text_field :username
+    = f.label :email 
+    = f.text_field :email
 
   div class="field"
     = f.label :display_name
@@ -25,17 +25,13 @@
     = f.text_field :last_name
 
   div class="field"
-    = f.label :email 
-    = f.text_field :email
-
-  div class="field"
     = f.label :password
     = f.password_field :password 
 
   div class="field"
     = f.label :password_confirmation
     = f.password_field :password_confirmation
-  - if !current_user.nil? && current_user.admin?
+  - if current_user && current_user.admin?
     div class="field"
       label class="checkbox"
         = f.check_box :admin
