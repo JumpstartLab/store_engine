@@ -13,9 +13,6 @@ class Order < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :order_products
 
-  #after_initialize... always runs even when recalling from database. check if order_status is nil?
-  #before_create... only happens once.
-
   before_create :make_new_order_status
 
   scope :desc, order("id DESC")
@@ -38,7 +35,7 @@ class Order < ActiveRecord::Base
       cart.cart_products.each do |cart_prod|
         self.order_products.build(:price_cents => cart_prod.price_in_cents,
                                   :product_id => cart_prod.product_id,
-                                  :quantity => cart_prod.quantity)    
+                                  :quantity => cart_prod.quantity)
       end
     end
   end
@@ -53,8 +50,8 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def set_cc_from_stripe_customer_token(stripe_customer_token)
-    if credit_card = user.credit_cards.find_by_stripe_customer_token(stripe_customer_token)
+  def set_cc_from_stripe_customer_token(token)
+    if credit_card = user.credit_cards.find_by_stripe_customer_token(token)
       self.credit_card = credit_card
     end
   end

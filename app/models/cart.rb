@@ -29,7 +29,7 @@ class Cart < ActiveRecord::Base
       existing_product.quantity += 1
       existing_product.save
     else
-      self.cart_products.create(:cart_id => self.id, :product_id => product.id, 
+      self.cart_products.create(:cart_id => self.id, :product_id => product.id,
                                 :quantity => 1 )
     end
   end

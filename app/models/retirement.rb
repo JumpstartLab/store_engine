@@ -13,5 +13,4 @@ class Retirement
   def activate
     self.product.activate
   end
-  
 end

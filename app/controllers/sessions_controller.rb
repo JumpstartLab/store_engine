@@ -5,20 +5,29 @@ class SessionsController < ApplicationController
 
   def create
     cart = current_cart
-    user = login(params[:email], params[:password], params[:remember_me])
-    if user
-      cart.assign_cart_to_user(user)
-      redirect_to_last_page("Logged in!")
+    if user = login(params[:email], params[:password], params[:remember_me])
+      successful_login
     else
-      flash.now.alert = "Email or password was invalid."
       session[:cart_id] = cart.id
-      render :new
+      invalid_email
     end
   end
 
   def destroy
     logout
     redirect_to root_url, :notice => "Logged out."
+  end
+
+private
+
+  def succesful_login
+    cart.assign_cart_to_user(user)
+    redirect_to_last_page("Logged in!")
+  end
+
+  def invalid_email
+    flash.now.alert = "Email or password was invalid."
+    render :new
   end
 
 end

@@ -1,5 +1,6 @@
 class CreditCard < ActiveRecord::Base
-  attr_accessible :credit_card_type, :last_four, :exp_month, :exp_year, :stripe_customer_token, :user_id, :default_card
+  attr_accessible :credit_card_type, :last_four, :exp_month, :exp_year,
+    :stripe_customer_token, :user_id, :default_card
   attr_accessor :stripe_card_token
   validates_presence_of :user_id
   before_save :set_to_default
@@ -16,8 +17,8 @@ class CreditCard < ActiveRecord::Base
   end
 
   def stripe_get_customer_token(stripe_card_token)
-    Stripe::Customer.create( description: "Mittenberry Customer ##{self.user.id}",
-                                      card: stripe_card_token)
+    Stripe::Customer.create( description: "Mittenberry Customer
+      ##{self.user.id}", card: stripe_card_token)
   rescue Stripe::InvalidRequestError => error
     send_customer_create_error(error)
   end
