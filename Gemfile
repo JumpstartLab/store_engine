@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.5'
+gem 'heroku'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,6 +21,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'fabrication'
   gem 'rspec-rails'
   gem 'capybara'
@@ -31,4 +32,9 @@ group :development, :test do
   gem 'simplecov'
   gem 'faker'
   gem 'factory_girl_rails', '1.4.0'
+end
+
+group :production do
+  gem 'pg'
+  gem 'thin'
 end

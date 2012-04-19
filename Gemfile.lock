@@ -51,8 +51,10 @@ GEM
       execjs
     coffee-script-source (1.2.0)
     commonjs (0.2.5)
+    daemons (1.1.8)
     diff-lcs (1.1.3)
     erubis (2.7.0)
+    eventmachine (0.12.10)
     execjs (1.3.0)
       multi_json (~> 1.0)
     fabrication (1.3.2)
@@ -70,6 +72,11 @@ GEM
       thor (~> 0.14.6)
     guard-rspec (0.6.0)
       guard (>= 0.10.0)
+    heroku (2.24.0)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.1)
+      rest-client (~> 1.6.1)
+      rubyzip
     hike (1.2.1)
     i18n (0.6.0)
     journey (1.0.3)
@@ -92,7 +99,9 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.18)
     multi_json (1.2.0)
+    netrc (0.7.1)
     nokogiri (1.5.2)
+    pg (0.13.2)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -119,6 +128,8 @@ GEM
     rake (0.9.2.2)
     rdoc (3.12)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.9.0)
       rspec-core (~> 2.9.0)
       rspec-expectations (~> 2.9.0)
@@ -154,6 +165,10 @@ GEM
     sqlite3 (1.3.5)
     therubyracer (0.10.1)
       libv8 (~> 3.3.10)
+    thin (1.3.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
     thor (0.14.6)
     tilt (1.3.3)
     treetop (1.4.10)
@@ -185,13 +200,16 @@ DEPENDENCIES
   growl
   guard
   guard-rspec
+  heroku
   jquery-rails
   launchy
+  pg
   rails (= 3.2.3)
   rspec-rails
   sass-rails (~> 3.2.3)
   simplecov
   sqlite3
+  thin
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   will_paginate (= 3.0.3)
