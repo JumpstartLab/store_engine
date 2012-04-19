@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def current_user_or_admin_or_not_found
-    if !current_user || current_user.id != params[:id].to_i && !current_user.admin? 
+    if !current_user || current_user.id != params[:id].to_i &&
+      !current_user.admin?
       not_found
     end
   end
@@ -18,7 +19,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       anonymous_cart
     else
-      user_cart 
+      user_cart
     end
   end
 
@@ -27,7 +28,7 @@ class ApplicationController < ActionController::Base
   def user_cart
     unless current_user.cart?
       current_user.shopping_cart = ShoppingCart.new
-    end  
+    end
     current_user.shopping_cart
   end
 

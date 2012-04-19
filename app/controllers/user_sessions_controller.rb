@@ -6,8 +6,8 @@ class UserSessionsController < ApplicationController
       @user = User.new
     end
   end
-  
-  def create    
+
+  def create
     back_to_cart = session[:back_to_cart]
     respond_to do |format|
       anonymous_cart = cart
@@ -24,14 +24,17 @@ class UserSessionsController < ApplicationController
             redirect_back_or_to(:root, :notice => 'Login successful.')
           end
         end
-        format.xml { render :xml => user, :status => :created, :location => user }
+        format.xml { render :xml => user,
+                     :status => :created, :location => user }
       else
-        format.html { flash.now[:alert] = "Login failed."; render :action => "new" }
-        format.xml { render :xml => user.errors, :status => :unprocessable_entity }
+        format.html { flash.now[:alert] = "Login failed.";
+                      render :action => "new" }
+        format.xml { render :xml => user.errors,
+                     :status => :unprocessable_entity }
       end
     end
   end
-    
+
   def destroy
     logout
     redirect_to(:root, :notice => 'Logged out!')

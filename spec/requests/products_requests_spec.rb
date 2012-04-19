@@ -9,10 +9,6 @@ describe "Products Requests", :model => :product do
       visit products_path
     end
 
-    it "shows Products header" do
-      page.should have_content("Products")
-    end
-
     it "shows all of the products" do
       find_link("Foo").visible?
       find_link("Bar").visible?

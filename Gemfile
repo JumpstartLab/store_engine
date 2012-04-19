@@ -33,6 +33,9 @@ group :development, :test do
   gem 'ruby_gntp'
   gem 'fabrication'
   gem 'faker'
+  gem 'reek', :git => "git://github.com/mvz/reek.git", :branch =>
+  "ripper_ruby_parser-2"
+  gem 'cane', :git => "git://github.com/square/cane.git"
   # gem 'growl_notify'
 end
 

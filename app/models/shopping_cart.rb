@@ -10,7 +10,8 @@ class ShoppingCart < ActiveRecord::Base
 
   def add_item(product_id, quantity)
     product = Product.find(product_id)
-    item = cart_items.find(:first, :conditions => ["product_id = ?", product_id])
+    item = cart_items.find(:first,
+                           :conditions => ["product_id = ?", product_id])
     if item.nil?
       item = CartItem.new(:product => product, :quantity => quantity,
                           :price => product.price_string)
@@ -21,7 +22,7 @@ class ShoppingCart < ActiveRecord::Base
     end
   end
 
-  def remove_item(cart_item_id)    
+  def remove_item(cart_item_id)
     cart_item = cart_items.find(cart_item_id).destroy
   end
 

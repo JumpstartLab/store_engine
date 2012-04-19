@@ -26,7 +26,7 @@ class Admin::ProductsController < ApplicationController
     redirect_to admin_product_path(@product)
   end
 
-  def show  
+  def show
   end
 
   def edit

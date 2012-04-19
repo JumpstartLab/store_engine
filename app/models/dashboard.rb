@@ -1,4 +1,4 @@
-class Dashboard 
+class Dashboard
   def orders_with_status(status_name)
     Order.joins(:status).where("statuses.name = ?", status_name)
   end

@@ -24,5 +24,6 @@ StoreEngine::Application.routes.draw do
 
   match 'login' => 'user_sessions#new', :as => :login
   match 'logout' => 'user_sessions#destroy', :as => :logout
+  match "/code" => redirect("https://github.com/mrgilman/store_engine"), :as => :code
   root :to => 'products#index'
 end
