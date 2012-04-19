@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(:version => 20120410183448) do
     t.string   "address"
     t.string   "email"
     t.string   "status",           :default => "pending"
-    t.string   "pay_type"
     t.datetime "shipped_at"
     t.datetime "cancelled_at"
     t.string   "shipping_address"
