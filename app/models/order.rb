@@ -54,8 +54,8 @@ class Order < ActiveRecord::Base
     when ">"
       Order.all.select { |order| order.total_price > params[:price_term].to_f }
     when "="
-      Order.all.select { |order| order.total_price == params[:price_term].to_f }
-    end  
+      Order.all.select { |order| order.total_price == params[:price_term].to_f}
+    end
   end
 
   def self.date_search(params)
