@@ -1,7 +1,8 @@
 class Order < ActiveRecord::Base
   STATUSES = ["pending", "cancelled", "paid", "shipped", "returned"]
   DEFAULT_STATUS = "pending"
-  attr_accessible :user_id, :status, :billing_address, :shipping_address, :credit_card, :email_address
+  attr_accessible :user_id, :status, :billing_address, :shipping_address,
+                  :credit_card, :email_address, :status_date
 
   has_many :order_items, :dependent => :destroy, :autosave => true
   has_many :items, through: :order_items
@@ -65,6 +66,7 @@ class Order < ActiveRecord::Base
   def status=(val)
     val = val.downcase if status
     write_attribute(:status, val)
+    write_attribute(:status_date, DateTime.now)
   end
 
   STATUSES.each do |status|
