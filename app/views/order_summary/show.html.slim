@@ -29,8 +29,7 @@ div class="row-fluid"
     = link_to "Edit", edit_billing_address_path(@billing_address)
 
   div class="span2"
-    button class="btn btn-large" 
-      = link_to "Place Order", orders_path, :method => :post
+    = button_to "Place Order", orders_path, :method => :post, :class => "btn btn-large"
 
 br
 br
