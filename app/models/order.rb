@@ -66,7 +66,11 @@ class Order < ActiveRecord::Base
   end
 
   def guest_email_address
-    find_shipping.email_address
+    if shipping_address_id
+      find_shipping.email_address
+    else
+      "no email yet"
+    end
   end
 
   def has_product?(product_id)
