@@ -21,7 +21,7 @@ class OrderItem < ActiveRecord::Base
   # TODO: Probably shouldn't be able to delete either.
   #       before_destroy hook, perhaps?
   def changed_fields_only_when_pending
-    return if order.pending?
+    return if order.pending? || order.paid?
 
     if changed?
       errors.add(:order_items,

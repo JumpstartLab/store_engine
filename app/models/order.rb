@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   STATUSES = ["pending", "cancelled", "paid", "shipped", "returned"]
-  DEFAULT_STATUS = "pending"
+  DEFAULT_STATUS = "paid"
   attr_accessible :user_id, :status, :billing_address, :shipping_address,
                   :credit_card, :email_address, :status_date
 
@@ -48,26 +48,23 @@ class Order < ActiveRecord::Base
   end
 
   def self.price_search(params)
+    price_term = params[:price_term].to_f
     case params[:price_filter]
     when "<"
-      Order.all.select { |order| order.total_price < params[:price_term].to_f }
+      Order.all.select { |order| order.total_price < price_term }
     when ">"
-      Order.all.select { |order| order.total_price > params[:price_term].to_f }
+      Order.all.select { |order| order.total_price > price_term }
     when "="
-      Order.all.select { |order| order.total_price == params[:price_term].to_f}
+      Order.all.select { |order| order.total_price == price_term }
     end
   end
 
   def self.date_search(params)
     target_date = DateTime.strptime(params[:date_term], "%m/%d/%y") rescue nil
-    if target_date
-      case params[:date_filter]
-      when "<" then self.where("status_date < ?", target_date)
-      when ">" then self.where("status_date > ?", target_date)
-      when "=" then self.where("status_date < ?", target_date)
-      end
-    else
-      []
+    case params[:date_filter]
+    when "<" then self.where("status_date < ?", target_date)
+    when ">" then self.where("status_date > ?", target_date)
+    when "=" then self.where("status_date = ?", target_date)
     end
   end
 

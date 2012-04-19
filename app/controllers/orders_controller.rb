@@ -24,7 +24,6 @@ class OrdersController < ApplicationController
     if @order.save
       @order.add_items_from_cart!(current_cart)
       current_user.update_addresses(params) if current_user
-      @order.update_attribute(:status, "paid")
     else
       flash[:error] = @order.errors.full_messages.join(", ").html_safe
       redirect_to :back
