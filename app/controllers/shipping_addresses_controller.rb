@@ -6,7 +6,6 @@ class ShippingAddressesController < ApplicationController
   def create
     @shipping_address = ShippingAddress.new(params[:shipping_address])
     if @shipping_address.save
-      session[:shipping_address] = @shipping_address.id
       current_user.shipping_address = @shipping_address
       current_user.save
       redirect_to new_transaction_path
