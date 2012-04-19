@@ -1,7 +1,7 @@
-
+<div class="well">
 <h1>Checkout page</h1>
 <h2>Total cost: <%= number_to_currency(@cart.total_price) %></h2>
-
+</div>
 <%= form_for @order do |f| %>
   <!-- Form fields omitted -->
   <div id="stripe_error">
@@ -40,6 +40,11 @@
  <p>
   <%= builder.label :street_1, "Street" %>
   <%= builder.text_field :street_1 %>
+</p>
+
+<p>
+  <%= builder.label "Building Unit" %>
+  <%= builder.text_field :street_2 %>
 </p>
   
 <p>

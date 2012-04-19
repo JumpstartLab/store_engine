@@ -16,18 +16,16 @@
 </p>
 
 <p>
-  <b>Street 2:</b>
-  <%= address.street_2 %>
+  <% if address.street_2.blank? %>
+  <% else %>
+    <b>Street 2:</b>
+    <%= address.street_2 %>
+  <% end %>
 </p>
 
 <p>
   <b>Zip code:</b>
   <%= address.zip_code %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= address.user_id %>
 </p>
 
 
