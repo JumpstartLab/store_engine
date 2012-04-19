@@ -50,7 +50,7 @@ private
       add_session_cart_items(@temp_cart)
     end
     @user = login(params[:user][:email].downcase, params[:user][:password])
-    redirect_to root_url, :notice => "Logged in, New user #{@user.name}"
+    redirect_to root_url, :notice => "Logged in, New user #{@user.full_name}"
   end
 
 end

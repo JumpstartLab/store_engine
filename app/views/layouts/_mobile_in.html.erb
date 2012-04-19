@@ -12,7 +12,7 @@
             <i class="icon-user icon-white"></i><b class="caret"></b>
       </a>
       <ul class="dropdown-menu">
-        <li class="nav-header"><%= current_user.name %></li>
+        <li class="nav-header"><%= current_user.full_name %></li>
         <li><%= link_to "My Orders", orders_path %></li>
         <li><%= link_to "Settings", user_path(current_user) %></li>
         <li class="divider"></li>

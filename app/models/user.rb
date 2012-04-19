@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
     admin
   end
 
-  def name
+  def full_name
     "#{first_name} #{last_name}"
   end
 

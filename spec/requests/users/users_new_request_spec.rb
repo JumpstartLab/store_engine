@@ -47,7 +47,7 @@ describe "Create New User" do
         click_button 'Sign up'
         user = User.find_by_first_name("Worace")
         within(".dropdown-menu") do
-          page.should have_content(user.name)
+          page.should have_content(user.full_name)
         end
       end
     end

@@ -27,6 +27,44 @@ chad = User.new(:first_name => "Chad",
 chad.admin = true
 chad.save
 
+# set User Addresses
+
+matt.addresses.create(
+        :street       => "#{rand(1500)+1} New York Ave.",
+        :street_two      => "Unit #{rand(10)+1}",
+        :city         => "Washington",
+        :state        => "DC",
+        :zipcode      => "20009",
+        :phone_number => "1234567890"
+        )
+
+jeff.addresses.create(
+        :street       => "#{rand(1500)+1} New York Ave.",
+        :street_two      => "Unit #{rand(10)+1}",
+        :city         => "Washington",
+        :state        => "DC",
+        :zipcode      => "20009",
+        :phone_number => "1234567890"
+        )
+
+chad.addresses.create(
+        :street       => "#{rand(1500)+1} New York Ave.",
+        :street_two      => "Unit #{rand(10)+1}",
+        :city         => "Washington",
+        :state        => "DC",
+        :zipcode      => "20009",
+        :phone_number => "1234567890"
+        )
+
+
+User.all.each do |user|
+  user.save
+  user.set_default_billing_address_by_id(user.addresses.last.id)
+  user.set_default_shipping_address_by_id(user.addresses.last.id)
+  user.save
+end
+
+
 # active products
 scotch = Product.create(:title => "Shackleton Scotch",
         :description => "Really old, yet awesome scotch",
@@ -174,27 +212,120 @@ appliances.products  << [grill, lantern, projector]
 miscellany.products  << [carriage, firewood, curiosity_cabinet]
 
 # make orders
-20.times do |i|
-  Fabricate(:order, :user_id => rand(3)+1)
-  OrderProduct.create(:quantity => rand(10)+1,
-                      :product_id => rand(4)+1,
-                      :price => rand(25),
-                      :order_id => i+1)
+order1 = matt.orders.create(:shipping_address_id => matt.addresses.last.id,
+                            :billing_address_id  => matt.addresses.last.id,
+                             )
+order1.order_statuses.create(:status => "pending")
+
+
+order2 = matt.orders.create(:shipping_address_id => matt.addresses.last.id,
+                            :billing_address_id  => matt.addresses.last.id,
+                             )
+order2.order_statuses.create(:status => "pending")
+order2.order_statuses.create(:status => "paid")
+
+
+
+order3 = matt.orders.create(:shipping_address_id => matt.addresses.last.id,
+                            :billing_address_id  => matt.addresses.last.id,
+                             )
+order3.order_statuses.create(:status => "pending")
+order3.order_statuses.create(:status => "paid")
+order3.order_statuses.create(:status => "shipped")
+
+
+order4 = matt.orders.create(:shipping_address_id => matt.addresses.last.id,
+                            :billing_address_id  => matt.addresses.last.id,
+                             )
+order4.order_statuses.create(:status => "pending")
+order4.order_statuses.create(:status => "paid")
+order4.order_statuses.create(:status => "shipped")
+order4.order_statuses.create(:status => "cancelled")
+
+
+############
+
+
+order5 = jeff.orders.create(:shipping_address_id => jeff.addresses.last.id,
+                            :billing_address_id  => jeff.addresses.last.id,
+                             )
+order5.order_statuses.create(:status => "pending")
+order5.order_statuses.create(:status => "paid")
+order5.order_statuses.create(:status => "shipped")
+order5.order_statuses.create(:status => "cancelled")
+order5.order_statuses.create(:status => "returned")
+
+
+order6 = jeff.orders.create(:shipping_address_id => jeff.addresses.last.id,
+                            :billing_address_id  => jeff.addresses.last.id,
+                             )
+order6.order_statuses.create(:status => "pending")
+
+
+order7 = jeff.orders.create(:shipping_address_id => jeff.addresses.last.id,
+                            :billing_address_id  => jeff.addresses.last.id,
+                             )
+order7.order_statuses.create(:status => "pending")
+order7.order_statuses.create(:status => "paid")
+
+
+order8 = jeff.orders.create(:shipping_address_id => jeff.addresses.last.id,
+                            :billing_address_id  => jeff.addresses.last.id,
+                             )
+order8.order_statuses.create(:status => "pending")
+order8.order_statuses.create(:status => "paid")
+order8.order_statuses.create(:status => "shipped")
+
+#############
+
+
+order9 = chad.orders.create(:shipping_address_id => chad.addresses.last.id,
+                            :billing_address_id  => chad.addresses.last.id,
+                             )
+order9.order_statuses.create(:status => "pending")
+order9.order_statuses.create(:status => "paid")
+order9.order_statuses.create(:status => "shipped")
+order9.order_statuses.create(:status => "cancelled")
+
+
+order10 = chad.orders.create(:shipping_address_id => chad.addresses.last.id,
+                            :billing_address_id  => chad.addresses.last.id,
+                             )
+order10.order_statuses.create(:status => "pending")
+order10.order_statuses.create(:status => "paid")
+order10.order_statuses.create(:status => "shipped")
+order10.order_statuses.create(:status => "cancelled")
+order10.order_statuses.create(:status => "returned")
+
+
+Order.all.each do |order|
+  product = Product.all.sample
+  order.order_products.create(:product_id => product.id,
+                              :quantity   => rand(10)+1,
+                              :price      => product.best_price)
 end
 
-# make billing addresses
-3.times do
-  Fabricate(:order, :billing_address_id => rand(3)+1)
-end
+# 20.times do |i|
+#   Fabricate(:order, :user_id => rand(3)+1)
+#   OrderProduct.create(:quantity => rand(10)+1,
+#                       :product_id => rand(4)+1,
+#                       :price => rand(25),
+#                       :order_id => i+1)
+# end
 
-# make shipping addresses
-2.times do
-  Fabricate(:order, :shipping_address_id => rand(5)+1)
-end
+# # make billing addresses
+# 3.times do
+#   Fabricate(:order, :billing_address_id => rand(3)+1)
+# end
 
-# make addresses
-Fabricate(:address)
-Fabricate(:address)
-Fabricate(:address)
-Fabricate(:address)
-Fabricate(:address)
+# # make shipping addresses
+# 2.times do
+#   Fabricate(:order, :shipping_address_id => rand(5)+1)
+# end
+
+# # make addresses
+# Fabricate(:address)
+# Fabricate(:address)
+# Fabricate(:address)
+# Fabricate(:address)
+# Fabricate(:address)
