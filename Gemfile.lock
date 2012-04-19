@@ -251,7 +251,6 @@ DEPENDENCIES
   simplecov
   slim
   sorcery
-  sqlite3
   tailor (= 0.1.5)
   taps
   uglifier (>= 1.0.3)

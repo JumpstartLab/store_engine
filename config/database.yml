@@ -1,28 +1,28 @@
-development:
-  adapter: sqlite3
-  database: db/development.sqlite.db
-
-test:
-  adapter: sqlite3
-  database: db/test.sqlite.db
-
 # development:
-#   host: localhost
-#   adapter: postgresql
-#   encoding: utf8
-#   database: project_development
-#   pool: 5
-#   username: 
-#   password:
+#   adapter: sqlite3
+#   database: db/development.sqlite.db
 
-# test: &TEST
-#   host: localhost
-#   adapter: postgresql
-#   encoding: utf8
-#   database: project_test
-#   pool: 5
-#   username: 
-#   password:
+# test:
+#   adapter: sqlite3
+#   database: db/test.sqlite.db
+
+development:
+  host: localhost
+  adapter: postgresql
+  encoding: utf8
+  database: project_development
+  pool: 5
+  username: 
+  password:
+
+test: &TEST
+  host: localhost
+  adapter: postgresql
+  encoding: utf8
+  database: project_test
+  pool: 5
+  username: 
+  password:
 
 production:
   adapter: postgresql
