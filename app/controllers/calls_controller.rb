@@ -2,7 +2,8 @@ class CallsController < ApplicationController
   def create
     render :layout => "empty"
 
-    messages = [ "You just made a sale. Let's make it rain.",
+    messages = [ "You just made a sale. Let's make it 
+                  rain.",
                  "This is why Goldman Sachs hired you",
                  "One step closer to the Ferrari."
                  ]
