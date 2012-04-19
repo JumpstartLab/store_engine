@@ -11,6 +11,14 @@
   </script>
 <% end %>
 
+<% if logged_in? && current_user.is_admin? %>
+<div id="admin_bar">
+<%= link_to "Edit Product", edit_product_path, :class => "add_link" %>
+<%= link_to "Delete Product", product_path, :class => "add_link", :method => :delete, :confirm => "Are you sure?" %>
+<%= link_to "Put on sale", new_sale_path(:product_id => @product.id), :class => "add_link" %>
+</div>
+<% end %>
+
 <% if @product.retired %>
   <div id="admin_bar">
     <h4>This product was retired at <%= @product.retired_at %></h4>
@@ -22,35 +30,37 @@
   </div>
 <% end %>
 
-<%= link_to products_path, :class => "button back black" do %><span class="pointer"></span><span>Back</span><% end %>
+<div class="span7">
+  <h1 id="title"><%= @product.title %></h1>
+  <p><%= @product.description %></p>
+  <h4> Options </h4>
+    <li><%= link_to "All Products", products_path %></li>
+    <%= link_to products_path, :class => "button back black" do %><span class="pointer"></span><span>Back</span><% end %>
+  </ul>
 
-<h1><%= @product.title %></h1>
-<p><%= @product.description %></p>
-<p><%= number_to_currency(@product.price) %></p>
-<% if @product.on_sale? %>
-  <p id="sale_price"> <%= number_to_currency(@product.best_price) %> </p>
-<% end %>
-<p id="test"></p>
-<p><%= image_tag @product.image_url(:normal).to_s, :id => "product_image" if @product.image? %></p>
+</div>
 
-
-<h4> Options </h4>
-<ul id="options">
-  <% if logged_in? && current_user.is_admin? %>
-    <li><%= link_to "Edit Product", edit_product_path %></li>
-    <li><%= link_to "Delete Product", product_path, :method => :delete, :confirm => "Are you sure?" %></li>
-    <li><%= link_to "Put on sale", new_sale_path(:product_id => @product.id) %></li>
+<div class="span3">
+  <p><%= image_tag @product.image_url(:normal).to_s, :id => "product_image" if @product.image? %></p>
+  <% if @product.on_sale? %>
+    <p><strike><%= number_to_currency(@product.price) %></strike></p>
+    <p id="sale_price"> <%= number_to_currency(@product.best_price) %> </p>
+  <% else %>
+  <p><%= number_to_currency(@product.price) %></p>
   <% end %>
-  <li><%= link_to "All Products", products_path %></li>
-</ul>
-
-<% if @product.categories.any? %>
-<h4>Categories</h4>
-<ul id="categories">
-  <% @product.categories.each do |category| %>
-    <li id="category_<%=category.id%>"><%= link_to category.name, category_path(category) %>
+  <% if @product.categories.any? %>
+  <h4>Categories</h4>
+  <ul id="categories">
+    <% @product.categories.each do |category| %>
+      <li id="category_<%=category.id%>"><%= link_to category.name, category_path(category) %>
+    <% end %>
+  </ul>
   <% end %>
-</ul>
-<% end %>
-<%= link_to "add to cart", cart_products_path(:product_id => @product), :id => "anim", :method => :post unless @product.retired %>
-<%= link_to "Instant Checkout", instant_orders_path(:product_id => @product, :return_to => request.url), :method => :post, :confirm => "Really order #{@product.title}?" %>
+
+  <% unless @product.retired %>
+  <%= link_to cart_products_path(:product_id => @product), :id => "anim", :class => "btn", :method => :post do %><i class="icon-shopping-cart"></i>add to cart<% end %>
+  <% end %>
+  <% if logged_in? %><%= link_to instant_orders_path(:product_id => @product), :class => "btn btn-info", :method => :post, :confirm => "Really order #{@product.title}?" do %>Instant Checkout<% end %>
+  <% end %>
+
+</div>
