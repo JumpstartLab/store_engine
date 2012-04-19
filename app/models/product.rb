@@ -20,8 +20,8 @@ class Product < ActiveRecord::Base
   end
 
   def self.top_grossing
-    Product.active.sort do |a, b|
-      a.revenue <=> b.revenue
+    Product.active.sort do |prod_a, prod_b|
+      prod_a.revenue <=> prod_b.revenue
     end.last
   end
 
@@ -30,8 +30,8 @@ class Product < ActiveRecord::Base
   end
 
   def self.top_selling
-    Product.active.sort do |a, b|
-      a.sales <=> b.sales
+    Product.active.sort do |prod_a, prod_b|
+      prod_a.sales <=> prod_b.sales
     end.last
   end
 
