@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(:version => 20120418182846) do
   create_table "billing_informations", :force => true do |t|
     t.integer  "user_id"
     t.string   "credit_card_type"
-    t.integer  "credit_card_number"
-    t.date     "credit_card_expiration"
+    t.string   "credit_card_number"
+    t.string   "credit_card_expiration"
     t.string   "billing_address_line_1"
     t.string   "billing_address_line_2"
     t.string   "billing_address_city"

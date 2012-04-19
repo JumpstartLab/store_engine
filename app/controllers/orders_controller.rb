@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :signed_in_user
+  before_filter :shipping_information, only: [:new, :edit, :update]
+  before_filter :billing_information, only: [:new, :edit, :update]
 
   def index
     @orders = current_user.orders.order(params[:sort])
@@ -26,8 +28,6 @@ class OrdersController < ApplicationController
   end
 
   helper_method :order
-  helper_method :shipping_information
-  helper_method :billing_information
 
   private
 
@@ -37,17 +37,17 @@ class OrdersController < ApplicationController
 
   def shipping_information
     if current_user.shipping_information.nil?
-      current_user.shipping_information = ShippingInformation.new
+      redirect_to new_shipping_information_path
     else
-      current_user.shipping_information
+      @shipping_information ||= current_user.shipping_information
     end
   end
 
   def billing_information
     if current_user.billing_information.nil?
-      current_user.billing_information = BillingInformation.new
+      redirect_to new_billing_information_path
     else
-      current_user.billing_information
+      @billing_information ||= current_user.billing_information
     end
   end
 

@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_filter :correct_user,   only: [:edit, :update]
+  before_filter :shipping_information, only: [:edit, :update]
+  before_filter :billing_information, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -57,25 +59,25 @@ class UsersController < ApplicationController
     end
 
     def shipping_information
-    if current_user.shipping_information.nil?
-      current_user.shipping_information = ShippingInformation.new
-    else
-      current_user.shipping_information
+      if current_user.shipping_information.nil?
+        current_user.shipping_information = ShippingInformation.create
+      else
+        @shipping_information ||= current_user.shipping_information
+      end
     end
-  end
 
-  def billing_information
-    if current_user.billing_information.nil?
-      current_user.billing_information = BillingInformation.new
-    else
-      current_user.billing_information
+    def billing_information
+      if current_user.billing_information.nil?
+        current_user.billing_information = BillingInformation.create
+      else
+        @billing_information ||= current_user.billing_information
+      end
     end
-  end
 
-  def signed_in_user
-    unless signed_in?
-      store_location
-      redirect_to signin_path, notice: "Please sign in."
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_path, notice: "Please sign in."
+      end
     end
-  end
 end

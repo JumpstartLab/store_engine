@@ -1,0 +1,23 @@
+<title>Current Shipping Information</title>
+<h1>Current Shipping Information</h1>
+
+<div class="span10">
+  <table class="table" id="items">  
+    <tr>
+      <th>Address Line 1</th>
+      <th>Address Line 2</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zipcode</th>
+    </tr>
+    <tr>
+      <td><%= shipping_information.shipping_address_line_1 %></td>
+      <td><%= shipping_information.shipping_address_line_2 %></td>
+      <td><%= shipping_information.shipping_address_city %></td>
+      <td><%= shipping_information.shipping_address_state %></td>
+      <td><%= shipping_information.shipping_address_zipcode %></td>
+    </tr>
+  </table>
+</div>
+
+<%= render :partial => "form" %>
