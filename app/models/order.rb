@@ -83,7 +83,7 @@ class Order < ActiveRecord::Base
     Notification.order_email(self.user, self).deliver
     self.user.text("Your order has been placed!
        You bought: #{self.products.map(&:name).join(', ')} -
-       Total: #{self.total_price_in_dollars}")        
+       Total: #{self.total_price_in_dollars}")
   end
 
   def generate_unique_url
