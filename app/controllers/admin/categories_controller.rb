@@ -5,7 +5,7 @@ class Admin::CategoriesController < ApplicationController
 
   def create
     @category = Category.create(params[:category])
-    redirect_to admin_categories_path, :notice => "Category created."
+    redirect_to admin_category_path(@category), :notice => "Category created."
   end
 
   def show

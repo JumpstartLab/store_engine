@@ -12,7 +12,7 @@
 #
 
 class Product < ActiveRecord::Base
-  attr_accessible :description, :price, :title, :photo
+  attr_accessible :description, :price, :title, :photo, :retired
   has_many :order_items
   has_many :orders, :through => :order_items
   has_many :product_categories
@@ -38,5 +38,14 @@ class Product < ActiveRecord::Base
 
   def price
     self[:price] * 0.01
+  end
+
+  def retire
+    self.retired = true
+    save
+  end
+
+  def retired?
+    self.retired
   end
 end

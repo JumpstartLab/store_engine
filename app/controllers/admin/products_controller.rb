@@ -16,8 +16,8 @@ class Admin::ProductsController < ApplicationController
   end
 
   def create
-    Product.create(params[:product])
-    redirect_to admin_products_path, :notice => "Product created."
+    product = Product.create(params[:product])
+    redirect_to admin_product_path(product), :notice => "Product created."
   end
 
   def edit
@@ -28,5 +28,12 @@ class Admin::ProductsController < ApplicationController
   def update
     Product.find(params[:id]).update_attributes(params[:product])
     redirect_to admin_products_path
+  end
+
+  def retire_product
+    product = Product.find(params[:product_id])
+    product.retire
+    notice = "Product #{product.title} retired."
+    redirect_to admin_products_path, :notice => notice
   end
 end

@@ -5,9 +5,14 @@ div class="container"
     div class="span4"
       img src="#{@product.photo}" height="200px" width="200px"
     div class="span8"
+      h3 = "Price: #{@product.price}"
       h3 Description
       p = @product.description
-      p = link_to("Add to Cart", cart_path(:product_id => @product), :method => :put)
+      - if @product.retired?
+        h4 Product retired, can't add to cart.
+      -else
+        p = link_to("Add to Cart",
+                    cart_path(:product_id => @product), :method => :put)
 
       h3 Add Category to this Product
       - @categories.each do |category|

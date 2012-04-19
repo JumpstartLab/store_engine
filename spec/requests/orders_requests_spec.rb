@@ -27,13 +27,6 @@ describe "Orders Requests" do
       end
     end
 
-    it "has product quantities for an order" do
-      visit order_path(order)
-      order.products.each do |product|
-        page.should have_content order.quantity_for(product)
-      end
-    end
-
     it "has a price for each product in an order" do
       visit order_path(order)
       order.products.each do |product|

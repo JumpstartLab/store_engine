@@ -1,5 +1,8 @@
 h1 Edit Product
 
+h2 = link_to("Retire Product",
+              admin_product_retire_path(:product_id => @product.id))
+
 h3 Add Category to this Product
 - @categories.each do |category|
   - unless @product.categories.include?(category)

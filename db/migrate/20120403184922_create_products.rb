@@ -5,6 +5,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text :description
       t.integer :price
       t.string :photo
+      t.boolean :retired, :default => false
 
       t.timestamps
     end
