@@ -10,4 +10,4 @@ table.products id="products" class="span12"
         tr 
           td = link_to product.title, product_path(product)
         tr
-          td = "$#{product.price}"
+          td = number_to_currency(product.price)

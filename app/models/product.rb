@@ -37,7 +37,7 @@ class Product < ActiveRecord::Base
   end
 
   def price
-    self[:price] * 0.01
+    (self[:price] * 0.01).round(2)
   end
 
   def retire

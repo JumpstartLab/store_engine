@@ -64,7 +64,7 @@ class Order < ActiveRecord::Base
 
   def subtotal(product)
     oi = OrderItem.find_by_product_id(product.id)
-    oi.quantity * oi.product.price
+    (oi.quantity * oi.product.price).round(2)
   end
 
   def quantity_for(product)
