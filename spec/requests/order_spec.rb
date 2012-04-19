@@ -39,9 +39,6 @@ describe "When I want to place an order" do
             click_link_or_button('Create Credit card')
           end
 
-          it "should take me to the shipping details page" do
-            save_and_open_page
-          end
         end
 
       end

@@ -51,7 +51,21 @@ describe "As an admin updating products" do
 
       it "retires that product" do
         click_link_or_button('Retire product')
-        Product.find(product.id).retired == true
+        Product.find(product.id).retired.should == true
+      end
+
+      context "and I want to un-retire that product" do
+        before do  
+          visit admin_product_path(product)
+          click_link_or_button('Retire product')
+        end
+
+        it "un-retires that product" do
+          save_and_open_page
+          visit admin_products_path
+          click_link_or_button('Un-retire')
+          Product.find(product.id).active?.should == true
+        end
       end
     end
 
