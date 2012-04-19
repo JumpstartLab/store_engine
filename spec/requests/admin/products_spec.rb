@@ -50,8 +50,8 @@ describe "As an admin updating products" do
       before(:each) { visit admin_product_path(product) }
 
       it "retires that product" do
-        click_link_or_button('Retire')
-        page.should_not have_content(product.name)
+        click_link_or_button('Retire product')
+        Product.find(product.id).retired == true
       end
     end
 
