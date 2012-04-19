@@ -34,10 +34,10 @@ describe User do
 
     context "type validations" do
       it "does not allow a duplicate email_address to be created" do
-        user_1 = {email_address: "a@a.com", full_name: "b"}
-        user_2 = {email_address: "a@a.com", full_name: "c"}
-        User.create(user_1)
-        User.create(user_2).should_not be_valid
+        first_user = {email_address: "a@a.com", full_name: "b"}
+        first_user = {email_address: "a@a.com", full_name: "c"}
+        User.create(first_user)
+        User.create(first_user).should_not be_valid
       end
 
       it "does not accept an invalid email address" do
@@ -57,39 +57,39 @@ describe User do
   end
 
   describe "pending_order" do
-    let!(:user1) { Fabricate(:user) }
-    let!(:billing1) do
-      b = Fabricate(:billing_method)
-      b.user_id = user1.id
-      b.save
-      b
+    let!(:user) { Fabricate(:user) }
+    let!(:billing) do
+      billing = Fabricate(:billing_method)
+      billing.user_id = user.id
+      billing.save
+      billing
     end
-    let!(:order1) do
-      o1 = Fabricate(:order)
-      o1.status = "paid"
-      o1.user_id = user1.id
-      o1.billing_method_id = billing1.id
-      o1.save
-      o1
+    let!(:order) do
+      ord = Fabricate(:order)
+      ord.status = "paid"
+      ord.user_id = user.id
+      ord.billing_method_id = billing.id
+      ord.save
+      ord
     end
-    let!(:order2) do
-      o2 = Fabricate(:order)
-      o2.status = "pending"
-      o2.user_id = user1.id
-      o2.billing_method_id = billing1.id
-      o2.save
-      o2
+    let!(:other_order) do
+      ord = Fabricate(:order)
+      ord.status = "pending"
+      ord.user_id = user.id
+      ord.billing_method_id = billing.id
+      ord.save
+      ord
     end
     context "if there is a pending order for that user" do
       it "returns the pending order for the user" do
-        user1.pending_order.should == order2
+        user.pending_order.should == other_order
       end
     end
     context "if there are no pending orders for the user" do
       it "returns nil" do
-        order2.status = "paid"
-        order2.save
-        user1.pending_order.should == nil
+        other_order.status = "paid"
+        other_order.save
+        user.pending_order.should == nil
       end
     end
   end

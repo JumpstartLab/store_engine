@@ -13,7 +13,7 @@ class Product < ActiveRecord::Base
   validates_format_of :photo_url,
   with: /^https?:\/\/(?:[a-z\-]+\.)+
         [a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpg|gif|png|jpeg)$/x,
-  allow_nil: true, unless: Proc.new { |p| p.photo_url.blank? }
+  allow_nil: true, unless: Proc.new { |prod| prod.photo_url.blank? }
 
   default_scope order(:title)
 

@@ -160,8 +160,8 @@ describe "admin" do
       current_path.should have_content "baseballs"
     end
     it "can edit a category" do
-      p = Fabricate(:product)
-      p.categories << Category.last
+      prod = Fabricate(:product)
+      prod.categories << Category.last
       visit categories_path
       click_link_or_button "Edit"
       fill_in "Name", with: "tennis equipment"
@@ -171,8 +171,8 @@ describe "admin" do
       page.should have_content "tennis equipment"
     end
     it "can delete a category" do
-      p = Fabricate(:product)
-      p.categories << Category.last
+      prod = Fabricate(:product)
+      prod.categories << Category.last
       visit categories_path
       click_link_or_button "Destroy"
       current_path.should == categories_path
@@ -222,15 +222,15 @@ describe "admin" do
           select(option, from: "status")
           click_link_or_button "Update"
           within "#main-content" do
-            orders.each do |o|
-              page.should have_content o.id if o.status == option
+            orders.each do |ord|
+              page.should have_content ord.id if ord.status == option
             end
           end
         end
         select("all", from: "status")
         click_link_or_button "Update"
         within "#main-content" do
-          orders.each { |o| page.should have_content o.id }
+          orders.each { |ord| page.should have_content ord.id }
         end
       end
       it "shows a timestamp of cancelled orders" do

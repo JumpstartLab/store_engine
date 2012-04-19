@@ -7,7 +7,7 @@ class BillingMethod < ActiveRecord::Base
                         :credit_card_number, :state,
                         :street, :zipcode
   validates_length_of :name, :minimum => 2, :maximum => 20,
-             allow_nil: true, unless: Proc.new { |u| u.name.blank? }
+             allow_nil: true, unless: Proc.new { |us| us.name.blank? }
   validates_length_of :zipcode, :is => 5
   validates_numericality_of :zipcode, :credit_card_number, :month, :year,
                             only_integer: true

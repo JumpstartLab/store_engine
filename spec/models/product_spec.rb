@@ -30,10 +30,10 @@ describe Product do
 
     context "type validations" do
       it "does not allow a duplicate title to be created" do
-        prod_1 = {title: "a", description: "b", price: "5"}
-        prod_2 = {title: "a", description: "c", price: "6"}
-        Product.create(prod_1)
-        Product.create(prod_2).should_not be_valid
+        first_product = {title: "a", description: "b", price: "5"}
+        second_product = {title: "a", description: "c", price: "6"}
+        Product.create(first_product)
+        Product.create(second_product).should_not be_valid
       end
 
       it "is not valid with a non-numerical price" do

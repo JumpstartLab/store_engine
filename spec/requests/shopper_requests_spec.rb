@@ -47,9 +47,9 @@ describe "shopper" do
         end
       end
       it "does not overwrite cart items" do
-        product2 = Fabricate(:product)
+        other_product = Fabricate(:product)
         visit "/"
-        within "##{dom_id(product2)}" do
+        within "##{dom_id(other_product)}" do
           click_link_or_button "Add to Cart"
         end
         within "#cart-aside" do

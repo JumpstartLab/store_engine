@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/
   validates_uniqueness_of :email_address
   validates_length_of :display_name, :minimum => 2, :maximum => 32,
-  allow_nil: true, unless: Proc.new { |u| u.display_name.blank? }
+  allow_nil: true, unless: Proc.new { |user| user.display_name.blank? }
 
   def pending_order
     orders.find_by_status("pending")
