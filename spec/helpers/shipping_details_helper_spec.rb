@@ -11,5 +11,15 @@ require 'spec_helper'
 #   end
 # end
 describe ShippingDetailsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe("us_states") do
+    it "returns an array of states" do
+      us_states.class.should be Array
+    end
+  end
+
+  describe("formatted_shipping_address") do
+    it "returns a formatted shipping_address" do
+      # formatted_shipping_address(@)
+    end
+  end
 end
