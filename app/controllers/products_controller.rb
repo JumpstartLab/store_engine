@@ -9,7 +9,11 @@ class ProductsController < ApplicationController
     else
       if params[:filtered].present?
         @products = Product.active.where(
-          ["title LIKE ?", "%#{params[:filtered].downcase}%"]
+          if Rails.env.production?
+            ["title ILIKE ?", "%#{params[:filtered]}%"]
+          else
+            ["title LIKE ?", "%#{params[:filtered]}%"]
+          end
           )
       else
         @products = Product.active.all
