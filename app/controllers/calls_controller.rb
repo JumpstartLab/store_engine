@@ -7,7 +7,7 @@ class CallsController < ApplicationController
     @client = Twilio::REST::Client.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
     @account = @client.account
     @call = @account.calls.create({:from => '5866904041',
-      :to => '5862914303', :url => new_call_url })
+      :to => '5862914303', :url => calls_url })
     puts @message
     redirect_to calls_path
   end
