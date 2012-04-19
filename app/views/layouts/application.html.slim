@@ -16,6 +16,7 @@ html
           .span8#notice = notice
         - unless admin_view?
           .span8#main-content = yield
+          = render partial: "shared/search"
           = render partial: "shared/cart", locals: {user: current_user}
         - else
           .span16#main-content = yield

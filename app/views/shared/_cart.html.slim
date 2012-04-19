@@ -11,7 +11,7 @@
         = link_to "Update", edit_line_item_path(li), class: 'btn btn-mini'
     p#cart_total Total: #{number_to_currency(cart.amount)}
     p
-      = link_to "View Cart", order_path(cart), class: "btn"
       = link_to "Two-Click Check Out", order_path(session[:order_id]), method: :put, confirm: "Place an order for #{pluralize(cart.total_items, "item")}?", class: "btn btn-success"
+      = link_to "View Cart", order_path(cart), class: "btn"
   - else
     p Nothing in your cart
