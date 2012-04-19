@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
- 
+
   def show
     @user = User.find(params[:id])
   end
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def new
     if logged_in? && !current_user.admin?
       redirect_to :root
-    else 
+    else
       @user = User.new
     end
   end
@@ -30,8 +30,8 @@ class UsersController < ApplicationController
   def update
     if logged_in? && current_user.id == id
       user = User.find(params[:id]).update_attributes(params[:user])
-      redirect_to user_path(@user) 
-    else 
+      redirect_to user_path(@user)
+    else
       not_found
     end
   end
@@ -41,13 +41,14 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to(:root, :notice => 'Registration successful.') }
+        format.html { redirect_to(:root,
+                      :notice => 'Registration successful.') }
       else
         format.html { render :action => "new" }
       end
     end
   end
-  
+
   def login_from_http_basic
     redirect_to users_path, :notice => 'Login from basic auth successful'
   end

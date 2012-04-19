@@ -14,11 +14,11 @@ class OrdersController < ApplicationController
     billing_address = current_user.billing_address
     @order = Order.new(:status => status, :user => current_user,
                        :shipping_address => shipping_address,
-                       :billing_address => billing_address, 
+                       :billing_address => billing_address,
                        :status_updated_at => DateTime.now)
     cart.cart_items.each do |item|
-      @order.order_items << OrderItem.new(:product => item.product, 
-                                          :price => item.price.to_s, 
+      @order.order_items << OrderItem.new(:product => item.product,
+                                          :price => item.price.to_s,
                                           :quantity => item.quantity)
     end
 
@@ -35,11 +35,11 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @shipping_address = @order.shipping_address
     @billing_address = @order.billing_address
-    
+
     if logged_in?
       if current_user.admin?
         status_name = @order.status.name
-        if status_name == StoreEngine::Status::PENDING || 
+        if status_name == StoreEngine::Status::PENDING ||
            status_name == StoreEngine::Status::PAID
           render :template => "orders/admin_show"
         end
@@ -67,4 +67,4 @@ class OrdersController < ApplicationController
       not_found
     end
   end
-end 
+end

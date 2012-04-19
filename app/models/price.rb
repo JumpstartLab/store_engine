@@ -6,7 +6,7 @@ module StoreEngine
     end
 
     def price=(price_string)
-      if price_string.include?(".") 
+      if price_string.include?(".")
         price_cents = price_string.gsub(".", "").to_i
       else
         price_cents = "#{price_string}00".to_i

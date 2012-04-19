@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :status, :user, :shipping_address, :billing_address, 
+  attr_accessible :status, :user, :shipping_address, :billing_address,
     :status_updated_at, :order_items
   belongs_to :status
   has_many :order_items
@@ -24,13 +24,13 @@ class Order < ActiveRecord::Base
   def update_status
     case status.name
     when StoreEngine::Status::PENDING
-      update_attributes(:status => 
+      update_attributes(:status =>
                         Status.find_by_name(StoreEngine::Status::CANCELLED))
     when StoreEngine::Status::SHIPPED
-      update_attributes(:status => 
+      update_attributes(:status =>
                         Status.find_by_name(StoreEngine::Status::RETURNED))
     when StoreEngine::Status::PAID
-      update_attributes(:status => 
+      update_attributes(:status =>
                         Status.find_by_name(StoreEngine::Status::SHIPPED))
     end
   end

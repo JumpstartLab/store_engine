@@ -2,7 +2,7 @@ class Admin::DashboardController < ApplicationController
   before_filter :admin_or_not_found
 
   def index
-    @dashboard = Dashboard.new 
+    @dashboard = Dashboard.new
 
     @status = params[:status]
     if @status.nil?

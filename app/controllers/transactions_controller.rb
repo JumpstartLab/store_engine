@@ -6,7 +6,8 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.create(params[:transaction])
-    customer = Stripe::Customer.create(:card => params[:transaction][:stripe_card_token])
+    customer = Stripe::Customer.create(:card =>
+                                params[:transaction][:stripe_card_token])
     @transaction.save_stripe_customer_id(current_user, customer)
     current_user.transaction = @transaction
     current_user.save

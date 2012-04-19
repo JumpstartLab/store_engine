@@ -5,7 +5,7 @@ module Admin::DashboardHelper
     paid = StoreEngine::Status::PAID
     shipped = StoreEngine::Status::SHIPPED
     returned = StoreEngine::Status::RETURNED
-    [[pending, pending], [cancelled, cancelled], [paid, paid], 
+    [[pending, pending], [cancelled, cancelled], [paid, paid],
       [shipped, shipped], [returned, returned]]
   end
 end

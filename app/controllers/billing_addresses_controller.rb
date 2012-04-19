@@ -6,11 +6,11 @@ class BillingAddressesController < ApplicationController
   def create
     @billing_address = BillingAddress.new(params[:billing_address])
     if @billing_address.save
-      session[:billing_address] = @billing_address.id
       current_user.billing_address = @billing_address
       current_user.save
       if params[:same_as_shipping_address] == "1"
-        current_user.shipping_address = ShippingAddress.new(params[:billing_address])
+        current_user.shipping_address =
+          ShippingAddress.new(params[:billing_address])
         current_user.save
         redirect_to new_transaction_path
       else

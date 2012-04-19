@@ -2,7 +2,7 @@ require 'money'
 require 'price'
 
 class Product < ActiveRecord::Base
-  include StoreEngine::Price 
+  include StoreEngine::Price
 
   has_many :product_categories
   has_many :categories, :through => :product_categories
