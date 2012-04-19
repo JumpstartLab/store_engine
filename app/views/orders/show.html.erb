@@ -17,7 +17,7 @@
     <% @order.order_items.each do |oo| %><tr>
       <td><%= link_to oo.product.title, product_path(oo.product) %></td>
       <td><%= oo.product.description %></td>
-      <td><%= oo.unit_price %></td>
+      <td><%= number_to_currency(oo.unit_price) %></td>
       <td><%= oo.quantity %></td>
       <td style="em"><%= number_to_currency(oo.price) %><td>
     </tr><% end %>
