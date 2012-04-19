@@ -10,8 +10,8 @@ GIT
   branch: ripper_ruby_parser-2
   specs:
     reek (1.2.8)
+      ripper_ruby_parser (~> 0.0.5)
       ruby2ruby (~> 1.2.5)
-      ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
 
 GEM
@@ -121,7 +121,6 @@ GEM
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
-    pg (0.13.2)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -150,6 +149,8 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    ripper_ruby_parser (0.0.6)
+      sexp_processor (~> 3.0)
     rspec (2.9.0)
       rspec-core (~> 2.9.0)
       rspec-expectations (~> 2.9.0)
@@ -242,7 +243,6 @@ DEPENDENCIES
   heroku
   jquery-rails
   launchy
-  pg
   rails (= 3.2.3)
   reek!
   rspec-rails
