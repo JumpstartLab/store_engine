@@ -1,10 +1,10 @@
-matt = User.create(:username => "Matt Yoho", :first_name => "Matt", :last_name => "Yoho",
+matt = User.create(:first_name => "Matt", :last_name => "Yoho",
             :email => "matt.yoho@livingsocial.com", :password => "hungry", 
             :display_name => "The YOHO")
-jeff = User.create( :username => "Jeff", :first_name => "Jeff", :last_name => "Casimir",
+jeff = User.create(:first_name => "Jeff", :last_name => "Casimir",
             :email => "jeff.casimir@livingsocial.com",
             :password => "hungry")
-chad = User.create( :username => "Chad Fowler", :first_name => "Chad",
+chad = User.create(:first_name => "Chad",
              :last_name => "Fowler", :email => "chad.fowler@livingsocial.com", 
              :password => "hungry")
 chad.admin = true

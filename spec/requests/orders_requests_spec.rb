@@ -4,12 +4,12 @@ describe "Orders requests", :orders => :requests do
   context "when a normal user is logged in" do
     let!(:user) { Fabricate(:user)}
     let!(:user2) { Fabricate(:user, :email => "omg@omg.com",
-                             :username => "woah", :password => "woah")}
+                             :password => "woah")}
     let!(:order) { Fabricate(:order, :user => user) }
     let!(:order2) { Fabricate(:order, :user => user2) }
 
     before(:each)  do
-      login_user_post("woah", "woah") 
+      login_user_post("omg@omg.com", "woah") 
       visit orders_path
     end 
 

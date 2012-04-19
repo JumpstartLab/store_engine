@@ -4,7 +4,7 @@ describe "Users requests" do
   context "when a normal user is logged in" do
     let!(:user) { Fabricate(:user)}
     let!(:user2) { Fabricate(:user, :email => "omg@omg.com",
-                             :username => "woah", :password => "woah")}
+                             :password => "woah")}
     before(:each)  { login }
 
     it "shows users page not found" do
@@ -84,7 +84,7 @@ describe "Users requests" do
   context "when admin is logged in" do
     let!(:user) { Fabricate(:user, :admin => true)}
     let!(:user2) { Fabricate(:user, :email => "omg@omg.com",
-                             :username => "woah", :password => "woah")}
+                             :password => "woah")}
     before(:each)  { login }
 
     it "shows users" do
@@ -96,7 +96,6 @@ describe "Users requests" do
       visit users_path
       find_link("New User").click
 
-      fill_in "Username", :with => "newuser"
       fill_in "Display name", :with => "displayname"
       fill_in "First name", :with => "firstname"
       fill_in "Last name", :with => "lastname"
@@ -112,7 +111,6 @@ describe "Users requests" do
       visit users_path
       find_link("New User").click
 
-      fill_in "Username", :with => "newuser"
       fill_in "Display name", :with => "displayname"
       fill_in "First name", :with => "firstname"
       fill_in "Last name", :with => "lastname"
@@ -123,7 +121,7 @@ describe "Users requests" do
       click_button("Create User")
 
       visit logout_path
-      login_user_post("newuser", "cheeet")
+      login_user_post("email@email.com", "cheeet")
       visit root_path
       page.should have_content("Admin Dashboard")
     end

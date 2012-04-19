@@ -46,12 +46,12 @@ end
 module Sorcery
   module TestHelpers
     module Rails
-      def login_user_post(user, password)
-        page.driver.post(user_sessions_url, { username: user, password: password}) 
+      def login_user_post(email, password)
+        page.driver.post(user_sessions_url, { email: email, password: password}) 
       end
 
       def login
-        login_user_post("foo", "foo")
+        login_user_post("foo@foo.com", "foo")
       end
     end
   end

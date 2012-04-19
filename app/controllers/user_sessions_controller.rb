@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
   def create
     respond_to do |format|
       anonymous_cart = cart
-      if user = login(params[:username],params[:password])
+      if user = login(params[:email],params[:password])
         cart.merge_cart_items(anonymous_cart)
         format.html { redirect_back_or_to(:root, :notice => 'Login successful.') }
         format.xml { render :xml => user, :status => :created, :location => user }
