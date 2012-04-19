@@ -1,7 +1,13 @@
-h1 Category
+h1 = Category
 
-table
+table.products id="products" class="span12"
   - @products.each do |product|
     tr
-      td = link_to product.title, product_path(product)
-      td = product.price
+      table.product id="product" class="span3"
+        tr
+          td 
+            img src="#{product.photo}" height="100px" width="100px"
+        tr 
+          td = link_to product.title, product_path(product)
+        tr
+          td = "$#{product.price}"

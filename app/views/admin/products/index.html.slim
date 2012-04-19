@@ -1,5 +1,8 @@
 h1 Products
-
+br
+= link_to "New Product", new_admin_product_path
+br
+br
 table
   - @products.each do |product|
     tr
@@ -7,5 +10,3 @@ table
         = link_to product.title, admin_product_path(product)
       td = product.price
       td = link_to "Edit", edit_admin_product_path(product)
-
-= link_to "New Product", new_admin_product_path

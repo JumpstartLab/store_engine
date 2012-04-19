@@ -3,7 +3,7 @@ class Admin::ProductsController < ApplicationController
   before_filter :admin?, :only => :new
 
   def index
-    @products = Product.all
+    @products = Product.all.sort_by { |product| product.title}
   end
 
   def show
