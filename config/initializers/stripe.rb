@@ -1,0 +1,2 @@
+Stripe.api_key = "FmWENnIu207S7HAksSj4vIl16pcJFEBg"
+STRIPE_PUBLIC_KEY = "pk_TQLcTG3CyJ8ja1XKeyOxlb6TBwvb9"
