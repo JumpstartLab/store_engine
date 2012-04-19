@@ -96,7 +96,7 @@ class Order < ActiveRecord::Base
                      "shipped" => :return,
                      "paid"    => :ship
                   }
-    if next_status["#{self.status.name}"]                  
+    if next_status["#{self.status.name}"]
       send(next_status["#{self.status.name}"])
     end
     self.save

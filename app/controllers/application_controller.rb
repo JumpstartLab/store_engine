@@ -30,16 +30,24 @@ private
 
   def find_cart
     if current_user
-      current_user.cart = Cart.create if current_user.cart.nil?
-      merge_carts(cookies[:cart_id]) if !cookies[:cart_id].blank?
-      @cart = current_user.cart
+      find_cart_for_user
     else
-      if cookies[:cart_id].blank?
-        @cart = Cart.create
-        cookies[:cart_id] = @cart.id
-      else
-        @cart = Cart.find(cookies[:cart_id])
-      end
+      find_cart_for_guest
+    end
+  end
+
+  def find_cart_for_user
+    current_user.cart = Cart.create if current_user.cart.nil?
+    merge_carts(cookies[:cart_id]) if !cookies[:cart_id].blank?
+    @cart = current_user.cart
+  end
+
+  def find_cart_for_guest
+    if cookies[:cart_id].blank?
+      @cart = Cart.create
+      cookies[:cart_id] = @cart.id
+    else
+      @cart = Cart.find(cookies[:cart_id])
     end
   end
 
