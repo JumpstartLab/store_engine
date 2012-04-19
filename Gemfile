@@ -5,6 +5,7 @@ gem 'jquery-rails'
 gem 'sorcery'
 gem 'bcrypt-ruby'
 gem 'heroku'
+gem 'slim'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -17,10 +18,6 @@ end
 
 group :production do
   gem 'pg'
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'bootstrap-sass', '~> 2.0.2'
-  gem 'uglifier', '>= 1.0.3'
 end
 
 group :development, :test do
@@ -34,7 +31,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'faker'
   gem 'debugger'
-  gem 'slim'
   gem 'seed_dump'
   gem 'tailor', '0.1.5'
   gem 'cane'
