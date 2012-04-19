@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
     @skip_mini_cart = true
   end
   alias :skip_cart :skip_mini_cart
+  alias :cu :current_user
 
   def current_cart
     Cart.find(session[:cart_id])

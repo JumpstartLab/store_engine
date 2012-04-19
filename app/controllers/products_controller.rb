@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   end
 
   def two_click_order
-    if cu = current_user && !cu.billing_address.blank? && !cu.credit_card.blank?
+    if cu && !cu.billing_address.blank? && !cu.credit_card.blank?
       @order = current_user.orders.create!(status: 'pending',
         billing_address: current_user.billing_address,
         shipping_address: current_user.shipping_address,
