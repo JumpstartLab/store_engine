@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
                                           :quantity => item.quantity)
     end
 
-    @order.charge(session[:transaction], cart.total.cents)
+    @order.charge(current_user.transaction, cart.total.cents)
 
     if @order.save
       flash[:notice] = "Thank you for your order"

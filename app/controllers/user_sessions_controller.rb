@@ -15,7 +15,11 @@ class UserSessionsController < ApplicationController
         cart.merge_cart_items(anonymous_cart)
         format.html do
           if back_to_cart
-            redirect_to shopping_cart_path
+            if user.billing_address.nil?
+              redirect_to new_billing_address_path
+            else
+              redirect_to order_summary_path
+            end
           else
             redirect_back_or_to(:root, :notice => 'Login successful.')
           end

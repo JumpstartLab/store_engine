@@ -8,7 +8,8 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.create(params[:transaction])
     customer = Stripe::Customer.create(:card => params[:transaction][:stripe_card_token])
     @transaction.save_stripe_customer_id(current_user, customer)
-    session[:transaction] = @transaction.id
+    current_user.transaction = @transaction
+    current_user.save
     redirect_to order_summary_path
   end
 end
