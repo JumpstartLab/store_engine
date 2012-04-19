@@ -23,6 +23,7 @@ StoreEngine::Application.routes.draw do
     resources :products
     resources :categories
     resources :orders
+    resource  :order_items, only: [:edit, :update, :destroy]
     resources :users
     resources :dashboard, only: :index
   end

@@ -16,7 +16,12 @@
       <tr>
         <td><%= link_to order_item.product.title, product_path(order_item.product_id) %></td>
         <td><%= order_item.product.price %></td>
-        <td><%= order_item.quantity %></td>
+        <td>
+        <%= form_for(order_item, url: admin_order_items_path(order_item)) do |f| %>
+          <%= f.number_field :quantity, :min => 1, :id => "quantity" %>
+          <%= f.submit "Update quantity" %>
+        <% end %>
+        </td>
         <td><%= order_item.total_price %></td>
       </tr>
     <% end %>

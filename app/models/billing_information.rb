@@ -1,5 +1,5 @@
 class BillingInformation < ActiveRecord::Base
-  # belongs_to :order
+  belongs_to :order
   belongs_to :user
   attr_accessible :credit_card_type, 
                   :credit_card_number, 

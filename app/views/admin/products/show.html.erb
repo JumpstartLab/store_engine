@@ -21,7 +21,7 @@
   <div class="span1">
     <%= image_tag(product.photo) %>
   </div>
-<!-- </div> -->
+
 <div class="span9">
   <%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post, :class => 'btn btn-success' %>
   <%= link_to "Back to all products", admin_products_path, :title => "back to all products", :class => 'btn'%>

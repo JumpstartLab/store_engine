@@ -3,7 +3,12 @@ class Order < ActiveRecord::Base
 
   has_many :order_items, :dependent => :destroy
   has_many :products, :through => :order_items
+  has_one :billing_information
+  has_one :shipping_information
   belongs_to :user
+
+  # validates :billing_information, presence: true
+  # validates :shipping_information, presence: true
 
   def status_options
     ["pending", "cancelled", "paid", "shipped", "returned"]
@@ -15,7 +20,6 @@ class Order < ActiveRecord::Base
       new_order.order_items.build(cart_item.attributes_for_order_item, 
                                   :without_protection => true)
     end    
-    new_order.total_price = cart.total
     new_order.user = current_user
     new_order.save
     return new_order
@@ -23,7 +27,7 @@ class Order < ActiveRecord::Base
 
   def total
     @total ||= order_items.inject(0) do |sum, order_item|
-      sum += order_item.total_price
+      sum += order_item.total
     end
   end
 
