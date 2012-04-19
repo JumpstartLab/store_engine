@@ -10,7 +10,7 @@ module UserHelper
 
   def build_product
     {
-      :title => Faker::Lorem.words(rand(1..3)).map(&:capitalize).join(" "),
+      :title => Faker::Lorem.words(rand(3)).map(&:capitalize).join(" "),
       :description => Faker::Lorem.paragraph,
       :price => (100 * rand).round(2) + 10,
       :photo => Faker::Internet.url
