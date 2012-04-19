@@ -1,11 +1,10 @@
 <div class="product span3" id="product_<%= product.id %>">
   <div class="product_container">
-    <div class="product_title">
-      <h3><%= link_to product_path(product) do %>
-            &mdash;&nbsp;<%= product.title %>&nbsp;&mdash;
-          <% end %>
-      </h3>
-    </div>
+    <%= link_to product_path(product) do %>
+      <div class="product_title">
+        <h3>&nbsp;<%= truncate(product.title, :length => 20) %>&nbsp;</h3>
+      </div>
+    <% end %>
     <div class="product_image">
       <%= link_to image_tag(product.image_url(:thumb).to_s), product_path(product) if product.image? %>
     </div>

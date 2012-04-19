@@ -1,6 +1,6 @@
 @import "twitter/bootstrap/bootstrap";
 
-body { padding-top: 60px; background: #E6EFF7 url("http://hungryacademy.com/images/noise.png") repeat top left; }
+body { font-family: "Palatino"; padding-top: 60px; background: #E6EFF7 url("http://hungryacademy.com/images/noise.png") repeat top left; }
 form#new_user .nav-collapse form, form.well { margin: 0; }
 form#new_user .nav-collapse form input { margin: 5px 3px 0px; }
 div.name { display: inline-block; }
@@ -10,7 +10,7 @@ form#new_user div:nth-child(2) { margin-right: 6px; }
 label#checkbox { display: inline-block; }
 label { margin-bottom: 2px; }
 div#thinForm { background: #f2f2f2; width: auto; float:left; padding: 13px 20px 20px; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; }
-.product_container { height: auto; border: 1px solid #ccc; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; background-color: #fff; }
+.product_container { height: auto; border: 1px solid #ccc; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; background-color: #fafafa; }
 .add_link { display:inline-block; margin-left: 10px; padding: 5px; background-color: red; color: #fff; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; vertical-align: 10%; }
 .add_link:hover { text-decoration: none; color: #fff; box-shadow: 0 1px 2px 1px #666666; }
 .add_link:active { box-shadow: inset 0 0 5px #000000; }
@@ -19,8 +19,10 @@ div#thinForm { background: #f2f2f2; width: auto; float:left; padding: 13px 20px 
 .product_image { padding: 15px; height: 175px; }
 .product_image img { display: block; margin: 0 auto; }
 .product_title { padding: 5px 15px; background-color: #F0DB92; opacity: .7; text-align: center; }
-.product_title h3 a { color: #CC1E14; }
-.product_title h3 a:hover { text-decoration: none; }
+.product_title h3 { color: #CC1E14; text-transform: uppercase; }
+.product_title:hover { background-color: #AB280E; }
+.product_title:hover h3 { color: #fff; }
+
 .span4, .span3 { margin-bottom: 2.564102564%; }
 #admin_bar { position: relative; z-index: 0; margin: -20px 0 15px; padding: 10px; background-color: #FEFFC5; }
 #order_filter { margin-bottom: 10px; }
