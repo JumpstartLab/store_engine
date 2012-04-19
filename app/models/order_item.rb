@@ -24,7 +24,8 @@ class OrderItem < ActiveRecord::Base
     return if order.pending?
 
     if changed?
-      errors.add(:order_items, "Can't change order item unless order is pending")
+      errors.add(:order_items,
+                 "Can't change order item unless order is pending")
     end
   end
 end

@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
   before_filter :skip_mini_cart
   before_filter :require_login, only: [:index, :show]
   before_filter :find_order, only: [:show, :destroy]
-  
 
   def show
 
@@ -40,5 +39,5 @@ class OrdersController < ApplicationController
       @order = current_user.orders.find(params[:id])
     end
   end
-  
+
 end

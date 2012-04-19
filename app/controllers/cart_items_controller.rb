@@ -7,9 +7,12 @@ class CartItemsController < ApplicationController
     if existing_item
       existing_item.update_attributes(quantity: existing_item.quantity + 1)
     elsif Product.find(params[:product_id]).retired?
-      flash[:warning] = "This item has been retired and can no longer be purchased."
+      flash[:warning] =
+        "This item has been retired and can no longer be purchased."
     else
-      current_cart.cart_items.create!(product_id: params[:product_id], quantity: 1)
+      current_cart.
+        cart_items.
+        create!(product_id: params[:product_id], quantity: 1)
     end
     flash[:notice] = "Item added to cart!"
     redirect_to (request.referer)
