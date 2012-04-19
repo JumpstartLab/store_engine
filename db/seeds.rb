@@ -14,13 +14,13 @@ def create_product(title, description, photo)
 end
 
 matt = User.create(:first_name => "Matt", :last_name => "Yoho",
-            :email => "matt.yoho@livingsocial.com", :password => "hungry", 
+            :email => "demoXX+matt@jumpstartlab.com", :password => "hungry", 
             :display_name => "The YOHO")
 jeff = User.create(:first_name => "Jeff", :last_name => "Casimir",
-            :email => "jeff.casimir@livingsocial.com",
+            :email => "demoXX+jeff@jumpstartlab.com",
             :password => "hungry")
 chad = User.create(:first_name => "Chad",
-             :last_name => "Fowler", :email => "chad.fowler@livingsocial.com", 
+             :last_name => "Fowler", :email => "demoXX+chad@jumpstartlab.com", 
              :password => "hungry")
 chad.admin = true
 chad.save!
