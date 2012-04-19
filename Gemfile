@@ -10,6 +10,7 @@ gem 'money-rails'
 gem 'stripe'
 gem 'faker'
 gem 'rake'
+gem 'twilio-ruby'
 
 group :production do
   gem 'pg'
