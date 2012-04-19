@@ -1,5 +1,11 @@
 <!-- <div class="row"> -->
   <div class="span8">
+    <% if product.active? == false %>
+        <div class="alert alert-error">
+          <h4 class="alert-heading">Retired</h3>
+          <p>This product has been retired. You can view retired products, but you cannot purchase them.</p>
+        </div>
+      <% end %>
     <h1>Product: <%= product.title %></h1>
     <p>
       <%= product.description %>
@@ -10,12 +16,6 @@
       Categories: <% product.categories.each do |c| %>
                     <%= c.name %>
                   <% end %>
-      <% if product.active? == false %>
-        <div class="alert alert-error">
-          <h4 class="alert-heading">Warning</h3>
-          <p>This product has been retired!</p>
-        </div>
-      <% end %>
     </p>
   </div>
   <div class="span1">
@@ -23,6 +23,8 @@
   </div>
 <!-- </div> -->
 <div class="span9">
-  <%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post, :class => 'btn btn-success' %>
+  <% if product.active? == true %>
+    <%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post, :class => 'btn btn-success' %>
+  <% end %>
   <%= link_to "Back to all products", products_path, :title => "back to all products", :class => 'btn'%>
 </div>
