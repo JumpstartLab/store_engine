@@ -8,8 +8,7 @@ class SessionsController < ApplicationController
     login_user_from_params
 
     if @user
-      add_session_cart_items(@temp_cart) if @temp_cart
-      redirect_back_or_to root_url, :notice => "Logged in!"
+      add_cart_items_and_redirect
     else
       flash.now.alert = "Invalid login/password."
       render :new
@@ -34,6 +33,11 @@ private
     if session[:cart_id]
       @temp_cart = Cart.find_by_id(session[:cart_id])
     end
+  end
+
+  def add_cart_items_and_redirect
+    add_session_cart_items(@temp_cart) if @temp_cart
+    redirect_back_or_to root_url, :notice => "Logged in!"
   end
 
 end

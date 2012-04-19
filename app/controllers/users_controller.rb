@@ -9,23 +9,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
-    if session[:cart_id]
-      temp_cart = Cart.find_by_id(session[:cart_id])
-    end
 
     if @user.save
-      if temp_cart
-        add_session_cart_items(temp_cart)
-      end
-      @user = login(params[:user][:email].downcase, params[:user][:password])
-      redirect_to root_url, :notice => "Logged in, New user #{@user.name}"
+      create_cart_and_redirect
     else
       render :new
     end
   end
 
   def edit
-
   end
 
   def update
@@ -44,6 +36,22 @@ class UsersController < ApplicationController
 
   def lookup_user
     @user = current_user
+  end
+
+private
+
+  def check_for_temp_cart
+    if session[:cart_id]
+      @temp_cart = Cart.find_by_id(session[:cart_id])
+    end
+  end
+
+  def create_cart_and_redirect
+    if @temp_cart
+      add_session_cart_items(@temp_cart)
+    end
+    @user = login(params[:user][:email].downcase, params[:user][:password])
+    redirect_to root_url, :notice => "Logged in, New user #{@user.name}"
   end
 
 end

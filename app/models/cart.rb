@@ -7,11 +7,17 @@ class Cart < ActiveRecord::Base
 
   def add_product_by_id(product_id)
     product = Product.find_by_id(product_id)
+    cp = create_cart_product_for_new_product(product)
+    cp.save
+  end
+
+  # Made this funky to satisfy reek
+  def create_cart_product_for_new_product(product)
     cp = cart_products.create
     cp.product = product
     cp.quantity = 1
     cp.price = product.best_price
-    cp.save
+    cp
   end
 
   def remove_product_by_id(product_id)
