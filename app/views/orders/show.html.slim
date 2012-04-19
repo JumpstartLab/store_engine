@@ -1,5 +1,18 @@
 h1 Order - #{@order.id} 
 | Status - #{@order.status.name}
+- if current_user.admin?
+    - if @order.status.name == "pending"
+        = button_to "Cancel", order_path(@order), 
+          :method => :put, :class => "btn btn-primary", 
+          :id => "cancel_order"
+    - elsif @order.status.name == "shipped"
+        = button_to "Mark as Returned", order_path(@order), 
+          :method => :put, :class => "btn btn-primary", 
+          :id => "return_order"
+    - elsif @order.status.name == "paid"
+        = button_to "Mark as Shipped", order_path(@order), 
+          :method => :put, :class => "btn btn-primary", 
+          :id => "shipped_order"
 p
 | Name - #{@order.user.first_name + @order.user.last_name}
 p
