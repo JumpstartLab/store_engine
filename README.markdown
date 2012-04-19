@@ -1,3 +1,5 @@
 ## StoreEngine
 ### Team Awesomesauce
-http://tutorials.jumpstartlab.com/projects/store_engine.html
+
+Tom and Chris
+http://github.com/chrismanderson/store_engine
