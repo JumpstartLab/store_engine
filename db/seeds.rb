@@ -73,7 +73,7 @@ shipped = Status.create(:name => StoreEngine::Status::SHIPPED)
 cancelled = Status.create(:name => StoreEngine::Status::CANCELLED)
 
  address = {:first_name => "Melanie", :last_name => "Gilman", 
-            :company => "Living Social", :line_1 => "New York Ave", 
+            :company => "LivingSocial", :line_1 => "New York Ave", 
             :city => "Washington", :state => "DC", :zipcode => "20005", 
             :phone => "555-555-5555"}
  shipping_address = ShippingAddress.create(address)
@@ -89,7 +89,7 @@ cancelled = Status.create(:name => StoreEngine::Status::CANCELLED)
    product_count.times do |i|
      product= products[i] 
      item = OrderItem.new(:product => product, :quantity => rand(1..30), 
-                          :price => product.price.cents.to_s)
+                          :price => product.price.to_s)
      item.order = order
      item.save
    end
