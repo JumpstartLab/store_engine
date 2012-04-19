@@ -30,6 +30,15 @@ describe "shopper" do
           current_path.should == category_path(category)
         end
       end
+      it "searches products by their title" do
+        within "#main-content" do
+          page.should have_content "Search for"
+          fill_in "filtered", with: product.title
+          click_link_or_button "Find"
+          page.should have_content product.title
+        end
+      end
+
       it "has an add to cart button" do
         page.should have_content "Add to Cart"
       end
