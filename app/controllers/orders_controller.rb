@@ -30,6 +30,7 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     @order.status.update_attribute(:name, params[:order][:status])
+    UserMailer.status_confirmation(current_user, @order).deliver
     redirect_to order_path(@order)
   end
 

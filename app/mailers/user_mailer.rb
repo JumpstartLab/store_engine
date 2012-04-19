@@ -5,4 +5,9 @@ class UserMailer < ActionMailer::Base
     @order = order
     mail(:to => user.email, :subject => "Your ShoeEngine Order #{order.id}")
   end
+
+  def status_confirmation(user, order)
+    @user = user
+    @order = order
+    mail(:to => user.email, :subject => "Your ShoeEngine Order #{order.id} is now #{order.current_status}")
 end
