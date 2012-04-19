@@ -42,40 +42,52 @@ create_product("Bear", "He'll maul you with love!",
 create_product("Inky", "The beach. The sun. Inky doesn't discriminate", 
                "http://26.media.tumblr.com/tumblr_lirnni3XjG1qzgcv7o1_500.png")
 create_product("Annie", "Pugs pugs pugs pugs pugs pugs pugs pugs pugs", 
-"http://27.media.tumblr.com/tumblr_ltuo57ahqE1qa6z3eo1_500.jpg")
+               "http://27.media.tumblr.com/tumblr_ltuo57ahqE1qa6z3eo1_500.jpg")
 create_product("Gizmo", "Gizmo duck...pug!", 
-"http://27.media.tumblr.com/tumblr_ll3xua50Vr1qb08qmo1_500.jpg")
+               "http://27.media.tumblr.com/tumblr_ll3xua50Vr1qb08qmo1_500.jpg")
 create_product("Isabella", "Bella mia!", 
-"http://29.media.tumblr.com/tumblr_lhjuu5y74J1qaa50yo1_500.jpg")
+               "http://29.media.tumblr.com/tumblr_lhjuu5y74J1qaa50yo1_500.jpg")
 create_product("Oscar", "He's a cute pug, but he's so grouchy!", 
-"http://29.media.tumblr.com/tumblr_ll267csxAQ1qb08qmo1_500.jpg")
+               "http://29.media.tumblr.com/tumblr_ll267csxAQ1qb08qmo1_500.jpg")
 create_product("Rex", "RAWR! Means I love you in pug.", 
-"http://24.media.tumblr.com/tumblr_lk7u170Ztt1qb33vho1_500.jpg")
+               "http://24.media.tumblr.com/tumblr_lk7u170Ztt1qb33vho1_500.jpg")
 create_product("Rose", "Smells so sweet. Then she bites you. Hard.", 
-"http://27.media.tumblr.com/tumblr_lhty7gGku61qb08qmo1_500.jpg")
+               "http://27.media.tumblr.com/tumblr_lhty7gGku61qb08qmo1_500.jpg")
 create_product("Scooter", "Scoot Scoot Scoot. He's not potty trained yet.", 
-"http://27.media.tumblr.com/tumblr_lhtxzoe4lb1qb08qmo1_500.jpg")
+               "http://27.media.tumblr.com/tumblr_lhtxzoe4lb1qb08qmo1_500.jpg")
 create_product("Socks", "Hide your socks! No socks are safe from this pug!", 
-"http://27.media.tumblr.com/tumblr_lojtswfhv41qzio3qo1_500.jpg")
+               "http://27.media.tumblr.com/tumblr_lojtswfhv41qzio3qo1_500.jpg")
 create_product("Max", "Favorite movie? Mad Max and the Thunderdome.", 
-"http://24.media.tumblr.com/tumblr_lixgdemCvf1qaa50yo1_500.jpg")
+               "http://24.media.tumblr.com/tumblr_lixgdemCvf1qaa50yo1_500.jpg")
 create_product("Spike", "Insert witty pug comment here.", 
-"http://24.media.tumblr.com/tumblr_li5lkvn1xF1qaa50yo1_500.jpg")
+               "http://24.media.tumblr.com/tumblr_li5lkvn1xF1qaa50yo1_500.jpg")
 create_product("Magic", "Just like the rails.", 
-"http://28.media.tumblr.com/tumblr_lim8n49s881qa9dmvo1_500.jpg")
+               "http://28.media.tumblr.com/tumblr_lim8n49s881qa9dmvo1_500.jpg")
 create_product("Katie", "Why do people name their cute pugs after humans?", 
-"http://29.media.tumblr.com/tumblr_lixd8gn85W1qa1nfco1_500.jpg")
-               #
-# 30.times { Fabricate(:product).save } 
- pending = Status.create(:name => StoreEngine::Status::PENDING)
- paid = Status.create(:name => StoreEngine::Status::PAID)
- Status.create(:name => StoreEngine::Status::RETURNED)
-# 
-# shipping_address = Fabricate(:shipping_address)
-# shipping_address.save
-# billing_address = Fabricate(:billing_address)
-# billing_address.save
-# 
+               "http://29.media.tumblr.com/tumblr_lixd8gn85W1qa1nfco1_500.jpg")
+pending = Status.create(:name => StoreEngine::Status::PENDING)
+paid = Status.create(:name => StoreEngine::Status::PAID)
+Status.create(:name => StoreEngine::Status::RETURNED)
+
+ address = {:first_name => "Melanie", :last_name => "Gilman", 
+            :company => "Living Social", :line_1 => "New York Ave", 
+            :city => "Washington", :state => "DC", :zipcode => "20005", 
+            :phone => "555-555-5555"}
+ shipping_address = ShippingAddress.create(address)
+ billing_address = BillingAddress.create(address)
+ 
+
+ def create_order(user, status, shipping_address, billing_address)
+   Order.create(:user => user, :status => status, 
+                :shipping_address => shipping_address, 
+                :billing_address => billing_address)
+
+   products = Product.all
+   product_count = rand(1..10)
+   product_count.times do |i|
+     item = OrderItem.create(:order => order, :product => Product.find(i))
+   end
+ end
 # item = OrderItem.new(:product => Product.find(1))
 # item2 = OrderItem.new(:product => Product.find(3))
 # items = [item, item2]
