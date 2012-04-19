@@ -36,7 +36,6 @@ class OrdersController < ApplicationController
     @shipping_address = @order.shipping_address
     @billing_address = @order.billing_address
 
-    if logged_in?
       if current_user.admin?
         status_name = @order.status.name
         if status_name == StoreEngine::Status::PENDING ||
@@ -46,9 +45,6 @@ class OrdersController < ApplicationController
       elsif @order.user != current_user
         not_found
       end
-    else
-      not_found
-    end
   end
 
   def update

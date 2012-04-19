@@ -54,4 +54,8 @@ class Order < ActiveRecord::Base
       order_item.save
     end
   end
+
+  def remove_item(order_item_id)
+    order_item = order_items.find(order_item_id).destroy
+  end
 end
