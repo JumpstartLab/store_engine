@@ -26,6 +26,8 @@
     <td id="total"><strong><%= cart.total %></strong></td>
   </tr>
 </table>
-<%= link_to "Place Order", new_order_path(:cart_id => cart, :current_user_id => current_user), :class => "btn btn-success", :id => "place_order"%>
-<%= link_to "Continue Shopping", products_path, :class => "btn btn-primary", :id => "to_products" %>
-<%= link_to "Clear Cart", cart_path(cart), :method => :delete, :class => "btn btn-danger", :id => "destroy_cart" %>
+<div class="btn-group">
+  <%= link_to "Clear Cart", cart_path(cart), :method => :delete, :class => "btn btn-danger", :id => "destroy_cart" %>
+  <%= link_to "Continue Shopping", products_path, :class => "btn btn-primary", :id => "to_products" %>
+  <%= link_to "Place Order", new_order_path(:cart_id => cart, :current_user_id => current_user), :class => "btn btn-success", :id => "place_order"%>
+</div>

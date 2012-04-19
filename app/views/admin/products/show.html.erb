@@ -22,8 +22,7 @@
     <%= image_tag(product.photo) %>
   </div>
 
-<div class="span9">
-  <%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post, :class => 'btn btn-success' %>
+<div class="span9 btn-group">
   <%= link_to "Back to all products", admin_products_path, :title => "back to all products", :class => 'btn'%>
   <%= link_to "Edit this product", edit_admin_product_path(product), :title => "edit this product", :class => 'btn btn-warning' %>
   <%= link_to "Delete this product", admin_product_path(product), :method => :delete, :confirm => "Delete \"#{product.title}\"?", :title => "delete this product", :class => 'btn btn-danger' %>

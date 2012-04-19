@@ -22,7 +22,7 @@
     <%= image_tag(product.photo) %>
   </div>
 <!-- </div> -->
-<div class="span9">
+<div class="span9 btn-group">
   <% if product.active? == true %>
     <%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post, :class => 'btn btn-success' %>
   <% end %>
