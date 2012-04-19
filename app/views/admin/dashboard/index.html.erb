@@ -35,7 +35,7 @@
       <p align="center">
         <% total = 0 %>
         <% Order.all.each do |order| %>
-          <% total = total + order.total_price %>
+          <% total = total + order.total %>
         <% end %>
         $<%= total %>
       </p>
