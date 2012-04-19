@@ -6,17 +6,10 @@ class ProductsController < ApplicationController
   def index
     if params[:search] && params[:search].length > 0
       @products = Product.active.find_by(params[:search])
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @products }
-      end
+      json_responder
     else
       @products = Product.active
-      
-      respond_to do |format|
-        format.html # index.html.erb
-        format.json { render json: @products }
-      end
+      json_responder
     end
   end
 
@@ -54,5 +47,14 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.destroy
     redirect_to products_path, :alert => "Product deleted."
+  end
+
+  private
+
+  def json_responder
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @products }
+    end
   end
 end
