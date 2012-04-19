@@ -32,7 +32,7 @@ describe "shopper" do
       end
       it "searches products by their title" do
         within "#main-content" do
-          page.should have_content "Search for"
+          page.should have_content "Find"
           fill_in "filtered", with: product.title
           click_link_or_button "Find"
           page.should have_content product.title
