@@ -1,15 +1,17 @@
 h3 = @category.name
 br
 ul class="thumbnails"
-  - @products.each do |product|
-    li class="span3"
-      a href=product_path(product) class="thumbnail"
-        - if product.photo.nil? || product.photo == ""
-          = image_tag('pug.jpg', :height => "200")
-        - else
-          = image_tag(product.photo, :height => "200")
-        p 
-        strong = link_to product.title, product_path(product)
-        br
-        | $
-        = product.price
+  - @product_rows.each do |row|
+      div.row
+        div.span12
+          - row.each do |product|
+              li class="span2"
+                a href=product_path(product) class="thumbnail"
+                  - if product.photo.nil? || product.photo == ""
+                    = image_tag('pug.jpg')
+                  - else
+                    = image_tag product.photo
+                p
+                strong = link_to product.title, product_path(product)
+                br
+                | $#{product.price}

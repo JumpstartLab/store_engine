@@ -17,8 +17,12 @@ class Order < ActiveRecord::Base
     )
    end
 
-  def display_date
+  def created_display_date
     created_at.strftime("%m/%d/%Y - %I:%M %p %Z")
+  end
+
+  def updated_display_date
+    updated_at.strftime("%m/%d/%Y - %I:%M %p %Z")
   end
 
   def update_status

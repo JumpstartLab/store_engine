@@ -1,5 +1,5 @@
-= form_for cart, :as => :put, :url => shopping_cart_path do |f|
-  table class="table table-striped"
+table class="table table-striped"
+  = form_for cart, :as => :put, :url => shopping_cart_path do |f|
     th
       td Item
       td
@@ -33,15 +33,13 @@
     tr
       td
       td 
-        button class="btn" 
           = link_to "Keep Shopping", products_path
       td  
         h3 Order Total 
       td
         h3 = "$#{cart.total}" 
       td
-        button class="btn" 
-          i class="icon-shopping-cart"
-            = link_to " Checkout", checkout_path
+        i class="icon-shopping-cart"
+          = link_to " Checkout", checkout_path
       td
 
