@@ -43,23 +43,35 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @cart = current_cart
+    check_for_empty_cart
+    if @order.save
+      build_order
+      redirect_to order_path(@order), notice: "Thank you for your order"
+    else
+      reset_upon_failed_order
+    end
+  end
+
+  def check_for_empty_cart
     @order.user = current_user
+    @cart = current_cart
     if @cart.line_items.empty?
       redirect_to products_path, notice: "Cart is empty"
       return
     end
-    if @order.save
-      @order.add_contents_of_cart(@cart, @order)
-      @order.status = "paid"
-      @order.save
-      Cart.destroy(session[:cart_id])
-      session[:cart_id] = nil
-      redirect_to order_path(@order), notice: "Thank you for your order"
-    else
-      @cart = current_cart
-      render action: 'new'
-    end
+  end
+
+  def build_order
+    @order.add_contents_of_cart(@cart, @order)
+    @order.status = "paid"
+    @order.save
+    Cart.destroy(session[:cart_id])
+    session[:cart_id] = nil
+  end
+
+  def reset_upon_failed_order
+    @cart = current_cart
+    render action: 'new'
   end
 
   def edit
@@ -68,12 +80,16 @@ class OrdersController < ApplicationController
   def update
     @order.update_attributes(params[:order])
     @order.save
+    update_status
+    redirect_to order_path(@order)
+  end
+
+  def update_status
     case params[:order][:status]
       when "shipped" then @order.ship
       when "cancelled" then @order.cancel
       when "paid" then @order.pay
     end
-    redirect_to order_path(@order)
   end
 
   def lookup_order
