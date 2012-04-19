@@ -6,7 +6,6 @@ gem 'sorcery'
 gem 'bcrypt-ruby'
 gem 'heroku'
 gem 'taps'
-gem 'sqlite3'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -17,7 +16,12 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+group :production do
+  gem 'pg'
+end
+
 group :development, :test do
+  gem 'sqlite3'
   gem 'fabrication'
   gem 'rspec-rails'
   gem 'capybara'

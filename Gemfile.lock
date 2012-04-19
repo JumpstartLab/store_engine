@@ -121,6 +121,7 @@ GEM
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
+    pg (0.13.2)
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.2)
@@ -243,6 +244,7 @@ DEPENDENCIES
   heroku
   jquery-rails
   launchy
+  pg
   rails (= 3.2.3)
   reek!
   rspec-rails
