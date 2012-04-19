@@ -89,12 +89,12 @@ class Order < ActiveRecord::Base
                      "shipped" => :return,
                      "paid"    => :ship
                   }
-    if next_status["#{self.status.name}"]                  
+    if next_status["#{self.status.name}"]
       send(next_status["#{self.status.name}"])
     end
     self.save
   end
-  
+
   def cancel
     self.status = Status.find_or_create_by_name('cancelled')
     self.cancelled_at = DateTime.now
