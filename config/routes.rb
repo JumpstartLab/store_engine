@@ -30,7 +30,8 @@ StoreEngine::Application.routes.draw do
   match '/signup',  :to => 'users#new'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
-
+  match '/code' => redirect("https://github.com/mikesea/store_engine"), :as => :code
+  
   # root :to => "static_pages#home"
   root :to => "products#index"
   # The priority is based upon order of creation:
