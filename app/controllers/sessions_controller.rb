@@ -24,6 +24,5 @@ class SessionsController < ApplicationController
   end
 
   def baller_logo
-    
   end
 end
