@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
 
   def create_part_three
     if @order.save_with_payment
-      UserMailer.order_confirmation(current_user, @order).deliver
+      # UserMailer.order_confirmation(current_user, @order).deliver
       create_part_four
     else
       render :new

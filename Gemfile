@@ -27,7 +27,9 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'reek', :git => "git://github.com/mvz/reek.git", :branch =>"ripper_ruby_parser-2"
   gem 'capybara'
+  gem 'cane', :git => "git://github.com/square/cane.git"
   gem 'launchy'
   gem 'faker'
   gem 'sqlite3'
