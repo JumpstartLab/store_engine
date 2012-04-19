@@ -10,13 +10,13 @@ class CallsController < ApplicationController
     #                                        :body=>"Testing")
     @call = @account.calls.create({:from => '5866904041', :to => '5862914303', :url => new_call_url })
     puts @message
-    render call_path(1)
+    redirect_to calls_path
   end
 
   def new
     render :layout => "empty"
   end
 
-  def show
+  def index
   end
 end
