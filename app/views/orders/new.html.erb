@@ -5,7 +5,7 @@
     <%= op.quantity %>
   <% end %>
 </div>
-
+<div class="span5">
 <h3>Billing Address:</h3>
 <%= form_for(@order) do |f| %>
   <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -58,3 +58,30 @@
   <% end %>
   <%= f.submit "Confirm" %>
 <% end %>
+</div>
+<div class="span5">
+  <div>
+    <h3>Or Checkout with Stripe</h3>
+  </div>
+<%= form_for @order, :html => { :id => "new_credit_card" } do |f| %>
+<%= f.fields_for :credit_cards do |credit_card_field| %>
+  <%= credit_card_field.hidden_field :stripe_card_token %>
+  <div class="field">
+    <%= label_tag :card_number, "Credit Card Number" %>
+    <%= text_field_tag :card_number, nil, name: nil %>
+  </div>
+  <div class="field">
+    <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+    <%= text_field_tag :card_code, nil, name: nil %>
+  </div>
+  <div class="field">
+    <%= label_tag :card_month, "Card Expiration" %>
+    <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+  </div>
+  <div id="stripe_error">
+    <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+  </div>
+  <% end %>
+<% end %>
+</div>

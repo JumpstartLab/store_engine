@@ -9,6 +9,7 @@ gem 'sorcery'
 gem 'mini_magick'
 gem 'carrierwave'
 gem 'twitter-bootstrap-rails'
+gem 'stripe'
 
 # Gems used only for assets and not required
 # in production environments by default.

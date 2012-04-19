@@ -16,3 +16,6 @@
 
 # Ignore SimpleCov
 coverage
+
+# Ignore stripe
+config/initializers/stripe.rb

@@ -1,12 +1,16 @@
 <div class="product span3" id="product_<%= product.id %>">
   <div class="product_container">
     <div class="product_title">
-      <h3><%= link_to product.title, product_path(product) %></h3>
+      <h3><%= link_to product_path(product) do %>
+            &mdash;&nbsp;<%= product.title %>&nbsp;&mdash;
+          <% end %>
+      </h3>
     </div>
     <div class="product_image">
       <%= link_to image_tag(product.image_url(:thumb).to_s), product_path(product) if product.image? %>
     </div>
     <%= link_to cart_products_path(:product_id => product), :id => "anim", :class => "btn", :method => :post, :remote => true do %><i class="icon-shopping-cart"></i>add to cart<% end %>
-    <%= link_to instant_orders_path(:product_id => product), :class => "btn btn-info", :method => :post, :confirm => "Really order #{product.title}?" do %>Instant Checkout<% end %>
+    <% if logged_in? %><%= link_to instant_orders_path(:product_id => product), :class => "btn btn-info", :method => :post, :confirm => "Really order #{product.title}?" do %>Instant Checkout<% end %>
+    <% end %>
   </div>
 </div>

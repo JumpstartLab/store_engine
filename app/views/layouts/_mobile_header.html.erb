@@ -1,0 +1,17 @@
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <%= link_to "Worace's Workshop", root_url, :class => "mobile-brand" %>
+      <div class="nav-collapse">
+        <% if logged_in? %>
+          <%= render :partial => 'layouts/mobile_in' %>
+        <% else %>
+          <%= render :partial => 'layouts/mobile_out' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

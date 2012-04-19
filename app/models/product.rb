@@ -13,7 +13,9 @@ class Product < ActiveRecord::Base
                             :greater_than => 0
                           }
   validates_format_of :remote_image_url, :allow_blank => true,
-  :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+                      :with => (/^(http|https):\/\/[a-z0-9]
+                                +([\-\.]{1}[a-z0-9]+)*\.[a-z]
+                                {2,5}(:[0-9]{1,5})?(\/.*)?$/ix)
 
   has_many :orders
   has_many :cart_products
@@ -36,10 +38,9 @@ class Product < ActiveRecord::Base
 
   def self.search(search)
     if search
-      find(:all,
-           :conditions => ["title LIKE ? and retired=?", "%#{search}%", false])
+      where("title LIKE ? and retired=?", "%#{search}%", false)
     else
-      find(:all, :conditions => ["retired=?", false])
+      where("retired=?", false)
     end
   end
 

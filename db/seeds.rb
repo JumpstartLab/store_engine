@@ -61,9 +61,12 @@ table = Product.create(:title => "Great table",
         :retired => true)
 
 # create categories
-furniture = Category.create(:name => "Furniture")
-accessory = Category.create(:name => "Accessories")
-appliance = Category.create(:name => "Appliances")
+furniture   = Category.create(:name => "Furniture")
+accessory   = Category.create(:name => "Accessories")
+tools       = Category.create(:name => "Tools")
+badgers     = Category.create(:name => "Badgers")
+comestibles = Category.create(:name => "Comestibles")
+taxidermy   = Category.create(:name => "Taxidermy")
 
 # fill categories
 

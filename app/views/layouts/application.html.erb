@@ -6,13 +6,19 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
   <![endif]-->
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "https://js.stripe.com/v1/" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= yield :head %>
 </head>
 <body>
-<%= render :partial => 'layouts/header' %>
+<% if mobile_device? %>
+  <%= render :partial => 'layouts/mobile_header' %>
+<% else %>
+  <%= render :partial => 'layouts/header' %>
+<% end %>
 <div class="container">
 <%= yield %>
 </div>

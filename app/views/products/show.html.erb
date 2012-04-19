@@ -22,6 +22,8 @@
   </div>
 <% end %>
 
+<%= link_to products_path, :class => "button back black" do %><span class="pointer"></span><span>Back</span><% end %>
+
 <h1><%= @product.title %></h1>
 <p><%= @product.description %></p>
 <p><%= number_to_currency(@product.price) %></p>

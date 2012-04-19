@@ -1,0 +1,24 @@
+<% if logged_in? && current_user.is_admin? %>
+<div id="admin_bar">
+<h4>To view an admin-only version of this products index, <%= link_to "click here", admin_products_path %>. You can also <%= link_to "Add a product", new_product_path %></h4>
+</div>
+<% end %>
+<% if notice %>
+  <div class="alert alert-info">
+    <p id="notice"><%= flash.now[:notice] %></p>
+  </div>
+<% end %>
+<div id="intro">
+  <h2>Browse:</h2>
+  <%= link_to "All Products", products_path, :class => "add_mobile_link" %>
+  <% @categories.each do |category| %>
+    <%= link_to "#{category.name.titleize}", category_path(category), :class => "add_mobile_link" %>
+  <% end %>
+</div>
+<div id="products">
+  <% if @products.any? %>
+    <%= render :partial => "products_row" %>
+  <% else %>
+    <p>Worace is busy making products!</p>
+  <% end %>
+</div>

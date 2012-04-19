@@ -141,6 +141,8 @@ GEM
       rake
     rdoc (3.12)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     ripper_ruby_parser (0.0.6)
       sexp_processor (~> 3.0)
     rspec (2.9.0)
@@ -187,6 +189,8 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.5)
+    stripe (1.6.3)
+      rest-client (~> 1.4)
     subexec (0.2.1)
     therubyracer (0.10.0)
       libv8 (~> 3.3.10)
@@ -229,5 +233,6 @@ DEPENDENCIES
   simplecov
   sorcery
   sqlite3
+  stripe
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)

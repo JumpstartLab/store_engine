@@ -40,6 +40,16 @@ class Order < ActiveRecord::Base
     Order.all.select {|order| order.status == "returned"}
   end
 
+  def self.search(search, user)
+    if search
+      user.orders.joins(:products).where(
+        "products.title like ? or products.description like ?",
+        "%#{search}%", "%#{search}%"
+        )
+    else
+      where("user_id=?", user.id)
+    end
+  end
 
   def status
     if order_statuses.any?

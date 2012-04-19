@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = current_user.orders
+    @orders = Order.search(params[:search], current_user)
   end
 
   def create
