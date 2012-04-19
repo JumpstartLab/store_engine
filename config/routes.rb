@@ -13,6 +13,9 @@ StoreEngine::Application.routes.draw do
   match "place_order", :to => "orders#new", :as => "place_order"
   # match "process_order/:id", :to => "orders#update", :as => "process_order"
 
+  match "/about", :to => "info#about"
+  match "/code", :to => "info#code"
+
   resources :users do
     resources :addresses, :only => [:create]
   end
