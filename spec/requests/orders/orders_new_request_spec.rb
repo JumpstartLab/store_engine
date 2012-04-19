@@ -76,7 +76,7 @@ describe "Orders" do
       end
 
       context "and I fill out the form" do
-        it "creates a new order via the form" do
+        before(:each) do
           click_link_or_button "Place Order"
           within(".new_order") do
             # billing address
@@ -109,9 +109,15 @@ describe "Orders" do
             fill_in 'order_credit_cards_cardholder_name', :with => ''
           end
           click_button 'Confirm'
+        end
+
+        it "creates a new order via the form" do
           current_path.should == "/orders/1"
         end
 
+        it "sets the status of the new order to paid" do
+          page.should have_content("Status: Paid")
+        end
       end
     end
   end

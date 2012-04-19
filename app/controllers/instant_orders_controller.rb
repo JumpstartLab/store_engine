@@ -13,6 +13,7 @@ class InstantOrdersController < ApplicationController
       @order.shipping_address = user.default_shipping_address
       @order.credit_cards << user.default_credit_card
       @order.add_product_by_product_id(params[:product_id], params[:quantity])
+      @order.order_statuses.new(:status => "paid")
       if @order.save
         params[:order] = @order.to_param
         redirect_to order_path(@order)

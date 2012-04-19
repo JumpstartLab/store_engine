@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
     @order.shipping_address = Address.new(params[:order][:shipping_address])
     @order.credit_cards << CreditCard.new(params[:order][:credit_card])
     @order.add_products_by_cart_id(params[:order][:cart_id])
+    @order.order_statuses.new(:status => "paid")
 
     if @order.save
       params[:order] = @order.to_param

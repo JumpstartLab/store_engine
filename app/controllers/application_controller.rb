@@ -38,7 +38,12 @@ class ApplicationController < ActionController::Base
  def add_session_cart_items(cart)
     if cart.cart_products.any?
       cart.cart_products.each do |cart_product|
-        @user.cart.cart_products << cart_product
+        product = cart_product.product
+        if @user.cart.product_ids.include?(product.id)
+          @user.cart.increment_quantity_for(product.id)
+        else
+          @user.cart.cart_products << cart_product
+        end
       end
     end
   end

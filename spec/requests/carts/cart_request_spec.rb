@@ -134,8 +134,26 @@ describe "Using the shopping cart" do
       user.cart.cart_products.last.quantity.should == 3
       user.cart.cart_products.count.should == 1
     end
+
   end
 
+  context "when a logged-out (anon) user adds a product already in their user-cart" do
+    it "correctly increments the existing cart_product" do
+      login(user)
+      visit product_path(product)
+      click_link_or_button "add to cart"
+
+      visit logout_path
+      visit product_path(product)
+      click_link_or_button "add to cart"
+      login(user)
+      visit "/cart"
+
+      page.should have_content(product.title)
+      user.cart.cart_products.last.quantity.should == 2
+      user.cart.cart_products.count.should == 1
+    end
+  end
   context "when viewing the cart" do
 
     before (:each) do
