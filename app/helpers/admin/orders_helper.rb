@@ -23,19 +23,19 @@ module Admin::OrdersHelper
   end
 
   def shipped_link(id)
-    link_to("Mark as shipped", 
+    link_to("Mark as shipped",
         admin_order_status_path(order_id: id, new_status: 'shipped'),
         method: :put)
   end
 
   def returned_link(id)
-    link_to("Mark as returned", 
+    link_to("Mark as returned",
         admin_order_status_path(order_id: id, new_status: 'returned'),
         method: :put)
   end
 
   def cancelled_link(id)
-    link_to("Mark as cancelled", 
+    link_to("Mark as cancelled",
         admin_order_status_path(order_id: id, new_status: 'cancelled'),
         method: :put)
   end

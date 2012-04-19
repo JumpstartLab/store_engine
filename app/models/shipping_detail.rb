@@ -12,7 +12,9 @@ class ShippingDetail < ActiveRecord::Base
 
   def set_to_default
     user = User.find(self.user_id)
-    self.default_shipping_address = true unless user.shipping_details.find_by_default_shipping_address(true)
+    unless user.shipping_details.find_by_default_shipping_address(true)
+      self.default_shipping_address = true
+    end
   end
 
 end

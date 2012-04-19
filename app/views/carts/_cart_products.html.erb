@@ -7,8 +7,8 @@
     </td>
     <td>
       <%= form_for cart_product do |f| %>
-        <%= f.text_field :quantity, :value => cart_product.quantity, :id => "quantity_product_#{cart_product.product.id}" %>
-        <%= f.submit "update", :class => "btn btn-large btn-primary", :id => "update_product_#{cart_product.product.id}" %>
+        <%= f.text_field :quantity, :value => cart_product.quantity, :id => "quantity_product_#{cart_product.product.id}", :class => "cart_product_quantity" %>
+        <%= f.submit "update", :class => "btn btn-medium btn-primary", :id => "update_product_#{cart_product.product.id}" %>
       <% end %>
     </td>
     <td><%= cart_product.price %></td>

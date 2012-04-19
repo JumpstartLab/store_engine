@@ -9,5 +9,4 @@ class ProductsController < ApplicationController
     @product = Product.find_by_id(params[:id])
     @categories = @product.categories
   end
-  
 end

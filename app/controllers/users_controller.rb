@@ -7,12 +7,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    user_info = params[:user]
+    @user = User.new(user_info)
     if @user.save
       cart = current_cart
-      user = login(params[:user][:email], params[:user][:password])
-      cart.assign_cart_to_user(user)
-      redirect_to_last_page("Welcome! Thanks for signing up!")
+      successful_login if user = login(user_info[:email], user_info[:password])
     else
       render :new
     end
@@ -26,6 +25,11 @@ class UsersController < ApplicationController
 private
   def is_current_user?
     redirect_to_last_page unless User.find_by_id(params[:id]) == current_user
+  end
+
+  def succesful_login
+    cart.assign_cart_to_user(user)
+    redirect_to_last_page("Welcome! Thanks for signing up!")
   end
 
 end
