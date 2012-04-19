@@ -81,6 +81,18 @@ describe Product do
       product_2.should be_true
     end
   end
+
+  describe ".top_grossing" do
+    let!(:product_1) { FactoryGirl.create(:product) }
+    let!(:product_2) { FactoryGirl.create(:product) }
+    let!(:order_item_1) { FactoryGirl.create(:order_item, :unit_price => 100, :quantity => 2, :product => product_1) }
+    let!(:order_item_2) { FactoryGirl.create(:order_item, :unit_price => 400, :quantity => 2, :product => product_2) }
+    let!(:order_item_3) { FactoryGirl.create(:order_item, :unit_price => 100, :quantity => 2, :product => product_1) }
+    it "returns the top grossing item" do
+      Product.top_grossing.title.should == product_1.title
+    end
+
+  end
 end
 
 
