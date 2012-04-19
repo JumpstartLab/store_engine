@@ -30,15 +30,17 @@ describe "When I want to place an order" do
           let(:stripe_card_token) { "tok_KM1feeMHDhSgiq" }
           let(:json) { JSON.parse(IO.read('spec/fixtures/stripe_new_customer_success.json')) }
 
-          before do
+          before(:each) do
+            CreditCard.any_instance.stub(:add_details_from_stripe_card_token).and_return(true)
             fill_in "Credit Card Number", with: 4242424242424242
             fill_in "Security Code on Card (CVV)", with: 234
-            select("1 - January", from: :card_month)
-            select("2013", from: "card_year")
+            select("2 - February", from: :card_month)
+            select("2014", from: "card_year")
+            click_link_or_button('Create Credit card')
           end
 
           it "should take me to the shipping details page" do
-            
+            save_and_open_page
           end
         end
 

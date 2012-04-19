@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     cart = current_cart
     if user = login(params[:email], params[:password], params[:remember_me])
-      successful_login
+      successful_login(cart, user)
     else
       session[:cart_id] = cart.id
       invalid_email
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
 
 private
 
-  def succesful_login
+  def successful_login(cart, user)
     cart.assign_cart_to_user(user)
     redirect_to_last_page("Logged in!")
   end

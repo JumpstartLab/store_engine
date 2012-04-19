@@ -1,6 +1,5 @@
 class Product < ActiveRecord::Base
-  REGEX = /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}
-    (?:\/[^\/#?]+)+\.(?:jpg|gif|png|jpeg)$/
+  REGEX = /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpg|gif|png|jpeg)$/
   attr_accessible :description, :name, :photo, :price
   before_save :check_for_photo
 
