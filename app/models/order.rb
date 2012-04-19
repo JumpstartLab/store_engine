@@ -24,6 +24,55 @@ class Order < ActiveRecord::Base
     return order
   end
 
+  def self.search_by_item(term, user)
+    items = Product.where("upper(name) like ? or upper(description) like ?",
+                          "%#{term.upcase}%", "%#{term.upcase}%")
+    orders = user.orders
+    orders.select do |order|
+      (order.order_items.map(&:product) & items.to_a).any?
+    end
+  end
+
+  def self.admin_search(params)
+    @orders = Order.all.to_a
+    unless params[:date_term].blank?
+      @orders = @orders & date_search(params).to_a
+    end
+    unless params[:price_term].blank?
+      @orders = @orders & price_search(params).to_a
+    end
+    unless params[:status_filter].blank?
+      @orders = @orders & status_filter(params[:status_filter].downcase).to_a
+    end
+    @orders
+  end
+
+  def self.price_search(params)
+    case params[:price_filter]
+    when "<"
+      Order.all.select { |order| order.total_price < params[:price_term].to_f }
+    when ">"
+      Order.all.select { |order| order.total_price > params[:price_term].to_f }
+    when "="
+      Order.all.select { |order| order.total_price == params[:price_term].to_f }
+    end  
+  end
+
+  def self.date_search(params)
+    case params[:date_filter]
+    when "<"
+      self.where("status_date < ?", DateTime.parse(params[:date_term]))
+    when ">"
+      self.where("status_date > ?", DateTime.parse(params[:date_term]))
+    when "="
+      self.where("status_date < ?", DateTime.parse(params[:date_term]))
+    end
+  end
+
+  def self.status_filter(filter_term)
+    self.where("status = ?", filter_term)
+  end
+
   def add_items_from_cart!(cart)
     cart.cart_items.each do |cart_item|
       self.order_items.create!(product_id: cart_item.product_id,

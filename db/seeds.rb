@@ -152,7 +152,8 @@ o[i] = Order.create!(billing_address: "#{(rand * 10000).to_i} any street",
                    shipping_address: "Home Sweet Home",
                    email_address: "Fakey Email #{i}",
                    status: 'pending',
-                   credit_card: "Bogus Card # #{i}")
+                   credit_card: "Bogus Card # #{i}",
+                   status_date: (rand * 30).to_i.days.ago)
      5.times do 
           o[i].order_items.create!(product_id: (rand * 20).to_i + 1,
                                   quantity: (rand * 10).to_i + 1)

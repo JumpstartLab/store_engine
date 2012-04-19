@@ -1,3 +1,10 @@
+<%= form_tag orders_path, method: :get do %>
+  <%= label_tag :q, "Search by Product: " %>
+  <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<%= button_to "Clear Search", orders_path %>
 <table>
   <tr>
     <th> Order # </th>

@@ -6,10 +6,10 @@ class Admin::OrdersController < ApplicationController
 
   def index
     @count_report = Order.count_report
-    if params[:status_filter]
-      @orders = Order.where(status: params[:status_filter].downcase)
+    if params[:commit]
+      @orders = Order.admin_search(params)
     else
-      @orders = Order.all
+      @orders = Order.all  
     end
   end
 
