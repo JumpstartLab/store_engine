@@ -1,6 +1,6 @@
 ## StoreEngine
 link to live application:
-http://wholeearth.herokuapp.com/
+http://whole-earth.herokuapp.com/
 
 
 http://tutorials.jumpstartlab.com/projects/store_engine.html
