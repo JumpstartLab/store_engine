@@ -5,7 +5,6 @@ gem 'jquery-rails'
 gem 'sorcery'
 gem 'bcrypt-ruby'
 gem 'heroku'
-gem 'taps'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,6 +20,7 @@ group :production do
 end
 
 group :development, :test do
+  gem 'taps'
   gem 'pg'
   gem 'fabrication'
   gem 'rspec-rails'
