@@ -3,7 +3,12 @@ class ProductsController < ApplicationController
   before_filter :categories, :only => [:new, :edit]
 
   def index
-    @products = Product.find(:all, :conditions => { :retired => false })
+    products = Product.find(:all, :conditions => { :retired => false })
+    rows = products.length / 5
+    @product_rows = []
+    rows.times do |i|
+      @product_rows << products.pop(5)
+    end
   end
 
   def new
