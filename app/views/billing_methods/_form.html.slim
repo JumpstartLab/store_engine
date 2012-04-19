@@ -15,8 +15,13 @@ h1 Input Your Billing Info
   = f.label :credit_card_number
   = f.text_field :credit_card_number
 
-  = f.label :expiration_date
-  = f.date_select :credit_card_expiration_date, {add_month_numbers: true, discard_day: true, order: [:month, :year]}
+  / = f.label :credit_card_expiration_date
+  / = f.date_select :credit_card_expiration_date, {add_month_numbers: true, discard_day: true, order: [:month, :year]}
+  = f.label :month
+  = f.text_field :month
+
+  = f.label :year
+  = f.text_field :year
 
   = f.label :street
   = f.text_field :street
