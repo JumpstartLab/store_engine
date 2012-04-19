@@ -1,3 +1,8 @@
+def create_product(title, description, photo)
+Product.create(:title => title, :description => description, :price => rand(10000).to_s,
+               :photo => photo)
+end
+
 matt = User.create(:first_name => "Matt", :last_name => "Yoho",
             :email => "matt.yoho@livingsocial.com", :password => "hungry", 
             :display_name => "The YOHO")
@@ -14,18 +19,52 @@ Category.create(:name => "cute pugs")
 Category.create(:name => "awesome pugs")
 Category.create(:name => "sweet pugs")
 Category.create(:name => "sad face pugs")
-Product.create(:title => "Bailey", :description => "Bailey is super cute!", :price => rand(10000).to_s,
-               :photo => "http://28.media.tumblr.com/tumblr_lirvqoFIAO1qaa50yo1_500.jpg")
-Product.create(:title => "Zeek", :description => "Zeek is the best pug you'll ever meet!",
-               :price => rand(10000).to_s, :photo => "http://24.media.tumblr.com/tumblr_lima5j6wR11qzqe35o1_500.jpg")
-Product.create(:title => "Lucy", :description => "Lucy is goosey!", :price => rand(10000).to_s,
-               :photo => "http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg")
+Category.create(:name => "sexy pugs")
+
+create_product("Bailey", "Bailey is super cute!", 
+               "http://28.media.tumblr.com/tumblr_lirvqoFIAO1qaa50yo1_500.jpg")
+create_product("Zeek", "Zeek is the best pug you'll ever meet!",
+               "http://24.media.tumblr.com/tumblr_lima5j6wR11qzqe35o1_500.jpg")
+create_product("Lucy", "Lucy is goosey!", 
+               "http://30.media.tumblr.com/tumblr_lj50gs8rAX1qaa50yo1_500.jpg")
+create_product("Sadie", "Sadie is such a sweet, tasty pug.", 
+               "http://28.media.tumblr.com/tumblr_locinzasB91qzj3syo1_500.jpg")
+create_product("Ginger", "Ginger looooooves cookies!", 
+               "http://28.media.tumblr.com/tumblr_locinzasB91qzj3syo1_500.jpg")
+create_product("Charlie", "It's highly advisable to not bite his finger", 
+               "http://27.media.tumblr.com/tumblr_llq0m1ofS71qk2cjro1_500.jpg")
+create_product("Bear", "He'll maul you with love!", 
+               "http://30.media.tumblr.com/tumblr_lisw5dD4Pu1qbbpjfo1_400.jpg")
+create_product("Inky", "The beach. The sun. Inky doesn't discriminate", 
+               "http://26.media.tumblr.com/tumblr_lirnni3XjG1qzgcv7o1_500.png")
+create_product("Annie", "Pugs pugs pugs pugs pugs pugs pugs pugs pugs", 
+"http://27.media.tumblr.com/tumblr_ltuo57ahqE1qa6z3eo1_500.jpg")
+create_product("Gizmo", "Gizmo duck...pug!", 
+"http://27.media.tumblr.com/tumblr_ll3xua50Vr1qb08qmo1_500.jpg")
+create_product("Isabella", "Bella mia!", 
+"http://29.media.tumblr.com/tumblr_lhjuu5y74J1qaa50yo1_500.jpg")
+create_product("Oscar", "He's a cute pug, but he's so grouchy!", 
+"http://29.media.tumblr.com/tumblr_ll267csxAQ1qb08qmo1_500.jpg")
+create_product("Rex", "RAWR! Means I love you in pug.", 
+"http://24.media.tumblr.com/tumblr_lk7u170Ztt1qb33vho1_500.jpg")
+create_product("Rose", "Smells so sweet. Then she bites you. Hard.", 
+"http://27.media.tumblr.com/tumblr_lhty7gGku61qb08qmo1_500.jpg")
+create_product("Scooter", "Scoot Scoot Scoot. He's not potty trained yet.", 
+"http://27.media.tumblr.com/tumblr_lhtxzoe4lb1qb08qmo1_500.jpg")
+create_product("Socks", "Hide your socks! No socks are safe from this pug!", 
+"http://27.media.tumblr.com/tumblr_lojtswfhv41qzio3qo1_500.jpg")
+create_product("Max", "Favorite movie? Mad Max and the Thunderdome.", 
+"http://24.media.tumblr.com/tumblr_lixgdemCvf1qaa50yo1_500.jpg")
+create_product("Spike", "Insert witty pug comment here.", 
+"http://24.media.tumblr.com/tumblr_li5lkvn1xF1qaa50yo1_500.jpg")
+create_product("Magic", "Just like the rails.", 
+"http://28.media.tumblr.com/tumblr_lim8n49s881qa9dmvo1_500.jpg")
+create_product("Katie", "Why do people name their cute pugs after humans?", 
+"http://29.media.tumblr.com/tumblr_lixd8gn85W1qa1nfco1_500.jpg")
+               #
 # 30.times { Fabricate(:product).save } 
-# 
  pending = Status.create(:name => StoreEngine::Status::PENDING)
- Status.create(:name => StoreEngine::Status::CANCELLED)
  paid = Status.create(:name => StoreEngine::Status::PAID)
- shipped = Status.create(:name => StoreEngine::Status::SHIPPED)
  Status.create(:name => StoreEngine::Status::RETURNED)
 # 
 # shipping_address = Fabricate(:shipping_address)
