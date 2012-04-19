@@ -3,12 +3,12 @@ require 'spec_helper'
 describe "Categories Requests" do
 
   context "when logged in as an admin" do
-    let!(:user) { Fabricate(:user, email: "admin@example.com", admin: true) }
+    let!(:admin_user) { Fabricate(:user, email: "admin@example.com", admin: true) }
 
     before(:each) do
       visit signin_path
-      fill_in "Email",        with: user.email
-      fill_in "Password",     with: user.password
+      fill_in "Email",        with: admin_user.email
+      fill_in "Password",     with: admin_user.password
       click_button "Sign in"
     end
 
@@ -19,11 +19,13 @@ describe "Categories Requests" do
       let!(:categories) { [test_category_one, test_category_two, test_category_three] }
 
       before(:each) do
-        visit admin_categories_path
+        visit categories_path
       end
 
       it "displays the list of categories" do
-        page.should have_content(test_category_one.name)
+        page.should have_content(test_category_one.name)   
+        page.should have_content(test_category_two.name)
+        page.should have_content(test_category_three.name)
       end
     end
 
@@ -41,7 +43,7 @@ describe "Categories Requests" do
       it "destroys the category" do
         pending "This requires approval of JavaScript warning message"
         click_link("Destroy this Category")
-        click_link_or_button("OK")
+        # Need to click the alert box 'ok' here. Test is fine to this point.
         page.should_not have_content(category.name)
       end
     end
@@ -104,7 +106,42 @@ describe "Categories Requests" do
         page.should have_content("Test Updated Category")
       end
     end
+  end
 
+  context "When logged in as a non-admin user" do
+    let!(:user) { Fabricate(:user, email: "foozberry@example.com") }
+
+    before(:each) do
+      visit signin_path
+      fill_in "Email",        with: user.email
+      fill_in "Password",     with: user.password
+      click_button "Sign in"
+    end
+
+    context "index" do
+
+      let!(:categories) { [Fabricate(:category), Fabricate(:category)] }
+
+      before(:each) do
+        visit "/categories/"
+      end
+
+      it "lists the categories" do
+        within("table#categories") do
+          categories.each do |category|
+            page.should have_selector("td#category_#{category.id}")
+          end
+        end
+      end
+
+      it "links to the categories" do
+        within("table#categories") do
+          categories.each do |category|
+            page.should have_link(category.name, :href => category_path(category))
+          end
+        end
+      end
+    end
   end
 
   context "when logged in as a basic user" do
@@ -171,7 +208,6 @@ describe "Categories Requests" do
         current_path.should == categories_path
       end
     end
-
   end
 
   context "when not logged in" do
