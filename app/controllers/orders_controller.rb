@@ -45,8 +45,6 @@ class OrdersController < ApplicationController
   def create_part_two
     @order.add_order_items_from(@cart)
     @order.address.user = current_user
-    @cart.destroy
-    session[:cart_id] = nil
     create_part_three
   end
 
@@ -61,6 +59,8 @@ class OrdersController < ApplicationController
 
   def create_part_four
     @order.status.change
+    @cart.destroy
+    session[:cart_id] = nil
     redirect_to @order,
     :notice => "Transaction Complete"
   end
