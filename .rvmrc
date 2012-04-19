@@ -1,1 +1,1 @@
-rvm use --create 1.9.2@store_engine
+rvm use --create 1.9.3@store_engine
