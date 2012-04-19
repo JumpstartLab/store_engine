@@ -53,8 +53,7 @@ class OrdersController < ApplicationController
 
   def check_out
     link = "<a href=\"#{url_for(@order)}\">View Details</a>"
-    notice = "Thank you for purchasing.
-    An email confirmation is on its way. #{link}".squish.html_safe
+    notice = "Thank you for purchasing. #{link}".html_safe
     session[:previous_order_id] = session[:order_id] if !logged_in?
     session[:order_id] = nil
     redirect_to root_url, notice: notice
