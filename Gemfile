@@ -5,6 +5,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'sorcery'
 gem 'bcrypt-ruby'
+gem 'taps'
 
 # Gems used only for assets and not required
 # in production environments by default.
