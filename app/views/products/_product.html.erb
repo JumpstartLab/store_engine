@@ -13,11 +13,12 @@
           :class => "btn btn-small btn-info" %>
           <br />
      <% if admin? %>
+     <br />
     <%= link_to 'Destroy', product, 
           confirm: 'Are you sure?', method: :delete,
-          :class => 'btn btn-danger' %>
+          :class => 'btn btn-danger btn-mini' %>
     <%= link_to 'Edit', edit_product_path(product),
-    :class => 'btn btn-info'  %>
+    :class => 'btn btn-info btn-mini'  %>
     <%= if product.activity then "Active" else "Retired" end %>
       <% end %>
       </div>
