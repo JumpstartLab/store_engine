@@ -19,6 +19,10 @@ class LineItemsController < ApplicationController
   def edit
   end
 
+  def show
+    redirect_to order_path(@order)
+  end
+
   def update
     if params[:line_item][:quantity] == "0"
       @line_item.destroy

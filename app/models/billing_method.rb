@@ -29,4 +29,5 @@ class BillingMethod < ActiveRecord::Base
   def has_user?
     user ? true : false
   end
+
 end

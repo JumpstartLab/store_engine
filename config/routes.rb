@@ -21,9 +21,9 @@ StoreEngine::Application.routes.draw do
 
   resources :categories
   resources :orders, except: [:new, :create]
-  resources :billing_methods, except: [:show, :destroy]
-  resources :line_items, except: [:show, :new]
-  resources :shipping_addresses, except: [:show, :destroy]
+  resources :billing_methods, except: [:destroy]
+  resources :line_items, except: [:new]
+  resources :shipping_addresses, except: [:destroy]
   root to: "products#index"
 
 end

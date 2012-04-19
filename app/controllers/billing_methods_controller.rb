@@ -15,6 +15,10 @@ class BillingMethodsController < ApplicationController
     session[:return_to] = request.referrer
   end
 
+  def show
+    redirect_to root_url
+  end
+
   def create
     @billing_method = BillingMethod.new(params[:billing_method])
     try_to_save_billing

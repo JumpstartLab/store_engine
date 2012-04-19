@@ -15,6 +15,10 @@ class ShippingAddressesController < ApplicationController
     session[:return_to] = request.referrer
   end
 
+  def show
+    redirect_to root_url
+  end
+
   def create
     @shipping_address = ShippingAddress.new(params[:shipping_address])
     try_to_save_shipping
