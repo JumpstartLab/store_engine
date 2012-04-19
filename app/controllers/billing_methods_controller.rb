@@ -12,7 +12,6 @@ class BillingMethodsController < ApplicationController
   end
 
   def create
-    raise params.inspect
     @billing_method = BillingMethod.new(params[:billing_method])
     try_to_save_billing
   end
