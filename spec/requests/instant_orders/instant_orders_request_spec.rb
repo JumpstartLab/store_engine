@@ -21,6 +21,7 @@ describe "Instant Orders" do
     user.set_default_shipping_address_by_id(shipping.id)
     user.set_default_billing_address_by_id(billing.id)
     user.set_default_credit_card_by_id(credit_card.id)
+    user.save
   end
 
   context "when viewing a product page" do
@@ -64,12 +65,6 @@ describe "Instant Orders" do
           login(user)
           visit product_path(product)
           click_link_or_button "Instant Checkout"
-        end
-
-        it "redirects back to the previous page" do
-          pending
-          # Order.stub(:create) { mock_model(Order, :save => false) }
-          # current_path.should == "/"
         end
       end
     end

@@ -31,16 +31,12 @@ class ApplicationController < ActionController::Base
     elsif session[:cart_id]
       Cart.find_by_id(session[:cart_id])
     else
-      Cart.create.tap{ |c| session[:cart_id] = c.id }
+      Cart.create.tap{ |cart| session[:cart_id] = cart.id }
     end
   end
 
- def add_session_cart_items(cart)
-    if cart.cart_products.any?
-      cart.cart_products.each do |cart_product|
-        @user.cart.cart_products << cart_product
-      end
-    end
+  def add_session_cart_items(session_cart)
+    @user.cart.merge(session_cart) if session_cart.cart_products.any?
   end
 
   def current_user

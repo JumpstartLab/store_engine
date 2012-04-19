@@ -111,13 +111,16 @@ class Order < ActiveRecord::Base
 
   def add_product_by_product_id(product_id, quantity = 1)
     product = Product.find_by_id(product_id)
+    create_order_product_for_new_product(product, quantity)
+  end
+
+  def create_order_product_for_new_product(product, quantity)
     order_product = order_products.new
-    order_product.product_id = product_id
+    order_product.product = product
     order_product.quantity = quantity
     order_product.price = product.best_price
     save
   end
-
 
   def create_order_product_from_cart_product(cart_product)
     order_product = order_products.new
