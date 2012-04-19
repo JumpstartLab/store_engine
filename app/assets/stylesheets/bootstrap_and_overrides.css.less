@@ -79,12 +79,15 @@ img.logo { width: 50px; float: left; padding-right: 15px; }
     float: left;
     list-style: none;
     margin: 10px;
-    overflow: hidden;
-    img {
-      .bottom_rounded(5px);
+    .image {
       width: 195px;
       height: 180px;
       overflow: hidden;
+      .bottom_rounded(5px);
+    }
+    img {
+      .bottom_rounded(5px);
+      width: 200px;
     }
     .overlay{
       background: rgba(0,0,0,.5);
@@ -133,3 +136,16 @@ img.logo { width: 50px; float: left; padding-right: 15px; }
 /****************ORDERS**********/
 
 #order-status { font-size: 16px; margin: 15px 0; padding: 10px; background-color: #ccb06b; .rounded(8px); text-align: center; font-family: Arial Rounded MT, Helvetica, Arial, Sans Serif; }
+
+/**********CART*********/
+.cart_font {
+  font-size: 16px; font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; color: #4d453f;
+}
+#cart-aside{
+  #cart_item_title {
+    .cart_font;
+  }
+  #cart_total {
+    .cart_font; color: #0e1735; font-size: 18px;
+  }
+}
