@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def not_authenticated
-    redirect_to login_url, :alert => "SIGN IN BITCH!"
+    redirect_to login_url, :alert => "Please sign in."
   end
 
   def admin?

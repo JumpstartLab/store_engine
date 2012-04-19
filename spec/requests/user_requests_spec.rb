@@ -23,7 +23,7 @@ describe User do
   it "can't login with an invalid email" do
     user.email = 'invalid@1337807.com'
     login_as(user)
-    page.should have_content("invalid")
+    page.should have_content("Invalid email or password.")
   end
 
   it "can logout" do
@@ -69,8 +69,9 @@ describe User do
 
       it "edit" do
         click_link "Edit"
-        fill_in "product_title", :with => "Shit"
+        fill_in "product_title", :with => "Stuff"
         click_button "Update Product"
+        find(".product_title").text.should == "Stuff"
       end
 
       it "view" do
@@ -93,9 +94,9 @@ describe User do
 
       it "edit" do
         click_link "Edit"
-        fill_in "Name", :with => "SUCKA!"
+        fill_in "Name", :with => "Darrell"
         click_button "Update Category"
-        page.should have_content("SUCKA!")
+        page.should have_content("Darrell")
       end
 
       it "view with associated products" do
@@ -171,7 +172,7 @@ describe User do
     it "can't create new products" do
       visit new_admin_product_path
       page.should have_content("Log in")
-      page.should have_content("SIGN IN BITCH!")
+      page.should have_content("Please sign in.")
     end
   end
 
