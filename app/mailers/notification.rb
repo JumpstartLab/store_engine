@@ -1,6 +1,6 @@
 # Sends out an email
 class Notification < ActionMailer::Base
-  default from: "noreply@store-engine.herokuapp.com"
+  default from: "noreply@ehipster.herokuapp.com"
 
   def order_email(user, order)
     @user = user
