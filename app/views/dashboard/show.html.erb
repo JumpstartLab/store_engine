@@ -52,7 +52,7 @@
             <td><% order.products.each do |t| %>
                     <%= t.title %>, 
                   <% end %></td>
-            <td><%= order.current_status %></td>
+            <td><strong><%= order.current_status %></strong></td>
             <td><%= order.updated_at.strftime("%m/%d/%Y  %I:%M%p") %>
             <td>$<%= order.total_price %></td>
     </tr><% end %>
@@ -74,7 +74,7 @@
   <tbody>
     <% @categories.each do |category| %><tr>
       <td><%= link_to category.title, category_path(category) %></td>
-      <td><%= link_to "Edit", edit_category_path(category) %></td>
+      <td><%= link_to "Edit", edit_category_path(category), :class => "btn btn-mini" %></td>
     </tr><% end %>
   </tbody> 
 </table>
@@ -100,7 +100,7 @@
       <td><%= number_to_currency(product.price) %></td>
       <td><%= product.sales %></td>
       <td><%= product.categories.map! { |k| "#{k.title}" }.join(", ") %></td>
-      <td><%= link_to "Edit", edit_product_path(product) %></td>
+      <td><%= link_to "Edit", edit_product_path(product), :class => "btn btn-mini" %></td>
     </tr><% end %>
   </tbody> 
 </table>

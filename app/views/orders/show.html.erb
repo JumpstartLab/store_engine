@@ -1,4 +1,6 @@
+<div class="well">
 <h1>Order: <%= @order.id %> </h1>
+</div>
 <br />
 <br />
 <h2>Status: <%= @order.current_status.upcase %></h2>
@@ -29,14 +31,11 @@
 
 <h2 align="right">Total Price: <%= number_to_currency(@order.total_price) %></h2>
 
-
-<%= link_to "Edit", edit_order_path(@order) %> |
-
 <% if admin? %>
-  <%= link_to "Edit", edit_order_path(@order) %>
-  <%= link_to "Your Orders", orders_path %> |
-  <%= link_to "Dashboard", dashboard_path%>
+  <%= link_to "Edit", edit_order_path(@order), :class => "btn btn-mini" %>
+  <%= link_to "Your Orders", orders_path, :class => "btn btn-mini" %>
+  <%= link_to "Dashboard", dashboard_path, :class => "btn btn-mini" %>
    
 <% else %>
-  <%= link_to "Back to Your Orders", orders_path %>
+  <%= link_to "Back to Your Orders", orders_path, :class => "btn btn-large" %>
 <% end %>
