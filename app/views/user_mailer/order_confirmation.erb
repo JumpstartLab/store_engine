@@ -1,0 +1,16 @@
+<h1>Thanks <%=@user.full_name %>!</h1>
+
+<p>Thanks for purchasing some of our stuff! We hope you'll enjoy the shoes. So many shoes.</p>
+
+<h2>Order ID: #<%= @order.id %></h2>
+<h3>You bought:</h3>
+<ul>
+  <% @order.order_items.each do |oi| %>
+  <li><%= oi.product.title %> (<%= oi.quantity %>)</li>
+  <% end %>
+</ul>
+
+<p>and you spent</p>
+<h3><%= number_to_currency(@order.total_price) %></h3>
+
+<p>Whoa! Watch it big spender.</p>

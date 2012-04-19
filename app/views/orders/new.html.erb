@@ -8,6 +8,11 @@
     <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
   </div>
 
+  <div class="alert alert-warning">
+    <a class="close" data-dismiss="alert">×</a>
+    <strong>Use credit card #42424242424242</strong> We're setting things up with Stripe, our payment processor. Please use the card number #42424242424242 as Stripe will recognize it as a fake number and will not charge us boatloads.
+  </div>
+
 
   <% if @order.errors.any? %>
     <div class="error_messages">
@@ -59,6 +64,6 @@
 
   <% end %>
   <%= f.hidden_field :stripe_card_token %>
-  <div class="actions"><%= f.submit "Place order" %></div>
+  <div class="actions"><%= f.submit "Place order", :class => "btn btn-large btn-success" %></div>
 <% end %>
 

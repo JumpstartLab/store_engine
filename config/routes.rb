@@ -17,6 +17,7 @@ StoreEngine::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
 
   resource :cart, :only => [:show, :update]
+  match "/code" => redirect("http://github.com/chrismanderson/store_engine")
 
   root :to => 'products#index'
   # The priority is based upon order of creation:
