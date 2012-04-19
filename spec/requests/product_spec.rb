@@ -8,7 +8,7 @@ describe "Viewing products" do
       before(:each) { visit products_path }
 
       it "lets me view the products index" do
-        page.should have_selector('h1', content: 'Products')
+        page.should have_content('Browse')
       end
 
       context "and a category has been created" do
@@ -62,7 +62,7 @@ describe "Viewing products" do
       before(:each) { visit products_path }
 
       it "lets me view the products index" do
-        page.should have_selector('h1', content: 'Products')
+        page.should have_content('Browse')
       end
 
       context "and a category has been created" do
