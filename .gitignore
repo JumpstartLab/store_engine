@@ -18,4 +18,4 @@
 coverage
 
 # Ignore stripe
-config/initializers/stripe.rb
+# config/initializers/stripe.rb
