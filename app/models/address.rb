@@ -11,7 +11,7 @@ class Address < ActiveRecord::Base
     if result
       self.state = result.state
       self.country = result.country
-      self.formatted_address = result.formatted_address
+      self.formatted_address = result.address
     end
   end
 
