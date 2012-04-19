@@ -16,6 +16,7 @@ StoreEngine::Application.routes.draw do
 
   resources :users
 
+  get "cart" => "carts#index"
   resources :carts
 
   resources :cart_items do
@@ -25,9 +26,8 @@ StoreEngine::Application.routes.draw do
       delete "remove"
     end
   end
-get "/admin" => "admin#index"
 
-  
+  get "/admin" => "admin#index"
   namespace :admin do
     resources :products do
       put "retire", :on => :member
