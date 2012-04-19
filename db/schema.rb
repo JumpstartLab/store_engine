@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418211830) do
+ActiveRecord::Schema.define(:version => 20120419010837) do
 
   create_table "activations", :force => true do |t|
     t.integer  "product_id"
@@ -127,9 +127,9 @@ ActiveRecord::Schema.define(:version => 20120418211830) do
 
   create_table "sales", :force => true do |t|
     t.datetime "endtime"
-    t.decimal  "percentage"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "percentage"
   end
 
   create_table "shipping_addresses", :force => true do |t|

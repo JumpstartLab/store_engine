@@ -5,4 +5,11 @@ class Category < ActiveRecord::Base
   has_many :products, :through => :product_categories
   belongs_to :sale
 
+  def on_sale?
+    if sale && sale.endtime >= Time.now
+      true
+    else
+      false
+    end
+  end
 end
