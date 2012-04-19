@@ -69,5 +69,14 @@ require 'spec_helper'
       visit admin_orders_path(@order, status_filter: 'returned', commit: "Filter")
       page.should_not have_content @order.email_address
     end
+
+    it "allows an admin to filter orders by date, status, and price" do
+      u = Fabricate(:user)
+      u.update_attribute(:admin, true)
+      log_in(u, 'asdfasdf')
+      @order = Fabricate(:order, status_date: Date.today)
+      visit admin_orders_path(@order, status_filter: 'pending', date_filter: ">", date_term: 1.day.ago.strftime("%m/%d/%y"), price_filter: ">", price_term: "0.01", commit: "Filter")
+      page.should have_content @order.email_address
+    end
   end
 
