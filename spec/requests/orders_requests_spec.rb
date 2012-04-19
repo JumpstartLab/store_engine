@@ -14,11 +14,11 @@ describe "Orders requests", :orders => :requests do
     end 
 
     it "shows current users orders" do
-      page.should have_content("#{order2.display_date}")
+      page.should have_content("#{order2.created_display_date}")
     end
 
     it "shows individual order page" do
-      click_link "#{order.display_date}"
+      click_link "#{order.created_display_date}"
       page.current_path.should == order_path(order2.id)
     end
 
@@ -62,12 +62,12 @@ describe "Orders requests", :orders => :requests do
       end 
 
       it "cancels a pending order" do
-        page.should_not have_content(order.display_date) 
+        page.should_not have_content(order.created_display_date) 
       end
 
       it "displays a pending order as cancelled" do
         visit admin_dashboard_index_path(:status => cancelled_status.name)
-        page.should have_content(order.display_date) 
+        page.should have_content(order.created_display_date) 
       end
     end
 
@@ -83,11 +83,11 @@ describe "Orders requests", :orders => :requests do
 
       it "changes order status to returned" do
         visit admin_dashboard_index_path(:status  => returned_status.name)
-        page.should have_content(order.display_date) 
+        page.should have_content(order.created_display_date) 
       end
 
       it "marks order as returned" do
-        page.should_not have_content(order.display_date) 
+        page.should_not have_content(order.created_display_date) 
       end
     end
 
@@ -103,11 +103,11 @@ describe "Orders requests", :orders => :requests do
 
       it "changes order status to shipped" do
         visit admin_dashboard_index_path(:status  => shipped_status.name)
-        page.should have_content(order.display_date) 
+        page.should have_content(order.created_display_date) 
       end
 
       it "marks order as shipped" do
-        page.should_not have_content(order.display_date) 
+        page.should_not have_content(order.created_display_date) 
       end
     end
   end
