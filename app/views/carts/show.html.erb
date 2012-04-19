@@ -25,7 +25,7 @@
 
         <td> <%= form_for line_item do |f| %>
                 <%= f.number_field :quantity, :value => line_item.quantity, :size =>100, :min => 1 %>
-                <%= f.submit "update quantity" %> 
+                <%= f.submit "update quantity", :class => 'btn' %> 
                 <% end %></td>
                 
         <td><%= sprintf("$%0.02f", line_item.subtotal) %></td>
