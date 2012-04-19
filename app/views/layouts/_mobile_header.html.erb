@@ -9,9 +9,9 @@
       <%= link_to "Worace's Workshop", root_url, :class => "brand" %>
       <div class="nav-collapse">
         <% if logged_in? %>
-          <%= render :partial => 'layouts/nav_logged_in' %>
+          <%= render :partial => 'layouts/mobile_in' %>
         <% else %>
-          <%= render :partial => 'layouts/nav_logged_out' %>
+          <%= render :partial => 'layouts/mobile_out' %>
         <% end %>
       </div>
     </div>

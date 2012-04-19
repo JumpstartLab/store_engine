@@ -57,7 +57,7 @@
       <% end %>
       </div>
   </div>
-  <div>
+  <div class="well">
     <%= link_to "All Products", products_path, :class => "btn" %>
     <% if @product.categories.any? %>
       <% @product.categories.each do |category| %>
