@@ -5,7 +5,6 @@
 
 <%= render :partial => "edit_form" %>
 
-<% order.order_items.each do |order_item| %>
 <table class="table">
   <tr>
     <th>Product Name:</th>
@@ -13,6 +12,7 @@
     <th>Remove Item:</th>
     <th>Line Item Price:</th>
     <th>Total Price:</th>
+  <% order.order_items.each do |order_item| %>
   </tr>
     <td><%= order_item.product.title %></td>
     <td><%= form_for(order_item, url: admin_order_items_path(order_item)) do |f| %>
@@ -24,7 +24,8 @@
     <td><%= order_item.product.price %></td>
     <td><%= order_item.total %></td>
   </tr>
+  <% end %>
 </table>
-<% end %>
+
 
 <%= link_to "Back to All Orders", admin_orders_path, :class => "btn", :id => "back_to_orders"%>

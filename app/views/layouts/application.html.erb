@@ -109,14 +109,6 @@
       <div class="span10 offset1">
         <%= yield %>
       </div>
-
-      <div class="span10 offset1">
-        <button class="btn" data-toggle="collapse" data-target="#debug">Show/Hide Debug Info</button>
-      </div>
-
-      <div class="span10 offset1 collapse" id="debug">
-        <%= debug(params) if Rails.env.development? %>
-      </div>
     </div>
   </div>
 

@@ -17,9 +17,9 @@ class Order < ActiveRecord::Base
   def self.create_order_from_cart(cart, current_user)
     new_order = new
     cart.cart_items.each do |cart_item|
-      new_order.order_items.build(cart_item.attributes_for_order_item, 
+      new_order.order_items.build(cart_item.attributes_for_order_item,
                                   :without_protection => true)
-    end    
+    end
     new_order.user = current_user
     new_order.save
     return new_order

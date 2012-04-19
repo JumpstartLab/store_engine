@@ -7,6 +7,24 @@ namespace :db do
                          password: "foobar",
                          password_confirmation: "foobar")
     admin.toggle!(:admin)
+
+    chad = User.create!(name: "Chad Fowler",
+                        email: "demoXX+chad@jumpstartlab.com",
+                        display_name: "SaxPlayer",
+                        password: "hungry",
+                        password_confirmation: "hungry")
+    chad.toggle!(:admin)
+
+    matt = User.create!(name: "Matt Yoho",
+                        email: "demoXX+matt@jumpstartlab.com",
+                        password: "hungry",
+                        password_confirmation: "hungry")
+
+    jeff = User.create!(name: "Jeff",
+                        email: "demoXX+jeff@jumpstartlab.com",
+                        display_name: "j3",
+                        password: "hungry",
+                        password_confirmation: "hungry")
     99.times do |n|
       name  = Faker::Name.name
       display_name  = Faker::Name.name

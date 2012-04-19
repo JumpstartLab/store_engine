@@ -43,7 +43,7 @@ module SessionsHelper
     session[:return_to] = request.fullpath
   end
 
-  private 
+  private
 
     def user_from_remember_token
       remember_token = cookies[:remember_token]

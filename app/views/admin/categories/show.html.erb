@@ -1,13 +1,35 @@
 <h1>Category: <%= category.name %></h1>
 
-<p>This will be a list of all products with the category "<%= category.name %>"</p>
-<ul>
-  <% category.products.each do |p| %>
-    <li><%= p.title %></li>
-   <% end %>
- </ul>
-</p>
-<p><%= link_to "Edit this Category", edit_admin_category_path(category), :title =>"edit this category", :class => "btn btn-warning" %>
-  <%= link_to "Destroy this Category", admin_category_path(category), :method => :delete, :confirm => "Delete \"#{category.name}\"?", :name => "delete this categeory", :class => 'btn btn-danger', :id => 'destroy' %>
+<div class="row">
+  <div class="span10">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Retired?</th>
+          <th>Created</th>
+          <th>Updated</th>
+      </thead>
+      <tbody>
+        <% category.products.each do |p| %>
+          <tr>
+            <td><%= link_to p.title, admin_products_path(p) %></td>
+            <td><%= p.description %></td>
+            <td><%= p.price %></td>
+            <td><%= p.retired %></td>
+            <td><%= p.created_at %></td>
+            <td><%= p.updated_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 
-<p><%= link_to "All Categories", admin_categories_path, :title => "back to all categories" %>
+<div class="btn-group">
+  <%= link_to "Edit this Category", edit_admin_category_path(category), :title =>"edit this category", :class => "btn btn-warning" %>
+  <%= link_to "Destroy this Category", admin_category_path(category), :method => :delete, :confirm => "Delete \"#{category.name}\"?", :name => "delete this categeory", :class => 'btn btn-danger', :id => 'destroy' %>
+  <%= link_to "All Categories", admin_categories_path, :title => "back to all categories", :class => "btn" %>
+</div>

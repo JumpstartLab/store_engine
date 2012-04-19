@@ -25,12 +25,14 @@
 
 <div id="status_sort" class="well">
   <h3>Filter Orders by status:</h3>
-  <!-- <button class="btn" data-toggle="collapse" data-target="#all_list">All</button> -->
-  <button class="btn" data-toggle="collapse" data-target="#pending_list">Pending</button>
-  <button class="btn" data-toggle="collapse" data-target="#cancelled_list">Cancelled</button>
-  <button class="btn" data-toggle="collapse" data-target="#paid_list">Paid</button>
-  <button class="btn" data-toggle="collapse" data-target="#shipped_list">Shipped</button>
-  <button class="btn" data-toggle="collapse" data-target="#returned_list">Returned</button>
+  <div class="btn-group">
+    <!-- <button class="btn" data-toggle="collapse" data-target="#all_list">All</button> -->
+    <button class="btn" data-toggle="collapse" data-target="#pending_list">Pending</button>
+    <button class="btn" data-toggle="collapse" data-target="#cancelled_list">Cancelled</button>
+    <button class="btn" data-toggle="collapse" data-target="#paid_list">Paid</button>
+    <button class="btn" data-toggle="collapse" data-target="#shipped_list">Shipped</button>
+    <button class="btn" data-toggle="collapse" data-target="#returned_list">Returned</button>
+  </div>
 
   <%= render :partial => "sorted_orders", :locals => { :param => "pending" } %>
   <%= render :partial => "sorted_orders", :locals => { :param => "cancelled" } %>
@@ -51,7 +53,7 @@
         <th><%= link_to "Updated At",   :sort => :updated_at  %></th>
         <th><%= link_to "Order Total",  :sort => :total_price %></th>
         <th><%= link_to "Order Status", :sort => :status      %></th>
-        <th>Change Status:</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <% @orders.each do |order| %>

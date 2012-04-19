@@ -1,20 +1,17 @@
 <h1>Products</h1>
 
 <div>
-  <table id="products" class="table table-striped table-bordered">
-    <tr>
-      <th>Product</th>
-      <th>Description</th>
-      <th>Price</th>
-      <th>Categories</th>
-      <th>&nbsp;</th>
-    </tr>
+  <div id="products">
     <%= will_paginate %>
     <% @products.each do |product| %>
       <% if product.active? %>
         <%= render product %>
       <% end %>
     <% end %>
-  </table>
-  <%= will_paginate %>
+  </div>
+  <div class="row">
+    <div class="span10">
+      <%= will_paginate %>
+    </div>
+  </div>
 </div>

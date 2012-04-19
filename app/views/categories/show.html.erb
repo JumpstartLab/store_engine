@@ -1,10 +1,14 @@
-<h1>Category: <%= category.name %></h1>
+<h1><%= category.name %> <small>An awesome category of awesomeness</small></h1>
 
-<p>This will be a list of all products with the category "<%= category.name %>"</p>
-<ul>
-  <% category.products.each do |p| %>
-    <li><%= p.title %></li>
-   <% end %>
- </ul>
+<div class="row">
+  <div class="span10">
+    <% category.products.each do |p| %>
+      <% if p.active? %>
+        <%= render p %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
 </p>
-<p><%= link_to "All Categories", admin_categories_path, :title => "back to all categories" %>
+<p><%= link_to "Back to all Categories", categories_path, :title => "back to all categories", class: "btn" %>

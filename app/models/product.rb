@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
 
   has_many :category_products
   has_many :categories, :through => :category_products
-  
+
   validates_presence_of :title, :description
 
   has_many :order_items

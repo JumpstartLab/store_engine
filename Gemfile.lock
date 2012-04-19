@@ -1,3 +1,20 @@
+GIT
+  remote: git://github.com/mvz/reek.git
+  revision: c21b666e8249627f78024065d99c5f4329355e99
+  branch: ripper_ruby_parser-2
+  specs:
+    reek (1.2.8)
+      ripper_ruby_parser (~> 0.0.5)
+      ruby2ruby (~> 1.2.5)
+      sexp_processor (~> 3.0)
+
+GIT
+  remote: git://github.com/square/cane.git
+  revision: 2ce6007ac26e3ae4378a2f5f4fd28643e0130ffa
+  specs:
+    cane (1.2.0)
+      tailor (~> 0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -130,6 +147,8 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    ripper_ruby_parser (0.0.6)
+      sexp_processor (~> 3.0)
     rspec (2.9.0)
       rspec-core (~> 2.9.0)
       rspec-expectations (~> 2.9.0)
@@ -143,6 +162,11 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.9.0)
+    ruby2ruby (1.2.5)
+      ruby_parser (~> 2.0)
+      sexp_processor (~> 3.0)
+    ruby_parser (2.3.1)
+      sexp_processor (~> 3.0)
     rubyzip (0.9.6.1)
     sass (3.1.15)
     sass-rails (3.2.5)
@@ -154,6 +178,7 @@ GEM
       ffi (~> 1.0)
       multi_json (~> 1.0)
       rubyzip
+    sexp_processor (3.2.0)
     simplecov (0.6.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -163,6 +188,9 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.5)
+    tailor (0.1.5)
+      term-ansicolor (>= 1.0.5)
+    term-ansicolor (1.0.7)
     therubyracer (0.10.1)
       libv8 (~> 3.3.10)
     thin (1.3.1)
@@ -192,6 +220,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt-ruby (= 3.0.1)
   bootstrap-will_paginate (= 0.0.5)
+  cane!
   capybara
   coffee-rails (~> 3.2.1)
   fabrication
@@ -205,6 +234,7 @@ DEPENDENCIES
   launchy
   pg
   rails (= 3.2.3)
+  reek!
   rspec-rails
   sass-rails (~> 3.2.3)
   simplecov
