@@ -6,8 +6,17 @@ class ProductsController < ApplicationController
   def index
     if params[:search] && params[:search].length > 0
       @products = Product.active.find_by(params[:search])
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @products }
+      end
     else
       @products = Product.active
+      
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @products }
+      end
     end
   end
 
