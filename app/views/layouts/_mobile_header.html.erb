@@ -1,15 +1,17 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <%= link_to "Worace's Workshop", root_url, :class => "mobile-brand" %>
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <%= link_to "Worace's Workshop", root_url, :class => "brand" %>
       <div class="nav-collapse">
         <% if logged_in? %>
-          <%= render :partial => 'layouts/mobile_in' %>
+          <%= render :partial => 'layouts/nav_logged_in' %>
         <% else %>
-          <%= render :partial => 'layouts/mobile_out' %>
+          <%= render :partial => 'layouts/nav_logged_out' %>
         <% end %>
       </div>
     </div>

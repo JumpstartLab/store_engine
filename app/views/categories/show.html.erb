@@ -1,14 +1,39 @@
+<% content_for :head do %>
+<style type="text/css">
+  <% if @category.name == "Furniture" %>
+    body { background: url("http://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Plain_quarter_sawn.png/200px-Plain_quarter_sawn.png") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+  <% elsif @category.name == "Accessories" %>
+    body { background: url("http://www.zappos.com/sites/default/files/zappos/laundryByShelliSegal_accessories_lp.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+  <% elsif @category.name == "Tools" %>
+    body { background: url("/assets/worace.JPG") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+  <% elsif @category.name == "Badgers" %>
+    body { background: url("/assets/worace.JPG") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+  <% elsif @category.name == "Comestibles" %>
+    body { background: url("/assets/worace.JPG") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+  <% elsif @category.name == "Taxidermy" %>
+    body { background: url("/assets/worace.JPG") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+  <% elsif @category.name == "Appliances" %>
+    body { background: url("/assets/worace.JPG") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+  <% elsif @category.name == "Miscellany" %>
+    body { background: url("/assets/worace.JPG") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+  <% else %>
+    body { background: url("/assets/worace.JPG") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+  <% end %>
+</style>
+<% end %>
 <% if notice %>
   <div class="alert alert-info">
     <p id="notice"><%= flash.now[:notice] %></p>
   </div>
 <% end %>
-<div id="intro">
-  <h2><%= @category.name %></h2>
+<div class="well">
+  <h1 class="title-header"><%= @category.name %></h1>
   <% if logged_in? && current_user.is_admin? %>
-  <%= link_to "Edit", edit_category_path(@category) %>
-  <%= link_to "Delete", category_path(@category), :method => :delete %>
-  <li><%= link_to "Put on sale", new_sale_path(:category_id => @category.id) %></li>
+  <div class="admin-options">
+    <%= link_to "Edit", edit_category_path(@category), :class => "add_link" %>
+    <%= link_to "Delete", category_path(@category), :class => "add_link", :method => :delete %>
+    <%= link_to "Put on sale", new_sale_path(:category_id => @category.id), :class => "add_link" %>
+  </div>
   <% end %>
 </div>
 <% if @category.products.any? %>
