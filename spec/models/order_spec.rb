@@ -54,4 +54,20 @@ describe Order, :model => :order do
       order.total.should == Money.new(0)
     end
   end
+
+  describe "#remove_item" do
+    context "when items exist in the order" do
+      let(:order_item) { Fabricate(:order_item) }
+      let(:order_item2) { Fabricate(:order_item) }
+      let(:order_items) { [order_item, order_item2] }
+
+      it "removes an item from the order" do
+        order = Fabricate(:order, :order_items => order_items)
+        order.order_items.count.should == 2
+        order.remove_item(order_item.id)
+        order.order_items.count.should == 1
+        order.order_items.include?(order_item2).should == true
+      end
+    end
+  end
 end
