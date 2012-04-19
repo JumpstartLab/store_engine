@@ -27,8 +27,8 @@ class Admin::OrdersController < ApplicationController
   helper_method :order
   helper_method :shipping_information
   helper_method :billing_information
-  
-private
+
+  private
 
     def order
       @order ||= Order.find(params[:id])
@@ -63,5 +63,5 @@ private
         store_location
         redirect_to signin_path, notice: "Please sign in."
       end
-    end  
+    end
 end

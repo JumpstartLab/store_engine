@@ -1,7 +1,7 @@
 class Admin::CategoriesController < ApplicationController
   before_filter :signed_in_user
   before_filter :admin_user
-  
+
   def index
     @categories = Category.all
   end
@@ -53,5 +53,5 @@ class Admin::CategoriesController < ApplicationController
 
     def flash_error
       flash[:error] = "You are not logged in as the correct user"
-    end  
+    end
 end

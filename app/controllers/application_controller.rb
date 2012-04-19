@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     last_page = session[:last_page] || params[:last_page]
     if last_page
       redirect_to(last_page)
-    else 
+    else
       redirect_to(root_path)
     end
   end
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     def cart_finder
       if Cart.find_by_id(session[:cart_id]).nil?
         Cart.create.tap{ |c| session[:cart_id] = c.id }
-      else 
+      else
         Cart.find_by_id(session[:cart_id])
       end
     end

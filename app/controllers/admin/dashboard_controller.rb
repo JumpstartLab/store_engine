@@ -5,7 +5,7 @@ class Admin::DashboardController < ApplicationController
   def index
   end
 
-  private 
+  private
 
     def admin_user
       redirect_to(root_path) && flash_error unless current_user.admin?
