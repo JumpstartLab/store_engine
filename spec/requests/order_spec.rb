@@ -64,7 +64,7 @@ describe "When I want to place an order" do
       select("2013", from: "card_year")
     end
 
-    it "takes me to the order confirmation page"
+    #it "takes me to the order confirmation page"
     # need to figure out some way to test without making an inline API call
   end
 end

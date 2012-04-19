@@ -61,7 +61,6 @@ describe "As an admin updating products" do
         end
 
         it "un-retires that product" do
-          save_and_open_page
           visit admin_products_path
           click_link_or_button('Un-retire')
           Product.find(product.id).active?.should == true
