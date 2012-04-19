@@ -49,6 +49,17 @@ class Cart < ActiveRecord::Base
     save
   end
 
+  def merge(temp_cart)
+    temp_cart.cart_products.each do |cart_product|
+      product = cart_product.product
+      if product_ids.include?(product.id)
+        increment_quantity_for(product.id)
+      else
+        cart_products << cart_product
+      end
+    end
+  end
+
   def total_items
     cart_products.sum(&:quantity)
   end
