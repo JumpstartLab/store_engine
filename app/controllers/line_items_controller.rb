@@ -4,8 +4,8 @@ class LineItemsController < ApplicationController
 
   def create
     @cart = current_cart
-    product = Product.find(params[:product_id])
-    if product.retired == false
+    @product = Product.find(params[:product_id])
+    if @product.retired == false
       line_item_create
     else
       redirect_to products_path, notice: "Cannot add inactive product to cart"
@@ -13,7 +13,7 @@ class LineItemsController < ApplicationController
   end
 
   def line_item_create
-    @line_item = @cart.add_product(product.id)
+    @line_item = @cart.add_product(@product.id)
     if @line_item.save
       redirect_to @line_item.cart
     else

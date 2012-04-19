@@ -47,6 +47,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.2.7)
     arel (3.0.2)
+    bcrypt-ruby (2.1.4)
     builder (3.0.0)
     cancan (1.6.7)
     capybara (1.1.2)
@@ -222,6 +223,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby (= 2.1.4)
   cancan
   cane!
   capybara

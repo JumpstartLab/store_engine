@@ -10,6 +10,7 @@ gem 'cancan'
 gem 'httparty'
 gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
 gem 'cane', :git => "git://github.com/square/cane.git"
+gem 'bcrypt-ruby', '2.1.4'
 
 # Gems used only for assets and not required
 # in production environments by default.
