@@ -13,6 +13,7 @@ gem 'cane', :git => "git://github.com/square/cane.git"
 
 # Gems used only for assets and not required
 # in production environments by default.
+#This is a comment
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
