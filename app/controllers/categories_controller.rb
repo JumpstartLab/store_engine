@@ -1,9 +1,6 @@
 class CategoriesController < ApplicationController
   before_filter :admin_authorize, only: [:new, :create, :update, :edit]
 
-
-
-
   def show
     @category = Category.find_by_id(params[:id])
     @products = @category.products

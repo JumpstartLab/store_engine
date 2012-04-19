@@ -96,17 +96,6 @@ describe "Products" do
     end 
   end
 
-  context "deleting products" do
-    describe "when I am admin" do
-      it "deletes the product" do 
-        login(admin_user)
-        visit product_path(products.first)
-        click_on 'Delete'
-        page.should have_content "Product deleted."
-      end
-    end
-  end
-
   context "searching products" do
     it "searches given a valid param" do
       visit products_path
