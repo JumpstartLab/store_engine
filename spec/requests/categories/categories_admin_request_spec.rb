@@ -44,7 +44,9 @@ describe "Categories Admin Requests" do
 
     it "deletes a category" do
       visit category_path(category)
-      click_link("Delete")
+      within(".admin-options") do
+        click_link("Delete")
+      end
       current_path.should == categories_path
       page.should_not have_content(category.name)
       Category.all.should_not include(category)

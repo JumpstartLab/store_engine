@@ -9,9 +9,12 @@ describe "Products Index Requests" do
      ]
     end
 
-    let!(:product1) { Fabricate(:product) }
-    let!(:product2) { Fabricate(:product) }
-    let!(:product3) { Fabricate(:product) }
+    let!(:product1) { Fabricate(:product,
+                                :title => "wwwwww") }
+    let!(:product2) { Fabricate(:product,
+                                :title => "yyyyyy") }
+    let!(:product3) { Fabricate(:product,
+                                :title => "xxxxxx") }
 
     let!(:inactive_product) { Fabricate(:product, :retired => true) }
 

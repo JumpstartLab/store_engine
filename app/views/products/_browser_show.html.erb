@@ -42,7 +42,7 @@
     <hr>
     <p id="description"><%= @product.description %></p>
   </div>
-  <div id="index_categories>
+  <div id="index_categories">
     <%= link_to "All Products", products_path, :class => "btn" %>
     <% if @product.categories.any? %>
       <% @product.categories.each do |category| %>

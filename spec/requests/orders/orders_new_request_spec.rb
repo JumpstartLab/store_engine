@@ -31,14 +31,6 @@ describe "Orders" do
             click_link_or_button "Place Order"
           end
 
-          it "shows what I'm buying" do
-            within "#order" do
-              products.each do |product|
-               page.should have_content(product.title)
-              end
-            end
-          end
-
           it "has a form for billing address" do
             page.should have_field("City", :type => "text")
             page.should have_field("Street", :type => "text")
