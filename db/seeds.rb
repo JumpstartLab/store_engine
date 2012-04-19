@@ -79,6 +79,7 @@ appliance.products << stove
   Fabricate(:order, :user_id => rand(3)+1)
   OrderProduct.create(:quantity => rand(10)+1,
                       :product_id => rand(4)+1,
+                      :price => rand(25),
                       :order_id => i+1)
 end
 
@@ -93,8 +94,8 @@ end
 end
 
 # make addresses
-Fabricate(:address, :id => 1)
-Fabricate(:address, :id => 2)
-Fabricate(:address, :id => 3)
-Fabricate(:address, :id => 4)
-Fabricate(:address, :id => 5)
+Fabricate(:address)
+Fabricate(:address)
+Fabricate(:address)
+Fabricate(:address)
+Fabricate(:address)

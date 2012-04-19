@@ -1,0 +1,18 @@
+<% if notice %>
+  <div class="alert alert-info">
+    
+    <p id="notice"><%= flash.now[:notice] %></p>
+  </div>
+<% end %>
+<h2> Sale ending on: <%= @sale.endtime.strftime("%m/%d/%Y") %>:</h2>
+<h3> Discount: <%= @sale.percentage %>% </h3>
+
+
+<% if @sale.product %>
+  <h4> For Product: <%= link_to @sale.product.title, product_path(@sale.product) %>
+  </h4>
+
+<% elsif @sale.category %>
+  <h4> For Category: <%= link_to @sale.category.name, category_path(@sale.category) %>
+  </h4>
+ <% end %>

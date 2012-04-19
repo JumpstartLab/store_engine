@@ -9,11 +9,11 @@ class CartProduct < ActiveRecord::Base
   end
 
   def total
-    product.price * quantity
+    self.price * self.quantity
   end
 
   def unit_price
-    product.price
+    self.price
   end
 
 end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Using the shopping cart" do
   let(:cart)      { Cart.create }
-  let(:product)   { Fabricate(:product)}
+  let(:product)   { Fabricate(:product, :price => 100)}
   let(:new_product) { Fabricate(:product) }
   let(:products)  {[product, new_product]}
   let(:user)      { Fabricate(:user, :password => 'password',
@@ -10,6 +10,9 @@ describe "Using the shopping cart" do
   let(:admin_user)      { Fabricate(:user, :password => 'password',
                                     :admin => 'true')}
 
+  let(:sale)     { Sale.create(:percentage => 50, :endtime => Time.now + 1400000) }
+  let(:sale2)     { Sale.create(:percentage => 75, :endtime => Time.now + 1400000) }
+  let(:category) { Fabricate(:category) }
 
   context "when adding products to the cart" do
 
@@ -179,12 +182,24 @@ describe "Using the shopping cart" do
     it "removes the product from the cart" do
       page.should_not have_content(product.title)
     end
+  end
 
+  context "when a product is on sale" do
+    before (:each) do
+      product.sale = sale
+      product.save
+      login(user)
+      visit product_path(product)
+      click_link_or_button "add to cart"
+      visit cart_path
+    end
+    it "gives me the sale price in my cart" do
+      within("#total") do
+        page.should have_content("$50.00")
+      end
+    end
   end
 end
-
-
-
 
 
 

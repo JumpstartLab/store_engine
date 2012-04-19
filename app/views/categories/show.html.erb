@@ -8,6 +8,7 @@
   <% if logged_in? && current_user.is_admin? %>
   <%= link_to "Edit", edit_category_path(@category) %>
   <%= link_to "Delete", category_path(@category), :method => :delete %>
+  <li><%= link_to "Put on sale", new_sale_path(:category_id => @category.id) %></li>
   <% end %>
 </div>
 <% if @category.products.any? %>

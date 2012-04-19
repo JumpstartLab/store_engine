@@ -18,7 +18,8 @@ describe "Orders" do
                              :shipping_address_id => shipping.id ) }
   let!(:order_product)   { OrderProduct.create(:product_id => product.id,
                                               :order_id => order.id,
-                                              :quantity => 3)}
+                                              :quantity => 3,
+                                              :price => product)}
 
   context "when not logged in" do
     it "prevents you from viewing an order" do
