@@ -8,8 +8,7 @@ gem "twitter-bootstrap-rails"
 gem 'sorcery'
 gem 'cancan'
 gem 'httparty'
-gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
-gem 'cane', :git => "git://github.com/square/cane.git"
+
 gem 'bcrypt-ruby', '2.1.4'
 
 # Gems used only for assets and not required
@@ -36,4 +35,6 @@ group :development, :test do
   gem 'sqlite3'
   gem 'faker'
   gem 'heroku'
+  gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
+  gem 'cane', :git => "git://github.com/square/cane.git"
 end
