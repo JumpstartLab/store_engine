@@ -51,7 +51,7 @@ describe "ordering with two clicks" do
                                    description: "#{ card_user.email }"
         Stripe::Charge.stub!(:create).and_return(charge)     
         click_link_or_button "Buy instantly" 
-        page.should have_content("You bought something with Stripe")
+        page.should have_content("Transaction Successful")
       end
     end
   end

@@ -111,7 +111,7 @@ describe "Products" do
     it "searches given a valid param" do
       visit products_path
       fill_in "search", :with => products.first.title
-      click_on "Search!"
+      page.find('.search_button').click
       page.should have_content products.first.title
     end
   end
