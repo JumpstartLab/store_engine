@@ -10,6 +10,12 @@
  </div>
 </div>
 
+
+  <ul class="nav nav-pills">
+    <h4>Products:</h4><br />
+    <li><%= link_to 'New Product', new_admin_product_path %></li>
+  </ul>
+
 <table class="table table-bordered table-striped">
   <tr>
     <th>Name</th>
@@ -22,10 +28,25 @@
   </tr>
 
 <%= render :partial => "product_table", :collection => @products %>
-
 </table>
 
-<%= link_to 'New Product', new_admin_product_path %>
+<div class="row">
+ <div class="span12">
+   <ul class="nav nav-pills">
+     <h4>Retired Products:</h4><br />
+   </ul>
+   <table class="table table-bordered table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Photo</th>
+    <th>Categories</th>
+    <th>Buy it!</th>
+    <th>Unretire it!</th>
+  </tr>
 
-
-
+<%= render :partial => "retired_product_table", :collection => @retired_products %>
+</table>
+ </div>
+</div>

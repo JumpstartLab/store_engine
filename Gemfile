@@ -2,14 +2,14 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 gem 'jquery-rails'
-gem 'sqlite3'
+#gem 'sqlite3'
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'sorcery'
 gem 'money-rails'
 gem 'stripe'
 gem 'faker'
-# gem 'rake'
+gem 'rake'
 
 group :production do
   gem 'pg'
@@ -29,14 +29,15 @@ end
 
 group :development, :test do
   # gem 'fabrication'
-#  gem 'sqlite3'
+  gem 'sqlite3'
+  gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
   gem 'factory_girl_rails', '~> 3.1.0'
   gem 'guard'
   gem 'growl'
-  # gem 'cane'
+  #gem 'cane'
   gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
   gem 'simplecov'
   #gem 'ruby-debug19', :require => 'ruby_debug'

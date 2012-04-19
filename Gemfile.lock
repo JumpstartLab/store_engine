@@ -4,8 +4,8 @@ GIT
   branch: ripper_ruby_parser-2
   specs:
     reek (1.2.8)
+      ripper_ruby_parser (~> 0.0.5)
       ruby2ruby (~> 1.2.5)
-      ruby_parser (~> 2.0)
       sexp_processor (~> 3.0)
 
 GEM
@@ -138,6 +138,8 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    ripper_ruby_parser (0.0.6)
+      sexp_processor (~> 3.0)
     rspec (2.9.0)
       rspec-core (~> 2.9.0)
       rspec-expectations (~> 2.9.0)
@@ -173,11 +175,9 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
     simplecov-html (0.5.3)
-    sorcery (0.7.7)
-      bcrypt-ruby (~> 3.0.0)
+    sorcery (0.7.11)
       oauth (~> 0.4.4)
       oauth2 (~> 0.5.1)
-      sorcery
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -214,6 +214,7 @@ DEPENDENCIES
   money-rails
   pg
   rails (= 3.2.3)
+  rake
   reek!
   rspec-rails
   sass-rails (~> 3.2.3)

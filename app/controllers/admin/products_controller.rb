@@ -4,6 +4,7 @@ class Admin::ProductsController < ApplicationController
 
   def index
     @products = Product.active.all
+    @retired_products = Product.retired.all
     @categories = Category.all
   end
 

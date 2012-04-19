@@ -1,0 +1,13 @@
+<tr>
+  <td><%= link_to retired_product_table.name, admin_product_path(retired_product_table) %></td>
+  <td><%= retired_product_table.description %></td>
+  <td><%= retired_product_table.price %></td>
+  <td><%= image_tag(retired_product_table.photo, :size => "50x50") %></td>
+  <td><ul><% retired_product_table.categories.each do |category| %>
+      <div id="<%= dom_id category %>">
+        <li><%= category.name %></li>
+      </div>
+      <% end %></ul>
+  <td><%= link_to 'Add to cart', new_cart_product_path(:product_id => retired_product_table) %></td>
+  <td><%= link_to 'Un-retire', product_retirement_path(retired_product_table), method: :put %></td>
+</tr>
