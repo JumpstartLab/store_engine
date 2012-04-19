@@ -8,6 +8,7 @@ gem 'sorcery'
 gem 'money-rails'
 gem 'stripe'
 gem 'faker'
+gem 'rake'
 
 group :production do
   gem 'pg'
