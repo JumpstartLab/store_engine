@@ -51,13 +51,21 @@ class Order < ActiveRecord::Base
   end
 
   def self.set_order_info
+    self.set_order_details
+    self.set_order_credit_card_info
+  end
+
+  def self.set_order_details
     @order.name = @user.orders.last.name
     @order.email = @user.orders.last.email
     @order.address = @user.orders.last.address
+    @order.shipping_address = @user.orders.last.shipping_address
+  end
+
+  def self.set_order_credit_card_info
     @order.cc_number = @user.orders.last.cc_number
     @order.cc_expiry = @user.orders.last.cc_expiry
   end
-
 
   def ship
     update_attributes(:shipped_at => Time.now, :status => "shipped")
