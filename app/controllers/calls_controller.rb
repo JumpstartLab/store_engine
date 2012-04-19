@@ -9,7 +9,7 @@ class CallsController < ApplicationController
     @call = @account.calls.create({:from => '5866904041',
       :to => '5862914303', :url => calls_url })
     puts @message
-    redirect_to calls_path
+    redirect_to calls_url
   end
 
   def index
