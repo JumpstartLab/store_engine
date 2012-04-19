@@ -19,3 +19,7 @@
 $(function(){
   $('.alert-info').delay(1600).fadeOut(200);
 });
+
+$(function(){
+    $('a[rel=tooltip]').tooltip();
+});​

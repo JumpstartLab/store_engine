@@ -14,8 +14,14 @@
 </div>
 <div id="categories">
   <% @categories.each do |category| %>
+  <div class="well span5">
     <p class="category" id="category_<%= category.id %>">
       <%= link_to category.name, category_path(category) %>
+      <hr>
+      <% category.products.each do |product| %>
+        <%= link_to(image_tag(product.image_url(:thumb).to_s), product_path(product), :rel => "tooltip", :title => "#{product.title}", :class => "category_product" ) if product.image? %>
+      <% end %>
     </p>
+  </div>
   <% end %>
 </div>

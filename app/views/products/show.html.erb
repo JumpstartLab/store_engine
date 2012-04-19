@@ -31,17 +31,18 @@
 <% end %>
 
 <div class="span7">
-  <h1 id="title"><%= @product.title %></h1>
-  <p><%= @product.description %></p>
-  <h4> Options </h4>
-    <li><%= link_to "All Products", products_path %></li>
-    <%= link_to products_path, :class => "button back black" do %><span class="pointer"></span><span>Back</span><% end %>
-  </ul>
-
+  <div class="well border title">
+    <h1><%= @product.title %></h1>
+    <hr>
+    <p id="description"><%= @product.description %></p>
+  </div>
+  <div>
+    <%= link_to "All Products", products_path, :class => "option_link" %>
+  </div>
 </div>
 
-<div class="span3">
-  <p><%= image_tag @product.image_url(:normal).to_s, :id => "product_image" if @product.image? %></p>
+<div class="span3 well border">
+  <p id="image"><%= image_tag @product.image_url(:normal).to_s, :id => "product_image" if @product.image? %></p>
   <% if @product.on_sale? %>
     <p><strike><%= number_to_currency(@product.price) %></strike></p>
     <p id="sale_price"> <%= number_to_currency(@product.best_price) %> </p>

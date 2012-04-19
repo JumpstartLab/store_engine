@@ -41,4 +41,5 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'simplecov'#, :group => :test
   gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
+  gem 'cane', :git => "git://github.com/square/cane.git"
 end

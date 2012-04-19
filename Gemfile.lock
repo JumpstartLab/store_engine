@@ -8,6 +8,13 @@ GIT
       ruby2ruby (~> 1.2.5)
       sexp_processor (~> 3.0)
 
+GIT
+  remote: git://github.com/square/cane.git
+  revision: 2ce6007ac26e3ae4378a2f5f4fd28643e0130ffa
+  specs:
+    cane (1.2.0)
+      tailor (~> 0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -192,6 +199,9 @@ GEM
     stripe (1.6.3)
       rest-client (~> 1.4)
     subexec (0.2.1)
+    tailor (0.1.5)
+      term-ansicolor (>= 1.0.5)
+    term-ansicolor (1.0.7)
     therubyracer (0.10.0)
       libv8 (~> 3.3.10)
     thor (0.14.6)
@@ -214,6 +224,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  cane!
   capybara
   carrierwave
   coffee-rails (~> 3.2.1)
