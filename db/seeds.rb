@@ -88,7 +88,7 @@ cancelled = Status.create(:name => StoreEngine::Status::CANCELLED)
    product_count = rand(10)
    product_count.times do |i|
      product= products[i] 
-     item = OrderItem.new(:product => product, :quantity => rand(1..30), 
+     item = OrderItem.new(:product => product, :quantity => rand(30), 
                           :price => product.price.to_s)
      item.order = order
      item.save
