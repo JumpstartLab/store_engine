@@ -7,27 +7,27 @@
   <div class="span10">
     <h2>Sales Statistics</h2>
     <div class="well span1">
-      <h3 align="center">Total</h3>
+      <h3>Total</h3>
       <p align="center"><%= Order.all.count %></p>
     </div>
     <div class="well span1">
-      <h3 align="center">Pending</h3>
+      <h3>Pending</h3>
       <p align="center"><%= Order.find_all_by_status("pending").count %></p>
     </div>
     <div class="well span1">
-      <h3 align="center">Cancelled</h3>
+      <h3>Cancelled</h3>
       <p align="center"><%= Order.find_all_by_status("cancelled").count %></p>
     </div>
     <div class="well span1">
-      <h3 align="center">Paid</h3>
+      <h3>Paid</h3>
       <p align="center"><%= Order.find_all_by_status("paid").count %></p>
     </div>
     <div class="well span1">
-      <h3 align="center">Shipped</h3>
+      <h3>Shipped</h3>
       <p align="center"><%= Order.find_all_by_status("shipped").count %></p>
     </div>
     <div class="well span1">
-      <h3 align="center">Returned</h3>
+      <h3>Returned</h3>
       <p align="center"><%= Order.find_all_by_status("returned").count %></p>
     </div>
     <div class="well span1">
@@ -54,12 +54,6 @@
       <h3>Total Categories</h3>
       <p>
         <%= Category.all.count %>
-      </p>
-    </div>
-    <div class="well span2">
-      <h3>Most Popular Category</h3>
-      <p>
-        ADD LATER
       </p>
     </div>
   </div>
