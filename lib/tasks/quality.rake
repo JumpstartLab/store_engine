@@ -26,22 +26,25 @@ task :quality do
   reek_files = {}
   file = nil
   reek.each do |line|
-    this_line_is_warning = line.index("warning")
+    this_line_is_warning = !line.start_with?("  ") && line.index("warning")
     file = line.gsub(/ --.*/, '') if this_line_is_warning
 
-    unless this_line_is_warning
+    unless file.nil? || this_line_is_warning
       (reek_files[file] ||= []) << line
     end
   end
 
   reek = []
   reek_files.keys.each do |file|
+    reek << ""
     reek << green + file + reset
     reek_files[file].each do |problem|
       problem = problem.gsub(/  [^ ]+/) { |s| blue + s + reset }
       reek << problem
     end
   end
+
+  reek = reek.drop(1)
 
   puts reek
 end
