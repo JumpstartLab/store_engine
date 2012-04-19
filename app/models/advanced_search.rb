@@ -24,6 +24,13 @@ class AdvancedSearch < ActiveRecord::Base
       orders = find_by_order_date(orders)
     end
 
+    orders = find_by_order_total_or_email(orders)
+    orders
+  end
+
+  private
+
+  def find_by_order_total_or_email(orders)
     orders = orders.includes(:user).all
 
     if order_total.present? and order_total_operator.present?
@@ -33,8 +40,6 @@ class AdvancedSearch < ActiveRecord::Base
     orders = find_by_email(orders)
     orders
   end
-
-  private
 
   def find_by_status(orders)
     orders.where(:status_id => self.status_id)

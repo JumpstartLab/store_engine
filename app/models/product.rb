@@ -70,7 +70,7 @@ class Product < ActiveRecord::Base
   end
 
   def category_sale
-    max = categories.max_by { |c| c.sale ? c.sale.percent_off : 0 }
+    max = categories.max_by { |cat| cat.sale ? cat.sale.percent_off : 0 }
     max.sale if max
   end
 

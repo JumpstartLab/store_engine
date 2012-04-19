@@ -6,12 +6,8 @@ class ProductRatingsController < ApplicationController
 
   def create
     product_rating = params[:product_rating]
-    product = Product.find(params[:product_id])
-    product.product_ratings.new(:name => product_rating[:name],
-                                :body => product_rating[:body],
-                                :rating =>  product_rating[:rating],
-                                :user => current_user
-                               )
+    product = create_product_rating(params[:product_id], product_rating)
+
     if product.save
       redirect_to product, :notice => "Comment successfully added"
     else
@@ -40,6 +36,16 @@ private
       flash[:error] = "It has been too long to edit this review"
       redirect_to product_path(@rating.product)
     end
+  end
+
+  def create_product_rating(product_id, product_rating)
+    product = Product.find(product_id)
+    product.product_ratings.new(:name => product_rating[:name],
+                                :body => product_rating[:body],
+                                :rating =>  product_rating[:rating],
+                                :user => current_user
+                               )
+    return product
   end
 
 end

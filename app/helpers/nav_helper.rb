@@ -1,19 +1,40 @@
 module NavHelper
 
   def main_navigation
-    nav_array = {"Home" => root_path}
-    nav_array["Home"] = root_path
-    nav_array["Sales"] = sales_path
     if current_user && current_user.admin
-      nav_array["Dashboard"] = dashboard_path
-    end
-    if current_user
-      nav_array["My Orders"] = my_orders_orders_path
-      nav_array["Logout"] = logout_path
+      nav_array_admin
+    elsif current_user
+      nav_array_user
     else
-      nav_array["Login or Signup"] = login_path
+      nav_guest
     end
-    return nav_array
+  end
+
+  def nav_array_admin
+    {
+      "Home" => root_path,
+      "Sales" => sales_path,
+      "Dashboard" => dashboard_path,
+      "My Orders" => my_orders_orders_path,
+      "Logout" => logout_path
+    }
+  end
+
+  def nav_array_user
+    {
+      "Home" => root_path,
+      "Sales" => sales_path,
+      "My Orders" => my_orders_orders_path,
+      "Logout" => logout_path
+    }
+  end
+
+  def nav_guest
+    {
+      "Home" => root_path,
+      "Sales" => sales_path,
+      "Login or Signup" => login_path
+    }
   end
 
   def dashboard_navigation
