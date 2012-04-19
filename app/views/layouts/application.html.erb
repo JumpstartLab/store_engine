@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <div id="wrapper" class="clearfix">
+  <div class="container">
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
@@ -50,16 +50,19 @@
 
     <%= render_flashes %>
 
-    <div id="sidebar">
-      <div id="scroller-anchor"></div>
-      <div id="scroller" style="margin-top:10px; width:270px">
-        <%= render partial: "/carts/mini_cart" %>
+    <div class="row-fluid">
+      <div id="content" class="span8">
+        <%= yield %>
+      </div>
+
+      <div id="sidebar" class="span4">
+        <div id="scroller-anchor"></div>
+        <div id="scroller">
+          <%= render partial: "/carts/mini_cart" %>
+        </div>
       </div>
     </div>
 
-    <div id="content">
-      <%= yield %>
-    </div>
   </div>
 </body>
 </html>

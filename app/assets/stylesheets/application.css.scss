@@ -27,41 +27,16 @@
   clear:both;
 }
 
-/* For IE 6/7 (trigger hasLayout) */
+/*[> For IE 6/7 (trigger hasLayout) <]*/
 .clearfix {
   zoom:1;
 }
 
-
-body {
-  padding:    0px;
-  text-align: center;
-}
-
-#wrapper {
-  width:      960px;
-  margin:     0px auto;
-  text-align: left;
-  padding:    0px;
-  /*border:           1px dashed #333;*/
-  background-color: #f0f0f0;
-  min-height: 750px;
-}
-
-#content {
-  margin-right: 300px;
-  padding:      15px;
-}
-
-#sidebar {
-  width: 300px;
-  float: right;
+.brand {
+  font-family: 'Great Vibes', cursive;
 }
 
 #mini_cart {
   font-size: .85em;
 }
 
-.brand {
-  font-family: 'Great Vibes', cursive;
-}
