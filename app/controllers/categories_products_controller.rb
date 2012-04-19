@@ -8,5 +8,9 @@ class CategoriesProductsController < ApplicationController
     rows.times do |i|
       @product_rows << products.pop(5)
     end
+
+    if rows == 0 && products.length > 0
+      @product_rows << products
+    end
   end
 end

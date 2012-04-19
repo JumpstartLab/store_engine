@@ -1,9 +1,10 @@
 require 'spec_helper'
 
-describe "Products Requests" do
+describe "Products Requests", :model => :product do
   context "when I view all products" do
-    let!(:products) { [Fabricate(:product, :title => "Foo"), 
-      Fabricate(:product, :title => "Bar")] }
+    let!(:product) { Fabricate(:product, :title => "Foo") }
+    let!(:product2) { Fabricate(:product, :title => "Bar") }
+
     before(:each) do      
       visit products_path
     end
