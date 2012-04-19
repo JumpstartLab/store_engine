@@ -88,9 +88,10 @@
 
             <div class="span4">
               <div class="well sidebar-nav">
+                <h3><%= link_to "View all Products", products_path %></h3>
                 <h3>Shop All Products by Category</h3>
                 <ul class="nav nav-list">
-                  <li> <%= link_to "Full Product List", products_path %> </li>
+                  
                   <% Category.all.each do |category|%>
                     <li> 
                       <%= link_to category.name, category_path(category) %>

@@ -1,9 +1,15 @@
 
-<h1><%= @category.name %></h1>
+<h1><%= @category.name %> Products</h1>
+<br/>
+<br/>
+<br/>
 
 <table class="table">
   
   <tbody>
+    <% if @category.products.length == 0 %>
+    <h2>No products available in this category at this time</h2>
+    <% end %>
     <% @category.products.each do |product|%>
       <% if product.retired == false || (can? :create, @product) %>
         
@@ -12,7 +18,11 @@
           <td class="description">
             <%= link_to product.title, product_path(product) %>
             <p>
-              <%= product.description %>
+              <% if product.description.split(" ").count >40 %>
+                <%= product.description.split(" ")[0..40].join(" ") %>...
+              <% else %>
+                <%= product.description %>
+              <% end %>
               <br />
               <%= sprintf("$%0.02f", product.price) %>
             </p>
@@ -29,15 +39,20 @@
                 edit_product_path(product), 
                 :class => 'btn btn-mini' %>
               <% end %>
-              <br />
-              <% if can? :create, @product %>
-                  <%="Retired? " + product.retired?.to_s %>
+              <% if can? :create, product %>
+                <% if product.retired %>
                   <%= form_for product do |f| %>
-                    <%= f.hidden_field :retired, 
+                    <%= f.hidden_field :retired,
                                        :value => product.retired_switch %>
-                    <%= f.submit "mark as #{product.retired_switch}", 
-                                 :class => 'btn btn-mini' %>
-                  <% end %>  
+                    <%= f.submit "Unretire", :class => 'btn btn-mini' %>
+                  <% end %>
+                <% else %>
+                  <%= form_for product do |f| %>
+                    <%= f.hidden_field :retired,
+                                       :value => product.retired_switch %>
+                    <%= f.submit "Retire", :class => 'btn btn-mini' %>
+                  <% end %>
+                <% end %> 
               <% end %>
             </p>
           </td>

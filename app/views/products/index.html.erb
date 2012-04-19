@@ -11,7 +11,11 @@
           <td class="description">
             <%= link_to product.title, product_path(product) %>
             <p>
-              <%= product.description %>
+              <% if product.description.split(" ").count >40 %>
+                <%= product.description.split(" ")[0..40].join(" ") %>...
+              <% else %>
+                <%= product.description %>
+              <% end %>
               <br />
               <%= sprintf("$%0.02f", product.price) %>
             </p>

@@ -46,7 +46,6 @@ describe Product do
         fill_in "product_upc", with: "732140002282"
         click_button "Create Product"
         visit products_path
-        save_and_open_page
         page.should have_content("test_product")
       end
     end
