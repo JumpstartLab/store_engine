@@ -9,7 +9,7 @@ class Admin::OrdersController < ApplicationController
     if params[:commit]
       @orders = Order.admin_search(params)
     else
-      @orders = Order.all  
+      @orders = Order.all
     end
   end
 
