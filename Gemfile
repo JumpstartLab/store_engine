@@ -1,13 +1,17 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'sorcery'
 gem 'money-rails'
 gem 'stripe'
+gem 'faker'
+
+group :production do
+  gem 'pg'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -23,6 +27,7 @@ end
 
 group :development, :test do
   # gem 'fabrication'
+  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
@@ -32,6 +37,5 @@ group :development, :test do
   # gem 'cane'
   gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
   gem 'simplecov'
-  gem 'faker'
   #gem 'ruby-debug19', :require => 'ruby_debug'
 end
