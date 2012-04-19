@@ -11,7 +11,7 @@ describe "Products Requests" do
       click_button "Sign in"
     end
 
-    context "products" do
+    context "#index" do
       let!(:category) { [Fabricate(:category, :id => 999)] }
       let!(:products) { [Fabricate(:product, :category_ids => 999), Fabricate(:product, :category_ids => 999)] }
 
