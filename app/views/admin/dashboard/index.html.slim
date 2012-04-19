@@ -56,3 +56,14 @@ div.row
             td = button_to "Mark as Shipped", order_path(order), 
                  :method => :put, :class => "btn btn-primary", 
                  :id => "shipped_order"
+div
+  br
+  br
+  br
+  = link_to "Add a new product", new_admin_product_path
+  p
+  = link_to "View all products", admin_products_path
+  p
+  = link_to "View all retired products", admin_products_path(:retired => true)
+  p
+  = link_to "Add or edit a category", categories_path

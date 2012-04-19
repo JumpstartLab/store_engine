@@ -32,7 +32,7 @@ describe "Shopping Cart Requests" do
           user.shopping_cart.add_item(product.id, 10)
           visit shopping_cart_path
           click_link("Checkout")
-          current_path.should == new_shipping_address_path
+          current_path.should == new_billing_address_path
         end
       end
     end

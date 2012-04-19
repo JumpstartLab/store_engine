@@ -124,6 +124,7 @@ ActiveRecord::Schema.define(:version => 20120418175418) do
     t.string   "last_name"
     t.integer  "shipping_address_id"
     t.integer  "billing_address_id"
+    t.integer  "transaction_id"
     t.string   "email",                                  :null => false
     t.string   "crypted_password"
     t.string   "salt"

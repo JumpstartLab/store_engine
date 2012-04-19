@@ -4,7 +4,11 @@ class Admin::ProductsController < ApplicationController
   before_filter :categories, :only => [:new, :edit]
 
   def index
-    @products = Product.all
+    if params.has_key?(:retired)
+      @products = Product.find(:all, :conditions => { :retired => true })
+    else
+      @products = Product.all
+    end
   end
 
   def new
@@ -19,7 +23,7 @@ class Admin::ProductsController < ApplicationController
     else
       flash[:notice] = "Failed to add product"
     end
-    redirect_to admin_products_path
+    redirect_to admin_product_path(@product)
   end
 
   def show  

@@ -20,7 +20,6 @@ describe "Products Requests" do
       it "saves a new product" do
         check "category[#{category2.name}]"
         click_button "Create Product"
-        click_link "Test product"
 
         page.should have_content("Test product")
         page.should have_content("Test description")
@@ -28,15 +27,9 @@ describe "Products Requests" do
         page.should have_content(category2.name)
       end
 
-      it "redirects to admin products path" do
-        click_button "Create Product"
-        current_path.should == admin_products_path
-      end
-
       context "and no categories are chosen" do
         it "saves a new product with no categories" do
           click_button "Create Product"
-          click_link "Test product"
           within("#admin_product_show") do
             page.should_not have_content(category.name)
             page.should_not have_content(category2.name)

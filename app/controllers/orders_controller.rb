@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    status = Status.find_by_name("pending")
+    status = Status.find_by_name("paid")
     shipping_address = current_user.shipping_address
     billing_address = current_user.billing_address
     @order = Order.new(:status => status, :user => current_user,

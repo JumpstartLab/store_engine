@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   has_many :orders
   belongs_to :shipping_address
   belongs_to :billing_address
-  has_one :transaction
+  belongs_to :transaction
 
   def cart?
     if shopping_cart.nil?

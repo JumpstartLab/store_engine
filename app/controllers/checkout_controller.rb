@@ -2,6 +2,7 @@ class CheckoutController < ApplicationController
 
   def show
     if current_user == false
+      session[:back_to_cart] = true
       redirect_to login_path
     else
       prefill_addresses

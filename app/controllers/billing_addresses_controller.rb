@@ -9,7 +9,7 @@ class BillingAddressesController < ApplicationController
       session[:billing_address] = @billing_address.id
       current_user.billing_address = @billing_address
       current_user.save
-      if params[:same_address] == "1"
+      if params[:same_as_shipping_address] == "1"
         current_user.shipping_address = ShippingAddress.new(params[:billing_address])
         current_user.save
         redirect_to new_transaction_path

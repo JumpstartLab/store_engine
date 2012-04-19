@@ -7,12 +7,19 @@ class UserSessionsController < ApplicationController
     end
   end
   
-  def create
+  def create    
+    back_to_cart = session[:back_to_cart]
     respond_to do |format|
       anonymous_cart = cart
       if user = login(params[:email],params[:password])
         cart.merge_cart_items(anonymous_cart)
-        format.html { redirect_back_or_to(:root, :notice => 'Login successful.') }
+        format.html do
+          if back_to_cart
+            redirect_to shopping_cart_path
+          else
+            redirect_back_or_to(:root, :notice => 'Login successful.')
+          end
+        end
         format.xml { render :xml => user, :status => :created, :location => user }
       else
         format.html { flash.now[:alert] = "Login failed."; render :action => "new" }

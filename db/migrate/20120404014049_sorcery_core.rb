@@ -6,6 +6,7 @@ class SorceryCore < ActiveRecord::Migration
       t.string :last_name
       t.references :shipping_address
       t.references :billing_address
+      t.references :transaction
       t.string :email,            :null => false
       t.string :crypted_password, :default => nil
       t.string :salt,             :default => nil
