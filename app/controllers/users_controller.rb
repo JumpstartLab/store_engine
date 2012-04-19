@@ -17,4 +17,14 @@ class UsersController < ApplicationController
     flash.now.alert = "User created!"
   end
 
+  def update
+    current_user.update_attributes(params[:user])
+    if current_user.save
+      flash[:notice] = "Updated User Info!"
+      redirect_to root_path
+    else
+      flash[:error] = current_user.errors.full_messages.join(', ')
+      redirect_to :back
+    end
+  end
 end

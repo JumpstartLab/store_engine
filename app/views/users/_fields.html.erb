@@ -9,5 +9,7 @@
   <%= f.label :password_confirmation %><br/>
   <%= f.password_field :password_confirmation %><br/>
   <%= render partial: "address_fields", locals: {f: f} %>
+  <%= f.label :credit_card %><br/>
+  <%= f.text_field :credit_card %><br/>
   <%= f.submit class: "btn" %>
 
