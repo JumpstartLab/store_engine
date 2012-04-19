@@ -20,6 +20,7 @@ class OrdersController < ApplicationController
 
   def create
     order = Order.create_order_from_cart(cart, current_user)
+    order.paid?(current_user, order)
     cart.destroy
     redirect_to order_path(order)
   end

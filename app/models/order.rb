@@ -7,11 +7,17 @@ class Order < ActiveRecord::Base
   has_one :shipping_information
   belongs_to :user
 
-  # validates :billing_information, presence: true
-  # validates :shipping_information, presence: true
-
   def status_options
     ["pending", "cancelled", "paid", "shipped", "returned"]
+  end
+
+  def paid?(current_user, order)
+    if current_user.billing_information.credit_card_number.nil?
+      order[:status] = "pending"
+    else
+      order[:status] = "paid"
+    end
+    order.save
   end
 
   def self.create_order_from_cart(cart, current_user)
@@ -30,13 +36,4 @@ class Order < ActiveRecord::Base
       sum += order_item.total
     end
   end
-
-  # def add_product(product)
-  #   products << product
-  # end
-
-  # def add_product_by_id(product_id)
-  #   product = Product.find(product_id)
-  #   add_product(product)
-  # end
 end
