@@ -1,3 +1,3 @@
-## StoreEngine
+Browse our unbeatable selection of pugs!
 
-http://tutorials.jumpstartlab.com/projects/store_engine.html
+http://pugmug.herokuapp.com/
