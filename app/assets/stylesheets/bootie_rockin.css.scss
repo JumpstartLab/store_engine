@@ -17,9 +17,15 @@ li.categories{
   margin: 0 1em 0 0;
 }
 
-li.nav#login
+li.nav#right
 {
   float: right;
+}
+
+li.nav#right_big
+{
+  float: right;
+  font-size: 28px;
 }
 
 li.dashboard#show{
