@@ -6,7 +6,7 @@ br
 table
   - @products.each do |product|
     tr
-      td
+      td.product_title
         = link_to product.title, admin_product_path(product)
       td = product.price
       td = link_to "Edit", edit_admin_product_path(product)

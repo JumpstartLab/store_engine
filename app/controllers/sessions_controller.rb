@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user
       redirect_back_or_to root_url, :notice => "Logged in!"
     else
-      flash.now.alert = "Email or password was invalid, fucker."
+      flash.now.alert = "Invalid email or password."
       render :new
     end
   end
