@@ -25,4 +25,9 @@ describe User do
     user.username = "a"
     user.should_not be_valid
   end
+
+  it "can be created without a username" do
+    user.username = nil
+    user.should be_valid
+  end
 end

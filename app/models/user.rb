@@ -11,7 +11,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_length_of :username, :within => 2..32,
                       :too_long => "pick a shorter name",
-                      :too_short => "pick a longer name"
+                      :too_short => "pick a longer name",
+                      :allow_nil => true
 
   def admin?
     role == 'admin'
