@@ -6,7 +6,7 @@ class ShippingDetailsController < ApplicationController
 
   def create
     if current_user.shipping_details.create(params[:shipping_detail])
-      redirect_to_last_page
+      redirect_to root_path
     else
       render 'new'
     end
