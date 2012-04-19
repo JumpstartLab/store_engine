@@ -1,6 +1,6 @@
 <div class="span2 well" id="product_<%= product.id %>" style="height:175px; overflow:hidden;">
   <h4 id="product_<%=product.id%>_add"><%= link_to product.title, product_path(product) %></h4>
-  <p align="center" style="padding:5px;"><% if product.photo %>
+  <p align="center" style="padding:5px;"><% if product.photo != nil || "" %>
     <%= image_tag product.photo, :size => "100x100" %>
     <% end %></p>
   <p align="center" style="padding:5px;"><%= link_to "Add to Cart", cart_items_path(:product_id => product), :method => :post, :class => 'btn btn-success' %></p>
