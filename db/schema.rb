@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417140443) do
+ActiveRecord::Schema.define(:version => 20120418182846) do
+
+  create_table "admin_dashboards", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "billing_informations", :force => true do |t|
     t.integer  "user_id"
@@ -65,9 +70,9 @@ ActiveRecord::Schema.define(:version => 20120417140443) do
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
     t.integer  "total_price"
-    t.string   "status",      :default => "pending"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+    t.string   "status",      :default => "pending"
   end
 
   create_table "products", :force => true do |t|
