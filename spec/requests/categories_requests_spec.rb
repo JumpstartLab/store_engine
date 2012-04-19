@@ -1,6 +1,83 @@
 require 'spec_helper'
 
 describe "Categories Requests" do
+
+  context "when logged in as an admin" do
+    context "destroy" do
+      let!(:category) { Fabricate(:category) }
+
+      before(:each) do
+        visit category_path(category)
+      end
+
+      it "has a button to destroy the category" do
+        pending "Need to set these tests up with admin access"
+        page.should have_selector("#destroy")
+      end
+
+      it "destroys the category" do
+        pending "This requires approval of JavaScript warning message"
+        click_link("Destroy this Category")
+        # Need to click the alert box 'ok' here. Test is fine to this point.
+        page.should_not have_content(category.name)
+      end
+    end
+
+    context "new" do
+      before(:each) do
+        visit new_category_path
+      end
+
+      # it "displays a form" do
+      #   pending "Need to set these tests up with admin access"
+      #   page.should have_selector("form")
+      # end
+
+      # context "the form" do
+      #   it "asks for a name" do
+      #     pending "Need to set these tests up with admin access"
+      #     within("form") do
+      #       page.should have_selector("label[for$='category_name']")
+      #       page.should have_selector("input[id$='category_name']")
+      #     end
+      #   end
+      #   it "asks for products to be assigned" do
+      #     pending "Need to set these tests up with admin access"
+      #     # page.should have_selector("#products")
+      #   end
+      # end
+    end
+
+    # context "edit" do
+    #   let!(:category) { Fabricate(:category) }
+
+    #   before(:each) do
+    #     visit edit_category_path(category)
+    #   end
+
+    #   it "displays a form" do
+    #     pending "Admin Login setup"
+    #     page.should have_selector("form")
+    #   end
+
+    #   context "the form" do
+    #     it "asks for a name" do
+    #       pending "admin login setup"
+    #       within("form") do
+    #         page.should have_selector("label[for$='category_name']")
+    #         page.should have_selector("input[id$='category_name']")
+    #       end
+    #     end
+
+    #     it "asks for products to be assigned" do
+    #       pending "admin login setup"
+    #       page.should have_selector("#products")
+    #     end
+    #   end
+    # end
+
+  end
+
   context "when logged in as a basic user" do
     let!(:user) { Fabricate(:user, email: "foozberry@example.com") }
 
@@ -66,69 +143,5 @@ describe "Categories Requests" do
       end
     end
 
-    context "destroy" do
-      let!(:category) { Fabricate(:category) }
-
-      before(:each) do
-        visit category_path(category)
-      end
-
-      it "has a button to destroy the category" do
-        page.should have_selector("#destroy")
-      end
-
-      it "destroys the category" do
-        pending "This requires approval of JavaScript warning message"
-        click_link("Destroy this Category")
-        # Need to click the alert box 'ok' here. Test is fine to this point.
-        page.should_not have_content(category.name)
-      end
-    end
-
-    context "new" do
-      before(:each) do
-        visit new_category_path
-      end
-      it "displays a form" do
-        page.should have_selector("form")
-      end
-
-      context "the form" do
-        it "asks for a name" do
-          within("form") do
-            page.should have_selector("label[for$='category_name']")
-            page.should have_selector("input[id$='category_name']")
-          end
-        end
-        it "asks for products to be assigned" do
-          page.should have_selector("#products")
-        end
-      end
-    end
-
-    context "edit" do
-      let!(:category) { Fabricate(:category) }
-
-      before(:each) do
-        visit edit_category_path(category)
-      end
-
-      it "displays a form" do
-        page.should have_selector("form")
-      end
-
-      context "the form" do
-        it "asks for a name" do
-          within("form") do
-            page.should have_selector("label[for$='category_name']")
-            page.should have_selector("input[id$='category_name']")
-          end
-        end
-
-        it "asks for products to be assigned" do
-          page.should have_selector("#products")
-        end
-      end
-    end
   end
 end
