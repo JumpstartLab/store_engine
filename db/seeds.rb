@@ -1,6 +1,16 @@
+Category.create(:name => "cute pugs")
+Category.create(:name => "awesome pugs")
+Category.create(:name => "sweet pugs")
+Category.create(:name => "sad face pugs")
+Category.create(:name => "sexy pugs")
+
 def create_product(title, description, photo)
-Product.create(:title => title, :description => description, :price => rand(10000).to_s,
-               :photo => photo)
+  product = Product.create(:title => title, :description => description, 
+                 :price => rand(10000).to_s, :photo => photo)
+  ids = Category.all.sample(rand(1..3)).collect do |category| 
+    category.id
+  end
+  product.set_categories(ids)
 end
 
 matt = User.create(:first_name => "Matt", :last_name => "Yoho",
@@ -14,12 +24,6 @@ chad = User.create(:first_name => "Chad",
              :password => "hungry")
 chad.admin = true
 chad.save!
-
-Category.create(:name => "cute pugs")
-Category.create(:name => "awesome pugs")
-Category.create(:name => "sweet pugs")
-Category.create(:name => "sad face pugs")
-Category.create(:name => "sexy pugs")
 
 create_product("Bailey", "Bailey is super cute!", 
                "http://28.media.tumblr.com/tumblr_lirvqoFIAO1qaa50yo1_500.jpg")
