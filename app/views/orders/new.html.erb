@@ -14,7 +14,7 @@
     <%= billing_field.label :street %>
     <%= billing_field.text_field :street %>
     <%= billing_field.label :street_two %>
-    <%= billing_field.text_field :street_two %>
+    <%= billing_field.text_field :street_two, :placeholder => "Optional" %>
     <%= billing_field.label :city %>
     <%= billing_field.text_field :city %>
     <%= billing_field.label :state %>
@@ -29,19 +29,19 @@
 <h3>Shipping Address:</h3>
   <%= f.fields_for :shipping_address do |shipping_field| %>
     <%= shipping_field.label :street %>
-    <%= shipping_field.text_field :street %>
+    <%= shipping_field.text_field :street, :placeholder => "Optional" %>
     <%= shipping_field.label :street_two %>
-    <%= shipping_field.text_field :street_two %>
+    <%= shipping_field.text_field :street_two, :placeholder => "Optional" %>
     <%= shipping_field.label :city %>
-    <%= shipping_field.text_field :city %>
+    <%= shipping_field.text_field :city, :placeholder => "Optional" %>
     <%= shipping_field.label :state %>
-    <%= shipping_field.text_field :state %>
+    <%= shipping_field.text_field :state, :placeholder => "Optional" %>
     <%= shipping_field.label :country %>
-    <%= shipping_field.text_field :country %>
+    <%= shipping_field.text_field :country, :placeholder => "Optional" %>
     <%= shipping_field.label :zipcode %>
-    <%= shipping_field.text_field :zipcode %>
+    <%= shipping_field.text_field :zipcode, :placeholder => "Optional" %>
     <%= shipping_field.label :phone_number %>
-    <%= shipping_field.text_field :phone_number %>
+    <%= shipping_field.text_field :phone_number, :placeholder => "Optional" %>
   <% end %>
 <h3>Billing Information:</h3>
   <%= f.fields_for :credit_cards do |credit_card_field| %>
