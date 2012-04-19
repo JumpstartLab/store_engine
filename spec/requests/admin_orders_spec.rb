@@ -64,9 +64,9 @@ require 'spec_helper'
       u.update_attribute(:admin, true)
       log_in(u, 'asdfasdf')
       @order = Fabricate(:order)
-      visit admin_orders_path(@order, status_filter: 'pending')
+      visit admin_orders_path(@order, status_filter: 'pending', commit: "Filter")
       page.should have_content @order.email_address
-      visit admin_orders_path(@order, status_filter: 'returned')
+      visit admin_orders_path(@order, status_filter: 'returned', commit: "Filter")
       page.should_not have_content @order.email_address
     end
   end

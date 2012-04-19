@@ -6,7 +6,17 @@
   </table>
 
 <%= form_tag admin_orders_path, method: :get do |f| %>
-  <%= select_tag :status_filter, options_for_select(Order::STATUSES.map(&:titleize)) %>
+  <%= select_tag :status_filter, 
+                 options_for_select(Order::STATUSES.map(&:titleize)), 
+                 include_blank: true %><br />
+  <%= label_tag  :price_filter, "Price" %>
+  <%= select_tag :price_filter, options_for_select(['>', '=', '<']), 
+                 include_blank: true %>
+  <%= text_field_tag :price_term %><br />
+  <%= label_tag  :date_filter, "Date" %>
+  <%= select_tag :date_filter, options_for_select(['>', '=', '<']), 
+                 include_blank: true %>
+  <%= text_field_tag :date_term %><br />
   <%= submit_tag "Filter", class: "btn" %>
 <% end %>
 
