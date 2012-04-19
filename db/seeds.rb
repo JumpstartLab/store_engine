@@ -12,13 +12,13 @@ Category.destroy_all
 ProductCategorization.destroy_all
 
 matt = User.create(full_name: 'Matt Yoho',
-  email_address: 'demoXX+matt@jumpstartlab.com', display_name: '',
+  email_address: 'demo11+matt@jumpstartlab.com', display_name: '',
   password: 'hungry')
 jeff = User.create(full_name: 'Jeff Casimir',
-  email_address: 'demoXX+jeff@jumpstartlab.com',
+  email_address: 'demo11+jeff@jumpstartlab.com',
   display_name: 'j3', password: 'hungry')
 chad = User.create(full_name: 'Chad Fowler',
- email_address: 'demoXX+chad@jumpstartlab.com',
+ email_address: 'demo11+chad@jumpstartlab.com',
  display_name: 'SaxPlayer', password: 'hungry')
 chad.update_attribute(:admin, true)
 
