@@ -9,7 +9,7 @@
       <div class="product_image">
         <%= link_to image_tag(product.image_url(:thumb).to_s), product_path(product) if product.image? %>
       </div>
-      <%= link_to cart_products_path(:product_id => product), :id => "anim", :class => "btn", :method => :post, :remote => true do %><i class="icon-shopping-cart"></i>add to cart<% end %>
+      <%= link_to cart_products_path(:product_id => product), :id => "anim", :class => "btn", :method => :post do %><i class="icon-shopping-cart"></i>add to cart<% end %>
       <% if logged_in? %><%= link_to instant_orders_path(:product_id => product), :class => "btn btn-info", :method => :post, :confirm => "Really order #{product.title}?" do %>Instant Checkout<% end %>
       <% end %>
     </div>
