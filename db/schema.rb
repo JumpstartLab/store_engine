@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120419010837) do
+ActiveRecord::Schema.define(:version => 20120419014813) do
 
   create_table "activations", :force => true do |t|
     t.integer  "product_id"
@@ -49,9 +49,10 @@ ActiveRecord::Schema.define(:version => 20120419010837) do
   create_table "cart_products", :force => true do |t|
     t.integer  "product_id"
     t.integer  "cart_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.integer  "quantity",   :default => 1
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
+    t.integer  "quantity",                                  :default => 1
+    t.decimal  "price",      :precision => 10, :scale => 2
   end
 
   create_table "carts", :force => true do |t|
@@ -79,11 +80,12 @@ ActiveRecord::Schema.define(:version => 20120419010837) do
   end
 
   create_table "order_products", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "quantity"
     t.integer  "product_id"
     t.integer  "order_id"
+    t.decimal  "price",      :precision => 10, :scale => 2
   end
 
   create_table "order_statuses", :force => true do |t|

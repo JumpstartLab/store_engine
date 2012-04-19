@@ -24,7 +24,8 @@ describe "Orders" do
       login(admin_user)
       pending_order.order_products << OrderProduct.create(
                               :product_id => product.id,
-                              :quantity => 1)
+                              :quantity => 1,
+                              :price => product.price)
     end
 
     context "and the order is pending" do

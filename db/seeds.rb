@@ -76,6 +76,7 @@ appliance.products << stove
   Fabricate(:order, :user_id => rand(3)+1)
   OrderProduct.create(:quantity => rand(10)+1,
                       :product_id => rand(4)+1,
+                      :price => rand(25),
                       :order_id => i+1)
 end
 
