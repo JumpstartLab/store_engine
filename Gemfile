@@ -1,11 +1,12 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'sqlite3'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.5'
+gem 'heroku'
+gem 'twitter-bootstrap-rails'
 gem 'reek', :git => "git://github.com/mvz/reek.git", :branch =>
 "ripper_ruby_parser-2"
 gem 'cane', :git => "git://github.com/square/cane.git"
@@ -20,10 +21,10 @@ group :assets do
   # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'twitter-bootstrap-rails'
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'fabrication'
   gem 'rspec-rails'
   gem 'capybara'
@@ -37,4 +38,9 @@ group :development, :test do
   gem 'reek', :git => "git://github.com/mvz/reek.git", :branch =>
 "ripper_ruby_parser-2"
   gem 'cane', :git => "git://github.com/square/cane.git"
+end
+
+group :production do
+  gem 'pg'
+  gem 'thin'
 end
