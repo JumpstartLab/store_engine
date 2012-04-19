@@ -3,6 +3,10 @@ class BillingMethodsController < ApplicationController
   before_filter :load_billing_method, only: [:edit, :update]
   before_filter :validate_billing_user, only: [:edit]
 
+  def index
+    redirect_to root_url
+  end
+
   def new
     session[:return_to] = request.referrer
     @billing_method = BillingMethod.new

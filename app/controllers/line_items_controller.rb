@@ -3,6 +3,10 @@ class LineItemsController < ApplicationController
   before_filter :lookup_line_item, :only => [:show, :edit, :destroy, :update]
   before_filter :lookup_order, :only => [:show, :edit, :destroy, :update]
 
+  def index
+    redirect_to root_url
+  end
+
   def create
     if !session[:order_id]
       create_order

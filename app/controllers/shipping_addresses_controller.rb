@@ -3,6 +3,10 @@ class ShippingAddressesController < ApplicationController
   before_filter :load_shipping_address, only: [:edit, :update]
   before_filter :validate_shipping_user, only: [:edit]
 
+  def index
+    redirect_to root_url
+  end
+
   def new
     session[:return_to] = request.referrer
     @shipping_address = ShippingAddress.new
