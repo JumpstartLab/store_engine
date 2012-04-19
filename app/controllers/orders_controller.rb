@@ -42,9 +42,6 @@ class OrdersController < ApplicationController
         if status_name == StoreEngine::Status::PENDING || 
            status_name == StoreEngine::Status::PAID
           render :template => "orders/admin_show"
-           # render editable admin form
-        else
-          #render uneditable form
         end
       elsif @order.user != current_user
         not_found
@@ -52,9 +49,6 @@ class OrdersController < ApplicationController
     else
       not_found
     end
-    #if logged_in? && !current_user.admin? && @order.user != current_user
-      #not_found
-    #end
   end
 
   def update
