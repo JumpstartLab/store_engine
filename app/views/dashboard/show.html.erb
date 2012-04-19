@@ -91,6 +91,7 @@
     <th>Sales count</th>
     <th>Categories</th>
     <th>Edit</th>
+    <th>Delete</th>
   </thead>
   <tbody>
     <% @products.each do |product| %><tr>
@@ -101,6 +102,8 @@
       <td><%= product.sales %></td>
       <td><%= product.categories.map! { |k| "#{k.title}" }.join(", ") %></td>
       <td><%= link_to "Edit", edit_product_path(product), :class => "btn btn-mini" %></td>
+      <td><%= link_to "Delete", product, method: :delete, :class => "btn btn-mini btn-danger",
+              :confirm => "Are you sure?" %></td>
     </tr><% end %>
   </tbody> 
 </table>
