@@ -150,7 +150,7 @@ describe "Using the shopping cart" do
 
         context "and I log out" do
           before(:each) do
-            click_link_or_button("Account")
+            click_link_or_button(user.name)
             click_link_or_button("Sign out")
           end
 

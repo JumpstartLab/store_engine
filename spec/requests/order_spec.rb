@@ -1,15 +1,52 @@
 require 'spec_helper'
 
-describe "When I am placing an order" do
+describe "When I want to place an order" do
   #before(:each) { visit new_order_path }
   let!(:user) { FactoryGirl.create(:user) }
+  let(:product) { FactoryGirl.create(:product) }
 
   before(:each) do
     login_user_post(user.email, "foobar")
-    visit new_order_path 
   end
 
-  context "and I submit enter invalid information" do
+  context "and I visit a product's page" do
+    before(:each) { visit product_path(product) }
+
+    context "and I add the product to my cart" do
+      before(:each) { click_link_or_button('Add to cart') }
+
+      it "should update my cart count" do
+        page.should have_content("Cart (1)")
+      end
+
+      context "and I want to place an order" do
+        before(:each) { visit new_order_path }
+
+        it "prompts me to add a credit card" do
+          page.should have_content('Add a Credit Card')
+        end
+
+        context "and I submit valid information" do
+          let(:stripe_card_token) { "tok_KM1feeMHDhSgiq" }
+          let(:json) { JSON.parse(IO.read('spec/fixtures/stripe_new_customer_success.json')) }
+
+          before do
+            fill_in "Credit Card Number", with: 4242424242424242
+            fill_in "Security Code on Card (CVV)", with: 234
+            select("1 - January", from: :card_month)
+            select("2013", from: "card_year")
+          end
+
+          it "should take me to the shipping details page" do
+            
+          end
+        end
+
+      end
+    end
+  end
+
+  context "and I submit enter valid information" do
     before(:each) do
       fill_in "Credit Card Number", with: 123
       click_link_or_button('Create Credit card')
