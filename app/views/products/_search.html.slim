@@ -1,2 +1,4 @@
 = form_tag products_path, :method => :get
-h3 Search for a product: #{text_field_tag :filtered, params[:filtered], placeholder: 'ex. Cruiser'} #{submit_tag "Find", class: 'btn btn-primary'}
+= label_tag "Search for a product"
+= text_field_tag :filtered, params[:filtered], placeholder: 'ex. Cruiser'
+= submit_tag "Find", class: 'btn btn-primary'
