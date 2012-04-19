@@ -38,7 +38,7 @@ describe "Products Show Requests" do
     end
 
     it "shows a link to all products" do
-      within("ul#options") do
+      within("#index_categories") do
         page.should have_link('All Products', href: products_path)
       end
     end

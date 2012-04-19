@@ -26,7 +26,7 @@ describe "Product Show Requests" do
     it "shows a link to edit a product" do
       product = products.first
       visit "/products/#{product.id}"
-      within("ul#options") do
+      within("#admin_bar") do
         page.should have_link('Edit Product', href: edit_product_path(product))
       end
     end
@@ -34,7 +34,7 @@ describe "Product Show Requests" do
     it "shows a link to delete a product" do
       product = products.first
       visit "/products/#{product.id}"
-      within("ul#options") do
+      within("#admin_bar") do
         page.should have_link('Delete Product', href: product_path(product))
       end
     end
@@ -42,7 +42,7 @@ describe "Product Show Requests" do
     it "shows a link to all products" do
       product = products.first
       visit "/products/#{product.id}"
-      within("ul#options") do
+      within("#index_categories") do
         page.should have_link('All Products', href: products_path)
       end
     end

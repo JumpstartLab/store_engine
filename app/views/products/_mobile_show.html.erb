@@ -49,15 +49,16 @@
         <%= image_tag @product.image_url(:thumb).to_s, :id => "product_image" if @product.image? %>
         <p><%= number_to_currency(@product.price) %></p>
       <% end %>
-
+    <div class="buy-options">
       <% unless @product.retired %>
-      <%= link_to cart_products_path(:product_id => @product), :id => "anim", :class => "btn", :method => :post do %><i class="icon-shopping-cart"></i>add to cart<% end %>
+      <%= link_to cart_products_path(:product_id => @product), :id => "anim", :class => "btn btn-primary", :method => :post do %><i class="icon-shopping-cart icon-white"></i>add to cart<% end %>
       <% end %>
-      <% if logged_in? %><%= link_to instant_orders_path(:product_id => @product), :class => "btn btn-info", :method => :post, :confirm => "Really order #{@product.title}?" do %>Instant Checkout<% end %>
+      <% if logged_in? %><%= link_to instant_orders_path(:product_id => @product), :class => "btn btn-success", :method => :post, :confirm => "Really order #{@product.title}?" do %>Instant Checkout<% end %>
       <% end %>
-      </div>
+    </div>
+    </div>
   </div>
-  <div class="well">
+  <div class="well" id="index_categories">
     <%= link_to "All Products", products_path, :class => "btn" %>
     <% if @product.categories.any? %>
       <% @product.categories.each do |category| %>
