@@ -11,6 +11,7 @@ StoreEngine::Application.routes.draw do
   resources :orders
   resources :transactions
   resource :checkout, :controller => "checkout"
+  resources :order_items, :only => :destroy
   resources :categories do
     resources :products, :only => [:index], :controller => "categories_products"
   end

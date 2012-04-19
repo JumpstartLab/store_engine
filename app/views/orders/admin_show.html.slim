@@ -68,7 +68,7 @@ h3 Items
           | $
           = order_item.price
         td class="span1" = text_field_tag "quantity[#{order_item.id}]", order_item.quantity
-        /td class="span1" = link_to "Remove", order_item_path(order_item), :method => :delete
+        td class="span1" = link_to "Remove", order_item_path(order_item), :method => :delete
 
     tr
       td
