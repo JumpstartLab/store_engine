@@ -146,6 +146,12 @@ u5 = User.create!(full_name: "Jeff Casimir", email: "jeff.casimir@livingsocial.c
 u6 = User.create!(full_name: "Chad Fowler", email: "chad.fowler@livingsocial.com", display_name: "sax_player", password: "hungry", password_confirmation: "hungry")
 u6.update_attribute(:admin, true)
 
+u7 = User.create!(full_name: "Matt Yoho", email: "demo04+matt@jumpstartlab.com", display_name: "", password: "hungry", password_confirmation: "hungry")
+u8 = User.create!(full_name: "Jeff Casimir", email: "demo04+jeff@jumpstartlab.com", display_name: "j3", password: "hungry", password_confirmation: "hungry")
+u9 = User.create!(full_name: "Chad Fowler", email: "demo04+chad@jumpstartlab.com", display_name: "sax_player", password: "hungry", password_confirmation: "hungry")
+u9.update_attribute(:admin, true)
+
+
 o = []
 100.times do |i|
 o[i] = Order.create!(billing_address: "#{(rand * 10000).to_i} any street", 
