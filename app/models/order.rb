@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
   attr_accessible :billing_address, :shipping_address,
-                  :transactionsuser_id, :billing_address_id,
+                  :transactions, :user_id, :billing_address_id,
                   :shipping_address_id, :user_id
   belongs_to :user
 
@@ -110,9 +110,11 @@ class Order < ActiveRecord::Base
   end
 
   def add_product_by_product_id(product_id, quantity = 1)
+    product = Product.find_by_id(product_id)
     order_product = order_products.new
     order_product.product_id = product_id
     order_product.quantity = quantity
+    order_product.price = product.best_price
     save
   end
 
@@ -121,6 +123,7 @@ class Order < ActiveRecord::Base
     order_product = order_products.new
     order_product.product_id = cart_product.product_id
     order_product.quantity = cart_product.quantity
+    order_product.price = cart_product.price
     save
   end
 

@@ -1,9 +1,10 @@
 class OrderProduct < ActiveRecord::Base
-  attr_accessible :quantity, :product_id, :order_id
+  attr_accessible :quantity, :product_id, :order_id, :price
 
   belongs_to :order
   belongs_to :product
 
+  validates_presence_of :price
   validates_associated :order
   validates_associated :product
 
@@ -11,12 +12,8 @@ class OrderProduct < ActiveRecord::Base
     product.title
   end
 
-  def price
-    product.price
-  end
-
   def total
-    price * quantity
+    self.price * self.quantity
   end
 
 end

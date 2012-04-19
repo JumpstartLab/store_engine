@@ -19,6 +19,7 @@ StoreEngine::Application.routes.draw do
 
   resources :sessions
   resources :products
+  resources :sales
 
   resources :products do
     resources :retirements, :only => [:create]

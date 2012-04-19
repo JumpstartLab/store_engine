@@ -7,7 +7,11 @@ class Cart < ActiveRecord::Base
 
   def add_product_by_id(product_id)
     product = Product.find_by_id(product_id)
-    products << product
+    cp = cart_products.create
+    cp.product = product
+    cp.quantity = 1
+    cp.price = product.best_price
+    cp.save
   end
 
   def remove_product_by_id(product_id)

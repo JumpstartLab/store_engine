@@ -1,0 +1,39 @@
+<%= form_for @sale, :html => { :multipart => true } do |f| %>
+  <% if @sale.errors.any? %>
+    <div class="alert alert-error">
+      <ul>
+        <% for message in @sale.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if params[:product_id] %>
+    <% product = Product.find(params[:product_id]) %>
+    <p>Create a sale for <%= product.title %> </p>
+    <%= f.hidden_field :product_id, :value => params[:product_id] %>
+  <% end %>
+
+  <% if params[:category_id] %>
+    <% category = Category.find(params[:category_id]) %>
+    <p>Create a sale for <%= category.name %> </p>
+    <%= f.hidden_field :category_id, :value => params[:category_id] %>
+  <% end %>
+
+
+  <p>
+    <%= f.label :percentage %>
+    <%= f.text_field :percentage %>
+  </p>
+  <p>
+    <%= f.label :endtime %>
+    <%= f.text_field :endtime %>
+  </p>
+
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
