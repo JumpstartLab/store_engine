@@ -1,0 +1,14 @@
+<div class="span10 mobile-index" id="product_<%= mobile_product.id %>">
+  <div class="well mobile-product">
+      <%= link_to product_path(mobile_product) do %>
+        <h4><%= truncate(mobile_product.title, :length => 20) %></h4>
+
+    <div class="mobile-img">
+        <%= link_to image_tag(mobile_product.image_url(:mobile).to_s), product_path(mobile_product) if mobile_product.image? %>
+    </div>
+    <div class="mobile-info">
+        <p class="mobile-product-price"><%= number_to_currency(mobile_product.price) %></p>
+      <% end %>
+    </div>
+  </div>
+</div>
