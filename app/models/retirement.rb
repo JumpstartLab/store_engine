@@ -9,5 +9,9 @@ class Retirement
   def retire
     self.product.retire
   end
+
+  def activate
+    self.product.activate
+  end
   
 end

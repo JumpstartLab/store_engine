@@ -29,7 +29,7 @@ end
 
 group :development, :test do
   # gem 'fabrication'
-#  gem 'sqlite3'
+  gem 'sqlite3'
   gem 'reek', :git => "git://github.com/mvz/reek.git", :branch => "ripper_ruby_parser-2"
   gem 'rspec-rails'
   gem 'capybara'

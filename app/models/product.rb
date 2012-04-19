@@ -24,6 +24,14 @@ class Product < ActiveRecord::Base
     where(:retired => false)
   end
 
+  def self.retired
+    where(:retired => true)
+  end
+
+  def activate
+    self.update_attribute(:retired, false)
+  end
+
   def retire
     if self.update_attribute(:retired, true)
       self.cart_products.destroy_all
