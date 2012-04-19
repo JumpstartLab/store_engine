@@ -1,6 +1,6 @@
 ## Live App
 
-http://http://awesomestore.herokuapp.com
+http://awesomestore.herokuapp.com
 
 ## StoreEngine Specs
 
