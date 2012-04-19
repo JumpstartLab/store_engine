@@ -10,13 +10,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new
-    @order.user = current_user
-    @order.billing_address = Address.new(params[:order][:billing_address])
-    @order.shipping_address = Address.new(params[:order][:shipping_address])
-    @order.credit_cards << CreditCard.new(params[:order][:credit_card])
-    @order.add_products_by_cart_id(params[:order][:cart_id])
-    @order.order_statuses.new(:status => "paid")
+    create_order_from_params
 
     if @order.save
       params[:order] = @order.to_param
@@ -31,6 +25,22 @@ class OrdersController < ApplicationController
     unless @order
       redirect_to root_url, :notice => "DON'T TOUCH THAT"
     end
+  end
+
+private
+
+  def create_order_from_params
+    @order = Order.new
+    @order.user = current_user
+    fill_order_info_from_params
+    @order.add_products_by_cart_id(params[:order][:cart_id])
+    @order.order_statuses.new(:status => "paid")
+  end
+
+  def fill_order_info_from_params
+    @order.billing_address = Address.new(params[:order][:billing_address])
+    @order.shipping_address = Address.new(params[:order][:shipping_address])
+    @order.credit_cards << CreditCard.new(params[:order][:credit_card])
   end
 
 end

@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     elsif session[:cart_id]
       Cart.find_by_id(session[:cart_id])
     else
-      Cart.create.tap{ |c| session[:cart_id] = c.id }
+      Cart.create.tap{ |cart| session[:cart_id] = cart.id }
     end
   end
 
