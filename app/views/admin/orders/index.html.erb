@@ -13,7 +13,7 @@
   <%= select_tag :price_filter, options_for_select(['>', '=', '<']), 
                  include_blank: true %>
   <%= text_field_tag :price_term %><br />
-  <%= label_tag  :date_filter, "Date" %>
+  <%= label_tag  :date_filter, "Date (DD/MM/YY)" %>
   <%= select_tag :date_filter, options_for_select(['>', '=', '<']), 
                  include_blank: true %>
   <%= text_field_tag :date_term %><br />
@@ -26,6 +26,7 @@
     <th>User</th>
     <th>Total</th>
     <th>Status</th>
+    <th>Status Date</th>
     <th>Controls</th>
   </tr>
 
@@ -35,6 +36,7 @@
     <td><%= order.email_address %></td>
     <td><%= order.total_price %></td>
     <td><%= order.status.titleize %></td>
+    <td><%= order.status_date.strftime("%m/%d/%y") %></td>
     <td><%= render partial: 'controls', locals: {order: order} %></td>
   </tr>
 <% end %>

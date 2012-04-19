@@ -59,13 +59,15 @@ class Order < ActiveRecord::Base
   end
 
   def self.date_search(params)
-    case params[:date_filter]
-    when "<"
-      self.where("status_date < ?", DateTime.parse(params[:date_term]))
-    when ">"
-      self.where("status_date > ?", DateTime.parse(params[:date_term]))
-    when "="
-      self.where("status_date < ?", DateTime.parse(params[:date_term]))
+    target_date = DateTime.strptime(params[:date_term], "%m/%d/%y") rescue nil
+    if target_date
+      case params[:date_filter]
+      when "<" then self.where("status_date < ?", target_date)
+      when ">" then self.where("status_date > ?", target_date)
+      when "=" then self.where("status_date < ?", target_date)
+      end
+    else
+      []
     end
   end
 
