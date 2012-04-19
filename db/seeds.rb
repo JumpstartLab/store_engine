@@ -166,7 +166,7 @@ CategoryAssignment.create(product: glade, category: home)
 CategoryAssignment.create(product: natures, category: baby_products)
 CategoryAssignment.create(product: jbp, category: baby_products)
 
-o1 = Order.create(user: matt, name: "matt yoho", address: "a cave", email: "matt@jumpstartlab.com", cc_number: "32131231242342", cc_expiry: "03/19")
+o1 = Order.create(user: matt, name: "matt yoho", address: "a cave", email: "matt@jumpstartlab.com", cc_number: "32131231242342", cc_expiry: "03/19", status: "pending")
 
 
 
