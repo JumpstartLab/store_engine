@@ -2,6 +2,19 @@
 
 <%= form_for(@shipping_information) do |f| %>
   
+  <% if @shipping_information.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-error">
+        The form contains <%= pluralize(@shipping_information.errors.count, "error") %>.
+      </div>
+      <ul>
+      <% @shipping_information.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <%= f.hidden_field :user_id, :value => current_user.id %>
 
   <%= f.label :shipping_address_line_1 %>
