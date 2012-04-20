@@ -21,15 +21,15 @@ class ShippingInformationsController < ApplicationController
 
   def update
     shipping_information.update_attributes(params[:shipping_information])
-    flash[:success] = "Shipping information saved!"
-    redirect_to_last_page
+    flash[:success] = "Shipping information updated!"
+    redirect_back_to_order_or @shipping_information
   end
 
   def create
     @shipping_information = ShippingInformation.new(params[:shipping_information])
     if @shipping_information.save
       flash[:success] = "Shipping information saved!"
-      redirect_to shipping_information_path(@shipping_information)
+      redirect_back_to_order_or @shipping_information
     else
       render 'new'
     end

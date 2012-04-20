@@ -1,6 +1,19 @@
 <h3>Billing Information</h3>
 
 <%= form_for(billing_information) do |f| %>
+  
+  <% if billing_information.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-error">
+        The form contains <%= pluralize(billing_information.errors.count, "error") %>.
+      </div>
+      <ul>
+      <% billing_information.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <%= f.hidden_field :user_id, :value => current_user.id %>
 

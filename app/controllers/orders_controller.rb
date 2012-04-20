@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
   end
 
   def shipping_information
+    store_order_location
     if current_user.shipping_information.nil?
       redirect_to new_shipping_information_path
     else
@@ -44,8 +45,9 @@ class OrdersController < ApplicationController
   end
 
   def billing_information
+    store_order_location
     if current_user.billing_information.nil?
-      redirect_to new_billing_information_path
+      redirect_to new_billing_information_path 
     else
       @billing_information ||= current_user.billing_information
     end

@@ -43,6 +43,18 @@ module SessionsHelper
     session[:return_to] = request.fullpath
   end
 
+  def redirect_back_to_order_or(default)
+    if session[:order_to].nil? 
+      redirect_to default
+    else
+      redirect_to(session[:order_to])
+    end
+  end
+
+  def store_order_location
+    session[:order_to] = request.fullpath
+  end
+
   private
 
     def user_from_remember_token
@@ -52,5 +64,9 @@ module SessionsHelper
 
     def clear_return_to
       session.delete(:return_to)
+    end
+
+    def clear_back_to_order
+      session.delete(:order_to)
     end
 end

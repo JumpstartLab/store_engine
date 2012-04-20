@@ -21,15 +21,15 @@ class BillingInformationsController < ApplicationController
 
   def update
     billing_information.update_attributes(params[:billing_information])
-    flash[:success] = "Shipping information saved!"
-    redirect_to_last_page
+    flash[:success] = "Shipping information updated!"
+    redirect_back_to_order_or @billing_information
   end
 
   def create
     @billing_information = BillingInformation.new(params[:billing_information])
     if @billing_information.save
       flash[:success] = "Billing information saved!"
-      redirect_to billing_information_path(@billing_information)
+      redirect_back_to_order_or @billing_information
     else
       render 'new'
     end

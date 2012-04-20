@@ -60,7 +60,7 @@ class UsersController < ApplicationController
 
     def shipping_information
       if current_user.shipping_information.nil?
-        current_user.shipping_information = ShippingInformation.create
+        @shipping_information = ShippingInformation.new
       else
         @shipping_information ||= current_user.shipping_information
       end
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
 
     def billing_information
       if current_user.billing_information.nil?
-        current_user.billing_information = BillingInformation.create
+        @billing_information = BillingInformation.new
       else
         @billing_information ||= current_user.billing_information
       end
