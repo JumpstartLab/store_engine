@@ -87,7 +87,7 @@ class Product < ActiveRecord::Base
   end
 
   def destroy
-    self.active = 0
+    self.active = false
     self.save
   end
 

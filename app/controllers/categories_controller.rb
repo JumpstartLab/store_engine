@@ -1,8 +1,7 @@
 # Allows restful actions for the categories
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < ApplicationController
   before_filter :require_admin, :only => [:new, :create, :update,
                 :edit, :destroy]
-
   def index
     @categories = Category.all
   end

@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
     status = Status.find_by_name(params[:status]) if params[:status]
 
     if not status
-      @orders = Order.all
+      @orders = Order.active
     else
       @orders = Order.where(:status_id => status.id)
     end

@@ -27,13 +27,9 @@ private
   def stripe_api_key
     Stripe.api_key = ENV['STRIPE_TOKEN'] if Rails.env.to_s == "production"
   end
-
+  
   def find_cart
-    if current_user
-      find_cart_for_user
-    else
-      find_cart_for_guest
-    end
+    current_user ? find_cart_for_user : find_cart_for_guest
   end
 
   def find_cart_for_user

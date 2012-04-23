@@ -145,6 +145,7 @@ GEM
     multi_xml (0.4.4)
     multipart-post (1.1.5)
     nested_form (0.2.0)
+    newrelic_rpm (3.3.2)
     nokogiri (1.5.2)
     oauth (0.4.5)
     oauth2 (0.5.2)
@@ -285,6 +286,7 @@ DEPENDENCIES
   launchy
   money
   nested_form
+  newrelic_rpm
   paperclip
   pg
   pjax_rails
