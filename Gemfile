@@ -21,6 +21,9 @@ group :production do
 end
 
 group :development, :test do
+  gem 'rack-perftools_profiler', :require => 'rack/perftools_profiler'
+  gem 'perftools.rb'
+  gem 'newrelic_rpm'
   gem 'taps'
   gem 'pg'
   gem 'fabrication'
@@ -30,7 +33,6 @@ group :development, :test do
   gem 'guard'
   gem 'guard-rspec'
   gem 'faker'
-  gem 'debugger'
   gem 'seed_dump'
   gem 'tailor', '0.1.5'
   gem 'cane'
