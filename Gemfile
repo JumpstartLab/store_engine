@@ -12,6 +12,7 @@ gem 'bootstrap-sass', '~> 2.0.2'
 gem 'chosen-rails'
 gem 'simple_form'
 gem 'bcrypt-ruby'
+gem 'newrelic_rpm'
 
 #gem 'anjlab-bootstrap-rails', '>= 2.0', :require => 'bootstrap-rails'
 

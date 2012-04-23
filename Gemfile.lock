@@ -110,6 +110,7 @@ GEM
       railties (>= 3.0)
     multi_json (1.3.2)
     multipart-post (1.1.5)
+    newrelic_rpm (3.3.4)
     nokogiri (1.5.2)
     oauth (0.4.5)
     oauth2 (0.5.2)
@@ -226,6 +227,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   money-rails
+  newrelic_rpm
   paranoia
   pg
   rails (= 3.2.3)
