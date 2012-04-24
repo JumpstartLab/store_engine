@@ -5,14 +5,6 @@ describe "Test Category Auth" do
     FactoryGirl.create(:category) 
   end
   context "Logged Out" do
-    it "can't edit products" do
-      visit edit_admin_category_path(category)
-      page.should have_content("You must login first")
-    end
-    it "can't create a new product" do
-      visit new_admin_category_path
-      page.should have_content("You must login first")
-    end
     it "Browse by category" do
       visit category_path(category)
       page.should have_content(category.name)
@@ -21,19 +13,6 @@ describe "Test Category Auth" do
   context "Auth" do
     before(:each) do
       login(user)
-    end
-    context "User" do
-      let!(:user) do
-        FactoryGirl.create(:user, :password => "mike")
-      end
-      it "can't edit products" do
-        visit edit_admin_category_path(category)
-        page.should have_content("Must be an administrator")
-      end
-      it "can't create a new product" do
-        visit new_admin_category_path
-        page.should have_content("Must be an administrator")
-      end
     end
     context "Admin" do
       let!(:user) do

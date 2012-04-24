@@ -32,12 +32,9 @@ describe "User" do
       it "can edit themselves" do
         visit edit_user_path(user)
         page.should have_content("Edit User")
-      end
-      it "can update themselves" do
-        visit edit_user_path(user)
         fill_in 'user[name]', :with => "rabble"
         click_on "Edit User"
-        page.should have_content("rabble")
+        page.should have_content("rabble")        
       end
       it "has validation on update" do 
         visit edit_user_path(user)
@@ -47,7 +44,7 @@ describe "User" do
       end
     end
     it "User can signup" do
-      visit '/users/new'
+      visit new_user_path
       fill_in 'user[email]', :with =>  "Jiberish@yahoo.com"
       fill_in "user[password]", :with => "mike"
       fill_in "user[name]", :with => "mike"  
@@ -55,7 +52,7 @@ describe "User" do
       page.should have_content("Account successfully made!")
     end
     it "User verifies auth" do
-      visit '/users/new'
+      visit new_user_path
       fill_in 'user[email]', :with =>  ""
       fill_in "user[password]", :with => ""
       fill_in "user[name]", :with => ""
@@ -63,21 +60,18 @@ describe "User" do
       page.should have_content("can't be blank") 
     end
   end
-  context "Visit User" do
-    it "lists all the users" do
+  context "Admin User Modifications" do
+    before(:each) do
       login(user)
       visit admin_users_path
+    end
+    it "lists all the users" do
       page.should have_content user.name
     end
-  end
-  context "User can be destroyed" do
     it "removes user" do
-      login(user)
-      visit users_path
       within("#user_#{user2.id}") do
         click_on "X"
       end
-      #save_and_open_page
       page.should_not have_content(user2.email)
     end
   end

@@ -16,7 +16,7 @@ describe "Order New" do
       end      
     end
     it "Address Updated with valid address" do
-      visit cart_path
+      visit new_order_path
       click_on "Checkout"
       fill_in "order[user_attributes][street]", :with => "1375 Kenyon Street Nw"
       fill_in "order[user_attributes][zipcode]", :with => "20010"
@@ -24,8 +24,7 @@ describe "Order New" do
       user.address.state.should == "District of Columbia"
     end
     it "Address failed with invalid address" do
-      visit cart_path
-      click_on "Checkout"
+      visit new_order_path
       fill_in "order[user_attributes][street]", :with => "sfsdfdsfsd"
       fill_in "order[user_attributes][zipcode]", :with => "32322343"
       click_on "Pay"

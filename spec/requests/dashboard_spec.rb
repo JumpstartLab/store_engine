@@ -28,7 +28,6 @@ describe "Dashboard" do
     before(:each) do
       login(user)
       visit dashboard_path
-      #click_link 'Dashboard'
       click_link 'Orders'
     end
 
@@ -62,29 +61,9 @@ describe "Dashboard" do
     end
 
     context 'has filter links' do
-      it 'has pending' do
-        page.should have_link 'Pending'
-      end
-
       it 'sorts by pending orders' do
         click_link 'Pending'
         page.should have_content(orders.first.user.name)
-      end
-
-      it 'has cancelled' do
-        page.should have_link 'Cancelled'
-      end
-
-      it 'has paid' do
-        page.should have_link 'Paid'
-      end
-
-      it 'has shipped' do
-        page.should have_link 'Shipped'
-      end
-
-      it 'has returned' do
-        page.should have_link 'Returned'
       end
     end
     it "The total number of orders by status" do

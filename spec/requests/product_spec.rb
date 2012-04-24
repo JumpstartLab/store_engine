@@ -3,10 +3,6 @@ require 'spec_helper'
 describe "Product" do 
   let(:product) { FactoryGirl.create(:product)}   
   context "Logged Out" do
-    it "can't edit products" do
-      visit edit_admin_product_path(product)
-      page.should have_content("You must login first")
-    end
     it "can't create a new product" do
       visit new_admin_product_path
       page.should have_content("You must login first")
@@ -52,7 +48,7 @@ describe "Product" do
           fill_in "product[name]", :with => ""
           click_on "Save Product"
           page.should have_content "can't be blank"          
-        end    
+        end
       end
       context "Creating a product" do
         it "can create a new product" do
