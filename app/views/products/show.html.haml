@@ -22,7 +22,7 @@
         %p= link_to "Buy Instantly!", two_click_cart_path(:product_id => @product.id), :method => :put, :class => 'btn btn-primary', :confirm => "Are you sure you want to give us your money?"  
     - else
       %p.label.label-important This product has been retired. You cannot add this to your cart
-    - if current_user && current_user.admin
+    - if current_user && current_user.admin?
       %br
       .well
         %a= link_to 'Edit item', edit_admin_product_path(@product), :class => 'btn'

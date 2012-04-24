@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
 
   def is_owner_or_admin
     @order = Order.find_by_id(params[:id])
-    if not current_user.admin and @order.user != current_user
+    if not current_user.admin? and @order.user != current_user
       redirect_to root_url, :notice => 'That is not your order'
     end
   end

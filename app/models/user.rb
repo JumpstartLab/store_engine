@@ -36,11 +36,11 @@ class User < ActiveRecord::Base
     end
   end
 
-  def admin
+  def admin?
     permission == 9
   end
 
-  def user
+  def user?
     permission == 1
   end
 

@@ -1,5 +1,5 @@
 %h1 Order details
-- if current_user and current_user.admin
+- if current_user and current_user.admin?
   = link_to 'Edit Order', edit_admin_order_path(@order), :class => 'pull-right'
 %br
 

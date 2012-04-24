@@ -1,4 +1,4 @@
-- if current_user and current_user.admin
+- if current_user and current_user.admin?
   - if order.status.pending?
     = link_to '[cancel]', status_admin_order_path(order)
   - elsif order.status.shipped?

@@ -24,7 +24,7 @@ describe User do
       lambda { user.update_attributes({"permission" => 9}) }.should raise_error
     end
     it "is a user" do
-      user.user.should == true
+      user.user?.should == true
     end
   end  
   context "User has orders" do

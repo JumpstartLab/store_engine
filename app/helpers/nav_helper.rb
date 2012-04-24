@@ -1,7 +1,7 @@
 module NavHelper
 
   def main_navigation
-    if current_user && current_user.admin
+    if current_user && current_user.admin?
       nav_array_admin
     elsif current_user
       nav_array_user

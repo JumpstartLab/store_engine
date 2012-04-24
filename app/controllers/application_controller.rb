@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :find_cart, :verify_user, :stripe_api_key
 
   def require_admin
-    if current_user && !current_user.admin
+    if current_user && !current_user.admin?
       flash[:alert] = "Must be an administrator"
       redirect_to root_url
     elsif current_user.nil?
