@@ -66,7 +66,7 @@ describe "User" do
   context "Visit User" do
     it "lists all the users" do
       login(user)
-      visit '/users/'
+      visit admin_users_path
       page.should have_content user.name
     end
   end

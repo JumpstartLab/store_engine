@@ -8,7 +8,7 @@ describe "Sale", :focus => true do
 
   context "View all sales" do
     it "Visit Sale Index" do
-      visit "/sales/"
+      visit sales_path
       page.should have_content(product.name)
     end
   end
@@ -17,7 +17,7 @@ describe "Sale", :focus => true do
   end
   context "An admin can create a sale" do
     before(:each) do
-      visit new_sale_path
+      visit new_admin_sale_path
     end
     it "Passes" do
       fill_in "sale[percent_off]", :with => 30
@@ -33,7 +33,7 @@ describe "Sale", :focus => true do
   end
   context "An admin can modify a sale" do
     before(:each) do
-      visit edit_sale_path(sale)
+      visit edit_admin_sale_path(sale)
     end
     it "Passes" do
       fill_in "sale[percent_off]", :with => 30
@@ -44,13 +44,12 @@ describe "Sale", :focus => true do
     it "Fails" do
       fill_in "sale[percent_off]", :with => 332
       click_on "Save Sale"
-      #save_and_open_page
       page.should have_content "is not included in the list"
     end
   end
   context "Can delete a sale" do
     it "deletes a sale" do
-      visit admin_index_sales_path
+      visit admin_sales_path
       within("#sale_#{sale.id}") do
         click_on "X"
       end

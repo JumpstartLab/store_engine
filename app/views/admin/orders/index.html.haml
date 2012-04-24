@@ -1,0 +1,26 @@
+%h1 Dashboard - Orders
+= render :partial => "admin/nav"
+%a= link_to 'Advanced Search', '/search/new' 
+%br
+%br
+
+.row
+  .span7#orders
+    %h3 Orders
+
+    = render 'orders/list', :orders => @orders
+
+  .span3.right
+    %h3 Orders by Status
+    %br
+    %table#orders_by_status.table.table-bordered
+      %th Status
+      %th Count
+      %tr
+        %td= link_to "All", admin_orders_path
+        %td= @order_count
+      - @statuses.each do |status|
+        %tr
+          %td= link_to status.name.titleize, admin_orders_path(:status => status.name)
+          %td{:id => status.name} 
+            = status.orders.count

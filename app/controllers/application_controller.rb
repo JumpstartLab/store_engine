@@ -5,9 +5,10 @@ class ApplicationController < ActionController::Base
 
   def require_admin
     if current_user && !current_user.admin
-      redirect_to root_url, :notice => "Must be an administrator"
+      flash[:alert] = "Must be an administrator"
+      redirect_to root_url
     elsif current_user.nil?
-      redirect_to '/login', :notice => "Must be an administrator"
+      not_authenticated
     end
   end
 
@@ -20,7 +21,7 @@ class ApplicationController < ActionController::Base
 private
 
   def not_authenticated
-    flash[:error] = "You must login first"
+    flash[:alert] = "You must login first"
     redirect_to '/login'
   end
 

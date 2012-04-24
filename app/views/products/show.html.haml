@@ -25,7 +25,7 @@
     - if current_user && current_user.admin
       %br
       .well
-        %a= link_to 'Edit item', edit_product_path(@product), :class => 'btn'
-        %a= link_to "Delete item", product_path(@product), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger'
+        %a= link_to 'Edit item', edit_admin_product_path(@product), :class => 'btn'
+        %a= link_to "Delete item", admin_product_path(@product), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger'
     %br
     = render :partial => "ratings"

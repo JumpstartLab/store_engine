@@ -28,7 +28,7 @@ describe "Dashboard" do
     before(:each) do
       login(user)
       visit dashboard_path
-      click_link 'Dashboard'
+      #click_link 'Dashboard'
       click_link 'Orders'
     end
 
@@ -69,7 +69,6 @@ describe "Dashboard" do
       it 'sorts by pending orders' do
         click_link 'Pending'
         page.should have_content(orders.first.user.name)
-        # page.should_not have_content(orders.last.user.name)
       end
 
       it 'has cancelled' do

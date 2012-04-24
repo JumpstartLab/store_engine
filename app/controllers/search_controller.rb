@@ -22,7 +22,7 @@ class SearchController < ApplicationController
     @orders = search.find_orders()
   end
 
-  private
+private
 
   def search(query)
     value = "%#{query}%"

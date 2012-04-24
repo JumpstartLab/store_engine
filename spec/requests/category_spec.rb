@@ -6,12 +6,12 @@ describe "Test Category Auth" do
   end
   context "Logged Out" do
     it "can't edit products" do
-      visit edit_category_path(category)
-      page.should have_content("Must be an administrator")
+      visit edit_admin_category_path(category)
+      page.should have_content("You must login first")
     end
     it "can't create a new product" do
-      visit new_category_path
-      page.should have_content("Must be an administrator")
+      visit new_admin_category_path
+      page.should have_content("You must login first")
     end
     it "Browse by category" do
       visit category_path(category)
@@ -27,11 +27,11 @@ describe "Test Category Auth" do
         FactoryGirl.create(:user, :password => "mike")
       end
       it "can't edit products" do
-        visit edit_category_path(category)
+        visit edit_admin_category_path(category)
         page.should have_content("Must be an administrator")
       end
       it "can't create a new product" do
-        visit new_category_path
+        visit new_admin_category_path
         page.should have_content("Must be an administrator")
       end
     end
@@ -41,13 +41,13 @@ describe "Test Category Auth" do
       end
       context "Modify Products" do
         it "validation passed" do
-          visit edit_category_path(category)
+          visit edit_admin_category_path(category)
           fill_in "category[name]", :with => "foooooo"
           click_on "Save Category"
           page.should have_content("Category updated.")
         end
         it "validation failed" do
-          visit edit_category_path(category)
+          visit edit_admin_category_path(category)
           fill_in "category[name]", :with => ""
           click_on "Save Category"
           page.should have_content("Update Failed.")
@@ -55,13 +55,13 @@ describe "Test Category Auth" do
       end
       context "Creating a product" do
         it "validation passed" do
-          visit new_category_path
+          visit new_admin_category_path
           fill_in "category[name]", :with => "Woo"
           click_on "Save Category"
           page.should have_content("Category created.")    
         end
         it "validation failed" do
-          visit new_category_path
+          visit new_admin_category_path
           fill_in "category[name]", :with => ""
           click_on "Save Category"
           page.should have_content "Create failed."
@@ -70,7 +70,7 @@ describe "Test Category Auth" do
       context "DESTROY" do
         let!(:category2) { FactoryGirl.create(:category) }
         it "Can destory" do
-           visit categories_path
+           visit admin_categories_path
            within("#category_#{category2.id}") do
             click_on "X"
            end
@@ -78,7 +78,7 @@ describe "Test Category Auth" do
         end
       end
       it "can view all categories" do
-        visit categories_path
+        visit admin_categories_path
         page.should have_content "Dashboard - Categories"
       end
     end

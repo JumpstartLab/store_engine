@@ -4,21 +4,27 @@ StoreEngine::Application.routes.draw do
   get "login" => 'sessions#new'
   get "logout" => 'sessions#destroy', :as => "logout"
 
-  resources :users, :categories, :sessions, :search
+  resources :sessions, :search
+  resources :users, :exclude => [:index]
 
-  resources :sales do
-    collection do 
-      get 'admin_index'
+  resources :sales, :only => [:show, :index]
+  resources :categories, :only => [:show]
+
+  namespace :admin do
+    resources :categories, :products, :sales, :exclude => [:show]
+    resources :users, :only => [:index, :destroy]
+    resources :orders,:exclude => [:show] do
+      member do
+        get 'status'
+      end
     end
-  end 
-  resources :products do
-    resources :product_ratings
   end
-  resources :orders do
-    member do
-      get 'status'
-    end
 
+  resources :products, :only => [:show, :index] do
+    resources :product_ratings, :only => [:create, :edit, :update]
+  end
+  
+  resources :orders, :only => [:show, :new] do
     collection do
       put 'charge'
       get 'track'
@@ -32,9 +38,8 @@ StoreEngine::Application.routes.draw do
       put :two_click
     end
   end
-  match '/baller_logo' => "sessions#baller_logo"
+  
   root :to => "products#index"
-  match "/code" => redirect("https://github.com/MikeSilvis/store_engine")
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

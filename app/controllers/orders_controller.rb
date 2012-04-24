@@ -1,24 +1,7 @@
 # Allows restful actions for orders + charging orders
 class OrdersController < ApplicationController
-  before_filter :require_admin, :only => [:index, :status, :edit, :update]
   before_filter :require_login, :except => [:track]
   before_filter :is_owner_or_admin, :only => [:show]
-
-  def index
-    status = Status.find_by_name(params[:status]) if params[:status]
-
-    if not status
-      @orders = Order.active
-    else
-      @orders = Order.where(:status_id => status.id)
-    end
-    @statuses = Status.all
-    @order_count = Order.all.count
-  end
-
-  def edit
-    @order = Order.find(params[:id], :include => :order_products)
-  end
 
   def show
     @order = Order.find(params[:id])
@@ -26,15 +9,6 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.find_cart(@cart.id)
-  end
-
-  def update
-    @order = Order.find(params[:id])
-    @order.update_attributes(params[:order])
-    @order.save()
-
-    flash[:notice] = 'Order has been updated'
-    redirect_to order_path(@order)
   end
 
   def charge
@@ -46,12 +20,6 @@ class OrdersController < ApplicationController
       flash[:alert] = "Address is invalid"
       render 'new'
     end
-  end
-
-  def status
-    order = Order.find(params[:id])
-    order.next_status
-    redirect_to order_path(order), :notice => 'Status has been updated'
   end
 
   def track

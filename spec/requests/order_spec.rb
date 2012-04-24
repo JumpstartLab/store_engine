@@ -30,7 +30,7 @@ describe "Indivdiaul Order" do
   context "Order Edit Page" do 
     before(:each) do
       login(user)
-      visit edit_order_path(orders.first)
+      visit edit_admin_order_path(orders.first)
     end
     it "Displays an order edit page" do
       page.should have_content "Edit Order"

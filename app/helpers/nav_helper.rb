@@ -42,11 +42,11 @@ module NavHelper
 
   def dashboard_navigation
     {
-      "Products" => dashboard_path,
-      "Orders" => orders_path,
-      "Categories" => categories_path,
-      "Users" => users_path,
-      "Sales" => admin_index_sales_path
+      "Products" => admin_products_path,
+      "Orders" => admin_orders_path,
+      "Categories" => admin_categories_path,
+      "Users" => admin_users_path,
+      "Sales" => admin_sales_path
     }
   end
 end

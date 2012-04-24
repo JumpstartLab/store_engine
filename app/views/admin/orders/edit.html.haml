@@ -1,0 +1,26 @@
+%h1 Edit Order
+%br
+
+%table.table
+  = simple_nested_form_for [:admin, @order] do |o|
+    %tr
+      %td
+        = "Status"
+      %td
+        = @order.status.name.titlecase
+        = render 'orders/status', :order => @order
+
+    - if @order.status.pending? or @order.status.paid?
+      %tr
+        %td
+          = "Products"
+        %td
+          = o.fields_for :order_products do |op|
+            %h4= op.object.product.name
+            %div.pull-right= op.link_to_remove "Remove #{op.object.product.name}", :class => "remove_product"
+            = op.input :quantity
+    %tr
+      %td
+      %td
+        = o.submit 'Save Order', :class => 'btn btn-primary controls'
+        

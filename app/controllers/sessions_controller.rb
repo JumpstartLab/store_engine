@@ -22,7 +22,4 @@ class SessionsController < ApplicationController
     logout
     redirect_to root_path, :notice => "You have successfully logged out"
   end
-
-  def baller_logo
-  end
 end
