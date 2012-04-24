@@ -29,10 +29,10 @@ describe User do
   end  
   context "User has orders" do
     it "has orders" do
-      user.orders.count.should == 1
+      user.orders.size.should == 1
     end
     it "has 3 prodcuts in the first order" do
-      user.products.count.should == 3
+      user.products.size.should == 3
     end
     context "User can charge order" do
       it "Cart converts to order" do

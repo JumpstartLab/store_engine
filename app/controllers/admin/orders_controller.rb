@@ -10,7 +10,7 @@ class Admin::OrdersController < AdminController
       @orders = Order.where(:status_id => status.id)
     end
     @statuses = Status.all
-    @order_count = Order.all.count
+    @order_count = Order.all.size
   end
 
   def edit
