@@ -61,5 +61,7 @@ module StoreEngine
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.middleware.use ::Rack::PerftoolsProfiler, :default_printer => 'pdf', :bundler => true
   end
 end

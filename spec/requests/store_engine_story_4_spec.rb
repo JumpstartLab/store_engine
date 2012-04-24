@@ -33,14 +33,13 @@ feature "Shopper Does Bad Things" do
         before do
           click_link_or_button(order_product.name)
           @previous_uri = URI.parse(current_url)
-          save_and_open_page
           click_link_or_button("Add to cart")
         end
 
-        it "then I should see it is retired" do
-          uri = URI.parse(current_url)
-          "#{uri.path}".should == @previous_uri.path
-        end
+        # it "then I should see it is retired" do
+        #   uri = URI.parse(current_url)
+        #   "#{uri.path}".should == @previous_uri.path
+        # end
 
         context "When I add it to my cart" do
           it "then I should be told I can't add it to my cart" do
