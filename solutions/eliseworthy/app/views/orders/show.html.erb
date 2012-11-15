@@ -1,0 +1,87 @@
+<h1>Order</h1>
+
+<p>
+  <b>Name</b><br>
+  <%= @order.name %>
+</p>
+
+<p>
+  <b>Total</b><br>
+  <%= sprintf("$%0.02f", @order.total) %>
+</p> 
+
+<p>
+  <b>Address</b><br>
+  <%= @order.address %>
+</p>
+
+<p>
+  <b>Shipping Address</b><br>
+  <%= @order.shipping_address %>
+</p>
+
+<p>
+  <b>Email</b><br>
+  <%= @order.email %>
+</p>
+
+<p>
+  <b>Order Date</b><br>
+  <%= distance_of_time_in_words_to_now(@order.created_at) %> ago
+</p>
+
+<p>
+  <b>Status</b><br>
+  <%= @order.status %>
+  <% if @order.status == "cancelled" %>
+  at: <%= @order.cancelled_at %>
+  <% elsif @order.status == "shipped" %>
+  at: <%= @order.shipped_at %>
+  <% end %>
+
+    <% if can? :update, @order %> 
+        <%= form_for @order do |f| %>
+          <%= f.select :status, Order::STATUSES %>
+          <%= f.submit "update order status", :class => 'btn' %> 
+      <% end %>
+    <% end %> 
+</p>
+
+
+<h3>Products Ordered:</h3>
+  <% @order.order_items.each do |order_item| %>
+  <p id=<%="order_item_#{order_item.id}" %> >
+    <%= link_to order_item.product.title, product_path(order_item.product) %>
+    <% if can? :update, @order %>
+    <%= link_to 'Remove Product from Order', order_item, method: :delete, confirm: "Are you sure?", :class => 'btn' %>
+    <% end %>
+    <% if order_item.product.retired? %>
+    <br/>
+    <b>Product is currently retired</b>
+    <br/>
+    <% end %>
+    <br/>
+    Quantity: <%= order_item.quantity%> <br />
+
+    <% if can? :update, @order %>
+     <td> <%= form_for order_item do |f| %>
+          <%= f.number_field :quantity, :value => order_item.quantity, :size =>10, :min => 1 %>
+          <%= f.submit "update quantity" %> 
+          <% end %></td>
+    <% end %>
+    Price: <%= sprintf("$%0.02f", order_item.product.price) %><br />
+    Subtotal: <%= sprintf("$%0.02f", order_item.subtotal) %><br />
+
+    <br/>
+    <br/>
+    <br/>
+  </p>
+  <% end %>
+
+
+
+<div class="form-actions">
+  <% if can? :update, @order %> 
+    <%= link_to 'View All Orders', orders_path, :class => 'btn'  %>
+  <% end %>
+</div>

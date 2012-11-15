@@ -1,0 +1,19 @@
+<h1>All Categories</h1>
+
+<ul id="categories">
+
+ <% @categories.each do |category| %>
+  <li><p id=<%="category_#{category.id}"%>>
+   
+    ID: <%= link_to category.name, category_path(category) %> <br />
+    <%= link_to 'Edit Category', 
+                edit_category_path(category), 
+                :class => 'btn btn-mini' %>
+    <%= link_to 'Delete Category', 
+                category, :method => :delete,
+                :class => 'btn btn-mini' %>
+   </p></li>
+  
+
+ <% end %>
+</ul>

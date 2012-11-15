@@ -1,0 +1,59 @@
+<h2>Products for your sustainable lifestyle</h2>
+
+<table class="table">
+
+  <tbody> 
+    <% @products.each do |product|%>
+      <% if product.retired == false || (can? :create, @product) %>
+        
+        <tr>
+          <td class="photo"><%= image_tag(product.photo) %></td>
+          <td class="description">
+            <%= link_to product.title, product_path(product) %>
+            <p>
+              <% if product.description.split(" ").count >40 %>
+                <%= product.description.split(" ")[0..40].join(" ") %>...
+              <% else %>
+                <%= product.description %>
+              <% end %>
+              <br />
+              <%= sprintf("$%0.02f", product.price) %>
+            </p>
+              <% if product.retired == false %>
+               <%= link_to 'Add to Cart', 
+                   line_items_path(product_id: product), 
+                   :method => :post, 
+                   :class => 'btn' %>
+              <% end %>
+              <p />
+              <% if can? :update, product %>
+                <%= link_to 'Edit Product', 
+                edit_product_path(product), 
+                :class => 'btn' %>
+              <% end %>
+              <p />
+              <% if can? :create, @product %>
+                <% if product.retired? %>
+                    <%= form_for product do |f| %>
+                    <%= f.hidden_field :retired, 
+                                       :value => product.retired_switch %>
+                    <%= f.submit "Unretire", 
+                                 :class => 'btn' %>
+                    <% end %> 
+                <% else %>
+                    <%= form_for product do |f| %>
+                    <%= f.hidden_field :retired, 
+                                       :value => product.retired_switch %>
+                    <%= f.submit "Retire", 
+                                 :class => 'btn' %>
+                    <% end %>               
+                <% end %>  
+              <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+

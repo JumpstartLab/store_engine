@@ -1,0 +1,15 @@
+<h1>Dashboard</h1>
+
+<ul id="users">
+
+ <% @users.each do |user| %>
+   <li>
+    ID: <%= user.id %> <br />
+    Email: <%= user.email %>
+    Username: <%= user.user_name %>
+    Admin : <%= user.admin %>
+
+   </li>
+
+ <% end %>
+</ul>

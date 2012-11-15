@@ -1,0 +1,67 @@
+
+  <h3>
+    <% @product.category_assignments.each do |ca| %>
+      <%= link_to ca.category.name, category_path(ca.category) %>
+    <% end %>
+  </h3>
+
+  <h1><%= @product.title %></h1>
+  <% if @product.retired %>
+  <h2>This product is no longer offered for sale</h2>
+  <% end %>
+
+  <p class="product_detail">
+    <td class="photo"><%= image_tag(@product.photo) %></td>
+    <%= @product.description %>
+    <div class="rating">
+      <%= good_guide_image(@badge_html).html_safe %>
+    </div>
+  </p>
+
+  <p>
+    <b>Price</b><br>
+    <%= sprintf("$%0.02f", @product.price) %>
+    <br />
+      
+  </p>
+
+  <div class="form-actions">
+    <% if @product.retired == false %>
+      <% if current_user && current_user.orders != [] %>
+        <%= link_to "One-Click Checkout", 
+                     one_click_path(@product), 
+                     method: :post, 
+                     :class => 'btn btn-primary', 
+                     confirm: "Are you sure?" %>
+      <% else %>
+      <i>One-click checkout available after first purchase</i>
+      <% end %>
+      <%= link_to 'Add to Cart', line_items_path(product_id: @product), :method => :post, :class => 'btn'%>
+    <% end %>
+    
+    <%= link_to 'View all Products', products_path, :class => 'btn'  %>
+    <p />
+    <% if can? :update, @product %>
+      <%= link_to 'Edit Product', edit_product_path(@product), :class => 'btn' %>
+    <% end %>
+    <p />
+    <% if can? :update, @product %>
+      <% if @product.retired %>
+        <%= form_for @product do |f| %>
+          <%= f.hidden_field :retired,
+                             :value => @product.retired_switch %>
+          <%= f.submit "Unretire", :class => 'btn' %>
+        <% end %>
+      <% else %>
+        <%= form_for @product do |f| %>
+          <%= f.hidden_field :retired,
+                             :value => @product.retired_switch %>
+          <%= f.submit "Retire", :class => 'btn' %>
+        <% end %>
+      <% end %>
+    <% end %> 
+
+
+  </div>
+
+

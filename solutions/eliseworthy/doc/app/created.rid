@@ -1,0 +1,22 @@
+Tue, 17 Apr 2012 13:37:42 -0400
+doc/README_FOR_APP	Wed, 04 Apr 2012 19:15:50 -0400
+app/controllers/application_controller.rb	Tue, 17 Apr 2012 10:45:29 -0400
+app/controllers/carts_controller.rb	Tue, 17 Apr 2012 09:29:44 -0400
+app/controllers/categories_controller.rb	Mon, 16 Apr 2012 15:21:58 -0400
+app/controllers/category_assignments_controller.rb	Mon, 16 Apr 2012 15:21:58 -0400
+app/controllers/line_items_controller.rb	Tue, 17 Apr 2012 09:25:06 -0400
+app/controllers/order_items_controller.rb	Tue, 17 Apr 2012 09:25:06 -0400
+app/controllers/orders_controller.rb	Tue, 17 Apr 2012 10:57:16 -0400
+app/controllers/products_controller.rb	Tue, 17 Apr 2012 10:57:16 -0400
+app/controllers/sessions_controller.rb	Mon, 16 Apr 2012 15:21:58 -0400
+app/controllers/users_controller.rb	Mon, 16 Apr 2012 15:21:58 -0400
+app/helpers/application_helper.rb	Wed, 04 Apr 2012 19:15:50 -0400
+app/models/ability.rb	Tue, 17 Apr 2012 10:51:12 -0400
+app/models/cart.rb	Thu, 12 Apr 2012 18:11:28 -0400
+app/models/category.rb	Mon, 16 Apr 2012 15:21:58 -0400
+app/models/category_assignment.rb	Sun, 15 Apr 2012 10:55:53 -0400
+app/models/line_item.rb	Tue, 17 Apr 2012 10:57:16 -0400
+app/models/order.rb	Tue, 17 Apr 2012 13:18:17 -0400
+app/models/order_item.rb	Tue, 17 Apr 2012 10:14:49 -0400
+app/models/product.rb	Tue, 17 Apr 2012 10:57:16 -0400
+app/models/user.rb	Mon, 16 Apr 2012 17:12:18 -0400
