@@ -1,0 +1,10 @@
+- if order.status == "pending"
+  h1 Cart
+  - if admin_view?
+    = render partial: "order_head", locals: { order: order }
+- else
+  h1 Order
+  #order-status
+    = order.status.upcase
+  - if admin_view?
+    = render partial: "order_head", locals: { order: order }

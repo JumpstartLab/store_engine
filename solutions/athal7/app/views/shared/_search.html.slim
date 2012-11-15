@@ -1,0 +1,7 @@
+.span3#search
+  = form_tag products_path, :method => :get
+  / h3 Search:
+  = text_field_tag :filtered, params[:filtered], placeholder: 'ex. Cruiser'
+  br/
+  = submit_tag "Find", class: 'btn btn-primary'
+  = link_to "Reset", products_path, class: 'btn'

@@ -1,0 +1,11 @@
+h1 Welcome Back, #{@user.display_name}
+
+/ = render partial: 'user_order_history'
+= render partial: 'user_acct_info'
+= render partial: 'user_billing'
+= render partial: 'user_shipping'
+
+- if admin_view?
+  = link_to "Destroy", user_path(@user), :method => :delete, confirm: "Delete \"#{@user.display_name}\"?", class: "btn btn-danger"
+  = link_to "Back to All Users", users_path, class: "btn btn-info"
+p = link_to "View Orders", orders_path, class: "btn btn-success"

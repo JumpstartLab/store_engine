@@ -1,0 +1,160 @@
+@import "twitter/bootstrap/bootstrap";
+body { padding-top: 60px; }
+
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
+@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/less.html for their names and documentation
+//
+// Example:
+// @linkColor: #ff0000;
+
+/************VARIABLES AND MIXINS***********/
+@nav-color: #d5cdc1;
+@background: #d5cdc1;
+@diff: #111111;
+@whale: #262626;
+@font1: Helvetica, Arial, Sans Serif;
+.gradient(@color) {
+  background-image: linear-gradient(top, @color 33%, @color - @diff 67%);
+  background-image: -o-linear-gradient(bottom, @color 33%, @color - @diff 67%);
+  background-image: -moz-linear-gradient(bottom, @color 33%, @color - @diff 67%);
+  background-image: -webkit-linear-gradient(bottom, @color 33%, @color - @diff 67%);
+  background-image: -ms-linear-gradient(bottom, @color 33%, @color - @diff 67%);
+}
+.rounded(@amount){
+  border-radius: @amount;
+  -webkit-border-radius: @amount;
+  -moz-border-radius: @amount;
+}
+.bottom_rounded(@amount) {
+  -moz-border-radius: 0 0 @amount @amount;
+  -o-border-radius: 0 0 @amount @amount;
+  -webkit-border-radius: 0 0 @amount @amount;
+  border-radius: 0 0 @amount @amount;
+}
+
+/********UNIVERSAL*********/
+body { background: url("background.jpg") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+
+.container #main-content, .container #cart-aside, .container #search { background: @background; padding: 15px; .rounded(8px); margin-bottom: 20px; float: left; margin-top: 30px; font-family: @font1;  }
+
+.container #cart-aside a, .container #search a, .container #search input[type='submit'] { margin-right: 10px; }
+.container #search {
+  text-align: center;
+  padding-bottom: 5px;
+  margin-bottom: 0;
+  input[type='text'] { width: 100%; margin-top: 5px; }
+  a, input[type='submit'] { padding: 5px 30px; margin-top: 10px;}
+}
+input { height: 30px; }
+.navbar .navbar-inner {
+  font-size: 16px;
+  .gradient(@nav-color);
+  height: 50px;
+  padding-top: 15px;
+  ul { .gradient(@nav-color); }
+  a, .nav li a { color: @whale; text-shadow: none; }
+}
+
+
+img.logo { width: 50px; float: left; padding-right: 15px; }
+
+.row{ margin: 0;
+  #notice { background: @background; margin: 30px 10px 0 30px; padding: 10px; font-family: @font1; .rounded(8px); }
+}
+
+/*********PRODUCTS********/
+.title-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 32px; color: @title-color; }
+@price-color: @nav-color;/*#e19418;*/
+@title-color: @whale;/*#6aa3c4;*/
+.buy-font { font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; font-size: 28px; color: @price-color; margin: 20px 0;}
+.buy-button{ padding: 10px; margin: 5px; font-size: 18px; .rounded(8px); }
+
+.product, .category{ padding: 0 25px; }
+.image-and-title {
+  margin: 0;
+  li {
+    .rounded(5px);
+    float: left;
+    list-style: none;
+    margin: 10px;
+    .image {
+      width: 195px;
+      height: 180px;
+      overflow: hidden;
+      .bottom_rounded(5px);
+    }
+    img {
+      .bottom_rounded(5px);
+      width: 200px;
+    }
+    .overlay{
+      background: rgba(0,0,0,.5);
+      .bottom_rounded(5px);
+      width: 195px;
+      height: 60px;
+      position: relative;
+      bottom: 60px;
+      h3 {
+        color:white;
+        font-size:20px;
+        font-weight:100;
+        font-family:Helvetica;
+        margin-left:10px;
+        padding-top:5px;
+        line-height:24px;
+        letter-spacing:1px;
+        text-shadow: 0 1px 0 #333;
+        a{ color:white; }
+      }
+    }
+  }
+}
+
+#product { margin: 20px 0 50px; }
+
+#info { margin-left: 50px; }
+
+#product-title {
+  .title-font;
+}
+
+#buy { .buy-button; }
+
+.price p { .buy-font; color: #0e1735;}
+
+#product-show-photo {
+  width: 100%;
+  max-height: 500px;
+  border: 2px solid @whale;
+  .rounded(4px);
+}
+
+#similar { text-align: center; }
+
+/****************ORDERS**********/
+
+#order-status { font-size: 16px; margin: 15px 0; padding: 10px; background-color: #ccb06b; .rounded(8px); text-align: center; font-family: Arial Rounded MT, Helvetica, Arial, Sans Serif; }
+
+/**********CART*********/
+.cart_font {
+  font-size: 16px; font-family: Arial Rounded MT Bold, Helvetica, Arial, Sans Serif; color: #4d453f;
+}
+#cart-aside{
+  #cart_item_title {
+    .cart_font;
+  }
+  #cart_total {
+    .cart_font; color: #0e1735; font-size: 18px;
+  }
+}

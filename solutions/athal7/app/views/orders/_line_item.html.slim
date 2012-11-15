@@ -1,0 +1,11 @@
+tr
+  td = link_to line_item.product.title, product_path(line_item.product)
+  td
+    = line_item.quantity
+    - if line_item.order.status == "pending"
+      = link_to "Update", edit_line_item_path(line_item), class: 'btn'
+  td = number_to_currency(line_item.price)
+  td = number_to_currency(line_item.subtotal)
+  - if order.pending?
+    td = link_to "Remove", line_item_path(line_item),
+     method: :delete, class: 'btn btn-mini btn-danger'

@@ -1,0 +1,9 @@
+- if order.has_billing_method?
+  - billing = order.find_billing
+  h2 Billing Method
+  | Credit Card ending in: #{order.credit_card_last_four}
+  br/
+  - if order.pending?
+    = link_to "Change Billing Method", edit_billing_method_path(billing), class: "btn-mini btn"
+- elsif order == current_order
+  = link_to "Add a Billing Method", new_billing_method_path, class: "btn-mini btn"

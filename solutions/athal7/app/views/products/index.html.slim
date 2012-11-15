@@ -1,0 +1,24 @@
+- if @products.any?
+  #products
+    - unless admin_view?
+      ul.image-and-title
+        = render partial: "shared/product", collection: @products
+    - else
+      h1 Products
+      = link_to 'New', new_product_path, :class => 'btn btn-primary'
+      table.table.table-striped#order-table
+        thead
+          tr
+          th Actions
+          th ID
+          th Title
+          th Categories
+          th Price
+          th Status
+          th Created At
+        tbody
+          = render partial: "shared/admin_product", collection: @products
+- else
+  h3 = "Sorry, no products match your search criteria!"
+
+

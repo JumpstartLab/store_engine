@@ -1,0 +1,22 @@
+doctype
+html
+  head
+    title The Urban Cyclist
+    /![if lt IE 9]
+      | <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    meta content="width=(device-width,)initial-scale=1.0" name="viewport"
+  body
+    = render partial: "shared/header"
+    .container data-pjax-container=""
+      .row
+        - unless notice.nil?
+          .span8#notice = notice
+        - unless admin_view?
+          .span8#main-content = yield
+          = render partial: "shared/search"
+          = render partial: "shared/cart", locals: {user: current_user}
+        - else
+          .span16#main-content = yield

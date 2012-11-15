@@ -1,0 +1,5 @@
+h3#similar Similar Products
+- product.categories.each do |c|
+  - c.products.reject{|p| p == product}.each do |p|
+    ul.image-and-title
+      = render partial: "shared/product", locals: {product: p}

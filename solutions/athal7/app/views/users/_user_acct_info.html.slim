@@ -1,0 +1,6 @@
+h2 Account Profile
+p
+  = @user.full_name
+  br/
+  = @user.email_address
+  p = link_to "Change Profile", edit_user_path(@user), class: "btn"

@@ -1,0 +1,44 @@
+h1 Input Your Billing Info
+= form_for @billing_method do |f|
+  - if @billing_method.errors.any?
+    div id="error_explanation"
+      h2
+        = pluralize(@billing_method.errors.count, "error")
+        |  prohibited this billing from being saved:
+      ul
+      - @billing_method.errors.full_messages.each do |msg|
+        li = msg
+
+  = f.label :card_type
+  = f.select :card_type, options_for_select([["Visa", "Visa"], ["Mastercard", "Mastercard"], ["Discover", "Discover"], ["Amex", "Amex"]])
+
+  = f.label :credit_card_number
+  = f.text_field :credit_card_number
+
+  / = f.label :credit_card_expiration_date
+  / = f.date_select :credit_card_expiration_date, {add_month_numbers: true, discard_day: true, order: [:month, :year]}
+  = f.label :month
+  = f.text_field :month
+
+  = f.label :year
+  = f.text_field :year
+
+  = f.label :street
+  = f.text_field :street
+
+  = f.label :city
+  = f.text_field :city
+
+  = f.label :state
+  = f.select :state, us_states
+
+  = f.label :zipcode
+  = f.text_field :zipcode
+
+  br/
+  - if logged_in?
+    = f.label :name
+    = f.text_field :name
+
+  = f.submit :class => 'btn btn-primary'
+  = link_to 'Cancel', root_url, :class => 'btn'

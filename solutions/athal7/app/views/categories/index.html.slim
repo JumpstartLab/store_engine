@@ -1,0 +1,4 @@
+ul.image-and-title
+  = render partial: "category", collection: @categories
+- if admin_view?
+  = link_to 'New', new_category_path, :class => 'btn btn-primary'
