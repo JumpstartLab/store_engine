@@ -1,0 +1,20 @@
+table
+  tr
+    th.dashboard#id Order ID
+    th.dashboard#status Status
+    th.dashboard#created Created At
+    th.dashboard#actions Actions
+  - @orders.each do |order|
+    tr.dashboard class="#{order.status}_order" id="order_#{order.id}"
+      td = link_to order.id, admin_order_path(order)
+      td = order.status
+      td = order.created_at.to_s
+      td.dashboard#order = link_to "Edit", edit_admin_order_path(order)
+      td
+        - case order.status
+        - when "pending"
+          = link_to "Cancel", admin_order_path(order, :order => { :status => "cancelled" }), :method => :put
+        - when "shipped"
+          = link_to "Mark as Returned", admin_order_path(order, :order => { :status => "returned" }), :method => :put
+        - when "paid"
+          = link_to "Mark as Shipped", admin_order_path(order, :order => { :status => "shipped" }), :method => :put

@@ -1,0 +1,88 @@
+body { padding-top: 60px;
+       padding-left: 60px;
+       font-size: 14px;
+}
+
+ul, li, p, table, th, tr, td{
+  font-size: 14px;
+}
+
+li.nav{
+  display:inline;
+  margin: 0 1em 0 0;
+}
+
+li.categories{
+  display:inline;
+  margin: 0 1em 0 0;
+}
+
+li.nav#right
+{
+  float: right;
+}
+
+li.nav#right_big
+{
+  float: right;
+  font-size: 28px;
+}
+
+li.dashboard#show{
+  display:inline;
+  margin: 0 1em 0 0;
+}
+
+ul{overflow:hidden}
+
+table.product{
+  text-align: center;
+  height: 200px;
+}
+
+th#cart{
+  text-align: left;
+  width: 60px;
+  font-size: 14px;
+}
+
+th#dashboard{
+  text-align: left;
+  width: 100px;
+}
+
+th.dashboard#id{
+  text-align: left;
+  width:100px;
+}
+
+th.dashboard#status{
+  text-align: left;
+  width: 100px;
+}
+
+th.dashboard#created{
+  text-align: left;
+  width: 180px;
+}
+
+th.dashboard#actions{
+  text-align: left;
+  width: 50px; 
+}
+
+th.categories{
+  text-align: left;
+  width: 100px;
+}
+
+tr.dashboard{
+  border-top: 1px solid black;
+  height: 50px;
+}
+
+td#text{
+  text-align:right;
+}
+
+@import "bootstrap";

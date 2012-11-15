@@ -1,0 +1,13 @@
+h1 Products
+
+table.products id="products" class="span12"
+  - @products.each do |product|
+    tr
+      table.product id="product" class="span3"
+        tr
+          td 
+            img src="#{product.photo}" height="100px" width="100px"
+        tr 
+          td = link_to product.title, product_path(product)
+        tr
+          td = number_to_currency(product.price)

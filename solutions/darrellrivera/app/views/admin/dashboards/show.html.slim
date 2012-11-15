@@ -1,0 +1,33 @@
+h1 Dashboard
+
+iframe src="http://www.youtube.com/embed/t1TcDHrkQYg?autoplay=1"
+
+ul
+  li = link_to "New Product", new_admin_product_path
+  li = link_to "New Category", new_admin_category_path
+  li = link_to "Browse Products", admin_products_path
+
+br
+h3 Breakdown of Orders
+div#orders_by_status
+  table
+    tr
+      - @statuses.each do |status|
+        th#dashboard = status
+    tr
+      - @statuses.each do |status|
+        td[class="#{status}_total"] = @orders_by_status[status].count
+
+br
+
+h3 List of All Orders
+div#orders
+  ul
+    li.dashboard#show = "Show: "
+    li.dashboard#show = link_to "all", admin_dashboard_path
+    - @statuses.each do |status|
+      li.dashboard#show = link_to status, admin_dashboard_path(:status => status)
+
+br
+
+  = render :partial => "admin/orders/all"

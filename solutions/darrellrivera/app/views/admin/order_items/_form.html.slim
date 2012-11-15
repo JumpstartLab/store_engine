@@ -1,0 +1,11 @@
+= form_for([:admin, @order_item]) do |f|
+  div class="field"
+    = f.label :title
+    = f.text_field :title
+
+  div class="field"
+    = f.label :quantity
+    = f.text_field :quantity
+
+  div class="actions"
+    = f.submit

@@ -1,0 +1,19 @@
+= form_for([:admin, @product]) do |f|
+  div class="field"
+    = f.label :title
+    = f.text_field :title
+
+  div class="field"
+    = f.label :description
+    = f.text_area :description
+
+  div class="field"
+    = f.label :price
+    = f.text_field :price
+
+  div class="field"
+    = f.label :photo
+    = f.text_field :photo
+
+  div class="actions"
+    = f.submit
