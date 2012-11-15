@@ -1,0 +1,15 @@
+  <%= f.label :full_name %><br/>
+  <%= f.text_field :full_name %><br/>
+  <%= f.label :display_name %><br/>
+  <%= f.text_field :display_name %><br/>
+  <%= f.label :email, "Email Address" %><br/>
+  <%= f.text_field :email %><br/>
+  <%= f.label :password %><br/>
+  <%= f.password_field :password %><br/>
+  <%= f.label :password_confirmation %><br/>
+  <%= f.password_field :password_confirmation %><br/>
+  <%= render partial: "address_fields", locals: {f: f} %>
+  <%= f.label :credit_card %><br/>
+  <%= f.text_field :credit_card %><br/>
+  <%= f.submit class: "btn" %>
+

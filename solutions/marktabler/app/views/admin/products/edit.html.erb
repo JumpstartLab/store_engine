@@ -1,0 +1,27 @@
+<%= simple_form_for @product, :url => [:admin, @product], :html => { class: "form-horizontal" } do |f| %>
+  <fieldset>
+    <%= f.error_notification %>
+
+    <%= f.input :name, :input_html => { :class => "span3" } %>
+
+    <%= f.input :price, :wrapper => :prepend do %>
+      <%# TODO: WTF. The SimpleForm documentation puts these one two lines and it works... %>
+      <%= content_tag :span, "$", :class => "add-on" %><%= f.input_field :price, class: "span3" %>
+    <% end %>
+
+    <%= f.input :photo_url, :input_html => { :class => "span3" } %>
+
+    <%= f.input :category_ids, :collection => Category.all, :as => :check_boxes %>
+
+    <div class="form-actions">
+      <%= f.button :submit, :class => 'btn-primary' %>
+
+      <% if @product.retired? %>
+        <%= link_to "Unretire", unretire_admin_product_path(@product), class: "btn btn-warning", method: :put %>
+      <% else %>
+        <%= link_to "Retire", retire_admin_product_path(@product), class: "btn btn-warning", method: :put %>
+      <% end %>
+    </div>
+
+  </fieldset>
+<% end %>

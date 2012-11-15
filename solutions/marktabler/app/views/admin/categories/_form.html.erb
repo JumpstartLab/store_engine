@@ -1,0 +1,7 @@
+<%= form_for @category, :url => [:admin, @category] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br />
+  <br />
+
+  <%= f.submit class: "btn" %>
+<% end %>

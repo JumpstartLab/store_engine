@@ -1,0 +1,23 @@
+Name:        <%= @product.name %>
+Price:       <%= @product.price.format %><br />
+Categories:  <%= @product.categories.map(&:name).join(", ") %><br />
+Description: <%= @product.description %>
+
+<% if @product.photo_url -%>
+  <%= image_tag @product.photo_url %>
+<% else -%>
+  <%= image_tag "no_image_available.png", size: "150x150" %>
+<% end -%>
+
+<% if @product.retired? %>
+  <h4>This product is no longer available.</h4>
+<% else %>
+  <%= form_tag cart_items_path do %>
+    <%= hidden_field_tag :product_id, @product.id %>
+    <%= submit_tag "Add Item To Cart", class: "btn" %>
+  <% end %>
+  <%= form_tag two_click_order_product_path do %>
+    <%= hidden_field_tag :product_id, @product.id %>
+    <%= submit_tag "Buy Now!", class: "btn", confirm: "Confirm purchase?" %>
+  <% end %>
+<% end %>

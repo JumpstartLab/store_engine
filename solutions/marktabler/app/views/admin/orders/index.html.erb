@@ -1,0 +1,42 @@
+<h1>Order Status Summary</h1>
+  <table>
+    <% @count_report.each do |key, value| %>
+      <tr><td><%= key.to_s.titleize %></td><td><%= value %></td></tr>
+    <% end %>
+  </table>
+
+<%= form_tag admin_orders_path, method: :get do |f| %>
+  <%= select_tag :status_filter, 
+                 options_for_select(Order::STATUSES.map(&:titleize)), 
+                 include_blank: true %><br />
+  <%= label_tag  :price_filter, "Price" %>
+  <%= select_tag :price_filter, options_for_select(['>', '=', '<']), 
+                 include_blank: true %>
+  <%= text_field_tag :price_term %><br />
+  <%= label_tag  :date_filter, "Date (DD/MM/YY)" %>
+  <%= select_tag :date_filter, options_for_select(['>', '=', '<']), 
+                 include_blank: true %>
+  <%= text_field_tag :date_term %><br />
+  <%= submit_tag "Filter", class: "btn" %>
+<% end %>
+
+<table>
+  <tr>
+    <th>Order ID</th>
+    <th>User</th>
+    <th>Total</th>
+    <th>Status</th>
+    <th>Status Date</th>
+    <th>Controls</th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= link_to order.id, admin_order_path(order) %></td>
+    <td><%= order.email_address %></td>
+    <td><%= order.total_price %></td>
+    <td><%= order.status.titleize %></td>
+    <td><%= order.status_date.strftime("%m/%d/%y") %></td>
+    <td><%= render partial: 'controls', locals: {order: order} %></td>
+  </tr>
+<% end %>

@@ -1,0 +1,26 @@
+<%= form_tag orders_path, method: :get do %>
+  <%= label_tag :q, "Search by Product: " %>
+  <%= text_field_tag :q, params[:q] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<%= button_to "Clear Search", orders_path %>
+<table>
+  <tr>
+    <th> Order # </th>
+    <th> Total </th>
+    <th> Status </th>
+    <th> </th>
+  </tr>
+
+  <% @orders.each do |order| %>
+    <tr> 
+      <td><%= link_to order.id, order_path(order) %></td>
+      <td><%= order.total_price %></td>
+      <td><%= order.status %></td>
+      <% unless order.status == "Cancelled" %>
+      <td><%= link_to "Cancel Order", order_path(order), method: :delete, confirm: "Cancel order?" %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

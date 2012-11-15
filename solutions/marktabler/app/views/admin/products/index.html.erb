@@ -1,0 +1,19 @@
+<h2>Products</h2>
+<% @products.each do |product| %>
+  <%= link_to product.name, admin_product_path(product) %>
+  <% if product.retired? %>
+    <%= link_to "Un-Retire", unretire_admin_product_path(product),
+      :class   => "btn btn-mini",
+      :method  => :put,
+      :confirm => "Un-Retire \"#{product.name}\"?"%>
+      <br />
+  <% else %>
+    <%= link_to "Retire", retire_admin_product_path(product),
+      :class   => "btn btn-mini",
+      :method  => :put,
+      :confirm => "Retire \"#{product.name}\"?"%>
+  <br />
+  <% end %>
+<% end %>
+
+<%= link_to "New Product", new_admin_product_path, class: "btn" %>

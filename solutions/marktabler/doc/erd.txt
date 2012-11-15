@@ -1,0 +1,37 @@
+User:
+  email
+  password
+  full_name
+  display_name
+  billing_address
+  shipping_address
+  admin
+
+Product:
+  title
+  description
+  price
+  photo
+  belongs_to category
+
+Category:
+  name
+
+Order:
+  has_many order_items
+  belongs_to user
+
+OrderItem
+  belongs_to product
+  belongs_to order
+  quantity
+
+
+***
+
+Sale
+  start_date
+  end_date
+  discount_percentage
+  name
+

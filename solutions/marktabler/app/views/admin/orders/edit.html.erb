@@ -1,0 +1,30 @@
+<h4>Order</h4>
+<%= form_for(@order, url: admin_order_path(@order)) do |f| %>
+  <%= error_messages_for :order %>
+
+  <%= label_tag :status %>
+  <%= select_tag :status, options_for_select(Order::STATUSES.map(&:titleize), @order.status.titleize) %>
+
+  <table class="table table-striped">
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Price / Each</th>
+      <th>Line Total</th>
+    </tr>
+
+    <% @order.order_items.each do |order_item| %>
+    <tr>
+      <td><%= order_item.product.name %></td>
+      <td>
+        <%= text_field_tag :order_item_quantities, order_item.quantity, name: "order_item_quantities[#{order_item.id}]" %>
+      </td>
+      <td><%= order_item.each_price %></td>
+      <td><%= order_item.line_price %></td>
+    </tr>
+    <% end %>
+
+  </table>
+
+  <%= f.submit clas: "btn" %>
+<% end %>

@@ -1,0 +1,42 @@
+<h1>Confirm your order</h1>
+  <table>
+  <tr>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Total Price</th>
+  </tr>
+    <% current_cart.cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= cart_item.name %></td>
+        <td><%= cart_item.quantity %></td>
+        <td><%= cart_item.line_price %></td>
+      </tr>
+    <% end %>
+  </table>
+<p>Your total: <%= current_cart.total_price %></p>
+
+<%= link_to "Continue shopping", products_path %>
+
+<%= form_tag orders_path do %>
+  <% if current_user %>
+    <%= hidden_field_tag "order[email_address]", current_user.email %>
+    <%= label_tag "order[credit_card]", "Credit Card" %><br/>
+    <%= text_field_tag "order[credit_card]", current_user.shipping_address %><br/>
+    <%= label_tag "order[billing_address]", "Billing Address" %><br/>
+    <%= text_field_tag "order[billing_address]", current_user.billing_address %><br/>
+    <%= label_tag "order[shipping_address]", "Shipping Address" %><br/>
+    <%= text_field_tag "order[shipping_address]", current_user.shipping_address %><br/>
+    <%= submit_tag "Place Order", class: "btn" %>
+  <% else %>
+    <%= label_tag "order[email_address]", "Email Address" %>
+    <%= text_field_tag "order[email_address]" %><br/>
+    <%= label_tag "order[credit_card]", "Credit Card" %><br/>
+    <%= text_field_tag "order[credit_card]" %><br/>
+    <%= label_tag "order[billing_address]", "Billing Address" %><br/>
+    <%= text_field_tag "order[billing_address]" %><br/>
+    <%= label_tag "order[shipping_address]", "Shipping Address" %><br/>
+    <%= text_field_tag "order[shipping_address]" %><br/>
+    <%= submit_tag "Place Order", class: "btn" %>  
+  <% end %>
+  
+<% end %>
