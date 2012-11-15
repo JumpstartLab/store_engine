@@ -1,0 +1,17 @@
+h1 = @user.email
+p
+- if @user.admin?
+  h3 Admin
+
+- unless @user.display_name.nil?
+  p
+  | Display Name: 
+  = @user.display_name
+p
+| First Name: 
+= @user.first_name
+p
+| Last Name: 
+= @user.last_name
+p
+= link_to "Edit User", edit_user_path(@user)

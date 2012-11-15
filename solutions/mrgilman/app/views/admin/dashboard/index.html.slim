@@ -1,0 +1,69 @@
+h1 Admin Dashboard
+
+p
+h2 Order Summary
+div.row
+  div.span3
+    table.table
+      thead
+        tr
+          th Pending
+          th Cancelled
+          th Paid
+          th Shipped
+          th Returned
+      tr
+        td = @dashboard.total_pending_orders 
+        td = @dashboard.total_cancelled_orders 
+        td = @dashboard.total_paid_orders 
+        td = @dashboard.total_shipped_orders 
+        td = @dashboard.total_returned_orders 
+
+div.row
+  div.span1
+    h2 Orders
+div.row
+  div.span8
+    = form_tag admin_dashboard_index_path, :method => :get, :class => "form-horizontal" do |f|
+      = select_tag("status", options_for_select(status_options, @status))
+      | &nbsp;
+      = submit_tag "Filter Orders by Status", :name => nil, :class => "btn btn-primary", :id => "filter_status"
+
+div.row
+  div.span5
+    table class="table table-striped"
+      thead 
+        tr
+          th Date
+          th Order id
+          th Status
+          - if order_action?
+            th Action
+      - @orders.each do |order|
+        tr
+          td = link_to order.created_display_date, order_path(order.id)
+          td = link_to order.id, order_path(order.id)
+          td = order.status.name
+          - if @status == "pending"
+            td = button_to "Cancel", order_path(order, :status_update => true),
+                 :method => :put, :class => "btn btn-primary", 
+                 :id => "cancel_order"
+          - elsif @status == "shipped"
+            td = button_to "Mark as Returned", order_path(order, :status_update => true),
+                 :method => :put, :class => "btn btn-primary", 
+                 :id => "return_order"
+          - elsif @status == "paid"
+            td = button_to "Mark as Shipped", order_path(order, :status_update => true), 
+                 :method => :put, :class => "btn btn-primary", 
+                 :id => "shipped_order"
+div
+  br
+  br
+  br
+  = link_to "Add a new product", new_admin_product_path
+  p
+  = link_to "View all products", admin_products_path
+  p
+  = link_to "View all retired products", admin_products_path(:retired => true)
+  p
+  = link_to "Add or edit a category", admin_categories_path

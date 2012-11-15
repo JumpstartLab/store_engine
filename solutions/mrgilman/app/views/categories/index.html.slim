@@ -1,0 +1,6 @@
+h3 Categories
+p
+table class="table table-striped"
+  - @categories.each do |category|
+      tr
+        td = link_to category.name, category_products_path(category)

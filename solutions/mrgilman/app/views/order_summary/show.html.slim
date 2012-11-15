@@ -1,0 +1,58 @@
+h2 Review Your Order
+br
+
+div class="row-fluid"
+  div class="span3"
+    h3 Shipping Address
+
+    address
+      #{@shipping_address.first_name} #{@shipping_address.last_name}
+      #{@shipping_address.company}
+      #{@shipping_address.line_1}
+      #{@shipping_address.line_2}
+      #{@shipping_address.city}, #{@shipping_address.state} #{@shipping_address.zipcode}
+      #{@shipping_address.phone}
+    p
+    = link_to "Edit", edit_shipping_address_path(@shipping_address)
+
+  div class="span3"
+    h3 Billing Address
+
+    address
+      #{@billing_address.first_name} #{@billing_address.last_name}
+      #{@billing_address.company}
+      #{@billing_address.line_1}
+      #{@billing_address.line_2}
+      #{@billing_address.city}, #{@billing_address.state} #{@billing_address.zipcode}
+      #{@billing_address.phone}
+    p
+    = link_to "Edit", edit_billing_address_path(@billing_address)
+
+  div class="span2"
+    = button_to "Place Order", orders_path, :method => :post, :class => "btn btn-large"
+
+br
+br
+br
+h3 Items
+div class="row-fluid"
+  div class="span7"
+    table class="table table-striped well"    
+      - cart.cart_items.each do |cart_item|
+        tr
+          - if cart_item.product.photo
+            td class="span1" = image_tag(cart_item.product.photo, :size => "50x50")
+          - else
+            td
+          td class="span1" = link_to cart_item.product.title, product_path(cart_item.product)
+          td class="span1" 
+            | $
+            = cart_item.price
+          td class="span1" Quantity: #{cart_item.quantity}
+
+br
+br
+br
+h3 Order Total
+="$#{cart.total}"
+        

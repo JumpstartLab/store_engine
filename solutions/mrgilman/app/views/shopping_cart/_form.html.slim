@@ -1,0 +1,45 @@
+table class="table table-striped"
+  = form_for cart, :as => :put, :url => shopping_cart_path do |f|
+    th
+      td Item
+      td
+      td Price
+      td Quantity
+      td
+    
+    
+    - @cart_items.each do |cart_item|
+      tr
+        - if cart_item.product.photo.nil? || cart_item.product.photo == ""
+          td
+        - else
+          td class="span1" = image_tag(cart_item.product.photo, :size => "50x50")
+        td class="span7" = link_to cart_item.product.title, product_path(cart_item.product)
+        td class="span2"
+        td class="span2" 
+          | $
+          = cart_item.price
+        td class="span1" = text_field_tag "quantity[#{cart_item.id}]", cart_item.quantity
+        td class="span1" = link_to "Remove", cart_item_path(cart_item), :method => :delete
+
+    tr
+      td
+      td
+      td
+      td
+      td = f.submit :class => 'btn'
+      td  
+
+    tr
+      td
+      td 
+          = link_to "Keep Shopping", products_path
+      td  
+        h3 Order Total 
+      td
+        h3 = "$#{cart.total}" 
+      td
+        i class="icon-shopping-cart"
+          = link_to " Checkout", checkout_path
+      td
+

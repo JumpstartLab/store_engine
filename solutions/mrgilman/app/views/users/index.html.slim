@@ -1,0 +1,12 @@
+h1 Users
+p
+= link_to 'Create New User', new_user_path, :class => "btn btn-primary" 
+p
+div
+    table class="table table-striped"
+      tr 
+        td User Name 
+      - @users.each do |user|
+        tr
+          td = link_to user.email, user_path(user)
+

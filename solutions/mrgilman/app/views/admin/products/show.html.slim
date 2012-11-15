@@ -1,0 +1,22 @@
+div class="span3"
+  - if @product.photo.nil? || @product.photo == ""
+    h4 No Photo
+  - else
+    = image_tag(@product.photo, :size => "200x200")
+div class="span3" id="admin_product_show"
+  h3 = @product.title
+  = @product.description
+  p
+  | $
+  = @product.price
+  p
+    - @product.categories.each do |category|
+      = link_to category.name, category_products_path(category)
+      br
+
+    = @product.display_retired
+
+  p
+  = link_to "Edit Product", edit_admin_product_path(@product), :class => 'btn btn-mini'
+  p
+  = link_to "Back to all products", admin_products_path, :class => 'btn btn-mini'

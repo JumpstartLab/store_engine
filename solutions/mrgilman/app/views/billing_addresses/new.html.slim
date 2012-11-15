@@ -1,0 +1,39 @@
+h3 Enter your billing address
+p
+= form_for @billing_address, :html => { :class => 'well'} do |f|
+  - if @billing_address.errors.any?
+    ul
+      - @billing_address.errors.full_messages.each do |msg|
+        li = msg
+  = f.label :first_name, "* First name "
+  = f.text_field :first_name
+  p
+  = f.label :last_name, "* Last name "
+  = f.text_field :last_name
+  p
+  = f.label :company, "Company "
+  = f.text_field :company
+  p
+  = f.label :line_1, "* Street "
+  = f.text_field :line_1
+  p
+  = f.label :line_2, "Apt/Suite"
+  = f.text_field :line_2
+  p
+  = f.label :city, "* City "
+  = f.text_field :city
+  p
+  = f.label :state, "* State "
+  = f.text_field :state
+  p
+  = f.label :zipcode, "* Zipcode "
+  = f.text_field :zipcode
+  p
+  = f.label :phone, "* Phone Number"
+  = f.text_field :phone
+  p
+  label class="checkbox"
+    = check_box_tag("same_as_shipping_address")
+    = label_tag("same_as_shipping_address")
+  p
+  =f.submit :class => :btn

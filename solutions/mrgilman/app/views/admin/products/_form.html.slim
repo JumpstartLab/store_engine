@@ -1,0 +1,22 @@
+= form_for @product, :url => path, :html => { :class => 'form-vertical'} do |f|
+  = f.label :title, :class => 'control-label'
+  = f.text_field :title, :class => 'text_field'
+  = f.label :description, :class => 'control-label'
+  = f.text_field :description, :size => 100, :class => 'text_field'
+  = f.label :price, :class => 'control-label'
+  = f.text_field :price, :class => 'text_field'
+  = f.label :photo, :class => 'control-label'
+  = f.text_field :photo, :class => 'text_field'
+
+  p
+  | Categories:
+  p
+  - @categories.each do |category|
+    label class="checkbox"
+      = check_box_tag("category[#{category.name}]", category.id, @product.categories.include?(category))
+      = label_tag("category[#{category.name}]", category.name)
+      p
+
+  = f.select(:retired, options_for_select([['Active', false], ['Retired', true]], @product.retired))
+  p
+  = f.submit nil, :class => 'btn btn-primary'

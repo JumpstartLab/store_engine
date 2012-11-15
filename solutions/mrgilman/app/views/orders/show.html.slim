@@ -1,0 +1,83 @@
+h1 Order - #{@order.id} 
+p
+| Status - #{@order.status.name}
+p
+| Order Date: #{@order.created_display_date}
+p
+- if @order.status.name == "shipped"
+    | Shipped Date: #{@order.updated_display_date}
+- elsif @order.status.name == "cancelled"
+    | Cancelled Date: #{@order.updated_display_date}
+p
+- if current_user.admin?
+  - if @order.status.name == "pending"
+      = button_to "Cancel", order_path(@order, :status_update => true),
+        :method => :put, :class => "btn btn-primary", :id => "cancel_order"
+  - elsif @order.status.name == "shipped"
+      = button_to "Mark as Returned", order_path(@order, :status_update => true),
+        :method => :put, :class => "btn btn-primary", 
+        :id => "return_order", :update_status => "true"
+  - elsif @order.status.name == "paid"
+      = button_to "Mark as Shipped", order_path(@order, :status_update => true),
+        :method => :put, :class => "btn btn-primary", 
+        :id => "shipped_order", :update_status => "true"
+p
+| Name - #{@order.user.first_name + @order.user.last_name}
+p
+| Email - #{@order.user.email}
+p
+p
+div class="row-fluid"
+  div class="span3"
+    h3 Shipping Address
+
+    address
+      #{@shipping_address.first_name} #{@shipping_address.last_name}
+      #{@shipping_address.company}
+      #{@shipping_address.line_1}
+      #{@shipping_address.line_2}
+      #{@shipping_address.city}, #{@shipping_address.state} #{@shipping_address.zipcode}
+      #{@shipping_address.phone}
+
+  div class="span3"
+    h3 Billing Address
+
+    address
+      #{@billing_address.first_name} #{@billing_address.last_name}
+      #{@billing_address.company}
+      #{@billing_address.line_1}
+      #{@billing_address.line_2}
+      #{@billing_address.city}, #{@billing_address.state} #{@billing_address.zipcode}
+      #{@billing_address.phone}
+
+br
+br
+br
+h3 Items
+div class="row-fluid"
+  div class="span14"
+    table class="table table-striped"    
+      th
+        td Item
+        td
+        td Price
+        td Quantity
+        td
+      - @order.order_items.each do |order_item|
+        tr
+          - if order_item.product.photo.nil? || order_item.product.photo == ""
+            td
+          - else
+            td class="span1" = image_tag(order_item.product.photo, :size => "50x50")
+          td class="span7" = link_to order_item.product.title, product_path(order_item.product)
+          td class="span2"
+          td class="span2" 
+            | $
+            = order_item.price
+          td class="span1" = order_item.quantity
+
+h3 Order Total
+="$#{@order.total}"
+
+p
+= link_to "Back to All Orders", orders_path, :class => "btn"

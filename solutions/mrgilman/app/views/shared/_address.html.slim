@@ -1,0 +1,33 @@
+= form_for @address, :html => { :class => 'well'} do |f|
+  - if @address.errors.any?
+    ul
+      - @address.errors.full_messages.each do |msg|
+        li = msg
+  = f.label :first_name, "* First name "
+  = f.text_field :first_name
+  p
+  = f.label :last_name, "* Last name "
+  = f.text_field :last_name
+  p
+  = f.label :company, "Company "
+  = f.text_field :company
+  p
+  = f.label :line_1, "* Street "
+  = f.text_field :line_1
+  p
+  = f.label :line_2, "Apt/Suite"
+  = f.text_field :line_2
+  p
+  = f.label :city, "* City "
+  = f.text_field :city
+  p
+  = f.label :state, "* State "
+  = f.text_field :state
+  p
+  = f.label :zipcode, "* Zipcode "
+  = f.text_field :zipcode
+  p
+  = f.label :phone, "* Phone Number"
+  = f.text_field :phone
+  p
+  =f.submit :class => :btn

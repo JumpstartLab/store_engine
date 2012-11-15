@@ -1,0 +1,69 @@
+doctype html
+html
+  head
+    title PugMug - We eats your pugs!
+    meta name="keywords" content="template language"
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "https://js.stripe.com/v1/", "application"
+    = csrf_meta_tags
+    = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
+  body
+    - if flash[:notice]
+      p class="flash-notice" = flash[:notice]
+    - if flash[:error]
+      p class="flash-error" = flash[:error]
+    - if flash[:alert]
+      p class="flash-alert" = flash[:alert]
+
+  div class="navbar navbar-fixed-top"
+    div class="navbar-inner"
+      div class="container-fluid"
+        a class="brand" href=root_path 
+          | PugMug
+          | &nbsp;
+          = image_tag "logo.png", :size => "32x32"
+        ul class="nav pull-left"
+          li class="active" = link_to "Products", products_path
+        ul class="nav pull-right"
+          li class="active" = link_to "Shopping Cart - #{cart.item_count}", shopping_cart_path
+          - if current_user
+            - if current_user.display_name
+              li id="fat-menu" class="dropdown"
+                a.dropdown-toggle*{'data-toggle' => "dropdown"} href="#"  
+                  | #{current_user.display_name} 
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    a href="#{orders_path}" Orders 
+                    a href="#{user_path(current_user)}" Settings 
+                    - if current_user.admin?
+                      a href="#{admin_dashboard_index_path}" Admin Dashboard 
+            - else
+              li id="fat-menu" class="dropdown"
+                a.dropdown-toggle*{'data-toggle' => "dropdown"} href="#"  
+                  | #{current_user.email} 
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    a href="#{orders_path}" Orders 
+                    a href="#{user_path(current_user)}" Settings 
+                    - if current_user.admin?
+                      a href="#{admin_dashboard_index_path}" Admin Dashboard
+            li class="active" = link_to "Logout", :logout
+          - else 
+            li class="active" = link_to "Register", new_user_path 
+            li class="active" = link_to "Login", :login
+     
+
+  div class="container-fluid"
+    div class="row-fluid"
+      div class="span2"
+        h3 Categories
+        p
+        - categories.each do |category|
+          = link_to category.name, category_products_path(category)
+          p
+      div class="span10"
+        
+
+        = yield

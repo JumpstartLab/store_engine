@@ -1,0 +1,11 @@
+h3 Shopping Cart
+
+- if @cart_items.length > 0
+  = render :partial => "form"
+- else
+  p
+  h4 Your cart is empty.
+  br
+  br
+  br
+  = link_to "Keep Shopping", products_path, :class => "btn"

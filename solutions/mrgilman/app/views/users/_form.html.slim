@@ -1,0 +1,43 @@
+= form_for(@user) do |f|
+  - if @user.errors.any?
+    div id="error_explanation"
+      h2 = pluralize(@user.errors.count, "error")  
+      prohibited this user from being saved:
+
+      ul
+      - @user.errors.full_messages.each do |msg|
+        li = msg
+
+  div class="field"
+    = f.label :email 
+    = f.text_field :email
+
+  div class="field"
+    = f.label :display_name
+    = f.text_field :display_name
+
+  div class="field"
+    = f.label :first_name
+    = f.text_field :first_name
+
+  div class="field"
+    = f.label :last_name
+    = f.text_field :last_name
+
+  div class="field"
+    = f.label :password
+    = f.password_field :password 
+
+  div class="field"
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+  - if current_user && current_user.admin?
+    div class="field"
+      label class="checkbox"
+        = f.check_box :admin
+        = f.label :admin 
+
+  div class="actions"
+    = f.submit :class => "btn btn-primary"
+    | &nbsp;
+    = link_to "Cancel", users_path(@user), :class => "btn"
