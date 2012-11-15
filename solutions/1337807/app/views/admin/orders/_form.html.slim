@@ -1,0 +1,20 @@
+= form_for([:admin, @order]) do |f|
+  div class="field"
+    = f.label :status
+    = f.text_field :status
+
+    table
+      tr
+        th = "Title"
+        th = "Price"
+        th = "Quantity"
+        th = "Subtotal"
+        = f.fields_for :order_items do |i|
+          tr
+            td = i.object.title
+            td = i.object.price
+            td.quantity = i.text_field :quantity
+            td = i.object.subtotal
+
+  div class="actions"
+    = f.submit

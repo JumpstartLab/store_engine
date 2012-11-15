@@ -1,0 +1,13 @@
+h1 Categories
+br
+p = link_to "New Category", new_admin_category_path
+
+br
+table
+  tr
+    th.categories Name
+    th.categories Actions
+  - @categories.each do |category|
+    tr
+      td = link_to category.name, admin_category_path(category)
+      td = link_to "Edit", edit_admin_category_path(category)

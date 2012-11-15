@@ -1,0 +1,22 @@
+h1 = "Order ##{@order.id}"
+h2 = "Total: #{@order.total}"
+h3 = "Status: #{@order.status}"
+h3 = "Created: #{@order.created_at.to_s}"
+h3 = "Buyer: #{@order.user.name}"
+h3 = "Address:"
+h4 = "#{@order.address.street}"
+h4 = "#{@order.address.city}, #{@order.address.state} #{@order.address.zipcode}"
+
+table
+  tr
+    td Item Title
+    td Price
+    td Quantity
+    td Subtotal
+  - @order.items.each do |item|
+    tr
+      td = link_to item.title, admin_product_path(item)
+      td = item.price
+      td.quantity = item.quantity
+      td = item.subtotal
+      td = link_to "Remove", admin_order_path(:item_id => item.id), :method => :delete

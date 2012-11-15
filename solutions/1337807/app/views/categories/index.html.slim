@@ -1,0 +1,8 @@
+h1 All Categories
+
+ul
+- ("a".."z").each do |letter|
+  h4 = letter.upcase
+  - @categories.each do |category|
+    - if category.name[0].downcase == letter
+      li.categories = link_to category.name, category_path(category)
