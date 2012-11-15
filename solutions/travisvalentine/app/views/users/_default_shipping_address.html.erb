@@ -1,0 +1,13 @@
+<% unless @user.default_shipping_address %>
+  <h2>Please add a default shipping address</h2>
+  <%= form_for Address.new, :url => user_addresses_path(:user_id => current_user.id, :type => "shipping") do |f| %>
+    <%= f.text_field :street, :placeholder => "Street address" %><br>
+    <%= f.text_field :street_two, :placeholder => "Street two" %><br>
+    <%= f.text_field :city, :placeholder => "City" %><br>
+    <%= f.text_field :state, :placeholder => "State" %><br>
+    <%= f.text_field :country, :placeholder => "Country" %><br>
+    <%= f.text_field :zipcode, :placeholder => "Zipcode" %><br>
+    <%= f.text_field :phone_number, :placeholder => "Phone number" %><br>
+    <%= f.submit %>&nbsp;&nbsp;<%= link_to "cancel", nil, :id => "cancel_default_shipping", :remote => true %>
+  <% end %>
+<% end %>

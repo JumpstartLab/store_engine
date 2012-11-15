@@ -1,0 +1,23 @@
+<ul class="nav">
+<li><%= link_to "Dashboard", admin_dashboard_path if current_user.is_admin? %></li>
+  <li><%= link_to "Categories", categories_path %></li>
+</ul>
+<%= render :partial => "products/search_form" %>
+<ul class="nav pull-right">
+  <li id="cart"><a href="/cart"><i class="icon-shopping-cart icon-white"></i> Cart <%= "(#{cart.total_items})" if cart.cart_products.any? %></a></li>
+  <li class="divider-vertical"></li>
+  <ul class="nav">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="icon-user icon-white"></i><b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li class="nav-header"><%= current_user.full_name %></li>
+        <li><%= link_to "My Orders", orders_path %></li>
+        <li><%= link_to "Settings", user_path(current_user) %></li>
+        <li class="divider"></li>
+        <li><%= link_to "Logout", logout_path %></li>
+      </ul>
+    </li>
+  </ul>
+</ul>

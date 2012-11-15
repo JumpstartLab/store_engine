@@ -1,0 +1,19 @@
+<%= render :partial => "search_form" %>
+<div id="orders">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Order Id</th>
+      <th>Shipping Address</th>
+      <th>Billing Address</th>
+      <th>Status</th>
+      <th>Date Placed</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= render :partial => "order", :collection => @orders %>
+  </tbody>
+</table>
+</div>

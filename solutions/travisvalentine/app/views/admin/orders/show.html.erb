@@ -1,0 +1,50 @@
+<h2>Order number: <%= @order.id %> created: <%= @order.created_at.strftime("%m/%d/%Y") %> </h2>
+<div class="row-fluid">
+  <div class="span8">
+    <h3>Products</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= render :partial => "order_product", :collection => @order.order_products %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Total</td>
+          <td><%= number_to_currency(@order.total) %></td>
+        </tr>
+      </tfoot>
+    </table>
+
+  </div>
+  <div class="span4">
+    <h3 class="order-detail">Ordered by:</h3>
+      <p class="order-detail"><%= @order.user.full_name %></p>
+      <p class="order-detail"><%= @order.user.email %></p>
+    <h3 class="order-detail">Status</h3>
+      <% @order.order_statuses.each do |order_status| %>
+        <% if order_status.status == "pending" %>
+          <p class="order-detail"><%= "Placed at: " %><%= @order.placed_at %></p>
+        <% else %>
+          <p class="order-detail"><%= "#{order_status.status.capitalize} at: " %><%= @order.send("#{order_status.status}_at") %></p>
+        <% end %>
+      <% end %>
+    <h3 class="order-detail">Billing Address</h3>
+      <p class="order-detail"><%= @order.billing_address.tag %></p>
+    <h3 class="order-detail">Shipping Address</h3>
+      <p class="order-detail"><%= @order.shipping_address.tag %></p>
+    <h3 class="order-detail">Change Status</h3>
+      <p class="order-detail"><%= status_downgrade_link(@order.status, @order.id) %></p>
+      <p class="order-detail"><%= status_upgrade_link(@order.status, @order.id) %></p>
+  </div>
+</div>

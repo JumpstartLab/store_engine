@@ -1,0 +1,2 @@
+Fabricator(:sale) do
+end

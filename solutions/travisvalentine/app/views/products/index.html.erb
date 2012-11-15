@@ -1,0 +1,5 @@
+<% if mobile_device? %>
+  <%= render :partial => "mobile_index" %>
+<% else %>
+  <%= render :partial => "browser_index" %>
+<% end %>

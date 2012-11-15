@@ -1,0 +1,45 @@
+<%= form_for @product, :html => { :multipart => true } do |f| %>
+  <% if @product.errors.any? %>
+    <div class="alert alert-error">
+      <ul>
+        <% for message in @product.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </p>
+  <p>
+    <%= f.file_field :image %>
+  </p>
+  <p>
+    <%= f.label :remote_image_url, "or Image URL" %>
+    <%= f.text_field :remote_image_url %>
+  </p>
+  <p>
+    <%= f.check_box :remove_image %>
+    <%= f.label :remove_image, :id => "checkbox" %>
+  </p>
+  <h3>Add Categories:</h3>
+  <p>
+  <%= hidden_field_tag "product[category_ids][]", nil %>
+  <% Category.all.each do |category| %>
+    <%= check_box_tag "product[category_ids][]", category.id, @product.category_ids.include?(category.id), id: dom_id(category) %>
+    <%= label_tag dom_id(category), category.name, :id => "checkbox" %>
+  <% end %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

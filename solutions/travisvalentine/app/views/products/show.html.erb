@@ -1,0 +1,5 @@
+<% if mobile_device? %>
+  <%= render :partial => "mobile_show" %>
+<% else %>
+  <%= render :partial => "browser_show" %>
+<% end %>

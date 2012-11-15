@@ -1,0 +1,70 @@
+<% content_for :head do %>
+<script type="text/javascript">
+  $(function(){
+    $("#anim").click(function(){
+      $("#test").effect("transfer", { to: "#cart", className: "cart-drop" }, 800, function(){
+        $("#cart").effect("highlight", {}, 1000);
+        //("pulsate", { times:3 }, 2000);
+      });
+    });
+  });
+  </script>
+<% end %>
+
+<% if logged_in? && current_user.is_admin? %>
+<div id="admin_bar">
+<%= link_to "Edit Product", edit_product_path, :class => "add_link" %>
+<%= link_to "Delete Product", product_path, :class => "add_link", :method => :delete, :confirm => "Are you sure?" %>
+<%= link_to "Put on sale", new_sale_path(:product_id => @product.id), :class => "add_link" %>
+</div>
+<% end %>
+
+<% if @product.retired %>
+  <div id="admin_bar">
+    <h4>This product was retired at <%= @product.retired_at %></h4>
+  </div>
+<% end %>
+<% if notice %>
+  <div class="alert alert-info">
+    <p id="notice"><%= flash.now[:notice] %></p>
+  </div>
+<% end %>
+
+<div class="product-show">
+  <div class="well border title mobile">
+    <h1><%= @product.title %></h1>
+    <p id="description"><%= @product.description %></p>
+    <hr>
+    <% if @product.on_sale? %>
+    <div class="sale-wrapper">
+       <div class="ribbon-wrapper-green"><div class="ribbon-green">ON SALE</div></div>
+    </div>​
+    <% end %>
+    <div class="image">
+      <% if @product.on_sale? %>
+        <%= image_tag @product.image_url(:thumb).to_s, :id => "product_image", :class => "sale-image" if @product.image? %>
+        <p>Now: <strike><%= number_to_currency(@product.price) %></strike></p>
+        <p id="sale_price">Was: <%= number_to_currency(@product.best_price) %> </p>
+      <% else %>
+        <%= image_tag @product.image_url(:thumb).to_s, :id => "product_image" if @product.image? %>
+        <p><%= number_to_currency(@product.price) %></p>
+      <% end %>
+    <div class="buy-options">
+      <% unless @product.retired %>
+      <%= link_to cart_products_path(:product_id => @product), :id => "anim", :class => "btn btn-primary", :method => :post do %><i class="icon-shopping-cart icon-white"></i>add to cart<% end %>
+      <% end %>
+      <% if logged_in? %><%= link_to instant_orders_path(:product_id => @product), :class => "btn btn-success", :method => :post, :confirm => "Really order #{@product.title}?" do %>Instant Checkout<% end %>
+      <% end %>
+    </div>
+    </div>
+  </div>
+  <div class="well" id="index_categories">
+    <%= link_to "All Products", products_path, :class => "btn" %>
+    <% if @product.categories.any? %>
+      <% @product.categories.each do |category| %>
+        <%= link_to category.name, category_path(category), :class => "btn", :id => "category_#{category.id}" %>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

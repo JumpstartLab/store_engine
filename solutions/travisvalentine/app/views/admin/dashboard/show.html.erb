@@ -1,0 +1,15 @@
+<div id="order_filter">
+<%= link_to "Pending Orders", admin_dashboard_path(:order_status => :pending), :id => "pending", :class => "add_link" %>
+<%= link_to "Paid Orders", admin_dashboard_path(:order_status => :paid), :id => "paid", :class => "add_link" %>
+<%= link_to "Cancelled Orders", admin_dashboard_path(:order_status => :cancelled), :id => "cancelled", :class => "add_link" %>
+<%= link_to "Shipped Orders", admin_dashboard_path(:order_status => :shipped), :id => "shipped", :class => "add_link" %>
+<%= link_to "Returned Orders", admin_dashboard_path(:order_status => :returned), :id => "returned", :class => "add_link" %>
+<%= link_to "All Orders", admin_dashboard_path, :class => "add_link" %>
+</div>
+
+
+<% if @orders.any? %>
+<%= render :partial => "order_table" %>
+<% else %>
+<h3>There are no orders yet. Be patient. You have built it. They will come.</h3>
+<% end %>

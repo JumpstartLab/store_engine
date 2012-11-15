@@ -1,0 +1,48 @@
+<% if notice %>
+  <div class="alert alert-info">
+    
+    <p id="notice"><%= flash.now[:notice] %></p>
+  </div>
+<% end %>
+<h2>Your Order from <%= @order.created_at.strftime("%m/%d/%Y") %>:</h2>
+<div class="row-fluid">
+  <div class="span8">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Products</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render :partial => "order_product", :collection => @order.order_products %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Total</td>
+          <td><%= number_to_currency(@order.total) %></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <div class="span4">
+    <h3 class="order-detail">Placed at:</h3>
+      <%= @order.placed_at %>
+    <h3 class="order-detail">Status: <%= @order.status.capitalize %></h3>
+      <% @order.order_statuses.each do |order_status| %>
+        <% unless order_status.status == "pending" %>
+        <p class="order-detail"><%= "#{order_status.status.capitalize}:" %><%= @order.send("#{order_status.status}_at") %></p>
+        <% end %>
+      <% end %>
+    <h3 class="order-detail">Billing Address</h3>
+      <%= @order.billing_address.tag %>
+    <h3 class="order-detail">Shipping Address</h3>
+      <%= @order.shipping_address.tag %>
+  </div>
+</div>

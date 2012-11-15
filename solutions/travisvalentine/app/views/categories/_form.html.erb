@@ -1,0 +1,16 @@
+<%= form_for @category do |f| %>
+  <% if @category.errors.any? %>
+    <div class="alert alert-error">
+      <ul>
+        <% for message in @category.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions"><%= f.submit %></div>
+<% end %>

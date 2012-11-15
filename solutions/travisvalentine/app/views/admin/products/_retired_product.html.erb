@@ -1,0 +1,8 @@
+<tr class="product" id="product_<%= retired_product.id %>">
+  <td><%= retired_product_counter + 1 %></td>
+  <td><%= link_to retired_product.title, product_path(retired_product) %></td>
+  <td><%= retired_product.price %></td>
+  <td><%= %></td>
+  <td><%= %></td>
+  <td><%= link_to "Activate", product_activations_path(retired_product), :method => :post %></td>
+</tr>

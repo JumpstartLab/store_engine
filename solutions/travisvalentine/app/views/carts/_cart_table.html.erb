@@ -1,0 +1,21 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Total</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => "cart_product", :collection => cart.cart_products %>
+  <tr id="total">
+    <td></td>
+    <td></td>
+    <td>Total:</td>
+    <td ><%= number_to_currency(cart.total) %></td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>

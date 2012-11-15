@@ -1,0 +1,27 @@
+<div id="orders">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Order Id</th>
+      <th>Shipping Address</th>
+      <th>Address Type</th>
+      <th>Status</th>
+      <th>Date Placed</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @orders.each do |order| %>
+    <tr id="order_<%= order.id %>">
+      <td><%= link_to order.id, admin_order_path(order) %></td>
+      <td><%= order.billing_address.tag %></td>
+      <td><%= order.shipping_address.tag %></td>
+      <td class="status"><%= order.status %></td>
+      <td class="date"><%= order.created_at %>
+      </td>
+      <td><%= status_downgrade_link(order.status, order.id) %> | <%= status_upgrade_link(order.status, order.id) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>

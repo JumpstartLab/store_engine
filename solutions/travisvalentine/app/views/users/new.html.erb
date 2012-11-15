@@ -1,0 +1,19 @@
+<% content_for :head do %>
+<style type="text/css">
+body { background: url("/assets/worace.JPG") no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+form#new_user { margin: 0; }
+  div.actions { margin-top: 5px; }
+</style>
+<script type="text/javascript">
+$(function(){
+  $('.dropdown form').on('click', function (e) {
+    e.stopPropagation()
+  });
+});
+</script>
+<% end %>
+<div id="thinForm">
+<h2>Register below:</h2>
+<%= render :partial => 'form' %>
+</div>
+<!-- <blockquote><h1>I believe that furniture should discipline you.</h1></blockquote> -->

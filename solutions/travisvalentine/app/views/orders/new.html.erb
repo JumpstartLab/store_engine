@@ -1,0 +1,87 @@
+<div id="order">
+  <%#= raise @order.order_products.inspect %>
+  <%# cart.cart_products.each do |cp| %>
+    <%#= cp.title %>
+    <%#= cp.quantity %>
+  <%# end %>
+</div>
+<div class="span5">
+<h3>Billing Address:</h3>
+<%= form_for(@order) do |f| %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <%= f.hidden_field :cart_id, :value => cart.id %>
+  <%= f.fields_for :billing_address do |billing_field| %>
+    <%= billing_field.label :street %>
+    <%= billing_field.text_field :street %>
+    <%= billing_field.label :street_two %>
+    <%= billing_field.text_field :street_two, :placeholder => "Optional" %>
+    <%= billing_field.label :city %>
+    <%= billing_field.text_field :city %>
+    <%= billing_field.label :state %>
+    <%= billing_field.text_field :state %>
+    <%= billing_field.label :country %>
+    <%= billing_field.text_field :country %>
+    <%= billing_field.label :zipcode %>
+    <%= billing_field.text_field :zipcode %>
+    <%= billing_field.label :phone_number %>
+    <%= billing_field.text_field :phone_number %>
+  <% end %>
+<h3>Shipping Address:</h3>
+  <%= f.fields_for :shipping_address do |shipping_field| %>
+    <%= shipping_field.label :street %>
+    <%= shipping_field.text_field :street, :placeholder => "Optional" %>
+    <%= shipping_field.label :street_two %>
+    <%= shipping_field.text_field :street_two, :placeholder => "Optional" %>
+    <%= shipping_field.label :city %>
+    <%= shipping_field.text_field :city, :placeholder => "Optional" %>
+    <%= shipping_field.label :state %>
+    <%= shipping_field.text_field :state, :placeholder => "Optional" %>
+    <%= shipping_field.label :country %>
+    <%= shipping_field.text_field :country, :placeholder => "Optional" %>
+    <%= shipping_field.label :zipcode %>
+    <%= shipping_field.text_field :zipcode, :placeholder => "Optional" %>
+    <%= shipping_field.label :phone_number %>
+    <%= shipping_field.text_field :phone_number, :placeholder => "Optional" %>
+  <% end %>
+<h3>Billing Information:</h3>
+  <%= f.fields_for :credit_cards do |credit_card_field| %>
+    <%= credit_card_field.label :credit_card_number %>
+    <%= credit_card_field.text_field :credit_card_number %>
+    <%= credit_card_field.label :expiration_month %>
+    <%= credit_card_field.text_field :expiration_month %>
+    <%= credit_card_field.label :expiration_year %>
+    <%= credit_card_field.text_field :expiration_year %>
+    <%= credit_card_field.label :credit_card_verification_number %>
+    <%= credit_card_field.text_field :credit_card_verification_number %>
+    <%= credit_card_field.label :cardholder_name %>
+    <%= credit_card_field.text_field :cardholder_name %>
+  <% end %>
+  <%= f.submit "Confirm" %>
+<% end %>
+</div>
+<div class="span5">
+  <div>
+    <h3>Or Checkout with Stripe</h3>
+  </div>
+<%= form_for @order, :html => { :id => "new_credit_card" } do |f| %>
+<%= f.fields_for :credit_cards do |credit_card_field| %>
+  <%= credit_card_field.hidden_field :stripe_card_token %>
+  <div class="field">
+    <%= label_tag :card_number, "Credit Card Number" %>
+    <%= text_field_tag :card_number, nil, name: nil %>
+  </div>
+  <div class="field">
+    <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+    <%= text_field_tag :card_code, nil, name: nil %>
+  </div>
+  <div class="field">
+    <%= label_tag :card_month, "Card Expiration" %>
+    <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+    <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+  </div>
+  <div id="stripe_error">
+    <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+  </div>
+  <% end %>
+<% end %>
+</div>
