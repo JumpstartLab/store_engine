@@ -1,0 +1,14 @@
+<h1><%= category.name %> <small>An awesome category of awesomeness</small></h1>
+
+<div class="row">
+  <div class="span10">
+    <% category.products.each do |p| %>
+      <% if p.active? %>
+        <%= render p %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+</p>
+<p><%= link_to "Back to all Categories", categories_path, :title => "back to all categories", class: "btn" %>

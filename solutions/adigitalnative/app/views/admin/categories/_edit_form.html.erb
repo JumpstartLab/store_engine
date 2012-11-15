@@ -1,0 +1,10 @@
+<%= form_for(category, url: admin_category_path(category), :html => { :class => "form form-horizontal category_form" } ) do |f| %>
+  <%= f.label :name %><br />
+  <%= f.text_field :name %><br />
+
+  <%= f.label :products %>
+  <%= f.select :product_ids, Product.all.collect {|p| [ p.title, p.id ] }, {}, :multiple=>true, :id => "products"%><br /><br />
+
+  <%= f.submit %>
+  
+<% end %>

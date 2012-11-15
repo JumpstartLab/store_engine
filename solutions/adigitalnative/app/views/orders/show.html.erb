@@ -1,0 +1,27 @@
+<div class="span10">
+  <h1>Order Up!</h1>
+  <span class="badge badge-info" style="float:right; margin-bottom:2px;">Status: <%= order.status %></span>
+
+  <%= render :partial => "order_info" %>
+</div>
+<div class="span10">
+  <table class="table" id="items">  
+    <tr>
+      <th>Product</th>
+      <th>Item Price</th>
+      <th>Quantity</th>
+      <th>Item Total</th>
+    </tr>
+    <% order.order_items.each do |order_item| %>
+      <tr>
+        <td><%= link_to order_item.product.title, product_path(order_item.product_id) %></td>
+        <td><%= order_item.product.price %></td>
+        <td><%= order_item.quantity %></td>
+        <td><%= order_item.total %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<div class="span10">
+  <%= link_to "View All Orders", orders_path, :title => "back to orders", :class => 'btn', :id => 'edit_order_btn' %>
+</div>

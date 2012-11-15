@@ -1,0 +1,17 @@
+<h1>Products</h1>
+
+<div>
+  <div id="products">
+    <%= will_paginate %>
+    <% @products.each do |product| %>
+      <% if product.active? %>
+        <%= render product %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="span10">
+      <%= will_paginate %>
+    </div>
+  </div>
+</div>

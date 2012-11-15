@@ -1,0 +1,29 @@
+<title>Current Billing Information</title>
+<h1>Current Billing Information</h1>
+
+<div class="span10">
+  <table class="table" id="items">  
+    <tr>
+      <th>Credit Card Type</th>
+      <th>Credit Card Number</th>
+      <th>Credit Card Expiration</th>
+      <th>Address Line 1</th>
+      <th>Address Line 2</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zipcode</th>
+    </tr>
+    <tr>
+      <td><%= billing_information.credit_card_type %></td>
+      <td><%= "***** **** **** " + billing_information.credit_card_number[-4,4] %></td>
+      <td><%= billing_information.credit_card_expiration %></td>
+      <td><%= billing_information.billing_address_line_1 %></td>
+      <td><%= billing_information.billing_address_line_2 %></td>
+      <td><%= billing_information.billing_address_city %></td>
+      <td><%= billing_information.billing_address_state %></td>
+      <td><%= billing_information.billing_address_zipcode %></td>
+    </tr>
+  </table>
+</div>
+
+<%= render :partial => "edit_form" %>

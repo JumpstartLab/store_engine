@@ -1,0 +1,33 @@
+<div class="span10">
+  <h1>Order Up!</h1>
+  <span class="badge badge-info" style="float:right; margin-bottom:2px;">Status: <%= order.status %></span>
+
+  <%= render :partial => "order_info" %>
+</div>
+<div class="span10">
+  <table class="table" id="items">  
+    <tr>
+      <th>Product</th>
+      <th>Item Price</th>
+      <th>Quantity</th>
+      <th>Item Total</th>
+    </tr>
+    <% order.order_items.each do |order_item| %>
+      <tr>
+        <td><%= link_to order_item.product.title, product_path(order_item.product_id) %></td>
+        <td><%= order_item.product.price %></td>
+        <td>
+        <%= form_for(order_item, url: admin_order_items_path(order_item)) do |f| %>
+          <%= f.number_field :quantity, :min => 1, :id => "quantity" %>
+          <%= f.submit "Update quantity" %>
+        <% end %>
+        </td>
+        <td><%= order_item.total_price %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<div class="span10">
+  <%= link_to "Edit Order", edit_admin_order_path(order), :title =>"edit this order", :class => 'btn', :id =>'edit_order_btn' %>
+  <%= link_to "Back to All Orders", admin_orders_path, :class => "btn", :id => "back_to_orders"%>
+</div>

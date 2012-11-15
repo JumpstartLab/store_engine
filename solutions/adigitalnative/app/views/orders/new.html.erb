@@ -1,0 +1,39 @@
+<div class="span3">
+  <h1>Process Order</h1>
+</div>
+
+<div class="span2 offset4">
+  <h4 style="text-align:right;">Order Status: <small><%= order.status %></h4>
+</div>
+
+<br />
+<br />
+<div>
+  <table class="table" id="items" style="float:right">
+    <tr>
+      <th>Product</th>
+      <th>Item Price</th>
+      <th>Quantity</th>
+      <th>Item Total</th>
+    </tr>
+    <% @cart.cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= link_to cart_item.product.title, product_path(cart_item.product_id) %></td>
+        <td><%= cart_item.product.price %></td>
+        <td><%= cart_item.quantity %></td>
+        <td><%= cart_item.total %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>Order Total:</td>
+      <td><%= @cart.total %></td>
+    </tr>
+  </table>
+</div>
+
+<%= render :partial => "shipping_informations/form" %>
+<%= render :partial => "billing_informations/form" %>
+
+<%= link_to "Place Order", orders_path(@order, :cart_id => @cart.id, :current_user_id => current_user), :method => :post, :class => "btn", :id => "place_order"%>

@@ -1,0 +1,7 @@
+<%= form_for order do |f| %>
+  <%= f.label :status %>
+  <%= f.select :status, order.status_options.collect { |s| s }, {}, :multiple=>false, :id=>"status"%><br />
+
+  <%= f.submit %>
+
+<% end %>

@@ -1,0 +1,21 @@
+<h3>Shipping Information</h3>
+
+<%= form_for(shipping_information) do |f| %>
+  <%= f.label :shipping_address_line_1 %>
+  <%= f.text_field :shipping_address_line_1, :id => "shipping_address_line_1" %><br />
+
+  <%= f.label :shipping_addres_line_2 %>
+  <%= f.text_field :shipping_address_line_2 %><br />
+
+  <%= f.label :shipping_address_city %>
+  <%= f.text_field :shipping_address_city %><br />
+
+  <%= f.label :shipping_address_state %>
+  <%= f.text_field :shipping_address_state %><br />
+
+  <%= f.label :shipping_address_zipcode %>
+  <%= f.text_field :shipping_address_zipcode %><br /><br />
+
+  <%= f.submit "Ship to this address" %>
+  
+<% end %>
