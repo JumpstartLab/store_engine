@@ -1,0 +1,13 @@
+<!-- <form class="filter_options_container">
+<h1>Filter Products by Category <%= select('product', 
+                                           'category', 
+                                           Category.all.collect(&:title)) %>
+                              <input type="submit" value="Filter" />
+                            </form> -->
+
+</h1>
+
+  
+<ul id="products">
+  <%= render :partial => "products/product", :collection => @products %>
+</ul>

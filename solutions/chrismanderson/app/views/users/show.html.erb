@@ -1,0 +1,6 @@
+<h1><%= @user.full_name %></h1>
+
+<h2>Address</h2>
+<% if @user.addresses.any? %>
+  <%= render @addresses %>
+<% end %>

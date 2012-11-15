@@ -1,0 +1,105 @@
+@import "twitter/bootstrap/bootstrap";
+body { padding-top: 80px; }
+
+@import "twitter/bootstrap/responsive";
+
+// Set the correct sprite paths
+@iconSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings.png');
+@iconWhiteSpritePath: asset-path('twitter/bootstrap/glyphicons-halflings-white.png');
+
+// Set the Font Awesome (Font Awesome is default. You can disable by commenting below lines)
+@fontAwesomeEotPath: asset-path('fontawesome-webfont.eot');
+@fontAwesomeWoffPath: asset-path('fontawesome-webfont.woff');
+@fontAwesomeTtfPath: asset-path('fontawesome-webfont.ttf');
+@fontAwesomeSvgzPath: asset-path('fontawesome-webfont.svgz');
+@fontAwesomeSvgPath: asset-path('fontawesome-webfont.svg');
+
+
+// Font Awesome
+@import "fontawesome";
+
+// Your custom LESS stylesheets goes here
+//
+// Since bootstrap was imported above you have access to its mixins which
+// you may use and inherit here
+//
+// If you'd like to override bootstrap's own variables, you can do so here as well
+// See http://twitter.github.com/bootstrap/less.html for their names and documentation
+//
+// Example:
+@baseFontSize: 16px;
+@navbarBackground: @white;
+@navbarBackgroundHighlight: @white;
+@navbarText: @grayDark;
+@navbarLinkColor: @grayDark;
+@navbarLinkColorHover: @blue;
+
+.navbar .nav > li > a {
+  line-height: 50px;
+  text-shadow: none;
+  font-weight: 900;
+  font-size: 18px;
+}
+.navbar .nav .active > a,
+.navbar .nav .active > a:hover {
+  height:50px;
+  text-shadow: none;
+  color: @blue;
+}
+
+.navbar .brand {
+  line-height: 50px;
+  color: @black;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.hero-unit {
+  padding: 30px;
+  margin-bottom: 30px;
+  background-color: #eeeeee;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  
+}
+.hero-unit h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  color: inherit;
+  letter-spacing: -1px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+
+#info {
+  padding-top: 40px;
+}
+
+.hero-unit img {
+  width: 90%;
+  float: right;
+  padding: 0;
+  margin-top: -30px;
+}
+.hero-unit p {
+  font-size: 20px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);  font-weight: 300;
+  line-height: 27px;
+  color: inherit;
+  letter-spacing: 0px;
+}
+
+.hero-unit p#price {
+  color:  #46a546;
+  font-weight: 300;
+  font-size: 50px;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+}
+.navbar-search .search-query {
+  margin-top: 15px;
+}
+

@@ -1,0 +1,29 @@
+<div class="well">
+<h1>Filtered Orders</h1>
+</div>
+<br />
+<table class="table table-striped table-condensed">
+  <thead>
+    <th>Order ID</th>
+    <th>Created</th>
+    <th>User</th>
+    <th>Order Items</th>
+    <th>Status</th>
+    <th>Updated</th>
+    <th>Order Total</th>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %><tr>
+      <td><%= link_to order.id, order_path(order) %></td>
+      <td><%= order.created_at %></td>
+      <td><%= order.user.full_name %></td>
+      <td><% order.products.each do |t| %>
+              <%= t.title %>, 
+              <% end %></td>
+      <td><%= order.current_status %></td>
+      <td><%= order.updated_at %></td>
+      <td>$<%= order.total_price %></td>
+      </tr><% end %>
+  </tbody>
+</table>
+<%= link_to "Dashboard", dashboard_path, :class => "btn btn-large" %>

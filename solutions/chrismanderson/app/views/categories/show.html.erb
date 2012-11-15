@@ -1,0 +1,8 @@
+
+<div class="page-header">
+  <h1>Products by <%=@category.title %></h1>
+</div>
+
+<ul id="products">
+  <%= render :partial => "products/product", :collection => @products %>
+</ul>

@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>City:</b>
+  <%= address.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= address.state %>
+</p>
+
+<p>
+  <b>Street 1:</b>
+  <%= address.street_1 %>
+</p>
+
+<p>
+  <% if address.street_2.blank? %>
+  <% else %>
+    <b>Street 2:</b>
+    <%= address.street_2 %>
+  <% end %>
+</p>
+
+<p>
+  <b>Zip code:</b>
+  <%= address.zip_code %>
+</p>
+
+
+

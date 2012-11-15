@@ -1,0 +1,48 @@
+<!-- <h1>Products</h1> -->
+
+<% "Search" %>
+
+
+
+
+<div class="hero-unit">
+  <div class="row-fluid">
+    <div class="span7">
+      <% p = Product.top_selling %>
+      <% if !p.nil? %>
+      <h1><%=  p.title %></h1>
+      <p><%=  p.description %></p>
+      <div id="info">
+      <p id="price"><%= number_to_currency(p.price) %>
+      <%= link_to "Add to Cart", cart_items_path(:product_id => p), 
+          :method => :post, :remote => true, :id => "product_#{p.id}", :class => "btn" %>
+        </div>
+    </div>
+    <div class="span5">
+      <%= image_tag(p.image_link) %>
+      
+    </div>
+  </div>
+</div>
+
+<div class="page-header">
+  <h1>Products</h1>
+</div>
+<% end %>
+<ul class="nav nav-pills">
+  <li><%= link_to "All Products", products_path %></li>
+  <% Category.all.each do |c| %>
+  <li><%= link_to c.title, category_path(c) %></li>
+  
+<% end %>
+
+</ul>
+<ul class="thumbnails">
+<% @products.each_slice(2) do |items_for_row| %>
+<li class="span6">
+  <%= render :partial => "product", :collection => items_for_row, :as => :product %>
+</li>
+<% end %>
+</ul>
+
+ <%= render :partial => "addresses/address", :collection => @addresses %>
