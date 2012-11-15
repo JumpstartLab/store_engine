@@ -1,0 +1,28 @@
+<h1>Your Cart</h1>
+<div id="cart">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if current_cart.cart_products.empty? %>
+      <td colspan=4>You have no items in your cart.</td>
+      <% else %>
+        <%= render :partial => "cart_products", :locals => { cart_products: current_cart.cart_products } %>
+        <tr id="total-row">
+          <td colspan="2"></td>
+          <td style="border-left: 0px; border-right: 0px;">Total</td>
+          <td><%= current_cart.cart_total %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% unless current_cart.cart_products.empty? %>
+    <%= link_to "Checkout", new_order_path, :method => :get, :id => "go_checkout" %>
+  <% end %>
+</div>

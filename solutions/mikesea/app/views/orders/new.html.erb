@@ -1,0 +1,56 @@
+<h1>Order Details</h1>
+
+<%= form_for @order do |f| %>
+
+<div class="row">
+  <div class="span3" style="background-color: #eee; padding: 10px">
+    <h2>Your Credit Cards</h2>
+    <ul class="unstyled">
+      <%= f.hidden_field :customer_token, :value => @credit_card.stripe_customer_token %>
+      <li><b><%= @credit_card.credit_card_type %></b></li>
+      <li><%= @credit_card.formatted_last_four %></li>
+      <li>Expires on: <%= @credit_card.formatted_exp_date %></li>
+      <li><%= link_to "Add a new credit card", new_credit_card_path %></li>
+    </ul>
+  </div>
+
+  <div class="span3" style="background-color: #eee; padding: 10px">
+    <h2>Your Shipping Address</h2>
+    <ul class="unstyled">
+      <%= f.hidden_field :shipping_detail_id, :value => @shipping_detail.id %>
+      <li><%= raw(formatted_shipping_address(@shipping_detail)) %></li>
+      <li><%= link_to "Add a new shipping address", new_shipping_detail_path %></li>
+    </ul>
+  </div>
+</div>
+<br />
+
+<div class="row">
+  <div class="span12">
+    <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if current_cart.cart_products.empty? %>
+      <td colspan=4>You have no items in your cart.</td>
+      <% else %>
+        <%= render :partial => "cart_products", :locals => { cart_products: current_cart.cart_products } %>
+        <tr id="total-row">
+          <td colspan="2"></td>
+          <td style="border-left: 0px; border-right: 0px;">Total</td>
+          <td><%= current_cart.cart_total %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= f.submit %>
+  </div>
+</div>
+
+<% end %>

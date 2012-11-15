@@ -1,0 +1,12 @@
+<% cart_products.each do |cart_product| %>
+  <tr>
+    <td><%= link_to cart_product.name, cart_product.product %> 
+      <%= link_to cart_product_path(cart_product.id), :method => :delete do %>
+      <i class="icon-trash"></i> Remove from cart
+      <% end %>
+    </td>
+    <td><%= cart_product.quantity %></td>
+    <td><%= cart_product.price %></td>
+    <td><%= cart_product.subtotal %></td>
+  </tr>
+<% end %>

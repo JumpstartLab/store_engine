@@ -1,0 +1,22 @@
+<h1>Dashboard</h1>
+
+<div class="row">
+  <div class="span3" style="background-color: #eee; padding: 10px">
+    <h2>User Details</h2>
+    <ul class="unstyled">
+      <li><%= @user.display_name %></li>
+      <li><%= @user.name %></li>
+      <li><%= @user.email %></li>
+    </ul> 
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="span12">
+    <h2>Most Recent Orders</h2>
+    <%= render :partial => 'shared/orders', :object => @orders %>
+    <%= link_to "Show all orders", orders_path %>
+  </div>
+</div>

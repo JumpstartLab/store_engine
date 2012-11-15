@@ -1,0 +1,55 @@
+<h1>Admin Dashboard</h1>
+
+<div class="row">
+  <div class="span6" style="margin-bottom:20px">
+    <h4>
+    <%= link_to 'Add a product', new_admin_product_path %> | 
+    <%= link_to 'Create a category', new_admin_category_path %>
+    </h4>
+  </div>
+</div>
+
+<h3>Orders by status</h3><br />
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Status</th>
+    <th>Orders</th>
+  </tr>
+  <tr>
+    <td>Pending</td>
+    <td><%= orders_count_by_status('pending') %><tr>
+    <td>Cancelled</td>
+    <td><%= orders_count_by_status('cancelled') %><tr>
+    <td>Paid</td>
+    <td><%= orders_count_by_status('paid') %><tr>
+    <td>Shipped</td>
+    <td><%= orders_count_by_status('shipped') %><tr>
+
+  </tr>
+</table>
+
+<h3>Orders Summary<h3><br />
+<h4>Filter by:
+  <%= link_to 'Pending', admin_dashboard_path(order_status: 'pending') %> |
+  <%= link_to 'Cancelled', admin_dashboard_path(order_status: 'cancelled') %> |
+  <%= link_to 'Paid', admin_dashboard_path(order_status: 'paid') %> |
+  <%= link_to 'Shipped', admin_dashboard_path(order_status: 'shipped') %> |
+  <%= link_to 'All', admin_dashboard_path %>
+</h4><br />
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Customer Name</th>
+    <th>Date</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+
+<%= render :partial => "admin/orders/admin_order", :collection => @orders %>
+
+</table>
+
+<h2>Categories</h2>
+
+<table class="table table-bordered table-striped">
+    <%= render :partial => "categories/category", :collection => @categories %>
+</table>

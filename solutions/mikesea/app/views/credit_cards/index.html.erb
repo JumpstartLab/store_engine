@@ -1,0 +1,21 @@
+<h1>All Credit Cards</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Card Number</th>
+      <th>Expiration Date</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @credit_cards.empty? %>
+      <td colspan=4>You have no saved credit cards.</td>
+    <% else %>
+      <%= render :partial => 'credit_card', :collection => @credit_cards %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Add a new credit card", new_credit_card_path %>

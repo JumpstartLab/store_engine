@@ -1,0 +1,26 @@
+<div class = "center">
+
+<h2>Please enter your details</h2>
+
+<%= form_for @user, :url => users_path(:last_page => session[:last_page]) do |f| %>
+
+  <%= render 'errors', :object => @user, :field => :email %>
+  <%= f.text_field :email, :placeholder => "E-mail Address" %>
+  <br />
+  <%= render 'errors', :object => @user, :field => :name %>
+  <%= f.text_field :name, :placeholder => "Name" %>
+  <br />
+  <%= render 'errors', :object => @user, :field => :display_name %>
+  <%= f.text_field :display_name, :placeholder => "Display Name" %>  
+  <br />
+  <%= render 'errors', :object => @user, :field => :password %>
+  <%= f.password_field :password, :placeholder => "Password" %>
+  <br />
+  <%= render 'errors', :object => @user, :field => :password_confirmation %>
+  <%= f.password_field :password_confirmation, :placeholder => "Confirm Password" %>
+  <br />
+
+  <%= f.submit "Create Account", :class => "btn btn-large btn-primary" %>
+<% end %>
+
+</div>

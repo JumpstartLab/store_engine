@@ -1,0 +1,6 @@
+<tr>
+  <td><b><%= credit_card.credit_card_type %></b></td>
+  <td><%= credit_card.formatted_last_four %></td>
+  <td><%= credit_card.formatted_exp_date %></td>
+  <td><%= radio_button_tag 'card_default', credit_card.id, credit_card.card_default %></td>
+</tr>

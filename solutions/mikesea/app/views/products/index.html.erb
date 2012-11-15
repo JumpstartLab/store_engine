@@ -1,0 +1,16 @@
+<div class="row">
+ <div class="span12">
+   <ul class="nav nav-pills">
+     <h4>Browse by category:</h4><br />
+     <%= render :partial => "categories/category", :collection => @categories %>
+   </ul>
+ </div>
+</div>
+
+<ul class="thumbnails">
+ <% @products.each_slice(3) do |slice| %>
+   <div class="row" style="margin-bottom:20px">
+   <%= render :partial => "product", :collection => slice, :as => "product" %>
+   </div>
+ <% end %>
+</ul>

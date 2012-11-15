@@ -1,0 +1,25 @@
+<li class="span4">
+ <div class="thumbnail">
+   <%= image_tag(product.photo, :size => "280x280", :class => "thumbnail") %>
+   <div class="caption">
+   <p>
+       <%= link_to product.name, product %> 
+       <h4>Price: <%= product.price %></h4>
+   </p>
+   <h5>Description</h5>
+   <p><%= truncate(product.description, :length=>100) %></p>
+   <p>
+     <h6>Categories:<h6><br />
+       <% product.categories.each do |category| %>
+         <span class="label"><%= link_to category.name, category_path(category) %></span>
+       <% end %>
+   </p>
+   <p>
+     <%= link_to 'Add to cart', 
+          new_cart_product_path(:product_id => product.id), 
+          :class => "btn btn-primary #{add_class_disabled?(product)}", 
+          :id => "add_to_cart_#{product.id}" %>
+   </p>
+   </div>
+ </div>
+</li>

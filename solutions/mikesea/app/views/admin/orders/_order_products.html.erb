@@ -1,0 +1,12 @@
+<% if order_products.empty? %>
+<td colspan=4>You have no items in your cart.</td>
+<% else %>
+  <% order_products.each do |order_product| %>
+    <tr>
+      <td><%= link_to order_product.name, admin_product_path(order_product.product) %> </td>
+      <td><%= order_product.quantity %></td>
+      <td><%= order_product.price %></td>
+      <td><%= order_product.subtotal %></td>
+    </tr>
+  <% end %>
+<% end %>

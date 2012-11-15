@@ -1,0 +1,6 @@
+<span class="error-message">
+<% if object.errors.messages[field] %>
+  <%= field.to_s.titleize %>
+  <%= object.errors.messages[field].last %>
+<% end %>
+</span>

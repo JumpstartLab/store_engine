@@ -1,0 +1,22 @@
+<% # used in users/show.html.erb and orders/index.html.erb %>
+
+<table class="table table-bordered table-striped">
+
+<theader>
+  <tr>
+    <th>Order Number</th>
+    <th>Purchase Date</th>
+    <th>Status</th>
+    <th>Order Total</th>
+  </tr>
+</theader>
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= link_to "Order ##{order.id}", order_path(order) %></td>
+    <td><%= order.created_at.to_s(:month_day_and_year) %></td>
+    <td><%= order.status %></td>
+    <td><%= order.order_total %></td>
+  </tr>
+<% end %>
+
+</table>

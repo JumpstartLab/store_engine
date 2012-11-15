@@ -1,0 +1,12 @@
+<div class="row"> 
+  <div class="span5"><h1>Edit <%= "#{ @product.name }" %></h1></div>
+  <div class="span4">
+    <%= link_to 'Retire product', 
+        product_retirement_path(@product),
+        method: :post %>
+  </div>
+</div>
+
+<%= render 'form' %>
+<%= link_to 'Show product page', @product %> |
+<%= link_to 'Back to products list', admin_products_path %>

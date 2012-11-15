@@ -1,0 +1,15 @@
+<h1>Admin Orders</h1>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Order Number</th>
+    <th>Customer Name</th>
+    <th>Date</th>
+    <!-- <th>Total</th> -->
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+
+<%= render :partial => "admin_order", :collection => @orders, :as => :admin_order %>
+
+</table>
