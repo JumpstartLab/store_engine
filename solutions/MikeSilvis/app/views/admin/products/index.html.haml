@@ -1,0 +1,20 @@
+%h1 Dashboard - Products
+= render :partial => "admin/nav"
+
+%table#orders_by_status.table.table-bordered
+  %th
+  %th
+  %th Edit
+  %th Name
+  %th Price
+  - @products.each do |product|
+    %tr{:id => "product_#{product.id}"}
+      - if product.active == 1
+        %td= link_to 'X', product_path(product), :method => :delete
+      - else
+        %td (retired)
+      %td= image_tag product.avatar, { :style => "width:75px; height:75px;"} 
+      %td= link_to "Edit", edit_admin_product_path(product)
+      %td= link_to product.name, product_path(product)
+      %td= product.price_in_dollars
+= link_to "New", new_admin_product_path, :class => "btn btn-primary btn-large right"      

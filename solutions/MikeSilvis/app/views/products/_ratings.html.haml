@@ -1,0 +1,23 @@
+- if @product.product_ratings.empty? && @can_rate
+  %h2 Be the first to rate!
+- if @product.product_ratings.nil?
+  %h2 Ratings
+- @product.product_ratings.each do |rating|
+  %b= rating.name
+  %p= rating.body
+  - rating.rating.times do 
+    = image_tag "star-on.png"
+  %p 
+    By
+    = rating.user.name
+    - if ((rating.user == current_user) && (rating.created_at > Time.now - 15.minutes))
+      = link_to "Edit", edit_product_product_rating_path(@product, rating)
+- if @can_rate
+  = simple_form_for [@product, @product.product_ratings.build] do |f|
+    %legend New Comment
+    = f.input :name
+    = f.input :body, :as => "string"
+    = f.input :rating, :collection => 1..5, :as => :radio_buttons, :class => "star"
+    = f.submit :class => "btn btn-primary controls"
+- elsif current_user
+  %b You need to have purchased the product before you can rate it.

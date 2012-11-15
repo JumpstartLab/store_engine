@@ -1,0 +1,31 @@
+.row
+  %h1= @product.name
+  %hr
+  .span3
+    %img{:src => @product.avatar}
+  .span6
+    - @product.star_rating.times do |star|
+      %input.star{:class => "{split:2}", :name => "adv1", :type => "radio", :disabled => "disabled", :checked => "checked"}
+    %br
+    %h4= @product.categories.map(&:name).join(', ') 
+    - if @product.best_sale
+      %h6{:style=> "text-decoration:line-through;"}= @product.price
+      %h4= "#{@product.sale_price_in_dollars} | #{@product.best_sale.display_percent} off!" 
+    - else
+      %h4= @product.price
+    %br
+    %p= @product.description
+    %br
+    - if @product.active == 1
+      %p= link_to "Add To Cart", cart_path(:product_id => @product.id), :method => :put, :class => 'btn btn-info'
+      - if @product.can_two_click(current_user)
+        %p= link_to "Buy Instantly!", two_click_cart_path(:product_id => @product.id), :method => :put, :class => 'btn btn-primary', :confirm => "Are you sure you want to give us your money?"  
+    - else
+      %p.label.label-important This product has been retired. You cannot add this to your cart
+    - if current_user && current_user.admin?
+      %br
+      .well
+        %a= link_to 'Edit item', edit_admin_product_path(@product), :class => 'btn'
+        %a= link_to "Delete item", admin_product_path(@product), :method => :delete, :confirm => "Are you sure?", :class => 'btn btn-danger'
+    %br
+    = render :partial => "ratings"

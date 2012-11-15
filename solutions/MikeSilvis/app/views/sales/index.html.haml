@@ -1,0 +1,17 @@
+%ul.nav.nav-tabs
+  %li.active
+    %a{:href => "#products", "data-toggle" => "tab"} Products
+  %li
+    %a{:href => "#categories", "data-toggle" => "tab"} Categories
+  %li
+.tab-content
+  #products.tab-pane.active
+    - @sales.each do |sale|
+      = render 'products/list', :products => sale.products
+  #categories.tab-pane
+    - @sales.each do |sale|
+      - sale.categories.each do |category|
+        %h3= link_to category.name, category_path(category)
+        = render 'products/list', 
+          :products => category.products.where(:active => 1).take(5)
+        .clear

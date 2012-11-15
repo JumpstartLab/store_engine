@@ -1,0 +1,14 @@
+%h1 Dashboard - Categories
+= render :partial => "admin/nav"
+
+%table#orders_by_status.table.table-bordered
+  %th
+  %th Edit
+  %th Name
+  - @categories.each do |category|
+    %tr{:id => "category_#{category.id}"}
+      %td= link_to 'X', admin_category_path(category), :method => :delete
+      %td= link_to "Edit", edit_admin_category_path(category)
+      %td= link_to category.name, category_path(category)
+
+= link_to "New", new_admin_category_path, :class => "btn btn-primary btn-large right"

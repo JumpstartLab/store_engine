@@ -1,0 +1,17 @@
+%table.table
+  %th ID
+  %th User
+  %th Products
+  %th Status
+  %th Total Price
+  %th Order Placed Date
+  %th Actions
+  - orders.each do |order|
+    %tr
+      %td= link_to order.id, order_path(order)
+      %td= order.user.name
+      %td= order.products.map(&:name).join (', ')
+      %td= order.status.name
+      %td= order.total_price_after_sale_in_dollars
+      %td= order.created_at.strftime("%m/%d/%y at %I:%M%p")
+      %td= render 'orders/status', :order => order

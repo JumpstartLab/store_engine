@@ -1,0 +1,16 @@
+= simple_form_for @search, :url => '/search' do |f|
+  = f.association :status
+
+  .row
+    .span4
+      = f.input :order_date, :input_html => { :style => 'width: 100px;' }
+    .span1
+      = f.input :order_date_operator, :collection => ['>', '<', '='], :label => 'Where'
+
+  .row
+    .span4
+      = f.input :total_price
+    .span3
+      = f.input :order_total_operator, :collection => ['>', '<', '='], :label => 'Where'
+  = f.input :email
+  = f.submit 'Advanced Search', :class => 'btn btn-primary controls'

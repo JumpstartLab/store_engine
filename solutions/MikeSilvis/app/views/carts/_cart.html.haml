@@ -1,0 +1,24 @@
+%table.table.table-bordered.table-striped
+  %tr
+    %th Name
+    %th Item Price
+    %th Quantity
+    %th Line Price
+    %th Remove
+  = simple_form_for @cart, :url => "/cart/update_quantity" do |cart_form|
+    = cart_form.hidden_field :id
+    = cart_form.fields_for :order_products do |cp|
+      %tr{:id => "product_#{cp.object.product.id}"}
+        %td= cp.object.name
+        %td= cp.object.sale_price
+        %td= cp.number_field :quantity
+        %td= cp.object.total_price_after_sale_in_dollars
+        %td= link_to "X", cart_path(:product_id => cp.object.product.id), 
+                                    :method => :delete, 
+                                    :confirm => "Are you sure?"
+    %tr{:id => "total"}
+      %th{:colspan => 3} Total
+      %td= @cart.total_price_after_sale_in_dollars
+      %td
+    %tr
+      %td{:colspan => "5"}= cart_form.submit :class => "btn right"

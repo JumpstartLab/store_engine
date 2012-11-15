@@ -1,0 +1,12 @@
+= render :partial => 'layouts/head'
+%body
+  = render :partial => 'layouts/nav'
+  #content
+    - if flash[:notice]
+      .alert.alert-success= flash[:notice]
+    - elsif flash[:error]
+      .alert.alert-error= flash[:error]
+    - elsif flash[:alert]
+      .alert.alert-error= flash[:alert]      
+    = yield
+  = render :partial => 'layouts/footer'

@@ -1,0 +1,8 @@
+#header
+  %a{:href => "/"}
+    %img#logo{:alt => "Living Social Logo", :src => "/assets/logo.png"}
+%nav.main
+  - main_navigation.each do |name, path| # From Nav Helper
+    = link_to name, path, :class => tab_is_active?(path)
+  #search
+    = render 'search/search', :value => params[:q] || ""

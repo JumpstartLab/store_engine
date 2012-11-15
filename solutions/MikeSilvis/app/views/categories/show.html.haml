@@ -1,0 +1,14 @@
+%h1 Products - #{@category.name}
+%br
+.row{:style => "padding:30px"}
+  - if @category.sale
+    %span.label.label-success{:style => "font-size:15px;"} 
+      All Products in this category are all on sale!
+#product_holder
+  .span9
+    = render 'products/list', :products => @products
+  .span9
+    = will_paginate @products
+#category_holder
+  %br
+  = render 'categories/list', :categories => @categories

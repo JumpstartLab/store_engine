@@ -1,0 +1,203 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require bootstrap
+ *= require responsive
+ *= require_self
+ *= require_tree .
+ *= require jquery-star-rating
+*/
+html{
+  margin: 0;
+  padding: 0;
+  background: url(/assets/bg.png);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; 
+  font-family: "Arial Rounded MT Bold";
+}
+body {
+  background:transparent;
+  width:80%;
+  margin:0 auto;
+  margin-top: 30px;
+}
+#header {
+  background: #262626;
+  height: 90px;
+  -webkit-border-top-left-radius: 20px;
+  -webkit-border-top-right-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-topright: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+#logo {
+  margin-top: 23px;
+  margin-left: 20px;
+  height:44px;
+  width:140px;
+}
+#search {
+  float:right;
+  margin-top:-5px;
+}
+nav.main{
+  height: 40px;
+  background-color: #454545;
+  font-size: 14px;
+  line-height: 40px;
+  overflow: hidden;
+}
+nav.main a{
+  float:left;
+  color: #5db1d3;
+  text-decoration: none;
+  padding:0 20px;
+  height: 40px;
+}
+nav.main a:hover, nav a.active{
+  color: #fff;
+  height: 40px;
+  text-decoration:none;
+  background: url(/assets/nav-hover.png); 
+}
+#content{
+  overflow: hidden;
+  background-color:white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-sizing: border-box;
+  padding:2% 5%;
+  min-height:677px;
+  clear:both;
+}
+#location{
+  color: #909090;
+  font-size: 14px;
+}
+.right{
+  float:right;
+}
+#footer {
+  margin-top:20px;
+  height:15px;
+  background-color:#262626;
+  -webkit-border-top-left-radius: 20px;
+  -webkit-border-top-right-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  -moz-border-radius-topright: 20px;  
+  color:white;
+  clear:both;
+  padding:2% 5%;
+  overflow:hidden;
+  font-size:14px;
+}
+.clear {
+  clear:both;
+}
+#cart{ 
+  width:100px;
+  color: white;
+  padding:10px;
+  font-size:16px;
+  text-align:center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px; 
+  border-top-width: 1px; 
+  border-right-width: 1px; 
+  border-left-width: 1px; 
+  border-top-style: solid; 
+  border-right-style: solid; 
+  border-left-style: solid; 
+  border-top-color: rgb(255, 255, 255); 
+  border-right-color: rgb(255, 255, 255); 
+  border-left-color: rgb(255, 255, 255); 
+  border-top-left-radius: 4px; 
+  border-top-right-radius: 4px; 
+  -webkit-box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, 
+                      rgba(0, 0, 0, 0.496094) 0px 1px 2px; 
+  box-shadow: rgba(255, 255, 255, 0.246094) 1px 1px 1px inset, 
+              rgba(0, 0, 0, 0.496094) 0px 1px 2px; 
+  position: fixed; 
+  right: 10px; 
+  bottom: 0px;
+  background-color: rgb(204, 109, 0); 
+}
+#cart a{
+  cursor: pointer;
+  color:white;
+}
+#cart a:hover{
+  text-decoration:none;
+}
+#terms{
+  color: #909090;
+  font-size: 11px;
+  float: left;
+}
+#terms a{
+  color: #5fb8dd;
+  text-decoration: none;
+}
+
+#signup{
+  margin-top: 20px;
+  float: right;
+}
+#main_container {
+  padding-top: 60px;
+}
+
+.product {
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-bottom: 15px;
+  height:180px;
+  width:150px;
+  float:left;
+  margin-right:20px;
+}
+
+.product a > img{
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.center {
+  text-align: center;
+}
+
+.search { 
+  margin: 10px; 
+  margin-left: 20px;
+}
+#product_holder{
+  float:left;
+  width:85%;
+}
+#category_holder{
+  float:right;
+  width:15%;
+}
+.bold {
+  font-weight: bold;
+}
+
+.current, .disabled {
+  float: left;
+  padding: 0 14px;
+  line-height: 34px;
+  text-decoration: none;
+  border: 1px solid #DDD;
+  border-left-width: 0;
+}

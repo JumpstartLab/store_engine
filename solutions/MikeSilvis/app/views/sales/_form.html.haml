@@ -1,0 +1,7 @@
+= simple_form_for @sale do |f|
+  %legend= legend_title
+  = f.input :percent_off
+  = f.input :end_at
+  = f.association :products, :as => :check_boxes
+  = f.association :categories, :as => :check_boxes
+  = f.submit 'Save Sale', :class => 'btn btn-primary controls'

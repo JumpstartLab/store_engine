@@ -1,0 +1,14 @@
+%h1 Sales Information
+%hr
+%p
+  %b Time:
+  = "#{distance_of_time_in_words_to_now @sale.end_at} left"
+%p
+  %b Sale: 
+  = "#{@sale.display_percent} off"
+%p
+  %b Products:
+  = @sale.products.map(&:name).join (', ')
+%p
+  %b Categories:
+  = @sale.categories.map(&:name).join (', ')

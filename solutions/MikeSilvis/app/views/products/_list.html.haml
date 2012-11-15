@@ -1,0 +1,10 @@
+- products.each do |product|
+  .product
+    %h4= link_to product.name, product_path(product)
+    = link_to (image_tag product.avatar), product_path(product)
+    %div= truncate(product.description, :length => 15)
+    - if product.best_sale
+      %div{:style=> "text-decoration:line-through;"}= product.price
+      .bold= product.sale_price_in_dollars
+    - else
+      .bold= product.price

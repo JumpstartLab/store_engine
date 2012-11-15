@@ -1,0 +1,13 @@
+%h1 Dashboard - Users
+= render :partial => "admin/nav"
+%table#orders_by_status.table.table-bordered
+  %th
+  %th Name
+  %th Email
+  %th Orders
+  - @users.each do |user|
+    %tr{:id => "user_#{user.id}"}
+      %td= link_to 'X', admin_user_path(user), :method => :delete      
+      %td= link_to user.name, user_path(user)
+      %td= user.email
+      %td= user.orders.count 
