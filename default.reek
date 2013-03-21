@@ -1,0 +1,42 @@
+---
+
+LongMethod:
+  max_statements: 8
+FeatureEnvy:
+  enabled: false
+IrresponsibleModule:
+  enabled: false
+UncommunicativeVariableName:
+  enabled: false
+Duplication:
+  enabled: false
+ClassVariable:
+  enabled: false
+ControlCouple: 
+  enabled: false
+DataClump:
+  enabled: false
+Duplication:
+  enabled: false
+LargeClass:
+  enabled: false
+LongParameterList:
+  enabled: false
+UtilityFunction:
+  enabled: false
+NestedIterators:
+  enabled: false
+NilCheck:
+  enabled: false
+SimulatedPolymorphism:
+  enabled: false
+UncommunicativeMethodName:
+  enabled: false
+UncommunicativeModuleName:
+  enabled: false
+UncommunicativeParameterName:
+  enabled: false
+UncommunicativeVariableName:
+  enabled: false
+UnusedParameters:
+  enabled: false
