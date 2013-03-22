@@ -1,9 +1,14 @@
 class AdminsController < ApplicationController
   def login
-
   end
 
-  def index
-
+  def dashboard
   end
+
+  def products
+  end
+
+  def categories
+  end
+
 end

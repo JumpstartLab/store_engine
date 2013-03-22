@@ -3,7 +3,10 @@ StoreEngine::Application.routes.draw do
   root to: 'products#index'
 
   match "/super_secret" => "admins#login"
-  match "/admin" => "admins#index"
+  match "/admin" => redirect("/admin/dashboard")
+  match "/admin/dashboard" => "admins#dashboard"
+  match "/admin/products" => "admins#products"
+  match "/admin/categories" => "admins#categories"
 
   resources :products, except: :index
 
