@@ -10,5 +10,4 @@ class AdminsController < ApplicationController
 
   def categories
   end
-
 end
