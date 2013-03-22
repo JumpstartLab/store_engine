@@ -1,4 +1,16 @@
 StoreEngine::Application.routes.draw do
+
+  root to: 'products#index'
+
+  match "/super_secret" => "admins#login"
+  match "/admin" => "admins#index"
+
+  resources :products, except: :index
+
+  resources :users do
+    resources :orders
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
