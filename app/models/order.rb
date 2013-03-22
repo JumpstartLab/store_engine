@@ -3,4 +3,5 @@ class Order < ActiveRecord::Base
   has_many :order_items
   attr_accessible :status
 
+  validates_associated :order_items
 end
