@@ -1,5 +1,33 @@
-<%= render partial: 'side_navigation', :locals => { active: :products }  %>
+<%= render partial: 'shared/admin_navigation', :locals => { active: :products }  %>
 
 <div class="span8">
   <h1>Products</h1>
+  <hr>
+  <div class="pull-right">
+  <a href="/admin/products/new"><button class="btn btn-large btn-primary" type="button">Create Product</button></a>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @products.each do |product| %>
+    <tr>
+      <td><%= product.title %></td>
+      <td><%= product.description %></td>
+      <td>$ <%= product.price %></td>
+      <td><%= product.category %></td>
+      <td><a href="/products/<%= product.id %>/edit"><button class="btn btn-small" type="button">Edit</button></a></td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
+
 </div>

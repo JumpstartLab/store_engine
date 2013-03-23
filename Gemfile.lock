@@ -149,6 +149,9 @@ GEM
       rubyzip
       websocket (~> 1.0.4)
     sexp_processor (4.2.0)
+    simple_form (2.1.0)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     sorcery (0.8.1)
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
@@ -193,6 +196,7 @@ DEPENDENCIES
   reek
   rspec-rails
   sass-rails (~> 3.2.3)
+  simple_form
   sorcery
   sqlite3
   uglifier (>= 1.0.3)
