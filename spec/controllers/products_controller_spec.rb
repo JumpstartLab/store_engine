@@ -11,10 +11,12 @@ describe ProductsController do
     end
   end
 
-  it "show action should render show template" do
-    pending
-    get :show, :id => Person.first
-    response.should render_template(:show)
+  describe 'GET #show' do
+    it "show action should render show template" do
+      pending
+      get :show, :id => Product.first
+      response.should render_template(:show)
+    end
   end
 
   it "new action should render new template" do
