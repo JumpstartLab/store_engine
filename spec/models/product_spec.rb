@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Product do
   before(:each) do
-    @product = Product.new(title: "teef", description: "horse t", price: 0.19)
+    @product = Product.new(title: "teef", description: "horse t", price: 0.19, status: 'active')
   end
 
   it "should be valid" do
@@ -46,6 +46,25 @@ describe Product do
     expect(@product.valid?).to be_true
   end
 
-  xit "should not be valid without a valid photo URL if photo exists" do
+  it "should not be valid without a status of active or retired" do
+    @product.status = nil
+    expect(@product).to_not be_valid
+  end
+
+  it "should not be valid without a valid photo URL if photo exists" do
+    pending
+  end
+
+  describe '.active_products' do
+    context 'when both active and retired products exist in db' do
+      it 'returns only the active products' do
+        #create active and retired products
+        Product.create({title: 'gum', description: 'sticky', status: 'active', price: '2.99'})
+        Product.create({title: 'envelope', description: 'green', status: 'active', price: '18.99'})
+        Product.create({title: 'cup', description: 'half-full', status: 'retired', price: '1.99'})
+        products = Product.active_products
+        expect(products.count).to eq 2
+      end
+    end
   end
 end
