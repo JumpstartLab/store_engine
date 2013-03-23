@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    #This returns all products that are not retired.
+    @products = Product.find_all_by_status('active')
   end
 
   def show

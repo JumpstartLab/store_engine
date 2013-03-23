@@ -1,12 +1,13 @@
 require 'spec_helper'
 
 feature "Public User Views Products", :acceptance => true do
-  let!(:product){ create_product }
+   # let!(:product){ create_product }
+   let!(:product){ Product.create({category_id: 1, title: 'Chewing Gum', description: 'Pepperminty', price: '2.99', status: 'active'}) }
 
   context "the root page" do
     before(:each) do
       visit root_path
-    end    
+    end
 
     it "displays products" do
       within("#products") do

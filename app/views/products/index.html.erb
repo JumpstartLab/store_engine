@@ -1,0 +1,25 @@
+
+<h4>Product Categories</h4>
+
+<ul>
+  <li>Example Cat 1</li>
+  <li>Example Cat 2</li>
+  <li>Example Cat 3</li>
+</ul>
+
+
+
+<h1>Welcome, Customer!</h1>
+
+<hr>
+
+<% @products.each do |product| %>
+  <div class="products">
+    <h4>Product Title</h4>
+    <p> <%= product.title %> </p>
+    <h5>Description:</h5>
+    <p> <%= product.description %>
+      <h6>Price: $<%= product.price %></h6>
+  </div>
+
+<% end %>
