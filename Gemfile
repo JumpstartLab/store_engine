@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'rake'
 gem 'unicorn'
 gem 'bootstrap-sass'
+gem 'simple_form'
 gem 'jquery-rails'
 gem 'sorcery'
 

@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :category
-  attr_accessible :description, :price, :status, :title, :category_id
+  attr_accessible :title, :category_id, :description, :price, :status
 
   validates :title, presence: :true, uniqueness: :true
   validates :description, presence: :true

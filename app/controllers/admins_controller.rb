@@ -6,6 +6,7 @@ class AdminsController < ApplicationController
   end
 
   def products
+    @products = Product.all
   end
 
   def categories
