@@ -55,15 +55,23 @@ describe Product do
     pending
   end
 
-  describe '.active_products' do
+  describe '.gets_products(category_id)' do
     context 'when both active and retired products exist in db' do
-      it 'returns only the active products' do
-        #create active and retired products
-        Product.create({title: 'gum', description: 'sticky', status: 'active', price: '2.99'})
-        Product.create({title: 'envelope', description: 'green', status: 'active', price: '18.99'})
-        Product.create({title: 'cup', description: 'half-full', status: 'retired', price: '1.99'})
-        products = Product.active_products
+
+      before(:each) do
+        Product.create({category_id: 1, title: 'gum', description: 'sticky', status: 'active', price: '2.99'})
+        Product.create({category_id: 2, title: 'envelope', description: 'green', status: 'active', price: '18.99'})
+        Product.create({category_id: 1, title: 'cup', description: 'half-full', status: 'retired', price: '1.99'})
+      end
+
+      it 'returns all active pdts in db when no category is specified (default homepage load)' do
+        products = Product.get_products()
         expect(products.count).to eq 2
+      end
+
+      it 'returns all active pdts for the specified category' do
+        products = Product.get_products(1)
+        expect(products.count).to eq 1
       end
     end
   end
