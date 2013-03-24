@@ -11,7 +11,6 @@
     <thead>
       <tr>
         <th>Title</th>
-        <th>Description</th>
         <th>Price</th>
         <th>Category</th>
         <th></th>
@@ -20,11 +19,20 @@
     <tbody>
     <% @products.each do |product| %>
     <tr>
-      <td><%= product.title %></td>
-      <td><%= product.description %></td>
+      <td><%= link_to product.title, product_path(product) %></td>
       <td>$ <%= product.price %></td>
       <td><%= product.category %></td>
-      <td><a href="/products/<%= product.id %>/edit"><button class="btn btn-small" type="button">Edit</button></a></td>
+      <td>
+        <div class="btn-group">
+          <button class="btn dropdown-toggle" data-toggle="dropdown">Modify <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Edit', edit_product_path(product) %></li>
+            <li class="divider"></li>
+            <li><a href="/products/<%= product.id %>/retire">Retire</a></li>
+            <li><%= link_to 'Destroy', product_path(product), :confirm => 'Are you sure?', :method => :delete %></li>
+          </ul>
+        </div>
+      </td>
     </tr>
     <% end %>
     </tbody>

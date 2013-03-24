@@ -3,5 +3,30 @@
 <div class="span8">
   <h1>Categories</h1>
   <hr>
+  <div class="pull-right">
+  <a href="/admin/categories/new"><button class="btn btn-large btn-primary" type="button">Create Category</button></a>
+  </div>
+
+  <table class="table table-striped">
+    <% @categories.each do |category| %>
+    <thead>
+      <tr>
+        <th><%= category.title %> <%= link_to 'Edit', edit_category_path(category) %></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% category.products.each do |product| %>
+    <tr>
+      <td><%= product.title %></td>
+    </tr>
+    <% end %>
+    <% if category.products.count == 0 %>
+    <tr>
+      <td>No products assigned</td>
+    </tr>
+    <% end %>
+    </tbody>
+    <% end %>
+  </table>
 
 </div>

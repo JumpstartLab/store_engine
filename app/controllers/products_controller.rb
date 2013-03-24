@@ -33,9 +33,9 @@ class ProductsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @company = Company.find(params[:id])
-  #   @company.destroy
-  #   redirect_to companies_url, :notice => "Successfully destroyed company."
-  # end
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to admin_products_url, :notice => "Successfully destroyed product."
+  end
 end

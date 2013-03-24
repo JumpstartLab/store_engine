@@ -14,9 +14,9 @@ describe Product do
     expect(@product).to_not be_valid
   end
 
-  it "should not be valid if title already exists" do
+  it "should not be valid if title already exists (case insensitive)" do
     @product.save
-    product = Product.new(title: "teef", description: "a", price: 10.00)
+    product = Product.new(title: "TEEF", description: "a", price: 10.00)
     expect(product.valid?).to be_false
   end
 
