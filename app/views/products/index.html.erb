@@ -21,13 +21,14 @@
 <hr>
 
 <% @products.each do |product| %>
-  <div class="products">
-    <h4>Product Title</h4>
-    <p> <%= product.title %> </p>
-    <h5>Description:</h5>
-    <p> <%= product.description %>
-    <h6>Price: $<%= product.price %></h6>
-    <%= link_to "#{product.title} Details", product_path(product) %>
-  </div>
+  <a href= <%=product_path(product) %> >
+    <div class="products">
+      <h3><%= product.title.capitalize %></h3>
+      <h5>Description:</h5>
+      <p> <%= product.description %>
+      <h5>Price: $<%= product.price %></h5>
+      <br />
+    </div>
+  </a>
 
 <% end %>

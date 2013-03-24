@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   # end
   def index
     @products = Product.get_products(params[:cateogory_id])
-    @cateogries = Category.all
+    @categories = Category.all
   end
 
   def show
