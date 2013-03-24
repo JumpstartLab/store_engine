@@ -26,6 +26,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    raise "gotcha"
     @product = Product.find(params[:id])
     if @product.update_attributes(params[:product])
       redirect_to admin_products_path, :notice  => "Successfully updated product."

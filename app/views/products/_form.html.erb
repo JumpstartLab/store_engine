@@ -5,6 +5,7 @@
       <%= content_tag :span, "$", :class => "add-on" %>
       <%= f.input_field :price, placeholder: '10.99', class: 'span1' %>
     <% end %>
-    <%= f.association :category, prompt: "Choose a category" %>
+    <%= f.association :categories %>
+    <%= f.hidden_field :status, value: "active" %>
     <%= f.button :submit %>
   <% end %>

@@ -12,7 +12,7 @@
       <tr>
         <th>Title</th>
         <th>Price</th>
-        <th>Category</th>
+        <th>Categories</th>
         <th></th>
       </tr>
     </thead>
@@ -21,14 +21,18 @@
     <tr>
       <td><%= link_to product.title, product_path(product) %></td>
       <td>$ <%= product.price %></td>
-      <td><%= product.category %></td>
+      <td>
+      <% product.categories.each do |category| %>
+      <%= category.title %> <br>
+      <% end %>
+      </td>
       <td>
         <div class="btn-group">
           <button class="btn dropdown-toggle" data-toggle="dropdown">Modify <span class="caret"></span></button>
           <ul class="dropdown-menu">
             <li><%= link_to 'Edit', edit_product_path(product) %></li>
             <li class="divider"></li>
-            <li><a href="/products/<%= product.id %>/retire">Retire</a></li>
+            <li><%= link_to 'Retire', product_path(product), :action => 'abc', :confirm => 'Are you sure?', :method => :put %></li>
             <li><%= link_to 'Destroy', product_path(product), :confirm => 'Are you sure?', :method => :delete %></li>
           </ul>
         </div>
