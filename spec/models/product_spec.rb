@@ -55,7 +55,7 @@ describe Product do
     pending
   end
 
-  describe '.gets_products(category_id)' do
+  describe '.apply_filter(category_id)' do
     context 'when both active and retired products exist in db' do
 
       before(:each) do
@@ -64,13 +64,13 @@ describe Product do
         Product.create({category_id: 1, title: 'cup', description: 'half-full', status: 'retired', price: '1.99'})
       end
 
-      it 'returns all active pdts in db when no category is specified (default homepage load)' do
-        products = Product.get_products()
+      it 'returns all active products in db when no category is specified (default homepage load)' do
+        products = Product.apply_filter()
         expect(products.count).to eq 2
       end
 
-      it 'returns all active pdts for the specified category' do
-        products = Product.get_products(1)
+      it 'returns all active products for the specified category' do
+        products = Product.apply_filter(1)
         expect(products.count).to eq 1
       end
     end

@@ -1,10 +1,6 @@
 class ProductsController < ApplicationController
-  # def index
-  #   #This returns all products that are not retired.
-  #   @products = Product.find_all_by_status('active')
-  # end
   def index
-    @products = Product.get_products(params[:cateogory_id])
+    @products = Product.apply_filter(params[:category_id])
     @categories = Category.all
   end
 

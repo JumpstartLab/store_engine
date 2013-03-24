@@ -1,5 +1,3 @@
-
-
 <h1>Welcome, Customer!</h1>
 
 <div class="dropdown">
@@ -14,14 +12,13 @@
       <li><a href="#"><%= category.title %></a></li>
       <% end %>
     <% end %>
-
   </ul>
 </div>
 
 <hr>
 
 <% @products.each do |product| %>
-  <a href= <%=product_path(product) %> >
+  <a href="<%= product_path(product) %>" >
     <div class="products">
       <h3><%= product.title.capitalize %></h3>
       <h5>Description:</h5>
@@ -30,5 +27,4 @@
       <br />
     </div>
   </a>
-
 <% end %>

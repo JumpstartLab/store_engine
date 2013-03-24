@@ -9,12 +9,11 @@ class Product < ActiveRecord::Base
             :format => { :with => /^\d+??(?:\.\d{0,2})?$/ },
             :numericality => { greater_than: 0 }
 
-  def self.get_products(category_id = nil)
+  def self.apply_filter(category_id = nil)
     if category_id.nil?
       Product.find_all_by_status('active')
     else
-      products = Product.find_all_by_category_id(category_id)
-      products.find_all {|p| p.status == 'active'}
+      Product.find_all_by_category_id_and_status(category_id, 'active')
     end
   end
 end

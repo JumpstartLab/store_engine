@@ -1,14 +1,14 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Category do
-  let(:category1) {Category.create(title:'Things')}
+  let(:category) {Category.create(title:'Things')}
 
   it "should be valid" do
-    expect(category1).to be_valid
+    expect(category).to be_valid
   end
 
   it "should not be valid without a title" do
-    category1.title = ""
-    expect(category1).to_not be_valid
+    category.title = ""
+    expect(category).to_not be_valid
   end
 end
