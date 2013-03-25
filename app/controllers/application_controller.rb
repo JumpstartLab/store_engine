@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_user
-    #
+    # do something
   end
 
 end
