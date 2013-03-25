@@ -16,10 +16,8 @@ describe 'the admin products view', type: :feature do
 
   it 'should have a create product button' do
     visit admin_products_path
-    expect(page).to have_selector('button', text: 'Create Product')
+    expect(page).to have_button('Create Product')
   end
-
-
 
   #   it 'should have a delete link for each phone number' do
   #     visit company_path(@company)
