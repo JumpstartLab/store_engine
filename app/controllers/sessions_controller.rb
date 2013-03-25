@@ -1,10 +1,8 @@
 class SessionsController < ApplicationController
-
   def new
   end
 
   def create
-    #raise 'hell'
     session_params = params[:sessions]
     user = login(session_params[:email], session_params[:password], session_params[:remember_me])
     if user
