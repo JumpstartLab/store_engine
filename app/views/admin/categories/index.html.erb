@@ -4,14 +4,14 @@
   <h1>Categories</h1>
   <hr>
   <div class="pull-right">
-  <a href="/admin/categories/new"><button class="btn btn-large btn-primary" type="button">Create Category</button></a>
+  <%= button_to 'Create Category', new_admin_category_path, method: :get, class: 'btn btn-large btn-primary' %>
   </div>
 
   <table class="table table-striped">
     <% @categories.each do |category| %>
     <thead>
       <tr>
-        <th><%= category.title %> <%= link_to 'Edit', edit_category_path(category) %></th>
+        <th><%= category.title %> <%= link_to 'Edit', edit_admin_category_path(category) %></th>
       </tr>
     </thead>
     <tbody>

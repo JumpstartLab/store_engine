@@ -2,9 +2,7 @@ StoreEngine::Application.routes.draw do
 
   root to: 'products#index'
 
-  resources :products, except: [ :index, :new ]
-
-  resources :categories
+  resources :products, only: [ :index, :show ]
 
   resources :users do
     resources :orders
@@ -13,14 +11,16 @@ StoreEngine::Application.routes.draw do
   match "/super_secret" => "admins#login"
 
   match "/admin" => redirect("/admin/dashboard")
-
   match "/admin/dashboard" => "admins#dashboard"
 
-  match "/admin/products" => "admins#products"
-  match "/admin/products/new" => "products#new"
-
-  match "/admin/categories" => "admins#categories"
-  match "/admin/categories/new" => "categories#new"
+  namespace :admin do
+    resources :products do
+      member do
+        post :retire
+      end
+    end
+    resources :categories
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

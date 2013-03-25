@@ -4,7 +4,7 @@
   <h1>Products</h1>
   <hr>
   <div class="pull-right">
-  <a href="/admin/products/new"><button class="btn btn-large btn-primary" type="button">Create Product</button></a>
+  <%= button_to 'Create Product', new_admin_product_path, method: :get, class: 'btn btn-large btn-primary' %>
   </div>
 
   <table class="table table-striped">
@@ -30,10 +30,16 @@
         <div class="btn-group">
           <button class="btn dropdown-toggle" data-toggle="dropdown">Modify <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><%= link_to 'Edit', edit_product_path(product) %></li>
+            <li>
+              <%= link_to 'Edit', edit_admin_product_path(product) %>
+            </li>
             <li class="divider"></li>
-            <li><%= link_to 'Retire', product_path(product), :action => 'abc', :confirm => 'Are you sure?', :method => :put %></li>
-            <li><%= link_to 'Destroy', product_path(product), :confirm => 'Are you sure?', :method => :delete %></li>
+            <li>
+              <%= link_to 'Retire', retire_admin_product_path(product), :confirm => 'Are you sure?', :method => :post %>
+            </li>
+            <li>
+              <%= link_to 'Delete', admin_product_path(product), :confirm => 'Are you sure?', :method => :delete %>
+            </li>
           </ul>
         </div>
       </td>

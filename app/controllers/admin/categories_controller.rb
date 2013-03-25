@@ -1,4 +1,10 @@
-class CategoriesController < ApplicationController
+class Admin::CategoriesController < ApplicationController
+  before_filter :ensure_admin
+
+  def index
+    @categories = Category.all
+  end
+
   def new
     @category = Category.new
   end

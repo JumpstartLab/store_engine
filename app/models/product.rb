@@ -16,4 +16,8 @@ class Product < ActiveRecord::Base
       Product.find_all_by_category_id_and_status(category_id, 'active')
     end
   end
+
+  def retire
+    self.update_attributes(status: 'retired')
+  end
 end

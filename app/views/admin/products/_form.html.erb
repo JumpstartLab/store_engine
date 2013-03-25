@@ -1,4 +1,4 @@
-  <%= simple_form_for @product do |f| %>
+  <%= simple_form_for [:admin, @product] do |f| %>
     <%= f.input :title, input_html: { placeholder: 'Itchy Sweater' } %>
     <%= f.input :description, input_html: { placeholder: 'This sweater is made of itchy wool' } %>
     <%= f.input :price, wrapper: :prepend do %>
