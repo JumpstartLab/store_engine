@@ -1,10 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  private
+  protected
 
-  def not_authenticated
-    redirect_to login_url, :alert => 'Only Admins can view this page'
+  def ensure_admin
+    # do something
+  end
+
+  def ensure_user
+    #
   end
 
 end

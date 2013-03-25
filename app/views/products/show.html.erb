@@ -2,6 +2,10 @@ Title: <%= @product.title %>
 <br>
 Description: <%= @product.description %>
 <br>
-Category: <%= @product.category.title %>
+Categories:
+<br>
+<% @product.categories.each do |category| %>
+<%= category.title %><br>
+<% end %>
 <br>
 Price: <%= @product.price %>
