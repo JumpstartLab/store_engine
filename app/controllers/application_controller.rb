@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-protected
+  protected
+
   def ensure_admin
     # do something
   end
@@ -9,4 +10,5 @@ protected
   def ensure_user
     #
   end
+
 end

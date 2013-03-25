@@ -1,4 +1,8 @@
-<h1>Welcome, Customer!</h1>
+<% if logged_in? %>
+    <h1>Welcome, <%= current_user.full_name %>!</h1>
+<% else %>
+    <h1>Welcome!</h1>
+<% end %>
 
 <div class="dropdown">
   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Select a Product Category</a>

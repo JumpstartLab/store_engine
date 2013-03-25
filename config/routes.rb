@@ -1,12 +1,22 @@
 StoreEngine::Application.routes.draw do
 
+  #get "sessions/new"
+
   root to: 'products#index'
+
+  resources :categories
+  get "/logout" => "sessions#destroy", :as => "logout"
+  get "/login" => "sessions#new", :as => "login"
+  get "/signup" => "users#new", :as => "signup"
+  resources :sessions
+  resources :admins
 
   resources :products, only: [ :index, :show ]
 
   resources :users do
     resources :orders
   end
+
 
   match "/super_secret" => "admins#login"
   match "/admin" => redirect("/admin/dashboard")
