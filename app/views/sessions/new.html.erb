@@ -1,0 +1,9 @@
+<div class="login-form">
+  <h2>Login</h2>
+  <%= simple_form_for :sessions, :url => sessions_path, method: 'POST' do |f| %>
+      <%= f.input :email, input_html: { placeholder: 'Email' } %>
+      <%= f.input :password %>
+      <%= f.input :remember_me, as: :boolean, inline_label: 'Yes, remember me', label: false%>
+      <%= f.button :submit %>
+  <% end %>
+</div>

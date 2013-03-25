@@ -1,14 +1,21 @@
 StoreEngine::Application.routes.draw do
 
+  #get "sessions/new"
+
   root to: 'products#index'
 
   resources :products, except: [ :index, :new ]
 
   resources :categories
-
+  get "/logout" => "sessions#destroy", :as => "logout"
+  get "/login" => "sessions#new", :as => "login"
+  get "/signup" => "users#new", :as => "signup"
+  resources :sessions
+  resources :admins
   resources :users do
     resources :orders
   end
+
 
   match "/super_secret" => "admins#login"
 
