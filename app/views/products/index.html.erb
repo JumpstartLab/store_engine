@@ -6,10 +6,10 @@
   <p> Currently Showing: #CategoryNameGetsPopulatedHere </p>
 
   <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-    <li><a href="#">Show All</a></li>
+    <li><a href="/">Show All</a></li>
     <% unless @categories.nil? %>
       <% @categories.each do |category| %>
-      <li><a href="#"><%= category.title %></a></li>
+      <li><%=link_to category.title, products_path(category_id: category.id) %></li>
       <% end %>
     <% end %>
   </ul>
