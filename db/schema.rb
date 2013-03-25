@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20130324203250) do
   create_table "products", :force => true do |t|
     t.integer  "category_id"
     t.string   "title"
-    t.text     "description"
+    t.string   "description"
     t.decimal  "price",       :precision => 8, :scale => 2
     t.string   "status"
     t.datetime "created_at",                                :null => false
