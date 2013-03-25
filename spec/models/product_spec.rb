@@ -83,7 +83,6 @@ describe Product do
       end
 
       it 'returns all active products for the specified category' do
-        # raise Product.all.inspect
         products = Product.apply_filter(1)
         expect(products.count).to eq 1
       end
