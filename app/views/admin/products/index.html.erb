@@ -13,6 +13,7 @@
         <th>Title</th>
         <th>Price</th>
         <th>Categories</th>
+        <th>Status</th>
         <th></th>
       </tr>
     </thead>
@@ -27,6 +28,13 @@
       <% end %>
       </td>
       <td>
+        <% if product.status == 'active' %>
+        <span class="label label-success">Active</span>
+        <% elsif product.status == 'retired' %>
+        <span class="label">Retired</span>
+        <% end %>
+      </td>
+      <td>
         <div class="btn-group">
           <button class="btn dropdown-toggle" data-toggle="dropdown">Modify <span class="caret"></span></button>
           <ul class="dropdown-menu">
@@ -34,9 +42,15 @@
               <%= link_to 'Edit', edit_admin_product_path(product) %>
             </li>
             <li class="divider"></li>
+                    <% if product.status == 'active' %>
             <li>
               <%= link_to 'Retire', retire_admin_product_path(product), :confirm => 'Are you sure?', :method => :post %>
             </li>
+        <% elsif product.status == 'retired' %>
+            <li>
+              <%= link_to 'Activate', activate_admin_product_path(product), :confirm => 'Are you sure?', :method => :post %>
+            </li>
+        <% end %>
             <li>
               <%= link_to 'Delete', admin_product_path(product), :confirm => 'Are you sure?', :method => :delete %>
             </li>

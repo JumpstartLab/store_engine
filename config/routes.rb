@@ -9,16 +9,18 @@ StoreEngine::Application.routes.draw do
   end
 
   match "/super_secret" => "admins#login"
-
   match "/admin" => redirect("/admin/dashboard")
   match "/admin/dashboard" => "admins#dashboard"
 
   namespace :admin do
+
     resources :products do
       member do
         post :retire
+        post :activate
       end
     end
+
     resources :categories
   end
 

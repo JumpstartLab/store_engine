@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Product do
-  let(:product) { Product.new(title: "teef", description: "horse t", price: 0.19, status: 'active') }
+  let(:product) { Product.new(title: "teef", description: "horse teef", price: 0.19, status: 'active') }
 
   it "should be valid" do
     expect(product).to be_valid
@@ -44,9 +44,23 @@ describe Product do
     expect(product.valid?).to be_true
   end
 
-  it "should not be valid without a status of active or retired" do
+  it "should not be valid without a status" do
     product.status = nil
-    expect(product).to_not be_valid
+    expect(product).to be_invalid
+  end
+
+  it "should not be valid with a status other than active or retired" do
+    product.status = 'laurakicksass'
+    expect(product).to be_invalid
+  end
+
+  it "should have the ability to be assigned to multiple categories" do
+    Category.create({title: 'nicknacks'})
+    Category.create({title: 'superheroes'})
+    Category.create({title: 'leather'})
+    product.category_ids = [1,2,3]
+    product.save
+    expect(product.categories.count).to eq 3
   end
 
   xit "should not be valid without a valid photo URL if photo exists" do
@@ -56,9 +70,11 @@ describe Product do
     context 'when both active and retired products exist in db' do
 
       before(:each) do
-        Product.create({category_id: 1, title: 'gum', description: 'sticky', status: 'active', price: '2.99'})
-        Product.create({category_id: 2, title: 'envelope', description: 'green', status: 'active', price: '18.99'})
-        Product.create({category_id: 1, title: 'cup', description: 'half-full', status: 'retired', price: '1.99'})
+        Category.create({title: 'nicknacks'})
+        Category.create({title: 'superheroes'})
+        Product.create({category_ids: [1], title: 'gum', description: 'sticky', status: 'active', price: '2.99'})
+        Product.create({category_ids: [2], title: 'envelope', description: 'green', status: 'active', price: '18.99'})
+        Product.create({category_ids: [1], title: 'cup', description: 'half-full', status: 'retired', price: '1.99'})
       end
 
       it 'returns all active products in db when no category is specified (default homepage load)' do
@@ -67,6 +83,7 @@ describe Product do
       end
 
       it 'returns all active products for the specified category' do
+        # raise Product.all.inspect
         products = Product.apply_filter(1)
         expect(products.count).to eq 1
       end

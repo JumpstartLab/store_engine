@@ -41,7 +41,15 @@ class Admin::ProductsController < ApplicationController
     @product = Product.find(params[:id])
     if @product.retire
       redirect_to admin_products_path, :notice  => "Successfully updated category."
-      # head ok
+    else
+      head 400
+    end
+  end
+
+  def activate
+    @product = Product.find(params[:id])
+    if @product.activate
+      redirect_to admin_products_path, :notice  => "Successfully updated category."
     else
       head 400
     end
