@@ -11,4 +11,17 @@
 <br>
 <p>Price: <%= @product.price %></p>
 <br>
+
+<% @product.categories.each do |category| %>
+    <%= category.title %><br>
+<% end %>
+<br>
+Price: <%= @product.price %>
+<br>
+<% if logged_in? %>
+    <%= simple_form_for [ User.find(current_user.id), Order.new ] do |f| %>
+        <%= f.button :submit, value: '2-Click Checkout' %>
+    <% end %>
+    <br>
+<% end %>
 <%= button_to "Add To Cart", cart_path(product_id: @product.id), method: :put, class: 'btn' %>
