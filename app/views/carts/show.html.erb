@@ -9,30 +9,16 @@
         <th>Quantity</th>
         <th>Subtotal</th>
       </thead>
-
       <tbody>
         <% @total = 0 %>
-        <% @cart.each do |product, quantity| %>
-        <tr>
-          <td><%= product.title %></td>
-          <td><%= product.price %></td>
-          <td><%= quantity %></td>
-
-          <td><form><input type= 'integer', name='quantity', value =<%=quantity%> ></form></td>
-
-          <td><%= @total += cart_helper(subtotal) %></td>
-          <td>X</td>
-          <td>Update</td>
-        </tr>
-        <% end %>
+        <%= render partial: 'cart_item', object: @cart %>
       </tbody>
-
     </table>
 
     <div id="shopping_cart_summary">
-    <h5>Total: <%=@total %></h5>
-    <%= button_to 'Empty Cart', cart_path, method: :delete %>
-    <%= button_to 'Checkout', root_path %>
+      <h5>Total: <%=@total %></h5>
+      <%= button_to 'Empty Cart', cart_path, method: :delete %>
+      <%= button_to 'Checkout', root_path %>
     </div>
 <% end %>
 
