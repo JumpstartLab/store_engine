@@ -1,11 +1,11 @@
 <h1>Welcome, Customer!</h1>
 
-<div class="dropdown">
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Select a Product Category</a>
-
-  <p> Currently Showing: #CategoryNameGetsPopulatedHere </p>
-
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+<div class="btn-group">
+  <a class="btn btn-primary" href="/">Select A Category</a>
+  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
     <li><a href="/">Show All</a></li>
     <% unless @categories.nil? %>
       <% @categories.each do |category| %>
@@ -17,14 +17,6 @@
 
 <hr>
 
-<% @products.each do |product| %>
-  <a href="<%= product_path(product) %>" >
-    <div class="products">
-      <h3><%= product.title.capitalize %></h3>
-      <h5>Description:</h5>
-      <p> <%= product.description %>
-      <h5>Price: $<%= product.price %></h5>
-      <br />
-    </div>
-  </a>
-<% end %>
+<%= render @products %>
+
+

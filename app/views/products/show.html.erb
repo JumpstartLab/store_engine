@@ -1,13 +1,12 @@
-Title: <%= @product.title %>
+<h2> Title: <%= @product.title %> </h2>
 <br>
-Description: <%= @product.description %>
+<h4>Categories:
+  <% @product.categories.each do |category| %>
+  <%= category.title %><br>
+  <% end %>
+</h4>
 <br>
-Categories:
-<br>
-<% @product.categories.each do |category| %>
-<%= category.title %><br>
-<% end %>
-<br>
-Price: <%= @product.price %>
+<p>Description: <%= @product.description %></p>
+<p>Price: <%= @product.price %></p>
 <br>
 <%= button_to "Add To Cart", cart_path(product_id: @product.id), method: :put, class: 'btn'  %>
