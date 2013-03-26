@@ -1,1 +1,5 @@
-<%= @orders[0].products[0].title %>
+<% if @orders.count > 0 %>
+  <%= @orders[0].products[0].title %>
+<% else %>
+  No orders!
+<% end %>
