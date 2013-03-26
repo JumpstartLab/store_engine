@@ -4,6 +4,8 @@ StoreEngine::Application.routes.draw do
 
   resources :products, only: [ :index, :show ]
 
+  resource :cart, only: [ :update, :show, :destroy ]
+
   resources :users do
     resources :orders
   end

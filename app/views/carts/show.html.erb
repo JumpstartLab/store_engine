@@ -1,0 +1,32 @@
+<% if @cart.empty? %>
+  <h5><%= "Your cart is empty. Start shopping!" %></h5>
+  <% else %>
+    <table class="table table-striped">
+      <thead>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </thead>
+
+      <tbody>
+        <% @total = 0 %>
+        <% @cart.each do |product, quantity| %>
+        <tr>
+          <td><%= product.title %></td>
+          <td><%= product.price %></td>
+          <td><%= quantity %></td>
+          <td><%= @total += product.price * quantity%></td>
+        </tr>
+        <% end %>
+      </tbody>
+
+    </table>
+
+    <div id="shopping_cart_summary">
+    <h5>Total: <%=@total %></h5>
+    <%= button_to 'Empty Cart', cart_path, method: :delete %>
+    </div>
+<% end %>
+
+

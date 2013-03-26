@@ -10,6 +10,4 @@ Categories:
 <br>
 Price: <%= @product.price %>
 <br>
-<a class="btn btn-medium" href="#">
-  <i class="icon-shopping-cart"></i>Add To Cart
-</a>
+<%= button_to "Add To Cart", cart_path(product_id: @product.id), method: :put, class: 'btn'  %>
