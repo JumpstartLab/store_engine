@@ -1,5 +1,13 @@
+<%= render partial: 'shared/admin_navigation', :locals => { active: :dashboard }  %>
+
+<div class="span8">
+  <h1>Dashboard</h1>
+  <hr>
+
 <% if @orders.count > 0 %>
   <%= @orders[0].products[0].title %>
 <% else %>
   No orders!
 <% end %>
+
+</div>

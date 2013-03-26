@@ -4,16 +4,16 @@
     <h1>Welcome!</h1>
 <% end %>
 
-<div class="dropdown">
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Select a Product Category</a>
-
-  <p> Currently Showing: #CategoryNameGetsPopulatedHere </p>
-
-  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-    <li><a href="#">Show All</a></li>
+<div class="btn-group">
+  <a class="btn btn-primary" href="/">Select A Category</a>
+  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li><a href="/">Show All</a></li>
     <% unless @categories.nil? %>
       <% @categories.each do |category| %>
-      <li><a href="#"><%= category.title %></a></li>
+      <li><%=link_to category.title, products_path(category_id: category.id) %></li>
       <% end %>
     <% end %>
   </ul>
@@ -21,15 +21,4 @@
 
 <hr>
 
-<% @products.each do |product| %>
-  <a href="<%= product_path(product) %>" >
-    <div class="products">
-      <p><%= image_tag product.image.url(:thumb) %></p>
-      <h3><%= product.title.capitalize %></h3>
-      <h5>Description:</h5>
-      <p> <%= product.description %>
-      <h5>Price: $<%= product.price %></h5>
-      <br />
-    </div>
-  </a>
-<% end %>
+<%= render @products %>

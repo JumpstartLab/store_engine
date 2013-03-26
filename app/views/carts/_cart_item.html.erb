@@ -1,0 +1,16 @@
+<% @cart.each do |product, quantity| %>
+  <tr>
+    <td><%= product.title %></td>
+    <td><%= product.price %></td>
+    <td>
+      <form>
+        <input type= 'integer', name='quantity', value =<%=quantity%> >
+      </form>
+    </td>
+    <td> <%= @total += quantity * product.price %> </td>
+    <td>Remove</td>
+    <td> <%= button_to 'Update', cart_path(product.id) %> </td>
+  </tr>
+
+  <% end %>
+

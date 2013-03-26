@@ -25,3 +25,8 @@
   margin: 10px;
   border: 1px solid black;
 }
+
+/* For the Shopping Cart Show Page*/
+#shopping_cart_summary {
+  float: right;
+}
