@@ -1,8 +1,10 @@
 class Order < ActiveRecord::Base
-  attr_accessible :status, :order_item_ids
+  attr_accessible :status, :user_id
   belongs_to :user
   has_many :order_items
 
-  validates :user, presence: true
-  validates_associated :order_items
+  validates :user_id, presence: true
+  validates :status, presence: true,
+                     inclusion: { in: %w(pending cancelled paid shipped returned),
+                                  message: "%{value} is not a valid status" }
 end

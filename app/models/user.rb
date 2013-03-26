@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
-
   attr_accessible :display_name, :email, :full_name, :admin, :password, :password_confirmation
   #before_save :default_values #get this working and put it back in
 
