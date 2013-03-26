@@ -4,29 +4,10 @@
   <h1>Categories</h1>
   <hr>
   <div class="pull-right">
-  <%= button_to 'Create Category', new_admin_category_path, method: :get, class: 'btn btn-large btn-primary' %>
+    <%= button_to 'Create Category', new_admin_category_path, method: :get, class: 'btn btn-large btn-primary' %>
   </div>
 
   <table class="table table-striped">
-    <% @categories.each do |category| %>
-    <thead>
-      <tr>
-        <th><%= category.title %> <%= link_to 'Edit', edit_admin_category_path(category) %></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% category.products.each do |product| %>
-    <tr>
-      <td><%= product.title %></td>
-    </tr>
-    <% end %>
-    <% if category.products.count == 0 %>
-    <tr>
-      <td>No products assigned</td>
-    </tr>
-    <% end %>
-    </tbody>
-    <% end %>
+    <%= render @categories %>
   </table>
-
 </div>

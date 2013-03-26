@@ -5,11 +5,10 @@ class Product < ActiveRecord::Base
   validates :title, presence: :true, uniqueness: { case_sensitive: false }
   validates :description, presence: :true
   validates :status, presence: :true,
-                     inclusion: { in: %w(active retired),
-                                  message: "%{value} is not a valid status" }
+                     inclusion: { in: %w(active retired) }
   validates :price, presence: :true,
-            :format => { :with => /^\d+??(?:\.\d{0,2})?$/ },
-            :numericality => { greater_than: 0 }
+            format: { with: /^\d+??(?:\.\d{0,2})?$/ },
+            numericality: { greater_than: 0 }
 
   def self.apply_filter(category_id = nil)
     if category_id.nil?

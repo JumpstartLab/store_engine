@@ -4,12 +4,12 @@ require 'spec_helper'
 # the SessionsHelper. For example:
 #
 # describe SessionsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       helper.concat_strings("this","that").should == "this that"
+#   describe 'string concat' do
+#     it 'concats two strings with spaces' do
+#       helper.concat_strings('this','that').should == 'this that'
 #     end
 #   end
 # end
 describe SessionsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  pending 'add some examples to (or delete) #{__FILE__}'
 end
