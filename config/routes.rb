@@ -1,12 +1,11 @@
 StoreEngine::Application.routes.draw do
-
   root to: 'products#index'
 
   get "/logout" => "sessions#destroy", :as => "logout"
   get "/login" => "sessions#new", :as => "login"
   get "/signup" => "users#new", :as => "signup"
 
-  resources :sessions
+  resources :sessions, only: [ :new, :create, :destroy ]
 
   resources :products, only: [ :index, :show ]
 
@@ -28,7 +27,7 @@ StoreEngine::Application.routes.draw do
       end
     end
 
-    resources :categories
+    resources :categories, except: [ :show ]
   end
 
   # The priority is based upon order of creation:
