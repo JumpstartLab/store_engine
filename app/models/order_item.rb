@@ -1,7 +1,8 @@
 class OrderItem < ActiveRecord::Base
   attr_accessible :product_id, :quantity, :unit_price
   belongs_to :order
-  has_one :product
+  belongs_to :product
+  # has_one ? (using through on the other side)
 
   validates :unit_price, presence: :true,
                          format: { with: /^\d+??(?:\.\d{0,2})?$/ },
