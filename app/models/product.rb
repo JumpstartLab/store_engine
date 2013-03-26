@@ -1,6 +1,7 @@
 class Product < ActiveRecord::Base
-  attr_accessible :title, :description, :price, :status, :category_ids
+  attr_accessible :title, :description, :price, :status, :category_ids, :image
   has_and_belongs_to_many :categories
+  has_attached_file :image, styles: { medium: "400x400!", thumb: "200x200!" }
 
   validates :title, presence: :true, uniqueness: { case_sensitive: false }
   validates :description, presence: :true
@@ -26,4 +27,5 @@ class Product < ActiveRecord::Base
   def activate
     self.update_attributes(status: 'active')
   end
+
 end
