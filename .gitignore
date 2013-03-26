@@ -16,3 +16,6 @@
 
 .idea
 .DS_Store
+
+# paperclip images
+/public/system
