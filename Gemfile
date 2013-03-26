@@ -9,6 +9,7 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'jquery-rails'
 gem 'sorcery'
+gem 'paperclip'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

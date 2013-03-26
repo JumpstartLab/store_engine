@@ -10,6 +10,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def create
+    fail
     @product = Product.new(params[:product])
     if @product.save
       redirect_to admin_products_path, :notice => "Successfully created product."

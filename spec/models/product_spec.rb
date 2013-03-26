@@ -51,7 +51,10 @@ describe Product do
     expect(product.categories.count).to eq 2
   end
 
-  it 'is invalid without a valid photo URL if photo exists'
+  it "includes Paperclip correctly" do
+    example = Product.new :image => File.new(Rails.root + 'spec/fixtures/images/rails.png')
+    expect(example.image_file_name).to eq 'rails.png'
+  end
 
   describe '.apply_filter' do
     context 'when both active and retired products exist in db' do
