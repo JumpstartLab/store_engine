@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   #before_filter :require_login, only: [:checkout] #I don't think we have a checkout page yet to require this for
-
   def new
     @user = User.new
   end
@@ -16,12 +15,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @user = User.find(params[:id])
-    # @orders = @user.orders
-    redirect_to users_path(id: params[:id])
-  end
-
-  def index
     @user = User.find(params[:id])
     @orders = @user.orders
   end
