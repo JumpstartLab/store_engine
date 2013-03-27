@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'the admin products view', type: :feature do
-  include Capybara::DSL
 
   # before(:all) do
   #   @company = Company.create(name: "Jumpstart Lab")

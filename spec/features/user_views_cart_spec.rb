@@ -1,7 +1,3 @@
-require 'spec_helper'
-require 'capybara/rails'
-require 'capybara/rspec'
-
 describe 'the user cart view', type: :feature do
 
   # it 'shows the cart with items quantities and prices' do

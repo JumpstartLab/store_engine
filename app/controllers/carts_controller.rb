@@ -1,28 +1,23 @@
 class CartsController < ApplicationController
+  before_filter :find_or_create_cart
+
   def show
-    @cart = if session[:cart]
-              Hash[session[:cart].map{|id, quantity| [Product.find(id), quantity]}]
-            else
-              session[:cart] = {}
-            end
+    cart = session[:cart].map { |id, quantity| [Product.find(id), quantity] }
+    @cart = Hash[cart]
   end
 
   def update
-    session[:cart] ||= {}
-
-    id = params[:product_id]
-    quantity = params[:quantity]
-    if quantity
-      session[:cart][id] = quantity
-    else
-      session[:cart][id] = session[:cart][id].to_i + 1
+    if params[:delete]
+      session[:cart].delete(params[:delete].to_s)
+    elsif id = params[:carts][:product_id]
+      quantity = params[:carts][:quantity]
+      session[:cart][id] = quantity || (session[:cart][id].to_i + 1).to_s
     end
-
     redirect_to(:back)
   end
 
   def destroy
     session[:cart] = {}
-    redirect_to(:back)
+    redirect_to root_path
   end
 end

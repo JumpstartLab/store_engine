@@ -11,4 +11,7 @@
 <br>
 <p>Price: <%= @product.price %></p>
 <br>
-<%= button_to "Add To Cart", cart_path(product_id: @product.id), method: :put, class: 'btn' %>
+<%= simple_form_for :carts, url: '/cart', method: :put do |f| %>
+  <%= f.hidden_field :product_id, value: @product.id %>
+  <%= f.button :submit, 'Add to Cart' %>
+<% end %>
