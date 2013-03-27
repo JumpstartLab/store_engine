@@ -9,10 +9,15 @@ describe OrderItem do
     expect(FactoryGirl.build(:order_item, product: nil)).to_not be_valid
   end
 
+  it 'is invalid without an order' do
+    expect(FactoryGirl.build(:order_item, order: nil)).to_not be_valid
+  end
+
   it 'is invalid without a valid unit price' do
     expect(FactoryGirl.build(:order_item, unit_price: nil)).to_not be_valid
     expect(FactoryGirl.build(:order_item, unit_price: 0)).to_not be_valid
     expect(FactoryGirl.build(:order_item, unit_price: 1.245)).to_not be_valid
+    expect(FactoryGirl.build(:order_item, unit_price: 1.24)).to be_valid
   end
 
   it 'is invalid without an integer quantity above zero' do

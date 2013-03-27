@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  protected
+protected
 
   def ensure_admin
     # do something
@@ -11,4 +11,7 @@ class ApplicationController < ActionController::Base
     # do something
   end
 
+  def find_or_create_cart
+    session[:cart] ||= Hash.new(0)
+  end
 end

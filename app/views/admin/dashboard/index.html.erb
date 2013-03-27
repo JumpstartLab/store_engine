@@ -5,7 +5,9 @@
   <hr>
 
 <% if @orders.count > 0 %>
-  <%= @orders[0].products[0].title %>
+  <% @orders.each do |order| %>
+  <%= link_to( "Order ##{order.id}", admin_order_path( order ) ) %></br>
+  <% end %>
 <% else %>
   No orders!
 <% end %>

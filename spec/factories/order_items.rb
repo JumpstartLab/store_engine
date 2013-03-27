@@ -17,6 +17,7 @@ FactoryGirl.define do
   factory :order_item do |f|
     # f.association :product, :good_product
     f.product { FactoryGirl.build(:product) }
+    f.order { FactoryGirl.build(:order) }
     f.unit_price { 12.99 }
     f.quantity 3
   end

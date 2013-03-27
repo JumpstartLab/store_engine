@@ -1,24 +1,25 @@
 <%= link_to "Horse Teeth", root_path, :class => 'brand' %>
-<ul class="nav">
+<ul class="nav pull-right">
   <% if logged_in? %>
     <li>
-    <%= link_to('Logout', session_path(current_user), :method=>'delete') %>
+    <%= link_to 'Logout', session_path(current_user), method: :delete %>
     </li>
   <% else %>
     <li>
-    <%= link_to('Login', login_path)  %>
+    <%= link_to 'Login', login_path  %>
     </li>
   <% end %>
   <% if logged_in? %>
     <li>
-    <%= link_to('Edit account', new_user_path) %>
+    <%= link_to 'Account', user_path(current_user) %>
     </li>
   <% else %>
     <li>
-    <%= link_to('Sign up', signup_path)  %>
+    <%= link_to 'Sign up', signup_path %>
     </li>
   <% end %>
     <li>
-    <%= link_to 'Cart', cart_path  %>
+    <%= button_to "cart #{cart_count}", cart_path,
+                  class: 'btn btn-warning', method: :get %>
     </li>
 </ul>

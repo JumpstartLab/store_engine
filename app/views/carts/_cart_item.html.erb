@@ -1,16 +1,16 @@
 <% @cart.each do |product, quantity| %>
-  <tr>
-    <td><%= product.title %></td>
-    <td><%= product.price %></td>
-    <td>
-      <form>
-        <input type= 'integer', name='quantity', value =<%=quantity%> >
-      </form>
-    </td>
-    <td> <%= @total += quantity * product.price %> </td>
-    <td>Remove</td>
-    <td> <%= button_to 'Update', cart_path(product.id) %> </td>
-  </tr>
-
-  <% end %>
-
+<tr>
+  <td><%= link_to product.title, product_path(product) %>
+    <br>
+    <%= link_to "remove", cart_path(delete: product.id), method: :put %>
+  </td>
+  <td><%= product.price %></td>
+  <td>
+    <%= simple_form_for :carts, url: '/cart', method: :put do |f| %>
+      <%= f.hidden_field :product_id, value: product.id %>
+      <%= f.input_field :quantity, value: quantity, class: 'span1' %>
+      <%= f.button :submit, 'Update' %>
+    <% end %>
+  </td>
+</tr>
+<% end %>
