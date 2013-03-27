@@ -10,6 +10,7 @@ class OrderItem < ActiveRecord::Base
 
   validates :quantity, presence: :true,
                        numericality: { greater_than: 0, only_integer: true }
+
   validates :product, presence: true
   validates :order, presence: true
 end

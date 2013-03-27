@@ -16,7 +16,7 @@ StoreEngine::Application.routes.draw do
   end
 
   match "/admin" => redirect("/admin/dashboard")
-  match "/admin/dashboard" => "admin/dashboard#index"
+  match "/admin/dashboard" => "admin/orders#index"
 
   namespace :admin do
 
