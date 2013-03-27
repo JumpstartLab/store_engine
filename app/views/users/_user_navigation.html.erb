@@ -1,0 +1,20 @@
+<div class="span3">
+  <ul class="nav nav-list">
+    <li class="nav-header">USER</li>
+
+    <% if active == :account_details %>
+      <li class="active">
+    <% else %>
+      <li>
+    <% end %>
+      <a href="/user/account_details">Account Details</a>
+    </li>
+    <% if active == :orders %>
+      <li class="active">
+    <% else %>
+      <li>
+    <% end %>
+      <%= render :partial => 'orders', :collection => @user.orders %>
+    </li>
+  </ul>
+</div>

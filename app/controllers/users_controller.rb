@@ -16,7 +16,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to root_url
+    # redirect_to root_url
+    @user = User.find(params[:id])
+    @orders = @user.orders
   end
 
 end
