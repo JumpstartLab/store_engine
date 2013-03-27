@@ -14,7 +14,7 @@
     <% else %>
       <li>
     <% end %>
-      <%= render :partial => 'orders', :collection => @user.orders %>
+      <%= link_to "Order History", user_orders_path(user_id: @user.id) %>
     </li>
   </ul>
 </div>
