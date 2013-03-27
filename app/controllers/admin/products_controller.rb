@@ -1,5 +1,5 @@
 class Admin::ProductsController < ApplicationController
-  before_filter :ensure_admin
+  before_filter :require_admin
 
   def index
     @products = Product.all

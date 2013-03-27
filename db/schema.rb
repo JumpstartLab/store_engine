@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20130325230509) do
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "products", :force => true do |t|
+    t.integer  "category_id"
     t.string   "title"
     t.text     "description"
     t.decimal  "price",              :precision => 8, :scale => 2
@@ -57,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20130325230509) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
+
+  add_index "products", ["category_id"], :name => "index_products_on_category_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"
