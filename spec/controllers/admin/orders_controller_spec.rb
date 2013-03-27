@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Admin::DashboardController do
+describe Admin::OrdersController do
 
   it "index action should render index template" do
     get :index
