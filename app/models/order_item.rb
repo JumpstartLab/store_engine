@@ -3,6 +3,7 @@ class OrderItem < ActiveRecord::Base
   belongs_to :order
   belongs_to :product
   # has_one ? (using through on the other side)
+  delegate :title, to: :product
 
   validates :unit_price, presence: :true,
                          format: { with: /^\d+??(?:\.\d{0,2})?$/ },

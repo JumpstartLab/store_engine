@@ -68,7 +68,7 @@ describe Product do
       end
 
       it 'returns all active products in db when no category is specified (default homepage load)' do
-        products = Product.apply_filter()
+        products = Product.apply_filter
         expect(products.count).to eq 2
       end
 

@@ -15,10 +15,11 @@ StoreEngine::Application.routes.draw do
     resources :orders
   end
 
-  match "/admin" => redirect("/admin/dashboard")
-  match "/admin/dashboard" => "admin/orders#index"
+  # match "/admin" => redirect("/admin/dashboard")
 
   namespace :admin do
+    root to: redirect("/admin/dashboard")
+    get :dashboard, to: "orders#index", as: 'dashboard'
 
     resources :orders, only: [ :show, :update ]
 
