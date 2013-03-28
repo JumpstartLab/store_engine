@@ -16,8 +16,7 @@ StoreEngine::Application.routes.draw do
 
   resource :cart, only: [ :update, :show, :destroy ]
 
-  # resources :users, except: [ :show ] do
-  resources :users do
+  resources :users, except: [ :show ] do
     resources :orders
   end
 
