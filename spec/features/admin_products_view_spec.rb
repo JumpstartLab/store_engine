@@ -2,11 +2,17 @@ require 'spec_helper'
 
 describe 'the admin products view', type: :feature do
 
-  # before(:all) do
-  #   @company = Company.create(name: "Jumpstart Lab")
-  #   number_a = @company.phone_numbers.create(number: '1025968152')
-  #   number_b = @company.phone_numbers.create(number: '9871627211')
-  # end
+  before(:each) do
+     #@company = Company.create(name: "Jumpstart Lab")
+     #number_a = @company.phone_numbers.create(number: '1025968152')
+     #number_b = @company.phone_numbers.create(number: '9871627211')
+    FactoryGirl.create(:admin)
+    visit login_path
+    fill_in "sessions_email", with: "logan@gmail.com"
+    fill_in "sessions_password", with: "password"
+    click_button "Login"
+  end
+
 
   it 'should have a title' do
     visit admin_products_path

@@ -1,6 +1,15 @@
 require 'spec_helper'
 
 describe "admin dashboard" do
+
+  before(:each) do
+    FactoryGirl.create(:admin)
+    visit login_path
+    fill_in "sessions_email", with: "logan@gmail.com"
+    fill_in "sessions_password", with: "password"
+    click_button "Login"
+  end
+
   context "when an admin visits their dashboard" do
     it "should have a list of all orders" do
       user = FactoryGirl.create(:user)
@@ -9,6 +18,7 @@ describe "admin dashboard" do
       order2 = FactoryGirl.create(:order, user: user)
       order1.order_items << FactoryGirl.create(:order_item, product: product)
       order2.order_items << FactoryGirl.create(:order_item, product: product)
+
       visit '/admin/dashboard'
 
       expect(page).to have_xpath("//a[@href='#{admin_order_path(order1)}']")
