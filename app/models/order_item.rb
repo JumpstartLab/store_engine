@@ -15,4 +15,8 @@ class OrderItem < ActiveRecord::Base
     self.unit_price * self.quantity
   end
 
+  def title
+    product.title
+  end
+
 end

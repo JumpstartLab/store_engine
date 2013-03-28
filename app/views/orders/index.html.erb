@@ -16,7 +16,7 @@
       <tr>
         <td>Order # <%= order.id %></td>
         <td>
-          <%= link_to "Order #{order.id}", account_orders_path(id: current_user.id) %>
+          <%= link_to "Order #{order.id}", account_order_path(order) %>
         </td>
         <td><%= order.total%></td>
         <td><%= order.created_at %></td>

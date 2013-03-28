@@ -1,0 +1,27 @@
+<%= render partial: '/users/user_navigation', :locals => { active: false } %>
+
+<div class="span8">
+
+<h1> Order # <%= @order.id %></h1>
+<p>Date Order Placed: <%= @order.created_at.to_s(:short) %></p>
+<p>Status: <%= @order.status %> as of <%=@order.updated_at.to_s(:short) %></p>
+
+<table class="table table-striped">
+  <thead>
+    <th>Item Name </th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+  </thead>
+  <tbody>
+  <% @order.order_items.each do |item| %>
+    <tr>
+      <td><%= link_to item.title, product_path %></td>
+      <td><%= item.quantity %></td>
+      <td><%= number_to_currency(item.subtotal) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<p>Total: <%= number_to_currency(@order.total) %></p>
+</div>

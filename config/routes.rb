@@ -8,7 +8,7 @@ StoreEngine::Application.routes.draw do
   match "/account" => redirect("/account/profile")
   match "/account/profile" => "users#show"
   match "/account/orders" => "orders#index"
-  match "/account/order/:id" => "orders#show"
+  get "/account/orders/:id" => "orders#show", :as => "account_order"
 
   resources :sessions, only: [ :new, :create, :destroy ]
 
