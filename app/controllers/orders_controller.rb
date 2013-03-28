@@ -19,8 +19,8 @@ class OrdersController < ApplicationController
     session[:cart].each do |product_id, quantity|
       product = Product.find(product_id)
       @order.order_items.build(product_id: product.id,
-                             unit_price: product.price,
-                             quantity: quantity)
+                               unit_price: product.price,
+                               quantity: quantity)
     end
 
     if @order.save
@@ -29,5 +29,9 @@ class OrdersController < ApplicationController
     else
       redirect_to cart_path
     end
+  end
+
+  def show
+    @order = Order.find(params[:id])
   end
 end
