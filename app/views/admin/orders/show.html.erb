@@ -20,7 +20,7 @@
   <tbody>
   <% @order.order_items.each do |order_item| %>
   <tr>
-    <td><%= order_item.product.title %></td>
+    <td><%= link_to order_item.product.title, product_path(order_item.product) %></td>
     <% if @order.status == ('pending' || 'paid') %>
     <td>
       <%= simple_form_for :admin_order_item,
