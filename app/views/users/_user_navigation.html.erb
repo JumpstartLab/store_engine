@@ -7,14 +7,14 @@
     <% else %>
       <li>
     <% end %>
-      <a href="/user/account_details">Account Details</a>
+      <a href="/account/profile">Account Details</a>
     </li>
     <% if active == :orders %>
       <li class="active">
     <% else %>
       <li>
     <% end %>
-      <%= link_to "Order History", user_orders_path(user_id: @user.id) %>
+      <%= link_to "Order History", account_orders_path %>
     </li>
   </ul>
 </div>

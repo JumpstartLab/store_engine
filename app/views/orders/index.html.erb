@@ -1,0 +1,19 @@
+
+<table class="table table-striped">
+  <thead>
+    <th>Order Number</th>
+    <th>Total</th>
+    <th>Order Date</th>
+    <th>Order Status</th>
+  </thead>
+  <tbody>
+    <% current_user.orders.each do |order| %>
+    <tr>
+      <td>Order # <%= order.id %></td>
+      <td><%= order.total%></td>
+      <td><%= order.created_at %></td>
+      <td><%= order.status %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -4,7 +4,10 @@ StoreEngine::Application.routes.draw do
   get "/logout" => "sessions#destroy", :as => "logout"
   get "/login" => "sessions#new", :as => "login"
   get "/signup" => "users#new", :as => "signup"
-  get "/users/" =>  "users#show", :as => 'edit_account'
+  # get "/users/" =>  "users#show", :as => 'account'
+  match "/account" => redirect("/account/profile")
+  match "/account/profile" => "users#show"
+  match "/account/orders" => "orders#index"
 
   resources :sessions, only: [ :new, :create, :destroy ]
 
@@ -12,7 +15,7 @@ StoreEngine::Application.routes.draw do
 
   resource :cart, only: [ :update, :show, :destroy ]
 
-  resources :users do
+  resources :users, except: [ :show ] do
     resources :orders
   end
 
