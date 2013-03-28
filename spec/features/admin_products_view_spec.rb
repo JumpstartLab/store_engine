@@ -8,9 +8,9 @@ describe 'the admin products view', type: :feature do
      #number_b = @company.phone_numbers.create(number: '9871627211')
     FactoryGirl.create(:admin)
     visit login_path
-    fill_in "sessions_email", with: "logan@gmail.com"
-    fill_in "sessions_password", with: "password"
-    click_button "Login"
+    fill_in 'sessions_email', with: 'logan@gmail.com'
+    fill_in 'sessions_password', with: 'password'
+    click_button 'Login'
   end
 
 

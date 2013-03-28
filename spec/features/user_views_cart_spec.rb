@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 describe 'the user cart view' do
-  context "when there are no items in the cart" do
+  context 'when there are no items in the cart' do
     it 'displays a message that the cart is empty' do
       visit '/cart'
-      expect(page).to have_content("empty")
+      expect(page).to have_content('empty')
     end
   end
 
-  context "when there are items in the cart" do
+  context 'when there are items in the cart' do
     before do
       product = FactoryGirl.create(:product)
       visit product_path(product)
@@ -17,11 +17,11 @@ describe 'the user cart view' do
     end
 
     it 'shows the cart with items quantities and prices' do
-      expect(page).to have_content("Total")
+      expect(page).to have_content('Total')
     end
 
-    context "the user wants to empty the cart" do
-      it "gets emptied" do
+    context 'the user wants to empty the cart' do
+      it 'gets emptied' do
         click_button 'Empty Cart'
         expect(current_path).to eq root_path
       end
