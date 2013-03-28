@@ -23,4 +23,8 @@ class OrdersController < ApplicationController
       render :action => 'new'
     end
   end
+
+  def show
+    @order = Order.find_all_by_user_id(current_user.id)
+  end
 end

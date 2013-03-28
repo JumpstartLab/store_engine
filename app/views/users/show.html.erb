@@ -1,17 +1,17 @@
 <%= render partial: 'user_navigation', :locals => { active: false } %>
 <div class="span8">
 
-<% if @user.display_name.nil? %>
-  <h1><%= @user.full_name %>'s Account Details</h1>
-<% else %>
-  <h1><%= @user.display_name %>'s Account Details</h1>
-<% end %>
+  <% if @user.display_name.nil? %>
+    <h1><%= @user.full_name %>'s Account Details</h1>
+  <% else %>
+    <h1><%= @user.display_name %>'s Account Details</h1>
+  <% end %>
 
 
-<p>ID: <%= @user.id %></p>
-<p>EMAIL: <%= @user.email %></p>
-<p>NAME:<%= @user.full_name %></p>
-<p>DISPLAY NAME: <%= @user.display_name %> </p>
-<p>ORDERS: <%= @orders.count %>
+  <p>ID: <%= @user.id %></p>
+  <p>EMAIL: <%= @user.email %></p>
+  <p>NAME:<%= @user.full_name %></p>
+  <p>DISPLAY NAME: <%= @user.display_name %> </p>
+  <p>ORDERS: <%= @orders.count %>
 
 </div>

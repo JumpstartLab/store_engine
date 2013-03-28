@@ -1,19 +1,28 @@
+<%= render partial: '/users/user_navigation', :locals => { active: false } %>
 
-<table class="table table-striped">
-  <thead>
-    <th>Order Number</th>
-    <th>Total</th>
-    <th>Order Date</th>
-    <th>Order Status</th>
-  </thead>
-  <tbody>
-    <% current_user.orders.each do |order| %>
-    <tr>
-      <td>Order # <%= order.id %></td>
-      <td><%= order.total%></td>
-      <td><%= order.created_at %></td>
-      <td><%= order.status %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="span8">
+
+  <h1>Order History</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <th>Order Number</th>
+      <th>Total</th>
+      <th>Order Date</th>
+      <th>Order Status</th>
+    </thead>
+    <tbody>
+      <% current_user.orders.each do |order| %>
+      <tr>
+        <td>Order # <%= order.id %></td>
+        <td>
+          <%= link_to "Order #{order.id}", account_orders_path(id: current_user.id) %>
+        </td>
+        <td><%= order.total%></td>
+        <td><%= order.created_at %></td>
+        <td><%= order.status %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
