@@ -13,4 +13,8 @@ class OrderItem < ActiveRecord::Base
 
   validates :product, presence: true
   validates :order, presence: true
+
+  def subtotal
+    self.unit_price * self.quantity
+  end
 end

@@ -1,13 +1,34 @@
-<%= render partial: 'shared/admin_navigation', :locals => { active: :dashboard }  %>
+<%= render partial: 'shared/admin_navigation', locals: { active: :dashboard } %>
 
 <div class="span8">
   <h1>Dashboard</h1>
   <hr>
 
-<% if @orders.count > 0 %>
+<% if @count > 0 %>
+  <%= render partial: 'admin_dashboard_nav', locals: {active_tab: @active_tab,
+                                                     count: @count,
+                                                     statuses: @statuses} %>
+  <br>
+  <table class="table">
+  <thead>
+    <th>#</th>
+    <th>Created at</th>
+    <th>Status</th>
+    <th>Modify</th>
+  </thead>
+  <tbody>
   <% @orders.each do |order| %>
-  <%= link_to( "Order ##{order.id}", admin_order_path( order ) ) %></br>
+  <tr>
+    <td><%= link_to "Order ##{order.id}", admin_order_path(order) %></td>
+    <td><%= order.created_at.to_s(:short) %></td>
+    <td><%= order.status %></td>
+    <td>
+      <%= render partial: 'next_status_button', locals: { order: order } %>
+    </td>
+  </tr>
   <% end %>
+  </tbody>
+  </table>
 <% else %>
   No orders!
 <% end %>

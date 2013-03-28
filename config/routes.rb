@@ -22,6 +22,8 @@ StoreEngine::Application.routes.draw do
 
     resources :orders, only: [ :show, :update ]
 
+    resources :order_items, only: [ :update, :destroy]
+
     resources :products do
       member do
         post :retire

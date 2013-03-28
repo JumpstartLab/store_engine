@@ -2,27 +2,38 @@ require 'spec_helper'
 
 describe "admin dashboard" do
   context "when an admin visits their dashboard" do
-    it "should have a list of all orders" do
+    it "should have a list of all orders and link to each" do
       user = FactoryGirl.create(:user)
       order1 = FactoryGirl.create(:order, user: user)
-      product = FactoryGirl.create(:product)
       order2 = FactoryGirl.create(:order, user: user)
-      order1.order_items << FactoryGirl.create(:order_item, product: product)
-      order2.order_items << FactoryGirl.create(:order_item, product: product)
-      visit '/admin/dashboard'
 
+      visit '/admin/dashboard'
       expect(page).to have_xpath("//a[@href='#{admin_order_path(order1)}']")
       expect(page).to have_xpath("//a[@href='#{admin_order_path(order2)}']")
     end
 
-    xit "should link to individual orders" do
-    end
+    it "should show a total number of orders by status" do
+      user = FactoryGirl.create(:user)
+      FactoryGirl.create(:order, user: user, status: 'paid')
+      FactoryGirl.create(:order, user: user, status: 'paid')
+      FactoryGirl.create(:order, user: user, status: 'returned')
 
-    xit "should show a total number of orders by status" do
-      # "pending", "cancelled", "paid", "shipped", "returned"
+      visit '/admin/dashboard'
+      expect(page).to have_content('0 pending')
+      expect(page).to have_content('2 paid')
+      expect(page).to have_content('1 returned')
+      expect(page).to have_content('0 shipped')
+      expect(page).to have_content('0 cancelled')
     end
 
     xit "should allow for filtering by status" do
+      user = FactoryGirl.create(:user)
+      FactoryGirl.create(:order, user: user, status: 'paid')
+      FactoryGirl.create(:order, user: user, status: 'paid')
+      FactoryGirl.create(:order, user: user, status: 'returned')
+
+      visit '/admin/dashboard'
+
     end
 
     context "within an individual order" do

@@ -1,0 +1,52 @@
+<%= render partial: 'shared/admin_navigation', locals: { active: false } %>
+
+<div class="span8">
+  <h1>Order #<%= @order.id %></h1>
+  <p>Status: <%= @order.status %></p>
+  <%= render partial: 'next_status_button', locals: { order: @order } %>
+  <hr>
+  <p>Created at: <%= @order.created_at.to_s(:short) %></p>
+  <p>Updated at: <%= @order.updated_at.to_s(:short) %></p>
+  <p>Purchaser name: <%= @order.user.full_name %></p>
+  <p>Purchaser email: <%= @order.user.email %></p>
+  <h2> Products </h2>
+  <table class="table">
+  <thead>
+    <th>Title</th>
+    <th>Quantity</th>
+    <th>Price</th>
+    <th>Subtotal</th>
+  </thead>
+  <tbody>
+  <% @order.order_items.each do |order_item| %>
+  <tr>
+    <td><%= order_item.product.title %></td>
+    <% if @order.status == ('pending' || 'paid') %>
+    <td>
+      <%= simple_form_for :admin_order_item,
+            url: "/admin/order_items/#{order_item.id}", method: :put do |f| %>
+        <%= f.hidden_field :order_item_id, value: order_item.id %>
+        <%= f.input_field :quantity, value: order_item.quantity, class: 'span1' %>
+        <%= f.button :submit, 'Update', class: 'btn-mini' %>
+      <% end %>
+      <%= button_to 'Delete', admin_order_item_path(order_item), method: :delete, class: 'btn btn-mini btn-danger' %>
+    </td>
+    <% else %>
+    <td><%= order_item.quantity %></td>
+    <% end %>
+    <td><%= number_to_currency(order_item.unit_price) %></td>
+    <td><%= number_to_currency(order_item.subtotal) %></td>
+  </tr>
+  <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td></td>
+      <td style="text-align: right;">Total</td>
+      <td><%= number_to_currency(@order.total) %></td>
+    </tr>
+  </tfoot>
+</table>
+
+</div>
