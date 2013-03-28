@@ -5,12 +5,18 @@ StoreEngine::Application.routes.draw do
   get "/login" => "sessions#new", :as => "login"
   get "/signup" => "users#new", :as => "signup"
 
+  match "/account" => redirect("/account/profile")
+  match "/account/profile" => "users#show"
+  match "/account/orders" => "orders#index"
+  get "/account/orders/:id" => "orders#show", :as => "account_order"
+
   resources :sessions, only: [ :new, :create, :destroy ]
 
   resources :products, only: [ :index, :show ]
 
   resource :cart, only: [ :update, :show, :destroy ]
 
+  # resources :users, except: [ :show ] do
   resources :users do
     resources :orders
   end
