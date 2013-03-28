@@ -1,0 +1,10 @@
+<a href="<%= product_path(product) %>" >
+  <div class="products">
+    <h3><%= product.title.capitalize %></h3>
+    <p><%= image_tag product.image.url(:thumb) %></p>
+    <h5>Description:</h5>
+    <p> <%= product.description %>
+    <h5>Price: $<%= product.price %></h5>
+    <br />
+  </div>
+</a>

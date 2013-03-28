@@ -1,0 +1,15 @@
+<%= render partial: 'shared/admin_navigation', :locals => { active: :dashboard }  %>
+
+<div class="span8">
+  <h1>Dashboard</h1>
+  <hr>
+
+<% if @orders.count > 0 %>
+  <% @orders.each do |order| %>
+  <%= link_to( "Order ##{order.id}", admin_order_path( order ) ) %></br>
+  <% end %>
+<% else %>
+  No orders!
+<% end %>
+
+</div>

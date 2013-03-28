@@ -1,0 +1,28 @@
+<% if @cart.empty? %>
+  <h5><%= "Your cart is empty. Start shopping!" %></h5>
+  <%= link_to "Back to Home", root_path %>
+  <% else %>
+    <table class="table table-striped">
+      <thead>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+      </thead>
+      <tbody>
+        <% @total = 0 %>
+        <%= render partial: 'cart_item', object: @cart %>
+      </tbody>
+    </table>
+
+    <div id="shopping_cart_summary">
+      <h5>Total: <%= @total %></h5>
+      <%= button_to 'Empty Cart', cart_path, class: 'btn', method: :delete %>
+      <% if current_user %>
+        <%= button_to 'Checkout', user_orders_path(current_user), class: 'btn', method: :post %>
+      <% else %>
+        <%= button_to 'Checkout', root_path, class: 'btn', method: :post %>
+      <% end %>
+    </div>
+<% end %>
+
+
