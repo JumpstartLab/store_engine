@@ -1,9 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ProductsController do
-  # fixtures :all
-  render_views
-
   describe 'GET #index' do
     it "index action should render index template" do
       get :index

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe "admin dashboard" do
-
   before(:each) do
       FactoryGirl.create(:admin)
       visit login_path
