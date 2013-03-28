@@ -25,11 +25,11 @@ group :development, :test do
   gem 'cane'
   gem 'reek'
   gem 'debugger'
+  gem 'capybara'
 end
 
 group :test do
   gem 'faker'
-  gem 'capybara'
   gem 'guard-rspec'
   gem 'launchy'
 end

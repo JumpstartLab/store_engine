@@ -102,7 +102,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.linkedin.user_info_mapping = {first_name: "firstName", last_name: "lastName"}
   # config.linkedin.access_permissions = ['r_basicprofile'] 
   #
-  # Twitter wil not accept any requests nor redirect uri containing localhost,
+  # Twitter wil not accept any features nor redirect uri containing localhost,
   # make sure you use 0.0.0.0:3000 to access your app in development
   #
   # config.twitter.key = ""

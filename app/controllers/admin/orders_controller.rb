@@ -1,4 +1,6 @@
 class Admin::OrdersController < ApplicationController
+  before_filter :require_admin
+
   def index
     @count = Order.count
     @orders = params[:status] ? Order.where(status: params[:status]) : Order.all

@@ -29,4 +29,12 @@ FactoryGirl.define do
     password 'password'
     admin false
   end
+
+  factory :admin, parent: :user do
+    full_name 'Logan Sears'
+    email 'logan@gmail.com'
+    display_name 'lsears'
+    password 'password'
+    admin true
+  end
 end

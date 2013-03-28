@@ -1,7 +1,7 @@
 StoreEngine::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-  # Code is not reloaded between requests
+  # Code is not reloaded between features
   config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
