@@ -16,14 +16,14 @@ StoreEngine::Application.routes.draw do
 
   resource :cart, only: [ :update, :show, :destroy ]
 
-  resources :users, except: [ :show ] do
+  resources :users, only: [ :new, :create, :update ] do
+
     resources :orders
   end
 
-  # match "/admin" => redirect("/admin/dashboard")
-
   namespace :admin do
     root to: redirect("/admin/dashboard")
+
     get :dashboard, to: "orders#index", as: 'dashboard'
 
     resources :orders, only: [ :show, :update ]

@@ -1,4 +1,6 @@
 class Admin::OrderItemsController < ApplicationController
+  before_filter :require_admin
+
   def update
     @order_item = OrderItem.find(params[:admin_order_item][:order_item_id])
     @order_item.quantity = params[:admin_order_item][:quantity]

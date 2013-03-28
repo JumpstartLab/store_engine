@@ -1,5 +1,5 @@
 class Admin::OrdersController < ApplicationController
-  # before_filter :require_admin
+  before_filter :require_admin
 
   def index
     @count = Order.count
