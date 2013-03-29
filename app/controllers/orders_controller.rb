@@ -14,19 +14,20 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(status: 'pending', user_id: current_user.id)
+    @order = Order.create(status: 'pending', user_id: current_user.id)
 
     session[:cart].each do |product_id, quantity|
       product = Product.find(product_id)
-      @order.order_items.build(product_id: product.id,
-                               unit_price: product.price,
-                               quantity: quantity)
+      @order.order_items << OrderItem.create(product_id: product.id,
+                                             unit_price: product.price,
+                                             quantity: quantity)
     end
 
-    if @order.save
+    if @order.valid?
       session[:cart] = {}
       redirect_to user_order_path(current_user, @order), :notice => "Successfully created order!"
     else
+      raise @order.order_items.inspect
       redirect_to cart_path
     end
   end
