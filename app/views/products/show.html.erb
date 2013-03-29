@@ -1,31 +1,20 @@
-<h2> Title: <%= @product.title %> </h2>
-<br>
+<h2>Title: <%= @product.title %></h2>
 <p><%= image_tag @product.image.url(:medium) %></p>
-<br>
 <p>Description: <%= @product.description %></p>
 <h4>Categories:
   <% @product.categories.each do |category| %>
-  <%= category.title %><br>
+    <%= category.title %><br>
   <% end %>
 </h4>
-<br>
-<p>Price: <%= @product.price %></p>
-<br>
+<p>Price: <%= number_to_currency(@product.price) %></p>
 
-<% @product.categories.each do |category| %>
-    <%= category.title %><br>
-<% end %>
-<br>
-Price: <%= @product.price %>
-<br>
 <%= simple_form_for :carts, url: '/cart', method: :put do |f| %>
     <%= f.hidden_field :product_id, value: @product.id %>
     <%= f.button :submit, 'Add to Cart' %>
 <% end %>
-<br>
+
 <% if logged_in? %>
     <%= simple_form_for [ User.find(current_user.id), Order.new ] do |f| %>
         <%= f.button :submit, value: '2-Click Checkout' %>
     <% end %>
-    <br>
 <% end %>

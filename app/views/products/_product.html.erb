@@ -1,10 +1,8 @@
-<a href="<%= product_path(product) %>" >
-  <div class="products">
+<%= link_to product_path(product) do %>
+  <div class="products span3">
     <h3><%= product.title.capitalize %></h3>
     <p><%= image_tag product.image.url(:thumb) %></p>
-    <h5>Description:</h5>
-    <p> <%= product.description %>
-    <h5>Price: $<%= product.price %></h5>
-    <br />
+    <p>Description: <%= product.description %></p>
+    <p>Price: <%= number_to_currency(product.price) %></p>
   </div>
-</a>
+<% end %>
