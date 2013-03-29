@@ -2,6 +2,7 @@ class CartsController < ApplicationController
   before_filter :find_or_create_cart
 
   def show
+    session[:return_to] = request.fullpath
     cart = session[:cart].map { |id, quantity| [Product.find(id), quantity] }
     @cart = Hash[cart]
   end
