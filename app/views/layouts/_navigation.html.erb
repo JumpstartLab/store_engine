@@ -2,7 +2,7 @@
 <ul class="nav pull-right">
   <% if logged_in? %>
     <li>
-    <%= link_to 'Logout', session_path(current_user), method: :delete %>
+      <%= render 'layouts/logout_button' %>
     </li>
   <% else %>
     <li>
