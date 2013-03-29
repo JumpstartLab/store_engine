@@ -1,6 +1,5 @@
 module ApplicationHelper
   def cart_count
-    count = session[:cart].values.map(&:to_i).reduce(&:+) if session[:cart]
-    count ? "(#{count})" : nil
+    Cart.new(session[:cart]).count
   end
 end

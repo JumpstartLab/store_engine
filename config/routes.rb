@@ -13,7 +13,12 @@ StoreEngine::Application.routes.draw do
 
   resources :sessions, only: [ :new, :create, :destroy ]
   resources :products, only: [ :index, :show ]
-  resource :cart, only: [ :update, :show, :destroy ]
+
+  resource :cart, only: [ :update, :show, :destroy ] do
+    member do
+      put :remove_item
+    end
+  end
 
   resources :users, only: [ :new, :create, :update ] do
     resources :orders

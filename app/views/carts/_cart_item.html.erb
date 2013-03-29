@@ -2,7 +2,8 @@
 <tr>
   <td><%= link_to product.title, product_path(product) %>
     <br>
-    <%= link_to "remove", cart_path(delete: product.id), method: :put %>
+    <%= link_to 'Remove', remove_item_cart_path(remove_item: { product_id: product.id }),
+                          :confirm => 'Are you sure?', :method => :put %>
   </td>
   <td><%= product.price %></td>
   <td>
