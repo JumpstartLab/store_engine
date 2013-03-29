@@ -18,17 +18,31 @@ class OrdersController < ApplicationController
 
     session[:cart].each do |product_id, quantity|
       product = Product.find(product_id)
-      @order.order_items << OrderItem.create(product_id: product.id,
-                                             unit_price: product.price,
-                                             quantity: quantity)
+      @order.order_items.create(product_id: product.id,
+                               unit_price: product.price,
+                               quantity: quantity)
     end
 
     if @order.valid?
       session[:cart] = {}
       redirect_to user_order_path(current_user, @order), :notice => "Successfully created order!"
     else
-      raise @order.order_items.inspect
-      redirect_to cart_path
+      redirect_to cart_path, :notice => "Checkout failed."
+    end
+  end
+
+  def buy_now
+    @order = Order.create(status: 'pending', user_id: current_user.id)
+
+    product = Product.find(params[:order][:product_id])
+    @order.order_items.create(product_id: product.id,
+                              unit_price: product.price,
+                              quantity: params[:order][:quantity])
+
+    if @order.save
+      redirect_to user_order_path(current_user, @order), :notice => "Successfully created order!"
+    else
+      redirect_to cart_path, :notice => "Checkout failed."
     end
   end
 

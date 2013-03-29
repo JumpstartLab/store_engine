@@ -2,22 +2,35 @@ User.create(full_name: "Franklin Webber", email: "demoXX+franklin@jumpstartlab.c
 User.create(full_name: "Jeff", email: "demoXX+jeff@jumpstartlab.com", password: "password", display_name: "j3")
 User.create(full_name: "Steve Klabnik", email: "demoXX+steve@jumpstartlab.com", password: "password", display_name: "SkrilleX", admin: true)
 
-Category.create(title: "Close Shave")
-Category.create(title: "Bangs")
-Category.create(title: "Goatees")
-Category.create(title: "Pony Tails")
-Category.create(title: "Mullets")
+Category.create(title: "Hairballs")
+Category.create(title: "Mystics")
+Category.create(title: "Brutes")
+Category.create(title: "Slimes")
+Category.create(title: "Orphans")
 
-product1 = Product.create(title: "teef", description: "horse teef", price: 0.19, status: 'active')
-product2 = Product.create(title: "teefies", description: "horse teef", price: 0.19, status: 'active')
-product3 = Product.create(title: "tee", description: "horse teef", price: 0.19, status: 'active')
-product4 = Product.create(title: "te", description: "horse teef", price: 0.19, status: 'active')
-product5 = Product.create(title: "t", description: "horse teef", price: 0.19, status: 'active')
-product6 = Product.create(title: "tasaf", description: "horse teef", price: 0.19, status: 'active')
-product7 = Product.create(title: "tasafadasf", description: "horse teef", price: 0.19, status: 'active')
-product8 = Product.create(title: "tasafadasfasd", description: "horse teef", price: 0.19, status: 'active')
-product9 = Product.create(title: "tasafad", description: "horse teef", price: 0.19, status: 'active')
-product10 = Product.create(title: "tasaf", description: "horse teef", price: 0.19, status: 'active')
+
+file = File.open('./public/images/great-slump.jpg')
+product1 = Product.create(title: "The Great Slump", description: "The Great Slump has a single claw arm.", price: 104.19, status: 'active', image: file)
+file.close
+file = File.open('./public/images/marcy.jpg')
+product2 = Product.create(title: "Marcy", description: "Marcy is the most beautiful hairball you'll ever meet.", price: 17.95, status: 'active', image: file)
+file.close
+file = File.open('./public/images/slump-sr.jpg')
+product3 = Product.create(title: "Slump Sr.", description: "Slump Sr. has been there, done that.", price: 2.50, status: 'active', image: file)
+file.close
+file = File.open('./public/images/slumpy.jpg')
+product4 = Product.create(title: "Slumpy", description: "Slumpy enjoys teething.", price: 23.90, status: 'active', image: file)
+file.close
+file = File.open('./public/images/viking.jpg')
+product5 = Product.create(title: "Viking Lord", description: "Viking Lord takes no prisoners.", price: 272.30, status: 'active', image: file)
+file.close
+file = File.open('./public/images/wizard.jpg')
+product6 = Product.create(title: "Wizard", description: "Wizard runs the show in these parts.", price: 1235.99, status: 'active', image: file)
+file.close
+product7 = Product.create(title: "Coming Soon", description: "Details are on the way.", price: 1.00, status: 'active')
+product8 = Product.create(title: "Coming Soon2", description: "etails are on the way.", price: 1.00, status: 'retired')
+product9 = Product.create(title: "Coming Soon3", description: "etails are on the way.", price: 1.00, status: 'retired')
+product10 = Product.create(title: "Coming Soon4", description: "etails are on the way.", price: 1.00, status: 'active')
 
 order1 = Order.create(status: 'pending', user_id: 1)
 order2 = Order.create(status: 'pending', user_id: 1)
