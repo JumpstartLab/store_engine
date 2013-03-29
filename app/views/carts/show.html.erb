@@ -17,11 +17,7 @@
     <div id="shopping_cart_summary">
       <h5>Total: <%= @total %></h5>
       <%= button_to 'Empty Cart', cart_path, class: 'btn', method: :delete %>
-      <% if current_user %>
-        <%= button_to 'Checkout', user_orders_path(current_user), class: 'btn', method: :post %>
-      <% else %>
-        <%= button_to 'Checkout', login_path, class: 'btn', method: :get %>
-      <% end %>
+      <%= render 'checkout_button' %>
     </div>
 <% end %>
 
