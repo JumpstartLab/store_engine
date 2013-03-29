@@ -27,5 +27,4 @@ class Product < ActiveRecord::Base
   def activate
     self.update_attributes(status: 'active')
   end
-
 end

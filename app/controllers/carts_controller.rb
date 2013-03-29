@@ -13,11 +13,11 @@ class CartsController < ApplicationController
       quantity = params[:carts][:quantity]
       session[:cart][id] = quantity || (session[:cart][id].to_i + 1).to_s
     end
-    redirect_to(:back)
+    redirect_to :back, :notice  => "Updated"
   end
 
   def destroy
     session[:cart] = {}
-    redirect_to root_path
+    redirect_to root_path, :notice  => "Cart cleared."
   end
 end

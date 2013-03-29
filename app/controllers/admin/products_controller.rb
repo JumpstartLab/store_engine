@@ -14,7 +14,7 @@ class Admin::ProductsController < ApplicationController
     if @product.save
       redirect_to admin_products_path, :notice => "Successfully created product."
     else
-      render :action => 'new'
+      render :action => 'new', :notice  => "Product creation failed."
     end
   end
 
@@ -27,7 +27,7 @@ class Admin::ProductsController < ApplicationController
     if @product.update_attributes(params[:product])
       redirect_to admin_products_path, :notice  => "Successfully updated product."
     else
-      render :action => 'edit'
+      render :action => 'edit', :notice  => "Update failed."
     end
   end
 

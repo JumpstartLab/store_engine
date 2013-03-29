@@ -20,7 +20,7 @@
       <% if current_user %>
         <%= button_to 'Checkout', user_orders_path(current_user), class: 'btn', method: :post %>
       <% else %>
-        <%= button_to 'Checkout', root_path, class: 'btn', method: :post %>
+        <%= button_to 'Checkout', login_path, class: 'btn', method: :get %>
       <% end %>
     </div>
 <% end %>

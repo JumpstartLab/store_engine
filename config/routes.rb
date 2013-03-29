@@ -11,9 +11,7 @@ StoreEngine::Application.routes.draw do
   get "/account/orders/:id" => "orders#show", :as => "account_order"
 
   resources :sessions, only: [ :new, :create, :destroy ]
-
   resources :products, only: [ :index, :show ]
-
   resource :cart, only: [ :update, :show, :destroy ]
 
   resources :users, only: [ :new, :create, :update ] do
@@ -22,11 +20,8 @@ StoreEngine::Application.routes.draw do
 
   namespace :admin do
     root to: redirect("/admin/dashboard")
-
     get :dashboard, to: "orders#index", as: 'dashboard'
-
     resources :orders, only: [ :show, :update ]
-
     resources :order_items, only: [ :update, :destroy]
 
     resources :products do

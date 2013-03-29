@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
       session[:cart] = {}
       redirect_to user_order_path(current_user, @order), :notice => "Successfully created order!"
     else
-      redirect_to cart_path
+      redirect_to cart_path, :notice => "Checkout failed."
     end
   end
 
