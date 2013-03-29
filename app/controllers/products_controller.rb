@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    session[:return_to] = request.fullpath
     @product = Product.find(params[:id])
   end
 end
