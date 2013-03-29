@@ -40,7 +40,7 @@ class Admin::ProductsController < ApplicationController
   def retire
     @product = Product.find(params[:id])
     if @product.retire
-      redirect_to admin_products_path, :notice  => "Successfully updated category."
+      redirect_to admin_products_path, :notice  => "Successfully retired product."
     else
       head 400
     end
@@ -49,7 +49,7 @@ class Admin::ProductsController < ApplicationController
   def activate
     @product = Product.find(params[:id])
     if @product.activate
-      redirect_to admin_products_path, :notice  => "Successfully updated category."
+      redirect_to admin_products_path, :notice  => "Successfully activated product."
     else
       head 400
     end

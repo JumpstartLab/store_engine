@@ -2,7 +2,7 @@
 
 <div class="span8">
 
-<h1> Order # <%= @order.id %></h1>
+<h1>Order # <%= @order.id %></h1>
 <p>Date Order Placed: <%= @order.created_at.to_s(:short) %></p>
 <p>Status: <%= @order.status %> as of <%=@order.updated_at.to_s(:short) %></p>
 
@@ -13,15 +13,14 @@
     <th>Subtotal</th>
   </thead>
   <tbody>
-  <% @order.order_items.each do |item| %>
-    <tr>
-      <td><%= link_to item.title, product_path %></td>
-      <td><%= item.quantity %></td>
-      <td><%= number_to_currency(item.subtotal) %></td>
-    </tr>
-  <% end %>
+    <%= render partial: 'order_item', collection: @order.order_items %>
   </tbody>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td style="text-align: right;">Total:</td>
+      <td><%= number_to_currency(@order.total) %></td>
+    </tr>
+  </tfoot>
 </table>
-
-<p>Total: <%= number_to_currency(@order.total) %></p>
 </div>

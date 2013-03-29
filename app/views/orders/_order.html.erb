@@ -1,0 +1,6 @@
+<tr>
+  <td><%= link_to "Order ##{order.id}", account_order_path(order) %></td>
+  <td><%= number_to_currency(order.total) %></td>
+  <td><%= order.created_at.to_s(:short) %></td>
+  <td><%= order.status %></td>
+</tr>

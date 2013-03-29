@@ -12,7 +12,7 @@
   <% else %>
   <li>
   <% end %>
-  <%= link_to "#{statuses[status] || 0} #{status}", admin_dashboard_path(status: status) %>
+  <%= link_to status_count(status), admin_dashboard_path(status: status) %>
   </li>
 <% end %>
 </ul>

@@ -1,7 +1,5 @@
-<h2> Title: <%= @product.title %> </h2>
-<br>
+<h2>Title: <%= @product.title %></h2>
 <p><%= image_tag @product.image.url(:medium) %></p>
-<br>
 <p>Description: <%= @product.description %></p>
 <p>Categories:</p>
 <% @product.categories.each do |category| %>
