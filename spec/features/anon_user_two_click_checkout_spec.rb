@@ -11,7 +11,7 @@ describe 'two click checkout process' do
     it 'should not have a two click checkout option' do
       FactoryGirl.create(:product)
       visit '/products/1'
-      page.should_not have_button('2-Click')
+      page.should_not have_button('Buy Now')
     end
   end
 
@@ -24,7 +24,7 @@ describe 'two click checkout process' do
       fill_in 'sessions_password', with: 'password'
       click_button 'Login'
       visit '/products/1'
-      page.should have_button('2-Click')
+      page.should have_button('Buy Now')
     end
   end
 end
