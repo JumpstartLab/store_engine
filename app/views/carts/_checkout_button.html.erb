@@ -5,11 +5,10 @@
             data-image="/128x128.png"
             data-name="Frank's Creations"
             data-description="Purchase"
+            data-label="Checkout"
             data-amount="<%= price * 100 %>">
     </script>
   <% end %>
 <% else %>
   <%= button_to 'Checkout', login_path, class: 'btn', method: :get %>
 <% end %>
-
-
