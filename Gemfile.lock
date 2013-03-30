@@ -196,6 +196,10 @@ GEM
     simple_form (2.1.0)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
+    simplecov (0.7.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.7.1)
+    simplecov-html (0.7.1)
     slop (3.4.4)
     sorcery (0.8.1)
       bcrypt-ruby (~> 3.0.0)
@@ -247,6 +251,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 3.2.3)
   simple_form
+  simplecov
   sorcery
   sqlite3
   uglifier (>= 1.0.3)

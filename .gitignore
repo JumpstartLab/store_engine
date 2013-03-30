@@ -19,3 +19,6 @@
 
 # paperclip images
 /public/system
+
+# simplecov coverage folder
+/coverage
