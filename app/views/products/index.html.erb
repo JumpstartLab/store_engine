@@ -3,15 +3,17 @@
 <% end %>
 
 <div class="btn-group">
-  <a class="btn btn-primary" href="/">Select A Category</a>
-  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    Select A Category
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu">
     <li><a href="/">Show All</a></li>
     <% unless @categories.nil? %>
       <% @categories.each do |category| %>
-      <li><%=link_to category.title, products_path(category_id: category.id) %></li>
+      <li>
+        <%=link_to category.title, products_path(category_id: category.id) %>
+      </li>
       <% end %>
     <% end %>
   </ul>
