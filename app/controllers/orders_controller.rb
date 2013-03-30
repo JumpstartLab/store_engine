@@ -10,7 +10,12 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
+    order = Order.find(params[:id])
+    if current_user.id == order.user_id
+      @order = Order.find(params[:id])
+    else
+      redirect_to account_orders_path
+    end
   end
 
   def create
@@ -44,9 +49,5 @@ class OrdersController < ApplicationController
     else
       redirect_to cart_path, :notice => "Checkout failed."
     end
-  end
-
-  def show
-    @order = Order.find(params[:id])
   end
 end

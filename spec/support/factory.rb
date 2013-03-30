@@ -12,6 +12,7 @@ FactoryGirl.define do
 
   factory :order do
     status 'pending'
+    # user_id '1'
   end
 
   factory :product do
