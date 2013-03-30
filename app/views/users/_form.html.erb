@@ -1,0 +1,9 @@
+<%= simple_form_for @user do |f| %>
+    <%= f.input :full_name, input_html: { placeholder: 'Name' } %>
+    <%= f.input :email, input_html: { placeholder: 'example@gmail.com' } %>
+    <%= f.input :display_name, input_html: { placeholder: 'Username' } %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+    <%= f.hidden_field :admin, value: false %>
+    <%= f.button :submit %>
+<% end %>

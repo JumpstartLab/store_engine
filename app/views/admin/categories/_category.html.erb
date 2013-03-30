@@ -1,0 +1,17 @@
+<thead>
+  <tr>
+    <th><%= category.title %> <%= link_to 'Edit', edit_admin_category_path(category) %></th>
+  </tr>
+</thead>
+<tbody>
+  <% category.products.each do |product| %>
+    <tr>
+      <td><%= product.title %></td>
+    </tr>
+  <% end %>
+  <% if category.products.count == 0 %>
+    <tr>
+      <td>No products assigned</td>
+    </tr>
+  <% end %>
+</tbody>

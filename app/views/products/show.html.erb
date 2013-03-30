@@ -1,0 +1,12 @@
+<h2>Title: <%= @product.title %></h2>
+<p><%= image_tag @product.image.url(:medium) %></p>
+<p>Description: <%= @product.description %></p>
+<p>Categories:</p>
+<% @product.categories.each do |category| %>
+  <p><%= category.title %></p>
+<% end %>
+<br>
+<p>Price: <%= number_to_currency(@product.price) %></p>
+<br>
+<%= render partial: 'add_to_cart_button', locals: {product: @product} %>
+<%= render partial: 'buy_now_button', locals: {product: @product} %>

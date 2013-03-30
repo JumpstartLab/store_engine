@@ -1,0 +1,25 @@
+<%= link_to "Horse Teeth", root_path, :class => 'brand' %>
+<ul class="nav pull-right">
+  <% if logged_in? %>
+    <li>
+      <%= render 'layouts/logout_button' %>
+    </li>
+  <% else %>
+    <li>
+    <%= link_to 'Login', login_path  %>
+    </li>
+  <% end %>
+  <% if logged_in? %>
+    <li>
+    <%= link_to 'Account', account_path %>
+    </li>
+  <% else %>
+    <li>
+    <%= link_to 'Sign up', signup_path %>
+    </li>
+  <% end %>
+    <li>
+    <%= button_to "cart #{cart_count}", cart_path,
+                  class: 'btn btn-warning', method: :get %>
+    </li>
+</ul>

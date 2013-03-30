@@ -1,0 +1,18 @@
+<%= render partial: '/users/user_navigation', :locals => { active: false } %>
+
+<div class="span8">
+
+  <h1>Order History</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <th>#</th>
+      <th>Total</th>
+      <th>Order Date</th>
+      <th>Order Status</th>
+    </thead>
+    <tbody>
+      <%= render partial: 'order', collection: current_user.orders %>
+    </tbody>
+  </table>
+</div>

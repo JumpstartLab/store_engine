@@ -1,0 +1,17 @@
+<% @cart.each do |product, quantity| %>
+<tr>
+  <td><%= link_to product.title, product_path(product) %>
+    <br>
+    <%= link_to 'Remove', remove_item_cart_path(remove_item: { product_id: product.id }),
+                          :confirm => 'Are you sure?', :method => :put %>
+  </td>
+  <td><%= product.price %></td>
+  <td>
+    <%= simple_form_for :carts, url: '/cart', method: :put do |f| %>
+      <%= f.hidden_field :product_id, value: product.id %>
+      <%= f.input_field :quantity, value: quantity, class: 'span1' %>
+      <%= f.button :submit, 'Update' %>
+    <% end %>
+  </td>
+</tr>
+<% end %>

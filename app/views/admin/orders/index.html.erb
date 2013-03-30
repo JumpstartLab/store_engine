@@ -1,0 +1,27 @@
+<%= render partial: 'shared/admin_navigation', locals: { active: :dashboard } %>
+
+<div class="span8">
+  <h1>Dashboard</h1>
+  <hr>
+
+<% if @count > 0 %>
+  <%= render partial: 'admin_dashboard_nav', locals: {active_tab: @active_tab,
+                                                      count: @count,
+                                                      statuses: @statuses} %>
+  <br>
+  <table class="table">
+  <thead>
+    <th>#</th>
+    <th>Created at</th>
+    <th>Status</th>
+    <th>Modify</th>
+  </thead>
+  <tbody>
+    <%= render @orders %>
+  </tbody>
+  </table>
+<% else %>
+  No orders!
+<% end %>
+
+</div>

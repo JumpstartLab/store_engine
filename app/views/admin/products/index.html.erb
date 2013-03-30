@@ -1,0 +1,26 @@
+<%= render partial: 'shared/admin_navigation', :locals => { active: :products }  %>
+
+<div class="span8">
+  <h1>Products</h1>
+  <hr>
+
+  <div class="pull-right">
+  <%= button_to 'Create Product', new_admin_product_path, method: :get, class: 'btn btn-large btn-primary' %>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Categories</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @products %>
+    </tbody>
+  </table>
+
+</div>

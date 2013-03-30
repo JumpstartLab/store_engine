@@ -1,0 +1,27 @@
+<tr>
+  <td><%= link_to product.title, product_path(product) %></td>
+  <td><%= number_to_currency(product.price) %></td>
+  <td>
+  <% product.categories.each do |category| %>
+  <%= category.title %> <br>
+  <% end %>
+  </td>
+  <td>
+    <%= render partial: 'product_status', locals: { product: product } %>
+  </td>
+  <td>
+    <div class="btn-group">
+      <button class="btn dropdown-toggle" data-toggle="dropdown">Modify <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li>
+          <%= link_to 'Edit', edit_admin_product_path(product) %>
+        </li>
+        <li class="divider"></li>
+          <%= render partial: 'retire_active_button', locals: { product: product } %>
+        <li>
+          <%= link_to 'Delete', admin_product_path(product), :confirm => 'Are you sure?', :method => :delete %>
+        </li>
+      </ul>
+    </div>
+  </td>
+</tr>

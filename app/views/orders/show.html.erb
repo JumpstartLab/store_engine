@@ -1,0 +1,26 @@
+<%= render partial: '/users/user_navigation', :locals => { active: false } %>
+
+<div class="span8">
+
+<h1>Order # <%= @order.id %></h1>
+<p>Date Order Placed: <%= @order.created_at.to_s(:short) %></p>
+<p>Status: <%= @order.status %> as of <%=@order.updated_at.to_s(:short) %></p>
+
+<table class="table table-striped">
+  <thead>
+    <th>Item Name </th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+  </thead>
+  <tbody>
+    <%= render partial: 'order_item', collection: @order.order_items %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td style="text-align: right;">Total:</td>
+      <td><%= number_to_currency(@order.total) %></td>
+    </tr>
+  </tfoot>
+</table>
+</div>
