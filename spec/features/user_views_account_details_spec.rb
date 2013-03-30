@@ -3,7 +3,6 @@ require 'spec_helper'
 describe 'user account detail view' do
   context 'when the user is logged in' do
     before(:each) do
-      #Log in User
       @user = FactoryGirl.create(:user)
       visit '/login'
       fill_in 'sessions_email', with: 'raphael@example.com'

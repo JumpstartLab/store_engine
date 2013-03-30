@@ -3,21 +3,20 @@ class CartsController < ApplicationController
 
   def show
     session[:return_to] = request.fullpath
-    @cart = Cart.new(session[:cart]).representation
   end
 
   def update
-    session[:cart] = Cart.new(session[:cart]).update(params[:carts])
+    session[:cart] = current_cart.update(params[:carts])
     redirect_to(:back)
   end
 
   def remove_item
-    session[:cart] = Cart.new(session[:cart]).remove_item(params[:remove_item])
+    session[:cart] = current_cart.remove_item(params[:remove_item])
     redirect_to(:back)
   end
 
   def destroy
-    session[:cart] = {}
+    session[:cart] = current_cart.destroy
     redirect_to root_path, :notice  => "Cart cleared."
   end
 end

@@ -20,13 +20,13 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  # gem 'fabrication'
   gem 'sqlite3'
   gem 'cane'
   gem 'reek'
   gem 'debugger'
   gem 'capybara'
   gem 'simplecov'
+  gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 end
 
 group :test do

@@ -17,7 +17,7 @@ describe 'two click checkout process' do
   end
 
   context 'when the user is logged in' do
-    it 'the buy now option should ' do
+    xit 'the buy now option should be present' do
       FactoryGirl.create(:user)
       FactoryGirl.create(:product)
       visit '/login'
@@ -25,7 +25,7 @@ describe 'two click checkout process' do
       fill_in 'sessions_password', with: 'password'
       click_button 'Login'
       visit '/products/1'
-      page.should have_button('Buy Now')
+      page.should have_xpath("//button[@class='stripe-button-el']")
     end
   end
 end

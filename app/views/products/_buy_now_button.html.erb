@@ -1,8 +1,14 @@
 <% if logged_in? %>
-  <%= simple_form_for [ current_user, Order.new ], url: buy_now_path do |f| %>
-    <%= f.hidden_field :product_id, value: product.id %>
-    <%= f.hidden_field :quantity, value: '1' %>
-    <%= f.button :submit, 'Buy Now', { onclick: "return confirm('Buy one #{product.title}?')" } %>
+  <%= form_tag buy_now_path do %>
+    <%= hidden_field_tag 'order', product.id.to_s %>
+    <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+            data-key="pk_test_osSOH0LyEEACshdRsLjyvGSz"
+            data-image="/128x128.png"
+            data-name="Frank's Creations"
+            data-description="Order Form"
+            data-label="Buy Now"
+            data-amount="<%= product.price * 100 %>">
+    </script>
   <% end %>
 <% else %>
   <%= button_to "Enable 'Buy Now'", login_path, method: :get, class: 'btn' %>
