@@ -26,6 +26,7 @@ group :development, :test do
   gem 'reek'
   gem 'debugger'
   gem 'capybara'
+  gem 'simplecov'
 end
 
 group :test do
