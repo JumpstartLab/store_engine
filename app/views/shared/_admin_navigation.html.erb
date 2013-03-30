@@ -1,26 +1,14 @@
 <div class="span3">
   <ul class="nav nav-list">
     <li class="nav-header">ADMIN</li>
-    <% if active == :dashboard %>
-      <li class="active">
-    <% else %>
-      <li>
-    <% end %>
-      <a href="/admin/dashboard">Dashboard</a>
+    <li class="<%= active == :dashboard ? 'active' : '' %>">
+      <%= link_to "Dashboard", admin_dashboard_path %>
     </li>
-    <% if active == :products %>
-      <li class="active">
-    <% else %>
-      <li>
-    <% end %>
-      <a href="/admin/products">Products</a>
+    <li class="<%= active == :products ? 'active' : '' %>">
+      <%= link_to "Products", admin_products_path %>
     </li>
-    <% if active == :categories %>
-      <li class="active">
-    <% else %>
-      <li>
-    <% end %>
-      <a href="/admin/categories">Categories</a>
+    <li class="<%= active == :categories ? 'active' : '' %>">
+      <%= link_to "Categories", admin_categories_path %>
     </li>
   </ul>
 </div>
