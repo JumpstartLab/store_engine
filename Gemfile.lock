@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: ce34d9ef8b1c8522206294f651b37e9f1e528302
+  specs:
+    stripe (1.7.11)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -161,6 +169,8 @@ GEM
       ruby2ruby (~> 2.0.2)
       ruby_parser (~> 3.1.1)
       sexp_processor
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -249,5 +259,6 @@ DEPENDENCIES
   simple_form
   sorcery
   sqlite3
+  stripe!
   uglifier (>= 1.0.3)
   unicorn

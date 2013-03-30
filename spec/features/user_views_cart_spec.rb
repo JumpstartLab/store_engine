@@ -3,17 +3,17 @@ require 'spec_helper'
 describe 'the user cart view' do
   context 'when there are no items in the cart' do
     it 'displays a message that the cart is empty' do
-      visit '/cart'
+      visit cart_path
       expect(page).to have_content('empty')
     end
   end
 
   context 'when there are items in the cart' do
-    before do
+    before(:each) do
       product = FactoryGirl.create(:product)
       visit product_path(product)
       click_button 'Add to Cart'
-      visit '/cart'
+      visit cart_path
     end
 
     it 'shows the cart with items quantities and prices' do

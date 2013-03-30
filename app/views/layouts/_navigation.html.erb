@@ -19,7 +19,7 @@
     </li>
   <% end %>
     <li>
-    <%= button_to "cart #{cart_count}", cart_path,
+    <%= button_to "cart #{current_cart.count}", cart_path,
                   class: 'btn btn-warning', method: :get %>
     </li>
 </ul>

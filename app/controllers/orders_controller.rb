@@ -14,17 +14,11 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.create(status: 'pending', user_id: current_user.id)
-
-    session[:cart].each do |product_id, quantity|
-      product = Product.find(product_id)
-      @order.order_items.create(product_id: product.id,
-                               unit_price: product.price,
-                               quantity: quantity)
-    end
-
+    @order = Order.create_and_charge(cart: current_cart,
+                                     user: current_user,
+                                     token: params[:stripeToken])
     if @order.valid?
-      session[:cart] = {}
+      session[:cart] = current_cart.destroy
       redirect_to user_order_path(current_user, @order), :notice => "Successfully created order!"
     else
       redirect_to cart_path, :notice => "Checkout failed."
@@ -32,14 +26,11 @@ class OrdersController < ApplicationController
   end
 
   def buy_now
-    @order = Order.create(status: 'pending', user_id: current_user.id)
-
-    product = Product.find(params[:order][:product_id])
-    @order.order_items.create(product_id: product.id,
-                              unit_price: product.price,
-                              quantity: params[:order][:quantity])
-
-    if @order.save
+    @order = Order.create_and_charge(cart: Cart.new({params[:order] => '1'}),
+                                     user: current_user,
+                                     token: params[:stripeToken])
+    if @order.valid?
+      session[:cart] = current_cart.destroy
       redirect_to user_order_path(current_user, @order), :notice => "Successfully created order!"
     else
       redirect_to cart_path, :notice => "Checkout failed."

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  helper_method :current_cart
 
   def require_admin
     if current_user == false
@@ -17,5 +18,9 @@ class ApplicationController < ActionController::Base
 
   def find_or_create_cart
     session[:cart] ||= Hash.new(0)
+  end
+
+  def current_cart
+    @cart ||= Cart.new(session[:cart])
   end
 end

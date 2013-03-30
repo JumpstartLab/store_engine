@@ -5,8 +5,14 @@ class Cart
     @session = session
   end
 
-  def representation
-    Hash[session.map { |id, quantity| [Product.find(id), quantity] }]
+  def items
+    session.map do |id, quantity|
+      CartItem.new(Product.find(id), quantity)
+    end
+  end
+
+  def total
+    items.map { |item| item.total }.inject(&:+)
   end
 
   def remove_item(remove_item_param)
@@ -24,8 +30,16 @@ class Cart
     session
   end
 
+  def destroy
+    session = {}
+  end
+
   def count
     session.present? ? "(#{calculate_count})" : nil
+  end
+
+  def empty?
+    items.empty?
   end
 
 private
