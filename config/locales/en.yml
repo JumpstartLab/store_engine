@@ -2,6 +2,7 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  remember: 'Yes, remember me'
   details: 'Details'
   account:
     self: 'Account'
@@ -67,7 +68,6 @@ en:
       description: 'This sweater is made of itchy wool'
     session:
       email: 'Email'
-      remember: 'Yes, remember me'
     user:
       email: 'Email'
       fullname: 'Full name'

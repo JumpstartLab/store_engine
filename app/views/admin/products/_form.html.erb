@@ -12,5 +12,5 @@
   <% end %>
   <%= f.association :categories %>
   <%= f.input :status, as: :radio_buttons, collection: ['active', 'retired'] %>
-  <%= f.button :submit %>
+  <%= f.button :submit, t('product.create') %>
 <% end %>

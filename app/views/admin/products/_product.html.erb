@@ -3,7 +3,7 @@
   <td><%= number_to_currency(product.price) %></td>
   <td>
   <% product.categories.each do |category| %>
-  <%= category.title %> <br>
+    <%= category.title %> <br>
   <% end %>
   </td>
   <td>
@@ -11,7 +11,7 @@
   </td>
   <td>
     <div class="btn-group">
-      <button class="btn dropdown-toggle" data-toggle="dropdown">Modify <span class="caret"></span></button>
+      <button class="btn dropdown-toggle" data-toggle="dropdown"><%= t('model.modify') %> <span class="caret"></span></button>
       <ul class="dropdown-menu">
         <li>
           <%= link_to t('crud.edit'), edit_admin_product_path(product) %>
@@ -19,7 +19,7 @@
         <li class="divider"></li>
           <%= render partial: 'retire_active_button', locals: { product: product } %>
         <li>
-          <%= link_to t('crud.edit'), admin_product_path(product), confirm: t('confirm'), method: :delete %>
+          <%= link_to t('crud.delete'), admin_product_path(product), confirm: t('confirm'), method: :delete %>
         </li>
       </ul>
     </div>

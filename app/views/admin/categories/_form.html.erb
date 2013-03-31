@@ -1,4 +1,4 @@
 <%= simple_form_for [:admin, @category] do |f| %>
   <%= f.input :title, input_html: { placeholder: t('placeholder.category.title') } %>
-  <%= f.button :submit %>
+  <%= f.button :submit, t('categories.create') %>
 <% end %>
