@@ -1,0 +1,117 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+fr:
+  details: 'Détails'
+  account:
+    self: 'Compte'
+    email: 'Email'
+    fullname: 'Nom'
+    displayname: "Nom d'afficher"
+    create: 'Créer un nouveau compte'
+    details: 'Détails du compte'
+    edit: 'Modifier le compte'
+    update: 'Mise à jour'
+  time:
+    asof: 'à partir de'
+  languages:
+    english: 'Anglais'
+    french: 'Français'
+    creaturespeak: 'Créature-parler'
+  back:
+    home: "Retour à l'Accueil"
+  cart:
+    isempty: 'Votre panier est vide. Commencez à magasiner!'
+    empty: 'Vide le panier'
+    confirmlogout: '«Etes-vous sûr? Cela effacera votre panier'
+    add: 'Ajouter au panier'
+  store:
+    name: "Créatures de Frankie"
+  confirm: 'Etes-vous sûr?'
+  checkout: 'Passer le commander'
+  purchase: 'Acheter'
+  action:
+    remove: 'Supprimer'
+  bling:
+    bling: '€'
+  model:
+    createdat: 'Créé'
+    updatedat: 'Mise à jour à'
+    status: 'Statut'
+    modify: 'Modifier'
+  navigation:
+    cart: 'Panier'
+    account: 'Compte'
+    logout: 'Déconnexion'
+    login: 'Connexion'
+    signup: 'Inscrivez-vous'
+    languages: 'zomg!'
+  home:
+    welcome: 'Bienvenue'
+  categories:
+    self: 'Catégories'
+    edit: 'Modifier la Catégorie'
+    create: 'Créer une catégorie'
+    showall: 'Tout afficher'
+    noproducts: 'Pas de produits affectés'
+    select: 'Choisissez une catégorie'
+  crud:
+    edit: 'Modifier'
+    delete: 'Supprimer'
+    update: 'Mise à jour'
+  placeholder:
+    category:
+      title: 'La Matière Noire'
+    product:
+      title: 'Pull Itchy'
+      description: 'Ce chandail est fait de laine qui démange'
+    session:
+      email: 'Email'
+      remember: 'Oui, se souvenir de moi'
+    user:
+      email: 'Email'
+      fullname: 'Nom complet'
+      displayname: "Nom d'affichage"
+  total: 'Total'
+  admin:
+    self: 'Admin'
+    dashboard: 'Tableau de Bord'
+  product:
+    self: 'Produit'
+    collection: 'Produits'
+    title: 'Titre'
+    quantity: 'Quantité'
+    description: 'Description'
+    price: 'Prix'
+    subtotal: 'Total partiel'
+    edit: 'Modifier le produit'
+    create: 'Créer un produit'
+    name: 'Nom de Produit'
+    buynow: 'Acheter Maintenant'
+    enablebuynow: "Activer 'Acheter Maintenant'"
+    status:
+      active: 'Active'
+      retired: 'Retire'
+      activate: 'Activer'
+      retire: 'Retirer'
+    image:
+      attach: 'Attachez une nouvelle image'
+  order:
+    self: 'Commande'
+    collection: 'Commandes'
+    none: 'Pas de commande!'
+    history: 'Historique des Commandes'
+    date: 'Date de commande'
+    status: 'Statut de Commande'
+    purchasername: "Nom d'acheteur"
+    purchaseremail: "Email d'acheteur"
+    status:
+      pending: 'En attente'
+      cancelled: 'Annulée'
+      paid: 'Payé'
+      shipped: 'Expédiés'
+      returned: 'Retour'
+      next:
+        pending: 'annuler'
+        paid: 'marquer comme expédiée'
+        shipped: 'marquer comme retour'

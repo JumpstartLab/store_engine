@@ -1,0 +1,11 @@
+fr:
+  simple_form:
+      labels:
+        email: 'HAHA'
+        user:
+          username: 'RARARA'
+          email: 'eraily'
+          password: 'PASSYPASS'
+          edit:
+            username: 'CHANGER MA BELLE'
+            password: 'CHANGER LE MOTE DE CLET MERCI'

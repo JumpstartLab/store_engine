@@ -6,15 +6,14 @@
     <br>
     <%= cart_item.product.description %>
     <br>
-    <%= link_to 'Remove', remove_item_cart_path(remove_item: { product_id: cart_item.product.id }),
-                          :confirm => 'Are you sure?', :method => :put %>
+    <%= link_to t('action.remove'), remove_item_cart_path(remove_item: { product_id: cart_item.product.id }), confirm: t('confirm'), method: :put %>
   </td>
   <td><%= number_to_currency(cart_item.unit_price) %></td>
   <td>
     <%= simple_form_for :carts, url: '/cart', method: :put do |f| %>
       <%= f.hidden_field :product_id, value: cart_item.product.id %>
       <%= f.input_field :quantity, value: cart_item.quantity, class: 'span1' %>
-      <%= f.button :submit, 'Update' %>
+      <%= f.button :submit, t('crud.update') %>
     <% end %>
   </td>
 </tr>

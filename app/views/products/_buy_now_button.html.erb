@@ -4,12 +4,11 @@
     <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
             data-key="pk_test_osSOH0LyEEACshdRsLjyvGSz"
             data-image="/128x128.png"
-            data-name="Frank's Creations"
-            data-description="Order Form"
-            data-label="Buy Now"
+            data-name="<%= t('store.name') %>"
+            data-label="<%= t('product.buynow') %>"
             data-amount="<%= product.price * 100 %>">
     </script>
   <% end %>
 <% else %>
-  <%= button_to "Enable 'Buy Now'", login_path, method: :get, class: 'btn' %>
+  <%= button_to t('product.enablebuynow'), login_path, method: :get, class: 'btn' %>
 <% end %>

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_cart
+  before_filter :get_locale
 
   def require_admin
     if current_user == false
@@ -22,5 +23,11 @@ class ApplicationController < ActionController::Base
 
   def current_cart
     @cart ||= Cart.new(session[:cart])
+  end
+
+  private
+
+  def get_locale
+    I18n.locale = session[:i18n] || I18n.default_locale || :en
   end
 end

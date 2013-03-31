@@ -1,19 +1,16 @@
 <% if logged_in? %>
-    <h1>Welcome, <%= current_user.full_name %>!</h1>
+    <h1><%= "#{t 'home.welcome'}, #{current_user.full_name}" %>!</h1>
 <% end %>
 
 <div class="btn-group">
   <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Select A Category
-    <span class="caret"></span>
+    <%= t('categories.select') %> <span class="caret"></span>
   </a>
   <ul class="dropdown-menu">
-    <li><a href="/">Show All</a></li>
-    <% unless @categories.nil? %>
+    <li><%= link_to t('categories.showall'), root_path %></li>
+    <% if @categories.present? %>
       <% @categories.each do |category| %>
-      <li>
-        <%=link_to category.title, products_path(category_id: category.id) %>
-      </li>
+      <li><%=link_to category.title, products_path(category_id: category.id) %></li>
       <% end %>
     <% end %>
   </ul>

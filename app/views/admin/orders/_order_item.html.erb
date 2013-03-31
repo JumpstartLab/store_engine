@@ -2,13 +2,12 @@
   <td><%= link_to order_item.product.title, product_path(order_item.product) %></td>
   <% if @order.status == ('pending' || 'paid') %>
   <td>
-    <%= simple_form_for :admin_order_item,
-          url: "/admin/order_items/#{order_item.id}", method: :put do |f| %>
+    <%= simple_form_for :admin_order_item, url: "/admin/order_items/#{order_item.id}", method: :put do |f| %>
       <%= f.hidden_field :order_item_id, value: order_item.id %>
       <%= f.input_field :quantity, value: order_item.quantity, class: 'span1' %>
-      <%= f.button :submit, 'Update', class: 'btn-mini' %>
+      <%= f.button :submit, t('crud.update'), class: 'btn-mini' %>
     <% end %>
-    <%= button_to 'Delete', admin_order_item_path(order_item), method: :delete, class: 'btn btn-mini btn-danger' %>
+    <%= button_to t('crud.delete'), admin_order_item_path(order_item), method: :delete, class: 'btn btn-mini btn-danger' %>
   </td>
   <% else %>
   <td><%= order_item.quantity %></td>

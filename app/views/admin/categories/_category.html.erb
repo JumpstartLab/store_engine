@@ -1,6 +1,6 @@
 <thead>
   <tr>
-    <th><%= category.title %> <%= link_to 'Edit', edit_admin_category_path(category) %></th>
+    <th><%= category.title %> <%= link_to t('crud.edit'), edit_admin_category_path(category) %></th>
   </tr>
 </thead>
 <tbody>
@@ -11,7 +11,7 @@
   <% end %>
   <% if category.products.count == 0 %>
     <tr>
-      <td>No products assigned</td>
+      <td><%= t('categories.noproducts') %></td>
     </tr>
   <% end %>
 </tbody>

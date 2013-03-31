@@ -2,7 +2,7 @@
   <div class="products span3">
     <h3><%= product.title.capitalize %></h3>
     <p><%= image_tag product.image.url(:thumb) %></p>
-    <p>Description: <%= product.description %></p>
-    <p>Price: <%= number_to_currency(product.price) %></p>
+    <p><%= t('product.description') %>: <%= product.description %></p>
+    <p><%= t('product.price') %>: <%= number_to_currency(product.price) %></p>
   </div>
 <% end %>

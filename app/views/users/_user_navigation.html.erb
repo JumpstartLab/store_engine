@@ -1,19 +1,11 @@
 <div class="span3">
   <ul class="nav nav-list">
-    <li class="nav-header">USER</li>
-    <% if active == :account_details %>
-      <li class="active">
-    <% else %>
-      <li>
-    <% end %>
-      <a href="/account/profile">Account Details</a>
+    <li class="nav-header"><%= t('account.self') %></li>
+    <li class="<%= active == :account_details ? 'active' : '' %>">
+      <%= link_to t('details'), account_profile_path %>
     </li>
-    <% if active == :orders %>
-      <li class="active">
-    <% else %>
-      <li>
-    <% end %>
-      <%= link_to "Order History", account_orders_path %>
+    <li class="<%= active == :orders ? 'active' : '' %>">
+      <%= link_to t('order.history'), account_orders_path %>
     </li>
   </ul>
 </div>
