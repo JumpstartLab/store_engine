@@ -73,7 +73,7 @@ describe Product do
       end
 
       it 'returns all active products for the specified category' do
-        products = Product.apply_filter(1)
+        products = Product.apply_filter({category_id: 1})
         expect(products.count).to eq 1
       end
     end

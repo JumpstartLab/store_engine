@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.apply_filter(params[:category_id])
+    @products = Product.apply_filter(params)
     @categories = Category.all
   end
 

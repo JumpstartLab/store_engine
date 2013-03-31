@@ -4,6 +4,37 @@
   <h1>Dashboard</h1>
   <hr>
 
+  <form action="<%= admin_dashboard_path %>" method="get" class="form-search">
+    <label for="admin-order-search-status">status:</label>
+    <select id="admin-order-search-status" name="status" class="input-small">
+      <option <%= 'selected' if params[:status] == 'pending' %>>pending</option>
+      <option <%= 'selected' if params[:status] == 'paid' %>>paid</option>
+      <option <%= 'selected' if params[:status] == 'shipped' %>>shipped</option>
+      <option <%= 'selected' if params[:status] == 'cancelled' %>>cancelled</option>
+      <option <%= 'selected' if params[:status] == 'returned' %>>returned</option>
+    </select>
+    <label for="admin-order-search-price-symbol">price:</label>
+    <select id='admin-order-search-price-symbol' name="price_symbol" class="input-mini">
+      <option <%= 'selected' if params[:price_symbol] == '>' %>>></option>
+      <option <%= 'selected' if params[:price_symbol] == '<' %>><</option>
+      <option <%= 'selected' if params[:price_symbol] == '=' %>>=</option>
+    </select>
+    <div class="input-prepend">
+      <span class="add-on">$</span>
+      <input class="span1" id="admin-order-search-price" type="text" placeholder="50.00">
+    </div>
+    <label for="admin-order-search-date-symbol">date:</label>
+    <select id='admin-order-search-date-symbol' name="date_symbol" class="input-mini">
+      <option <%= 'selected' if params[:date_symbol] == '>' %>>></option>
+      <option <%= 'selected' if params[:date_symbol] == '<' %>><</option>
+      <option <%= 'selected' if params[:date_symbol] == '=' %>>=</option>
+    </select>
+    <input type="date" class="input-medium" id="admin-order-search-date">
+    <label for="admin-order-search-email">purchaser email:</label>
+    <input type="text" class="input-medium" id="admin-order-search-email">
+    <button type="submit" class="btn">Search</button>
+  </form>
+
 <% if @count > 0 %>
   <%= render partial: 'admin_dashboard_nav', locals: {active_tab: @active_tab,
                                                       count: @count,

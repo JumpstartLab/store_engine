@@ -12,11 +12,16 @@ class Product < ActiveRecord::Base
                     format: { with: /^\d+??(?:\.\d{0,2})?$/ },
                     numericality: { greater_than: 0 }
 
-  def self.apply_filter(category_id = nil)
-    if category_id.nil?
-      Product.find_all_by_status('active')
+  def self.apply_filter(params = {})
+    if params[:category_id].present?
+      Category.find(params[:category_id]).products.where(status: 'active')
+    elsif params[:search].present?
+      where("title LIKE ? OR description LIKE ? AND status = ?",
+            "%#{params[:search]}%",
+            "%#{params[:search]}%",
+            "active")
     else
-      Category.find(category_id).products.where(status: 'active')
+      Product.find_all_by_status('active')
     end
   end
 
