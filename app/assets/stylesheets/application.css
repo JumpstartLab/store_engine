@@ -15,6 +15,7 @@
 .content {
   padding: 20px;
   margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+  font-family: Tahoma, sans-serif;
 }
 
 
@@ -30,3 +31,6 @@
 #shopping_cart_summary {
   float: right;
 }
+
+
+

@@ -1,3 +1,86 @@
 @import "bootstrap";
 body { padding-top: 60px; }
 @import "bootstrap-responsive";
+
+
+// Nav Bar
+#navbar a.brand {
+  font-size: 250%;
+  font-family: 'Alex Brush', cursive;
+  color: green;
+  padding-top:18px;
+}
+
+#navbar a.brand:hover {
+  color:#0A3E75;
+}
+
+.navbar .navbar-inner{
+  background-color:blue;
+  background-image: url(banner_paper.jpg);
+}
+//Use this to change the height of the navbar -- may push over the main content
+.navbar .nav{
+  height:50px;
+}
+
+
+// This makes the scrolly hr rule as seen on homepage
+.span12 hr {
+    height: 30px;
+    border-style: solid;
+    border-color: green;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+
+.span12 hr:before {
+    display: block;
+    content: "";
+    height: 30px;
+    margin-top: -31px;
+    border-style: solid;
+    border-color: green;
+    border-width: 0 0 1px 0;
+    border-radius: 20px;
+}
+
+
+//Change the Cart Button Color, Can recreate at http://http://twitterbootstrapbuttons.w3masters.nl/
+
+
+.btn-custom-lighten.active {
+  color: rgba(255, 255, 255, 0.75);
+}
+.btn-custom-lighten {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #1ba854;
+  background-image: -moz-linear-gradient(top, #18964b, #1fc261);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#18964b), to(#1fc261));
+  background-image: -webkit-linear-gradient(top, #18964b, #1fc261);
+  background-image: -o-linear-gradient(top, #18964b, #1fc261);
+  background-image: linear-gradient(to bottom, #18964b, #1fc261);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff18964b', endColorstr='#ff1fc261', GradientType=0);
+  border-color: #1fc261 #1fc261 #148040;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  *background-color: #1fc261;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+}
+.btn-custom-lighten:hover,
+.btn-custom-lighten:focus,
+.btn-custom-lighten:active,
+.btn-custom-lighten.active,
+.btn-custom-lighten.disabled,
+.btn-custom-lighten[disabled] {
+  color: #ffffff;
+  background-color: #1fc261;
+  *background-color: #1cac56;
+}
+.btn-custom-lighten:active,
+.btn-custom-lighten.active {
+  background-color: #18964b ;
+}
