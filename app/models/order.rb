@@ -35,6 +35,10 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    self.order_items.map {|order_item| order_item.subtotal }.inject(&:+)
+    if order_items.present?
+      order_items.map {|order_item| order_item.subtotal }.inject(&:+)
+    else
+      0
+    end
   end
 end

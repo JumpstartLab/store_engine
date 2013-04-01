@@ -19,7 +19,7 @@ describe 'user account detail view' do
       it 'takes them to their order history page' do
         visit 'account/'
         click_link "Order History"
-        expect(page).to have_content("Order Status")
+        expect(page).to have_content("Order History")
       end
     end
 

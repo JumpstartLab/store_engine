@@ -13,8 +13,14 @@
       <li><%=link_to category.title, products_path(category_id: category.id) %></li>
       <% end %>
     <% end %>
-  </ul>
-</div>
+    </ul>
+  </div>
+
+  <form action="<%= products_path %>" method="get" class="form-search">
+    <input type="text" id="product-search" value="<%= params[:search] %>" name="search" class="input-medium search-query">
+    <button type="submit" class="btn">Search</button>
+  </form>
+</section>
 
 <hr>
 

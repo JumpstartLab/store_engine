@@ -26,16 +26,16 @@ describe "admin dashboard" do
 
     it "should show a total number of orders by status" do
       visit '/admin/dashboard'
-      expect(page).to have_content('0 pending')
-      expect(page).to have_content('2 paid')
-      expect(page).to have_content('1 returned')
-      expect(page).to have_content('0 shipped')
-      expect(page).to have_content('0 cancelled')
+      expect(page).to have_content('0 Pending')
+      expect(page).to have_content('2 Paid')
+      expect(page).to have_content('1 Returned')
+      expect(page).to have_content('0 Shipped')
+      expect(page).to have_content('0 Cancelled')
     end
 
     it "should allow for filtering by status" do
       visit '/admin/dashboard'
-      click_link('paid')
+      click_link('Paid')
       expect(page).to have_css('tr', count: 2)
     end
 

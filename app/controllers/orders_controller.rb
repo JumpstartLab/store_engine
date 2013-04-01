@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.find_all_by_user_id(current_user.id)
+    @orders = Search.filter_user_orders(current_user.id, params)
   end
 
   def show

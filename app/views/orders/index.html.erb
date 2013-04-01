@@ -4,6 +4,11 @@
 
   <h1><%= t('order.history') %></h1>
   <hr>
+  <form action="<%= user_orders_path(current_user) %>" method="get" class="form-search">
+    <input type="text" id="order-search" value="<%= params[:search] %>" name="search" class="input-medium search-query">
+    <button type="submit" class="btn">Search</button>
+  </form>
+
   <table class="table table-striped">
     <thead>
       <th>#</th>
@@ -12,7 +17,7 @@
       <th><%= t('model.status') %></th>
     </thead>
     <tbody>
-      <%= render partial: 'order', collection: current_user.orders %>
+      <%= render partial: 'order', collection: @orders %>
     </tbody>
   </table>
 </div>
