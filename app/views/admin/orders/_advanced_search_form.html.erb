@@ -1,32 +1,59 @@
-<form action="<%= admin_dashboard_path %>" method="get" class="form-search">
-  <label for="admin-order-search-status">status:</label>
-  <select id="admin-order-search-status" name="status" class="input-small">
-    <option <%= 'selected' if params[:status] == 'all' %>>all</option>
-    <option <%= 'selected' if params[:status] == 'pending' %>>pending</option>
-    <option <%= 'selected' if params[:status] == 'paid' %>>paid</option>
-    <option <%= 'selected' if params[:status] == 'shipped' %>>shipped</option>
-    <option <%= 'selected' if params[:status] == 'cancelled' %>>cancelled</option>
-    <option <%= 'selected' if params[:status] == 'returned' %>>returned</option>
-  </select>
-  <label for="admin-order-search-price-symbol">price:</label>
-  <select id='admin-order-search-price-symbol' name="price_symbol" class="input-mini">
-    <option <%= 'selected' if params[:price_symbol] == '>' %>>></option>
-    <option <%= 'selected' if params[:price_symbol] == '<' %>><</option>
-    <option <%= 'selected' if params[:price_symbol] == '=' %>>=</option>
-  </select>
-  <div class="input-append">
-    <input class="span1" id="admin-order-search-price" name="price" value="<%= params[:price] %>" type="text" placeholder="10000">
-    <span class="add-on">¢</span>
+<form class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label">Status</label>
+    <div class="controls">
+      <select id="admin-order-search-status" name="status" class="input-small">
+        <option <%= 'selected' if params[:status] == 'all' %>>all</option>
+        <option <%= 'selected' if params[:status] == 'pending' %>>pending</option>
+        <option <%= 'selected' if params[:status] == 'paid' %>>paid</option>
+        <option <%= 'selected' if params[:status] == 'shipped' %>>shipped</option>
+        <option <%= 'selected' if params[:status] == 'cancelled' %>>cancelled</option>
+        <option <%= 'selected' if params[:status] == 'returned' %>>returned</option>
+      </select>
+    </div>
   </div>
-  <label for="admin-order-search-date-symbol">date:</label>
-  <select id='admin-order-search-date-symbol' name="date_symbol" class="input-mini">
-    <option <%= 'selected' if params[:date_symbol] == '>' %>>></option>
-    <option <%= 'selected' if params[:date_symbol] == '<' %>><</option>
-    <option <%= 'selected' if params[:date_symbol] == '=' %>>=</option>
-  </select>
-  <input type="date" name="date" class="input-medium" id="admin-order-search-date">
-  <label for="admin-order-search-email">purchaser email:</label>
-  <input type="text" class="input-medium" id="admin-order-search-email" name="email">
-  <input type="hidden" name="admin" value="true">
-  <button type="submit" class="btn">Search</button>
+
+  <div class="control-group">
+    <label class="control-label">Price</label>
+    <div class="controls">
+      <select id='admin-order-search-price-symbol' name="price_symbol" class="input-mini">
+        <option <%= 'selected' if params[:price_symbol] == '>' %>>></option>
+        <option <%= 'selected' if params[:price_symbol] == '<' %>><</option>
+        <option <%= 'selected' if params[:price_symbol] == '=' %>>=</option>
+      </select>
+      <div class="input-append">
+        <input class="span1" id="admin-order-search-price" name="price" value="<%= params[:price] %>" type="text" placeholder="10000">
+        <span class="add-on">¢</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Date</label>
+    <div class="controls">
+      <select id='admin-order-search-date-symbol' name="date_symbol" class="input-mini">
+        <option <%= 'selected' if params[:date_symbol] == '>' %>>></option>
+        <option <%= 'selected' if params[:date_symbol] == '<' %>><</option>
+        <option <%= 'selected' if params[:date_symbol] == '=' %>>=</option>
+      </select>
+      <input type="date" name="date" value="<%= params[:date] %>" class="span2" id="admin-order-search-date">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Purchaser Email</label>
+    <div class="controls">
+      <input type="text" value="<%= params[:email] %>"class="input-medium" id="admin-order-search-email" name="email">
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <input type="hidden" name="admin" value="true">
+      <button type="submit" class="btn btn-primary">Search Orders</button>
+    </div>
+  </div>
 </form>
+
+<h3>Results</h3>
+<hr>

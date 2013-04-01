@@ -38,7 +38,7 @@ module Search
       order = order.where(status: params[:status])
     end
     if params[:date_symbol].present? && params[:date].present?
-      order = order.where("created_at #{params[:date_symbol]} ?", params[:date])
+      order = order.where("orders.created_at #{params[:date_symbol]} ?", params[:date])
     end
     if params[:email].present?
       order = order.where("email = ?", params[:email])

@@ -1,14 +1,19 @@
-<%= render partial: 'shared/admin_navigation', locals: { active: :dashboard } %>
+<%= render partial: 'shared/admin_navigation',
+           locals: { active: current_page?(admin_dashboard_path) ? :dashboard : :search } %>
 
 <div class="span8">
-  <h1>Dashboard</h1>
+  <h1><% if current_page?(admin_dashboard_path) %>Dashboard<% else %>Search<%end%></h1>
   <hr>
-  <%= render 'advanced_search_form' %>
 
   <% if @count > 0 %>
+
+    <% if current_page?(admin_search_path) %>
+      <%= render 'advanced_search_form' %>
+    <% else %>
     <%= render partial: 'admin_dashboard_nav', locals: {active_tab: @active_tab,
                                                         count: @count,
                                                         statuses: @statuses} %>
+    <% end %>
     <br>
     <table class="table">
     <thead>

@@ -10,5 +10,8 @@
     <li class="<%= active == :categories ? 'active' : '' %>">
       <%= link_to "Categories", admin_categories_path %>
     </li>
+    <li class="<%= active == :search ? 'active' : '' %>">
+      <%= link_to "Search", admin_search_path %>
+    </li>
   </ul>
 </div>
