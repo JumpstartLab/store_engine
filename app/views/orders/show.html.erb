@@ -2,15 +2,15 @@
 
 <div class="span8">
 
-<h1>Order # <%= @order.id %></h1>
-<p>Date Order Placed: <%= @order.created_at.to_s(:short) %></p>
-<p>Status: <%= @order.status %> as of <%=@order.updated_at.to_s(:short) %></p>
+<h1><%= t('order.self') %> #<%= @order.id %></h1>
+<p><%= t('model.createdat') %>: <%= @order.created_at.to_s(:short) %></p>
+<p><%= t('model.status') %>: <%= @order.status %> <%= t('time.asof') %> <%=@order.updated_at.to_s(:short) %></p>
 
 <table class="table table-striped">
   <thead>
-    <th>Item Name </th>
-    <th>Quantity</th>
-    <th>Subtotal</th>
+    <th><%= t('product.name') %></th>
+    <th><%= t('product.quantity') %></th>
+    <th><%= t('product.subtotal') %></th>
   </thead>
   <tbody>
     <%= render partial: 'order_item', collection: @order.order_items %>
@@ -18,7 +18,7 @@
   <tfoot>
     <tr>
       <td></td>
-      <td style="text-align: right;">Total:</td>
+      <td style="text-align: right;"><%= t('total') %>:</td>
       <td><%= number_to_currency(@order.total) %></td>
     </tr>
   </tfoot>

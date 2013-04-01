@@ -1,28 +1,24 @@
-<%= render partial: 'user_navigation', :locals => { active: false } %>
+<%= render partial: 'user_navigation', :locals => { active: :account_details } %>
 
 <div class="span8">
+  <h1><%= @user.display_name || @user.full_name %> <%= t('details') %></h1>
+  <hr>
 
-  <% if @user.display_name.nil? %>
-    <h1><%= @user.full_name %>'s Account Details</h1>
-  <% else %>
-    <h1><%= @user.display_name %>'s Account Details</h1>
-  <% end %>
-
-  <p>EMAIL: <%= @user.email %></p>
-  <p>NAME:<%= @user.full_name %></p>
-  <p>DISPLAY NAME: <%= @user.display_name %> </p>
+  <p><%= t('account.email') %>: <%= @user.email %></p>
+  <p><%= t('account.fullname') %>:<%= @user.full_name %></p>
+  <p><%= t('account.displayname') %>: <%= @user.display_name %> </p>
 
   <hr>
 
-  <h5>Edit Account</h5>
+  <h5><%= t('account.edit') %></h5>
 
   <%= simple_form_for @user do |f| %>
-  <%= f.input :full_name, input_html: { placeholder: 'Name' } %>
-  <%= f.input :email, input_html: { placeholder: 'example@gmail.com' } %>
-  <%= f.input :display_name, input_html: { placeholder: 'Username' } %>
-  <%= f.input :password %>
-  <%= f.input :password_confirmation %>
-  <%= f.hidden_field :admin, value: false %>
-  <%= f.submit "Update Account" %>
+    <%= f.input :full_name, input_html: { placeholder: t('placeholder.user.fullname') } %>
+    <%= f.input :email, input_html: { placeholder: t('placeholder.user.email') } %>
+    <%= f.input :display_name, input_html: { placeholder: t('placeholder.user.displayname') } %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+    <%= f.hidden_field :admin, value: false %>
+    <%= f.submit t('account.update'), class: 'btn' %>
   <% end %>
 </div>

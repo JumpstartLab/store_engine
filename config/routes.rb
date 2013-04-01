@@ -10,6 +10,7 @@ StoreEngine::Application.routes.draw do
   match "/account/orders" => "orders#index"
   get "/account/orders/:id" => "orders#show", :as => "account_order"
   post "/buy_now" => "orders#buy_now", :as => 'buy_now'
+  put "/i18n" => "i18n#update"
 
   resources :sessions, only: [ :new, :create, :destroy ]
   resources :products, only: [ :index, :show ]

@@ -1,7 +1,7 @@
 <%= render partial: 'shared/admin_navigation', locals: { active: :dashboard } %>
 
 <div class="span8">
-  <h1>Dashboard</h1>
+  <h1><%= t 'admin.dashboard' %></h1>
   <hr>
 
 <% if @count > 0 %>
@@ -12,16 +12,16 @@
   <table class="table">
   <thead>
     <th>#</th>
-    <th>Created at</th>
-    <th>Status</th>
-    <th>Modify</th>
+    <th><%= t 'model.createdat' %></th>
+    <th><%= t 'model.status' %></th>
+    <th><%= t 'model.modify' %></th>
   </thead>
   <tbody>
     <%= render @orders %>
   </tbody>
   </table>
 <% else %>
-  No orders!
+  <%= t 'order.none' %>
 <% end %>
 
 </div>

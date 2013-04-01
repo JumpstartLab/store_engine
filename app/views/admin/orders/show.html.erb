@@ -1,21 +1,21 @@
 <%= render partial: 'shared/admin_navigation', locals: { active: false } %>
 
 <div class="span8">
-  <h1>Order #<%= @order.id %></h1>
-  <p>Status: <%= @order.status %></p>
+  <h1><%= t 'order.self' %> #<%= @order.id %></h1>
+  <p><%= t 'model.status' %> <%= @order.status %></p>
   <%= render partial: 'next_status_button', locals: { order: @order } %>
   <hr>
-  <p>Created at: <%= @order.created_at.to_s(:short) %></p>
-  <p>Updated at: <%= @order.updated_at.to_s(:short) %></p>
-  <p>Purchaser name: <%= @order.user.full_name %></p>
-  <p>Purchaser email: <%= @order.user.email %></p>
-  <h2> Products </h2>
+  <p><%= t 'model.createdat' %>: <%= @order.created_at.to_s(:short) %></p>
+  <p><%= t 'model.updatedat' %>: <%= @order.updated_at.to_s(:short) %></p>
+  <p><%= t 'order.purchasername' %>: <%= @order.user.full_name %></p>
+  <p><%= t 'order.purchaseremail' %>: <%= @order.user.email %></p>
+  <h2> <%= t 'product.collection' %> </h2>
   <table class="table">
   <thead>
-    <th>Title</th>
-    <th>Quantity</th>
-    <th>Price</th>
-    <th>Subtotal</th>
+    <th><%= t 'product.title' %></th>
+    <th><%= t 'product.quantity' %></th>
+    <th><%= t 'product.price' %></th>
+    <th><%= t 'product.subtotal' %></th>
   </thead>
   <tbody>
     <%= render partial: 'order_item', collection: @order.order_items %>
@@ -24,7 +24,7 @@
     <tr>
       <td></td>
       <td></td>
-      <td style="text-align: right;">Total</td>
+      <td style="text-align: right;"><%= t 'total' %></td>
       <td><%= number_to_currency(@order.total) %></td>
     </tr>
   </tfoot>

@@ -1,12 +1,12 @@
 <div class="login-form">
-  <h2>Login</h2>
+  <h2><%= t('navigation.login') %></h2>
   <hr>
   <%= simple_form_for :sessions, :url => sessions_path, method: 'POST' do |f| %>
-      <%= f.input :email, input_html: { placeholder: 'Email' } %>
+      <%= f.input :email, input_html: { placeholder: t('placeholder.session.email') } %>
       <%= f.input :password %>
-      <%= f.input :remember_me, as: :boolean, inline_label: 'Yes, remember me', label: false%>
-      <%= f.button :submit, label: 'login', value: 'Login' %>
+      <%= f.input :remember_me, as: :boolean, inline_label: t('remember'), label: false %>
+      <%= f.button :submit, t('navigation.login') %>
   <% end %>
 
-  <%= link_to "Create a New Account", signup_path %>
+  <%= link_to t('account.create'), signup_path %>
 </div>

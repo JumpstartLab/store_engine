@@ -2,4 +2,116 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  remember: 'Yes, remember me'
+  details: 'Details'
+  account:
+    self: 'Account'
+    email: 'Email'
+    fullname: 'Full Name'
+    displayname: 'Display Name'
+    create: 'Create a New Account'
+    details: 'Account Details'
+    edit: 'Edit Account'
+    update: 'Update Account'
+  time:
+    asof: 'as of'
+  languages:
+    english: 'English'
+    french: 'French'
+    creaturespeak: 'Creature-speak'
+  back:
+    home: 'Back to Home'
+  cart:
+    isempty: 'Your cart is empty. Start shopping!'
+    empty: 'Empty Cart'
+    confirmlogout: 'Are you sure? This will clear your cart'
+    add: 'Add to Cart'
+  store:
+    name: "Frankie's Creatures"
+  confirm: 'Are you sure?'
+  checkout: 'Checkout'
+  purchase: 'Purchase'
+  action:
+    remove: 'Remove'
+  bling:
+    bling: '$'
+  model:
+    createdat: 'Created at'
+    updatedat: 'Updated at'
+    status: 'Status'
+    modify: 'Modify'
+  navigation:
+    cart: 'Cart'
+    account: 'Account'
+    logout: 'Logout'
+    login: 'Login'
+    signup: 'Sign Up'
+    languages: 'zomg!'
+  home:
+    welcome: 'Welcome'
+  categories:
+    self: 'Categories'
+    edit: 'Edit Category'
+    create: 'Create Category'
+    showall: 'Show All'
+    noproducts: 'No products assigned'
+    select: 'Select a Category'
+  crud:
+    edit: 'Edit'
+    delete: 'Delete'
+    update: 'Update'
+  placeholder:
+    category:
+      title: 'Dark matter'
+    product:
+      title: 'Itchy Sweater'
+      description: 'This sweater is made of itchy wool'
+    session:
+      email: 'Email'
+    user:
+      email: 'Email'
+      fullname: 'Full name'
+      displayname: 'Display name'
+  total: 'Total'
+  admin:
+    self: 'Admin'
+    dashboard: 'Dashboard'
+  product:
+    self: 'Product'
+    collection: 'Products'
+    title: 'Title'
+    quantity: 'Quantity'
+    description: 'Description'
+    price: 'Price'
+    subtotal: 'Subtotal'
+    edit: 'Edit Product'
+    create: 'Create Product'
+    name: 'Product Name'
+    buynow: 'Buy Now'
+    enablebuynow: "Enable 'Buy Now'"
+    status:
+      active: 'Active'
+      retired: 'Retired'
+      activate: 'Activate'
+      retire: 'Retire'
+    image:
+      attach: 'Attach a new image'
+  order:
+    self: 'Order'
+    collection: 'Orders'
+    none: 'No orders!'
+    history: 'Order History'
+    date: 'Order Date'
+    status: 'Order Status'
+    purchasername: 'Purchaser name'
+    purchaseremail: 'Purchaser email'
+    status:
+      pending: 'Pending'
+      cancelled: 'Cancelled'
+      paid: 'Paid'
+      shipped: 'Shipped'
+      returned: 'Returned'
+      next:
+        pending: 'cancel'
+        paid: 'mark as shipped'
+        shipped: 'mark as returned'

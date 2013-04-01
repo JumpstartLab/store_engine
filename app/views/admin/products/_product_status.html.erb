@@ -1,5 +1,5 @@
 <% if product.status == 'active' %>
-  <span class="label label-success">Active</span>
+  <span class="label label-success"><%= t('product.status.active') %></span>
 <% elsif product.status == 'retired' %>
-  <span class="label">Retired</span>
+  <span class="label"><%= t('product.status.retired') %></span>
 <% end %>
