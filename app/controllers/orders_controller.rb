@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.apply_filter(current_user.id, params[:search])
+    @orders = Search.filter_user_orders(current_user.id, params)
   end
 
   def show

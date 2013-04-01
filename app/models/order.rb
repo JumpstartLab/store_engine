@@ -26,18 +26,6 @@ class Order < ActiveRecord::Base
     order
   end
 
-  def self.apply_filter(user_id, query_term=nil)
-    orders = self.find_all_by_user_id(user_id)
-    if query_term.present?
-      products = Product.where("title LIKE ? OR description LIKE ?",
-                               "%#{query_term}%",
-                               "%#{query_term}%")
-      orders.select { |order| (order.products & products).present? }
-    else
-      orders
-    end
-  end
-
   def update_status
     next_status = { 'pending' => 'cancelled',
                     'paid' => 'shipped',
@@ -47,6 +35,10 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    self.order_items.map {|order_item| order_item.subtotal }.inject(&:+)
+    if order_items.present?
+      order_items.map {|order_item| order_item.subtotal }.inject(&:+)
+    else
+      0
+    end
   end
 end

@@ -56,29 +56,6 @@ describe Product do
     expect(example.image_file_name).to eq 'rails.png'
   end
 
-  describe '.apply_filter' do
-    context 'when both active and retired products exist in db' do
-
-      before(:each) do
-        nicknacks = FactoryGirl.create(:category, title: 'nicknacks')
-        superheroes = FactoryGirl.create(:category, title: 'superheroes')
-        FactoryGirl.create(:product, categories: [nicknacks], title: 'gum', description: 'sticky', status: 'active', price: 2.99)
-        FactoryGirl.create(:product, categories: [superheroes], title: 'envelope', description: 'green', status: 'active', price: 18.99)
-        FactoryGirl.create(:product, categories: [nicknacks], title: 'cup', description: 'half-full', status: 'retired', price: 1.99)
-      end
-
-      it 'returns all active products in db when no category is specified (default homepage load)' do
-        products = Product.apply_filter
-        expect(products.count).to eq 2
-      end
-
-      it 'returns all active products for the specified category' do
-        products = Product.apply_filter({category_id: 1})
-        expect(products.count).to eq 1
-      end
-    end
-  end
-
   describe '.retire' do
     context 'on an active product' do
       it 'sets the status from active to retired' do
