@@ -13,7 +13,9 @@ StoreEngine::Application.routes.draw do
   put "/i18n" => "i18n#update"
 
   resources :sessions, only: [ :new, :create, :destroy ]
-  resources :products, only: [ :index, :show ]
+  resources :products, only: [ :index, :show ] do
+    resources :ratings
+  end
 
   resource :cart, only: [ :update, :show, :destroy ] do
     member do
@@ -22,7 +24,6 @@ StoreEngine::Application.routes.draw do
   end
 
   resources :users, only: [ :new, :create, :update ] do
-
     resources :orders
   end
 

@@ -2,6 +2,24 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  ratings:
+    rate: 'rate'
+    create: 'Create Rating'
+    title: 'Title'
+    body: 'Body'
+    stars: 'Stars'
+    displayname: 'Reviewer'
+    average: 'Average Rating'
+    none: 'No Ratings Yet!'
+    rateit: 'Rate it!'
+    editpage: 'Edit your rating of'
+    newpage: 'New Rating for'
+    please: 'Rate this product'
+    rated:
+      thanks: 'Thanks for rating this product!'
+      notice: 'Ratings can only be edited for 15 minutes after creation.'
+      edit: 'Edit your rating'
+      pleaserate: 'You bought this product. Please rate it!'
   remember: 'Yes, remember me'
   details: 'Details'
   account:
@@ -61,6 +79,10 @@ en:
     delete: 'Delete'
     update: 'Update'
   placeholder:
+    ratings:
+      title: "Love it, LOVE IT!"
+      body: "I'm so thrilled I bought this product.  Get one for your doggy!"
+      stars: '5'
     category:
       title: 'Dark matter'
     product:
@@ -79,6 +101,7 @@ en:
   product:
     self: 'Product'
     collection: 'Products'
+    rating: 'Your rating'
     title: 'Title'
     quantity: 'Quantity'
     description: 'Description'

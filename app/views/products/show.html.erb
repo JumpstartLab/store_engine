@@ -1,12 +1,28 @@
 <h2><%= t('product.title') %>: <%= @product.title %></h2>
-<p><%= image_tag @product.image.url(:medium) %></p>
-<p><%= t('product.description') %>: <%= @product.description %></p>
-<p><%= t('categories.self') %>:</p>
-<% @product.categories.each do |category| %>
-  <p><%= category.title %></p>
-<% end %>
-<br>
-<p><%= t('product.price') %>: <%= number_to_currency(@product.price) %></p>
-<br>
-<%= render partial: 'add_to_cart_button', locals: {product: @product} %>
-<%= render partial: 'buy_now_button', locals: {product: @product} %>
+<div class="row">
+  <div class="product-details span6">
+    <p><%= image_tag @product.image.url(:medium) %></p>
+    <p><%= t('product.description') %>: <%= @product.description %></p>
+    <p><%= t('categories.self') %>:</p>
+    <% @product.categories.each do |category| %>
+      <p><%= category.title %></p>
+    <% end %>
+    <br>
+    <p><%= t('product.price') %>: <%= number_to_currency(@product.price) %></p>
+    <br>
+    <%= render partial: 'add_to_cart_button', locals: {product: @product} %>
+    <%= render partial: 'buy_now_button', locals: {product: @product} %>
+  </div>
+
+  <div class="product-ratings span4">
+    <h2>Ratings</h2>
+    <%= render 'user_rating_status_or_action' %>
+
+    <% if @ratings.present? %>
+      <%= t('ratings.average') %>: <%= average_rating(@ratings) %>
+      <%= render partial: 'rating', collection: @ratings %>
+    <% else %>
+      <%= t('ratings.none') %>
+    <% end %>
+  </div>
+</div>
