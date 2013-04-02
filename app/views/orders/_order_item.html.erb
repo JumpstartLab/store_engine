@@ -1,12 +1,5 @@
 <tr>
   <td><%= link_to order_item.title, product_path(order_item.product) %></td>
-  <td>
-    <% if rating = Rating.where(user_id: current_user.id).where(product_id: order_item.product.id).first %>
-      <%= rating.stars %> <%= t('ratings.stars') %>
-    <% else %>
-      <%= link_to t('ratings.please'), new_product_rating_path(order_item.product) %>
-    <% end %>
-  </td>
   <td><%= order_item.quantity %></td>
   <td><%= number_to_currency(order_item.subtotal) %></td>
 </tr>

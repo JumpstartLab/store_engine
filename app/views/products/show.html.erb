@@ -15,14 +15,18 @@
   </div>
 
   <div class="product-ratings span4">
-    <h2>Ratings</h2>
+    <h2><%= t('ratings.self') %></h2>
     <%= render 'user_rating_status_or_action' %>
 
     <% if @ratings.present? %>
-      <%= t('ratings.average') %>: <%= average_rating(@ratings) %>
+      <%= t('ratings.average') %> <div id="star-avg"></div>
+      <script>
+        $('#star-avg').raty({ readOnly: true, score: <%= average_rating(@ratings) %> });
+      </script>
       <%= render partial: 'rating', collection: @ratings %>
     <% else %>
       <%= t('ratings.none') %>
     <% end %>
   </div>
 </div>
+

@@ -1,6 +1,10 @@
 <div class='rating'>
   <p><b><%= t('ratings.title') %>: <%= rating.title %></b></p>
   <p><%= t('ratings.body') %>: <%= rating.body %></p>
-  <p><%= t('ratings.stars') %>: <%= rating.stars %></p>
   <p><%= t('ratings.displayname') %>: <%= rating.display_name %></p>
+  <p><div id="star-rating<%=rating.id%>"></div></p>
 </div>
+
+<script>
+  $('#star-rating<%=rating.id%>').raty({ readOnly: true, score: <%= rating.stars %> });
+</script>

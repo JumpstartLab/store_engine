@@ -3,7 +3,7 @@
     <p> <%= t('ratings.rated.thanks') %></p>
     <% if rating.editable? %>
       <%= t('ratings.rated.notice') %>
-      <%= button_to t('ratings.rated.edit'), edit_product_rating_path(@product), method: :get, class: 'btn' %>
+      <%= button_to t('ratings.rated.edit'), edit_product_rating_path(@product, rating), method: :get, class: 'btn' %>
     <% end %>
   <% else %>
     <p><%= t('ratings.pleaserate') %></p>

@@ -3,6 +3,7 @@
 
 en:
   ratings:
+    self: 'Ratings'
     rate: 'rate'
     create: 'Create Rating'
     title: 'Title'
@@ -15,11 +16,14 @@ en:
     editpage: 'Edit your rating of'
     newpage: 'New Rating for'
     please: 'Rate this product'
+    pleaserate: 'You bought this product. Please rate it!'
+    product: 'Product'
+    your: 'Your Rating'
+    createdat: 'Created At'
     rated:
       thanks: 'Thanks for rating this product!'
       notice: 'Ratings can only be edited for 15 minutes after creation.'
       edit: 'Edit your rating'
-      pleaserate: 'You bought this product. Please rate it!'
   remember: 'Yes, remember me'
   details: 'Details'
   account:

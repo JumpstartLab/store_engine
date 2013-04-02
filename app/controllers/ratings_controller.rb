@@ -1,6 +1,14 @@
 class RatingsController < ApplicationController
   before_filter :require_login
 
+  def index
+    @products = Order.where(user_id: current_user.id).map {|order| order.products }.flatten.uniq
+    @ratings = Rating.where(user_id: current_user.id).inject({}) do |memo, rating|
+      memo[rating.product_id] = rating
+      memo
+    end
+  end
+
   def new
     @rating = Rating.new
     @product = Product.find(params[:product_id])
