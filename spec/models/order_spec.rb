@@ -22,4 +22,14 @@ describe Order do
     expect(FactoryGirl.build(:order, user: @user, status: nil)).to_not be_valid
     expect(FactoryGirl.build(:order, user: @user, status: 'abracadabra')).to_not be_valid
   end
+
+  context 'create_and_charge' do
+    it 'creates a new order' do
+      pending
+    end
+
+    it 'processes the order charge' do
+      pending
+    end
+  end
 end

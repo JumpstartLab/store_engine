@@ -100,7 +100,6 @@ describe 'Search' do
         select '=', from: 'admin-order-search-date-symbol'
         fill_in 'admin-order-search-email', with: 'raphael@example.com'
         click_button 'Search Orders'
-        save_and_open_page
         expect(page).to have_css('tr', count: 1)
       end
     end
