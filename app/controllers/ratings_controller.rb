@@ -34,7 +34,7 @@ class RatingsController < ApplicationController
     @product = Product.find(params[:product_id])
     @rating = Rating.find(params[:id])
     if @rating.update_attributes(params[:rating])
-      redirect_to admin_path, :notice  => "Successfully updated rating."
+      redirect_to account_ratings_path, :notice  => "Successfully updated rating."
     else
       render :action => 'edit', :notice  => "Update failed."
     end
