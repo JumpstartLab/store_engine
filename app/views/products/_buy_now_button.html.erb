@@ -1,5 +1,5 @@
 <% if logged_in? %>
-  <%= form_tag buy_now_path do %>
+  <%= form_tag buy_now_path, id: "buyNowForm" do %>
     <%= hidden_field_tag 'order', product.id.to_s %>
     <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
             data-key="pk_test_osSOH0LyEEACshdRsLjyvGSz"
@@ -8,6 +8,7 @@
             data-label="<%= t('product.buynow') %>"
             data-amount="<%= product.price * 100 %>">
     </script>
+
   <% end %>
 <% else %>
   <%= button_to t('product.enablebuynow'), login_path, method: :get, class: 'btn' %>

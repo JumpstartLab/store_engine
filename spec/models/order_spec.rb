@@ -24,12 +24,16 @@ describe Order do
   end
 
   context 'create_and_charge' do
-    it 'creates a new order' do
-      pending
-    end
+#     it 'creates a new order' do
+#       product = FactoryGirl.create(:product)
 
-    it 'processes the order charge' do
-      pending
-    end
+#       login_user @user
+#       #create a cart for the user
+#       session[:cart] = {product.id => '2'}
+#       cart = Cart.new(session[:cart])
+#       #user checks out the cart
+#       order.create_and_charge(cart)
+#       #that process creates a new order
+    # end
   end
 end

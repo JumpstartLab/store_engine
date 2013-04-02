@@ -15,6 +15,13 @@ class Cart
     items.map { |item| item.total }.inject(&:+)
   end
 
+  def remove_item(remove_item_param)
+    if id = remove_item_param[:product_id]
+      session.delete(id)
+    end
+    session
+  end
+
   def update(carts_param)
     if id = carts_param[:product_id]
       quantity = carts_param[:quantity]
