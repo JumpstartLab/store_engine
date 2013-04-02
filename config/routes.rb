@@ -30,6 +30,12 @@ StoreEngine::Application.routes.draw do
     root to: redirect("/admin/dashboard")
     get :dashboard, to: "orders#index", as: 'dashboard'
     get :search, to: "orders#index", as: 'search'
+    resources :sales, as: 'sales' do
+      member do
+        post :end
+        post :activate
+      end
+    end
     resources :orders, only: [ :show, :update ]
     resources :order_items, only: [ :update, :destroy]
 

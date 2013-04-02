@@ -19,4 +19,26 @@ class Product < ActiveRecord::Base
   def activate
     self.update_attributes(status: 'active')
   end
+
+  def on_sale?
+    percent_off > 0
+  end
+
+  def sale_price
+    price - discount
+  end
+
+  def discount
+    price * (BigDecimal.new(percent_off) / 100)
+  end
+
+  def percent_off
+    product_sales = Sale.where(group: 'product').where(status: 'active').where(foreign_key: self.id)
+    percent_of_product = product_sales.present? ? product_sales.map { |product_sale| product_sale.percent_off }.inject(&:+) : 0
+    if category_ids.present?
+      category_sales = Sale.where(group: 'category').where(status: 'active').where(foreign_key: category_ids)
+      percent_of_category = category_sales.present? ? category_sales.map { |product_sale| product_sale.percent_off }.inject(&:+) : 0
+    end
+    category_ids.present? ? percent_of_product + percent_of_category : percent_of_product
+  end
 end

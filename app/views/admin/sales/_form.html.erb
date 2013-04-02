@@ -1,0 +1,34 @@
+<form accept-charset="UTF-8" action="/admin/sales" class="simple_form new_sale" id="new_sale" method="post" novalidate="novalidate"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"><input name="authenticity_token" type="hidden" value="Erq0gCsDNoS6TTCf2rKkd6MHVeR2k2uaAs7aRmIkRV0="></div>
+  <div class="control-group select required sale_foreign_key">
+    <label class="control-label">Product/Category</label>
+    <div class="controls">
+      <select name="foreign_key" class="required">
+        <option disabled>Product</option>
+        <% @products.each do |product| %>
+        <option value="product<%= product.id %>"><%= product.title %></option>
+        <% end %>
+        <option disabled>Category</option>
+        <% @categories.each do |category| %>
+        <option value="category<%= category.id %>"><%= category.title %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+
+  <div class="control-group integer required sale_percent_off">
+    <label class="control-label">Percent Off</label>
+    <div class="controls">
+      <div class="input-append">
+        <input type="text" name="percent_off" value="<%= params[:percent_off] || @sale.percent_off %>" placeholder="20" step="1" class="span1 numeric integer required">
+        <span class="add-on">%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit"  name="commit" class="btn">Create Sale</button>
+    </div>
+  </div>
+</form>
+

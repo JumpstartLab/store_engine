@@ -3,6 +3,13 @@
     <h3><%= product.title.capitalize %></h3>
     <p><%= image_tag product.image.url(:thumb) %></p>
     <p><%= t('product.description') %>: <%= product.description %></p>
-    <p><%= t('product.price') %>: <%= number_to_currency(product.price) %></p>
+    <% if product.on_sale? %>
+      <p><b>On Sale!</b></p>
+      <p>Original Price: <strike><%= number_to_currency(product.price) %></strike></p>
+      <p>Percent Savings: <%= product.percent_off %>%</p>
+      <p>Sale Price: <%= number_to_currency(product.sale_price) %></p>
+    <% else %>
+      <p><%= t('product.price') %>: <%= number_to_currency(product.price) %></p>
+    <% end %>
   </div>
 <% end %>

@@ -10,6 +10,9 @@
     <li class="<%= active == :categories ? 'active' : '' %>">
       <%= link_to t('categories.self'), admin_categories_path %>
     </li>
+    <li class="<%= active == :sales ? 'active' : '' %>">
+      <%= link_to "Sales", admin_sales_path %>
+    </li>
     <li class="<%= active == :search ? 'active' : '' %>">
       <%= link_to "Search", admin_search_path %>
     </li>

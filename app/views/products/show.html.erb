@@ -6,7 +6,14 @@
   <p><%= category.title %></p>
 <% end %>
 <br>
-<p><%= t('product.price') %>: <%= number_to_currency(@product.price) %></p>
+<% if @product.on_sale? %>
+  <p><b>On Sale!</b></p>
+  <p>Original Price: <strike><%= number_to_currency(@product.price) %></strike></p>
+  <p>Percent Savings: <%= @product.percent_off %>%</p>
+  <p>Sale Price: <%= number_to_currency(@product.sale_price) %></p>
+<% else %>
+  <p><%= t('product.price') %>: <%= number_to_currency(@product.price) %></p>
+<% end %>
 <br>
 <%= render partial: 'add_to_cart_button', locals: {product: @product} %>
 <%= render partial: 'buy_now_button', locals: {product: @product} %>

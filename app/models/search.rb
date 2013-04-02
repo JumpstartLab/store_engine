@@ -19,14 +19,6 @@ module Search
                                "%#{params[:search]}%",
                                "%#{params[:search]}%")
       orders.select { |order| (order.products & products).present? }
-      #  Order.find_by_sql <<-SQL
-      #    SELECT *
-      #    FROM orders
-      #    INNER JOIN order_items ON order_items.order_id = orders.id
-      #    INNER JOIN products ON products.id = order_items.product_id
-      #    WHERE orders.user_id = #{user_id}
-      #      AND (products.title LIKE %#{query_term}% OR products.description LIKE %#{query_term}%)
-      #  SQL
     else
       orders
     end
