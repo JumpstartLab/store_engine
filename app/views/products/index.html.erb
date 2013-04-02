@@ -1,18 +1,20 @@
-<% if logged_in? %>
-    <h1><%= "#{t 'home.welcome'}, #{current_user.full_name}" %>!</h1>
-<% end %>
+<br/>
 
-<div class="btn-group">
-  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    <%= t('categories.select') %> <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu">
-    <li><%= link_to t('categories.showall'), root_path %></li>
-    <% if @categories.present? %>
-      <% @categories.each do |category| %>
-      <li><%=link_to category.title, products_path(category_id: category.id) %></li>
+<section class="row">
+  <div class="btn-group span1" id="homepage-category-dropdown">
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      Select A Category
+      <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+      <li><a href="/">Show All</a></li>
+      <% unless @categories.nil? %>
+          <% @categories.each do |category| %>
+              <li>
+                <%=link_to category.title, products_path(category_id: category.id) %>
+              </li>
+          <% end %>
       <% end %>
-    <% end %>
     </ul>
   </div>
 
@@ -22,6 +24,8 @@
   </form>
 </section>
 
-<hr>
+<br/>
 
-<%= render @products %>
+<div id="product_listing" class="row-fluid">
+  <%= render @products %>
+</div>

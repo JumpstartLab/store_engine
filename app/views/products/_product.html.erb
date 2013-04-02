@@ -1,8 +1,10 @@
 <%= link_to product_path(product) do %>
-  <div class="products span3">
-    <h3><%= product.title.capitalize %></h3>
+  <div class="products span3 offset1">
     <p><%= image_tag product.image.url(:thumb) %></p>
-    <p><%= t('product.description') %>: <%= product.description %></p>
-    <p><%= t('product.price') %>: <%= number_to_currency(product.price) %></p>
+    <h5><%= product.title.capitalize %></h5>
+    <h6><%= t('product.price') %>: <%= number_to_currency(product.price) %></h6>
   </div>
 <% end %>
+
+
+

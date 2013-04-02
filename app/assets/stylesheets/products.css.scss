@@ -1,0 +1,56 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+//body {
+//  background: url('bg.jpg') repeat fixed center;
+//}
+//
+//.product_listing {
+//  margin: auto;
+//}
+
+//.product {
+//  background-image: url('product_thumbnail.png');
+//  position: relative;
+//  //border: 1px solid black;
+//  width: 307px;
+//  height: 448px;
+//  margin: 20px;
+//  float: left;
+//}
+//
+
+
+.products {
+  //border: solid;
+  //border-color: #000000;
+  text-align: center;
+  color: #779f29;
+  //box-shadow: 3px 3px 4px #424242;
+}
+
+.content {
+  background: url('BG-main.png') repeat fixed center;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.dropdown-menu {
+  text-align: left;
+}
+
+#homepage-category-dropdown {
+  margin-bottom: 20px;
+  margin-left: 160px;
+  text-align: left;
+}
+
+.form-search {
+  margin-right: 90px;
+  text-align: right;
+}
