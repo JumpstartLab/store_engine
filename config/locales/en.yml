@@ -89,6 +89,13 @@ en:
     name: 'Product Name'
     buynow: 'Buy Now'
     enablebuynow: "Enable 'Buy Now'"
+    discount: "Discount"
+    originalprice: "Original Price"
+    unitprice: "Unit Price"
+    onsale: "On Sale!"
+    percentsavings: "Percent Savings"
+    savings: "Savings"
+    saleprice: "Sale Price"
     status:
       active: 'Active'
       retired: 'Retired'
@@ -103,6 +110,8 @@ en:
     history: 'Order History'
     date: 'Order Date'
     status: 'Order Status'
+    actualvalue: 'Actual Value'
+    discounts: 'Discounts'
     purchasername: 'Purchaser name'
     purchaseremail: 'Purchaser email'
     status:

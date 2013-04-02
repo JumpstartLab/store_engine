@@ -21,7 +21,11 @@ class Product < ActiveRecord::Base
   end
 
   def on_sale?
-    percent_off > 0
+    percent_of_original != 1
+  end
+
+  def current_price
+    sale_price
   end
 
   def sale_price
@@ -29,16 +33,26 @@ class Product < ActiveRecord::Base
   end
 
   def discount
-    price * (BigDecimal.new(percent_off) / 100)
+    price * (1 - BigDecimal.new(percent_of_original))
   end
 
   def percent_off
+    (1 - percent_of_original) * 100
+  end
+
+  def percent_of_original
     product_sales = Sale.where(group: 'product').where(status: 'active').where(foreign_key: self.id)
-    percent_of_product = product_sales.present? ? product_sales.map { |product_sale| product_sale.percent_off }.inject(&:+) : 0
+    percent_of_product = product_sales.map { |product_sale| (100 - product_sale.percent_off) / BigDecimal.new(100) }.inject(BigDecimal.new(1)) do |memo, percent_of_total|
+        memo = memo * percent_of_total
+        memo
+      end
     if category_ids.present?
       category_sales = Sale.where(group: 'category').where(status: 'active').where(foreign_key: category_ids)
-      percent_of_category = category_sales.present? ? category_sales.map { |product_sale| product_sale.percent_off }.inject(&:+) : 0
+      percent_of_category = category_sales.map { |category_sale| (100 - category_sale.percent_off) / BigDecimal.new(100) }.inject(BigDecimal.new(1)) do |memo, percent_of_total|
+        memo = memo * percent_of_total
+        memo
+      end
     end
-    category_ids.present? ? percent_of_product + percent_of_category : percent_of_product
+    category_ids.present? ? percent_of_product * percent_of_category : percent_of_product
   end
 end

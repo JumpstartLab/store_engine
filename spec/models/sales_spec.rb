@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Sales do
+describe Sale do
   pending "add some examples to (or delete) #{__FILE__}"
 end

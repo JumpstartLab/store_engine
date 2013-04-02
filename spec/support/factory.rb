@@ -11,7 +11,9 @@ FactoryGirl.define do
   factory :order_item do
     product { FactoryGirl.build(:product) }
     order { FactoryGirl.build(:order) }
-    unit_price 12.99
+    unit_price 20.00
+    selling_price 10.00
+    percent_off 50
     quantity 3
   end
 

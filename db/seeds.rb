@@ -40,8 +40,12 @@ order5 = Order.create(status: 'pending', user_id: 2)
 
 order1.order_items.create(product_id: product1.id,
                           unit_price: product1.price,
+                          selling_price: product1.current_price,
+                          percent_off: product1.percent_off,
                           quantity: 2)
 
 order1.order_items.create(product_id: product2.id,
                           unit_price: product2.price,
+                          selling_price: product2.current_price,
+                          percent_off: product2.percent_off,
                           quantity: 1)

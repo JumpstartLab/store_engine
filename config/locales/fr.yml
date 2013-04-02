@@ -86,6 +86,13 @@ fr:
     name: 'Nom de Produit'
     buynow: 'Acheter Maintenant'
     enablebuynow: "Activer 'Acheter Maintenant'"
+    discount: "Remises"
+    originalprice: "Prix Original"
+    unitprice: "Prix d'unite"
+    onsale: "En Vente!"
+    percentsavings: "Pourcentage d'épargne"
+    savings: "Epargnes"
+    saleprice: "Prix de vente"
     status:
       active: 'Active'
       retired: 'Retraité'
@@ -100,6 +107,8 @@ fr:
     history: 'Historique des Commandes'
     date: 'Date de commande'
     status: 'Statut de Commande'
+    actualvalue: 'Valeur réelle'
+    discounts: 'Remises'
     purchasername: "Nom d'acheteur"
     purchaseremail: "Adresse éléctronique d'acheteur"
     status:

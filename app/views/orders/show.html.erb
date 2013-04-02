@@ -10,6 +10,8 @@
   <thead>
     <th><%= t('product.name') %></th>
     <th><%= t('product.quantity') %></th>
+    <th><%= t('product.unitprice') %></th>
+    <th><%= t('product.discount') %></th>
     <th><%= t('product.subtotal') %></th>
   </thead>
   <tbody>
@@ -17,6 +19,8 @@
   </tbody>
   <tfoot>
     <tr>
+      <td></td>
+      <td></td>
       <td></td>
       <td style="text-align: right;"><%= t('total') %>:</td>
       <td><%= number_to_currency(@order.total) %></td>
