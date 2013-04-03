@@ -1,19 +1,39 @@
 <h2><%= t('product.title') %>: <%= @product.title %></h2>
-<p><%= image_tag @product.image.url(:medium) %></p>
-<p><%= t('product.description') %>: <%= @product.description %></p>
-<p><%= t('categories.self') %>:</p>
-<% @product.categories.each do |category| %>
-  <p><%= category.title %></p>
-<% end %>
-<br>
-<% if @product.on_sale? %>
-  <p><b><%= t('product.onsale') %></b></p>
-  <p><%= t('product.originalprice') %>: <strike><%= number_to_currency(@product.price) %></strike></p>
-  <p><%= t('product.percentsavings') %>: <%= @product.percent_off %>%</p>
-  <p><%= t('product.saleprice') %>: <%= number_to_currency(@product.sale_price) %></p>
-<% else %>
-  <p><%= t('product.price') %>: <%= number_to_currency(@product.price) %></p>
-<% end %>
-<br>
-<%= render partial: 'add_to_cart_button', locals: {product: @product} %>
-<%= render partial: 'buy_now_button', locals: {product: @product} %>
+
+<div class="row">
+  <div class="product-details span6">
+    <p><%= image_tag @product.image.url(:medium) %></p>
+    <p><%= t('product.description') %>: <%= @product.description %></p>
+    <p><%= t('categories.self') %>:</p>
+    <% @product.categories.each do |category| %>
+      <p><%= category.title %></p>
+    <% end %>
+    <br>
+    <% if @product.on_sale? %>
+      <p><b><%= t('product.onsale') %></b></p>
+      <p><%= t('product.originalprice') %>: <strike><%= number_to_currency(@product.price) %></strike></p>
+      <p><%= t('product.percentsavings') %>: <%= @product.percent_off %>%</p>
+      <p><%= t('product.saleprice') %>: <%= number_to_currency(@product.sale_price) %></p>
+    <% else %>
+      <p><%= t('product.price') %>: <%= number_to_currency(@product.price) %></p>
+    <% end %>
+    <br>
+    <%= render partial: 'add_to_cart_button', locals: {product: @product} %>
+    <%= render partial: 'buy_now_button', locals: {product: @product} %>
+  </div>
+
+  <div class="product-ratings span4">
+    <h2><%= t('ratings.self') %></h2>
+    <%= render 'user_rating_status_or_action' %>
+
+    <% if @ratings.present? %>
+      <%= t('ratings.average') %> <div id="star-avg"></div>
+      <script>
+        $('#star-avg').raty({ readOnly: true, score: <%= average_rating(@ratings) %> });
+      </script>
+      <%= render partial: 'rating', collection: @ratings %>
+    <% else %>
+      <%= t('ratings.none') %>
+    <% end %>
+  </div>
+</div>

@@ -12,3 +12,5 @@ fr:
         price: 'Prix'
         categories: 'Catégories'
         status: 'Statut'
+        body: 'Description'
+        stars: 'Etoiles'
