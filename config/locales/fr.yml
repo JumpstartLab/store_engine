@@ -37,6 +37,7 @@ fr:
     english: 'Anglais'
     french: 'Français'
     creaturespeak: 'Créature-parler'
+    canadian: 'Canadien'
   back:
     home: "Retour à l'Accueil"
   cart:
@@ -45,7 +46,7 @@ fr:
     confirmlogout: 'Etes-vous sûr? Cela effacera votre panier'
     add: 'Ajouter au panier'
   store:
-    name: "Créatures de Frankie"
+    name: "Monstres de Francois"
   confirm: 'Etes-vous sûr?'
   checkout: 'Passer le commander'
   purchase: 'Acheter'
@@ -65,6 +66,7 @@ fr:
     login: 'Connexion'
     signup: 'Inscription'
     languages: 'zomg!'
+    search: 'Rechercher'
   home:
     welcome: 'Bienvenue'
   categories:

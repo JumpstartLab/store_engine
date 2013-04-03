@@ -1,0 +1,21 @@
+ca:
+  simple_form:
+    "yes": 'Aye'
+    "no": 'Nay'
+    required:
+      text: 'required, eh'
+      mark: '*'
+    error_notification:
+      default_message: "Please review the problems below, eh:"
+    labels:
+      defaults:
+        email: 'Email'
+        full_name: 'Full Name'
+        display_name: 'Display Name'
+        password: 'Password'
+        password_confirmation: 'Password Confirmation'
+        title: 'Title'
+        description: 'Description'
+        price: 'Price'
+        categories: 'Categories'
+        status: 'Status'

@@ -1,0 +1,155 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+ca:
+  ratings:
+    self: 'Ratings, eh'
+    rate: 'rate, eh'
+    create: 'Create Rating, eh?'
+    title: 'Title, eh'
+    body: 'Body, eh'
+    stars: 'Stars, eh'
+    displayname: 'Reviewer, eh'
+    average: 'Average Rating, eh'
+    none: 'No Ratings Yet, eh!'
+    rateit: 'Rate it, eh!'
+    editpage: 'Edit your rating of'
+    newpage: 'New Rating for'
+    please: 'Rate this product, eh'
+    pleaserate: 'You bought this product, eh. Please rate it!'
+    product: 'Product, eh'
+    your: 'Your Rating, eh'
+    createdat: 'Created At, eh'
+    rated:
+      thanks: 'Thanks for rating this product, eh!'
+      notice: 'Ratings can only be edited for 15 minutes after creation, eh.'
+      edit: 'Edit your rating, eh'
+  remember: 'Yes, remember me, eh'
+  details: 'Details, eh'
+  account:
+    self: 'Account, eh'
+    email: 'Email, eh'
+    fullname: 'Full Name, eh'
+    displayname: 'Display Name, eh'
+    create: 'Create a New Account, eh'
+    details: 'Account Details, eh'
+    edit: 'Edit Account, eh'
+    update: 'Update Account, eh'
+  time:
+    asof: 'as of'
+  languages:
+    english: 'English'
+    french: 'French'
+    creaturespeak: 'Creature-speak, eh'
+    canadian: 'Can-eh-dian, eh?'
+  back:
+    home: 'Back to Home, eh'
+  cart:
+    isempty: 'Your cart is empty. Start shopping!, eh'
+    empty: 'Empty Cart, eh'
+    confirmlogout: 'Are you sure? This will clear your cart, eh'
+    add: 'Add to Cart, eh'
+  store:
+    name: "Frank's Monsterporium, eh?"
+  confirm: 'Are you sure, eh?'
+  checkout: 'Checkout, eh'
+  purchase: 'Purchase, eh'
+  action:
+    remove: 'Remove, eh'
+  bling:
+    bling: '$'
+  model:
+    createdat: 'Created at'
+    updatedat: 'Updated at'
+    status: 'Status, eh'
+    modify: 'Modify, eh'
+  navigation:
+    cart: 'Cart, eh'
+    account: 'Account, eh'
+    logout: 'Logout, eh'
+    login: 'Login, eh'
+    signup: 'Sign Up, eh'
+    languages: 'zomg, eh!'
+    search: 'look for it, eh?'
+  home:
+    welcome: 'Welcome, eh'
+  categories:
+    self: 'Categories, eh'
+    edit: 'Edit Category, eh'
+    create: 'Create Category, eh'
+    showall: 'Show All, eh'
+    noproducts: 'No products assigned, eh'
+    select: 'Select a Category, eh'
+  crud:
+    edit: 'Edit, eh'
+    delete: 'Delete, eh'
+    update: 'Update, eh'
+  placeholder:
+    ratings:
+      title: "Love it, LOVE IT, eh!"
+      body: "I'm so thrilled I bought this product.  Get one for your doggy!"
+      stars: '5'
+    category:
+      title: 'Dark matter'
+    product:
+      title: 'Itchy Sweater'
+      description: 'This sweater is made of itchy wool'
+    session:
+      email: 'Email'
+    user:
+      email: 'Email'
+      fullname: 'Full name'
+      displayname: 'Display name'
+  total: 'Total, eh'
+  admin:
+    self: 'Admin'
+    dashboard: 'Dashboard'
+  product:
+    self: 'Product, eh'
+    collection: 'Products, eh'
+    rating: 'Your rating, eh'
+    title: 'Title, eh'
+    quantity: 'Quantity, eh'
+    description: 'Description, eh'
+    price: 'Price, eh'
+    subtotal: 'Subtotal, eh'
+    edit: 'Edit Product, eh'
+    create: 'Create Product, eh'
+    name: 'Product Name, eh'
+    buynow: 'Buy Now, eh'
+    enablebuynow: "Buy Now, eh"
+    discount: "Discount, eh"
+    originalprice: "Original Price, eh"
+    unitprice: "Unit Price, eh"
+    onsale: "On Sale, eh!"
+    percentsavings: "Percent Savings, eh"
+    savings: "Savings, eh"
+    saleprice: "Sale Price, eh"
+    status:
+      active: 'Active, eh'
+      retired: 'Retired, eh'
+      activate: 'Activate, eh'
+      retire: 'Retire, eh'
+    image:
+      attach: 'Attach a new image, eh'
+  order:
+    self: 'Order'
+    collection: 'Orders'
+    none: 'No orders!'
+    history: 'Order History, eh'
+    date: 'Order Date, eh'
+    status: 'Order Status, eh'
+    actualvalue: 'Actual Value, eh'
+    discounts: 'Discounts, eh'
+    purchasername: 'Purchaser name, eh'
+    purchaseremail: 'Purchaser email, eh'
+    status:
+      pending: 'Pending, eh'
+      cancelled: 'Cancelled, eh'
+      paid: 'Paid, eh'
+      shipped: 'Shipped, eh'
+      returned: 'Returned, eh'
+      next:
+        pending: 'cancel, eh'
+        paid: 'mark as shipped'
+        shipped: 'mark as returned'

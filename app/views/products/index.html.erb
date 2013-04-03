@@ -2,7 +2,7 @@
   <section class="row">
     <div class="btn-group span1" id="homepage-category-dropdown">
       <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-        Select A Category
+        <%= t 'categories.select' %>
         <span class="caret"></span>
       </a>
       <ul class="dropdown-menu">
@@ -19,7 +19,7 @@
 
     <form action="<%= products_path %>" method="get" class="form-search">
       <input type="text" id="product-search" value="<%= params[:search] %>" name="search" class="input-medium search-query">
-      <button type="submit" class="btn">Search</button>
+      <button type="submit" class="btn"><%= t 'navigation.search' %></button>
     </form>
   </section>
 

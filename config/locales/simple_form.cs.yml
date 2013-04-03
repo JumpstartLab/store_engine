@@ -1,0 +1,21 @@
+cs:
+  simple_form:
+    "yes": 'blerp'
+    "no": 'bleep'
+    required:
+      text: 'NOMNOMNOM'
+      mark: '*'
+    error_notification:
+      default_message: "BLERGGGHEHERRRRROOOOAARR"
+    labels:
+      defaults:
+        email: 'NOMNOMNOM'
+        full_name: 'NOMNOMNOM'
+        display_name: 'NOMNOMNOM'
+        password: 'NOMNOMNOM'
+        password_confirmation: 'NOMNOMNOM'
+        title: 'NOMNOMNOM'
+        description: 'NOMNOMNOM'
+        price: 'NOMNOMNOM'
+        categories: 'NOMNOMNOM'
+        status: 'NOMNOMNOM'

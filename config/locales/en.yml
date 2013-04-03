@@ -41,6 +41,7 @@ en:
     english: 'English'
     french: 'French'
     creaturespeak: 'Creature-speak'
+    canadian: 'Canadian'
   back:
     home: 'Back to Home'
   cart:
@@ -49,7 +50,7 @@ en:
     confirmlogout: 'Are you sure? This will clear your cart'
     add: 'Add to Cart'
   store:
-    name: "Frankie's Creatures"
+    name: "Frank's Monsterporium"
   confirm: 'Are you sure?'
   checkout: 'Checkout'
   purchase: 'Purchase'
@@ -69,6 +70,7 @@ en:
     login: 'Login'
     signup: 'Sign Up'
     languages: 'zomg!'
+    search: 'Search'
   home:
     welcome: 'Welcome'
   categories:
