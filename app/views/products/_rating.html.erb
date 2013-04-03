@@ -1,8 +1,11 @@
 <div class='rating'>
-  <p><b><%= t('ratings.title') %>: <%= rating.title %></b></p>
-  <p><%= t('ratings.body') %>: <%= rating.body %></p>
+  <div class="rating-title">
+    <div id="star-rating<%=rating.id%>">
+      <b><%= rating.title %> </b>
+    </div>
+  </div>
+  <p><%= rating.body %></p>
   <p><%= t('ratings.displayname') %>: <%= rating.display_name %></p>
-  <p><div id="star-rating<%=rating.id%>"></div></p>
 </div>
 
 <script>

@@ -1,8 +1,6 @@
 <% if current_user && user_purchased?(current_user, @product) %>
   <% if rating = user_rating(current_user, @ratings) %>
-    <p> <%= t('ratings.rated.thanks') %></p>
     <% if rating.editable? %>
-      <%= t('ratings.rated.notice') %>
       <%= button_to t('ratings.rated.edit'), edit_product_rating_path(@product, rating), method: :get, class: 'btn' %>
     <% end %>
   <% else %>
