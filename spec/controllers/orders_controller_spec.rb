@@ -11,7 +11,16 @@ describe OrdersController do
   end
 
   describe 'create' do
-    pending
+    it 'creates an order' do
+      pending
+      # user = FactoryGirl.create(:user)
+      # product = FactoryGirl.create(:product)
+      # product2= FactoryGirl.create(:product, title: 'stuff')
+      # login_user user
+      # session[:cart] = {product.id => '2', product2.id=>'3'}
+      # post :create
+      # response.should redirect_to user_order_path
+    end
   end
 
   describe 'index' do
@@ -19,7 +28,7 @@ describe OrdersController do
 
       context 'when the user has orders in their history' do
         it 'renders the index view' do
-           user = FactoryGirl.create(:user)
+          user = FactoryGirl.create(:user)
           login_user user
           expect(response).to be_success
         end
@@ -37,16 +46,6 @@ describe OrdersController do
           orders = Order.create(user_id: user.id, status:"pending")
           get :index
           assigns(orders).should eq @orders
-        end
-      end
-
-      context 'when the user has NO orders in their history' do
-        it 'displays a message that no orders are in the system' do
-          pending
-          # user = FactoryGirl.create(:user)
-          # login_user user
-          # get :index
-          # expect(response).to have_content("No orders")
         end
       end
     end
@@ -74,10 +73,9 @@ describe OrdersController do
         it 'populates a table of order items for that order' do
           pending
           # user = FactoryGirl.create(:user)
-          # order = FactoryGirl.create(:order)
+          # order = FactoryGirl.create(:order, user: user)
           # login_user user
           # get :show, params = {id: order.id}
-
           # expect(response).to have_content("Order #")
         end
       end
