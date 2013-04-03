@@ -1,32 +1,34 @@
-<%= render partial: 'shared/admin_navigation',
-           locals: { active: current_page?(admin_dashboard_path) ? :dashboard : :search } %>
+<div class="admin-order-index">
+  <%= render partial: 'shared/admin_navigation',
+             locals: { active: current_page?(admin_dashboard_path) ? :dashboard : :search } %>
 
-<div class="span8">
-  <h1><% if current_page?(admin_dashboard_path) %><%= t 'admin.dashboard' %><% else %>Search<%end%></h1>
-  <hr>
+  <div class="span8">
+    <h1><% if current_page?(admin_dashboard_path) %><%= t 'admin.dashboard' %><% else %>Search<%end%></h1>
+    <hr>
 
-  <% if @count > 0 %>
+    <% if @count > 0 %>
 
-    <% if current_page?(admin_search_path) %>
-      <%= render 'advanced_search_form' %>
+        <% if current_page?(admin_search_path) %>
+            <%= render 'advanced_search_form' %>
+        <% else %>
+            <%= render partial: 'admin_dashboard_nav', locals: {active_tab: @active_tab,
+                                                                count: @count,
+                                                                statuses: @statuses} %>
+        <% end %>
+        <br>
+        <table class="table">
+          <thead>
+          <th>#</th>
+          <th><%= t 'model.createdat' %></th>
+          <th><%= t 'model.status' %></th>
+          <th><%= t 'model.modify' %></th>
+          </thead>
+          <tbody>
+          <%= render @orders %>
+          </tbody>
+        </table>
     <% else %>
-    <%= render partial: 'admin_dashboard_nav', locals: {active_tab: @active_tab,
-                                                        count: @count,
-                                                        statuses: @statuses} %>
+        <%= t 'order.none' %>
     <% end %>
-    <br>
-    <table class="table">
-    <thead>
-    <th>#</th>
-    <th><%= t 'model.createdat' %></th>
-    <th><%= t 'model.status' %></th>
-    <th><%= t 'model.modify' %></th>
-    </thead>
-    <tbody>
-      <%= render @orders %>
-    </tbody>
-    </table>
-  <% else %>
-    <%= t 'order.none' %>
-  <% end %>
+  </div>
 </div>

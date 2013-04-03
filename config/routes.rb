@@ -5,15 +5,18 @@ StoreEngine::Application.routes.draw do
   get "/login" => "sessions#new", :as => "login"
   get "/signup" => "users#new", :as => "signup"
 
-  match "/account" => redirect("/account/profile")
-  match "/account/profile" => "users#show"
-  match "/account/orders" => "orders#index"
+  get "/account" => redirect("/account/profile")
+  get "/account/profile" => "users#show"
+  get "/account/orders" => "orders#index"
+  get "/account/ratings" => "ratings#index"
   get "/account/orders/:id" => "orders#show", :as => "account_order"
   post "/buy_now" => "orders#buy_now", :as => 'buy_now'
   put "/i18n" => "i18n#update"
 
   resources :sessions, only: [ :new, :create, :destroy ]
-  resources :products, only: [ :index, :show ]
+  resources :products, only: [ :index, :show ] do
+    resources :ratings
+  end
 
   resource :cart, only: [ :update, :show, :destroy ] do
     member do
@@ -22,7 +25,6 @@ StoreEngine::Application.routes.draw do
   end
 
   resources :users, only: [ :new, :create, :update ] do
-
     resources :orders
   end
 

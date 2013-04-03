@@ -1,18 +1,37 @@
-<div class="row">
+  <div class="row">
     <div class="prod_detail_img span6">
-      <p><%= image_tag @product.image.url(:medium) %></p>
+      <p><%= image_tag @product.image.url(:large) %></p>
     </div>
     <div class="prod_detail_text span6">
       <h2><% t('product.title') %><%= @product.title %></h2>
       <p><% t('product.description') %><%= @product.description %></p>
-      <p><%= t('categories.self') %>:</p>
-      <% @product.categories.each do |category| %>
-          <p><%= category.title %></p>
-      <% end %>
-      <br>
+      <div id="product-categories">
+        <b><%= t('categories.self') %>:</b>
+        <% @product.categories.each do |category| %>
+            <p><%= category.title %></p>
+        <% end %>
+      </div>
+      <p></p>
       <p><%= t('product.price') %>: <%= number_to_currency(@product.price) %></p>
-      <br>
+      <p></p>
       <%= render partial: 'add_to_cart_button', locals: {product: @product} %>
       <%= render partial: 'buy_now_button', locals: {product: @product} %>
+
+
+      <%= render 'user_rating_status_or_action' %>
+      <% if @ratings.present? %>
+          <div class="average-rating">
+            <h4><%= t('ratings.average') %>: </h4>
+            <div id="star-avg">
+              <script>
+                  $('#star-avg').raty({ readOnly: true, score: <%= average_rating(@ratings) %> });
+              </script>
+            </div>
+            <p></p>
+          </div>
+          <%= render partial: 'rating', collection: @ratings %>
+      <% else %>
+          <%= t('ratings.none') %>
+      <% end %>
     </div>
-</div>
+  </div>

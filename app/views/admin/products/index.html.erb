@@ -1,15 +1,16 @@
-<%= render partial: 'shared/admin_navigation', :locals => { active: :products }  %>
+<div class="admin-product-index">
+  <%= render partial: 'shared/admin_navigation', :locals => { active: :products }  %>
 
-<div class="span8">
-  <h1><%= t 'product.collection' %></h1>
-  <hr>
+  <div class="span8">
+    <h1><%= t 'product.collection' %></h1>
+    <hr>
 
-  <div class="pull-right">
-  <%= button_to t('product.create'), new_admin_product_path, method: :get, class: 'btn btn-large btn-primary' %>
-  </div>
+    <div class="pull-right">
+      <%= button_to t('product.create'), new_admin_product_path, method: :get, class: 'btn btn-large btn-primary' %>
+    </div>
 
-  <table class="table table-striped">
-    <thead>
+    <table class="table table-striped">
+      <thead>
       <tr>
         <th><%= t 'product.title' %></th>
         <th><%= t 'product.price' %></th>
@@ -17,10 +18,11 @@
         <th><%= t 'model.status' %></th>
         <th></th>
       </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
       <%= render @products %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
 
+  </div>
 </div>

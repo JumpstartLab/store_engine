@@ -1,4 +1,11 @@
 FactoryGirl.define do
+
+  factory :rating do
+    title "Love it"
+    body "You should buy it too!"
+    stars 1
+  end
+
   factory :category do
     title 'Dark Matter'
   end

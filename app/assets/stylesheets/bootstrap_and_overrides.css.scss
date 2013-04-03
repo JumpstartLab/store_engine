@@ -10,7 +10,7 @@ body {
 .navbar a.brand {
   font-size: 250%;
   font-family: 'Alex Brush', cursive;
-  color: #18b3dd;
+  color: #779f29;
   padding-top:18px;
 }
 
@@ -29,24 +29,22 @@ body {
 
 // This makes the scrolly hr rule as seen on homepage
 .span12 hr {
-    //height: 30px;
-    //border-style: solid;
-    //border-color: green;
-    //border-width: 1px 0 0 0;
-    //border-radius: 20px;
-  opacity: 0;
+  height: 30px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 1px 0 0 0;
+  border-radius: 20px;
 }
 
 .span12 hr:before {
-  opacity: 0;
-    //display: block;
-    //content: "";
-    //height: 30px;
-    //margin-top: -31px;
-    //border-style: solid;
-    //border-color: green;
-    //border-width: 0 0 1px 0;
-    //border-radius: 20px;
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
 }
 
 

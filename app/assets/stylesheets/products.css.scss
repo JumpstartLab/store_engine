@@ -2,37 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-//body {
-//  background: url('bg.jpg') repeat fixed center;
-//}
-//
-//.product_listing {
-//  margin: auto;
-//}
-
-//.product {
-//  background-image: url('product_thumbnail.png');
-//  position: relative;
-//  //border: 1px solid black;
-//  width: 307px;
-//  height: 448px;
-//  margin: 20px;
-//  float: left;
-//}
-//
-
-
 .products {
-  //border: solid;
-  //border-color: #000000;
   text-align: center;
   color: #779f29;
-  //box-shadow: 3px 3px 4px #424242;
 }
 
 .content {
-  background: url('BG-main.png') repeat fixed center;
+  background: url('texture.jpg') repeat fixed center;
   -moz-border-radius: 5px;
   border-radius: 5px;
   margin: auto;
@@ -46,11 +22,36 @@
 
 #homepage-category-dropdown {
   margin-bottom: 20px;
-  margin-left: 160px;
   text-align: left;
 }
 
 .form-search {
-  margin-right: 90px;
   text-align: right;
+}
+
+.rating-title {
+  white-space: nowrap;
+}
+
+.rating-new {
+  margin: 30px;
+}
+
+#star-avg {
+  display: inline;
+  white-space: nowrap;
+}
+
+.average-rating h4 {
+  display: inline;
+  white-space: nowrap;
+}
+
+.prod_detail_img product-categories {
+  display: inline;
+  white-space: nowrap;
+}
+
+.product-index {
+  margin: 30px;
 }

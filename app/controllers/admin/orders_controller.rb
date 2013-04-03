@@ -6,6 +6,9 @@ class Admin::OrdersController < ApplicationController
     @orders = Search.filter_admin_orders(params)
     @statuses = Order.count(group: :status)
     @active_tab = params[:status] || 'all'
+    #@dashboard = OrderDashboard.new(params[:status])
+    #@dashboard.statuses # => [ [ 16, "total", "all" ], []
+
   end
 
   def show

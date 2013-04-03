@@ -1,13 +1,15 @@
-<%= render partial: 'shared/admin_navigation', :locals => { active: :categories } %>
+<div class="admin-category-index">
+  <%= render partial: 'shared/admin_navigation', :locals => { active: :categories } %>
 
-<div class="span8">
-  <h1><%= t 'categories.self' %></h1>
-  <hr>
-  <div class="pull-right">
-    <%= button_to t('categories.create'), new_admin_category_path, method: :get, class: 'btn btn-large btn-primary' %>
+  <div class="span8">
+    <h1><%= t 'categories.self' %></h1>
+    <hr>
+    <div class="pull-right">
+      <%= button_to t('categories.create'), new_admin_category_path, method: :get, class: 'btn btn-large btn-primary' %>
+    </div>
+
+    <table class="table table-striped">
+      <%= render @categories %>
+    </table>
   </div>
-
-  <table class="table table-striped">
-    <%= render @categories %>
-  </table>
 </div>

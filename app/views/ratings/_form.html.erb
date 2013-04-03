@@ -1,0 +1,6 @@
+<%= simple_form_for [@product, @rating] do |f| %>
+  <%= f.input :title, input_html: { placeholder: t('placeholder.ratings.title') } %>
+  <%= f.input :body, input_html: { placeholder: t('placeholder.ratings.body') } %>
+  <%= f.input :stars, input_html: { placeholder: t('placeholder.ratings.stars') } %>
+  <%= f.button :submit, t('ratings.create') %>
+<% end %>
