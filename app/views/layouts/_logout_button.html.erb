@@ -1,0 +1,5 @@
+<% if session[:cart] && !session[:cart].empty? %>
+  <%= link_to t('navigation.logout'), session_path(current_user), method: :delete, confirm: t('cart.confirmlogout') %>
+<% else %>
+  <%= link_to t('navigation.logout'), session_path(current_user), method: :delete %>
+<% end %>

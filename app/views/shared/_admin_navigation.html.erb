@@ -1,0 +1,20 @@
+<div class="span3">
+  <ul class="nav nav-list">
+    <li class="nav-header"><%= t('admin.self') %></li>
+    <li class="<%= active == :dashboard ? 'active' : '' %>">
+      <%= link_to t('admin.dashboard'), admin_dashboard_path %>
+    </li>
+    <li class="<%= active == :products ? 'active' : '' %>">
+      <%= link_to t('product.collection'), admin_products_path %>
+    </li>
+    <li class="<%= active == :categories ? 'active' : '' %>">
+      <%= link_to t('categories.self'), admin_categories_path %>
+    </li>
+    <li class="<%= active == :sales ? 'active' : '' %>">
+      <%= link_to "Sales", admin_sales_path %>
+    </li>
+    <li class="<%= active == :search ? 'active' : '' %>">
+      <%= link_to "Search", admin_search_path %>
+    </li>
+  </ul>
+</div>

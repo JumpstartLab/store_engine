@@ -10,4 +10,28 @@
  *
  *= require_self
  *= require_tree .
-*/
+ */
+
+/*.content {*/
+  /*padding: 20px;*/
+  /*margin: 0 -20px;  negative indent the amount of the padding to maintain the grid system*/
+    /*margin: auto;*/
+/*}*/
+
+
+/*CSS for the products divs on the home page*/
+/*.products {*/
+  /*float: left;*/
+  /*padding: 10px;*/
+  /*margin: auto;*/
+  /*border: 1px solid black;*/
+/*}*/
+
+/*.btn-group {*/
+    /*margin: auto;*/
+/*}*/
+
+/* For the Shopping Cart Show Page*/
+#shopping_cart_summary {
+  float: right;
+}

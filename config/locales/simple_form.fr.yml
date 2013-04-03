@@ -1,0 +1,16 @@
+fr:
+  simple_form:
+    labels:
+      defaults:
+        email: 'Adresse éléctronique'
+        full_name: 'Nom Complet'
+        display_name: "Nom d'afficher"
+        password: 'Mot de passe'
+        password_confirmation: 'Confirmation de mot de passe'
+        title: 'Titre'
+        description: 'Description'
+        price: 'Prix'
+        categories: 'Catégories'
+        status: 'Statut'
+        body: 'Description'
+        stars: 'Etoiles'

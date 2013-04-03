@@ -1,0 +1,32 @@
+<div class="product-index">
+  <section class="row">
+    <div class="btn-group span1" id="homepage-category-dropdown">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        <%= t 'categories.select' %>
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li><a href="/">Show All</a></li>
+        <% unless @categories.nil? %>
+            <% @categories.each do |category| %>
+                <li>
+                  <%=link_to category.title, products_path(category_id: category.id) %>
+                </li>
+            <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+    <form action="<%= products_path %>" method="get" class="form-search">
+      <input type="text" id="product-search" value="<%= params[:search] %>" name="search" class="input-medium search-query">
+      <button type="submit" class="btn"><%= t 'navigation.search' %></button>
+    </form>
+  </section>
+
+  <br/>
+
+  <div id="product_listing" class="row-fluid">
+    <%= render @products %>
+  </div>
+</div>
+

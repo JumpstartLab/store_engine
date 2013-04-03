@@ -1,0 +1,9 @@
+<% if sale.status == 'active' %>
+  <li>
+    <%= link_to 'End Sale', end_admin_sale_path(sale), :method => :post %>
+  </li>
+<% elsif sale.status == 'ended' %>
+  <li>
+    <%= link_to 'Activate Sale', activate_admin_sale_path(sale), :method => :post %>
+  </li>
+<% end %>

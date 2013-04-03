@@ -1,0 +1,18 @@
+<tr>
+  <td><%= sale.item.title %></td>
+  <td><%= sale.percent_off %> %</td>
+  <td><%= sale.created_at.to_s(:short) %></td>
+  <td><%= sale.status %></td>
+  <td>
+    <div class="btn-group">
+      <button class="btn dropdown-toggle" data-toggle="dropdown"><%= t('model.modify') %> <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <%= render partial: 'ended_active_button', locals: { sale: sale } %>
+        <li class="divider"></li>
+        <li>
+          <%= link_to t('crud.delete'), admin_sale_path(sale), confirm: t('confirm'), method: :delete %>
+        </li>
+      </ul>
+    </div>
+  </td>
+</tr>

@@ -1,0 +1,18 @@
+<ul class="nav nav-pills">
+<% if active_tab == 'all' %>
+<li class="active">
+<% else %>
+<li>
+<% end %>
+<%= link_to "#{count} #{t 'total'}", admin_dashboard_path %>
+</li>
+<% %w(pending cancelled paid shipped returned).each do |status| %>
+  <% if active_tab == status %>
+  <li class="active">
+  <% else %>
+  <li>
+  <% end %>
+  <%= link_to status_count(status), admin_dashboard_path(status: status) %>
+  </li>
+<% end %>
+</ul>

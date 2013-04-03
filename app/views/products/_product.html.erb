@@ -1,0 +1,18 @@
+<%= link_to product_path(product) do %>
+  <div class="products span3 offset1">
+    <p><%= image_tag product.image.url(:thumb) %></p>
+    <h5><%= product.title.capitalize %></h5>
+    <p><%= t('product.description') %>: <%= product.description %></p>
+    <% if product.on_sale? %>
+      <p><b><%= t('product.onsale') %></b></p>
+      <p><%= t('product.originalprice') %>: <strike><%= number_to_currency(product.price) %></strike></p>
+      <p><%= t('product.percentsavings') %>: <%= product.percent_off %>%</p>
+      <p><%= t('product.saleprice') %>: <%= number_to_currency(product.sale_price) %></p>
+    <% else %>
+      <h6><%= t('product.price') %>: <%= number_to_currency(product.price) %></h6>
+    <% end %>
+  </div>
+<% end %>
+
+
+

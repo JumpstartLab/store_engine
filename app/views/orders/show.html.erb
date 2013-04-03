@@ -1,0 +1,32 @@
+<div class="order-show">
+  <%= render partial: '/users/user_navigation', :locals => { active: false } %>
+
+  <div class="span8">
+
+    <h1><%= t('order.self') %> #<%= @order.id %></h1>
+    <p><%= t('model.createdat') %>: <%= @order.created_at.to_s(:short) %></p>
+    <p><%= t('model.status') %>: <%= @order.status %> <%= t('time.asof') %> <%=@order.updated_at.to_s(:short) %></p>
+
+    <table class="table table-striped">
+      <thead>
+        <th><%= t('product.name') %></th>
+        <th><%= t('product.quantity') %></th>
+        <th><%= t('product.unitprice') %></th>
+        <th><%= t('product.discount') %></th>
+        <th><%= t('product.subtotal') %></th>
+      </thead>
+      <tbody>
+        <%= render partial: 'order_item', collection: @order.order_items %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td style="text-align: right;"><%= t('total') %>:</td>
+          <td><%= number_to_currency(@order.total) %></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

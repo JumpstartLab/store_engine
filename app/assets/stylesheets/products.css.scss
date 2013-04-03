@@ -1,0 +1,57 @@
+// Place all the styles related to the products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.products {
+  text-align: center;
+  color: #779f29;
+}
+
+.content {
+  background: url('texture.jpg') repeat fixed center;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.dropdown-menu {
+  text-align: left;
+}
+
+#homepage-category-dropdown {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.form-search {
+  text-align: right;
+}
+
+.rating-title {
+  white-space: nowrap;
+}
+
+.rating-new {
+  margin: 30px;
+}
+
+#star-avg {
+  display: inline;
+  white-space: nowrap;
+}
+
+.average-rating h4 {
+  display: inline;
+  white-space: nowrap;
+}
+
+.prod_detail_img product-categories {
+  display: inline;
+  white-space: nowrap;
+}
+
+.product-index {
+  margin: 30px;
+}

@@ -1,0 +1,34 @@
+<div class="admin-order-show">
+  <%= render partial: 'shared/admin_navigation', locals: { active: false } %>
+
+  <div class="span8">
+    <h1><%= t 'order.self' %> #<%= @order.id %></h1>
+    <p><%= t 'model.status' %> <%= @order.status %></p>
+    <%= render partial: 'next_status_button', locals: { order: @order } %>
+    <hr>
+    <p><%= t 'model.createdat' %>: <%= @order.created_at.to_s(:short) %></p>
+    <p><%= t 'model.updatedat' %>: <%= @order.updated_at.to_s(:short) %></p>
+    <p><%= t 'order.purchasername' %>: <%= @order.user.full_name %></p>
+    <p><%= t 'order.purchaseremail' %>: <%= @order.user.email %></p>
+    <h2> <%= t 'product.collection' %> </h2>
+    <table class="table">
+      <thead>
+      <th><%= t 'product.title' %></th>
+      <th><%= t 'product.quantity' %></th>
+      <th><%= t 'product.price' %></th>
+      <th><%= t 'product.subtotal' %></th>
+      </thead>
+      <tbody>
+      <%= render partial: 'order_item', collection: @order.order_items %>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: right;"><%= t 'total' %></td>
+        <td><%= number_to_currency(@order.total) %></td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

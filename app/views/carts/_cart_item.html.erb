@@ -1,0 +1,22 @@
+<% current_cart.items.each do |cart_item| %>
+<tr>
+  <td><%= image_tag cart_item.product.image.url(:thumb) %></td>
+  <td>
+    <%= link_to cart_item.title, product_path(cart_item.product) %>
+    <br>
+    <%= cart_item.product.description %>
+    <br>
+    <%= link_to t('action.remove'), remove_item_cart_path(remove_item: { product_id: cart_item.product.id }), confirm: t('confirm'), method: :put %>
+  </td>
+  <td><%= number_to_currency(cart_item.unit_price) %></td>
+  <td><%= cart_item.percent_off %> %</td>
+  <td><%= number_to_currency(cart_item.selling_price) %></td>
+  <td>
+    <%= simple_form_for :carts, url: '/cart', method: :put do |f| %>
+      <%= f.hidden_field :product_id, value: cart_item.product.id %>
+      <%= f.input_field :quantity, value: cart_item.quantity, class: 'span1' %>
+      <%= f.button :submit, t('crud.update') %>
+    <% end %>
+  </td>
+</tr>
+<% end %>

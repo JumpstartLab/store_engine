@@ -1,0 +1,8 @@
+<tr>
+  <td><%= link_to "#{t('order.self')} ##{order.id}", admin_order_path(order) %></td>
+  <td><%= order.created_at.to_s(:short) %></td>
+  <td><%= order.status %></td>
+  <td>
+    <%= render partial: 'next_status_button', locals: { order: order } %>
+  </td>
+</tr>

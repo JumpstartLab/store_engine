@@ -1,0 +1,152 @@
+cs:
+  ratings:
+    self: 'NOMNOMNOM'
+    rate: 'nomnom'
+    create: 'BLAARGHH'
+    title: 'MENAAAAME'
+    body: 'NOMNOMNOM'
+    stars: 'WAAAAHHHH'
+    displayname: 'bleep'
+    average: 'MEH BLEEP'
+    none: 'BLAGGGGGHHH!'
+    rateit: 'ROAR!'
+    editpage: 'nomnomnomnom'
+    newpage: 'nomnomnomnom'
+    please: 'bleepbleepbleep'
+    pleaserate: 'dinkadinkiwaaaahhhh'
+    product: 'merp'
+    your: 'NOMNOMNOM'
+    createdat: 'NOMNOMNOM'
+    rated:
+      thanks: 'HIHIHIHIHIHIHIHIHI!'
+      notice: 'BLERRRRRRGHHEHROAAAARRRR'
+      edit: 'blipbleepblop'
+  remember: 'blerpen'
+  details: 'merp'
+  account:
+    self: 'DINGIDINGDOOP'
+    email: 'MEEEPMEEP'
+    fullname: 'NOMNOMNOM'
+    displayname: 'NOMNOMNOM'
+    create: 'NOMNOMNOM'
+    details: 'NOMNOMNOM'
+    edit: 'NOMNOMNOM'
+    update: 'NOMNOMNOM'
+  time:
+    asof: 'NOMNOMNOM'
+  languages:
+    english: 'English'
+    french: 'French'
+    creaturespeak: 'Creature-speak'
+    canadian: 'Canadian'
+  back:
+    home: 'bleepbleepbleep'
+  cart:
+    isempty: 'bleepbleepbleepbloop!'
+    empty: 'bloop :('
+    confirmlogout: 'bleepbleepbleep'
+    add: 'NOMNOMNOM'
+  store:
+    name: "DERP."
+  confirm: 'blergghhhhh?'
+  checkout: 'NOMNOMNOM'
+  purchase: 'NOMNOMNOM'
+  action:
+    remove: 'blerpen bleepen'
+  bling:
+    bling: '$'
+  model:
+    createdat: 'bleepbleepbleep'
+    updatedat: 'bleepbleepbleep'
+    status: 'NOMNOMNOM'
+    modify: 'NOMNOMNOM'
+  navigation:
+    cart: 'NOMNOMNOM'
+    account: 'NOMNOMNOM'
+    logout: 'NOMNOMNOM'
+    login: 'NOMNOMNOM'
+    signup: 'nipnipbleeopddhhggfffff'
+    languages: 'fzzzzzf'
+    search: 'pphffft'
+  home:
+    welcome: 'NOMNOMNOM'
+  categories:
+    self: 'NOMNOMNOM'
+    edit: 'NOMNOMNOM'
+    create: 'NOMNOMNOM'
+    showall: 'VRRRMMMMM'
+    noproducts: 'veeppdadfadlkfj'
+    select: 'blleeeeerp'
+  crud:
+    edit: 'bleeop'
+    delete: 'bleeop'
+    update: 'bleeop'
+  placeholder:
+    ratings:
+      title: "derrrperrrr"
+      body: "BLEEEERRRGHGHGHDH ROOOOOARRRRR!"
+      stars: '5'
+    category:
+      title: 'MOOOARRRRR'
+    product:
+      title: 'BLERRGHHHH'
+      description: 'NOMNOMNOMNOMNOMNOMNOMNOMNOMNOM'
+    session:
+      email: 'NOMNOMNOM'
+    user:
+      email: 'NOMNOMNOM'
+      fullname: 'NOMNOMNOM'
+      displayname: 'NOMNOMNOM'
+  total: 'NOMNOMNOM'
+  admin:
+    self: 'NOMNOMNOM'
+    dashboard: 'NOMNOMNOM'
+  product:
+    self: 'NOMNOMNOM'
+    collection: 'NOMNOMNOM'
+    rating: 'NOMNOMNOM'
+    title: 'NOMNOMNOM'
+    quantity: 'NOMNOMNOM'
+    description: 'NOMNOMNOM'
+    price: 'NOMNOMNOM'
+    subtotal: 'NOMNOMNOM'
+    edit: 'ROOARR NOMNOMNOM'
+    create: 'blerpen'
+    name: 'bleeeeffffe'
+    buynow: 'NOOAAAWWW'
+    enablebuynow: "VRZZZZM"
+    discount: "NOMNOMNOM"
+    originalprice: "NOMNOMNOM"
+    unitprice: "NOMNOMNOM"
+    onsale: "NOMNOMNOM"
+    percentsavings: "NOMNOMNOM"
+    savings: "NOMNOMNOM"
+    saleprice: "NOMNOMNOM"
+    status:
+      active: 'NOMNOMNOM'
+      retired: 'NOMNOMNOM'
+      activate: 'NOMNOMNOM'
+      retire: 'NOMNOMNOM'
+    image:
+      attach: 'derpdibleependern'
+  order:
+    self: 'Oggahdfaaaa'
+    collection: 'NOMNOMNOM'
+    none: 'BLEEARRGHH'
+    history: 'NOMNOMNOM'
+    date: 'NOMNOMNOM'
+    status: 'NOMNOMNOM'
+    actualvalue: 'NOMNOMNOM'
+    discounts: 'NOMNOMNOM'
+    purchasername: 'NOMNOMNOM'
+    purchaseremail: 'NOMNOMNOM'
+    status:
+      pending: 'PNOMNOMNOM'
+      cancelled: 'NOMNOMNOM'
+      paid: 'NOMNOMNOM'
+      shipped: 'NOMNOMNOM'
+      returned: 'NOMNOMNOM'
+      next:
+        pending: 'NOMNOMNOM'
+        paid: 'NOMNOMNOM'
+        shipped: 'NOMNOMNOM'

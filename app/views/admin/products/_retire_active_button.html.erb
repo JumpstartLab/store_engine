@@ -1,0 +1,9 @@
+<% if product.status == 'active' %>
+  <li>
+    <%= link_to t('product.retire'), retire_admin_product_path(product), :method => :post %>
+  </li>
+<% elsif product.status == 'retired' %>
+  <li>
+    <%= link_to t('product.activate'), activate_admin_product_path(product), :method => :post %>
+  </li>
+<% end %>

@@ -1,0 +1,20 @@
+<div class="rating-index">
+  <%= render partial: '/users/user_navigation', :locals => { active: :ratings } %>
+
+  <div class="span8">
+
+    <h1><%= t('ratings.self') %></h1>
+    <hr>
+    <table class="table table-striped">
+      <thead>
+      <th><%= t('ratings.product') %></th>
+      <th><%= t('ratings.your') %></th>
+      <th><%= t('ratings.createdat') %></th>
+      <th></th>
+      </thead>
+      <tbody>
+      <%= render partial: 'product', collection: @products, locals: {ratings: @ratings} %>
+      </tbody>
+    </table>
+  </div>
+</div>

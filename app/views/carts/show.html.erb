@@ -1,0 +1,27 @@
+<div class="cart-overview">
+  <% if current_cart.empty? %>
+      <h5><%= t('cart.isempty') %></h5>
+      <%= link_to t('back.home'), root_path %>
+  <% else %>
+      <table class="table table-striped">
+        <thead>
+        <th></th>
+        <th><%= t('product.self') %></th>
+        <th><%= t('product.originalprice') %></th>
+        <th><%= t('product.discount') %></th>
+        <th><%= t('product.price') %></th>
+        <th><%= t('product.quantity') %></th>
+        </thead>
+        <tbody>
+        <%= render partial: 'cart_item' %>
+        </tbody>
+      </table>
+
+      <div id="shopping_cart_summary">
+        <h5>Total: <%= number_to_currency(current_cart.total) %></h5>
+        <%= render partial: 'checkout_button',
+                   locals: { price: current_cart.total } %>
+        <%= button_to t('cart.empty'), cart_path, class: 'btn', method: :delete %>
+      </div>
+  <% end %>
+</div>
